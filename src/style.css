@@ -149,18 +149,19 @@ img, svg { max-width: 100%; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--leaf); }
 .header-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; }
 .github-link {
-  display: grid;
-  width: 36px;
-  height: 36px;
+  display: inline-grid;
+  width: 35px;
+  height: 30px;
   flex: 0 0 auto;
   place-items: center;
-  border-inline: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding-right: 15px;
   color: var(--ink);
   text-decoration: none;
   transition: color .18s ease;
 }
 .github-link:hover { color: var(--leaf); }
-.github-link svg { width: 18px; height: 18px; fill: currentColor; }
+.github-link svg { width: 17px; height: 17px; fill: currentColor; }
 .github-link:focus-visible { outline: 3px solid var(--sea); outline-offset: 3px; }
 .language-switcher {
   display: inline-flex;
