@@ -1,0 +1,134 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/"
+title: "Potoo IDE manual"
+description: "The first Potoo IDE manual: learn about the project, its current state and planned workflows."
+og_title: "Potoo IDE manual"
+og_description: "Learn about the idea behind Potoo IDE and where development stands today."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/"
+  es: "/es/manual/"
+  en: "/en/manual/"
+body_class: manual-page
+---
+<main id="conteudo">
+    <section class="manual-hero" id="inicio">
+      <div class="wrap">
+        <p class="kicker">First edition · project in development</p>
+        <h1>Potoo IDE manual</h1>
+        <p class="manual-intro">This guide introduces the purpose of Potoo IDE, what exists in the current foundation, and the workflows the project aims to build. Features marked as planned are not yet available in the app.</p>
+        <p class="manual-meta">
+          <span><b>Project</b> Potoo IDE</span>
+          <span><b>Foundation version</b> 0.1.0</span>
+          <span><b>Status</b> In development</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap manual-layout">
+      <aside class="manual-toc" aria-label="Contents of this manual">
+        <h2>In this guide</h2>
+        <ol>
+          <li><a href="#sobre">What is Potoo?</a></li>
+          <li><a href="#estado">Current status</a></li>
+          <li><a href="#fluxo">Planned workflow</a></li>
+          <li><a href="#linguagens">Languages</a></li>
+          <li><a href="#recursos">Editor and help</a></li>
+          <li><a href="#desenvolvimento">Development</a></li>
+          <li><a href="#ficha">Project details</a></li>
+          <li><a href="#perguntas">FAQ</a></li>
+        </ol>
+      </aside>
+
+      <article class="manual-content">
+        <section id="sobre">
+          <p class="kicker">01 · Overview</p>
+          <h2>What is Potoo IDE?</h2>
+          <p>Potoo IDE is a desktop environment project for students and teachers learning and teaching programming logic through pseudocode. The goal is to bring algorithm writing, contextual help and results together in a simple interface.</p>
+          <p>The project is at an early stage. This site describes its goals and plans; it does not present finished features or a release for everyday use.</p>
+          <div class="manual-note"><strong>How to read this manual:</strong> “Planned” marks a product goal. “Available” describes something that exists in the current application foundation.</div>
+        </section>
+
+        <section id="estado">
+          <p class="kicker">02 · Current status</p>
+          <h2>What exists today</h2>
+          <p>The initial foundation opens a Potoo IDE window with a welcome message. The editor, language selection, algorithm execution, contextual help and debugging have not been implemented yet.</p>
+          <p>For now, the app cannot create a programming project, run pseudocode or show errors in the IDE.</p>
+          <div class="manual-note planned"><strong>In development:</strong> planned next steps include the main interface, IDE panels and decisions about connecting independent interpreters.</div>
+        </section>
+
+        <section id="fluxo">
+          <p class="kicker">03 · Planned experience</p>
+          <h2>How the workflow is intended to work</h2>
+          <p>The steps below describe the intended experience, not an available product tutorial:</p>
+          <ol>
+            <li>Choose a pseudocode language for the exercise.</li>
+            <li>Write and arrange the algorithm in the editor.</li>
+            <li>Ask for contextual help about a line or concept.</li>
+            <li>Run the code and read its output and issues in companion panels.</li>
+          </ol>
+          <p>The project still needs to define how it will communicate with each interpreter, how error messages will work and which debugging features are possible.</p>
+        </section>
+
+        <section id="linguagens">
+          <p class="kicker">04 · Pseudocode languages</p>
+          <h2>Which languages are in scope?</h2>
+          <ul>
+            <li><strong>Portugol:</strong> part of the initial project scope; no interpreter is integrated yet.</li>
+            <li><strong>VisuAlg:</strong> also in the initial scope; its technical integration is still to be defined.</li>
+            <li><strong>PSeInt and Linotte:</strong> possibilities under evaluation, with no commitment to add them at this stage.</li>
+          </ul>
+          <p>The interpreters are independent projects. Compatibility, technical limits and licenses need to be reviewed before choosing an integration.</p>
+        </section>
+
+        <section id="recursos">
+          <p class="kicker">05 · Editor and help</p>
+          <h2>What the project aims to offer</h2>
+          <ul class="manual-list">
+            <li><span><strong>Pseudocode editor:</strong> a place to write algorithms without unnecessary distractions.</span></li>
+            <li><span><strong>Contextual help:</strong> an explanation tied to the selected line and the idea behind it.</span></li>
+            <li><span><strong>Bottom panels:</strong> planned space for output, issues and debugging.</span></li>
+            <li><span><strong>Several languages:</strong> a choice of pseudocode languages once their integrations are defined.</span></li>
+          </ul>
+          <div class="manual-note"><strong>Keep in mind:</strong> this list describes product goals. None of these features is available in the initial application.</div>
+        </section>
+
+        <section id="desenvolvimento">
+          <p class="kicker">06 · Development</p>
+          <h2>How to follow the project</h2>
+          <p>Potoo IDE is in development. Its foundation is currently a welcome window; the editor, pseudocode integrations and planned panels still need to be built.</p>
+          <p>No release date has been announced. This page describes the current known state and can be updated as the application progresses.</p>
+        </section>
+
+        <section id="ficha">
+          <p class="kicker">07 · Project information</p>
+          <h2>Potoo IDE at a glance</h2>
+          <dl class="manual-facts">
+            <div><dt>Type</dt><dd>Desktop IDE for learning logic</dd></div>
+            <div><dt>Audience</dt><dd>Students and teachers</dd></div>
+            <div><dt>Initial scope</dt><dd>Portugol and VisuAlg</dd></div>
+            <div><dt>Foundation technologies</dt><dd>Rust · GTK 4 · libadwaita</dd></div>
+            <div><dt>License</dt><dd>To be decided after integration reviews</dd></div>
+          </dl>
+        </section>
+
+        <section class="faq" id="perguntas">
+          <p class="kicker">08 · FAQ</p>
+          <h2>Common questions</h2>
+          <details><summary>Can I write programs in Potoo IDE yet?</summary><p>Not yet. The initial version opens a welcome window; the editor and algorithm execution are in development.</p></details>
+          <details><summary>Which pseudocode languages already work?</summary><p>None is integrated at this stage. Portugol and VisuAlg are in the initial scope; PSeInt and Linotte are under evaluation.</p></details>
+          <details><summary>When will the app be ready?</summary><p>The project is still in development and has no announced release date.</p></details>
+        </section>
+      </article>
+    </div>
+
+    <section class="wrap manual-cta">
+      <div><h2>Explore the project goals</h2><p>See the planned experience and development status on the home page.</p></div>
+      <a class="button" href="{{ page.home_path | relative_url }}#inicio">Go to the home page <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>

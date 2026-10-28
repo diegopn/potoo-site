@@ -1,0 +1,54 @@
+pt-BR:
+  skip: Pular para o conteúdo
+  brand: "Potoo IDE — início"
+  navigation: Navegação principal
+  language: Idioma
+  theme: Ativar modo escuro
+  menu: Abrir menu
+  nav:
+    proposal: Proposta
+    features: Recursos
+    flow: Fluxo
+    languages: Linguagens
+    progress: Andamento
+    manual: Manual
+  footer:
+    home: "Projeto em desenvolvimento · Rust · GTK 4 · libadwaita"
+    manual: "Manual inicial · Projeto em desenvolvimento"
+  back_to_top: "Voltar ao início ↑"
+en:
+  skip: Skip to content
+  brand: "Potoo IDE — home"
+  navigation: Main navigation
+  language: Language
+  theme: Switch to dark mode
+  menu: Open menu
+  nav:
+    proposal: About
+    features: Features
+    flow: Workflow
+    languages: Languages
+    progress: Progress
+    manual: Manual
+  footer:
+    home: "Project in development · Rust · GTK 4 · libadwaita"
+    manual: "First edition · Project in development"
+  back_to_top: "Back to top ↑"
+es:
+  skip: Saltar al contenido
+  brand: "Potoo IDE — inicio"
+  navigation: Navegación principal
+  language: Idioma
+  theme: Activar modo oscuro
+  menu: Abrir menú
+  nav:
+    proposal: Propuesta
+    features: Funciones
+    flow: Flujo
+    languages: Lenguajes
+    progress: Avances
+    manual: Manual
+  footer:
+    home: "Proyecto en desarrollo · Rust · GTK 4 · libadwaita"
+    manual: "Primera edición · Proyecto en desarrollo"
+  back_to_top: "Volver arriba ↑"

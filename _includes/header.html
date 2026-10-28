@@ -1,0 +1,32 @@
+{% assign copy = site.data.copy[page.lang] %}
+<header class="site-header">
+  <a class="brand" href="{{ page.home_path | relative_url }}" aria-label="{{ copy.brand | escape }}">
+    <img src="{{ '/src/assets/images/potoo-mark.svg' | relative_url }}" alt="">
+    <span class="brand-copy"><strong>Potoo</strong><small>IDE</small></span>
+  </a>
+  <button class="menu-toggle" type="button" aria-label="{{ copy.menu | escape }}" aria-controls="main-nav" aria-expanded="false">
+    <svg class="icon-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <nav class="main-nav" id="main-nav" aria-label="{{ copy.navigation | escape }}">
+    <a href="{{ page.home_path | relative_url }}#proposta">{{ copy.nav.proposal | escape }}</a>
+    <a href="{{ page.home_path | relative_url }}#recursos">{{ copy.nav.features | escape }}</a>
+    {% if page.page_kind == 'home' %}
+      <a href="{{ page.home_path | relative_url }}#fluxo">{{ copy.nav.flow | escape }}</a>
+      <a href="{{ page.home_path | relative_url }}#linguagens">{{ copy.nav.languages | escape }}</a>
+    {% endif %}
+    <a href="{{ page.home_path | relative_url }}#andamento">{{ copy.nav.progress | escape }}</a>
+    <a href="{{ page.manual_path | relative_url }}"{% if page.page_kind == 'manual' %} aria-current="page"{% endif %}>{{ copy.nav.manual | escape }}</a>
+  </nav>
+  <div class="header-actions">
+    <nav class="language-switcher" aria-label="{{ copy.language | escape }}">
+      <a href="{{ page.translations.pt | relative_url }}" lang="pt-BR"{% if page.lang == 'pt-BR' %} aria-current="page"{% endif %}>PT</a>
+      <a href="{{ page.translations.es | relative_url }}" lang="es"{% if page.lang == 'es' %} aria-current="page"{% endif %}>ES</a>
+      <a href="{{ page.translations.en | relative_url }}" lang="en"{% if page.lang == 'en' %} aria-current="page"{% endif %}>EN</a>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="{{ copy.theme | escape }}" title="{{ copy.theme | escape }}">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.2 8.2 0 0 1 8.6 3.8 8.6 8.6 0 1 0 20.2 15.4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,136 @@
+---
+layout: default
+lang: "en"
+page_kind: "home"
+permalink: "/en/"
+title: "Potoo IDE — learn logic, one line at a time"
+description: "Potoo IDE is a desktop IDE project in development for students and teachers learning and teaching programming logic with pseudocode."
+og_title: "Potoo IDE — learn logic, one line at a time"
+og_description: "A desktop IDE project in development for students and teachers learning and teaching programming logic."
+og_type: "website"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/"
+  es: "/es/"
+  en: "/en/"
+---
+<main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">An IDE for learning logic</p>
+          <h1>Your first idea becomes an algorithm.</h1>
+          <p class="hero-lead">Potoo IDE is a desktop IDE project for students and teachers learning and teaching programming logic with pseudocode.</p>
+          <div class="hero-actions">
+            <a class="button" href="#proposta">Explore the idea <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="{{ page.manual_path | relative_url }}">Read the manual <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>In development · initial version 0.1.0</p>
+        </div>
+        <div>
+          <div class="hero-stage">
+                        <img class="hero-mascot" src="{{ '/src/assets/images/potoo-mascot-v3.svg' | relative_url }}" alt="">
+            <div class="code-card" aria-label="Illustrative pseudocode, not executable">
+              <div class="code-card-head"><span>first_step</span><span>pseudocode</span></div>
+              <pre><span class="code-key">algorithm</span> "hello"
+<span class="code-key">begin</span>
+  print(<span class="code-text">"Hello, world!"</span>)
+<span class="code-key">end</span></pre>
+            </div>
+            <div class="concept-card"><strong>Planned editor</strong><small>A concept for how the workflow could look.</small></div>
+          </div>
+          <p class="concept-caption">Concept illustration and syntax; this is not a screenshot of the app.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proposta">
+      <div class="wrap">
+        <div class="split-heading">
+          <div><p class="kicker">01 · The idea</p><h2>A clearer start to programming logic.</h2></div>
+          <p>Potoo aims to give beginners a simple place to experiment with algorithms. The idea is to bring writing, explanations and results into a desktop interface, without turning learning into a collection of disconnected tools.</p>
+        </div>
+        <div class="fact-strip">
+          <article><small>For</small><strong>Students and teachers</strong><p>A place to support learning and teaching the foundations of programming.</p></article>
+          <article><small>Focus</small><strong>Logic before syntax</strong><p>Pseudocode can keep attention on the steps behind an algorithm.</p></article>
+          <article><small>Format</small><strong>Desktop application</strong><p>A native IDE planned for Linux, Windows and macOS.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="recursos">
+      <div class="wrap feature-layout">
+        <div class="feature-intro">
+          <p class="kicker">02 · Planned features</p>
+          <h2>A learning workspace, designed around your next step.</h2>
+          <p>These are product goals. They are not part of the current app yet.</p>
+        </div>
+        <div class="feature-list">
+          <article class="feature-item"><span class="feature-number">01</span><div><h3>Choose a pseudocode language</h3><p>Portugol and VisuAlg are in the initial scope. Interpreter integration still needs to be defined.</p><span class="planned-label">Planned</span></div></article>
+          <article class="feature-item"><span class="feature-number">02</span><div><h3>Write in an editor made for beginners</h3><p>A simple code area, designed to keep the focus on the reasoning behind each algorithm.</p><span class="planned-label">Planned</span></div></article>
+          <article class="feature-item"><span class="feature-number">03</span><div><h3>Get help with the current line</h3><p>Contextual help for explaining a selected line and the idea behind it is part of the plan.</p><span class="planned-label">Planned</span></div></article>
+          <article class="feature-item"><span class="feature-number">04</span><div><h3>Follow the run</h3><p>Output, problems and debugging are planned as companion panels for the code.</p><span class="planned-label">Planned</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fluxo">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="kicker">03 · How it could work</p>
+          <h2>Four steps to explore an idea.</h2>
+          <p>This flow describes the experience Potoo is aiming for, not features available today.</p>
+        </div>
+        <div class="step-grid">
+          <article class="step-card"><span class="step-number">01</span><h3>Choose a language</h3><p>Start with the pseudocode used in your class or study.</p></article>
+          <article class="step-card"><span class="step-number">02</span><h3>Write the algorithm</h3><p>Arrange your steps in the editor and focus on the logic.</p></article>
+          <article class="step-card"><span class="step-number">03</span><h3>Understand the next step</h3><p>Use contextual help to clarify a line or concept.</p></article>
+          <article class="step-card"><span class="step-number">04</span><h3>Read the result</h3><p>Use the planned output and panels to follow the run.</p></article>
+        </div>
+        <div class="planned-note"><span aria-hidden="true">↗</span><span><strong>Workflow in planning.</strong> The current version does not yet include an editor, code execution or debugging.</span></div>
+      </div>
+    </section>
+
+    <section class="section soft" id="linguagens">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="kicker">04 · Languages</p>
+          <h2>Built around pseudocode.</h2>
+          <p>The scope is being shaped carefully so each interpreter integration can respect its own project and license.</p>
+        </div>
+        <div class="language-panels">
+          <article class="language-panel"><span class="language-code">PT</span><h3>Portugol</h3><p>Part of the initial scope for teaching logic with Portuguese commands. It is not integrated yet.</p></article>
+          <article class="language-panel"><span class="language-code">VA</span><h3>VisuAlg</h3><p>Also in the initial scope. Integration depends on defining how the IDE will communicate with its interpreter.</p></article>
+        </div>
+        <div class="language-evaluation" aria-label="Possibilities under evaluation"><span>Under evaluation</span><span>PSeInt</span><span>Linotte</span></div>
+      </div>
+    </section>
+
+    <section class="section deep" id="andamento">
+      <div class="wrap roadmap">
+        <div class="roadmap-intro">
+          <p class="kicker">05 · Progress</p>
+          <h2>Potoo is just getting started.</h2>
+          <p>The current foundation opens a welcome window. The editor and pseudocode integrations still need to be built.</p>
+        </div>
+        <div class="roadmap-list">
+          <article class="roadmap-item is-current"><span class="roadmap-mark" aria-hidden="true">01</span><div><h3>Application foundation</h3><p>A GTK 4 and libadwaita window with a welcome message.</p></div></article>
+          <article class="roadmap-item"><span class="roadmap-mark" aria-hidden="true">02</span><div><h3>Main interface</h3><p>Editor, pseudocode language selection and IDE panels.</p></div></article>
+          <article class="roadmap-item"><span class="roadmap-mark" aria-hidden="true">03</span><div><h3>Execution integration</h3><p>Define interpreter interfaces and present results and errors.</p></div></article>
+          <article class="roadmap-item"><span class="roadmap-mark" aria-hidden="true">04</span><div><h3>Refine the learning workflow</h3><p>Review the experience as the editor and integrations take shape.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="development-finale">
+      <div class="wrap availability">
+        <div class="availability-copy">
+          <p class="kicker">06 · Development</p>
+          <h2>The app is being built one step at a time.</h2>
+          <p>Potoo is still at an early stage. The next work is to grow the welcome window into an IDE and build the planned learning workflows.</p>
+        </div>
+        <a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>

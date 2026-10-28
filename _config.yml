@@ -1,0 +1,33 @@
+title: Potoo IDE
+name: Potoo IDE
+description: Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens.
+social_image: "/src/assets/images/potoo-mascot-v3.png"
+social_image_alt:
+  pt: "Mascote verde do Potoo IDE empoleirado em um galho."
+  es: "Mascota verde de Potoo IDE posada en una rama."
+  en: "Green Potoo IDE mascot perched on a branch."
+application:
+  name: Potoo IDE
+  category: DeveloperApplication
+  version: "0.1.0"
+  descriptions:
+    pt-BR: "Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens."
+    es: "Proyecto de IDE de escritorio en desarrollo para aprender y enseñar lógica de programación con pseudolenguajes."
+    en: "Desktop IDE project in development for learning and teaching programming logic with pseudocode."
+url: "https://diegopn.github.io"
+baseurl: "/potoo-site"
+default_lang: pt-BR
+permalink: pretty
+markdown: kramdown
+
+languages:
+  - key: pt
+    code: pt-BR
+  - key: es
+    code: es
+  - key: en
+    code: en
+
+exclude:
+  - README.md
+  - .gitignore

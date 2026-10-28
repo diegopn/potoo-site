@@ -1,0 +1,8 @@
+{% assign copy = site.data.copy[page.lang] %}
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="footer-brand" href="{{ page.home_path | relative_url }}"><img src="{{ '/src/assets/images/potoo-mark.svg' | relative_url }}" alt=""><span>Potoo IDE</span></a>
+    <span class="footer-summary">{{ copy.footer[page.page_kind] | escape }}</span>
+    <a class="footer-top" href="#inicio">{{ copy.back_to_top | escape }}</a>
+  </div>
+</footer>

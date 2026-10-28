@@ -1,0 +1,16 @@
+---
+---
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{% for page in site.pages %}
+  {% if page.translations %}
+  <url>
+    <loc>{{ page.url | absolute_url | xml_escape }}</loc>
+    {% for language in site.languages %}
+      {% assign translation_url = page.translations[language.key] %}
+      {% if translation_url %}<xhtml:link rel="alternate" hreflang="{{ language.code | xml_escape }}" href="{{ translation_url | absolute_url | xml_escape }}" />{% endif %}
+    {% endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ page.translations.pt | absolute_url | xml_escape }}" />
+  </url>
+  {% endif %}
+{% endfor %}
+</urlset>

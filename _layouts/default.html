@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.default_lang | escape }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef9f0">
+  {% include meta-tags.html %}
+  {% include structured-data.html %}
+  <link rel="icon" href="{{ '/src/assets/images/potoo-mark.svg' | relative_url }}" type="image/svg+xml">
+  <script src="{{ '/src/theme-init.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/src/style.css' | relative_url }}">
+  {% if jekyll.environment == "production" %}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTLXBK0TY1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MTLXBK0TY1');
+  </script>
+  {% endif %}
+</head>
+<body{% if page.body_class %} class="{{ page.body_class | escape }}"{% endif %}>
+  {% assign copy = site.data.copy[page.lang] %}
+  <a class="skip-link" href="#conteudo">{{ copy.skip | escape }}</a>
+  {% include header.html %}
+  {{ content }}
+  {% include footer.html %}
+  <script src="{{ '/src/script.js' | relative_url }}" defer></script>
+</body>
+</html>
