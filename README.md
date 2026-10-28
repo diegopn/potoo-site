@@ -11,7 +11,7 @@ Site institucional do Potoo IDE, em português, espanhol e inglês. O conteúdo 
 - `index.html`, `en/` e `es/`: páginas iniciais com metadados Jekyll no front matter.
 - `manual/`, `en/manual/` e `es/manual/`: manuais localizados.
 - `src/style.css`, `src/script.js` e `src/theme-init.js`: estilos e interações compartilhados.
-- `src/assets/images/`: marca e ilustração do Potoo.
+- `src/assets/images/`: marca e ilustração do Potoo IDE.
 
 ## GitHub Pages
 
