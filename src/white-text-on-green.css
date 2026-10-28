@@ -1,0 +1,6 @@
+.language-switcher a:hover,
+.language-switcher a[aria-current="page"],
+.step-number,
+.language-panel .language-code {
+  color: #FFFFFF;
+}
