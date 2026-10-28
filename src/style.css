@@ -545,8 +545,8 @@ img, svg { max-width: 100%; }
   .brand img { width: 38px; height: 38px; }
   .brand-copy strong { font-size: 16px; }
   .brand-copy small { font-size: 8px; }
-  .menu-toggle { display: grid; order: 1; flex: 0 0 auto; margin-left: auto; }
-  .header-actions { order: 2; margin-left: 0; }
+  .menu-toggle { display: grid; order: 2; flex: 0 0 auto; margin-left: 0; }
+  .header-actions { order: 1; margin-left: auto; }
   .main-nav {
     position: absolute;
     top: calc(100% - 1px);
