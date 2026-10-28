@@ -149,13 +149,13 @@ img, svg { max-width: 100%; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--leaf); }
 .header-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; }
 .github-link {
-  display: inline-grid;
+  display: grid;
   width: 35px;
   height: 30px;
   flex: 0 0 auto;
   place-items: center;
-  border-right: 1px solid var(--line);
-  padding-right: 15px;
+  border: 0;
+  padding: 0;
   color: var(--ink);
   text-decoration: none;
   transition: color .18s ease;
