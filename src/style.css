@@ -424,7 +424,7 @@ img, svg { max-width: 100%; }
 .language-panel .language-code { display: inline-flex; min-width: 43px; min-height: 38px; align-items: center; justify-content: center; margin-bottom: 20px; background: var(--leaf-bright); color: var(--on-accent); font-size: 11px; font-weight: 900; }
 .language-panel h3 { margin: 0 0 7px; color: var(--ink); font-size: 22px; letter-spacing: -.04em; }
 .language-panel p { max-width: 420px; margin: 0; color: var(--ink-soft); font-size: 13px; }
-.language-evaluation { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 23px; }
+.language-evaluation { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 23px; }
 .language-evaluation > span:not(.evaluation-label) { padding: 7px 10px; border: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 780; }
 .language-evaluation .evaluation-label { padding-right: 2px; color: var(--muted); font-size: 10px; font-weight: 780; }
 
