@@ -644,6 +644,7 @@ img, svg { max-width: 100%; }
 :root:not([data-theme="dark"]) .button { color: #FFFFFF; }
 :root:not([data-theme="dark"]) .button.secondary,
 :root:not([data-theme="dark"]) .button.secondary:hover { color: #111111; }
+.button:not(.secondary) span { color: #FFFFFF; }
 :root:not([data-theme="dark"]) .eyebrow,
 :root:not([data-theme="dark"]) .kicker,
 :root:not([data-theme="dark"]) .fact-strip small,
