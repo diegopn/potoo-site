@@ -398,6 +398,16 @@ img, svg { max-width: 100%; }
   text-transform: uppercase;
 }
 
+.workflow-lead {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(30px, 5vw, 70px);
+  margin-bottom: 34px;
+}
+.workflow-lead .section-heading { max-width: none; margin: 0; }
+.workflow-illustration { display: flex; justify-content: flex-end; margin: 0; }
+.workflow-illustration img { display: block; width: 100%; height: clamp(220px, 30vw, 340px); object-fit: contain; }
 .step-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .step-card { min-height: 205px; padding: 22px 22px 26px 0; }
 .step-card + .step-card { padding-left: 22px; border-left: 1px solid var(--line); }
@@ -566,6 +576,9 @@ img, svg { max-width: 100%; }
   .fact-strip article, .fact-strip article + article { padding: 18px 0; border-left: 0; }
   .fact-strip article + article { border-top: 1px solid var(--line); }
   .fact-strip p { max-width: 560px; }
+  .workflow-lead { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+  .workflow-illustration { justify-content: center; }
+  .workflow-illustration img { height: clamp(210px, 54vw, 330px); }
   .step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .step-card { min-height: 185px; padding: 20px 16px 22px 0; }
   .step-card + .step-card { padding-left: 16px; }
