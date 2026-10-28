@@ -414,7 +414,8 @@ img, svg { max-width: 100%; }
 .language-panel h3 { margin: 0 0 7px; color: var(--ink); font-size: 22px; letter-spacing: -.04em; }
 .language-panel p { max-width: 420px; margin: 0; color: var(--ink-soft); font-size: 13px; }
 .language-evaluation { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 23px; }
-.language-evaluation span { padding: 7px 10px; border: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 780; }
+.language-evaluation > span:not(.evaluation-label) { padding: 7px 10px; border: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 780; }
+.language-evaluation .evaluation-label { padding-right: 2px; color: var(--muted); font-size: 10px; font-weight: 780; }
 
 .roadmap { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(36px, 8vw, 110px); align-items: start; }
 .roadmap-intro { position: sticky; top: 120px; }
