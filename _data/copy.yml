@@ -3,6 +3,7 @@ pt-BR:
   brand: "Potoo IDE — início"
   navigation: Navegação principal
   language: Idioma
+  github: "Código-fonte do Potoo IDE no GitHub"
   theme: Ativar modo escuro
   menu: Abrir menu
   nav:
@@ -21,6 +22,7 @@ en:
   brand: "Potoo IDE — home"
   navigation: Main navigation
   language: Language
+  github: "Potoo IDE source code on GitHub"
   theme: Switch to dark mode
   menu: Open menu
   nav:
@@ -39,6 +41,7 @@ es:
   brand: "Potoo IDE — inicio"
   navigation: Navegación principal
   language: Idioma
+  github: "Código fuente de Potoo IDE en GitHub"
   theme: Activar modo oscuro
   menu: Abrir menú
   nav:

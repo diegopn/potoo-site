@@ -19,6 +19,9 @@
     <a href="{{ page.manual_path | relative_url }}"{% if page.page_kind == 'manual' %} aria-current="page"{% endif %}>{{ copy.nav.manual | escape }}</a>
   </nav>
   <div class="header-actions">
+    <a class="github-link" href="https://github.com/diegopn/potoo-ide" target="_blank" rel="noopener noreferrer" aria-label="{{ copy.github | escape }}" title="{{ copy.github | escape }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.68.08-.68 1.1.08 1.68 1.13 1.68 1.13.98 1.67 2.58 1.19 3.21.91.1-.71.38-1.19.7-1.46-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.14-3-.11-.28-.5-1.43.11-2.98 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.43 3.04-1.14 3.04-1.14.61 1.55.23 2.7.12 2.98.71.78 1.13 1.78 1.13 3.01 0 4.27-2.6 5.21-5.09 5.49.4.34.75.85.75 1.42v2.1c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+    </a>
     <nav class="language-switcher" aria-label="{{ copy.language | escape }}">
       <a href="{{ page.translations.pt | relative_url }}" lang="pt-BR"{% if page.lang == 'pt-BR' %} aria-current="page"{% endif %}>PT</a>
       <a href="{{ page.translations.es | relative_url }}" lang="es"{% if page.lang == 'es' %} aria-current="page"{% endif %}>ES</a>
