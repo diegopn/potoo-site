@@ -9,7 +9,6 @@ social_image_alt:
 application:
   name: Potoo IDE
   category: DeveloperApplication
-  version: "0.1.0"
   descriptions:
     pt-BR: "Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens."
     es: "Proyecto de IDE de escritorio en desarrollo para aprender y enseñar lógica de programación con pseudolenguajes."
