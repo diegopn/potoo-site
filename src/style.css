@@ -288,15 +288,15 @@ img, svg { max-width: 100%; }
 }
 .hero-stage::before { top: 30px; right: 48px; width: 108px; height: 108px; }
 .hero-stage::after { right: -15px; bottom: -50px; width: 220px; height: 220px; }
-.hero-mascot {
+.hero-illustration {
   position: absolute;
-  top: 45px;
-  right: 8px;
+  top: 24px;
+  right: 0;
   z-index: 1;
-  width: min(78%, 430px);
+  width: min(90%, 480px);
   height: 340px;
   object-fit: contain;
-  filter: drop-shadow(0 16px 15px rgba(23, 67, 50, .08));
+  filter: drop-shadow(0 14px 14px rgba(23, 67, 50, .055));
 }
 .concept-card {
   position: absolute;
@@ -508,7 +508,7 @@ img, svg { max-width: 100%; }
   .hero-grid { grid-template-columns: minmax(0, .95fr) minmax(340px, 1.05fr); gap: 30px; }
   .hero h1 { font-size: clamp(45px, 6.3vw, 66px); }
   .hero-stage { min-height: 380px; padding: 24px; }
-  .hero-mascot { top: 45px; right: 0; height: 310px; }
+  .hero-illustration { top: 22px; right: 0; width: min(90%, 460px); height: 310px; }
   .code-card { left: 18px; bottom: 20px; }
   .concept-card { right: 18px; bottom: 18px; }
 }
@@ -542,7 +542,7 @@ img, svg { max-width: 100%; }
   .hero h1 { max-width: 610px; font-size: clamp(48px, 11vw, 70px); }
   .hero-lead { max-width: 610px; font-size: 16px; }
   .hero-stage { width: min(100%, 560px); min-height: 400px; margin-inline: auto; }
-  .hero-mascot { top: 42px; right: 15px; width: min(78%, 420px); height: 325px; }
+  .hero-illustration { top: 20px; right: 0; width: min(92%, 460px); height: 325px; }
   .section { padding-block: 73px; }
   .section-heading { margin-bottom: 31px; }
   .split-heading, .feature-layout, .roadmap { grid-template-columns: 1fr; gap: 28px; }
@@ -586,7 +586,7 @@ img, svg { max-width: 100%; }
   .creator-layout { grid-template-columns: 1fr; gap: 23px; }
   .creator-portrait { width: min(64%, 220px); }
   .hero-stage { min-height: 350px; padding: 17px; }
-  .hero-mascot { top: 45px; right: 2px; width: 85%; height: 275px; }
+  .hero-illustration { top: 22px; right: -4px; width: 100%; height: 275px; }
   .code-card { bottom: 15px; left: 13px; width: 59%; padding: 10px; }
   .code-card pre { font-size: 8px; }
   .concept-card { right: 12px; bottom: 13px; max-width: 122px; padding: 8px 9px; }
