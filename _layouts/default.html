@@ -8,7 +8,8 @@
   {% include structured-data.html %}
   <link rel="icon" href="{{ '/src/assets/images/potoo-mark.svg' | relative_url }}" type="image/svg+xml">
   <script src="{{ '/src/theme-init.js' | relative_url }}"></script>
-  <link rel="stylesheet" href="{{ '/src/style.css' | relative_url }}?v=white-on-green-9">
+  <link rel="preload" href="{{ '/src/fonts/inter-latin-v20.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ '/src/style.css' | relative_url }}?v=inter-local-v1">
   <style>
     .language-switcher a[aria-current="page"],
     .step-number,
