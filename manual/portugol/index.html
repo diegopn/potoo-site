@@ -142,7 +142,7 @@ logico concluiu = falso</code></pre>
         <section id="entrada-saida">
           <p class="kicker">06 · Interação</p>
           <h2>Entrada e saída</h2>
-          <p><code>escreva</code> apresenta uma ou mais expressões. Para quebrar a linha, inclua a sequência de escape <code>\n</code> numa cadeia passada a essa função. <code>leia</code> recebe dados para variáveis. A função predefinida <code>limpa()</code> limpa a área de saída. O crate independente do Potoo IDE também oferece <code>escreva_linha</code> como conveniência própria; ela não pertence ao dialeto oficial.</p>
+          <p><code>escreva</code> apresenta uma ou mais expressões. Para quebrar a linha, inclua a sequência de escape <code>\n</code> numa cadeia passada a essa função. <code>leia</code> recebe dados para variáveis. A função predefinida <code>limpa()</code> limpa a área de saída. A implementação independente do Potoo IDE também oferece <code>escreva_linha</code> como conveniência própria; ela não pertence ao dialeto oficial.</p>
           <pre class="manual-code"><code>programa {
     funcao inicio() {
         cadeia nome
@@ -288,7 +288,7 @@ funcao inicio() {
           <p class="kicker">13 · Compatibilidade</p>
           <h2>O que já funciona no Potoo IDE</h2>
           <p>O Potoo IDE está em desenvolvimento e ainda não integra o interpretador à aplicação desktop. Portanto, esta página é uma referência do dialeto desejado, não uma lista de recursos disponíveis no aplicativo.</p>
-          <p>O repositório do Potoo IDE contém um crate independente para a pseudolinguagem Portugol 2.0. Ele implementa um subconjunto: estrutura de programa e funções, declarações, tipos, vetores e matrizes, passagem por valor e referência, operadores, controle de fluxo, entrada e saída e partes das bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> e <code>Util</code>. O próprio crate identifica essa implementação como parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> e <code>Arquivos</code> não estão implementadas nele.</p>
+          <p>O repositório do Potoo IDE contém uma implementação independente da pseudolinguagem Portugol 2.0. Ela cobre um subconjunto: estrutura de programa e funções, declarações, tipos, vetores e matrizes, passagem por valor e referência, operadores, controle de fluxo, entrada e saída e partes das bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> e <code>Util</code>. Essa implementação ainda é parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> e <code>Arquivos</code> não estão disponíveis nela.</p>
           <div class="manual-note planned"><strong>Em desenvolvimento:</strong> a meta é avançar para o dialeto completo. Até a integração com a interface desktop acontecer, não é possível escrever ou executar esses exemplos no Potoo IDE.</div>
         </section>
 
@@ -301,7 +301,7 @@ funcao inicio() {
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ajuda oficial de entrada e saída</a>, incluindo o uso de <code>\n</code> para pular linha, e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analisador semântico</a>, que lista as funções predefinidas.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código-fonte das bibliotecas padrão</a> e suas funções documentadas.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-portugol">Crate Portugol do Potoo IDE</a>, sua referência de compatibilidade e o subconjunto implementado.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-portugol">Implementação de Portugol 2.0 no Potoo IDE</a>, sua referência de compatibilidade e o subconjunto implementado.</li>
           </ul>
           <p>As referências são mantidas por projetos distintos. Consulte-as para conferir detalhes de comportamento e compatibilidade antes de usar uma função específica.</p>
         </section>

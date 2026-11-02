@@ -244,7 +244,7 @@ fimalgoritmo</code></pre>
         <section id="funcoes">
           <p class="kicker">11 · Pseudolanguage resources</p>
           <h2>Functions and helper commands</h2>
-          <p>The author's manual describes <code>escreva</code>, <code>escreval</code> and <code>leia</code> as available input and output operations. Potoo's VisuAlg crate also catalogs the functions below in its compatibility implementation; this list describes the crate, not desktop integration.</p>
+          <p>The author's manual describes <code>escreva</code>, <code>escreval</code> and <code>leia</code> as available input and output operations. Potoo's VisuAlg compatibility implementation also catalogs the functions below; this list describes that implementation, not desktop integration.</p>
           <div class="manual-table-wrap" role="region" aria-label="Functions in the VisuAlg compatibility implementation" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Group</th><th scope="col">Catalogued names</th><th scope="col">General use</th></tr></thead>
@@ -295,7 +295,7 @@ fimalgoritmo</code></pre>
           <p class="kicker">13 · Compatibility</p>
           <h2>What works in Potoo IDE today</h2>
           <p>Potoo IDE does not yet integrate the VisuAlg interpreter into the desktop app. You cannot run an algorithm from the Potoo editor at this stage.</p>
-          <p>The project repository contains an independent compatibility crate that uses VisuAlg 3.0.5.2 as its reference. It has a parsing and execution foundation with core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. This does not mean the complete dialect is implemented; integration with the app is also pending.</p>
+          <p>The project repository contains a standalone compatibility implementation based on VisuAlg 3.0.5.2. It has a parsing and execution foundation with core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. This does not mean the complete dialect is implemented; integration with the app is also pending.</p>
           <div class="manual-note planned"><strong>In development:</strong> the goal remains to complete the reference dialect and then define its integration with the Potoo IDE interface.</div>
         </section>
 
@@ -305,7 +305,7 @@ fimalgoritmo</code></pre>
           <ul>
             <li>The <a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">pseudolanguage manual distributed by VisuAlg's author</a>, covering syntax, types, operators, commands, routines and teaching extensions; the <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">VisuAlg 3.0.5.2 command reference</a> also details <code>aleatorio</code> and <code>limpatela</code>.</li>
             <li>A <a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">copy of the manual in a university repository</a>.</li>
-            <li>The <a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Potoo IDE VisuAlg crate</a>, with its 3.0.5.2 compatibility reference and implementation status.</li>
+            <li>The <a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">VisuAlg implementation in Potoo IDE</a>, with its 3.0.5.2 compatibility reference and implementation status.</li>
           </ul>
           <p>Implementations and reference materials may differ. Use the pseudolanguage manual for syntax and confirm behavior against the compatibility baseline chosen by the project.</p>
         </section>

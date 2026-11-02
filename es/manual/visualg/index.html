@@ -244,7 +244,7 @@ fimalgoritmo</code></pre>
         <section id="funcoes">
           <p class="kicker">11 · Recursos del pseudolenguaje</p>
           <h2>Funciones y comandos auxiliares</h2>
-          <p>El manual del autor describe <code>escreva</code>, <code>escreval</code> y <code>leia</code> como operaciones disponibles de entrada y salida. El crate VisuAlg de Potoo también cataloga las funciones siguientes en su implementación de compatibilidad; esta lista describe el crate, no la integración de escritorio.</p>
+          <p>El manual del autor describe <code>escreva</code>, <code>escreval</code> y <code>leia</code> como operaciones disponibles de entrada y salida. La implementación de compatibilidad de Potoo para VisuAlg también cataloga las funciones siguientes; esta lista describe esa implementación, no la integración de escritorio.</p>
           <div class="manual-table-wrap" role="region" aria-label="Funciones de la implementación de compatibilidad de VisuAlg" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Grupo</th><th scope="col">Nombres catalogados</th><th scope="col">Uso general</th></tr></thead>
@@ -295,7 +295,7 @@ fimalgoritmo</code></pre>
           <p class="kicker">13 · Compatibilidad</p>
           <h2>Qué funciona hoy en Potoo IDE</h2>
           <p>Potoo IDE todavía no integra el intérprete VisuAlg en la aplicación de escritorio. En esta etapa no se puede ejecutar un algoritmo desde el editor de Potoo.</p>
-          <p>El repositorio del proyecto contiene un crate independiente de compatibilidad que usa VisuAlg 3.0.5.2 como referencia. Cuenta con una base de análisis y ejecución, con estructuras principales, tipos escalares, vectores de una o dos dimensiones, funciones, procedimientos, control de flujo, entrada y salida, funciones integradas catalogadas y comandos auxiliares. Esto no significa que el dialecto completo ya esté implementado; la integración con la aplicación también está pendiente.</p>
+          <p>El repositorio del proyecto contiene una implementación independiente de compatibilidad que usa la versión 3.0.5.2 de VisuAlg como referencia. Cuenta con una base de análisis y ejecución, con estructuras principales, tipos escalares, vectores de una o dos dimensiones, funciones, procedimientos, control de flujo, entrada y salida, funciones integradas catalogadas y comandos auxiliares. Esto no significa que el dialecto completo ya esté implementado; la integración con la aplicación también está pendiente.</p>
           <div class="manual-note planned"><strong>En desarrollo:</strong> el objetivo sigue siendo completar el dialecto de referencia y después definir su integración con la interfaz de Potoo IDE.</div>
         </section>
 
@@ -305,7 +305,7 @@ fimalgoritmo</code></pre>
           <ul>
             <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual del pseudolenguaje distribuido por el autor de VisuAlg</a>, con sintaxis, tipos, operadores, comandos, rutinas y extensiones educativas; la <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referencia de comandos de la versión 3.0.5.2</a> también detalla <code>aleatorio</code> y <code>limpatela</code>.</li>
             <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Copia del manual en un repositorio universitario</a>.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Crate VisuAlg de Potoo IDE</a>, con la referencia de compatibilidad 3.0.5.2 y el estado de la implementación.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Implementación de VisuAlg en Potoo IDE</a>, con la referencia de compatibilidad 3.0.5.2 y el estado de la implementación.</li>
           </ul>
           <p>Las implementaciones y los materiales de referencia pueden diferir. Usa la documentación del dialecto para orientar la sintaxis y confirma el comportamiento con la base de compatibilidad definida por el proyecto.</p>
         </section>
