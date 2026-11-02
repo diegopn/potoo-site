@@ -30,3 +30,4 @@ languages:
 exclude:
   - README.md
   - .gitignore
+  - docs/superpowers/

@@ -1,0 +1,315 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/portugol/"
+title: "Portugol Studio e Portugol 2.0 | Manual do Potoo IDE"
+description: "Referência ampla do dialeto Portugol Studio (Portugol 2.0): estrutura, tipos, operadores, controle de fluxo, vetores, funções e bibliotecas."
+og_title: "Referência de Portugol Studio e Portugol 2.0"
+og_description: "Consulte a sintaxe e os recursos do dialeto Portugol Studio usado como referência pelo Potoo IDE."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/portugol/"
+  es: "/es/manual/portugol/"
+  en: "/en/manual/portugol/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio">
+    <div class="wrap">
+      <p class="kicker">Referência de pseudolinguagem · dialeto Portugol Studio</p>
+      <h1>Portugol Studio e Portugol 2.0</h1>
+      <p class="manual-intro">Esta página descreve o dialeto associado ao Portugol Studio. Ela serve como referência para o objetivo do Potoo IDE de implementar o dialeto completo e separa essa meta do suporte existente hoje.</p>
+      <p class="manual-meta"><span><b>Dialeto</b> Portugol Studio · Portugol 2.0</span><span><b>Estado no Potoo IDE</b> Em desenvolvimento</span></p>
+    </div>
+  </section>
+
+  <div class="manual-body">
+    <div class="wrap manual-layout">
+      <aside class="manual-toc" aria-label="Conteúdo da referência de Portugol">
+        <h2>Nesta referência</h2>
+        <ol>
+          <li><a href="#sobre">Sobre o dialeto</a></li>
+          <li><a href="#estrutura">Estrutura do programa</a></li>
+          <li><a href="#lexico">Nomes, comentários e literais</a></li>
+          <li><a href="#tipos">Tipos e declarações</a></li>
+          <li><a href="#operadores">Operadores e precedência</a></li>
+          <li><a href="#entrada-saida">Entrada e saída</a></li>
+          <li><a href="#controle">Condições e seleção</a></li>
+          <li><a href="#repeticao">Repetição</a></li>
+          <li><a href="#vetores">Vetores e matrizes</a></li>
+          <li><a href="#funcoes">Funções e parâmetros</a></li>
+          <li><a href="#bibliotecas">Bibliotecas padrão</a></li>
+          <li><a href="#exemplo">Exemplo completo</a></li>
+          <li><a href="#potoo">Estado no Potoo IDE</a></li>
+          <li><a href="#fontes">Referências</a></li>
+        </ol>
+      </aside>
+
+      <article class="manual-content">
+        <section id="sobre">
+          <p class="kicker">01 · Escopo</p>
+          <h2>Sobre o dialeto</h2>
+          <p><strong>Portugol</strong> é o nome usado por diferentes pseudolinguagens. Esta documentação trata especificamente do dialeto do Portugol Studio, também chamado de Portugol 2.0; as regras abaixo não definem um padrão universal para todas as ferramentas chamadas Portugol.</p>
+          <p>A gramática e o léxico publicados pelo projeto UNIVALI-LITE são a referência sintática principal. A documentação de bibliotecas do próprio Portugol Studio complementa essa referência com funções e constantes.</p>
+          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar o dialeto completo como referência de linguagem. Os recursos descritos nesta página não significam que já possam ser executados no aplicativo.</div>
+        </section>
+
+        <section id="estrutura">
+          <p class="kicker">02 · Organização</p>
+          <h2>Estrutura de um programa</h2>
+          <p>Um arquivo começa com <code>programa</code> e um bloco delimitado por chaves. As inclusões de bibliotecas aparecem no início do bloco; depois podem vir declarações globais e funções. A forma usual de ponto de entrada é a função chamada <code>inicio</code>.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Matematica --> mat
+
+    const inteiro tentativas = 3
+    inteiro acertos = 0
+
+    funcao inicio() {
+        escreva("Bem-vindo ao exercício")
+    }
+}</code></pre>
+          <p>Blocos de funções, condições e laços usam <code>{</code> e <code>}</code>. O ponto e vírgula é usado nos três campos do cabeçalho de <code>para</code>; os exemplos tradicionais escrevem um comando por linha e não terminam cada comando com ponto e vírgula.</p>
+        </section>
+
+        <section id="lexico">
+          <p class="kicker">03 · Escrita</p>
+          <h2>Nomes, comentários e literais</h2>
+          <ul>
+            <li>Identificadores começam com uma letra ASCII ou sublinhado; depois podem conter letras ASCII, dígitos e sublinhados. A gramática publicada não admite letras acentuadas em identificadores.</li>
+            <li>As palavras-chave são escritas sem acentos e a gramática as reconhece na forma minúscula, por exemplo <code>programa</code>, <code>funcao</code> e <code>enquanto</code>.</li>
+            <li>Comentários de linha começam com <code>//</code>; comentários de bloco ficam entre <code>/*</code> e <code>*/</code>.</li>
+            <li>Números reais usam ponto como separador decimal. Textos usam aspas duplas e caracteres individuais usam aspas simples; o léxico também define escapes e literais hexadecimais.</li>
+            <li>Valores lógicos são <code>verdadeiro</code> e <code>falso</code>.</li>
+          </ul>
+          <pre class="manual-code"><code>// comentário de linha
+/* comentário
+   em bloco */
+cadeia mensagem = "Olá"
+caracter inicial = 'A'
+real media = 7.5
+logico aprovado = verdadeiro</code></pre>
+        </section>
+
+        <section id="tipos">
+          <p class="kicker">04 · Dados</p>
+          <h2>Tipos, variáveis e constantes</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Tipos do Portugol Studio" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Tipo</th><th scope="col">Uso</th></tr></thead>
+              <tbody>
+                <tr><td><code>inteiro</code></td><td>Números inteiros.</td></tr>
+                <tr><td><code>real</code></td><td>Números com parte fracionária.</td></tr>
+                <tr><td><code>logico</code></td><td>Valores <code>verdadeiro</code> ou <code>falso</code>.</td></tr>
+                <tr><td><code>caracter</code></td><td>Um caractere.</td></tr>
+                <tr><td><code>cadeia</code></td><td>Sequência de caracteres.</td></tr>
+                <tr><td><code>vazio</code></td><td>Indica função sem valor de retorno.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Declare o tipo antes do nome. Uma declaração pode agrupar nomes do mesmo tipo e pode incluir uma expressão inicial. A palavra-chave <code>const</code> marca declarações constantes. Valores e tipos precisam ser compatíveis.</p>
+          <pre class="manual-code"><code>inteiro idade = 18, ano
+real altura = 1.72
+const real pi_aproximado = 3.14
+cadeia nome = "Lia"
+logico concluiu = falso</code></pre>
+          <p>Uma variável declarada dentro de uma função ou bloco tem escopo local; declarações no corpo principal, fora das funções, são globais. A forma de uma lista de declarações também permite inicializadores de vetores e matrizes, detalhados na seção <a href="#vetores">Vetores e matrizes</a>.</p>
+        </section>
+
+        <section id="operadores">
+          <p class="kicker">05 · Expressões</p>
+          <h2>Operadores e precedência</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Operadores do Portugol Studio" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Significado</th></tr></thead>
+              <tbody>
+                <tr><td>Aritméticos</td><td><code>+ - * / %</code></td><td>Soma, subtração, multiplicação, divisão e resto.</td></tr>
+                <tr><td>Unários</td><td><code>+ - nao ~ ++ --</code></td><td>Sinal, negação lógica, negação bit a bit, incremento e decremento. <code>++</code> e <code>--</code> podem aparecer antes ou depois do identificador.</td></tr>
+                <tr><td>Atribuição</td><td><code>= += -= *= /=</code></td><td>Atribuição simples e atribuições compostas. <code>=</code> não é o operador de igualdade.</td></tr>
+                <tr><td>Comparação</td><td><code>== != &gt; &lt; &lt;= &gt;=</code></td><td>Igualdade, diferença e comparações relacionais.</td></tr>
+                <tr><td>Lógicos</td><td><code>e ou</code></td><td>Conjunção e disjunção lógica.</td></tr>
+                <tr><td>Bit a bit</td><td><code>^ &lt;&lt; &gt;&gt; &amp; |</code></td><td>XOR, deslocamento à esquerda e à direita, AND e OR bit a bit.</td></tr>
+                <tr><td>Agrupamento</td><td><code>( )</code></td><td>Controla explicitamente a ordem de avaliação.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A gramática oficial define os operadores em alternativas recursivas, mas não publica uma tabela de precedência clara para todas as combinações. Use parênteses para explicitar a ordem, especialmente ao misturar comparações, lógica e operações bit a bit.</p>
+          <div class="manual-note"><strong>Prática recomendada:</strong> a própria regra gramatical traz uma observação de que igualdade tem prioridade baixa, então não dependa de uma ordem presumida para expressões compostas.</div>
+        </section>
+
+        <section id="entrada-saida">
+          <p class="kicker">06 · Interação</p>
+          <h2>Entrada e saída</h2>
+          <p><code>escreva</code> apresenta uma ou mais expressões. Para quebrar a linha, inclua a sequência de escape <code>\n</code> numa cadeia passada a essa função. <code>leia</code> recebe dados para variáveis. A função predefinida <code>limpa()</code> limpa a área de saída. O crate independente do Potoo IDE também oferece <code>escreva_linha</code> como conveniência própria; ela não pertence ao dialeto oficial.</p>
+          <pre class="manual-code"><code>programa {
+    funcao inicio() {
+        cadeia nome
+        escreva("Qual é o seu nome? ")
+        leia(nome)
+        escreva("Olá, ", nome, "!\n")
+    }
+}</code></pre>
+          <p>A forma de exibir e ler dados pode depender da implementação da biblioteca ou do ambiente que executa o algoritmo. O Potoo IDE ainda não oferece esses fluxos dentro do aplicativo.</p>
+        </section>
+
+        <section id="controle">
+          <p class="kicker">07 · Decisões</p>
+          <h2>Condições e seleção</h2>
+          <p><code>se</code> executa um ramo quando a expressão lógica é verdadeira; <code>senao</code> define o ramo alternativo. Os blocos podem conter vários comandos. A seleção múltipla usa <code>escolha</code>, rótulos <code>caso</code> e o caso alternativo <code>contrario</code>.</p>
+          <pre class="manual-code"><code>se (nota >= 7) {
+    escreva("Aprovado\n")
+} senao {
+    escreva("Continue praticando\n")
+}
+
+escolha (opcao) {
+    caso 1:
+        escreva("Iniciar\n")
+        pare
+    caso contrario:
+        escreva("Opção desconhecida\n")
+}</code></pre>
+          <p><code>pare</code> encerra o caso atual de <code>escolha</code> ou interrompe um laço. Use uma expressão do tipo lógico como condição.</p>
+        </section>
+
+        <section id="repeticao">
+          <p class="kicker">08 · Laços</p>
+          <h2>Repetição</h2>
+          <p>O dialeto define laços condicionais e um laço com inicialização, condição e incremento:</p>
+          <pre class="manual-code"><code>inteiro contador = 1
+enquanto (contador <= 3) {
+    escreva(contador, "\n")
+    contador++
+}
+
+faca {
+    contador--
+} enquanto (contador > 0)
+
+para (inteiro i = 0; i < 3; i++) {
+    escreva(i, "\n")
+}</code></pre>
+          <p><code>enquanto</code> testa antes de cada repetição; <code>faca ... enquanto</code> testa depois do bloco. Em <code>para</code>, os campos são separados por ponto e vírgula e podem inicializar uma variável, testar uma condição e atualizar o contador. <code>pare</code> encerra o laço atual.</p>
+        </section>
+
+        <section id="vetores">
+          <p class="kicker">09 · Coleções</p>
+          <h2>Vetores e matrizes</h2>
+          <p>Vetores usam um índice entre colchetes; matrizes usam dois índices. Quando o tamanho é informado, deve ser uma expressão inteira constante e positiva; em declarações com inicializador, ele pode ser inferido. A gramática também permite matrizes inicializadas por linhas.</p>
+          <pre class="manual-code"><code>programa {
+    funcao inicio() {
+        inteiro notas[3] = {8, 9, 10}
+        inteiro quadro[2][2] = {{1, 2}, {3, 4}}
+        escreva(notas[0], "\n")
+        escreva(quadro[1][0], "\n")
+    }
+}</code></pre>
+          <p>Os índices são expressões inteiras. Parâmetros de função podem declarar dimensões sem fixar os tamanhos, por exemplo <code>inteiro valores[]</code> ou <code>inteiro tabela[][]</code>.</p>
+        </section>
+
+        <section id="funcoes">
+          <p class="kicker">10 · Reuso</p>
+          <h2>Funções e parâmetros</h2>
+          <p>Uma função pode declarar um tipo de retorno antes do nome; omitir o tipo equivale ao uso sem valor de retorno, que também pode ser escrito com <code>vazio</code>. Parâmetros têm tipo e nome, podem ser separados por vírgulas e podem receber vetores ou matrizes. Um <code>&amp;</code> antes do nome indica passagem por referência.</p>
+          <pre class="manual-code"><code>funcao inteiro dobrar(inteiro valor) {
+    retorne valor * 2
+}
+
+funcao atualizar(inteiro &amp;total, inteiro acrescimo) {
+    total += acrescimo
+}
+
+funcao inicio() {
+    inteiro resultado = dobrar(4)
+    atualizar(resultado, 1)
+    escreva(resultado, "\n")
+}</code></pre>
+          <p><code>retorne</code> encerra a função e pode devolver uma expressão. A referência oficial descreve chamadas de função em expressões, funções com retorno e funções sem retorno.</p>
+        </section>
+
+        <section id="bibliotecas">
+          <p class="kicker">11 · Recursos padrão</p>
+          <h2>Bibliotecas do dialeto</h2>
+          <p>Uma biblioteca é incluída com <code>inclua biblioteca Nome</code> e pode receber um apelido após <code>--&gt;</code>. As chamadas usam o nome ou o apelido seguido de ponto. A tabela resume os módulos publicados pelo Portugol Studio; a documentação oficial de cada classe lista assinaturas, parâmetros e constantes.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Bibliotecas do Portugol Studio" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Biblioteca</th><th scope="col">Recursos de referência</th></tr></thead>
+              <tbody>
+                <tr><td><code>Arquivos</code></td><td>Abrir, fechar, ler e escrever arquivos; consultar fim de arquivo, selecionar arquivos, listar arquivos e pastas, criar pasta, substituir texto e verificar ou apagar arquivos.</td></tr>
+                <tr><td><code>Calendario</code></td><td>Dia, mês, ano, hora, minuto, segundo, milissegundo e nomes de dias da semana.</td></tr>
+                <tr><td><code>Graficos</code></td><td>Janela gráfica, desenhos geométricos, imagens, animações GIF, texto, fontes, cores, gradientes, dimensões, tela cheia e transformações visuais.</td></tr>
+                <tr><td><code>Internet</code></td><td>Tempo limite, leitura de conteúdo de endereço, download de imagem e verificação de disponibilidade.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>PI</code>, <code>potencia</code>, <code>raiz</code>, <code>arredondar</code>, <code>logaritmo</code>, seno, cosseno, tangente, valor absoluto, maior e menor número.</td></tr>
+                <tr><td><code>Mouse</code></td><td>Consultar botões e posição do ponteiro; ocultar ou exibir o cursor.</td></tr>
+                <tr><td><code>Objetos</code></td><td>Criar objetos a partir de JSON/XML ou propriedades, consultar e atribuir propriedades tipadas, trabalhar com vetores de propriedades e liberar ou exportar objetos.</td></tr>
+                <tr><td><code>ServicosWeb</code></td><td>Conexões e requisições web, cabeçalhos e parâmetros; operações de obter, publicar, atualizar e excluir dados.</td></tr>
+                <tr><td><code>Sons</code></td><td>Carregar, reproduzir, pausar, interromper e liberar sons; consultar posição, duração e volume.</td></tr>
+                <tr><td><code>Teclado</code></td><td>Consultar e ler teclas e caracteres, com constantes para teclas comuns, letras, números e funções.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>numero_caracteres</code>, <code>caixa_alta</code>, <code>caixa_baixa</code>, <code>substituir</code>, <code>preencher_a_esquerda</code>, <code>obter_caracter</code>, <code>posicao_texto</code> e <code>extrair_subtexto</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td>Verificar se textos representam números, lógicos ou caracteres e converter entre cadeia, inteiro, real, lógico e caracter.</td></tr>
+                <tr><td><code>Util</code></td><td>Diretório do usuário, tamanhos de vetores e matrizes, sorteio, espera e tempo decorrido.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="manual-code"><code>inclua biblioteca Matematica --> mat
+
+funcao inicio() {
+    escreva(mat.potencia(2, 3), "\n")
+}</code></pre>
+          <p>O conjunto de bibliotecas pertence ao ambiente de referência do Portugol Studio; nem toda biblioteca é apropriada para qualquer interpretador ou contexto de execução.</p>
+        </section>
+
+        <section id="exemplo">
+          <p class="kicker">12 · Exemplo</p>
+          <h2>Programa completo</h2>
+          <p>Este exemplo junta declaração, entrada e saída, condição, função e expressão lógica:</p>
+          <pre class="manual-code"><code>programa {
+    funcao logico eh_par(inteiro numero) {
+        retorne numero % 2 == 0
+    }
+
+    funcao inicio() {
+        inteiro valor
+        escreva("Digite um número inteiro: ")
+        leia(valor)
+
+        se (eh_par(valor)) {
+            escreva("O número é par\n")
+        } senao {
+            escreva("O número é ímpar\n")
+        }
+    }
+}</code></pre>
+        </section>
+
+        <section id="potoo">
+          <p class="kicker">13 · Compatibilidade</p>
+          <h2>O que já funciona no Potoo IDE</h2>
+          <p>O Potoo IDE está em desenvolvimento e ainda não integra o interpretador à aplicação desktop. Portanto, esta página é uma referência do dialeto desejado, não uma lista de recursos disponíveis no aplicativo.</p>
+          <p>O repositório do Potoo IDE contém um crate independente para Portugol Studio / Portugol 2.0. Ele implementa um subconjunto: estrutura de programa e funções, declarações, tipos, vetores e matrizes, passagem por valor e referência, operadores, controle de fluxo, entrada e saída e partes das bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> e <code>Util</code>. O próprio crate identifica essa implementação como parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> e <code>Arquivos</code> não estão implementadas nele.</p>
+          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> a meta é avançar para o dialeto completo. Até a integração com a interface desktop acontecer, não é possível escrever ou executar esses exemplos no Potoo IDE.</div>
+        </section>
+
+        <section id="fontes">
+          <p class="kicker">14 · Leitura adicional</p>
+          <h2>Referências do Portugol Studio</h2>
+          <ul>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositório oficial do Portugol Studio</a>, que identifica a linguagem como Portugol 2.0.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ajuda oficial de entrada e saída</a>, incluindo o uso de <code>\n</code> para pular linha, e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analisador semântico</a>, que lista as funções predefinidas.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código-fonte das bibliotecas padrão</a> e suas funções documentadas.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-portugol">Crate Portugol do Potoo IDE</a>, sua referência de compatibilidade e o subconjunto implementado.</li>
+          </ul>
+          <p>As referências são mantidas por projetos distintos. Consulte-as para conferir detalhes de comportamento e compatibilidade antes de usar uma função específica.</p>
+        </section>
+      </article>
+    </div>
+
+    <section class="wrap manual-cta">
+      <div><h2>Volte ao Manual do Potoo IDE</h2><p>Veja como Portugol Studio se encaixa no escopo das linguagens do projeto.</p></div>
+      <a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a>
+    </section>
+  </div>
+</main>

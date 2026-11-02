@@ -1,0 +1,320 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/visualg/"
+title: "VisuAlg | Manual do Potoo IDE"
+description: "Referência ampla de VisuAlg: estrutura, tipos, operadores, vetores, subprogramas, funções e comandos de apoio ao ensino."
+og_title: "Referência da linguagem VisuAlg"
+og_description: "Consulte a sintaxe e os recursos do dialeto VisuAlg usado como referência pelo Potoo IDE."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/visualg/"
+  es: "/es/manual/visualg/"
+  en: "/en/manual/visualg/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio">
+    <div class="wrap">
+      <p class="kicker">Referência de pseudolinguagem · dialeto VisuAlg</p>
+      <h1>Linguagem VisuAlg</h1>
+      <p class="manual-intro">Esta página reúne uma referência ampla da linguagem VisuAlg, incluindo os recursos de ensino descritos no manual do autor. O interpretador do Potoo IDE usa VisuAlg 3.0.5.2 como base de compatibilidade e pretende avançar para o dialeto completo.</p>
+      <p class="manual-meta"><span><b>Dialeto</b> VisuAlg</span><span><b>Estado no Potoo IDE</b> Em desenvolvimento</span></p>
+    </div>
+  </section>
+
+  <div class="manual-body">
+    <div class="wrap manual-layout">
+      <aside class="manual-toc" aria-label="Conteúdo da referência de VisuAlg">
+        <h2>Nesta referência</h2>
+        <ol>
+          <li><a href="#sobre">Sobre a linguagem</a></li>
+          <li><a href="#estrutura">Estrutura do algoritmo</a></li>
+          <li><a href="#lexico">Nomes, comentários e valores</a></li>
+          <li><a href="#tipos">Tipos e declarações</a></li>
+          <li><a href="#operadores">Operadores e precedência</a></li>
+          <li><a href="#entrada-saida">Entrada e saída</a></li>
+          <li><a href="#condicoes">Condições e seleção</a></li>
+          <li><a href="#repeticao">Repetição</a></li>
+          <li><a href="#vetores">Vetores e matrizes</a></li>
+          <li><a href="#subprogramas">Procedimentos e funções</a></li>
+          <li><a href="#funcoes">Funções e comandos auxiliares</a></li>
+          <li><a href="#exemplo">Exemplo completo</a></li>
+          <li><a href="#potoo">Estado no Potoo IDE</a></li>
+          <li><a href="#fontes">Referências</a></li>
+        </ol>
+      </aside>
+
+      <article class="manual-content">
+        <section id="sobre">
+          <p class="kicker">01 · Escopo</p>
+          <h2>Sobre a linguagem VisuAlg</h2>
+          <p>VisuAlg interpreta uma pseudolinguagem em português baseada em convenções didáticas de Portugol, com estruturas próprias para ensinar algoritmos. As regras desta página se referem ao dialeto do VisuAlg; elas não são intercambiáveis com as do Portugol Studio.</p>
+          <p>A referência reúne o manual da linguagem distribuído pelo autor e o alvo de compatibilidade do interpretador do Potoo IDE. O manual descreve sintaxe e extensões do ambiente; a implementação do Potoo usa a linha 3.0.5.2 como referência de compatibilidade.</p>
+          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar o dialeto completo de referência. O conteúdo abaixo explica a linguagem e não promete que cada item já esteja disponível no aplicativo.</div>
+        </section>
+
+        <section id="estrutura">
+          <p class="kicker">02 · Organização</p>
+          <h2>Estrutura do algoritmo</h2>
+          <p>Um algoritmo começa com a palavra-chave <code>algoritmo</code> e um nome entre aspas. Declarações globais, arquivo de dados e subprogramas aparecem antes de <code>inicio</code>; o corpo principal termina em <code>fimalgoritmo</code>.</p>
+          <pre class="manual-code"><code>algoritmo "Boas-vindas"
+var
+    nome: caractere
+inicio
+    escreva("Qual é o seu nome? ")
+    leia(nome)
+    escreval("Olá, ", nome, "!")
+fimalgoritmo</code></pre>
+          <p>Não há chaves para delimitar blocos. As estruturas usam palavras de abertura e encerramento, como <code>se</code>/<code>fimse</code> e <code>enquanto</code>/<code>fimenquanto</code>. O estilo da linguagem prevê um comando por linha.</p>
+          <p>Quando se usa a extensão de leitura de arquivo, <code>arquivo "dados.txt"</code> aparece na área de declarações, antes do corpo principal. O detalhe está na seção <a href="#funcoes">Funções e comandos auxiliares</a>.</p>
+        </section>
+
+        <section id="lexico">
+          <p class="kicker">03 · Escrita</p>
+          <h2>Nomes, comentários e valores</h2>
+          <ul>
+            <li>Palavras-chave e nomes de variáveis não diferenciam maiúsculas de minúsculas; por convenção, escreva as palavras-chave em minúsculas e sem acentos, como <code>entao</code> e <code>logico</code>.</li>
+            <li>Nomes começam com uma letra e podem continuar com letras, dígitos ou sublinhados. O manual de referência estabelece o limite de 30 caracteres.</li>
+            <li>Comentários de linha começam com <code>//</code> e terminam no fim da linha. Para comentar várias linhas, cada linha recebe seu próprio marcador.</li>
+            <li>Literais de texto usam aspas duplas; valores decimais usam ponto. Os valores lógicos são <code>VERDADEIRO</code> e <code>FALSO</code>.</li>
+            <li>Uma linha representa um comando; a linguagem não depende de ponto e vírgula para separar comandos.</li>
+          </ul>
+          <pre class="manual-code"><code>// nomes ignoram diferenças entre maiúsculas e minúsculas
+var
+    nome_do_aluno: caractere
+    nota: real
+    aprovado: logico
+inicio
+    nota <- 8.5
+    aprovado <- VERDADEIRO</code></pre>
+        </section>
+
+        <section id="tipos">
+          <p class="kicker">04 · Dados</p>
+          <h2>Tipos, variáveis e atribuição</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Tipos de dados do VisuAlg" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Tipo</th><th scope="col">Uso</th></tr></thead>
+              <tbody>
+                <tr><td><code>inteiro</code></td><td>Números inteiros.</td></tr>
+                <tr><td><code>real</code></td><td>Números com parte fracionária.</td></tr>
+                <tr><td><code>caractere</code></td><td>Um caractere ou uma cadeia de texto entre aspas duplas.</td></tr>
+                <tr><td><code>logico</code></td><td>Valores <code>VERDADEIRO</code> e <code>FALSO</code>.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>As variáveis são declaradas após <code>var</code>, com os nomes à esquerda dos dois-pontos e o tipo à direita. É possível declarar vários nomes do mesmo tipo separados por vírgulas. O dialeto não usa uma palavra-chave geral de declaração de constantes; valores fixos aparecem como literais ou em expressões.</p>
+          <pre class="manual-code"><code>algoritmo "Declaracoes"
+var
+    tentativas, acertos: inteiro
+    media: real
+    nome: caractere
+    terminou: logico
+inicio
+    tentativas <- 0
+    media <- 7.25
+    nome <- "Lia"
+    terminou <- FALSO
+fimalgoritmo</code></pre>
+          <p>O operador de atribuição é <code>&lt;-</code>; à esquerda fica uma variável ou um elemento de vetor, e à direita uma expressão compatível com o tipo de destino. Use <code>=</code> para comparar igualdade.</p>
+        </section>
+
+        <section id="operadores">
+          <p class="kicker">05 · Expressões</p>
+          <h2>Operadores e precedência</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Operadores do VisuAlg" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Significado</th></tr></thead>
+              <tbody>
+                <tr><td>Atribuição</td><td><code>&lt;-</code></td><td>Armazena o resultado de uma expressão em uma variável.</td></tr>
+                <tr><td>Aritméticos unários</td><td><code>+ -</code></td><td>Indicam sinal positivo ou negativo.</td></tr>
+                <tr><td>Potenciação</td><td><code>^</code></td><td>Eleva a base ao expoente.</td></tr>
+                <tr><td>Aritméticos</td><td><code>* / \ MOD % + -</code></td><td>Multiplicação, divisão real, divisão inteira, resto, adição e subtração. <code>\</code> calcula divisão inteira; <code>MOD</code> e <code>%</code> calculam o resto.</td></tr>
+                <tr><td>Concatenação</td><td><code>+</code></td><td>Une expressões do tipo caractere.</td></tr>
+                <tr><td>Relacionais</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Igual, menor, maior, menor ou igual, maior ou igual e diferente.</td></tr>
+                <tr><td>Lógicos</td><td><code>nao e ou xou</code></td><td>Negação, conjunção, disjunção e disjunção exclusiva.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Na aritmética, <code>^</code> tem maior precedência entre os operadores binários; <code>*</code>, <code>/</code>, <code>\</code> e <code>%</code> vêm antes de <code>+</code> e <code>-</code>. Os sinais unários têm precedência maior. O manual descreve <code>nao</code> como o operador lógico de maior precedência.</p>
+          <p>O manual de referência não fornece uma tabela completa de precedência para todos os operadores lógicos e relacionais. Use parênteses para explicitar agrupamentos e evitar que uma expressão dependa de convenções presumidas.</p>
+          <p>Comparações de textos não diferenciam maiúsculas de minúsculas; por exemplo, o manual apresenta <code>"ABC"</code> como igual a <code>"abc"</code>.</p>
+        </section>
+
+        <section id="entrada-saida">
+          <p class="kicker">06 · Interação</p>
+          <h2>Entrada, saída e formatação</h2>
+          <p><code>leia</code> recebe valores para variáveis na ordem informada. <code>escreva</code> apresenta expressões separadas por vírgulas; <code>escreval</code> faz o mesmo e pula para a linha seguinte.</p>
+          <pre class="manual-code"><code>algoritmo "Formatacao"
+var
+    quantidade: inteiro
+    preco: real
+inicio
+    escreva("Quantidade: ")
+    leia(quantidade)
+    preco <- quantidade * 2.5
+    escreval("Total: ", preco:8:2)
+fimalgoritmo</code></pre>
+          <p>Na saída, <code>valor:largura</code> reserva um campo com largura indicada e <code>real:largura:casas</code> também define casas decimais. Textos não recebem automaticamente o mesmo espaçamento que expressões numéricas; inclua espaços no próprio texto quando precisar deles.</p>
+        </section>
+
+        <section id="condicoes">
+          <p class="kicker">07 · Decisões</p>
+          <h2>Condições e seleção</h2>
+          <p>Use <code>se ... entao</code> para executar um bloco quando a expressão lógica for verdadeira. <code>senao</code> é opcional e <code>fimse</code> fecha a estrutura; condições podem ser aninhadas.</p>
+          <pre class="manual-code"><code>se nota >= 7 entao
+    escreval("Aprovado")
+senao
+    escreval("Continue praticando")
+fimse</code></pre>
+          <p><code>escolha</code> avalia uma expressão uma vez, compara seu valor com as alternativas de cada <code>caso</code> e permite uma opção padrão com <code>outrocaso</code>. <code>fimescolha</code> fecha a seleção.</p>
+          <pre class="manual-code"><code>escolha opcao
+caso 1, 2
+    escreval("Opção inicial")
+outrocaso
+    escreval("Outra opção")
+fimescolha</code></pre>
+        </section>
+
+        <section id="repeticao">
+          <p class="kicker">08 · Laços</p>
+          <h2>Repetição</h2>
+          <p>O dialeto documenta três laços principais. <code>para</code> conta a partir do valor inicial até o limite, incluindo-o, com passo padrão 1; um passo negativo permite contagem decrescente. A variável de controle é inteira.</p>
+          <pre class="manual-code"><code>para indice de 1 ate 5 faca
+    escreva(indice:3)
+fimpara
+
+enquanto quantidade > 0 faca
+    quantidade <- quantidade - 1
+fimenquanto
+
+repita
+    tentativas <- tentativas + 1
+ate tentativas = 3</code></pre>
+          <p><code>enquanto</code> verifica a condição antes do corpo e pode executar zero vezes. <code>repita ... ate</code> testa ao final e executa ao menos uma vez. <code>interrompa</code> sai imediatamente do laço atual.</p>
+          <p>Há também a forma alternativa <code>repita ... fimrepita</code>; nessa forma, o laço não tem uma condição final e precisa de <code>interrompa</code> para terminar.</p>
+        </section>
+
+        <section id="vetores">
+          <p class="kicker">09 · Coleções</p>
+          <h2>Vetores e matrizes</h2>
+          <p>Estruturas indexadas são declaradas com <code>vetor</code> e intervalos inclusivos. Um vetor pode ter uma dimensão; uma matriz pode ter duas. Os limites são inteiros constantes e a sintaxe informa o intervalo de cada dimensão.</p>
+          <pre class="manual-code"><code>var
+    notas: vetor[1..5] de real
+    tabuleiro: vetor[0..2, 0..2] de caractere
+inicio
+    notas[1] <- 9.5
+    tabuleiro[0, 1] <- "X"
+    escreval(notas[1])
+    escreval(tabuleiro[0, 1])</code></pre>
+          <p>O número de elementos de uma dimensão é calculado pelos limites, não pelo número escrito na posição final. O primeiro exemplo tem cinco posições, indexadas de 1 a 5; os limites podem começar em zero ou em outro inteiro.</p>
+          <p>O manual do VisuAlg descreve vetores de até duas dimensões. Matrizes são acessadas com dois índices entre colchetes, separados por vírgula.</p>
+        </section>
+
+        <section id="subprogramas">
+          <p class="kicker">10 · Reuso</p>
+          <h2>Procedimentos e funções</h2>
+          <p>Procedimentos e funções são declarados depois das variáveis globais e antes de <code>inicio</code>. Um procedimento não retorna valor; uma função declara o tipo de retorno depois de dois-pontos e devolve um resultado com <code>retorne</code>. Ambos podem ter variáveis locais em uma seção <code>var</code>.</p>
+          <pre class="manual-code"><code>algoritmo "Rotinas"
+var
+    resultado: inteiro
+funcao dobro(valor: inteiro): inteiro
+inicio
+    retorne valor * 2
+fimfuncao
+
+procedimento somar(valor: inteiro; var total: inteiro)
+inicio
+    total <- total + valor
+fimprocedimento
+
+inicio
+    resultado <- dobro(4)
+    somar(3, resultado)
+    escreval(resultado)
+fimalgoritmo</code></pre>
+          <p>Parâmetros separados por vírgulas dentro de um grupo compartilham o tipo; grupos de parâmetros diferentes são separados por ponto e vírgula. Sem <code>var</code>, o parâmetro é passado por valor; com <code>var</code>, a rotina pode alterar a variável recebida. O manual descreve recursão e não permite rotinas aninhadas.</p>
+          <p>As funções aparecem como expressões e os procedimentos como comandos. Uma chamada de procedimento pode omitir parênteses quando não há parâmetros.</p>
+        </section>
+
+        <section id="funcoes">
+          <p class="kicker">11 · Biblioteca da linguagem</p>
+          <h2>Funções e comandos auxiliares</h2>
+          <p>O manual do autor descreve <code>escreva</code>, <code>escreval</code> e <code>leia</code> como operações disponíveis para entrada e saída. O crate VisuAlg do Potoo também cataloga as funções abaixo em sua implementação de compatibilidade; essa lista descreve o crate e não a integração desktop.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Funções da implementação de compatibilidade VisuAlg" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Grupo</th><th scope="col">Nomes catalogados</th><th scope="col">Uso geral</th></tr></thead>
+              <tbody>
+                <tr><td>Matemática</td><td><code>Abs</code>, <code>ArcCos</code>, <code>ArcSen</code>, <code>ArcTan</code>, <code>Cos</code>, <code>CoTan</code>, <code>Exp</code>, <code>GrauPrad</code>, <code>Int</code>, <code>Log</code>, <code>LogN</code>, <code>Pi</code>, <code>Quad</code>, <code>RadpGrau</code>, <code>RaizQ</code>, <code>Rand</code>, <code>RandI</code>, <code>Sen</code>, <code>Tan</code></td><td>Valores, conversões angulares, arredondamento por inteiro, logaritmos, trigonometria, potência e números aleatórios.</td></tr>
+                <tr><td>Texto e caracteres</td><td><code>Asc</code>, <code>Carac</code>, <code>Caracpnum</code>, <code>Compr</code>, <code>Copia</code>, <code>Maiusc</code>, <code>Minusc</code>, <code>Numpcarac</code>, <code>Pos</code></td><td>Converter caracteres e números, medir, recortar, alterar caixa e localizar partes de texto.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>O dialeto de referência também descreve comandos de apoio ao ensino e ao ambiente:</p>
+          <ul>
+            <li><code>aleatorio [on]</code> ativa a geração usada por <code>leia</code>; sem faixa explícita, números vão de 0 a 100 e caracteres viram textos aleatórios de cinco letras maiúsculas. <code>aleatorio maximo</code> usa a faixa inclusiva de 0 ao limite; <code>aleatorio minimo, maximo</code> define os dois limites inclusivos. Ambos devem ser constantes numéricas, não expressões; se vierem invertidos, o VisuAlg troca a ordem. <code>aleatorio off</code> encerra a geração.</li>
+            <li><code>arquivo "caminho"</code> associa leituras a um arquivo-texto e fica na área de declarações.</li>
+            <li><code>timer on</code> ativa o atraso padrão de 500 ms; <code>timer &lt;tempo&gt;</code> define um valor inteiro constante em milissegundos, de 0 a 10.000, e valores fora dessa faixa são limitados. Pode haver vários comandos <code>timer</code> na área de comandos. <code>timer off</code> desativa o atraso.</li>
+            <li><code>pausa</code> interrompe para inspeção; <code>debug condicao</code> faz a pausa quando a condição for verdadeira.</li>
+            <li><code>eco on|off</code> controla a repetição dos dados de entrada na saída; <code>cronometro on|off</code> mede tempo decorrido.</li>
+            <li><code>limpatela</code> limpa a tela de DOS simulada no VisuAlg, sem apagar o painel de saída da janela principal.</li>
+          </ul>
+          <div class="manual-note"><strong>Dependência do ambiente:</strong> comandos como arquivo, timer e depuração interagem com recursos do VisuAlg. Um interpretador independente só poderá oferecer o mesmo comportamento se implementar essas integrações.</div>
+        </section>
+
+        <section id="exemplo">
+          <p class="kicker">12 · Exemplo</p>
+          <h2>Programa completo</h2>
+          <p>Este exemplo lê três notas, calcula a média e usa uma função para classificar o resultado:</p>
+          <pre class="manual-code"><code>algoritmo "Resultado da turma"
+var
+    nota1, nota2, nota3, media: real
+funcao aprovado(media: real): logico
+inicio
+    retorne media >= 7
+fimfuncao
+
+inicio
+    escreval("Digite três notas:")
+    leia(nota1, nota2, nota3)
+    media <- (nota1 + nota2 + nota3) / 3
+
+    se aprovado(media) entao
+        escreval("Aprovado com média ", media:5:2)
+    senao
+        escreval("Estude mais: média ", media:5:2)
+    fimse
+fimalgoritmo</code></pre>
+        </section>
+
+        <section id="potoo">
+          <p class="kicker">13 · Compatibilidade</p>
+          <h2>O que já funciona no Potoo IDE</h2>
+          <p>O Potoo IDE ainda não integra o interpretador VisuAlg ao aplicativo desktop. Não é possível executar um algoritmo pelo editor do Potoo nesta etapa.</p>
+          <p>O repositório do projeto contém um crate independente de compatibilidade que usa VisuAlg 3.0.5.2 como referência. Ele já possui uma base de análise e execução, com estruturas principais, tipos escalares, vetores de uma ou duas dimensões, funções, procedimentos, controle de fluxo, entrada e saída, funções embutidas catalogadas e comandos auxiliares. Isso não significa que o dialeto inteiro esteja implementado; a integração com a aplicação também está por fazer.</p>
+          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> o objetivo continua sendo completar o dialeto de referência e, depois, definir sua integração com a interface do Potoo IDE.</div>
+        </section>
+
+        <section id="fontes">
+          <p class="kicker">14 · Leitura adicional</p>
+          <h2>Referências de VisuAlg</h2>
+          <ul>
+            <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual da linguagem distribuído pelo autor do VisuAlg</a>, com sintaxe, tipos, operadores, comandos, rotinas e extensões de ensino; a <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referência de comandos da versão 3.0.5.2</a> detalha também <code>aleatorio</code> e <code>limpatela</code>.</li>
+            <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Cópia de consulta do manual em repositório universitário</a>.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Crate VisuAlg do Potoo IDE</a>, com a referência de compatibilidade 3.0.5.2 e o estado da implementação.</li>
+          </ul>
+          <p>Como implementações e materiais de referência podem diferir, use a documentação do dialeto para orientar a sintaxe e confirme o comportamento em relação à base de compatibilidade definida pelo projeto.</p>
+        </section>
+      </article>
+    </div>
+
+    <section class="wrap manual-cta">
+      <div><h2>Volte ao Manual do Potoo IDE</h2><p>Veja como VisuAlg se encaixa no escopo das linguagens do projeto.</p></div>
+      <a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a>
+    </section>
+  </div>
+</main>

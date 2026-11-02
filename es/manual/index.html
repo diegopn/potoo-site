@@ -19,7 +19,7 @@ body_class: manual-page
 <main id="conteudo">
     <section class="manual-hero" id="inicio">
       <div class="wrap">
-        <p class="kicker">Primera edición · proyecto en desarrollo</p>
+        <p class="kicker">Guía del producto · en desarrollo</p>
         <h1>Manual de Potoo IDE</h1>
         <p class="manual-intro">Esta guía presenta el objetivo de Potoo IDE, lo que existe en la base actual y los flujos que el proyecto quiere construir. Las funciones marcadas como previstas todavía no están disponibles en la aplicación.</p>
         <p class="manual-meta">
@@ -29,6 +29,7 @@ body_class: manual-page
       </div>
     </section>
 
+    <div class="manual-body">
     <div class="wrap manual-layout">
       <aside class="manual-toc" aria-label="Contenido de este manual">
         <h2>En esta guía</h2>
@@ -56,9 +57,9 @@ body_class: manual-page
         <section id="estado">
           <p class="kicker">02 · Estado actual</p>
           <h2>Qué existe hoy</h2>
-          <p>La base inicial abre una ventana de Potoo IDE con un mensaje de bienvenida. El editor, la selección de lenguaje, la ejecución de algoritmos, la ayuda contextual y la depuración aún no están implementados.</p>
+          <p>La base inicial abre una ventana de Potoo IDE con un mensaje de bienvenida. Hay crates independientes en desarrollo para Portugol y VisuAlg, pero todavía no están integrados en la aplicación de escritorio. El editor, la selección de lenguaje, la ejecución de algoritmos, la ayuda contextual y la depuración aún no están implementados.</p>
           <p>Por ahora, la aplicación no puede crear un proyecto de programación, ejecutar pseudocódigo ni mostrar errores dentro de la IDE.</p>
-          <div class="manual-note planned"><strong>En desarrollo:</strong> los próximos pasos previstos incluyen la interfaz principal, los paneles de la IDE y las decisiones para integrar intérpretes independientes.</div>
+          <div class="manual-note planned"><strong>En desarrollo:</strong> los próximos pasos previstos incluyen la interfaz principal, los paneles de la IDE y la integración de los intérpretes independientes.</div>
         </section>
 
         <section id="fluxo">
@@ -77,12 +78,12 @@ body_class: manual-page
         <section id="linguagens">
           <p class="kicker">04 · Lenguajes</p>
           <h2>Qué lenguajes están en el alcance</h2>
-          <ul>
-            <li><strong>Portugol:</strong> forma parte del alcance inicial del proyecto; todavía no hay un intérprete integrado.</li>
-            <li><strong>VisuAlg:</strong> también está en el alcance inicial; la integración técnica aún debe definirse.</li>
-            <li><strong>Potigol, PSeInt, Linotte, C0 (C simplificado) y Karel the Robot:</strong> son posibilidades en evaluación, sin compromiso de integrarlas en esta etapa.</li>
+          <p>El objetivo del proyecto es implementar los dialectos completos de Portugol Studio / Portugol 2.0 y VisuAlg. Las páginas siguientes documentan esas referencias y distinguen el alcance del dialecto del soporte actual en los crates y en la aplicación:</p>
+          <ul class="manual-list">
+            <li><span><strong>Portugol Studio · Portugol 2.0:</strong> el crate independiente ya implementa parte del dialecto, pero todavía no está conectado a la aplicación. <a href="{{ '/es/manual/portugol/' | relative_url }}">Leer la referencia completa de Portugol</a>.</span></li>
+            <li><span><strong>VisuAlg:</strong> el crate usa VisuAlg 3.0.5.2 como base de compatibilidad y tampoco está integrado en la aplicación. <a href="{{ '/es/manual/visualg/' | relative_url }}">Leer la referencia completa de VisuAlg</a>.</span></li>
           </ul>
-          <p>Los intérpretes son proyectos independientes. Antes de elegir una integración, se deberán evaluar la compatibilidad, los límites técnicos y las licencias.</p>
+          <p><strong>Potigol, PSeInt, Linotte, C0 (C simplificado) y Karel the Robot</strong> siguen como posibilidades en evaluación, sin compromiso de integración en esta etapa.</p>
         </section>
 
         <section id="recursos">
@@ -94,13 +95,13 @@ body_class: manual-page
             <li><span><strong>Paneles inferiores:</strong> espacio previsto para la salida, los problemas y la depuración.</span></li>
             <li><span><strong>Varios lenguajes:</strong> elección entre lenguajes una vez definidas sus integraciones.</span></li>
           </ul>
-          <div class="manual-note"><strong>Importante:</strong> esta lista describe objetivos del producto. Ninguno de estos elementos está disponible en la aplicación inicial.</div>
+          <div class="manual-note"><strong>Importante:</strong> esta lista describe objetivos del producto. El editor, la ejecución, la ayuda contextual y la depuración todavía no están disponibles en la aplicación de escritorio.</div>
         </section>
 
         <section id="desenvolvimento">
           <p class="kicker">06 · Desarrollo</p>
           <h2>Cómo seguir el desarrollo</h2>
-          <p>Potoo IDE está en desarrollo. Su base actual es una ventana de bienvenida; todavía hay que construir el editor, las integraciones con pseudolenguajes y los paneles previstos.</p>
+          <p>Potoo IDE está en desarrollo. Su base actual es una ventana de bienvenida; todavía hay que construir el editor y los paneles previstos, e integrar los crates independientes de Portugol y VisuAlg en la aplicación.</p>
           <p>El proyecto no ha anunciado una fecha de lanzamiento. Esta página describe el estado conocido y podrá actualizarse a medida que avance la aplicación.</p>
         </section>
 
@@ -111,7 +112,7 @@ body_class: manual-page
             <div><dt>Tipo</dt><dd>IDE de escritorio para aprender lógica</dd></div>
             <div><dt>Público</dt><dd>Estudiantes y docentes</dd></div>
             <div><dt>Alcance inicial</dt><dd>Portugol y VisuAlg</dd></div>
-            <div><dt>Tecnologías de la base</dt><dd>Rust · GTK 4 · libadwaita</dd></div>
+            <div><dt>Tecnologías de la base</dt><dd>Rust · GTK 4 · Relm4</dd></div>
             <div><dt>Licencia</dt><dd>Por definir tras evaluar las integraciones</dd></div>
           </dl>
         </section>
@@ -120,7 +121,7 @@ body_class: manual-page
           <p class="kicker">08 · Preguntas frecuentes</p>
           <h2>Dudas comunes</h2>
           <details><summary>¿Ya puedo programar en Potoo IDE?</summary><p>Aún no. Por ahora, Potoo IDE abre una ventana de bienvenida; el editor y la ejecución de algoritmos están en desarrollo.</p></details>
-          <details><summary>¿Qué lenguajes ya están integrados?</summary><p>Ninguno está integrado en esta etapa. Portugol y VisuAlg forman parte del alcance inicial; Potigol, PSeInt, Linotte, C0 (C simplificado) y Karel the Robot están en evaluación.</p></details>
+          <details><summary>¿Qué lenguajes ya están integrados?</summary><p>Ninguno está integrado en la aplicación de escritorio. Hay crates independientes parcialmente implementados para Portugol y VisuAlg; Potigol, PSeInt, Linotte, C0 (C simplificado) y Karel the Robot siguen en evaluación.</p></details>
           <details><summary>¿Cuándo estará lista la aplicación?</summary><p>El proyecto continúa en desarrollo y todavía no ha anunciado una fecha de lanzamiento.</p></details>
         </section>
       </article>
@@ -130,4 +131,5 @@ body_class: manual-page
       <div><h2>Conoce los objetivos del proyecto</h2><p>Consulta la experiencia prevista y el estado del desarrollo en la página inicial.</p></div>
       <a class="button" href="{{ page.home_path | relative_url }}#inicio">Ir a la página inicial <span aria-hidden="true">↗</span></a>
     </section>
+    </div>
   </main>

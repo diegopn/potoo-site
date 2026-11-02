@@ -1,0 +1,320 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/visualg/"
+title: "VisuAlg | Potoo IDE Manual"
+description: "A broad VisuAlg reference covering program structure, types, operators, vectors, subprograms, functions and teaching-oriented commands."
+og_title: "VisuAlg language reference"
+og_description: "Explore the syntax and features of the VisuAlg dialect used as a reference by Potoo IDE."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/visualg/"
+  es: "/es/manual/visualg/"
+  en: "/en/manual/visualg/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio">
+    <div class="wrap">
+      <p class="kicker">Pseudocode reference · VisuAlg dialect</p>
+      <h1>VisuAlg language</h1>
+      <p class="manual-intro">This page brings together a broad reference to the VisuAlg language, including the teaching features described in its author's manual. The Potoo IDE interpreter uses VisuAlg 3.0.5.2 as its compatibility baseline and aims to cover the complete dialect.</p>
+      <p class="manual-meta"><span><b>Dialect</b> VisuAlg</span><span><b>Potoo IDE status</b> In development</span></p>
+    </div>
+  </section>
+
+  <div class="manual-body">
+    <div class="wrap manual-layout">
+      <aside class="manual-toc" aria-label="Contents of the VisuAlg reference">
+        <h2>In this reference</h2>
+        <ol>
+          <li><a href="#sobre">About the language</a></li>
+          <li><a href="#estrutura">Algorithm structure</a></li>
+          <li><a href="#lexico">Names, comments and values</a></li>
+          <li><a href="#tipos">Types and declarations</a></li>
+          <li><a href="#operadores">Operators and precedence</a></li>
+          <li><a href="#entrada-saida">Input and output</a></li>
+          <li><a href="#condicoes">Conditions and selection</a></li>
+          <li><a href="#repeticao">Repetition</a></li>
+          <li><a href="#vetores">Vectors and matrices</a></li>
+          <li><a href="#subprogramas">Procedures and functions</a></li>
+          <li><a href="#funcoes">Functions and helper commands</a></li>
+          <li><a href="#exemplo">Complete example</a></li>
+          <li><a href="#potoo">Potoo IDE status</a></li>
+          <li><a href="#fontes">References</a></li>
+        </ol>
+      </aside>
+
+      <article class="manual-content">
+        <section id="sobre">
+          <p class="kicker">01 · Scope</p>
+          <h2>About the VisuAlg language</h2>
+          <p>VisuAlg interprets Portuguese pseudocode based on teaching conventions for Portugol, with structures designed to teach algorithms. This page describes the VisuAlg dialect; its rules are not interchangeable with Portugol Studio's.</p>
+          <p>This reference combines the language manual distributed by its author with the compatibility target of Potoo IDE's interpreter. The manual describes syntax and environment extensions; Potoo's implementation uses the 3.0.5.2 line as its compatibility reference.</p>
+          <div class="manual-note"><strong>Project goal:</strong> implement the complete reference dialect. The page explains the language and does not claim every item is available in the app.</div>
+        </section>
+
+        <section id="estrutura">
+          <p class="kicker">02 · Organization</p>
+          <h2>Algorithm structure</h2>
+          <p>An algorithm starts with the <code>algoritmo</code> keyword and a quoted name. Global declarations, a data file and subprograms appear before <code>inicio</code>; the main body ends with <code>fimalgoritmo</code>.</p>
+          <pre class="manual-code"><code>algoritmo "Welcome"
+var
+    nome: caractere
+inicio
+    escreva("What is your name? ")
+    leia(nome)
+    escreval("Hello, ", nome, "!")
+fimalgoritmo</code></pre>
+          <p>Braces do not delimit blocks. Structures use opening and closing keywords, such as <code>se</code>/<code>fimse</code> and <code>enquanto</code>/<code>fimenquanto</code>. The language's style uses one command per line.</p>
+          <p>For the file-reading extension, <code>arquivo "data.txt"</code> belongs in the declaration area before the main body. See <a href="#funcoes">Functions and helper commands</a>.</p>
+        </section>
+
+        <section id="lexico">
+          <p class="kicker">03 · Writing</p>
+          <h2>Names, comments and values</h2>
+          <ul>
+            <li>Keywords and variable names are case-insensitive; by convention, write keywords in lowercase without accents, such as <code>entao</code> and <code>logico</code>.</li>
+            <li>Names start with a letter and may continue with letters, digits or underscores. The reference manual sets a 30-character limit.</li>
+            <li>Line comments start with <code>//</code> and end at the line break. To comment multiple lines, start each line with its own marker.</li>
+            <li>Text literals use double quotes; decimal values use a period. Logical values are <code>VERDADEIRO</code> and <code>FALSO</code>.</li>
+            <li>One line represents one command; the language does not require semicolons to separate commands.</li>
+          </ul>
+          <pre class="manual-code"><code>// names are case-insensitive
+var
+    nome_do_aluno: caractere
+    nota: real
+    aprovado: logico
+inicio
+    nota <- 8.5
+    aprovado <- VERDADEIRO</code></pre>
+        </section>
+
+        <section id="tipos">
+          <p class="kicker">04 · Data</p>
+          <h2>Types, variables and assignment</h2>
+          <div class="manual-table-wrap" role="region" aria-label="VisuAlg data types" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Type</th><th scope="col">Use</th></tr></thead>
+              <tbody>
+                <tr><td><code>inteiro</code></td><td>Whole numbers.</td></tr>
+                <tr><td><code>real</code></td><td>Numbers with a fractional part.</td></tr>
+                <tr><td><code>caractere</code></td><td>A character or a text string in double quotes.</td></tr>
+                <tr><td><code>logico</code></td><td><code>VERDADEIRO</code> and <code>FALSO</code> values.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Variables are declared after <code>var</code>, with names on the left of the colon and the type on the right. Multiple names of the same type can be separated by commas. The dialect does not use a general constant-declaration keyword; fixed values appear as literals or expressions.</p>
+          <pre class="manual-code"><code>algoritmo "Declarations"
+var
+    tentativas, acertos: inteiro
+    media: real
+    nome: caractere
+    terminou: logico
+inicio
+    tentativas <- 0
+    media <- 7.25
+    nome <- "Lia"
+    terminou <- FALSO
+fimalgoritmo</code></pre>
+          <p>The assignment operator is <code>&lt;-</code>; the left side is a variable or vector element, and the right side is an expression compatible with the target type. Use <code>=</code> to compare equality.</p>
+        </section>
+
+        <section id="operadores">
+          <p class="kicker">05 · Expressions</p>
+          <h2>Operators and precedence</h2>
+          <div class="manual-table-wrap" role="region" aria-label="VisuAlg operators" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Group</th><th scope="col">Operators</th><th scope="col">Meaning</th></tr></thead>
+              <tbody>
+                <tr><td>Assignment</td><td><code>&lt;-</code></td><td>Stores an expression result in a variable.</td></tr>
+                <tr><td>Unary arithmetic</td><td><code>+ -</code></td><td>Indicates a positive or negative sign.</td></tr>
+                <tr><td>Exponentiation</td><td><code>^</code></td><td>Raises a base to an exponent.</td></tr>
+                <tr><td>Arithmetic</td><td><code>* / \ MOD % + -</code></td><td>Multiplication, real division, integer division, remainder, addition and subtraction. <code>\</code> performs integer division; <code>MOD</code> and <code>%</code> return the remainder.</td></tr>
+                <tr><td>Concatenation</td><td><code>+</code></td><td>Joins character-type expressions.</td></tr>
+                <tr><td>Relational</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Equal, less than, greater than, less or equal, greater or equal and not equal.</td></tr>
+                <tr><td>Logical</td><td><code>nao e ou xou</code></td><td>Negation, conjunction, disjunction and exclusive disjunction.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In arithmetic, <code>^</code> has the highest precedence among binary operators; <code>*</code>, <code>/</code>, <code>\</code> and <code>%</code> come before <code>+</code> and <code>-</code>. Unary signs have higher precedence. The manual identifies <code>nao</code> as the highest-precedence logical operator.</p>
+          <p>The reference manual does not publish a complete precedence table for all logical and relational operators. Use parentheses to make grouping explicit instead of relying on assumed conventions.</p>
+          <p>Text comparisons are case-insensitive; for example, the manual treats <code>"ABC"</code> and <code>"abc"</code> as equal.</p>
+        </section>
+
+        <section id="entrada-saida">
+          <p class="kicker">06 · Interaction</p>
+          <h2>Input, output and formatting</h2>
+          <p><code>leia</code> reads values into variables in the listed order. <code>escreva</code> displays comma-separated expressions; <code>escreval</code> does the same and then starts a new line.</p>
+          <pre class="manual-code"><code>algoritmo "Formatting"
+var
+    quantidade: inteiro
+    preco: real
+inicio
+    escreva("Quantity: ")
+    leia(quantidade)
+    preco <- quantidade * 2.5
+    escreval("Total: ", preco:8:2)
+fimalgoritmo</code></pre>
+          <p>For output, <code>value:width</code> reserves a field of the given width; <code>real:width:decimals</code> also sets the number of decimal places. Text is not automatically spaced like numeric expressions, so add spaces to the text where needed.</p>
+        </section>
+
+        <section id="condicoes">
+          <p class="kicker">07 · Decisions</p>
+          <h2>Conditions and selection</h2>
+          <p>Use <code>se ... entao</code> to run a block when a logical expression is true. <code>senao</code> is optional and <code>fimse</code> closes the structure; conditions can be nested.</p>
+          <pre class="manual-code"><code>se nota >= 7 entao
+    escreval("Passed")
+senao
+    escreval("Keep practicing")
+fimse</code></pre>
+          <p><code>escolha</code> evaluates an expression once and compares its value with alternatives in each <code>caso</code>; <code>outrocaso</code> defines the default case. <code>fimescolha</code> closes the selection.</p>
+          <pre class="manual-code"><code>escolha opcao
+caso 1, 2
+    escreval("First option")
+outrocaso
+    escreval("Another option")
+fimescolha</code></pre>
+        </section>
+
+        <section id="repeticao">
+          <p class="kicker">08 · Loops</p>
+          <h2>Repetition</h2>
+          <p>The dialect documents three main loops. <code>para</code> counts from the starting value through the limit, including it, with a default step of 1; a negative step counts down. The control variable must be an integer.</p>
+          <pre class="manual-code"><code>para indice de 1 ate 5 faca
+    escreva(indice:3)
+fimpara
+
+enquanto quantidade > 0 faca
+    quantidade <- quantidade - 1
+fimenquanto
+
+repita
+    tentativas <- tentativas + 1
+ate tentativas = 3</code></pre>
+          <p><code>enquanto</code> checks before its body and may run zero times. <code>repita ... ate</code> checks at the end and runs at least once. <code>interrompa</code> exits the current loop immediately.</p>
+          <p>An alternative form, <code>repita ... fimrepita</code>, has no final condition and requires <code>interrompa</code> to exit.</p>
+        </section>
+
+        <section id="vetores">
+          <p class="kicker">09 · Collections</p>
+          <h2>Vectors and matrices</h2>
+          <p>Indexed structures are declared with <code>vetor</code> and inclusive ranges. A vector can have one dimension and a matrix can have two. Bounds are constant integers, and the syntax gives the range for each dimension.</p>
+          <pre class="manual-code"><code>var
+    notas: vetor[1..5] de real
+    tabuleiro: vetor[0..2, 0..2] de caractere
+inicio
+    notas[1] <- 9.5
+    tabuleiro[0, 1] <- "X"
+    escreval(notas[1])
+    escreval(tabuleiro[0, 1])</code></pre>
+          <p>The number of elements in a dimension follows from its bounds, not from the final index alone. The first example has five positions indexed from 1 through 5; a range may also start at zero or another integer.</p>
+          <p>The VisuAlg manual documents vectors with up to two dimensions. Matrices are accessed with two comma-separated indices inside brackets.</p>
+        </section>
+
+        <section id="subprogramas">
+          <p class="kicker">10 · Reuse</p>
+          <h2>Procedures and functions</h2>
+          <p>Procedures and functions are declared after global variables and before <code>inicio</code>. A procedure returns no value; a function declares its return type after a colon and returns a result with <code>retorne</code>. Both may declare local variables in a <code>var</code> section.</p>
+          <pre class="manual-code"><code>algoritmo "Routines"
+var
+    resultado: inteiro
+funcao dobro(valor: inteiro): inteiro
+inicio
+    retorne valor * 2
+fimfuncao
+
+procedimento somar(valor: inteiro; var total: inteiro)
+inicio
+    total <- total + valor
+fimprocedimento
+
+inicio
+    resultado <- dobro(4)
+    somar(3, resultado)
+    escreval(resultado)
+fimalgoritmo</code></pre>
+          <p>Parameters separated by commas within one group share a type; different groups are separated by semicolons. Without <code>var</code>, a parameter is passed by value; with <code>var</code>, the routine may change the supplied variable. The manual supports recursion but does not allow nested routines.</p>
+          <p>Functions appear as expressions and procedures as statements. A procedure call without parameters may omit parentheses.</p>
+        </section>
+
+        <section id="funcoes">
+          <p class="kicker">11 · Language resources</p>
+          <h2>Functions and helper commands</h2>
+          <p>The author's manual describes <code>escreva</code>, <code>escreval</code> and <code>leia</code> as available input and output operations. Potoo's VisuAlg crate also catalogs the functions below in its compatibility implementation; this list describes the crate, not desktop integration.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Functions in the VisuAlg compatibility implementation" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Group</th><th scope="col">Catalogued names</th><th scope="col">General use</th></tr></thead>
+              <tbody>
+                <tr><td>Math</td><td><code>Abs</code>, <code>ArcCos</code>, <code>ArcSen</code>, <code>ArcTan</code>, <code>Cos</code>, <code>CoTan</code>, <code>Exp</code>, <code>GrauPrad</code>, <code>Int</code>, <code>Log</code>, <code>LogN</code>, <code>Pi</code>, <code>Quad</code>, <code>RadpGrau</code>, <code>RaizQ</code>, <code>Rand</code>, <code>RandI</code>, <code>Sen</code>, <code>Tan</code></td><td>Values, angle conversion, logarithms, trigonometry, powers and random numbers.</td></tr>
+                <tr><td>Text and characters</td><td><code>Asc</code>, <code>Carac</code>, <code>Caracpnum</code>, <code>Compr</code>, <code>Copia</code>, <code>Maiusc</code>, <code>Minusc</code>, <code>Numpcarac</code>, <code>Pos</code></td><td>Convert characters and numbers, measure and extract text, change case and locate substrings.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The dialect reference also describes commands that support teaching and the environment:</p>
+          <ul>
+            <li><code>aleatorio [on]</code> activates the generation used by <code>leia</code>; with no range, numbers span 0 to 100 and characters are generated as five-letter uppercase strings. <code>aleatorio maximum</code> sets the inclusive range from 0 to the limit; <code>aleatorio minimum, maximum</code> sets both inclusive bounds. Both values must be numeric constants, not expressions; if reversed, VisuAlg swaps them. <code>aleatorio off</code> stops generation.</li>
+            <li><code>arquivo "path"</code> associates reads with a text file and appears in the declaration section.</li>
+            <li><code>timer on</code> enables the default 500 ms delay; <code>timer &lt;delay&gt;</code> sets an integer constant in milliseconds from 0 to 10,000, clamping values outside the range. Multiple <code>timer</code> commands are allowed in the command section. <code>timer off</code> disables the delay.</li>
+            <li><code>pausa</code> pauses execution for inspection; <code>debug condition</code> pauses when the condition is true.</li>
+            <li><code>eco on|off</code> controls whether input data is echoed to output; <code>cronometro on|off</code> measures elapsed time.</li>
+            <li><code>limpatela</code> clears VisuAlg's simulated DOS screen but does not clear the main window's output panel.</li>
+          </ul>
+          <div class="manual-note"><strong>Environment dependency:</strong> commands such as file input, timers and debugging interact with VisuAlg features. An independent interpreter can offer the same behavior only if it implements those integrations.</div>
+        </section>
+
+        <section id="exemplo">
+          <p class="kicker">12 · Example</p>
+          <h2>Complete program</h2>
+          <p>This example reads three grades, calculates their average and uses a function to classify the result:</p>
+          <pre class="manual-code"><code>algoritmo "Class average"
+var
+    nota1, nota2, nota3, media: real
+funcao aprovado(media: real): logico
+inicio
+    retorne media >= 7
+fimfuncao
+
+inicio
+    escreval("Enter three grades:")
+    leia(nota1, nota2, nota3)
+    media <- (nota1 + nota2 + nota3) / 3
+
+    se aprovado(media) entao
+        escreval("Passed with an average of ", media:5:2)
+    senao
+        escreval("Keep studying: average ", media:5:2)
+    fimse
+fimalgoritmo</code></pre>
+        </section>
+
+        <section id="potoo">
+          <p class="kicker">13 · Compatibility</p>
+          <h2>What works in Potoo IDE today</h2>
+          <p>Potoo IDE does not yet integrate the VisuAlg interpreter into the desktop app. You cannot run an algorithm from the Potoo editor at this stage.</p>
+          <p>The project repository contains an independent compatibility crate that uses VisuAlg 3.0.5.2 as its reference. It has a parsing and execution foundation with core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. This does not mean the complete dialect is implemented; integration with the app is also pending.</p>
+          <div class="manual-note planned"><strong>In development:</strong> the goal remains to complete the reference dialect and then define its integration with the Potoo IDE interface.</div>
+        </section>
+
+        <section id="fontes">
+          <p class="kicker">14 · Further reading</p>
+          <h2>VisuAlg references</h2>
+          <ul>
+            <li>The <a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">language manual distributed by VisuAlg's author</a>, covering syntax, types, operators, commands, routines and teaching extensions; the <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">VisuAlg 3.0.5.2 command reference</a> also details <code>aleatorio</code> and <code>limpatela</code>.</li>
+            <li>A <a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">copy of the manual in a university repository</a>.</li>
+            <li>The <a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Potoo IDE VisuAlg crate</a>, with its 3.0.5.2 compatibility reference and implementation status.</li>
+          </ul>
+          <p>Implementations and reference materials may differ. Use the language manual for syntax and confirm behavior against the compatibility baseline chosen by the project.</p>
+        </section>
+      </article>
+    </div>
+
+    <section class="wrap manual-cta">
+      <div><h2>Return to the Potoo IDE Manual</h2><p>See how VisuAlg fits the project's language scope.</p></div>
+      <a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a>
+    </section>
+  </div>
+</main>
