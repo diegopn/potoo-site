@@ -43,6 +43,7 @@ body_class: manual-page
           <li><a href="#funcoes">Funciones y parámetros</a></li>
           <li><a href="#bibliotecas">Bibliotecas estándar</a></li>
           <li><a href="#exemplo">Ejemplo completo</a></li>
+          <li><a href="#erros">Errores frecuentes</a></li>
           <li><a href="#potoo">Estado en Potoo IDE</a></li>
           <li><a href="#fontes">Referencias</a></li>
         </ol>
@@ -259,6 +260,48 @@ funcao inicio() {
     escreva(mat.potencia(2, 3), "\n")
 }</code></pre>
           <p>El conjunto de bibliotecas pertenece al entorno de referencia de este dialecto; no todas las bibliotecas son apropiadas para cualquier intérprete o contexto de ejecución.</p>
+          <h3>Firmas y resultados</h3>
+          <p>Las llamadas siguientes usan el alias <code>mat</code> del ejemplo anterior. Las funciones devuelven valores que pueden asignarse a variables o combinarse en expresiones.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Firmas de las bibliotecas Matematica, Texto, Tipos y Util" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Biblioteca</th><th scope="col">Firma o llamada</th><th scope="col">Comportamiento</th></tr></thead>
+              <tbody>
+                <tr><td><code>Matematica</code></td><td><code>potencia(base, expoente)</code></td><td>Devuelve un número real con la base elevada al exponente. Ejemplo: <code>potencia(2, 3)</code> da <code>8</code>.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>raiz(radicando, indice)</code></td><td>Devuelve un número real con la raíz indicada por el índice. <code>raiz(27, 3)</code> da <code>3</code>.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>arredondar(numero, casas)</code>, <code>logaritmo(numero, base)</code></td><td>Devuelven números reales: redondeo a los decimales indicados y logaritmo en la base especificada.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>seno(angulo)</code>, <code>cosseno(angulo)</code>, <code>tangente(angulo)</code></td><td>Devuelven números reales con el resultado trigonométrico; los ángulos se expresan en radianes.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>valor_absoluto(numero)</code>, <code>maior_numero(a, b)</code>, <code>menor_numero(a, b)</code>, <code>PI</code></td><td>Devuelven números reales: valor absoluto, mayor o menor de dos números y la constante π.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>numero_caracteres(cadeia)</code>, <code>caixa_alta(cad)</code>, <code>caixa_baixa(cad)</code></td><td>La primera devuelve un entero; las otras devuelven la cadena en mayúsculas o minúsculas.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>substituir(cad, pesquisa, substituto)</code></td><td>Devuelve una cadena con todas las apariciones del fragmento buscado reemplazadas.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>preencher_a_esquerda(car, tamanho, cad)</code></td><td>Devuelve una cadena rellenada por la izquierda hasta el tamaño indicado; las cadenas que ya tienen ese tamaño no cambian.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>obter_caracter(cad, indice)</code>, <code>posicao_texto(texto, cadeia, posicao_inicial)</code></td><td>La primera devuelve un carácter; la segunda, un entero con la posición. Los índices empiezan en cero; la búsqueda devuelve <code>-1</code> si no encuentra el texto.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>extrair_subtexto(cadeia, posicao_inicial, posicao_final)</code></td><td>Devuelve una cadena desde el índice inicial hasta el final, sin incluirlo. Ejemplo: <code>extrair_subtexto("salgado", 0, 3)</code> da <code>"sal"</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>cadeia_e_inteiro(cad, base)</code>, <code>cadeia_e_real(cad)</code>, <code>cadeia_e_logico(cad)</code>, <code>cadeia_e_caracter(cad)</code></td><td>Devuelven valores lógicos para indicar si la cadena representa el tipo indicado. Para enteros, las bases documentadas son <code>2</code>, <code>10</code> y <code>16</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>inteiro_e_caracter(valor)</code>, <code>caracter_e_inteiro(car)</code>, <code>caracter_e_logico(car)</code></td><td>Devuelven valores lógicos para comprobar si los valores se pueden convertir a los tipos indicados.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>cadeia_para_inteiro(valor, base)</code>, <code>cadeia_para_real(valor)</code>, <code>cadeia_para_logico(valor)</code>, <code>cadeia_para_caracter(valor)</code></td><td>Devuelven un entero, real, lógico o carácter según la función. La conversión lógica reconoce <code>verdadeiro</code> o <code>falso</code>; para convertir a carácter se requiere exactamente un carácter.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>inteiro_para_cadeia(valor, base)</code>, <code>inteiro_para_caracter(valor)</code>, <code>inteiro_para_logico(valor)</code>, <code>inteiro_para_real(valor)</code></td><td>Devuelven una cadena, carácter, valor lógico o real; para cadenas, usa la base <code>2</code>, <code>10</code> o <code>16</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>caracter_para_cadeia(valor)</code>, <code>caracter_para_inteiro(valor)</code>, <code>caracter_para_logico(valor)</code>, <code>logico_para_cadeia(valor)</code>, <code>logico_para_inteiro(valor)</code>, <code>logico_para_caracter(valor)</code>, <code>real_para_cadeia(valor)</code>, <code>real_para_inteiro(valor)</code></td><td>Devuelven cadena, entero, valor lógico o carácter según el tipo de origen y la función; consulta la referencia de la biblioteca para cada conversión.</td></tr>
+                <tr><td><code>Util</code></td><td><code>obter_diretorio_usuario()</code>, <code>numero_elementos(vetor)</code>, <code>numero_linhas(matriz)</code>, <code>numero_colunas(matriz)</code></td><td>La primera devuelve una cadena; las demás, enteros con las dimensiones. La matriz debe tener al menos una fila para consultar las columnas.</td></tr>
+                <tr><td><code>Util</code></td><td><code>sorteia(minimo, maximo)</code>, <code>aguarde(intervalo)</code>, <code>tempo_decorrido()</code></td><td><code>sorteia</code> devuelve un entero dentro del intervalo inclusivo si <code>minimo</code> es menor que <code>maximo</code>; <code>aguarde</code> no devuelve valor y pausa en milisegundos; <code>tempo_decorrido</code> devuelve un entero en milisegundos desde el primer uso de la biblioteca.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="manual-code"><code>inclua biblioteca Texto --> txt
+
+funcao inicio() {
+    cadeia palavra = "logica"
+    escreva(txt.numero_caracteres(palavra), "\n")
+    escreva(txt.caixa_alta(palavra), "\n")
+    escreva(txt.extrair_subtexto(palavra, 0, 3), "\n")
+}</code></pre>
+          <p>Salida: <code>6</code>, <code>LOGICA</code> y <code>log</code>, cada valor en una línea.</p>
+          <pre class="manual-code"><code>inclua biblioteca Tipos --> tipos
+
+funcao inicio() {
+    escreva(tipos.cadeia_e_inteiro("101", 2), "\n")
+    escreva(tipos.cadeia_para_inteiro("101", 2), "\n")
+}</code></pre>
+          <p>Salida: <code>verdadeiro</code> y <code>5</code>. La primera llamada valida la escritura binaria; la segunda convierte el mismo valor a entero.</p>
         </section>
 
         <section id="exemplo">
@@ -284,24 +327,38 @@ funcao inicio() {
 }</code></pre>
         </section>
 
+        <section id="erros">
+          <p class="kicker">13 · Consejos de lectura</p>
+          <h2>Errores frecuentes y cómo evitarlos</h2>
+          <ul>
+            <li><strong>Confundir asignación e igualdad:</strong> usa <code>=</code> para asignar y <code>==</code> para comparar valores.</li>
+            <li><strong>Olvidar los separadores del bucle <code>para</code>:</strong> los campos de inicialización, condición y actualización se separan con punto y coma.</li>
+            <li><strong>Usar índices fuera del vector:</strong> los índices empiezan en cero; un vector de tamaño 3 ocupa las posiciones <code>0</code> a <code>2</code>.</li>
+            <li><strong>Esperar una operación de otra biblioteca:</strong> incluye el módulo con <code>inclua biblioteca Nombre</code> y usa el mismo nombre o alias antes del punto.</li>
+            <li><strong>Confundir el tamaño con el último índice:</strong> una cadena de seis caracteres tiene como último índice el <code>5</code>; en <code>extrair_subtexto</code>, el índice final marca el límite y no se incluye en el resultado.</li>
+            <li><strong>Usar <code>pare</code> en cualquier lugar:</strong> termina el bucle o caso de selección actual; fuera de esos contextos no sustituye a <code>retorne</code>.</li>
+          </ul>
+          <div class="manual-note"><strong>Al investigar un error:</strong> comprueba primero los tipos declarados, los delimitadores del bloque, el nombre de la biblioteca y los límites de los índices. En expresiones con operadores distintos, usa paréntesis para explicitar el orden.</div>
+        </section>
+
         <section id="potoo">
-          <p class="kicker">13 · Compatibilidad</p>
+          <p class="kicker">14 · Compatibilidad</p>
           <h2>Qué funciona hoy en Potoo IDE</h2>
           <p>Potoo IDE está en desarrollo y todavía no integra el intérprete en la aplicación de escritorio. Por eso, esta página es una referencia del dialecto deseado, no una lista de funciones disponibles en la aplicación.</p>
-          <p>El repositorio de Potoo IDE contiene una implementación independiente del pseudolenguaje Portugol 2.0. Esta cubre un subconjunto: estructura de programas y funciones, declaraciones, tipos, vectores y matrices, paso por valor y referencia, operadores, control de flujo, entrada y salida, y partes de las bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> y <code>Util</code>. La implementación actual es parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> y <code>Arquivos</code> todavía no están disponibles.</p>
+          <p>Hay una implementación independiente del pseudolenguaje Portugol 2.0 en desarrollo. Cubre un subconjunto: estructura de programas y funciones, declaraciones, tipos, vectores y matrices, paso por valor y referencia, operadores, control de flujo, entrada y salida, y partes de las bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> y <code>Util</code>. La implementación sigue siendo parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> y <code>Arquivos</code> todavía no están disponibles.</p>
           <div class="manual-note planned"><strong>En desarrollo:</strong> la meta es avanzar hacia el dialecto completo. Hasta que se integre con la interfaz de escritorio, no se podrán escribir ni ejecutar estos ejemplos en Potoo IDE.</div>
         </section>
 
         <section id="fontes">
-          <p class="kicker">14 · Lectura adicional</p>
+          <p class="kicker">15 · Lectura adicional</p>
           <h2>Referencias del pseudolenguaje Portugol 2.0</h2>
           <p>El dialecto Portugol 2.0 documentado aquí tiene su origen en Portugol Studio. Esta herramienta aparece solo como fuente de referencia; el nombre que Potoo IDE usa para el pseudolenguaje es Portugol 2.0.</p>
           <ul>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositorio oficial de Portugol Studio</a>, que identifica el pseudolenguaje como Portugol 2.0.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ayuda oficial sobre entrada y salida</a>, incluido el uso de <code>\n</code> para saltar de línea, y el <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analizador semántico</a>, que enumera las funciones predefinidas.</li>
-            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código fuente de las bibliotecas estándar</a> y sus funciones documentadas.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-portugol">Implementación de Portugol 2.0 en Potoo IDE</a>, su referencia de compatibilidad y el subconjunto implementado.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código fuente de las bibliotecas estándar</a> y sus funciones documentadas; consulta directamente <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide">Repositorio de Potoo IDE</a>, donde puede seguirse el desarrollo de la implementación independiente y su integración con la aplicación.</li>
           </ul>
           <p>Las referencias pertenecen a proyectos distintos. Consúltalas para verificar detalles de comportamiento y compatibilidad antes de usar una función específica.</p>
         </section>

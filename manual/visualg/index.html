@@ -43,6 +43,7 @@ body_class: manual-page
           <li><a href="#subprogramas">Procedimentos e funções</a></li>
           <li><a href="#funcoes">Funções e comandos auxiliares</a></li>
           <li><a href="#exemplo">Exemplo completo</a></li>
+          <li><a href="#erros">Erros frequentes</a></li>
           <li><a href="#potoo">Estado no Potoo IDE</a></li>
           <li><a href="#fontes">Referências</a></li>
         </ol>
@@ -249,11 +250,34 @@ fimalgoritmo</code></pre>
             <table class="manual-table">
               <thead><tr><th scope="col">Grupo</th><th scope="col">Nomes catalogados</th><th scope="col">Uso geral</th></tr></thead>
               <tbody>
-                <tr><td>Matemática</td><td><code>Abs</code>, <code>ArcCos</code>, <code>ArcSen</code>, <code>ArcTan</code>, <code>Cos</code>, <code>CoTan</code>, <code>Exp</code>, <code>GrauPrad</code>, <code>Int</code>, <code>Log</code>, <code>LogN</code>, <code>Pi</code>, <code>Quad</code>, <code>RadpGrau</code>, <code>RaizQ</code>, <code>Rand</code>, <code>RandI</code>, <code>Sen</code>, <code>Tan</code></td><td>Valores, conversões angulares, arredondamento por inteiro, logaritmos, trigonometria, potência e números aleatórios.</td></tr>
+                <tr><td>Matemática</td><td><code>Abs</code>, <code>ArcCos</code>, <code>ArcSen</code>, <code>ArcTan</code>, <code>Cos</code>, <code>CoTan</code>, <code>Exp</code>, <code>GraupRad</code>, <code>Int</code>, <code>Log</code>, <code>LogN</code>, <code>Pi</code>, <code>Quad</code>, <code>RadpGrau</code>, <code>RaizQ</code>, <code>Rand</code>, <code>RandI</code>, <code>Sen</code>, <code>Tan</code></td><td>Valores, conversões angulares, parte inteira, logaritmos, trigonometria, potência e números aleatórios.</td></tr>
                 <tr><td>Texto e caracteres</td><td><code>Asc</code>, <code>Carac</code>, <code>Caracpnum</code>, <code>Compr</code>, <code>Copia</code>, <code>Maiusc</code>, <code>Minusc</code>, <code>Numpcarac</code>, <code>Pos</code></td><td>Converter caracteres e números, medir, recortar, alterar caixa e localizar partes de texto.</td></tr>
               </tbody>
             </table>
           </div>
+          <h3>Assinaturas e resultados das funções</h3>
+          <p>As funções podem ser usadas em expressões ou atribuídas a variáveis. <code>Pi</code> e <code>Rand</code> não recebem parâmetros; os demais nomes abaixo mostram a quantidade e a ordem dos argumentos.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Assinaturas das funções numéricas e de texto de VisuAlg" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Grupo</th><th scope="col">Assinatura</th><th scope="col">Resultado</th></tr></thead>
+              <tbody>
+                <tr><td>Matemática</td><td><code>Abs(expr)</code>, <code>Int(expr)</code>, <code>Quad(expr)</code>, <code>RaizQ(expr)</code>, <code>Exp(base, expoente)</code>, <code>Log(expr)</code>, <code>LogN(expr)</code>, <code>Pi</code></td><td>Valor absoluto, parte inteira, quadrado, raiz quadrada, potência, logaritmo decimal ou natural e constante π.</td></tr>
+                <tr><td>Trigonometria</td><td><code>Cos(expr)</code>, <code>CoTan(expr)</code>, <code>Sen(expr)</code>, <code>Tan(expr)</code>, <code>ArcCos(expr)</code>, <code>ArcSen(expr)</code>, <code>ArcTan(expr)</code></td><td>Calculam razões trigonométricas e seus arcos; os ângulos de entrada e saída são expressos em radianos.</td></tr>
+                <tr><td>Conversão angular</td><td><code>GraupRad(graus)</code>, <code>RadpGrau(radianos)</code></td><td>Convertem graus para radianos e radianos para graus.</td></tr>
+                <tr><td>Sorteio</td><td><code>Rand</code>, <code>RandI(limite)</code></td><td><code>Rand</code> devolve real de 0 inclusive a 1 exclusive; <code>RandI</code> devolve inteiro de 0 inclusive até o limite exclusive.</td></tr>
+                <tr><td>Texto e caracteres</td><td><code>Asc(caracter)</code>, <code>Carac(codigo)</code>, <code>Caracpnum(cadeia)</code>, <code>Numpcarac(numero)</code></td><td>Obtêm o código ASCII do primeiro caracter, convertem um código em caracter, texto em número e número em texto.</td></tr>
+                <tr><td>Texto e caracteres</td><td><code>Compr(cadeia)</code>, <code>Copia(cadeia, inicio, quantidade)</code>, <code>Pos(subcadeia, cadeia)</code></td><td>Medem o texto, copiam uma quantidade de caracteres ou procuram a primeira ocorrência. Posições começam em 1; <code>Pos</code> devolve <code>0</code> quando não encontra o trecho.</td></tr>
+                <tr><td>Texto e caracteres</td><td><code>Maiusc(cadeia)</code>, <code>Minusc(cadeia)</code></td><td>Devolvem o texto em maiúsculas ou minúsculas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="manual-code"><code>algoritmo "Exemplos de funções"
+inicio
+    escreval(abs(2 - 9))
+    escreval(raizq(9))
+    escreval(pos("Brasil", "Brasil e Portugal"))
+fimalgoritmo</code></pre>
+          <p>Saída: <code>7</code>, <code>3</code> e <code>1</code>, cada resultado em uma linha.</p>
           <p>O dialeto de referência também descreve comandos de apoio ao ensino e ao ambiente:</p>
           <ul>
             <li><code>aleatorio [on]</code> ativa a geração usada por <code>leia</code>; sem faixa explícita, números vão de 0 a 100 e caracteres viram textos aleatórios de cinco letras maiúsculas. <code>aleatorio maximo</code> usa a faixa inclusiva de 0 ao limite; <code>aleatorio minimo, maximo</code> define os dois limites inclusivos. Ambos devem ser constantes numéricas, não expressões; se vierem invertidos, o VisuAlg troca a ordem. <code>aleatorio off</code> encerra a geração.</li>
@@ -291,21 +315,36 @@ inicio
 fimalgoritmo</code></pre>
         </section>
 
+        <section id="erros">
+          <p class="kicker">13 · Dicas de leitura</p>
+          <h2>Erros frequentes e como evitá-los</h2>
+          <ul>
+            <li><strong>Usar o sinal errado para atribuir:</strong> em VisuAlg, <code>&lt;-</code> atribui um valor; <code>=</code> compara valores em uma condição.</li>
+            <li><strong>Deixar um bloco sem encerramento:</strong> cada estrutura deve terminar com o marcador correspondente, como <code>fimse</code>, <code>fimpara</code>, <code>fimfuncao</code> ou <code>fimalgoritmo</code>.</li>
+            <li><strong>Confundir índice com quantidade:</strong> vetores usam os limites declarados; <code>Copia(cadeia, inicio, quantidade)</code> começa a contar posições em 1 e o terceiro argumento é a quantidade de caracteres.</li>
+            <li><strong>Esperar que <code>Pos</code> devolva zero-based:</strong> as posições começam em 1 e o resultado <code>0</code> indica que o trecho não foi encontrado.</li>
+            <li><strong>Contar com um limite aleatório inclusivo:</strong> <code>RandI(limite)</code> sorteia de zero até antes do limite. Já o comando <code>aleatorio</code> define faixas inclusivas para os valores lidos.</li>
+            <li><strong>Tratar comandos de ambiente como funções:</strong> <code>aleatorio</code>, <code>timer</code> e <code>debug</code> são comandos descritos pelo VisuAlg, não chamadas que devolvem um valor.</li>
+          </ul>
+          <div class="manual-note"><strong>Ao investigar um erro:</strong> confira a ordem das declarações, o tipo da variável, os limites do vetor e se todos os blocos foram fechados. Em condições, diferencie <code>=</code> (comparação) de <code>&lt;-</code> (atribuição).</div>
+        </section>
+
         <section id="potoo">
-          <p class="kicker">13 · Compatibilidade</p>
+          <p class="kicker">14 · Compatibilidade</p>
           <h2>O que já funciona no Potoo IDE</h2>
           <p>O Potoo IDE ainda não integra o interpretador VisuAlg ao aplicativo desktop. Não é possível executar um algoritmo pelo editor do Potoo nesta etapa.</p>
-          <p>O repositório do projeto contém uma implementação independente de compatibilidade que usa a versão 3.0.5.2 do VisuAlg como referência. Ela já possui uma base de análise e execução, com estruturas principais, tipos escalares, vetores de uma ou duas dimensões, funções, procedimentos, controle de fluxo, entrada e saída, funções embutidas catalogadas e comandos auxiliares. Isso não significa que o dialeto inteiro esteja implementado; a integração com a aplicação também está por fazer.</p>
+          <p>Há uma implementação independente de compatibilidade em desenvolvimento que usa o VisuAlg 3.0.5.2 como referência. Ela já possui uma base de análise e execução, com estruturas principais, tipos escalares, vetores de uma ou duas dimensões, funções, procedimentos, controle de fluxo, entrada e saída, funções embutidas catalogadas e comandos auxiliares. Isso não significa que o dialeto inteiro esteja implementado; a integração com a aplicação também está por fazer.</p>
           <div class="manual-note planned"><strong>Em desenvolvimento:</strong> o objetivo continua sendo completar o dialeto de referência e, depois, definir sua integração com a interface do Potoo IDE.</div>
         </section>
 
         <section id="fontes">
-          <p class="kicker">14 · Leitura adicional</p>
+          <p class="kicker">15 · Leitura adicional</p>
           <h2>Referências de VisuAlg</h2>
           <ul>
             <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual da pseudolinguagem distribuído pelo autor do VisuAlg</a>, com sintaxe, tipos, operadores, comandos, rotinas e extensões de ensino; a <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referência de comandos da versão 3.0.5.2</a> detalha também <code>aleatorio</code> e <code>limpatela</code>.</li>
+            <li><a href="https://documentation.help/VISUALG-Versao/funcoes.htm">Catálogo das funções numéricas e de texto</a>, com assinaturas e exemplos de resultados.</li>
             <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Cópia de consulta do manual em repositório universitário</a>.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Implementação do VisuAlg no Potoo IDE</a>, com a referência de compatibilidade 3.0.5.2 e o estado da implementação.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide">Repositório do Potoo IDE</a>, onde podem ser acompanhados o desenvolvimento da implementação independente e a integração com o aplicativo.</li>
           </ul>
           <p>Como implementações e materiais de referência podem diferir, use a documentação do dialeto para orientar a sintaxe e confirme o comportamento em relação à base de compatibilidade definida pelo projeto.</p>
         </section>
