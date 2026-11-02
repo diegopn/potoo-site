@@ -18,9 +18,9 @@ body_class: manual-page
 ---
 <main id="conteudo">
   <section class="manual-hero" id="inicio"><div class="wrap">
-    <p class="kicker">Referencia · Potigol</p><h1>Potigol</h1>
+    <p class="kicker">Referencia de pseudolenguaje · Potigol</p><h1>Potigol</h1>
     <p class="manual-intro">Esta página reúne una referencia práctica de la sintaxis y los recursos de Potigol a partir de la documentación y el código fuente públicos del proyecto. Los ejemplos conservan las palabras clave originales; la sección sobre Jerimum documenta por separado la biblioteca de juegos creada para Potigol.</p>
-    <p class="manual-meta"><span><b>Referencia</b> Potigol</span><span><b>Contenido</b> Sintaxis y bibliotecas</span></p>
+    <p class="manual-meta"><span><b>Pseudolenguaje</b> Potigol</span><span><b>Contenido</b> Sintaxis y bibliotecas</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
     <aside class="manual-toc" aria-label="Contenido de la referencia de Potigol"><h2>En esta referencia</h2><ol>
@@ -28,10 +28,10 @@ body_class: manual-page
       <li><a href="#escrita">Nombres y comentarios</a></li><li><a href="#tipos">Tipos y variables</a></li>
       <li><a href="#operadores">Operadores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li>
       <li><a href="#controle">Condiciones y repeticiones</a></li><li><a href="#funcoes">Funciones y colecciones</a></li>
-      <li><a href="#tipos-compostos">Tipos propios</a></li>
+      <li><a href="#tipos-compostos">Tipos compuestos</a></li>
       <li><a href="#matematica-textos">Matemáticas y textos</a></li>
       <li><a href="#listas-detalhadas">Listas en detalle</a></li>
-      <li><a href="#programacao-funcional">Funciones de orden superior</a></li>
+      <li><a href="#programacao-funcional">Programación funcional</a></li>
       <li><a href="#padroes">Emparejamiento de patrones</a></li>
       <li><a href="#jerimum">Jerimum: juegos con Potigol</a></li>
       <li><a href="#exemplo">Ejemplo integrado</a></li><li><a href="#fontes">Referencias</a></li>
@@ -127,7 +127,7 @@ dobros = numeros.mapeie(n =&gt; n * 2)
 pares = numeros.selecione(n =&gt; n mod 2 == 0)
 coordenada = (3.5, 2.0)</code></pre>
       </section>
-      <section id="tipos-compostos"><p class="kicker">09 · Modelado</p><h2>Tipos propios y orientación a objetos</h2>
+      <section id="tipos-compostos"><p class="kicker">09 · Modelado</p><h2>Tipos compuestos y orientación a objetos</h2>
         <p><code>tipo</code> declara estructuras con atributos y métodos. Se crea un valor llamando al tipo con los valores de sus atributos; los métodos pueden usarse como propiedades o funciones.</p>
         <pre class="manual-code"><code>tipo Pessoa
   nome: Texto
@@ -135,7 +135,16 @@ coordenada = (3.5, 2.0)</code></pre>
 fim
 aluna = Pessoa("Lia")
 escreva aluna.saudacao</code></pre>
-        <p>La documentación oficial también trata tipos abstractos, herencia, genéricos, tuplas, funciones como valores y emparejamiento de patrones.</p>
+        <h3>Tuplas</h3>
+        <p>Las tuplas son colecciones ordenadas, inmutables y de tamaño fijo; sus elementos pueden tener tipos distintos. Cada posición tiene un significado estable y se consulta con propiedades como <code>.primeiro</code>, <code>.segundo</code> y <code>.terceiro</code>.</p>
+        <pre class="manual-code"><code>ponto = (3.5, 4.2)
+aluna = ("Lia", 14, 8.5)
+
+escreva ponto.primeiro
+escreva ponto.segundo
+escreva aluna.terceiro</code></pre>
+        <p>Usa una tupla para agrupar datos relacionados u organizar varios valores producidos por una función. Para colecciones homogéneas cuyo tamaño puede variar, usa una lista.</p>
+        <p>La documentación oficial también trata tipos abstractos, herencia, genéricos, funciones como valores y emparejamiento de patrones.</p>
       </section>
             <section id="matematica-textos">
         <p class="kicker">10 · Operaciones integradas</p><h2>Matemáticas y textos</h2>
@@ -178,7 +187,7 @@ escreva atualizada     # [2, 5, 6, 8]</code></pre>
         <p><code>:=</code> actualiza una variable mutable, pero no modifica la lista referenciada por <code>original</code>. Los métodos <code>.atualize</code>, <code>.insira</code> y <code>.remova</code> hacen explícito que el resultado es una lista nueva.</p>
       </section>
       <section id="programacao-funcional">
-        <p class="kicker">12 · Abstracción</p><h2>Funciones de orden superior</h2>
+        <p class="kicker">12 · Abstracción</p><h2>Programación funcional</h2>
         <p>Una función puede recibir otra función como argumento o devolverla como resultado. Las expresiones lambda, escritas con <code>=&gt;</code>, describen operaciones breves sin declarar una función con nombre.</p>
         <pre class="manual-code"><code>numeros = [1, 2, 3, 4, 5, 6, 7, 8]
 pares = numeros.selecione(n => n mod 2 == 0)
@@ -190,6 +199,27 @@ sucessor(n: Inteiro) = n + 1
 escreva aplique(sucessor, 5)</code></pre>
         <ul><li><code>selecione</code> conserva los elementos que cumplen una condición.</li><li><code>mapeie</code> transforma cada elemento y devuelve una lista.</li><li><code>injete</code> recorre la colección y combina sus elementos con un acumulador inicial.</li></ul>
         <p>Estas operaciones no cambian la lista de origen. Los tipos de parámetros y resultados permiten comprobar que la transformación corresponde a los datos.</p>
+        <h3>Comprensión de listas</h3>
+        <p>Una comprensión combina una o más secuencias generadoras con una expresión para producir una lista nueva. Cada generador puede depender de los valores anteriores.</p>
+        <pre class="manual-code"><code>somas = para i de 1 até 3,
+             j de i + 1 até 3 gere
+               i + j
+         fim
+escreva somas</code></pre>
+        <h3>Currying</h3>
+        <p>Una función con currying recibe sus argumentos por etapas: cada llamada parcial devuelve otra función. Así se puede guardar una función ya configurada para reutilizarla.</p>
+        <pre class="manual-code"><code>soma(a: Inteiro) = ((b: Inteiro) =&gt; a + b)
+soma_dois = soma(2)
+escreva soma(2)(3)
+escreva soma_dois(4)</code></pre>
+        <h3>Recursión de cola</h3>
+        <p>En la recursión de cola, la llamada recursiva es la última operación del caso. La documentación de Potigol presenta esta forma con optimización, adecuada para recorridos recursivos que conservan un acumulador.</p>
+        <pre class="manual-code"><code>conta(n: Inteiro, acumulado: Inteiro): Inteiro = escolha n
+  caso 0 =&gt; acumulado
+  caso restante =&gt; conta(restante - 1, acumulado + 1)
+fim
+
+escreva conta(1000, 0)</code></pre>
       </section>
       <section id="padroes">
         <p class="kicker">13 · Decisiones por estructura</p><h2>Emparejamiento de patrones</h2>
@@ -283,7 +313,7 @@ senão
 fim</code></pre>
       </section>
       <section id="fontes"><p class="kicker">16 · Lectura adicional</p><h2>Referencias</h2>
-        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>, con temas de sintaxis, estructuras, funciones, tipos, listas y tuplas.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemáticas</a> y <a href="https://potigol.github.io/docs/funcoes/">funciones</a>.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a> y <a href="https://potigol.github.io/docs/funcional/">programación funcional</a>, con operaciones de transformación, expresiones lambda y emparejamiento de patrones.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
+        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>, con temas de sintaxis, estructuras, funciones, tipos, listas y tuplas.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemáticas</a> y <a href="https://potigol.github.io/docs/funcoes/">funciones</a>.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a>, <a href="https://potigol.github.io/docs/tipos_compostos/tuplas/">tuplas</a> y <a href="https://potigol.github.io/docs/funcional/">programación funcional</a>, con comprensión de listas, expresiones lambda, currying, recursión de cola y emparejamiento de patrones.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>

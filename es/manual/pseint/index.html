@@ -17,13 +17,13 @@ translations:
 body_class: manual-page
 ---
 <main id="conteudo">
-  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Referencia · PSeInt</p><h1>PSeInt</h1>
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Referencia de pseudolenguaje · PSeInt</p><h1>PSeInt</h1>
     <p class="manual-intro">Esta página organiza las construcciones de pseudocódigo documentadas por PSeInt: estructura del algoritmo, datos, expresiones, flujo de control y subprocesos. Los perfiles de PSeInt pueden flexibilizar algunas reglas; comprueba el perfil seleccionado en el entorno de referencia.</p>
-    <p class="manual-meta"><span><b>Referencia</b> PSeInt</span><span><b>Enfoque</b> Algoritmos en pseudocódigo</span></p>
+    <p class="manual-meta"><span><b>Pseudolenguaje</b> PSeInt</span><span><b>Enfoque</b> Algoritmos en pseudocódigo</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
     <aside class="manual-toc" aria-label="Contenido de la referencia de PSeInt"><h2>En esta referencia</h2><ol>
-      <li><a href="#sobre">Sobre PSeInt</a></li><li><a href="#estructura">Estructura del algoritmo</a></li><li><a href="#datos">Variables y tipos</a></li><li><a href="#operadores">Operadores y funciones</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Decisiones</a></li><li><a href="#repeticoes">Bucles</a></li><li><a href="#vetores">Arreglos y matrices</a></li><li><a href="#subprogramas">Subprocesos</a></li><li><a href="#exemplo">Ejemplo completo</a></li>        <li><a href="#funciones-integradas">Funciones integradas</a></li><li><a href="#perfiles">Perfiles y variantes</a></li>
+      <li><a href="#sobre">Sobre PSeInt</a></li><li><a href="#estructura">Estructura del algoritmo</a></li><li><a href="#datos">Variables y tipos</a></li><li><a href="#operadores">Operadores y funciones</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Decisiones</a></li><li><a href="#repeticoes">Bucles</a></li><li><a href="#vetores">Arreglos y matrices</a></li><li><a href="#subprogramas">Subprocesos</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#funciones-integradas">Funciones integradas</a></li><li><a href="#perfiles">Perfiles de configuración</a></li>
         <li><a href="#verificacion">Pruebas y seguimiento</a></li>
 <li><a href="#fontes">Referencias</a></li>
     </ol></aside>
@@ -118,25 +118,36 @@ area &lt;- 3.14159 * radio ^ 2
 Escribir "Área: ", REDON(area)
 Escribir "Dado: ", AZAR(6) + 1</code></pre>
         <pre class="manual-code"><code>Definir frase, minuscula Como Caracter
-frase &lt;- "Hola, Potoo!"
+frase &lt;- "Hola, mundo!"
 minuscula &lt;- Minusculas(frase)
 Escribir "Caracteres: ", Longitud(minuscula)
 Escribir "Inicio: ", SubCadena(minuscula, 1, 3)
 Escribir Concatenar("Texto: ", minuscula)</code></pre>
         <p>Comprueba el dominio de cada función matemática. Las operaciones con cadenas dependen del perfil que las habilita; este ejemplo usa índices desde 1, así que ajusta <code>SubCadena</code> al perfil activo.</p>
       </section>
-      <section id="perfiles"><p class="kicker">12 · Variantes de escritura</p><h2>Perfiles y variantes</h2>
-        <p>El perfil seleccionado determina qué formas de escritura acepta el intérprete. PSeInt puede exigir la forma estructurada original, admitir variantes flexibles o aplicar opciones intermedias configuradas por la institución o el docente.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Variaciones entre perfiles de PSeInt" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué puede variar</th><th scope="col">Recomendación</th></tr></thead><tbody>
-            <tr><td>Inicio y cierre</td><td><code>Proceso / FinProceso</code> o formas alternativas como <code>Algoritmo / FinAlgoritmo</code>.</td><td>Usar una pareja coherente.</td></tr>
-            <tr><td>Declaraciones</td><td>El perfil puede exigir <code>Definir</code> o permitir inferencia de tipos.</td><td>Declarar los datos explícitamente al aprender.</td></tr>
-            <tr><td>Separadores</td><td>Punto y coma obligatorio o separación por líneas.</td><td>Seguir un solo estilo en todo el algoritmo.</td></tr>
-            <tr><td>Arreglos</td><td>Notación de dimensión e índice inicial.</td><td>Comprobar los límites en el perfil activo.</td></tr>
-            <tr><td>Bucles</td><td><code>Para i &lt;- ...</code> o <code>Para Cada Elemento de Lista</code>.</td><td>Usar la forma disponible en el perfil elegido.</td></tr>
-            <tr><td>Condiciones</td><td>Operadores como <code>&gt;</code> o formas descriptivas como <code>Es Mayor Que</code>.</td><td>No mezclar formas de perfiles distintos.</td></tr>
+      <section id="perfiles"><p class="kicker">12 · Variantes de escritura</p><h2>Perfiles de configuración de PSeInt</h2>
+        <p>El perfil seleccionado reúne las opciones de escritura que acepta PSeInt. La documentación oficial presenta <code>Estricto</code> y <code>Flexible</code> como ejemplos para mostrar estas diferencias; el programa también ofrece perfiles predefinidos para instituciones. Los ejemplos ilustran configuraciones, no una lista universal de reglas para todas las clases.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Ejemplos oficiales de los perfiles Estricto y Flexible de PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Aspecto</th><th scope="col">Estricto</th><th scope="col">Flexible</th></tr></thead><tbody>
+            <tr><td>Estructura</td><td><code>Proceso / FinProceso</code>.</td><td><code>Algoritmo / FinAlgoritmo</code>.</td></tr>
+            <tr><td>Declaración de datos</td><td>Declara variables con <code>Definir</code> y sus tipos.</td><td>Puede inferir tipos a partir del uso de las variables.</td></tr>
+            <tr><td>Separación de instrucciones</td><td>Los ejemplos usan punto y coma.</td><td>Los ejemplos separan instrucciones por línea.</td></tr>
+            <tr><td>Recorrido de colecciones</td><td><code>Para I &lt;- ...</code> accede a cada posición por índice.</td><td><code>Para Cada Elemento de Lista</code> recorre los elementos.</td></tr>
+            <tr><td>Condiciones</td><td>Usa comparaciones como <code>Elemento &gt; ValMayor</code>.</td><td>También admite formas descriptivas como <code>Es Mayor Que</code> y <code>Es Par</code>.</td></tr>
+            <tr><td>Dimensión de arreglos</td><td>El ejemplo reserva <code>Dimension Lista[100]</code>.</td><td>El ejemplo usa <code>Dimension Lista[Cant]</code>.</td></tr>
           </tbody></table></div>
-        <p>Por eso, un ejemplo válido en un perfil puede necesitar cambios en otro. Si una clase o material entrega un perfil, ese perfil es la referencia para los nombres, tipos y sintaxis del ejercicio.</p>
+        <p>Los nombres de las opciones, los límites de los arreglos y otras construcciones dependen del perfil seleccionado. Para los ejercicios de una clase, sigue el perfil indicado por el docente o el material didáctico.</p>
+        <h3>Perfiles institucionales</h3>
+        <p>PSeInt puede incluir perfiles preparados para universidades, facultades y carreras. Reúnen en un archivo las opciones elegidas para una asignatura; su disponibilidad depende de la lista incluida en la distribución o proporcionada por la institución.</p>
+        <h3>Crear, guardar y cargar un perfil</h3>
+        <ol>
+          <li>En PSeInt, abre <strong>Configurar → Opciones del Lenguaje (perfiles)</strong>.</li>
+          <li>En la ventana de selección, elige <strong>Personalizar</strong>.</li>
+          <li>Ajusta las opciones según las convenciones que debe usar la clase.</li>
+          <li>Usa el botón con el icono de disquete para guardar el perfil en un archivo; elige dónde guardarlo, añade una descripción y asigna al archivo un nombre que identifique el perfil.</li>
+          <li>Para usar un perfil compartido, vuelve a la selección de perfiles, elige <strong>Cargar</strong> y selecciona el archivo recibido.</li>
+        </ol>
+        <p>Después de cargarlo, comprueba que el perfil aparezca seleccionado antes de escribir o ejecutar el algoritmo. Compartir el mismo archivo ayuda a mantener las mismas reglas en los ejemplos de la clase.</p>
       </section>
       <section id="verificacion"><p class="kicker">13 · Resolución de problemas</p><h2>Pruebas y seguimiento</h2>
         <p>Antes de ejecutar, identifica qué datos recibe el algoritmo, qué resultado debe producir y qué condiciones pueden cambiar su recorrido. Luego prueba con valores sencillos cuyo resultado puedas calcular por separado.</p>
@@ -148,7 +159,7 @@ Escribir Concatenar("Texto: ", minuscula)</code></pre>
         </ul>
         <p>El intérprete permite seguir la ejecución paso a paso y contrastarla con el diagrama de flujo. La traza ayuda a encontrar el momento en que una variable deja de tener el valor esperado; no reemplaza la selección de buenos casos de prueba.</p>
       </section>
-<section id="fontes"><p class="kicker">14 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://pseint.sourceforge.net/">Sitio oficial de PSeInt</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referencia oficial de pseudocódigo</a>, con estructura, operadores, funciones y reglas léxicas.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Ejemplos oficiales</a> con pseudocódigo y diagramas de flujo.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Ejemplo oficial de operaciones con cadenas</a>; requiere habilitarlas en el perfil.</li><li>Las reglas pueden variar según el perfil elegido; consulta la ayuda integrada de la misma versión.</li></ul></section>
+<section id="fontes"><p class="kicker">14 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://pseint.sourceforge.net/">Sitio oficial de PSeInt</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referencia web de pseudocódigo</a>, con estructura, operadores, funciones y reglas léxicas; el propio sitio indica que está desactualizada y recomienda la ayuda integrada para las versiones actuales.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Ejemplos oficiales</a> con pseudocódigo y diagramas de flujo.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Ejemplo oficial de operaciones con cadenas</a>; requiere habilitarlas en el perfil.</li><li><a href="https://pseint.sourceforge.net/index.php?page=perfiles.php">Guía oficial de perfiles</a>, con pasos para personalizar, guardar y compartir configuraciones.</li><li>La página oficial de <a href="https://pseint.sourceforge.net/index.php?page=features.php">características y funcionalidades</a> indica que el pseudocódigo es configurable y que existen perfiles predefinidos para instituciones.</li><li>La documentación oficial recomienda consultar la ayuda integrada para conocer las reglas detalladas de la versión instalada.</li></ul></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

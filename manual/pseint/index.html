@@ -18,10 +18,10 @@ body_class: manual-page
 ---
 <main id="conteudo">
   <section class="manual-hero" id="inicio"><div class="wrap">
-    <p class="kicker">Referência · PSeInt</p>
+    <p class="kicker">Referência de pseudolinguagem · PSeInt</p>
     <h1>PSeInt</h1>
     <p class="manual-intro">Esta página organiza as construções de pseudocódigo documentadas pelo PSeInt: estrutura de algoritmo, dados, expressões, controle de fluxo e subprogramas. Os perfis do PSeInt podem flexibilizar algumas regras de escrita; confira o perfil selecionado no ambiente de referência.</p>
-    <p class="manual-meta"><span><b>Referência</b> PSeInt</span><span><b>Foco</b> Algoritmos em pseudocódigo</span></p>
+    <p class="manual-meta"><span><b>Pseudolinguagem</b> PSeInt</span><span><b>Foco</b> Algoritmos em pseudocódigo</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
     <aside class="manual-toc" aria-label="Conteúdo da referência de PSeInt">
@@ -31,7 +31,7 @@ body_class: manual-page
         <li><a href="#entrada-saida">Entrada e saída</a></li><li><a href="#decisoes">Decisões</a></li>
         <li><a href="#repeticoes">Repetições</a></li><li><a href="#vetores">Vetores e matrizes</a></li>
         <li><a href="#subprogramas">Subprocessos</a></li><li><a href="#exemplo">Exemplo completo</a></li>
-        <li><a href="#funcoes-integradas">Funções integradas</a></li><li><a href="#perfis">Perfis e variantes</a></li>
+        <li><a href="#funcoes-integradas">Funções integradas</a></li><li><a href="#perfis">Perfis de configuração</a></li>
         <li><a href="#verificacao">Testes e acompanhamento</a></li><li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -172,25 +172,36 @@ area &lt;- 3.14159 * raio ^ 2
 Escrever "Área: ", REDON(area)
 Escrever "Dado: ", AZAR(6) + 1</code></pre>
         <pre class="manual-code"><code>Definir frase, minuscula Como Caracter
-frase &lt;- "Olá, Potoo!"
+frase &lt;- "Olá, mundo!"
 minuscula &lt;- Minusculas(frase)
 Escribir "Caracteres: ", Longitud(minuscula)
 Escribir "Início: ", SubCadena(minuscula, 1, 3)
 Escribir Concatenar("Texto: ", minuscula)</code></pre>
         <p>Confira o domínio de cada função matemática. Operações de cadeia de caracteres dependem do perfil que as habilita; este exemplo usa índices a partir de 1, então ajuste <code>SubCadena</code> conforme o perfil ativo.</p>
       </section>
-      <section id="perfis"><p class="kicker">12 · Variantes de escrita</p><h2>Perfis e variantes</h2>
-        <p>O perfil selecionado determina quais formas de escrita o interpretador aceita. O PSeInt pode exigir a sintaxe estruturada original, aceitar variantes flexíveis ou aplicar opções intermediárias configuradas pela instituição ou pelo professor.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Variações entre perfis do PSeInt" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Aspecto</th><th scope="col">O que pode variar</th><th scope="col">Recomendação</th></tr></thead><tbody>
-            <tr><td>Início e encerramento</td><td><code>Proceso / FinProceso</code> ou alternativas como <code>Algoritmo / FinAlgoritmo</code>.</td><td>Use um par coerente.</td></tr>
-            <tr><td>Declarações</td><td>O perfil pode exigir <code>Definir</code> ou permitir inferência de tipos.</td><td>Declare os dados explicitamente durante a aprendizagem.</td></tr>
-            <tr><td>Separadores</td><td>Ponto e vírgula obrigatório ou instruções separadas por linha.</td><td>Mantenha um único estilo no algoritmo.</td></tr>
-            <tr><td>Vetores</td><td>Notação da dimensão e índice inicial.</td><td>Confira os limites do perfil ativo.</td></tr>
-            <tr><td>Laços</td><td><code>Para i &lt;- ...</code> ou <code>Para Cada Elemento de Lista</code>.</td><td>Use a forma disponibilizada pelo perfil escolhido.</td></tr>
-            <tr><td>Condições</td><td>Operadores como <code>&gt;</code> e formas descritivas como <code>Es Mayor Que</code>.</td><td>Não misture formas de perfis diferentes.</td></tr>
+      <section id="perfis"><p class="kicker">12 · Variantes de escrita</p><h2>Perfis de configuração do PSeInt</h2>
+        <p>O perfil selecionado reúne as opções de escrita que o PSeInt aceita. A documentação oficial apresenta <code>Estricto</code> e <code>Flexible</code> como exemplos para mostrar essas diferenças; o programa também oferece perfis predefinidos para instituições. Os exemplos abaixo ilustram configurações, não uma lista universal de regras para todas as turmas.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Exemplos oficiais dos perfis Estricto e Flexible do PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Aspecto</th><th scope="col">Estricto</th><th scope="col">Flexible</th></tr></thead><tbody>
+            <tr><td>Estrutura</td><td><code>Proceso / FinProceso</code>.</td><td><code>Algoritmo / FinAlgoritmo</code>.</td></tr>
+            <tr><td>Declaração de dados</td><td>Declara variáveis com <code>Definir</code> e seus tipos.</td><td>Pode inferir tipos a partir do uso das variáveis.</td></tr>
+            <tr><td>Separação de instruções</td><td>Os exemplos usam ponto e vírgula.</td><td>Os exemplos separam instruções por linha.</td></tr>
+            <tr><td>Percurso de coleções</td><td><code>Para I &lt;- ...</code> acessa cada posição pelo índice.</td><td><code>Para Cada Elemento de Lista</code> percorre os elementos.</td></tr>
+            <tr><td>Condições</td><td>Usa comparações como <code>Elemento &gt; ValMayor</code>.</td><td>Também admite formas descritivas como <code>Es Mayor Que</code> e <code>Es Par</code>.</td></tr>
+            <tr><td>Dimensão de vetores</td><td>O exemplo reserva <code>Dimension Lista[100]</code>.</td><td>O exemplo usa <code>Dimension Lista[Cant]</code>.</td></tr>
           </tbody></table></div>
-        <p>Por isso, um exemplo válido em um perfil pode exigir alterações em outro. Se a turma ou o material fornecer um perfil, use-o como referência para nomes, tipos e sintaxe do exercício.</p>
+        <p>Os nomes das opções, os limites de vetores e outras construções dependem do perfil realmente selecionado. Para exercícios de uma turma, siga o perfil indicado pelo professor ou pelo material didático.</p>
+        <h3>Perfis institucionais</h3>
+        <p>O PSeInt pode disponibilizar perfis preparados para universidades, faculdades e cursos. Eles reúnem em um arquivo as opções escolhidas para uma disciplina; a disponibilidade depende da lista incluída na distribuição ou fornecida pela instituição.</p>
+        <h3>Criar, salvar e carregar um perfil</h3>
+        <ol>
+          <li>No PSeInt, abra <strong>Configurar → Opciones del Lenguaje (perfiles)</strong> (Configurar → Opções da Linguagem [perfis]).</li>
+          <li>Na janela de seleção, escolha <strong>Personalizar</strong>.</li>
+          <li>Ajuste as opções conforme a convenção que a turma precisa usar.</li>
+          <li>Use o botão com o ícone de disquete para salvar o perfil em um arquivo; escolha onde guardá-lo, informe uma descrição e dê ao arquivo um nome que identifique o perfil.</li>
+          <li>Para usar um perfil compartilhado, abra novamente a seleção de perfis, escolha <strong>Cargar</strong> (Carregar) e selecione o arquivo recebido.</li>
+        </ol>
+        <p>Depois de carregar o perfil, confirme que ele aparece selecionado antes de escrever ou executar o algoritmo. Compartilhar o mesmo arquivo ajuda a manter as mesmas regras nos exemplos da turma.</p>
       </section>
       <section id="verificacao"><p class="kicker">13 · Resolução de problemas</p><h2>Testes e acompanhamento</h2>
         <p>Antes de executar, identifique os dados de entrada, o resultado esperado e as condições que alteram o percurso. Depois, experimente valores simples cujo resultado você consiga calcular à parte.</p>
@@ -205,10 +216,10 @@ Escribir Concatenar("Texto: ", minuscula)</code></pre>
       <section id="fontes"><p class="kicker">14 · Leitura adicional</p><h2>Referências</h2>
         <ul>
           <li><a href="https://pseint.sourceforge.net/">Site oficial do PSeInt</a>.</li>
-          <li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referência oficial de pseudocódigo</a>, com estrutura, operadores, funções e regras lexicais.</li>
+          <li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referência web de pseudocódigo</a>, com estrutura, operadores, funções e regras léxicas; o próprio site informa que essa página está desatualizada e recomenda a ajuda integrada para versões atuais.</li>
           <li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Exemplos oficiais</a>, com pseudocódigo e diagramas de fluxo.</li>
           <li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Exemplo oficial de operações com cadeias</a>; esse conjunto depende das opções habilitadas no perfil.</li>
-          <li>O PSeInt pode variar conforme o perfil escolhido; use a ajuda integrada da mesma versão para confirmar as opções específicas.</li>
+          <li><a href="https://pseint.sourceforge.net/index.php?page=perfiles.php">Guia oficial de perfis</a>, com orientações para personalizar, salvar e compartilhar configurações.</li><li>A página oficial de <a href="https://pseint.sourceforge.net/index.php?page=features.php">características e funcionalidades</a> informa que o pseudocódigo é configurável e que há perfis institucionais predefinidos.</li><li>A própria documentação oficial recomenda consultar a ajuda integrada para as regras detalhadas da versão instalada.</li>
         </ul>
       </section>
     </article>

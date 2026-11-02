@@ -6,7 +6,7 @@ permalink: "/en/manual/visualg/"
 title: "VisuAlg | Potoo IDE Manual"
 description: "A broad reference to the VisuAlg pseudolanguage: program structure, types, operators, vectors, subprograms, functions and teaching commands."
 og_title: "VisuAlg reference"
-og_description: "Explore the syntax and features of the VisuAlg pseudolanguage used as a reference by Potoo IDE."
+og_description: "Explore the syntax, functions and teaching commands of VisuAlg."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -21,8 +21,8 @@ body_class: manual-page
     <div class="wrap">
       <p class="kicker">Pseudolanguage reference · VisuAlg</p>
       <h1>VisuAlg</h1>
-      <p class="manual-intro">This page brings together a broad reference to the VisuAlg pseudolanguage, including the teaching features described in its author's manual. The Potoo IDE interpreter uses version 3.0.5.2 as its compatibility baseline and aims to provide full support for VisuAlg.</p>
-      <p class="manual-meta"><span><b>Pseudolanguage</b> VisuAlg</span><span><b>Potoo IDE status</b> In development</span></p>
+      <p class="manual-intro">This page brings together a broad reference to the VisuAlg pseudolanguage, including the teaching features described in its author's manual. The rules and functions presented follow the official sources for version 3.0.5.2.</p>
+      <p class="manual-meta"><span><b>Pseudolanguage</b> VisuAlg</span></p>
     </div>
   </section>
 
@@ -44,19 +44,12 @@ body_class: manual-page
           <li><a href="#funcoes">Functions and helper commands</a></li>
           <li><a href="#exemplo">Complete example</a></li>
           <li><a href="#erros">Common mistakes</a></li>
-          <li><a href="#potoo">Potoo IDE status</a></li>
           <li><a href="#fontes">References</a></li>
         </ol>
       </aside>
 
       <article class="manual-content">
-        <section id="sobre">
-          <p class="kicker">01 · Scope</p>
-          <h2>About VisuAlg</h2>
-          <p>VisuAlg interprets Portuguese pseudocode based on teaching conventions for Portugol, with structures designed to teach algorithms. This page describes the commands and conventions specific to VisuAlg.</p>
-          <p>This reference combines the pseudolanguage manual distributed by its author with the compatibility rules used by Potoo IDE's VisuAlg interpreter. The manual also describes environment extensions, and the interpreter uses version 3.0.5.2 as its reference.</p>
-          <div class="manual-note"><strong>Project goal:</strong> implement all documented VisuAlg features. The page documents the pseudolanguage and does not claim every item is available in the app.</div>
-        </section>
+        <section id="sobre"><p class="kicker">01 · Scope</p><h2>About VisuAlg</h2><p>VisuAlg is an environment for writing and running algorithms in a Portuguese pseudolanguage, with its own teaching constructs. This reference brings together the syntax, functions, and teaching commands described in the author's manual for VisuAlg 3.0.5.2.</p></section>
 
         <section id="estrutura">
           <p class="kicker">02 · Organization</p>
@@ -245,10 +238,10 @@ fimalgoritmo</code></pre>
         <section id="funcoes">
           <p class="kicker">11 · Pseudolanguage resources</p>
           <h2>Functions and helper commands</h2>
-          <p>The author's manual describes <code>escreva</code>, <code>escreval</code> and <code>leia</code> as available input and output operations. The Potoo IDE VisuAlg interpreter also catalogs the functions below. The table describes what is catalogued in the interpreter, not features available in the desktop app.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Functions catalogued in the Potoo IDE VisuAlg interpreter" tabindex="0">
+          <p>The author's manual documents the input and output operations <code>escreva</code>, <code>escreval</code> and <code>leia</code>, as well as the math, trigonometric and text functions listed below. The signatures and behavior summarize the VisuAlg reference.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Functions documented in the VisuAlg pseudolanguage" tabindex="0">
             <table class="manual-table">
-              <thead><tr><th scope="col">Group</th><th scope="col">Catalogued names</th><th scope="col">General use</th></tr></thead>
+              <thead><tr><th scope="col">Group</th><th scope="col">Names</th><th scope="col">General use</th></tr></thead>
               <tbody>
                 <tr><td>Math</td><td><code>Abs</code>, <code>ArcCos</code>, <code>ArcSen</code>, <code>ArcTan</code>, <code>Cos</code>, <code>CoTan</code>, <code>Exp</code>, <code>GraupRad</code>, <code>Int</code>, <code>Log</code>, <code>LogN</code>, <code>Pi</code>, <code>Quad</code>, <code>RadpGrau</code>, <code>RaizQ</code>, <code>Rand</code>, <code>RandI</code>, <code>Sen</code>, <code>Tan</code></td><td>Values, angle conversion, integer part, logarithms, trigonometry, powers and random numbers.</td></tr>
                 <tr><td>Text and characters</td><td><code>Asc</code>, <code>Carac</code>, <code>Caracpnum</code>, <code>Compr</code>, <code>Copia</code>, <code>Maiusc</code>, <code>Minusc</code>, <code>Numpcarac</code>, <code>Pos</code></td><td>Convert characters and numbers, measure and extract text, change case and locate substrings.</td></tr>
@@ -287,7 +280,6 @@ fimalgoritmo</code></pre>
             <li><code>eco on|off</code> controls whether input data is echoed to output; <code>cronometro on|off</code> measures elapsed time.</li>
             <li><code>limpatela</code> clears VisuAlg's simulated DOS screen but does not clear the main window's output panel.</li>
           </ul>
-          <div class="manual-note"><strong>Environment dependency:</strong> commands such as file input, timers and debugging rely on VisuAlg features. The Potoo IDE interpreter needs to provide those integrations to reproduce the same behavior.</div>
         </section>
 
         <section id="exemplo">
@@ -329,30 +321,21 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>When tracking down an error:</strong> check declaration order, variable types, vector bounds and block endings. In conditions, distinguish <code>=</code> (comparison) from <code>&lt;-</code> (assignment).</div>
         </section>
 
-        <section id="potoo">
-          <p class="kicker">14 · Compatibility</p>
-          <h2>VisuAlg interpreter status</h2>
-          <p>Potoo IDE does not yet integrate the VisuAlg interpreter into the desktop app. You cannot run an algorithm from the Potoo editor at this stage.</p>
-          <p>The project's VisuAlg interpreter uses version 3.0.5.2 as its compatibility reference. It can already parse and execute parts of VisuAlg, including core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. It does not yet support every documented VisuAlg feature or run inside the desktop app.</p>
-          <div class="manual-note planned"><strong>In development:</strong> the goal remains to provide full support for VisuAlg and then define its integration with the Potoo IDE interface.</div>
-        </section>
-
         <section id="fontes">
-          <p class="kicker">15 · Further reading</p>
+          <p class="kicker">14 · Further reading</p>
           <h2>VisuAlg references</h2>
           <ul>
-            <li>The <a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">pseudolanguage manual distributed by VisuAlg's author</a>, covering syntax, types, operators, commands, routines and teaching extensions; the <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">VisuAlg 3.0.5.2 command reference</a> also details <code>aleatorio</code> and <code>limpatela</code>.</li>
+            <li>The <a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">pseudolanguage manual distributed by VisuAlg's author</a>, covering syntax, types, operators, commands, routines and teaching extensions; the <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">command reference</a> also details <code>aleatorio</code> and <code>limpatela</code>.</li>
             <li>The <a href="https://documentation.help/VISUALG-Versao/funcoes.htm">numeric and text function catalog</a>, with signatures and example results.</li>
             <li>A <a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">copy of the manual in a university repository</a>.</li>
-            <li>The <a href="https://github.com/diegopn/potoo-ide">Potoo IDE repository</a>, where development of the VisuAlg interpreter and its future app integration can be followed.</li>
           </ul>
-          <p>Behavior can vary between VisuAlg and other runtime environments. Use the VisuAlg manual for syntax and check behavior against the compatibility baseline chosen for Potoo IDE.</p>
+          <p>The manual presents VisuAlg syntax and teaching features. Consult the references to confirm function signatures and command behavior.</p>
         </section>
       </article>
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Return to the Potoo IDE Manual</h2><p>See how the VisuAlg pseudolanguage fits the project's scope.</p></div>
+      <div><h2>Return to the Potoo IDE Manual</h2><p>See other sections of the Manual.</p></div>
       <a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a>
     </section>
   </div>

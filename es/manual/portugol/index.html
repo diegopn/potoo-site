@@ -6,7 +6,7 @@ permalink: "/es/manual/portugol/"
 title: "Portugol 2.0 | Manual de Potoo IDE"
 description: "Referencia amplia del pseudolenguaje Portugol 2.0: estructura, tipos, operadores, control de flujo, vectores, funciones y bibliotecas."
 og_title: "Referencia de Portugol 2.0"
-og_description: "Consulta la sintaxis y los recursos del pseudolenguaje Portugol 2.0 adoptado por Potoo IDE."
+og_description: "Consulta la sintaxis y las bibliotecas estándar del pseudolenguaje Portugol 2.0."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -21,8 +21,8 @@ body_class: manual-page
     <div class="wrap">
       <p class="kicker">Referencia de pseudolenguaje · Portugol 2.0</p>
       <h1>Portugol 2.0</h1>
-      <p class="manual-intro">Esta página documenta el pseudolenguaje Portugol 2.0 completo, que Potoo IDE pretende implementar. La referencia distingue ese objetivo del soporte existente hoy.</p>
-      <p class="manual-meta"><span><b>Pseudolenguaje</b> Portugol 2.0</span><span><b>Estado en Potoo IDE</b> En desarrollo</span></p>
+      <p class="manual-intro">Esta página documenta el pseudolenguaje Portugol 2.0 a partir de la gramática, el léxico y las referencias públicas que lo describen.</p>
+      <p class="manual-meta"><span><b>Pseudolenguaje</b> Portugol 2.0</span></p>
     </div>
   </section>
 
@@ -44,19 +44,12 @@ body_class: manual-page
           <li><a href="#bibliotecas">Bibliotecas estándar</a></li>
           <li><a href="#exemplo">Ejemplo completo</a></li>
           <li><a href="#erros">Errores frecuentes</a></li>
-          <li><a href="#potoo">Estado en Potoo IDE</a></li>
           <li><a href="#fontes">Referencias</a></li>
         </ol>
       </aside>
 
       <article class="manual-content">
-        <section id="sobre">
-          <p class="kicker">01 · Alcance</p>
-          <h2>Sobre Portugol 2.0</h2>
-          <p><strong>Portugol</strong> es un nombre que se usa para distintos pseudolenguajes. Esta documentación describe específicamente Portugol 2.0; sus reglas no definen un estándar universal para todos los pseudolenguajes llamados Portugol.</p>
-          <p>La gramática y el léxico usados como base para esta referencia se indican en la sección de referencias. Orientan el alcance del pseudolenguaje Portugol 2.0 adoptado por Potoo IDE.</p>
-          <div class="manual-note"><strong>Objetivo del proyecto:</strong> implementar todas las características documentadas de este pseudolenguaje. Los recursos descritos aquí no significan que ya se puedan ejecutar en la aplicación.</div>
-        </section>
+        <section id="sobre"><p class="kicker">01 · Alcance</p><h2>Sobre Portugol 2.0</h2><p><strong>Portugol</strong> es un nombre que se usa para distintos pseudolenguajes. Esta documentación describe específicamente Portugol 2.0; sus reglas no definen un estándar universal para todos los pseudolenguajes llamados Portugol.</p><p>Las reglas presentadas corresponden al pseudolenguaje Portugol 2.0 y a las fuentes enumeradas al final de esta referencia.</p></section>
 
         <section id="estrutura">
           <p class="kicker">02 · Organización</p>
@@ -143,7 +136,7 @@ logico concluiu = falso</code></pre>
         <section id="entrada-saida">
           <p class="kicker">06 · Interacción</p>
           <h2>Entrada y salida</h2>
-          <p><code>escreva</code> muestra una o más expresiones. Para saltar de línea, incluye la secuencia de escape <code>\n</code> en una cadena que pases a esa función. <code>leia</code> recibe datos para variables. La función predefinida <code>limpa()</code> limpia el área de salida. El intérprete de Portugol 2.0 de Potoo IDE, aún en desarrollo, también ofrece la función auxiliar <code>escreva_linha</code>; no forma parte de la especificación de Portugol 2.0.</p>
+          <p><code>escreva</code> muestra una o más expresiones. Para saltar de línea, incluye la secuencia de escape <code>\n</code> en una cadena que pases a la función. <code>leia</code> recibe datos para variables. La función predefinida <code>limpa()</code> limpia el área de salida.</p>
           <pre class="manual-code"><code>programa {
     funcao inicio() {
         cadeia nome
@@ -152,7 +145,7 @@ logico concluiu = falso</code></pre>
         escreva("Hola, ", nome, "!\n")
     }
 }</code></pre>
-          <p>La forma de mostrar y leer datos puede variar según la biblioteca y el entorno de ejecución. Potoo IDE todavía no ofrece estos flujos dentro de la aplicación.</p>
+          <p>La forma de mostrar y leer datos depende de las funciones y bibliotecas disponibles en el entorno de ejecución descrito por las referencias.</p>
         </section>
 
         <section id="controle">
@@ -341,24 +334,15 @@ funcao inicio() {
           <div class="manual-note"><strong>Al investigar un error:</strong> comprueba primero los tipos declarados, los delimitadores del bloque, el nombre de la biblioteca y los límites de los índices. En expresiones con operadores distintos, usa paréntesis para explicitar el orden.</div>
         </section>
 
-        <section id="potoo">
-          <p class="kicker">14 · Compatibilidad</p>
-          <h2>Estado del intérprete de Portugol 2.0</h2>
-          <p>Potoo IDE está en desarrollo y todavía no integra el intérprete en la aplicación de escritorio. Esta página presenta la referencia de Portugol 2.0, no las funciones disponibles en la aplicación.</p>
-          <p>El intérprete de Portugol 2.0 del proyecto ya analiza y ejecuta parte del pseudolenguaje. Cubre estructuras de programas y funciones, declaraciones, tipos, vectores y matrices, paso por valor y referencia, operadores, control de flujo, entrada y salida, y partes de las bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> y <code>Util</code>. Las bibliotecas <code>Calendario</code>, <code>Objetos</code> y <code>Arquivos</code> todavía no están disponibles.</p>
-          <div class="manual-note planned"><strong>En desarrollo:</strong> la meta es completar la implementación de todos los recursos documentados de Portugol 2.0. Hasta que se integre con la interfaz de escritorio, no se podrán escribir ni ejecutar estos ejemplos en Potoo IDE.</div>
-        </section>
-
         <section id="fontes">
-          <p class="kicker">15 · Lectura adicional</p>
+          <p class="kicker">14 · Lectura adicional</p>
           <h2>Referencias del pseudolenguaje Portugol 2.0</h2>
-          <p>El pseudolenguaje Portugol 2.0 documentado aquí tiene su origen en Portugol Studio. Esta herramienta aparece solo como fuente de referencia; el nombre que Potoo IDE usa para el pseudolenguaje es Portugol 2.0.</p>
+          <p>Portugol 2.0 tiene su origen en Portugol Studio. Ese proyecto aparece en esta sección únicamente como fuente de las referencias utilizadas para documentar el pseudolenguaje.</p>
           <ul>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositorio oficial de Portugol Studio</a>, que identifica el pseudolenguaje como Portugol 2.0.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ayuda oficial sobre entrada y salida</a>, incluido el uso de <code>\n</code> para saltar de línea, y el <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analizador semántico</a>, que enumera las funciones predefinidas.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código fuente de las bibliotecas estándar</a> y sus funciones documentadas; consulta directamente <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide">Repositorio de Potoo IDE</a>, donde se puede seguir el desarrollo del intérprete Portugol 2.0 y su futura integración con la aplicación.</li>
           </ul>
           <p>Las referencias pertenecen a proyectos distintos. Consúltalas para verificar detalles de comportamiento y compatibilidad antes de usar una función específica.</p>
         </section>
@@ -366,7 +350,7 @@ funcao inicio() {
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Vuelve al Manual de Potoo IDE</h2><p>Consulta cómo se integra el pseudolenguaje Portugol 2.0 en el alcance del proyecto.</p></div>
+      <div><h2>Vuelve al Manual de Potoo IDE</h2><p>Consulta otras secciones del Manual.</p></div>
       <a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a>
     </section>
   </div>

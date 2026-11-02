@@ -17,12 +17,12 @@ translations:
 body_class: manual-page
 ---
 <main id="conteudo">
-  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Reference · PSeInt</p><h1>PSeInt</h1>
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Pseudolanguage reference · PSeInt</p><h1>PSeInt</h1>
     <p class="manual-intro">This page organizes the pseudocode constructs documented by PSeInt: algorithm structure, data, expressions, control flow, and subprograms. PSeInt profiles can relax some writing rules, so check the profile selected in the reference environment.</p>
-    <p class="manual-meta"><span><b>Reference</b> PSeInt</span><span><b>Focus</b> Algorithms in pseudocode</span></p>
+    <p class="manual-meta"><span><b>Pseudolanguage</b> PSeInt</span><span><b>Focus</b> Algorithms in pseudocode</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contents of the PSeInt reference"><h2>In this reference</h2><ol>
-    <li><a href="#sobre">About PSeInt</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Variables and types</a></li><li><a href="#operadores">Operators and functions</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Decisions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#vetores">Arrays and matrices</a></li><li><a href="#subprogramas">Subprograms</a></li><li><a href="#exemplo">Complete example</a></li>        <li><a href="#funciones-integradas">Built-in functions</a></li><li><a href="#perfiles">Profiles and variants</a></li>
+    <li><a href="#sobre">About PSeInt</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Variables and types</a></li><li><a href="#operadores">Operators and functions</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Decisions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#vetores">Arrays and matrices</a></li><li><a href="#subprogramas">Subprograms</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#funciones-integradas">Built-in functions</a></li><li><a href="#perfiles">Configuration profiles</a></li>
         <li><a href="#verificacion">Testing and tracing</a></li>
 <li><a href="#fontes">References</a></li>
   </ol></aside><article class="manual-content">
@@ -114,25 +114,36 @@ area &lt;- 3.14159 * radio ^ 2
 Escribir "Area: ", REDON(area)
 Escribir "Die: ", AZAR(6) + 1</code></pre>
         <pre class="manual-code"><code>Definir frase, minuscula Como Caracter
-frase &lt;- "Hola, Potoo!"
+frase &lt;- "Hola, mundo!"
 minuscula &lt;- Minusculas(frase)
 Escribir "Characters: ", Longitud(minuscula)
 Escribir "Start: ", SubCadena(minuscula, 1, 3)
 Escribir Concatenar("Text: ", minuscula)</code></pre>
         <p>Check the domain of each math function. String operations depend on the profile that enables them. This example starts indexes at 1, so adjust <code>SubCadena</code> to match the active profile.</p>
       </section>
-      <section id="perfiles"><p class="kicker">12 · Syntax variants</p><h2>Profiles and variants</h2>
-        <p>The selected profile determines which spellings the interpreter accepts. PSeInt can require the original structured form, accept flexible variants, or use intermediate options set by an institution or teacher.</p>
-        <div class="manual-table-wrap" role="region" aria-label="PSeInt profile variants" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Aspect</th><th scope="col">What can vary</th><th scope="col">Recommendation</th></tr></thead><tbody>
-            <tr><td>Opening and closing</td><td><code>Proceso / FinProceso</code> or alternatives such as <code>Algoritmo / FinAlgoritmo</code>.</td><td>Keep each pair consistent.</td></tr>
-            <tr><td>Declarations</td><td>A profile may require <code>Definir</code> or allow type inference.</td><td>Declare data explicitly while learning.</td></tr>
-            <tr><td>Separators</td><td>Required semicolons or line breaks between statements.</td><td>Use one style throughout an algorithm.</td></tr>
-            <tr><td>Arrays</td><td>Dimension notation and starting index.</td><td>Check the active profile's bounds.</td></tr>
-            <tr><td>Loops</td><td><code>Para i &lt;- ...</code> or <code>Para Cada Elemento de Lista</code>.</td><td>Use the form enabled by the selected profile.</td></tr>
-            <tr><td>Conditions</td><td>Operators such as <code>&gt;</code> or descriptive forms such as <code>Es Mayor Que</code>.</td><td>Do not mix forms from different profiles.</td></tr>
+      <section id="perfiles"><p class="kicker">12 · Writing variants</p><h2>PSeInt configuration profiles</h2>
+        <p>The selected profile groups the writing options accepted by PSeInt. The official documentation presents <code>Estricto</code> and <code>Flexible</code> as examples of these differences; the program also offers predefined profiles for institutions. The examples illustrate configurations, not a universal list of rules for every class.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Official examples of the PSeInt Estricto and Flexible profiles" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Aspect</th><th scope="col">Estricto</th><th scope="col">Flexible</th></tr></thead><tbody>
+            <tr><td>Structure</td><td><code>Proceso / FinProceso</code>.</td><td><code>Algoritmo / FinAlgoritmo</code>.</td></tr>
+            <tr><td>Data declarations</td><td>Declares variables with <code>Definir</code> and their types.</td><td>Can infer types from how variables are used.</td></tr>
+            <tr><td>Statement separators</td><td>The examples use semicolons.</td><td>The examples separate statements by line.</td></tr>
+            <tr><td>Collection traversal</td><td><code>Para I &lt;- ...</code> accesses each position by index.</td><td><code>Para Cada Elemento de Lista</code> traverses the elements.</td></tr>
+            <tr><td>Conditions</td><td>Uses comparisons such as <code>Elemento &gt; ValMayor</code>.</td><td>Also accepts descriptive forms such as <code>Es Mayor Que</code> and <code>Es Par</code>.</td></tr>
+            <tr><td>Array dimensions</td><td>The example reserves <code>Dimension Lista[100]</code>.</td><td>The example uses <code>Dimension Lista[Cant]</code>.</td></tr>
           </tbody></table></div>
-        <p>An example valid in one profile may need changes in another. If a class or course provides a profile, use it as the authority for names, types, and syntax in that exercise.</p>
+        <p>Option names, array limits, and other constructs depend on the profile actually selected. For class exercises, follow the profile specified by the teacher or course material.</p>
+        <h3>Institutional profiles</h3>
+        <p>PSeInt can provide profiles prepared for universities, faculties, and degree programs. They package the options chosen for a course in one file; availability depends on the list included with the distribution or supplied by the institution.</p>
+        <h3>Create, save, and load a profile</h3>
+        <ol>
+          <li>Open <strong>Configurar</strong> (“Configure”) → <strong>Opciones del Lenguaje (perfiles)</strong> (“Language Options (profiles)”).</li>
+          <li>In the profile selection window, choose <strong>Personalizar</strong> (“Customize”).</li>
+          <li>Adjust the options to match the conventions the class needs to use.</li>
+          <li>Use the button with the floppy-disk icon to save the profile to a file; choose where to store it, add a description, and give the file a name that identifies the profile.</li>
+          <li>To use a shared profile, reopen profile selection, choose <strong>Cargar</strong> (“Load”), and select the file you received.</li>
+        </ol>
+        <p>After loading it, confirm that the profile is selected before writing or running an algorithm. Sharing the same file helps keep examples in a class under the same rules.</p>
       </section>
       <section id="verificacion"><p class="kicker">13 · Problem solving</p><h2>Testing and tracing</h2>
         <p>Before running an algorithm, identify its inputs, expected result, and conditions that can change its path. Then try simple values whose results you can calculate independently.</p>
@@ -144,6 +155,6 @@ Escribir Concatenar("Text: ", minuscula)</code></pre>
         </ul>
         <p>The interpreter can trace execution step by step and compare it with a flowchart. A trace helps locate the moment a variable stops matching the expected value; it does not replace choosing useful test cases.</p>
       </section>
-<section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Official pseudocode reference</a>, with structure, operators, functions, and lexical rules.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Official string operations example</a>; this feature must be enabled in the selected profile.</li><li>Rules vary by selected profile; use the integrated help for the same version to confirm its settings.</li></ul></section>
+<section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Web pseudocode reference</a>, with structure, operators, functions, and lexical rules; the site marks it as outdated and recommends the integrated help for current versions.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Official string operations example</a>; this feature must be enabled in the selected profile.</li><li>The <a href="https://pseint.sourceforge.net/index.php?page=perfiles.php">official profile guide</a> explains how to customize, save, and share settings.</li><li>The official <a href="https://pseint.sourceforge.net/index.php?page=features.php">features page</a> says the pseudocode is configurable and that predefined institutional profiles are available.</li><li>The official documentation recommends the integrated help for detailed rules in the installed version.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

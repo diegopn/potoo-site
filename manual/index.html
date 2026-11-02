@@ -57,9 +57,9 @@ body_class: manual-page
         <section id="estado">
           <p class="kicker">02 · Estado atual</p>
           <h2>O que já existe</h2>
-          <p>A versão atual do Potoo IDE abre uma janela com uma mensagem de boas-vindas. Os interpretadores de Portugol 2.0 e VisuAlg estão em desenvolvimento, mas ainda não foram integrados à aplicação desktop. O editor, a seleção de pseudolinguagem, a execução de algoritmos, a ajuda contextual e a depuração ainda não foram implementados.</p>
+          <p>Hoje, o Potoo IDE abre uma janela com uma mensagem de boas-vindas. O editor, a seleção de pseudolinguagem, a execução de algoritmos, a ajuda contextual e a depuração ainda não estão disponíveis no aplicativo.</p>
           <p>Por isso, ainda não é possível criar um projeto de programação, executar pseudocódigo ou acompanhar erros pelo aplicativo.</p>
-          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> as próximas etapas previstas incluem a interface principal, os painéis da IDE e a integração dos interpretadores de Portugol 2.0 e VisuAlg à aplicação.</div>
+          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> as próximas etapas incluem a interface principal, os painéis da IDE e o fluxo de programação com as pseudolinguagens Portugol 2.0 e VisuAlg.</div>
         </section>
 
         <section id="fluxo">
@@ -72,18 +72,18 @@ body_class: manual-page
             <li>Consultar uma explicação contextual sobre uma linha ou conceito.</li>
             <li>Executar o código e ler a saída e os problemas em painéis de apoio.</li>
           </ol>
-          <p>O projeto ainda precisa definir a comunicação com cada interpretador, o formato das mensagens de erro e quais recursos de depuração serão possíveis.</p>
+          <p>O aplicativo ainda precisa definir como apresentará mensagens de erro e quais recursos de depuração estarão disponíveis.</p>
         </section>
 
         <section id="linguagens">
           <p class="kicker">04 · Pseudolinguagens</p>
           <h2>Quais pseudolinguagens estão no escopo</h2>
-          <p>O objetivo do projeto é implementar por completo as pseudolinguagens Portugol 2.0 e VisuAlg. As páginas abaixo apresentam as pseudolinguagens usadas como referência; o estágio de implementação e integração está descrito nesta seção do Manual:</p>
+          <p>O escopo inicial do Potoo IDE inclui as pseudolinguagens Portugol 2.0 e VisuAlg. As referências abaixo documentam suas regras e seus recursos com base nas fontes oficiais:</p>
           <ul class="manual-list">
-            <li><span><strong>Portugol 2.0:</strong> seu interpretador já analisa e executa parte da pseudolinguagem, mas ainda não está integrado à aplicação.<br><a href="{{ '/manual/portugol/' | relative_url }}">Ler a referência completa de Portugol 2.0</a>.</span></li>
-            <li><span><strong>VisuAlg:</strong> o interpretador do Potoo IDE usa a versão 3.0.5.2 como referência de compatibilidade; sua integração com a aplicação está em desenvolvimento.<br><a href="{{ '/manual/visualg/' | relative_url }}">Ler a referência completa de VisuAlg</a>.</span></li>
+            <li><span><strong>Portugol 2.0:</strong> estrutura, tipos, operadores, controle de fluxo, vetores, funções e bibliotecas.<br><a href="{{ '/manual/portugol/' | relative_url }}">Ler a referência completa de Portugol 2.0</a>.</span></li>
+            <li><span><strong>VisuAlg:</strong> estrutura, tipos, operadores, vetores, subprogramas, funções e comandos de apoio ao ensino.<br><a href="{{ '/manual/visualg/' | relative_url }}">Ler a referência completa de VisuAlg</a>.</span></li>
             <li><span><strong>Potigol:</strong> sintaxe, tipos, coleções, funções matemáticas e funcionais, casamento de padrões e a biblioteca de jogos Jerimum.<br><a href="{{ '/manual/potigol/' | relative_url }}">Ler a referência de Potigol</a>.</span></li>
-            <li><span><strong>PSeInt:</strong> estrutura de algoritmo, tipos, operadores, vetores, subprocessos, funções integradas e perfis de escrita.<br><a href="{{ '/manual/pseint/' | relative_url }}">Ler a referência de PSeInt</a>.</span></li>
+            <li><span><strong>PSeInt:</strong> estrutura de algoritmos, tipos, operadores, vetores, subprocessos, funções integradas e perfis oficiais de configuração.<br><a href="{{ '/manual/pseint/' | relative_url }}">Ler a referência de PSeInt</a>.</span></li>
             <li><span><strong>Linotte:</strong> atores, coleções, condições, funções, operações matemáticas, eventos gráficos e recursos do Atelier.<br><a href="{{ '/manual/linotte/' | relative_url }}">Ler a referência de Linotte</a>.</span></li>
             <li><span><strong>Karel the Robot:</strong> comandos, sensores, métodos próprios, planejamento e testes de cenários na referência Java da Stanford.<br><a href="{{ '/manual/karel/' | relative_url }}">Ler a referência de Karel the Robot</a>.</span></li>
           </ul>
@@ -105,7 +105,7 @@ body_class: manual-page
         <section id="desenvolvimento">
           <p class="kicker">06 · Desenvolvimento</p>
           <h2>Como acompanhar o desenvolvimento</h2>
-          <p>A versão atual do Potoo IDE abre uma janela de boas-vindas. Ainda faltam o editor, os painéis planejados e a integração dos interpretadores de Portugol 2.0 e VisuAlg à aplicação.</p>
+          <p>Hoje, o Potoo IDE abre uma janela de boas-vindas. O editor, os painéis planejados e o fluxo de programação com Portugol 2.0 e VisuAlg ainda estão em desenvolvimento.</p>
           <p>O projeto não anunciou uma data de lançamento. Esta página apresenta o estado conhecido e será atualizada conforme a aplicação avance.</p>
         </section>
 
@@ -125,7 +125,7 @@ body_class: manual-page
           <p class="kicker">08 · Perguntas frequentes</p>
           <h2>Dúvidas comuns</h2>
           <details><summary>Já posso programar no Potoo IDE?</summary><p>Ainda não. A aplicação atualmente abre uma janela de boas-vindas; o editor e a execução de algoritmos estão em desenvolvimento.</p></details>
-          <details><summary>Quais pseudolinguagens já estão integradas?</summary><p>Nenhuma está integrada à aplicação desktop. Os interpretadores de Portugol 2.0 e VisuAlg já cobrem partes das respectivas pseudolinguagens, mas ainda estão em desenvolvimento; Potigol, PSeInt, Linotte, C0 (C Simplificado) e Karel the Robot seguem em avaliação.</p></details>
+          <details><summary>Quais pseudolinguagens já estão integradas?</summary><p>Nenhuma está integrada à aplicação desktop. Portugol 2.0 e VisuAlg fazem parte do escopo inicial; Potigol, PSeInt, Linotte, C0 (C Simplificado) e Karel the Robot seguem em avaliação.</p></details>
           <details><summary>Quando o aplicativo ficará pronto?</summary><p>O projeto continua em desenvolvimento e ainda não tem uma data de lançamento anunciada.</p></details>
         </section>
       </article>
