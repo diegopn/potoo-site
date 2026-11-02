@@ -29,7 +29,7 @@ body_class: manual-page
       <li><a href="#operadores">Operadores e matemática</a></li><li><a href="#condicoes">Condições</a></li>
       <li><a href="#repeticoes">Repetições</a></li><li><a href="#funcoes">Funções</a></li>
       <li><a href="#colecoes">Coleções e extensões</a></li><li><a href="#exemplo">Exemplo completo</a></li>
-      <li><a href="#casier-avance">Casier e percursos</a></li><li><a href="#atalhos">Atalhos e interpolação</a></li>
+      <li><a href="#casier-avance">Acesso a coleções e iteração</a></li><li><a href="#atalhos">Atalhos e interpolação</a></li>
       <li><a href="#biblioteca">Funções integradas</a></li><li><a href="#especies">Espécies e protótipos</a></li>
       <li><a href="#ambiente">Eventos e recursos do Atelier</a></li><li><a href="#depuracao">Erros e depuração</a></li>
       <li><a href="#fontes">Referências</a></li>
@@ -51,7 +51,7 @@ durante a interpretação.
 */</code></pre>
       </section>
       <section id="dados"><p class="kicker">03 · Dados</p><h2>Variáveis e valores</h2>
-        <p>Os exemplos mostram declaração por categoria com <code>est un texte</code> ou <code>est un nombre</code>; um valor pode ser atribuído ou atualizado com <code>prend</code>. Os exemplos também usam <code>casier</code> para coleções de valores.</p>
+        <p>Linotte descreve variáveis como <em>atores</em>: cada ator tem nome, papel (seu tipo) e valor. O guia introdutório apresenta cinco papéis básicos: <code>texte</code>, <code>nombre</code>, <code>drapeau</code>, <code>casier</code> e <code>espèce</code>. Um papel pode ser declarado com <code>est un</code>; se a declaração for omitida, o tipo pode ser inferido pelo primeiro valor atribuído com <code>prend</code>.</p>
         <pre class="manual-code"><code>prénom est un texte
 prénom prend "Clément"
 affiche prénom
@@ -61,8 +61,11 @@ compteur est un nombre
 compteur prend 10
 compteur prend compteur + 1
 
-mois est un casier de texte valant "janvier", "février", "mars"</code></pre>
-        <p>As palavras que indicam o tipo e os valores de texto são escritas em francês. O nome da variável pode conter acentos, como <code>prénom</code>.</p>
+actif est un drapeau
+actif prend vrai
+
+mois est un casier de textes valant "janvier", "février", "mars"</code></pre>
+        <p><code>drapeau</code> guarda um valor lógico, <code>vrai</code> ou <code>faux</code>. As palavras que indicam tipos e valores de texto são escritas em francês. Nomes de atores podem conter acentos, como <code>prénom</code>.</p>
       </section>
       <section id="entrada-saida"><p class="kicker">04 · Interação</p><h2>Entrada e saída</h2>
         <p><code>affiche</code> mostra uma expressão. <code>demande</code> solicita ao usuário um valor e o armazena na variável indicada; antes da leitura, a variável é declarada com seu tipo.</p>
@@ -70,6 +73,7 @@ mois est un casier de texte valant "janvier", "février", "mars"</code></pre>
 affiche "Quel est ton prénom ?"
 demande prénom
 affiche "Bonjour " + prénom</code></pre>
+        <p>A forma <code>questionne prénom sur "Quel est ton prénom ?"</code> combina a pergunta e a leitura do valor em uma instrução.</p>
         <p>Textos e expressões podem ser unidos com <code>+</code>. A exibição de números e textos segue o tipo dos valores e as conversões oferecidas pelo ambiente.</p>
       </section>
       <section id="operadores"><p class="kicker">05 · Expressões</p><h2>Operadores e matemática</h2>
@@ -106,7 +110,7 @@ ferme</code></pre>
         <p>As condições podem comparar valores ou testar um valor lógico. Os operadores relacionais mostrados nos exemplos são <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> e <code>&lt;=</code>.</p>
       </section>
       <section id="repeticoes"><p class="kicker">07 · Repetição</p><h2>Repetições</h2>
-        <p><code>pour</code> repete instruções para uma sequência numérica. Para um bloco com várias instruções, use a forma em linhas e feche com <code>ferme</code>. A documentação também traz <code>pour chaque</code> para percorrer os valores de uma coleção.</p>
+        <p><code>pour</code> percorre uma sequência numérica com os limites inicial e final incluídos. Para um bloco com várias instruções, use a forma em linhas e feche com <code>ferme</code>. <code>pour chaque</code> percorre uma coleção e disponibiliza o item atual no ator especial <code>joker</code>.</p>
         <pre class="manual-code"><code>compteur est un nombre
 pour compteur de 1 à 5 affiche compteur
 
@@ -115,12 +119,11 @@ pour compteur de 1 à 3
     attends 200 millisecondes
 ferme
 
-mois est un casier de texte valant "janvier", "février", "mars"
-valeur est un texte
-pour chaque valeur de mois
-    affiche valeur
+mois est un casier de textes valant "janvier", "février", "mars"
+pour chaque mois
+    affiche joker
 ferme</code></pre>
-        <p>Escolha limites que correspondam à quantidade de passos pretendida e, em laços sobre coleções, use uma variável do tipo adequado a cada item.</p>
+        <p>Escolha limites que correspondam à quantidade de passos pretendida. Em um percurso com <code>pour chaque</code>, use <code>joker</code> para consultar o item atual.</p>
       </section>
       <section id="funcoes"><p class="kicker">08 · Reuso</p><h2>Funções e valores de retorno</h2>
         <p>Uma função é introduzida pelo nome seguido de dois-pontos e pelos parâmetros. O corpo pode declarar variáveis locais, executar condições e retornar um resultado com <code>retourne</code>. Funções também podem chamar a si próprias.</p>
@@ -134,10 +137,9 @@ fibonacci : n
       </section>
       <section id="colecoes"><p class="kicker">09 · Organização de dados</p><h2>Coleções e extensões</h2>
         <p>O <code>casier</code> agrupa valores para percorrê-los com <code>pour chaque</code>. Os recursos do ambiente Linotte vão além das construções centrais: o repositório oficial inclui exemplos visuais e bibliotecas adicionais. Esses recursos dependem do ambiente e não devem ser confundidos com instruções disponíveis em todos os contextos.</p>
-        <pre class="manual-code"><code>nombres est un casier de nombre valant 2, 4, 6
-nombre est un nombre
-pour chaque nombre de nombres
-    affiche nombre * nombre
+        <pre class="manual-code"><code>nombres est un casier de nombres valant 2, 4, 6
+pour chaque nombres
+    affiche joker * joker
 ferme</code></pre>
         <p>Para compreender um recurso específico, confira o exemplo que o acompanha e a documentação do componente correspondente no projeto original.</p>
       </section>
@@ -157,7 +159,7 @@ pour compteur de 1 à limite
 ferme</code></pre>
         <p>Este exemplo combina declaração, solicitação de entrada, repetição e decisão. Os termos de sintaxe continuam em francês.</p>
       </section>
-            <section id="casier-avance"><p class="kicker">11 · Coleções</p><h2>Casier e percorrido</h2>
+            <section id="casier-avance"><p class="kicker">11 · Coleções</p><h2>Acesso a coleções e iteração</h2>
         <p>Um <code>casier</code> reúne valores com o mesmo papel e permite percorrê-los sem repetir instruções. Nos exemplos oficiais, os índices começam em zero: em um casier com três elementos, as posições são <code>0</code>, <code>1</code> e <code>2</code>. A forma com chaves lê o valor de uma posição; <code>ajoute</code> insere um resultado em outra coleção.</p>
         <pre class="manual-code"><code>nomes est un casier de textes valant "Lia", "Caio", "Noa"
 indice est un nombre

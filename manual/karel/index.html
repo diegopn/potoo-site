@@ -38,15 +38,9 @@ body_class: manual-page
         <p>Esta página escolhe a referência Java da Stanford, que define uma classe de programa e um método <code>run</code>. Outras implementações podem usar Python ou sintaxes próprias; não misture exemplos de versões diferentes.</p>
       </section>
       <section id="mundo"><p class="kicker">02 · Ambiente</p><h2>O mundo em grade</h2>
-        <p>O robô ocupa uma esquina, aponta para uma das quatro direções e pode carregar ou deixar beepers. Paredes bloqueiam movimentos entre esquinas. Uma tarefa descreve o estado inicial do mundo e o estado que o programa deve alcançar.</p>
-        <ul>
-          <li><strong>Posição:</strong> a esquina atual do robô na grade.</li>
-          <li><strong>Direção:</strong> norte, sul, leste ou oeste.</li>
-          <li><strong>Beepers:</strong> marcadores que o robô pode recolher e colocar.</li>
-          <li><strong>Paredes:</strong> obstáculos que impedem o movimento.</li>
-        </ul>
-        <p>Uma tentativa de atravessar uma parede, recolher um beeper inexistente ou colocar um beeper sem tê-lo na bolsa causa uma condição de erro no ambiente.</p>
-      </section>
+        <p>O mundo de Karel é uma grade de ruas e avenidas; cada cruzamento é uma esquina. O robô ocupa uma esquina e aponta para norte, sul, leste ou oeste. O cenário tem paredes nas bordas, mas suas dimensões mudam de exercício para exercício.</p>
+        <ul><li><strong>Posição e direção:</strong> a esquina ocupada e a orientação atual do robô.</li><li><strong>Paredes:</strong> bloqueiam o caminho entre duas esquinas; os sensores verificam o entorno relativo à orientação.</li><li><strong>Beepers:</strong> podem estar em uma esquina ou na bolsa do robô. Karel só detecta beepers na esquina atual; a bolsa padrão comporta uma quantidade ilimitada.</li><li><strong>Estado inicial e meta:</strong> cada exercício define o cenário inicial e o resultado que o programa deve alcançar.</li></ul>
+        <p>Tentar atravessar uma parede, recolher um beeper inexistente ou colocar um beeper com a bolsa vazia gera um erro em tempo de execução.</p></section>
       <section id="programa"><p class="kicker">03 · Organização</p><h2>Estrutura do programa</h2>
         <p>Um programa Java de Karel declara uma classe que estende <code>SuperKarel</code>. O método público <code>run()</code> contém as instruções iniciais; métodos privados podem ser declarados dentro da classe para nomear sequências reutilizadas.</p>
         <pre class="manual-code"><code>import stanford.karel.*;
@@ -60,17 +54,10 @@ public class ExemploKarel extends SuperKarel {
         <p>O código usa blocos entre chaves, ponto e vírgula ao fim das instruções e comentários Java com <code>//</code> ou entre <code>/*</code> e <code>*/</code>.</p>
       </section>
       <section id="comandos"><p class="kicker">04 · Ações</p><h2>Comandos básicos</h2>
-        <div class="manual-table-wrap" role="region" aria-label="Comandos básicos de Karel" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Comando</th><th scope="col">Ação</th></tr></thead><tbody>
-            <tr><td><code>move()</code></td><td>Avança uma esquina se não houver parede à frente.</td></tr>
-            <tr><td><code>turnLeft()</code></td><td>Gira 90 graus para a esquerda.</td></tr>
-            <tr><td><code>putBeeper()</code></td><td>Deixa um beeper na esquina atual.</td></tr>
-            <tr><td><code>pickBeeper()</code></td><td>Recolhe um beeper da esquina atual.</td></tr>
-            <tr><td><code>turnRight()</code></td><td>Gira 90 graus para a direita; fornecido por <code>SuperKarel</code>.</td></tr>
-            <tr><td><code>turnAround()</code></td><td>Gira 180 graus; fornecido por <code>SuperKarel</code>.</td></tr>
-          </tbody></table></div>
-        <p>Os comandos primitivos são chamados com parênteses vazios e ponto e vírgula. As ações de beeper dependem do conteúdo da esquina e da bolsa do robô.</p>
-      </section>
+        <div class="manual-table-wrap" role="region" aria-label="Comandos básicos de Karel" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Ação</th></tr></thead><tbody>
+          <tr><td><code>move()</code></td><td>Avança uma esquina, se não houver parede à frente.</td></tr><tr><td><code>turnLeft()</code></td><td>Gira 90 graus para a esquerda.</td></tr><tr><td><code>putBeeper()</code></td><td>Coloca um beeper na esquina atual e retira um da bolsa.</td></tr><tr><td><code>pickBeeper()</code></td><td>Recolhe um beeper da esquina atual e o guarda na bolsa.</td></tr>
+        </tbody></table></div>
+        <p>As quatro instruções primitivas são chamadas com parênteses vazios e terminam com ponto e vírgula. <code>move()</code> falha diante de uma parede; <code>pickBeeper()</code> exige um beeper na esquina; <code>putBeeper()</code> exige um beeper na bolsa.</p></section>
       <section id="sensores"><p class="kicker">05 · Observação</p><h2>Sensores e condições</h2>
         <p>Karel consulta condições do entorno imediato; ele não recebe o mapa inteiro como um valor. Cada sensor devolve um valor lógico que pode ser usado em <code>if</code>, <code>while</code> e expressões booleanas.</p>
         <div class="manual-table-wrap" role="region" aria-label="Sensores de Karel" tabindex="0"><table class="manual-table">
@@ -143,15 +130,11 @@ public class MarcarDestino extends SuperKarel {
 }</code></pre>
       </section>
             <section id="superkarel"><p class="kicker">10 · Recursos adicionais</p><h2>Recursos de SuperKarel</h2>
-        <p><code>SuperKarel</code> acrescenta ações à base do robô. Elas só estão disponíveis quando a classe do programa herda de <code>SuperKarel</code>; a referência base oferece menos comandos.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Comandos adicionais de SuperKarel" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Comando</th><th scope="col">Ação</th></tr></thead><tbody>
-            <tr><td><code>turnRight()</code></td><td>Gira 90 graus para a direita.</td></tr>
-            <tr><td><code>turnAround()</code></td><td>Gira 180 graus.</td></tr>
-            <tr><td><code>random(p)</code></td><td>Retorna uma escolha lógica aleatória com probabilidade especificada.</td></tr>
-            <tr><td><code>paintCorner(color)</code></td><td>Pinta a esquina atual com uma cor.</td></tr>
-          </tbody></table></div>
-        <p>Essas chamadas seguem as regras Java: recebem argumentos entre parênteses e terminam com ponto e vírgula. O conjunto de cores aceito por <code>paintCorner</code> depende da biblioteca da Stanford usada no projeto.</p>
+        <p><code>SuperKarel</code> acrescenta recursos à classe base. Eles ficam disponíveis quando a classe do programa estende <code>SuperKarel</code>.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Ações e condições de SuperKarel" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Tipo</th><th scope="col">Comportamento</th></tr></thead><tbody>
+          <tr><td><code>turnRight()</code></td><td>Ação</td><td>Gira 90 graus para a direita.</td></tr><tr><td><code>turnAround()</code></td><td>Ação</td><td>Gira 180 graus.</td></tr><tr><td><code>random(p)</code></td><td>Condição</td><td>Retorna verdadeiro com probabilidade <code>p</code>, entre <code>0.0</code> e <code>1.0</code>.</td></tr><tr><td><code>paintCorner(color)</code></td><td>Ação</td><td>Pinta a esquina atual com uma cor.</td></tr>
+        </tbody></table></div>
+        <p>Nos materiais Java de Stanford, as cores são constantes como <code>RED</code> e <code>YELLOW</code>, sem aspas. O livro original também descreve <code>random()</code>, que tem 50% de chance de retornar verdadeiro, e a condição <code>cornerColorIs(color)</code>. Esses dois recursos não aparecem na ficha resumida do Karel Reader; confirme se a biblioteca usada os oferece.</p>
       </section>
       <section id="estrategias"><p class="kicker">11 · Repetição com segurança</p><h2>Laços, limites e erro de uma posição</h2>
         <p><code>for</code> é adequado quando a quantidade de passos é conhecida. <code>while</code> é adequado quando o robô deve reagir ao mundo, como avançar até uma parede. A condição de um <code>while</code> é verificada antes do corpo, então o corpo pode não executar nenhuma vez.</p>
