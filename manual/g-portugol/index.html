@@ -1,0 +1,212 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/g-portugol/"
+title: "G-Portugol | Manual do Potoo IDE"
+description: "Referência da pseudolinguagem G-Portugol: estrutura, tipos, matrizes, operadores, entrada e saída, controle de fluxo e funções."
+og_title: "Referência de G-Portugol"
+og_description: "Consulte a sintaxe, os tipos, as estruturas de controle e as funções documentadas para G-Portugol."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/g-portugol/"
+  es: "/es/manual/g-portugol/"
+  en: "/en/manual/g-portugol/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência · G-Portugol</p><h1>G-Portugol</h1>
+    <p class="manual-intro">Esta referência organiza as regras da pseudolinguagem G-Portugol a partir do manual oficial: estrutura de algoritmos, variáveis, matrizes, expressões, controle de fluxo, funções e comandos de entrada e saída. Os exemplos preservam as palavras reservadas em português.</p>
+    <p class="manual-meta"><span><b>Referência</b> G-Portugol</span><span><b>Sintaxe</b> Palavras reservadas em português</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de G-Portugol"><h2>Nesta referência</h2><ol>
+      <li><a href="#sobre">Sobre G-Portugol</a></li><li><a href="#estrutura">Estrutura do algoritmo</a></li>
+      <li><a href="#lexico">Identificadores, comentários e literais</a></li><li><a href="#dados">Tipos e variáveis</a></li>
+      <li><a href="#matrizes">Vetores e matrizes</a></li><li><a href="#expressoes">Atribuição e operadores</a></li>
+      <li><a href="#entrada-saida">Entrada e saída</a></li><li><a href="#condicoes">Decisões</a></li>
+      <li><a href="#repeticoes">Repetições</a></li><li><a href="#funcoes">Funções</a></li>
+      <li><a href="#exemplo">Exemplo completo</a></li><li><a href="#semantica">Comportamento e limites</a></li>
+      <li><a href="#gpt">Programa GPT</a></li><li><a href="#fontes">Referências</a></li>
+    </ol></aside>
+    <article class="manual-content">
+      <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre G-Portugol</h2>
+        <p>G-Portugol organiza algoritmos em português com declarações explícitas, comandos imperativos e blocos delimitados. Sua sintaxe reúne formas comuns em materiais de lógica, como <code>algoritmo</code>, <code>variáveis</code>, <code>início</code>, <code>se</code> e <code>para</code>.</p>
+        <p>Esta página documenta a pseudolinguagem conforme o manual mantido pelo projeto G-Portugol. Ela separa as regras de escrita dos comandos e opções da ferramenta GPT, que são descritos em uma seção própria.</p>
+        <div class="manual-note"><strong>Escopo:</strong> a referência descreve a sintaxe documentada pelo projeto. Ela não significa que a execução de G-Portugol já esteja integrada ao Potoo IDE.</div>
+      </section>
+      <section id="estrutura"><p class="kicker">02 · Organização</p><h2>Estrutura do algoritmo</h2>
+        <p>Um arquivo começa com a declaração do algoritmo, pode declarar variáveis globais, contém o bloco principal e termina com as declarações de funções. A declaração de variáveis é opcional; quando usada, fica antes de <code>início</code> e contém ao menos uma declaração. Os exemplos oficiais usam a extensão <code>.gpt</code>.</p>
+        <pre class="manual-code"><code>algoritmo exemplo;
+
+variáveis
+    nome : literal;
+    idade : inteiro;
+fim-variáveis
+
+início
+    nome := "Ana";
+    idade := 16;
+    imprima(nome, " tem ", idade, " anos.");
+fim
+
+função dobro(valor:inteiro) : inteiro
+    retorne valor * 2;
+fim</code></pre>
+        <p><code>algoritmo</code> exige um identificador e ponto e vírgula. O bloco principal começa em <code>início</code> e termina em <code>fim</code>; as funções são declaradas depois dele. Comandos simples terminam em ponto e vírgula; os blocos encerram com seu delimitador, sem exigir ponto e vírgula depois dele. A indentação não é obrigatória, mas ajuda a visualizar a estrutura.</p>
+      </section>
+      <section id="lexico"><p class="kicker">03 · Escrita</p><h2>Identificadores, comentários e literais</h2>
+        <p>A pseudolinguagem diferencia maiúsculas de minúsculas. Palavras reservadas precisam manter a grafia e os acentos definidos, como <code>variáveis</code>, <code>início</code>, <code>então</code>, <code>faça</code> e <code>função</code>. Identificadores — nomes de variáveis, algoritmos e funções — começam com uma letra ASCII (<code>A–Z</code> ou <code>a–z</code>) ou sublinhado e podem continuar com letras ASCII, números e sublinhados.</p>
+        <pre class="manual-code"><code>// Comentário de uma linha.
+/* Comentário
+   de várias linhas. */
+
+algoritmo dados;
+variáveis
+    nome_completo : literal;
+    inicial : caractere;
+    codigo : inteiro;
+fim-variáveis
+início
+    nome_completo := "João";
+    inicial := 'J';
+    codigo := 0x2A;
+fim</code></pre>
+        <p>Palavras reservadas documentadas incluem <code>algoritmo</code>, <code>variáveis</code>, <code>fim-variáveis</code>, <code>início</code>, <code>fim</code>, os cinco nomes de tipos, seus plurais para matrizes, <code>se</code>, <code>então</code>, <code>senão</code>, <code>fim-se</code>, <code>enquanto</code>, <code>faça</code>, <code>fim-enquanto</code>, <code>repita</code>, <code>até</code>, <code>para</code>, <code>de</code>, <code>passo</code>, <code>fim-para</code>, <code>função</code> e <code>retorne</code>, além dos operadores lógicos em palavras.</p>
+        <p>Inteiros aceitam bases decimal, hexadecimal (<code>0x</code>), octal (<code>0c</code>) e binária (<code>0b</code>). Reais usam ponto decimal. Caracteres ficam entre aspas simples e textos entre aspas duplas; sequências como <code>\n</code> representam caracteres especiais. Um texto literal ocupa uma linha física do código.</p>
+      </section>
+      <section id="dados"><p class="kicker">04 · Dados</p><h2>Tipos e variáveis</h2>
+        <p>O manual oficial documenta cinco tipos primitivos. A declaração informa um ou mais nomes, dois-pontos, o tipo e ponto e vírgula.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos de dados de G-Portugol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Exemplo</th><th scope="col">Uso</th></tr></thead><tbody>
+          <tr><td><code>inteiro</code></td><td><code>42</code></td><td>Números inteiros.</td></tr><tr><td><code>real</code></td><td><code>3.5</code></td><td>Números com parte fracionária.</td></tr><tr><td><code>caractere</code></td><td><code>'A'</code></td><td>Um caractere.</td></tr><tr><td><code>literal</code></td><td><code>"Olá"</code></td><td>Uma sequência de caracteres.</td></tr><tr><td><code>lógico</code></td><td><code>verdadeiro</code></td><td>Um valor lógico, <code>verdadeiro</code> ou <code>falso</code>.</td></tr>
+        </tbody></table></div>
+        <pre class="manual-code"><code>variáveis
+    quantidade, tentativas : inteiro;
+    preco : real;
+    disponivel : lógico;
+fim-variáveis</code></pre>
+        <p>Variáveis declaradas começam com valor zero ou nulo, de acordo com o tipo. A sintaxe não declara constantes. Tipos compostos definidos pelo usuário, como registros, não fazem parte dos tipos documentados.</p>
+      </section>
+      <section id="matrizes"><p class="kicker">05 · Coleções</p><h2>Vetores e matrizes</h2>
+        <p>Conjuntos homogêneos usam a palavra <code>matriz</code>, seguida por uma dimensão entre colchetes para cada eixo, <code>de</code> e o nome plural do tipo primitivo. Uma única dimensão forma um vetor.</p>
+        <pre class="manual-code"><code>variáveis
+    notas : matriz[5] de reais;
+    tabuleiro : matriz[3][3] de caracteres;
+fim-variáveis
+
+início
+    notas[0] := 8.5;
+    tabuleiro[1][2] := 'X';
+    imprima(notas[0]);
+fim</code></pre>
+        <p>Os índices começam em zero. Assim, <code>matriz[5]</code> tem posições de <code>0</code> a <code>4</code>; tentar acessar a posição <code>5</code> ultrapassa seus limites. Cada elemento recebe a inicialização padrão do tipo. Matrizes passadas a funções são copiadas por valor, conforme a referência.</p>
+      </section>
+      <section id="expressoes"><p class="kicker">06 · Expressões</p><h2>Atribuição e operadores</h2>
+        <p>A atribuição usa <code>:=</code>. À esquerda pode aparecer uma variável ou uma posição de matriz; à direita, uma expressão compatível com o tipo do destino.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Operadores e precedência de G-Portugol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Ordem</th><th scope="col">Operadores</th><th scope="col">Operação</th></tr></thead><tbody>
+          <tr><td>1 · menor</td><td><code>ou</code>, <code>||</code></td><td>Disjunção lógica.</td></tr><tr><td>2</td><td><code>e</code>, <code>&amp;&amp;</code></td><td>Conjunção lógica.</td></tr><tr><td>3</td><td><code>|</code></td><td>OU bit a bit.</td></tr><tr><td>4</td><td><code>^</code></td><td>OU exclusivo bit a bit.</td></tr><tr><td>5</td><td><code>&amp;</code></td><td>E bit a bit.</td></tr><tr><td>6</td><td><code>=</code>, <code>&lt;&gt;</code></td><td>Igualdade e desigualdade.</td></tr><tr><td>7</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td><td>Comparações relacionais.</td></tr><tr><td>8</td><td><code>+</code>, <code>-</code></td><td>Adição e subtração.</td></tr><tr><td>9</td><td><code>*</code>, <code>/</code>, <code>%</code></td><td>Multiplicação, divisão e resto.</td></tr><tr><td>10 · maior</td><td><code>+</code>, <code>-</code>, <code>~</code>, <code>não</code>, <code>()</code></td><td>Sinais unários, negação bit a bit, negação lógica e agrupamento.</td></tr>
+        </tbody></table></div>
+        <pre class="manual-code"><code>resultado := (a + b) * 2;
+se ativo e tentativas &lt; 3 então
+    imprima("Pode continuar.");
+fim-se</code></pre>
+        <p>A tabela segue a ordem documentada, da menor para a maior precedência. Parênteses tornam explícita a ordem desejada.</p>
+      </section>
+      <section id="entrada-saida"><p class="kicker">07 · Interação</p><h2>Entrada e saída</h2>
+        <p><code>leia()</code> lê um valor da entrada padrão sem argumentos. O contexto da atribuição converte o dado para o tipo primitivo esperado. <code>imprima()</code> recebe um ou mais valores primitivos, reúne-os na ordem informada e escreve o resultado na saída padrão, seguido de uma quebra de linha.</p>
+        <pre class="manual-code"><code>algoritmo saudacao;
+variáveis
+    nome : literal;
+    idade : inteiro;
+fim-variáveis
+início
+    imprima("Qual é o seu nome?");
+    nome := leia();
+    imprima("Qual é a sua idade?");
+    idade := leia();
+    imprima("Olá, ", nome, "! Você tem ", idade, " anos.");
+fim</code></pre>
+        <p>Não há concatenação implícita entre textos em linhas físicas distintas. Para imprimir valores de tipos diferentes juntos, passe-os como argumentos separados para <code>imprima</code>.</p>
+      </section>
+      <section id="condicoes"><p class="kicker">08 · Decisões</p><h2>Condicionais</h2>
+        <p><code>se</code> avalia uma expressão e inicia um bloco; <code>senão</code> é opcional. Todo bloco condicional termina com <code>fim-se</code>. Parênteses ao redor da condição são opcionais.</p>
+        <pre class="manual-code"><code>se nota &gt;= 7 então
+    imprima("Aprovado");
+senão
+    imprima("Precisa recuperar");
+fim-se</code></pre>
+        <p>Condições aceitam expressões lógicas. A referência também descreve a conversão de valores: zero e texto vazio são falsos; valores numéricos diferentes de zero e textos não vazios são verdadeiros.</p>
+      </section>
+      <section id="repeticoes"><p class="kicker">09 · Repetição</p><h2>Laços</h2>
+        <p>G-Portugol documenta três estruturas de repetição: <code>enquanto</code>, <code>repita</code> e <code>para</code>. Cada estrutura encerra o bloco com uma palavra reservada própria.</p>
+        <pre class="manual-code"><code>enquanto quantidade &gt; 0 faça
+    quantidade := quantidade - 1;
+fim-enquanto
+
+repita
+    quantidade := quantidade + 1;
+até quantidade = 3;
+
+para i de 1 até 5 faça
+    imprima(i);
+fim-para</code></pre>
+        <p><code>enquanto</code> testa a condição antes de cada passagem; seu corpo pode não executar. <code>repita</code> testa depois do corpo e executa ao menos uma vez. Os limites de <code>para</code> são inclusivos, o passo padrão é <code>1</code> e um passo negativo percorre a sequência em ordem decrescente.</p>
+        <pre class="manual-code"><code>para i de 10 até 0 passo -2 faça
+    imprima(i);
+fim-para</code></pre>
+        <p>Não há comandos <code>break</code> ou <code>continue</code> documentados; o controle dos laços deve ser expresso pela condição e pelas variáveis envolvidas.</p>
+      </section>
+      <section id="funcoes"><p class="kicker">10 · Reuso</p><h2>Funções e retorno</h2>
+        <p>Uma função é declarada depois do bloco principal. Parâmetros seguem a forma <code>nome:tipo</code>; o tipo de retorno é opcional. Declarações locais, quando necessárias, vêm antes do bloco <code>início</code>.</p>
+        <pre class="manual-code"><code>função fatorial(valor:inteiro) : inteiro
+    resultado : inteiro;
+    contador : inteiro;
+início
+    resultado := 1;
+    para contador de 1 até valor faça
+        resultado := resultado * contador;
+    fim-para
+    retorne resultado;
+fim</code></pre>
+        <p><code>retorne</code> devolve uma expressão compatível com o tipo declarado ou, em função sem tipo de retorno, encerra a função sem valor. Funções podem chamar a si próprias. Parâmetros e matrizes são passados por valor; não há funções aninhadas nem parâmetros variáveis. Os valores de retorno são primitivos.</p>
+      </section>
+      <section id="exemplo"><p class="kicker">11 · Exemplo integrado</p><h2>Contar e classificar números</h2>
+        <p>Este programa lê um limite e percorre os inteiros de um até esse valor, indicando a paridade de cada um:</p>
+        <pre class="manual-code"><code>algoritmo contagem;
+variáveis
+    limite, numero : inteiro;
+fim-variáveis
+
+início
+    imprima("Digite o limite:");
+    limite := leia();
+
+    para numero de 1 até limite faça
+        se numero % 2 = 0 então
+            imprima(numero, " é par.");
+        senão
+            imprima(numero, " é ímpar.");
+        fim-se
+    fim-para
+fim</code></pre>
+        <p>O exemplo combina declaração, leitura, atribuição, resto, comparação, decisão e laço inclusivo.</p>
+      </section>
+      <section id="semantica"><p class="kicker">12 · Regras importantes</p><h2>Comportamento e limites</h2>
+        <ul><li>Palavras reservadas e identificadores diferenciam maiúsculas de minúsculas; acentos fazem parte das palavras reservadas, mas não são aceitos em identificadores.</li><li>Os tipos primitivos podem formar vetores e matrizes homogêneos; tipos compostos como registros e constantes declaradas não estão documentados.</li><li>Os tipos <code>inteiro</code>, <code>real</code>, <code>lógico</code> e <code>caractere</code> são compatíveis em operações numéricas; <code>literal</code> não participa de operações aritméticas. Não há conversão explícita de tipos. Operandos numéricos compatíveis podem ser promovidos implicitamente; por exemplo, <code>5 / 2</code> é uma divisão inteira, enquanto <code>5.0 / 2</code> produz resultado real.</li><li>Comparações de igualdade entre valores reais podem variar por causa da representação numérica, especialmente entre execução interpretada, compilada e tradução.</li><li>Literais de texto são comparados respeitando maiúsculas e minúsculas. A comparação de ordem entre literais considera a quantidade de caracteres, conforme a referência oficial.</li><li>Índices de matrizes começam em zero; acessar uma posição fora dos limites pode causar erro durante a execução.</li></ul>
+      </section>
+      <section id="gpt"><p class="kicker">13 · Ferramenta de referência</p><h2>O programa GPT</h2>
+        <p>O manual oficial descreve o GPT como a ferramenta do projeto para analisar e executar arquivos G-Portugol. As opções abaixo pertencem a esse programa e não descrevem comandos disponíveis na interface do Potoo IDE.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Opções documentadas do programa GPT" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Opção</th><th scope="col">Função descrita</th></tr></thead><tbody>
+          <tr><td><code>-i</code></td><td>Interpreta e executa o algoritmo.</td></tr><tr><td><code>-o arquivo</code></td><td>Compila e grava um executável.</td></tr><tr><td><code>-t arquivo</code></td><td>Gera código-fonte em C.</td></tr><tr><td><code>-s arquivo</code></td><td>Gera código Assembly.</td></tr><tr><td><code>-d</code></td><td>Acrescenta dicas ao relatório de erros.</td></tr><tr><td><code>-h</code></td><td>Mostra a ajuda do programa.</td></tr>
+        </tbody></table></div>
+        <p>A referência do GPT espera resultados equivalentes entre interpretação, compilação e tradução. O manual condiciona a geração de executáveis por <code>-o</code> a máquinas x86 de 32 bits; para outras arquiteturas, descreve a geração de C com <code>-t</code> e a compilação desse código com a ferramenta do sistema.</p>
+      </section>
+      <section id="fontes"><p class="kicker">14 · Leitura complementar</p><h2>Referências</h2>
+        <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Manual oficial do G-Portugol</a>, com capítulos de características, programação, sintaxe, ferramenta GPT e gramática.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Capítulo de programação</a>, com exemplos de variáveis, matrizes, controle de fluxo, funções e entrada e saída.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Gramática oficial</a>, com regras léxicas e produções sintáticas.</li><li><a href="https://github.com/gportugol/gpt">Repositório oficial do projeto</a> e <a href="https://gportugol.github.io/">site oficial</a>.</li></ul>
+      </section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>
