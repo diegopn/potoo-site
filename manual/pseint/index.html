@@ -1,0 +1,164 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/pseint/"
+title: "PSeInt | Manual do Potoo IDE"
+description: "Referência de PSeInt: estrutura de algoritmos, variáveis, operadores, entrada e saída, decisões, laços, subprogramas e vetores."
+og_title: "Referência de PSeInt"
+og_description: "Consulte as construções documentadas de pseudocódigo do PSeInt."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/pseint/"
+  es: "/es/manual/pseint/"
+  en: "/en/manual/pseint/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência · PSeInt</p>
+    <h1>PSeInt</h1>
+    <p class="manual-intro">Esta página organiza as construções de pseudocódigo documentadas pelo PSeInt: estrutura de algoritmo, dados, expressões, controle de fluxo e subprogramas. Os perfis do PSeInt podem flexibilizar algumas regras de escrita; confira o perfil selecionado no ambiente de referência.</p>
+    <p class="manual-meta"><span><b>Referência</b> PSeInt</span><span><b>Foco</b> Algoritmos em pseudocódigo</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de PSeInt">
+      <h2>Nesta referência</h2><ol>
+        <li><a href="#sobre">Sobre PSeInt</a></li><li><a href="#estrutura">Estrutura do algoritmo</a></li>
+        <li><a href="#dados">Variáveis e tipos</a></li><li><a href="#operadores">Operadores e funções</a></li>
+        <li><a href="#entrada-saida">Entrada e saída</a></li><li><a href="#decisoes">Decisões</a></li>
+        <li><a href="#repeticoes">Repetições</a></li><li><a href="#vetores">Vetores e matrizes</a></li>
+        <li><a href="#subprogramas">Subprocessos</a></li><li><a href="#exemplo">Exemplo completo</a></li>
+        <li><a href="#fontes">Referências</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre PSeInt</h2>
+        <p>PSeInt é um ambiente educacional para escrever e executar algoritmos em pseudocódigo. A referência oficial descreve uma pseudolinguagem com instruções em espanhol e permite configurar perfis com regras mais flexíveis ou mais estritas.</p>
+        <p>O ambiente também pode apresentar algoritmos como diagramas de fluxo. Essa representação ajuda a acompanhar a sequência, as decisões e as repetições do algoritmo, sem substituir a leitura das instruções.</p>
+      </section>
+      <section id="estrutura"><p class="kicker">02 · Organização</p><h2>Estrutura do algoritmo</h2>
+        <p>O formato documentado envolve as instruções entre <code>Proceso</code> e <code>FinProceso</code>. Em algumas versões e perfis, <code>Algoritmo</code> e <code>FinAlgoritmo</code> também são aceitos. A escrita pode exigir ponto e vírgula ou permitir a separação por linhas, conforme o perfil.</p>
+        <pre class="manual-code"><code>Proceso Saludo
+    Definir nombre Como Caracter
+    Escribir "¿Cómo te llamas?"
+    Leer nombre
+    Escribir "Hola, ", nombre
+FinProceso</code></pre>
+        <p>Os blocos podem ser aninhados, mas cada estrutura precisa terminar antes de a estrutura que a contém ser encerrada.</p>
+      </section>
+      <section id="dados"><p class="kicker">03 · Dados</p><h2>Variáveis, tipos e atribuição</h2>
+        <p>Uma declaração explícita usa <code>Definir nombre Como Tipo</code>. A atribuição calcula a expressão à direita e armazena o resultado na variável à esquerda; os tipos precisam ser compatíveis.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos de dados documentados pelo PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Tipo</th><th scope="col">Uso</th></tr></thead><tbody>
+            <tr><td><code>Entero</code></td><td>Números inteiros.</td></tr><tr><td><code>Real</code></td><td>Números com parte decimal.</td></tr>
+            <tr><td><code>Caracter</code></td><td>Caracteres e textos.</td></tr><tr><td><code>Logico</code></td><td><code>Verdadero</code> ou <code>Falso</code>.</td></tr>
+          </tbody></table></div>
+        <pre class="manual-code"><code>Definir edad Como Entero
+Definir promedio Como Real
+Definir nombre Como Caracter
+Definir aprobado Como Logico
+
+edad &lt;- 16
+promedio &lt;- 8.25
+nombre &lt;- "Ana"
+aprobado &lt;- Verdadero</code></pre>
+        <p>Os nomes começam com uma letra, podem continuar com letras ou números e não podem coincidir com palavras reservadas. Comentários começam com <code>//</code> e podem aparecer depois de uma instrução ou em uma linha própria.</p>
+      </section>
+      <section id="operadores"><p class="kicker">04 · Expressões</p><h2>Operadores e funções</h2>
+        <div class="manual-table-wrap" role="region" aria-label="Operadores do PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Categoria</th><th scope="col">Formas</th><th scope="col">Significado</th></tr></thead><tbody>
+            <tr><td>Aritméticos</td><td><code>+ - * / ^ % MOD</code></td><td>Operações, potência e resto da divisão inteira.</td></tr>
+            <tr><td>Relacionais</td><td><code>&gt; &lt; = &lt;= &gt;=</code></td><td>Comparações entre valores.</td></tr>
+            <tr><td>Lógicos</td><td><code>&amp; Y | O ~ NO</code></td><td>Conjunção, disjunção e negação.</td></tr>
+          </tbody></table></div>
+        <p>Parênteses podem alterar a ordem usual dos cálculos. A referência também lista funções integradas como <code>RC</code>, <code>ABS</code>, <code>LN</code>, <code>EXP</code>, <code>SEN</code>, <code>COS</code>, <code>ATAN</code>, <code>TRUNC</code>, <code>REDON</code> e <code>AZAR</code>.</p>
+        <pre class="manual-code"><code>area &lt;- base * altura / 2
+resto &lt;- numero MOD 2
+es_par &lt;- resto = 0
+raiz &lt;- RC(numero)</code></pre>
+      </section>
+      <section id="entrada-saida"><p class="kicker">05 · Interação</p><h2>Entrada e saída</h2>
+        <p><code>Leer</code> recebe um ou mais valores e os atribui às variáveis indicadas. <code>Escribir</code> mostra os valores de uma ou mais expressões. Alguns perfis incluem uma forma de escrita sem quebra de linha, como <code>Escribir Sin Saltar</code>.</p>
+        <pre class="manual-code"><code>Escribir "Digite dois números:"
+Leer a, b
+suma &lt;- a + b
+Escribir "Soma: ", suma</code></pre>
+      </section>
+      <section id="decisoes"><p class="kicker">06 · Decisões</p><h2>Condições e seleção</h2>
+        <p><code>Si</code> avalia uma condição; <code>Entonces</code> introduz o bloco verdadeiro e <code>Sino</code> o alternativo. A seleção múltipla usa <code>Segun</code> e pode incluir uma opção padrão em <code>De Otro Modo</code>.</p>
+        <pre class="manual-code"><code>Si nota &gt;= 7 Entonces
+    Escribir "Aprobado"
+Sino
+    Escribir "Sigue practicando"
+FinSi
+
+Segun opcion Hacer
+    1:
+        Escribir "Iniciar"
+    2:
+        Escribir "Ayuda"
+    De Otro Modo:
+        Escribir "Opción no válida"
+FinSegun</code></pre>
+      </section>
+      <section id="repeticoes"><p class="kicker">07 · Repetição</p><h2>Laços</h2>
+        <p><code>Mientras</code> verifica a condição antes de cada execução e pode não executar o corpo nenhuma vez. <code>Repetir</code> executa o corpo primeiro e verifica a condição em <code>Hasta Que</code>, portanto roda ao menos uma vez. <code>Para</code> percorre valores de início a fim e aceita <code>Con Paso</code>.</p>
+        <pre class="manual-code"><code>Para i &lt;- 1 Hasta 5 Con Paso 1 Hacer
+    Escribir i
+FinPara
+
+Repetir
+    Leer clave
+Hasta Que clave = "fin"</code></pre>
+        <p>Garanta que a condição de saída possa ser alcançada; caso contrário, o laço continua indefinidamente.</p>
+      </section>
+      <section id="vetores"><p class="kicker">08 · Coleções</p><h2>Vetores e matrizes</h2>
+        <p><code>Dimension</code> reserva um arreglo com um ou mais índices. O acesso usa parênteses e posições numéricas, como na notação documentada pelo PSeInt. Os limites válidos dependem da dimensão declarada e do perfil.</p>
+        <pre class="manual-code"><code>Definir notas Como Real
+Dimension notas(5)
+
+Para i &lt;- 1 Hasta 5 Hacer
+    Leer notas(i)
+FinPara
+
+Escribir "Primeira nota: ", notas(1)</code></pre>
+        <p>Com duas dimensões, a mesma forma representa uma matriz. É possível passar arranjos a subprocessos quando a assinatura e o perfil selecionado permitem essa forma.</p>
+      </section>
+      <section id="subprogramas"><p class="kicker">09 · Reuso</p><h2>Subprocessos</h2>
+        <p><code>SubProceso</code> define uma rotina reutilizável. Uma função pode declarar o valor de retorno no cabeçalho; uma rotina sem retorno pode apenas receber parâmetros e executar instruções. O corpo termina em <code>FinSubProceso</code>.</p>
+        <pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
+    resultado &lt;- numero * 2
+FinSubProceso
+
+Proceso Principal
+    Escribir Doble(6)
+FinProceso</code></pre>
+        <p>Subprocessos podem receber valores e, conforme a declaração e o perfil, parâmetros que são modificados para devolver resultados. Use nomes distintos e mantenha clara a diferença entre entrada e saída.</p>
+      </section>
+      <section id="exemplo"><p class="kicker">10 · Exemplo integrado</p><h2>Média e resultado</h2>
+        <pre class="manual-code"><code>Proceso Promedio
+    Definir a, b, c, media Como Real
+    Escribir "Digite três notas:"
+    Leer a, b, c
+    media &lt;- (a + b + c) / 3
+    Si media &gt;= 7 Entonces
+        Escribir "Aprobado: ", media
+    Sino
+        Escribir "Sigue practicando: ", media
+    FinSi
+FinProceso</code></pre>
+      </section>
+      <section id="fontes"><p class="kicker">11 · Leitura adicional</p><h2>Referências</h2>
+        <ul>
+          <li><a href="https://pseint.sourceforge.net/">Site oficial do PSeInt</a>.</li>
+          <li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referência oficial de pseudocódigo</a>, com estrutura, operadores, funções e regras lexicais.</li>
+          <li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Exemplos oficiais</a>, com pseudocódigo e diagramas de fluxo.</li>
+          <li>O PSeInt pode variar conforme o perfil escolhido; use a ajuda integrada da mesma versão para confirmar as opções específicas.</li>
+        </ul>
+      </section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

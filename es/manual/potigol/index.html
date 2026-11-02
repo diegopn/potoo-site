@@ -1,0 +1,213 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/potigol/"
+title: "Potigol | Manual de Potoo IDE"
+description: "Referencia de Potigol: sintaxis en portugués, tipos, variables, operadores, funciones, colecciones y la biblioteca de juegos Jerimum."
+og_title: "Referencia de Potigol"
+og_description: "Conoce la sintaxis de Potigol y la biblioteca de juegos Jerimum."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/potigol/"
+  es: "/es/manual/potigol/"
+  en: "/en/manual/potigol/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia · Potigol</p><h1>Potigol</h1>
+    <p class="manual-intro">Esta página reúne una referencia práctica de la sintaxis y los recursos de Potigol a partir de la documentación y el código fuente públicos del proyecto. Los ejemplos conservan las palabras clave originales; la sección sobre Jerimum documenta por separado la biblioteca de juegos creada para Potigol.</p>
+    <p class="manual-meta"><span><b>Referencia</b> Potigol</span><span><b>Contenido</b> Sintaxis y bibliotecas</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Potigol"><h2>En esta referencia</h2><ol>
+      <li><a href="#sobre">Sobre Potigol</a></li><li><a href="#estrutura">Estructura básica</a></li>
+      <li><a href="#escrita">Nombres y comentarios</a></li><li><a href="#tipos">Tipos y variables</a></li>
+      <li><a href="#operadores">Operadores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li>
+      <li><a href="#controle">Condiciones y repeticiones</a></li><li><a href="#funcoes">Funciones y colecciones</a></li>
+      <li><a href="#tipos-compostos">Tipos propios</a></li><li><a href="#jerimum">Jerimum: juegos con Potigol</a></li>
+      <li><a href="#exemplo">Ejemplo integrado</a></li><li><a href="#fontes">Referencias</a></li>
+    </ol></aside>
+    <article class="manual-content">
+      <section id="sobre"><p class="kicker">01 · Visión general</p><h2>Sobre Potigol</h2>
+        <p>Potigol es un proyecto educativo con sintaxis en portugués y recursos de programación imperativa, funcional y orientada a objetos. La documentación oficial destaca el tipado estático con inferencia, las funciones, listas, tuplas, tipos propios y el emparejamiento de patrones.</p>
+        <p>Las construcciones de esta página describen Potigol según las referencias del proyecto. Bibliotecas adicionales, como Jerimum, amplían lo que se puede hacer sin formar parte de su sintaxis central.</p>
+      </section>
+      <section id="estrutura"><p class="kicker">02 · Organización</p><h2>Estructura básica</h2>
+        <p>Un archivo puede comenzar directamente con declaraciones e instrucciones. Los ejemplos sencillos no necesitan un bloque externo ni una función principal.</p>
+        <pre class="manual-code"><code># Una secuencia de instrucciones
+nome = "Mundo"
+escreva "Olá, {nome}!"
+
+soma(a: Inteiro, b: Inteiro) = a + b
+escreva soma(2, 3)</code></pre>
+        <p>Las instrucciones pueden ser expresiones, declaraciones, llamadas, asignaciones o bloques que terminan en <code>fim</code>. También se pueden declarar funciones y tipos en el archivo.</p>
+      </section>
+      <section id="escrita"><p class="kicker">03 · Escritura</p><h2>Nombres y comentarios</h2>
+        <ul><li>Los identificadores empiezan con una letra y pueden contener letras, acentos, números y guiones bajos.</li><li>Las palabras reservadas y los tipos usan términos en portugués, como <code>se</code>, <code>então</code>, <code>Inteiro</code> y <code>Lógico</code>.</li><li>Los comentarios de línea empiezan con <code>#</code>.</li><li>Los textos usan comillas dobles; las expresiones entre llaves se interpolan en el texto.</li></ul>
+        <pre class="manual-code"><code># Comentario
+aluna = "Lia"
+nota = 8.5
+escreva "{aluna} obteve {nota}"</code></pre>
+      </section>
+      <section id="tipos"><p class="kicker">04 · Datos</p><h2>Tipos y variables</h2>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos de datos documentados en Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Ejemplo o uso</th></tr></thead><tbody>
+          <tr><td><code>Inteiro</code></td><td>Números enteros.</td></tr><tr><td><code>Real</code></td><td>Números con parte fraccionaria.</td></tr><tr><td><code>Texto</code></td><td>Secuencias entre comillas dobles.</td></tr><tr><td><code>Caractere</code></td><td>Un carácter, como <code>'A'</code>.</td></tr><tr><td><code>Lógico</code></td><td><code>verdadeiro</code> o <code>falso</code>.</td></tr><tr><td><code>Lista[T]</code></td><td>Secuencia de elementos de tipo <code>T</code>.</td></tr><tr><td><code>Tupla</code></td><td>Grupo ordenado de valores, incluso de tipos distintos.</td></tr>
+        </tbody></table></div>
+        <p>La asignación con <code>=</code> crea un valor que no recibe nuevas asignaciones. Usa <code>var</code> para declarar una variable modificable y <code>:=</code> para actualizarla. El tipo se infiere si no se escribe y no cambia durante la ejecución.</p>
+        <pre class="manual-code"><code>pontos = 10
+var tentativas := 0
+tentativas := tentativas + 1
+nome: Texto = "Lia"
+idade: Inteiro = 14</code></pre>
+        <p>La asignación paralela asocia varios valores en una instrucción, por ejemplo <code>a, b = 3, 7</code>.</p>
+      </section>
+      <section id="operadores"><p class="kicker">05 · Expresiones</p><h2>Operadores</h2>
+        <div class="manual-table-wrap" role="region" aria-label="Operadores de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Categoría</th><th scope="col">Operadores</th><th scope="col">Uso</th></tr></thead><tbody>
+          <tr><td>Aritméticos</td><td><code>+ - * / div mod ^</code></td><td>Cálculos, división entera, resto y potencia.</td></tr><tr><td>Comparación</td><td><code>== &lt;&gt; &gt; &gt;= &lt; &lt;=</code></td><td>Igualdad, diferencia y orden.</td></tr><tr><td>Lógicos</td><td><code>nao e ou</code></td><td>Negación, conjunción y disyunción.</td></tr><tr><td>Listas</td><td><code>::</code>, <code>+</code></td><td>Añadir al inicio o concatenar listas.</td></tr>
+        </tbody></table></div>
+        <p>Los paréntesis hacen explícito el orden. <code>::</code> asocia un elemento al principio: <code>0 :: [1, 2]</code> produce <code>[0, 1, 2]</code>.</p>
+      </section>
+      <section id="entrada-saida"><p class="kicker">06 · Interacción</p><h2>Entrada y salida</h2>
+        <p><code>escreva</code> muestra una expresión y pasa a la línea siguiente; <code>imprima</code> escribe sin ese salto. <code>leia_inteiro</code>, <code>leia_numero</code> y <code>leia_texto</code> leen valores del tipo indicado. La documentación también describe lecturas múltiples y de listas.</p>
+        <pre class="manual-code"><code>imprima "Digite seu nome: "
+nome = leia_texto
+escreva "Olá, {nome}!"
+escreva "Digite dois números:"
+a, b = leia_inteiro
+escreva "{a} + {b} = {a + b}"</code></pre>
+        <p>En una cadena, <code>{expresión}</code> inserta el valor en el texto. Potigol también documenta el formato con la expresión <code>valor formato padrão</code>.</p>
+      </section>
+      <section id="controle"><p class="kicker">07 · Flujo</p><h2>Condiciones y repeticiones</h2>
+        <p><code>se</code> y <code>escolha</code> expresan decisiones. Los bloques pueden usarse como instrucciones o como expresiones que producen un valor.</p>
+        <pre class="manual-code"><code>mensagem = se nota &gt;= 7 então
+  "Aprovada"
+senão
+  "Continue praticando"
+fim
+
+escolha nota
+  caso 10 =&gt; "Excelente"
+  caso n se n &gt;= 7 =&gt; "Aprovada"
+  caso _ =&gt; "Estude mais"
+fim</code></pre>
+        <p>Las repeticiones incluyen <code>para</code> y <code>enquanto</code>. <code>para</code> recorre un intervalo o los elementos de una colección, y puede recibir un paso.</p>
+        <pre class="manual-code"><code>para i de 1 até 3 faça
+  escreva i
+fim
+
+var n := 3
+enquanto n &gt; 0 faça
+  escreva n
+  n := n - 1
+fim</code></pre>
+      </section>
+      <section id="funcoes"><p class="kicker">08 · Reutilización</p><h2>Funciones y colecciones</h2>
+        <p>Una función corta puede escribirse como expresión. Las funciones con varias instrucciones terminan en <code>fim</code>; el valor de la última expresión se devuelve, o se indica con <code>retorne</code>. También admiten parámetros tipados y recursión.</p>
+        <pre class="manual-code"><code>dobro(n: Inteiro) = n * 2
+
+fatorial(n: Inteiro): Inteiro
+  se n &lt;= 1 então
+    1
+  senão
+    n * fatorial(n - 1)
+  fim
+fim</code></pre>
+        <p>Las listas y tuplas organizan valores. Las listas se pueden transformar con <code>mapeie</code>, filtrar con <code>selecione</code> y reducir con <code>injete</code>. La documentación inicia los índices de las listas en 1.</p>
+        <pre class="manual-code"><code>numeros = [1, 2, 3, 4]
+dobros = numeros.mapeie(n =&gt; n * 2)
+pares = numeros.selecione(n =&gt; n mod 2 == 0)
+coordenada = (3.5, 2.0)</code></pre>
+      </section>
+      <section id="tipos-compostos"><p class="kicker">09 · Modelado</p><h2>Tipos propios y orientación a objetos</h2>
+        <p><code>tipo</code> declara estructuras con atributos y métodos. Se crea un valor llamando al tipo con los valores de sus atributos; los métodos pueden usarse como propiedades o funciones.</p>
+        <pre class="manual-code"><code>tipo Pessoa
+  nome: Texto
+  saudacao() = "Olá, {nome}!"
+fim
+aluna = Pessoa("Lia")
+escreva aluna.saudacao</code></pre>
+        <p>La documentación oficial también trata tipos abstractos, herencia, genéricos, tuplas, funciones como valores y emparejamiento de patrones.</p>
+      </section>
+      <section id="jerimum"><p class="kicker">10 · Biblioteca de juegos</p><h2>Jerimum: juegos con Potigol</h2>
+        <p><strong>Jerimum</strong> es una biblioteca de juegos para Potigol. El repositorio oficial reúne ejemplos y módulos para abrir una ventana, dibujar imágenes y texto, consultar teclado y ratón, medir tiempo y reproducir audio. Añade recursos para juegos y se mantiene separado de la sintaxis central de Potigol.</p>
+        <h3>Inicio y ciclo del juego</h3>
+        <p>Un programa comienza con <code>use "jerimum"</code> y define <code>atualize()</code> para actualizar el estado y <code>desenhe()</code> para registrar lo que se dibuja. <code>jogo.iniciar</code> recibe título, ancho, alto, ambas funciones y una tasa de cuadros opcional, cuyo valor predeterminado es 60.</p>
+        <pre class="manual-code"><code>use "jerimum"
+
+atualize()
+  # Atualize o estado do jogo
+fim
+
+desenhe()
+  # Registre imagens e textos do quadro
+fim
+
+jogo.iniciar("Meu jogo", 640, 480, atualize, desenhe, 60)</code></pre>
+        <p><code>jogo</code> expone <code>largura</code>, <code>altura</code>, <code>título</code> y <code>fps</code>. La ventana se crea mediante Swing/AWT y tiene dimensiones fijas. <code>Jogo.distância</code>, <code>Jogo.projeção_X</code> y <code>Jogo.projeção_Y</code> ayudan con cálculos de movimiento; sus ángulos se expresan en grados.</p>
+        <h3>Dibujo, capas e imágenes</h3>
+        <p><code>Imagem("archivo.png")</code> carga una imagen. <code>desenhe(x, y, z)</code> la sitúa en coordenadas y una capa entera. Las capas con número mayor se dibujan delante. También existen dibujo centrado, rotación, escala y recorte de hojas de sprites mediante <code>fatie</code>.</p>
+        <pre class="manual-code"><code>fundo = Imagem("fundo.png")
+nave = Imagem("nave.png")
+quadros = Imagem.fatie("explosao.png", 32, 32)
+desenhe()
+  fundo.desenhe(0, 0, 0)
+  nave.desenhe_centralizado(320, 240, 2, 0)
+fim</code></pre>
+        <p><code>Animacao(velocidade, imagens)</code> selecciona imágenes de una secuencia según el tiempo transcurrido.</p>
+        <h3>Teclado, ratón y tiempo</h3>
+        <p><code>Teclado</code> ofrece valores lógicos como <code>TECLA_PARA_DIREITA</code>, <code>TECLA_ENTER</code> y <code>TECLA_A</code> a <code>TECLA_Z</code>. <code>Mouse.x</code> y <code>Mouse.y</code> indican la posición; <code>Mouse.BOTAO_ESQUERDO</code> y <code>Mouse.BOTAO_DIREITO</code> consultan los botones. <code>Relógio.milisegundos</code> cuenta el tiempo desde la inicialización.</p>
+        <pre class="manual-code"><code>var x := 100
+atualize()
+  se Teclado.TECLA_PARA_DIREITA então x := x + 4 fim
+  se Mouse.BOTAO_ESQUERDO então x := Mouse.x fim
+fim</code></pre>
+        <h3>Texto, colores, audio y archivos</h3>
+        <p><code>Fonte(tamanho)</code> crea una fuente. Sus métodos de dibujo reciben texto, coordenadas y capa; aceptan color. <code>Cor(vermelho, verde, azul)</code> crea un color RGB y también hay constantes como <code>Cor.BRANCO</code>, <code>Cor.PRETO</code> y <code>Cor.VERDE</code>.</p>
+        <p><code>Som("efeito.wav")</code> reproduce efectos con <code>toque()</code>. <code>Musica("faixa.wav")</code> ofrece <code>toque</code>, <code>pause</code>, <code>continue</code>, <code>pare</code> y <code>tocando</code>; comienza en bucle por defecto. <code>Arquivo.leia("dados.txt")</code> devuelve las líneas del archivo en una lista.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Resumen de los recursos de Jerimum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Recurso</th><th scope="col">Llamadas principales</th><th scope="col">Finalidad</th></tr></thead><tbody>
+          <tr><td><code>Jogo</code></td><td><code>iniciar</code>, <code>distância</code>, <code>projeção_X</code>, <code>projeção_Y</code></td><td>Ventana, ciclo y cálculos geométricos.</td></tr>
+          <tr><td><code>Imagem</code></td><td><code>desenhe</code>, <code>desenhe_centralizado</code>, <code>fatie</code></td><td>Cargar, dibujar, transformar y recortar.</td></tr>
+          <tr><td><code>Animacao</code></td><td><code>Animacao(...)</code>, <code>imagem()</code></td><td>Seleccionar cuadros animados.</td></tr>
+          <tr><td><code>Teclado</code> y <code>Mouse</code></td><td>Teclas, botones, coordenadas <code>x</code>/<code>y</code></td><td>Consultar entradas.</td></tr>
+          <tr><td><code>Fonte</code> y <code>Cor</code></td><td><code>Fonte(tamanho)</code>, <code>Cor(r, g, b)</code></td><td>Dibujar texto coloreado.</td></tr>
+          <tr><td><code>Som</code> y <code>Musica</code></td><td><code>toque</code>, <code>pause</code>, <code>continue</code>, <code>pare</code></td><td>Efectos y música.</td></tr>
+          <tr><td><code>Relógio</code> y <code>Arquivo</code></td><td><code>milisegundos</code>, <code>leia</code></td><td>Consultar tiempo y leer líneas.</td></tr>
+        </tbody></table></div>
+        <h3>Ejemplo: mover una imagen</h3>
+        <pre class="manual-code"><code>use "jerimum"
+nave = Imagem("nave.png")
+var x := 300
+var y := 220
+atualize()
+  se Teclado.TECLA_PARA_DIREITA então x := x + 4 fim
+  se Teclado.TECLA_PARA_ESQUERDA então x := x - 4 fim
+  se Teclado.TECLA_PARA_CIMA então y := y - 4 fim
+  se Teclado.TECLA_PARA_BAIXO então y := y + 4 fim
+fim
+desenhe()
+  nave.desenhe_centralizado(x, y, 1)
+fim
+jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
+        <p>Los detalles de cada método están en la documentación y el código fuente del repositorio Jerimum. La biblioteca usa recursos Java para ventanas, dibujo y audio; sus ejemplos se refieren a programas Potigol de escritorio.</p>
+      </section>
+      <section id="exemplo"><p class="kicker">11 · Ejemplo integrado</p><h2>Calcular el promedio</h2>
+        <pre class="manual-code"><code>media(a: Real, b: Real, c: Real) = (a + b + c) / 3
+escreva "Digite três notas:"
+a, b, c = leia_numero
+resultado = media(a, b, c)
+se resultado &gt;= 7 então
+  escreva "Aprovada: {resultado}"
+senão
+  escreva "Em recuperação: {resultado}"
+fim</code></pre>
+      </section>
+      <section id="fontes"><p class="kicker">12 · Lectura adicional</p><h2>Referencias</h2>
+        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
+      </section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

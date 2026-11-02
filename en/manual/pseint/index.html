@@ -1,0 +1,97 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/pseint/"
+title: "PSeInt | Potoo IDE Manual"
+description: "PSeInt reference: algorithm structure, variables, operators, input and output, decisions, loops, subprograms, and arrays."
+og_title: "PSeInt reference"
+og_description: "Read the pseudocode constructs documented by PSeInt."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/pseint/"
+  es: "/es/manual/pseint/"
+  en: "/en/manual/pseint/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Reference · PSeInt</p><h1>PSeInt</h1>
+    <p class="manual-intro">This page organizes the pseudocode constructs documented by PSeInt: algorithm structure, data, expressions, control flow, and subprograms. PSeInt profiles can relax some writing rules, so check the profile selected in the reference environment.</p>
+    <p class="manual-meta"><span><b>Reference</b> PSeInt</span><span><b>Focus</b> Algorithms in pseudocode</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contents of the PSeInt reference"><h2>In this reference</h2><ol>
+    <li><a href="#sobre">About PSeInt</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Variables and types</a></li><li><a href="#operadores">Operators and functions</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Decisions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#vetores">Arrays and matrices</a></li><li><a href="#subprogramas">Subprograms</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#fontes">References</a></li>
+  </ol></aside><article class="manual-content">
+    <section id="sobre"><p class="kicker">01 · Overview</p><h2>About PSeInt</h2><p>PSeInt is an educational environment for writing and running algorithms in pseudocode. Its official reference describes Spanish-language instructions and profiles with more flexible or stricter rules.</p><p>The environment can also display algorithms as flowcharts, making sequences, decisions, and loops easier to follow alongside the instructions.</p></section>
+    <section id="estrutura"><p class="kicker">02 · Organization</p><h2>Algorithm structure</h2><p>The documented format places instructions between <code>Proceso</code> and <code>FinProceso</code>. Some versions and profiles also accept <code>Algoritmo</code> and <code>FinAlgoritmo</code>. Depending on the profile, statements may require semicolons or be separated by lines.</p><pre class="manual-code"><code>Proceso Saludo
+    Definir nombre Como Caracter
+    Escribir "¿Cómo te llamas?"
+    Leer nombre
+    Escribir "Hola, ", nombre
+FinProceso</code></pre></section>
+    <section id="dados"><p class="kicker">03 · Data</p><h2>Variables, types, and assignment</h2><p>An explicit declaration uses <code>Definir nombre Como Tipo</code>. Assignment evaluates the right-hand expression and stores its result in the variable on the left; the types must be compatible.</p>
+      <div class="manual-table-wrap" role="region" aria-label="PSeInt data types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Type</th><th scope="col">Use</th></tr></thead><tbody><tr><td><code>Entero</code></td><td>Integer numbers.</td></tr><tr><td><code>Real</code></td><td>Numbers with a decimal part.</td></tr><tr><td><code>Caracter</code></td><td>Characters and text.</td></tr><tr><td><code>Logico</code></td><td><code>Verdadero</code> or <code>Falso</code>.</td></tr></tbody></table></div>
+      <pre class="manual-code"><code>Definir edad Como Entero
+Definir promedio Como Real
+Definir nombre Como Caracter
+Definir aprobado Como Logico
+edad &lt;- 16
+promedio &lt;- 8.25
+nombre &lt;- "Ana"
+aprobado &lt;- Verdadero</code></pre><p>Names start with a letter, may continue with letters and digits, and cannot match reserved words. Comments start with <code>//</code>.</p>
+    </section>
+    <section id="operadores"><p class="kicker">04 · Expressions</p><h2>Operators and functions</h2><div class="manual-table-wrap" role="region" aria-label="PSeInt operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Category</th><th scope="col">Forms</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * / ^ % MOD</code></td><td>Arithmetic, exponentiation, and integer remainder.</td></tr><tr><td>Relational</td><td><code>&gt; &lt; = &lt;= &gt;=</code></td><td>Comparisons.</td></tr><tr><td>Logical</td><td><code>&amp; Y | O ~ NO</code></td><td>Conjunction, disjunction, and negation.</td></tr></tbody></table></div>
+      <p>Parentheses change the usual evaluation order. The reference also lists built-in functions such as <code>RC</code>, <code>ABS</code>, <code>LN</code>, <code>EXP</code>, <code>SEN</code>, <code>COS</code>, <code>ATAN</code>, <code>TRUNC</code>, <code>REDON</code>, and <code>AZAR</code>.</p><pre class="manual-code"><code>area &lt;- base * altura / 2
+resto &lt;- numero MOD 2
+es_par &lt;- resto = 0
+raiz &lt;- RC(numero)</code></pre>
+    </section>
+    <section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input and output</h2><p><code>Leer</code> receives one or more values and assigns them to the listed variables. <code>Escribir</code> displays one or more expressions. Some profiles include output without a line break, such as <code>Escribir Sin Saltar</code>.</p><pre class="manual-code"><code>Escribir "Enter two numbers:"
+Leer a, b
+suma &lt;- a + b
+Escribir "Sum: ", suma</code></pre></section>
+    <section id="decisoes"><p class="kicker">06 · Decisions</p><h2>Conditions and selection</h2><p><code>Si</code> evaluates a condition; <code>Entonces</code> introduces the true branch and <code>Sino</code> the alternative. <code>Segun</code> selects among several cases and may include <code>De Otro Modo</code>.</p><pre class="manual-code"><code>Si nota &gt;= 7 Entonces
+    Escribir "Aprobado"
+Sino
+    Escribir "Keep practicing"
+FinSi
+Segun opcion Hacer
+    1:
+        Escribir "Start"
+    De Otro Modo:
+        Escribir "Invalid option"
+FinSegun</code></pre></section>
+    <section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>Loops</h2><p><code>Mientras</code> checks its condition before each iteration. <code>Repetir</code> runs the body first and checks <code>Hasta Que</code>, so it executes at least once. <code>Para</code> walks a range and can use <code>Con Paso</code>.</p><pre class="manual-code"><code>Para i &lt;- 1 Hasta 5 Con Paso 1 Hacer
+    Escribir i
+FinPara
+Repetir
+    Leer clave
+Hasta Que clave = "fin"</code></pre><p>Make sure the stopping condition can become true to avoid an infinite loop.</p></section>
+    <section id="vetores"><p class="kicker">08 · Collections</p><h2>Arrays and matrices</h2><p><code>Dimension</code> declares an array with one or more indexes. Access uses parentheses and numeric positions; valid bounds depend on the declared dimension and selected profile.</p><pre class="manual-code"><code>Definir notas Como Real
+Dimension notas(5)
+Para i &lt;- 1 Hasta 5 Hacer
+    Leer notas(i)
+FinPara
+Escribir "First grade: ", notas(1)</code></pre><p>Two dimensions represent a matrix. Arrays can also be passed to subprograms when the signature and selected profile allow it.</p></section>
+    <section id="subprogramas"><p class="kicker">09 · Reuse</p><h2>Subprograms</h2><p><code>SubProceso</code> defines a reusable routine. A function declares its return value in the header; a routine without a result receives parameters and performs instructions. The body ends with <code>FinSubProceso</code>.</p><pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
+    resultado &lt;- numero * 2
+FinSubProceso
+Proceso Principal
+    Escribir Doble(6)
+FinProceso</code></pre><p>Depending on the signature and profile, parameters can also be modified to return results. Keep input and output roles clear.</p></section>
+    <section id="exemplo"><p class="kicker">10 · Combined example</p><h2>Average and result</h2><pre class="manual-code"><code>Proceso Promedio
+    Definir a, b, c, media Como Real
+    Escribir "Enter three grades:"
+    Leer a, b, c
+    media &lt;- (a + b + c) / 3
+    Si media &gt;= 7 Entonces
+        Escribir "Approved: ", media
+    Sino
+        Escribir "Keep practicing: ", media
+    FinSi
+FinProceso</code></pre></section>
+    <section id="fontes"><p class="kicker">11 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Official pseudocode reference</a>, with structure, operators, functions, and lexical rules.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li>Rules vary by selected profile; use the integrated help for the same version to confirm its settings.</li></ul></section>
+  </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

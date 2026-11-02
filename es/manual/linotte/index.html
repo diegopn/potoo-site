@@ -1,0 +1,95 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/linotte/"
+title: "Linotte | Manual de Potoo IDE"
+description: "Referencia de Linotte: sintaxis en francés, variables, tipos, entrada y salida, operadores, condiciones, bucles, funciones y colecciones."
+og_title: "Referencia de Linotte"
+og_description: "Consulta la sintaxis y los recursos educativos de Linotte."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/linotte/"
+  es: "/es/manual/linotte/"
+  en: "/en/manual/linotte/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Referencia · Linotte</p><h1>Linotte</h1><p class="manual-intro">Esta página presenta las construcciones centrales de Linotte a partir del repositorio oficial y sus ejemplos introductorios. Los términos de sintaxis se mantienen en francés, como en el material original; las explicaciones en español muestran cómo leerlos.</p><p class="manual-meta"><span><b>Referencia</b> Linotte</span><span><b>Sintaxis</b> Francés</span></p></div></section>
+  <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contenido de la referencia de Linotte"><h2>En esta referencia</h2><ol>
+    <li><a href="#sobre">Sobre Linotte</a></li><li><a href="#estrutura">Programa y comentarios</a></li><li><a href="#dados">Variables y valores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#operadores">Operadores y matemáticas</a></li><li><a href="#condicoes">Condiciones</a></li><li><a href="#repeticoes">Repeticiones</a></li><li><a href="#funcoes">Funciones</a></li><li><a href="#colecoes">Colecciones y extensiones</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#fontes">Referencias</a></li>
+  </ol></aside><article class="manual-content">
+    <section id="sobre"><p class="kicker">01 · Visión general</p><h2>Sobre Linotte</h2><p>Linotte es un proyecto educativo cuya sintaxis utiliza palabras y frases en francés. El proyecto oficial presenta un entorno para aprender fundamentos de programación y mantiene ejemplos de variables, interacción, condiciones, repeticiones, cálculos y funciones.</p><p>El código de esta referencia se conserva en francés para poder compararlo con los archivos originales. Traducir palabras como <code>affiche</code>, <code>prend</code> o <code>ferme</code> cambiaría la sintaxis.</p></section>
+    <section id="estrutura"><p class="kicker">02 · Organización</p><h2>Programa y comentarios</h2><p>Un programa Linotte se escribe como un conjunto de instrucciones en el archivo del proyecto. Los ejemplos iniciales no necesitan un bloque externo que envuelva todo el programa. Las instrucciones pueden ocupar una línea; los bloques de varias líneas terminan con <code>ferme</code>.</p><p>Los comentarios de línea comienzan con <code>//</code>. Los comentarios de varias líneas se escriben entre <code>/*</code> y <code>*/</code>.</p><pre class="manual-code"><code>affiche "Bonjour !"
+// Este comentario termina al final de la línea.
+/*
+Este bloque completo se ignora
+durante la interpretación.
+*/</code></pre></section>
+    <section id="dados"><p class="kicker">03 · Datos</p><h2>Variables y valores</h2><p>Los ejemplos declaran una categoría con <code>est un texte</code> o <code>est un nombre</code>; se asigna o actualiza un valor con <code>prend</code>. También aparece <code>casier</code> para colecciones.</p><pre class="manual-code"><code>prénom est un texte
+prénom prend "Clément"
+affiche prénom
+prénom prend "Jade"
+compteur est un nombre
+compteur prend 10
+compteur prend compteur + 1
+mois est un casier de texte valant "janvier", "février", "mars"</code></pre><p>Las palabras de tipo y los valores de texto se escriben en francés. Los nombres de variables pueden incluir acentos, como <code>prénom</code>.</p></section>
+    <section id="entrada-saida"><p class="kicker">04 · Interacción</p><h2>Entrada y salida</h2><p><code>affiche</code> muestra una expresión. <code>demande</code> solicita un valor y lo guarda en la variable indicada; la variable se declara antes con su tipo.</p><pre class="manual-code"><code>prénom est un texte
+affiche "Quel est ton prénom ?"
+demande prénom
+affiche "Bonjour " + prénom</code></pre><p>Se pueden unir textos y expresiones con <code>+</code>. La presentación de números y textos depende del tipo del valor y del entorno.</p></section>
+    <section id="operadores"><p class="kicker">05 · Expresiones</p><h2>Operadores y matemáticas</h2><div class="manual-table-wrap" role="region" aria-label="Operadores documentados en los ejemplos de Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritmética</td><td><code>+ - * /</code></td><td>Operaciones básicas.</td></tr><tr><td>Potencia y resto</td><td><code>puiss</code>, <code>mod</code></td><td>Potencia y módulo.</td></tr><tr><td>Comparación</td><td><code>= != &gt; &lt; &gt;= &lt;=</code></td><td>Compara números o textos.</td></tr><tr><td>Lógica</td><td><code>et ou xou</code></td><td>Conjunción, disyunción y disyunción exclusiva.</td></tr></tbody></table></div><p>Los ejemplos oficiales también incluyen <code>carré</code>, <code>cube</code>, <code>racine</code>, <code>abs</code>, <code>arrondi</code>, <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>exp</code>, <code>log</code>, <code>logn</code> y <code>hasard</code>.</p><pre class="manual-code"><code>affiche carré 4
+affiche 2 puiss 4
+affiche (2 puiss 3 + 5 * 2) / 3
+affiche vrai ou faux</code></pre></section>
+    <section id="condicoes"><p class="kicker">06 · Decisiones</p><h2>Condiciones</h2><p><code>si</code> inicia una condición y <code>sinon</code> introduce la alternativa. Una instrucción sencilla puede ir en la misma línea; los bloques de varias instrucciones terminan con <code>ferme</code>.</p><pre class="manual-code"><code>note est un nombre
+age est un nombre
+note prend 12
+age prend 20
+si note &gt;= 10 affiche "Très bien !"
+sinon affiche "Continue à pratiquer"
+
+si age &gt;= 18
+    affiche "Adulte"
+    affiche "Accès autorisé"
+ferme
+sinon
+    affiche "Mineur"
+ferme</code></pre><p>Las condiciones comparan valores o comprueban un valor lógico. Los operadores relacionales de los ejemplos incluyen <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> y <code>&lt;=</code>.</p></section>
+    <section id="repeticoes"><p class="kicker">07 · Repetición</p><h2>Repeticiones</h2><p><code>pour</code> repite instrucciones sobre una secuencia numérica. Para un bloque con varias instrucciones, se escribe en varias líneas y se cierra con <code>ferme</code>. <code>pour chaque</code> recorre los valores de una colección.</p><pre class="manual-code"><code>compteur est un nombre
+pour compteur de 1 à 5 affiche compteur
+pour compteur de 1 à 3
+    affiche compteur
+    attends 200 millisecondes
+ferme
+mois est un casier de texte valant "janvier", "février", "mars"
+valeur est un texte
+pour chaque valeur de mois
+    affiche valeur
+ferme</code></pre><p>Elige límites que correspondan al número de pasos previsto y una variable del tipo adecuado al recorrer una colección.</p></section>
+    <section id="funcoes"><p class="kicker">08 · Reutilización</p><h2>Funciones y valores de retorno</h2><p>Una función se introduce con su nombre, dos puntos y sus parámetros. El cuerpo puede declarar variables locales, ejecutar condiciones y devolver un resultado con <code>retourne</code>. También puede ser recursiva.</p><pre class="manual-code"><code>double : nombre
+    retourne nombre * 2
+fibonacci : n
+    si n &lt; 2 retourne n
+    sinon retourne fibonacci(n - 1) + fibonacci(n - 2)</code></pre><p>Una llamada coloca los argumentos entre paréntesis después del nombre. Los ejemplos oficiales usan funciones para separar cálculos y construir mensajes.</p></section>
+    <section id="colecoes"><p class="kicker">09 · Organización de datos</p><h2>Colecciones y extensiones</h2><p><code>casier</code> agrupa valores que se pueden recorrer con <code>pour chaque</code>. El entorno Linotte también incluye ejemplos visuales y bibliotecas adicionales; estos recursos dependen del entorno y no deben confundirse con instrucciones disponibles en todos los contextos.</p><pre class="manual-code"><code>nombres est un casier de nombre valant 2, 4, 6
+nombre est un nombre
+pour chaque nombre de nombres
+    affiche nombre * nombre
+ferme</code></pre><p>Para un recurso concreto, consulta el ejemplo que lo acompaña y la documentación del componente en el proyecto original.</p></section>
+    <section id="exemplo"><p class="kicker">10 · Ejemplo integrado</p><h2>Contar y decidir</h2><pre class="manual-code"><code>limite est un nombre
+compteur est un nombre
+affiche "Jusqu'à quel nombre compter ?"
+demande limite
+pour compteur de 1 à limite
+    si compteur mod 2 = 0
+        affiche compteur + " est pair"
+    sinon
+        affiche compteur + " est impair"
+    ferme
+ferme</code></pre><p>Este ejemplo combina declaración, entrada, repetición y decisión. Las palabras de sintaxis permanecen en francés.</p></section>
+    <section id="fontes"><p class="kicker">11 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://github.com/cpc6128/LangageLinotte">Repositorio oficial de Linotte</a>.</li><li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Ejemplos oficiales</a> de variables, entrada, condiciones, bucles, matemáticas y funciones.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Wiki del proyecto</a> y <a href="http://langagelinotte.free.fr">sitio oficial</a>.</li></ul></section>
+  </article></div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>
