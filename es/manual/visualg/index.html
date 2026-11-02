@@ -54,7 +54,7 @@ body_class: manual-page
           <p class="kicker">01 · Alcance</p>
           <h2>Acerca del pseudolenguaje VisuAlg</h2>
           <p>VisuAlg interpreta un pseudolenguaje en portugués basado en convenciones didácticas de Portugol, con estructuras propias para enseñar algoritmos. Las reglas de esta página se refieren al dialecto VisuAlg y no se pueden intercambiar con las de Portugol 2.0.</p>
-          <p>La referencia combina el manual del pseudolenguaje distribuido por su autor con el objetivo de compatibilidad del intérprete de Potoo IDE. El manual describe sintaxis y extensiones del entorno; la implementación de Potoo usa la línea 3.0.5.2 como referencia de compatibilidad.</p>
+          <p>La referencia reúne el manual del pseudolenguaje distribuido por su autor y las reglas de compatibilidad que sigue el intérprete VisuAlg de Potoo IDE. El manual también describe extensiones del entorno, y el intérprete toma la versión 3.0.5.2 como referencia.</p>
           <div class="manual-note"><strong>Objetivo del proyecto:</strong> implementar el dialecto completo de referencia. El contenido documenta el pseudolenguaje y no promete que cada elemento esté disponible en la aplicación.</div>
         </section>
 
@@ -245,8 +245,8 @@ fimalgoritmo</code></pre>
         <section id="funcoes">
           <p class="kicker">11 · Recursos del pseudolenguaje</p>
           <h2>Funciones y comandos auxiliares</h2>
-          <p>El manual del autor describe <code>escreva</code>, <code>escreval</code> y <code>leia</code> como operaciones disponibles de entrada y salida. La implementación de compatibilidad de Potoo para VisuAlg también cataloga las funciones siguientes; esta lista describe esa implementación, no la integración de escritorio.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Funciones de la implementación de compatibilidad de VisuAlg" tabindex="0">
+          <p>El manual del autor describe <code>escreva</code>, <code>escreval</code> y <code>leia</code> como operaciones disponibles de entrada y salida. El intérprete VisuAlg de Potoo IDE también cataloga las funciones siguientes. La tabla describe lo que ya está catalogado en el intérprete, no funciones disponibles en la aplicación de escritorio.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Funciones catalogadas en el intérprete VisuAlg de Potoo IDE" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Grupo</th><th scope="col">Nombres catalogados</th><th scope="col">Uso general</th></tr></thead>
               <tbody>
@@ -287,7 +287,7 @@ fimalgoritmo</code></pre>
             <li><code>eco on|off</code> controla si los datos de entrada se repiten en la salida; <code>cronometro on|off</code> mide el tiempo transcurrido.</li>
             <li><code>limpatela</code> limpia la pantalla DOS simulada de VisuAlg, pero no borra el panel de salida de la ventana principal.</li>
           </ul>
-          <div class="manual-note"><strong>Dependencia del entorno:</strong> comandos como archivo, temporizador y depuración interactúan con funciones de VisuAlg. Un intérprete independiente solo podrá ofrecer el mismo comportamiento si implementa esas integraciones.</div>
+          <div class="manual-note"><strong>Dependencia del entorno:</strong> comandos como archivo, temporizador y depuración interactúan con funciones de VisuAlg. Para reproducir ese comportamiento, el intérprete de Potoo IDE también debe ofrecer esas integraciones.</div>
         </section>
 
         <section id="exemplo">
@@ -331,9 +331,9 @@ fimalgoritmo</code></pre>
 
         <section id="potoo">
           <p class="kicker">14 · Compatibilidad</p>
-          <h2>Qué funciona hoy en Potoo IDE</h2>
+          <h2>Estado del intérprete VisuAlg</h2>
           <p>Potoo IDE todavía no integra el intérprete VisuAlg en la aplicación de escritorio. En esta etapa no se puede ejecutar un algoritmo desde el editor de Potoo.</p>
-          <p>Hay una implementación independiente de compatibilidad en desarrollo que usa VisuAlg 3.0.5.2 como referencia. Cuenta con una base de análisis y ejecución, con estructuras principales, tipos escalares, vectores de una o dos dimensiones, funciones, procedimientos, control de flujo, entrada y salida, funciones integradas catalogadas y comandos auxiliares. Esto no significa que el dialecto completo ya esté implementado; la integración con la aplicación también está pendiente.</p>
+          <p>El intérprete VisuAlg del proyecto usa la versión 3.0.5.2 como referencia de compatibilidad. Ya cuenta con análisis y ejecución parciales de estructuras principales, tipos escalares, vectores de una o dos dimensiones, funciones, procedimientos, control de flujo, entrada y salida, funciones integradas catalogadas y comandos auxiliares. El dialecto completo aún no está cubierto y el intérprete todavía no se ha integrado en la aplicación.</p>
           <div class="manual-note planned"><strong>En desarrollo:</strong> el objetivo sigue siendo completar el dialecto de referencia y después definir su integración con la interfaz de Potoo IDE.</div>
         </section>
 
@@ -344,9 +344,9 @@ fimalgoritmo</code></pre>
             <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual del pseudolenguaje distribuido por el autor de VisuAlg</a>, con sintaxis, tipos, operadores, comandos, rutinas y extensiones educativas; la <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referencia de comandos de la versión 3.0.5.2</a> también detalla <code>aleatorio</code> y <code>limpatela</code>.</li>
             <li><a href="https://documentation.help/VISUALG-Versao/funcoes.htm">Catálogo de funciones numéricas y de texto</a>, con firmas y ejemplos de resultados.</li>
             <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Copia del manual en un repositorio universitario</a>.</li>
-            <li><a href="https://github.com/diegopn/potoo-ide">Repositorio de Potoo IDE</a>, donde se puede seguir el desarrollo de la implementación independiente y su integración con la aplicación.</li>
+            <li><a href="https://github.com/diegopn/potoo-ide">Repositorio de Potoo IDE</a>, donde se puede seguir el desarrollo del intérprete VisuAlg y su futura integración con la aplicación.</li>
           </ul>
-          <p>Las implementaciones y los materiales de referencia pueden diferir. Usa la documentación del dialecto para orientar la sintaxis y confirma el comportamiento con la base de compatibilidad definida por el proyecto.</p>
+          <p>El comportamiento puede variar entre VisuAlg y otros entornos de ejecución. Usa el manual del dialecto como referencia de sintaxis y consulta la compatibilidad adoptada por Potoo IDE.</p>
         </section>
       </article>
     </div>
