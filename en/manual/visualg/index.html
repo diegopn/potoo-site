@@ -19,9 +19,9 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Pseudocode reference · VisuAlg dialect</p>
+      <p class="kicker">Pseudolanguage reference · VisuAlg</p>
       <h1>VisuAlg</h1>
-      <p class="manual-intro">This page brings together a broad reference to the VisuAlg pseudolanguage, including the teaching features described in its author's manual. The Potoo IDE interpreter uses VisuAlg 3.0.5.2 as its compatibility baseline and aims to cover the complete dialect.</p>
+      <p class="manual-intro">This page brings together a broad reference to the VisuAlg pseudolanguage, including the teaching features described in its author's manual. The Potoo IDE interpreter uses version 3.0.5.2 as its compatibility baseline and aims to provide full support for VisuAlg.</p>
       <p class="manual-meta"><span><b>Pseudolanguage</b> VisuAlg</span><span><b>Potoo IDE status</b> In development</span></p>
     </div>
   </section>
@@ -53,9 +53,9 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Scope</p>
           <h2>About VisuAlg</h2>
-          <p>VisuAlg interprets Portuguese pseudocode based on teaching conventions for Portugol, with structures designed to teach algorithms. This page describes the VisuAlg dialect; its rules are not interchangeable with Portugol 2.0's.</p>
+          <p>VisuAlg interprets Portuguese pseudocode based on teaching conventions for Portugol, with structures designed to teach algorithms. This page describes the commands and conventions specific to VisuAlg.</p>
           <p>This reference combines the pseudolanguage manual distributed by its author with the compatibility rules used by Potoo IDE's VisuAlg interpreter. The manual also describes environment extensions, and the interpreter uses version 3.0.5.2 as its reference.</p>
-          <div class="manual-note"><strong>Project goal:</strong> implement the complete reference dialect. The page documents the pseudolanguage and does not claim every item is available in the app.</div>
+          <div class="manual-note"><strong>Project goal:</strong> implement all documented VisuAlg features. The page documents the pseudolanguage and does not claim every item is available in the app.</div>
         </section>
 
         <section id="estrutura">
@@ -108,7 +108,7 @@ inicio
               </tbody>
             </table>
           </div>
-          <p>Variables are declared after <code>var</code>, with names on the left of the colon and the type on the right. Multiple names of the same type can be separated by commas. The dialect does not use a general constant-declaration keyword; fixed values appear as literals or expressions.</p>
+          <p>Variables are declared after <code>var</code>, with names on the left of the colon and the type on the right. Multiple names of the same type can be separated by commas. VisuAlg has no general keyword for declaring constants; fixed values appear as literals or expressions.</p>
           <pre class="manual-code"><code>algoritmo "Declarations"
 var
     tentativas, acertos: inteiro
@@ -184,7 +184,7 @@ fimescolha</code></pre>
         <section id="repeticao">
           <p class="kicker">08 · Loops</p>
           <h2>Repetition</h2>
-          <p>The dialect documents three main loops. <code>para</code> counts from the starting value through the limit, including it, with a default step of 1; a negative step counts down. The control variable must be an integer.</p>
+          <p>VisuAlg documents three main loops. <code>para</code> counts from the starting value through the limit, including it, with a default step of 1; a negative step counts down. The control variable must be an integer.</p>
           <pre class="manual-code"><code>para indice de 1 ate 5 faca
     escreva(indice:3)
 fimpara
@@ -278,7 +278,7 @@ inicio
     escreval(pos("Brasil", "Brasil e Portugal"))
 fimalgoritmo</code></pre>
           <p>Output: <code>7</code>, <code>3</code> and <code>1</code>, each on its own line.</p>
-          <p>The dialect reference also describes commands that support teaching and the environment:</p>
+          <p>VisuAlg's reference also describes commands that support teaching and the environment:</p>
           <ul>
             <li><code>aleatorio [on]</code> activates the generation used by <code>leia</code>; with no range, numbers span 0 to 100 and characters are generated as five-letter uppercase strings. <code>aleatorio maximum</code> sets the inclusive range from 0 to the limit; <code>aleatorio minimum, maximum</code> sets both inclusive bounds. Both values must be numeric constants, not expressions; if reversed, VisuAlg swaps them. <code>aleatorio off</code> stops generation.</li>
             <li><code>arquivo "path"</code> associates reads with a text file and appears in the declaration section.</li>
@@ -333,8 +333,8 @@ fimalgoritmo</code></pre>
           <p class="kicker">14 · Compatibility</p>
           <h2>VisuAlg interpreter status</h2>
           <p>Potoo IDE does not yet integrate the VisuAlg interpreter into the desktop app. You cannot run an algorithm from the Potoo editor at this stage.</p>
-          <p>The project's VisuAlg interpreter uses version 3.0.5.2 as its compatibility reference. It can already parse and execute parts of the dialect, including core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. It does not cover the complete dialect or run inside the desktop app yet.</p>
-          <div class="manual-note planned"><strong>In development:</strong> the goal remains to complete the reference dialect and then define its integration with the Potoo IDE interface.</div>
+          <p>The project's VisuAlg interpreter uses version 3.0.5.2 as its compatibility reference. It can already parse and execute parts of VisuAlg, including core structures, scalar types, one- and two-dimensional vectors, functions, procedures, control flow, input and output, catalogued built-in functions and helper commands. It does not yet support every documented VisuAlg feature or run inside the desktop app.</p>
+          <div class="manual-note planned"><strong>In development:</strong> the goal remains to provide full support for VisuAlg and then define its integration with the Potoo IDE interface.</div>
         </section>
 
         <section id="fontes">
@@ -346,7 +346,7 @@ fimalgoritmo</code></pre>
             <li>A <a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">copy of the manual in a university repository</a>.</li>
             <li>The <a href="https://github.com/diegopn/potoo-ide">Potoo IDE repository</a>, where development of the VisuAlg interpreter and its future app integration can be followed.</li>
           </ul>
-          <p>Behavior can vary between VisuAlg and other runtime environments. Use the dialect manual for syntax and check behavior against the compatibility baseline chosen for Potoo IDE.</p>
+          <p>Behavior can vary between VisuAlg and other runtime environments. Use the VisuAlg manual for syntax and check behavior against the compatibility baseline chosen for Potoo IDE.</p>
         </section>
       </article>
     </div>

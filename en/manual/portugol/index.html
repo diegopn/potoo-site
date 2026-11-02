@@ -6,7 +6,7 @@ permalink: "/en/manual/portugol/"
 title: "Portugol 2.0 | Potoo IDE Manual"
 description: "A broad reference for the Portugol 2.0 pseudolanguage: program structure, types, operators, control flow, arrays, functions and libraries."
 og_title: "Portugol 2.0 reference"
-og_description: "Explore the syntax and features of the Portugol 2.0 dialect adopted by Potoo IDE."
+og_description: "Explore the syntax and features of the Portugol 2.0 pseudolanguage adopted by Potoo IDE."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -19,9 +19,9 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Pseudolanguage reference · Portugol 2.0 dialect</p>
+      <p class="kicker">Pseudolanguage reference · Portugol 2.0</p>
       <h1>Portugol 2.0</h1>
-      <p class="manual-intro">This page documents the complete Portugol 2.0 pseudolanguage dialect that Potoo IDE aims to implement. It separates that goal from current support.</p>
+      <p class="manual-intro">This page documents the Portugol 2.0 pseudolanguage in full, which Potoo IDE aims to implement. The reference separates that goal from current support.</p>
       <p class="manual-meta"><span><b>Pseudolanguage</b> Portugol 2.0</span><span><b>Potoo IDE status</b> In development</span></p>
     </div>
   </section>
@@ -53,9 +53,9 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Scope</p>
           <h2>About Portugol 2.0</h2>
-          <p><strong>Portugol</strong> is a name used by several pseudolanguages. This page covers the Portugol 2.0 dialect specifically; these rules do not define one universal standard for every pseudolanguage called Portugol.</p>
-          <p>The grammar and lexer used as the basis for this reference are listed in the references section. They guide the scope of the Portugol 2.0 dialect adopted by Potoo IDE.</p>
-          <div class="manual-note"><strong>Project goal:</strong> implement the complete dialect of this pseudolanguage. Features described here are not necessarily available to run in the app today.</div>
+          <p><strong>Portugol</strong> is a name used by several pseudolanguages. This page covers Portugol 2.0 specifically; these rules do not define one universal standard for every pseudolanguage called Portugol.</p>
+          <p>The grammar and lexer used as the basis for this reference are listed in the references section. They guide the scope of the Portugol 2.0 pseudolanguage adopted by Potoo IDE.</p>
+          <div class="manual-note"><strong>Project goal:</strong> implement all documented features of this pseudolanguage. Features described here are not necessarily available to run in the app today.</div>
         </section>
 
         <section id="estrutura">
@@ -143,7 +143,7 @@ logico concluiu = falso</code></pre>
         <section id="entrada-saida">
           <p class="kicker">06 · Interaction</p>
           <h2>Input and output</h2>
-          <p><code>escreva</code> displays one or more expressions. To start a new line, include the <code>\n</code> escape sequence in a string passed to it. <code>leia</code> reads values into variables. The predefined function <code>limpa()</code> clears the output area. The Portugol 2.0 interpreter in development for Potoo IDE also provides the helper function <code>escreva_linha</code>; it is not part of the reference dialect.</p>
+          <p><code>escreva</code> displays one or more expressions. To start a new line, include the <code>\n</code> escape sequence in a string passed to it. <code>leia</code> reads values into variables. The predefined function <code>limpa()</code> clears the output area. The Portugol 2.0 interpreter in development for Potoo IDE also provides the helper function <code>escreva_linha</code>; it is not part of the Portugol 2.0 specification.</p>
           <pre class="manual-code"><code>programa {
     funcao inicio() {
         cadeia nome
@@ -178,7 +178,7 @@ escolha (opcao) {
         <section id="repeticao">
           <p class="kicker">08 · Loops</p>
           <h2>Repetition</h2>
-          <p>The dialect defines conditional loops and a loop with initialization, condition and increment fields:</p>
+          <p>Portugol 2.0 defines conditional loops and a loop with initialization, condition and increment fields:</p>
           <pre class="manual-code"><code>inteiro contador = 1
 enquanto (contador <= 3) {
     escreva(contador, "\n")
@@ -232,7 +232,7 @@ funcao inicio() {
 
         <section id="bibliotecas">
           <p class="kicker">11 · Standard resources</p>
-          <h2>Dialect libraries</h2>
+          <h2>Portugol 2.0 libraries</h2>
           <p>Include a library with <code>inclua biblioteca Name</code>; an alias may follow <code>--&gt;</code>. Calls use the name or alias followed by a period. The table summarizes the pseudolanguage modules documented in the sources for this reference; class documentation lists signatures, parameters and constants.</p>
           <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage libraries" tabindex="0">
             <table class="manual-table">
@@ -259,7 +259,7 @@ funcao inicio() {
 funcao inicio() {
     escreva(mat.potencia(2, 3), "\n")
 }</code></pre>
-          <p>The libraries belong to this dialect's reference environment; not every library fits every interpreter or execution context.</p>
+          <p>The libraries belong to the Portugol 2.0 reference environment; not every library fits every interpreter or execution context.</p>
           <h3>Signatures and results</h3>
           <p>The calls below use the <code>mat</code> alias from the previous example. Functions return values that can be assigned to variables or combined in expressions.</p>
           <div class="manual-table-wrap" role="region" aria-label="Signatures for the Matematica, Texto, Tipos and Util libraries" tabindex="0">
@@ -344,15 +344,15 @@ funcao inicio() {
         <section id="potoo">
           <p class="kicker">14 · Compatibility</p>
           <h2>Portugol 2.0 interpreter status</h2>
-          <p>Potoo IDE is in development and does not yet integrate the interpreter into the desktop app. This page documents the reference dialect, not features available in the app.</p>
-          <p>The project's Portugol 2.0 interpreter already parses and executes part of the dialect. It covers program and function structure, declarations, types, vectors and matrices, value and reference parameters, operators, control flow, input and output, and parts of the <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> and <code>Util</code> libraries. The <code>Calendario</code>, <code>Objetos</code> and <code>Arquivos</code> libraries are not available yet.</p>
-          <div class="manual-note planned"><strong>In development:</strong> the goal is to work toward the complete dialect. Until it is integrated with the desktop interface, these examples cannot be written or run in Potoo IDE.</div>
+          <p>Potoo IDE is in development and does not yet integrate the interpreter into the desktop app. This page documents the Portugol 2.0 reference, not features available in the app.</p>
+          <p>The project's Portugol 2.0 interpreter already parses and executes part of the pseudolanguage. It covers program and function structure, declarations, types, vectors and matrices, value and reference parameters, operators, control flow, input and output, and parts of the <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> and <code>Util</code> libraries. The <code>Calendario</code>, <code>Objetos</code> and <code>Arquivos</code> libraries are not available yet.</p>
+          <div class="manual-note planned"><strong>In development:</strong> the goal is to implement all documented Portugol 2.0 features. Until it is integrated with the desktop interface, these examples cannot be written or run in Potoo IDE.</div>
         </section>
 
         <section id="fontes">
           <p class="kicker">15 · Further reading</p>
           <h2>Portugol 2.0 pseudolanguage references</h2>
-          <p>The Portugol 2.0 dialect documented here originates from Portugol Studio. That tool appears here only as a reference source; Potoo IDE uses Portugol 2.0 as the pseudolanguage's name.</p>
+          <p>The Portugol 2.0 pseudolanguage documented here originates from Portugol Studio. That tool appears here only as a reference source; Potoo IDE uses Portugol 2.0 as the pseudolanguage's name.</p>
           <ul>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the pseudolanguage as Portugol 2.0.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">official grammar</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">official lexer</a>.</li>

@@ -19,9 +19,9 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Referência de pseudolinguagem · dialeto VisuAlg</p>
+      <p class="kicker">Referência de pseudolinguagem · VisuAlg</p>
       <h1>VisuAlg</h1>
-      <p class="manual-intro">Esta página reúne uma referência ampla da pseudolinguagem VisuAlg, incluindo os recursos de ensino descritos no manual do autor. O interpretador de VisuAlg do Potoo IDE usa a versão 3.0.5.2 como base de compatibilidade e tem como objetivo cobrir o dialeto completo.</p>
+      <p class="manual-intro">Esta página reúne uma referência ampla da pseudolinguagem VisuAlg, incluindo os recursos de ensino descritos no manual do autor. O interpretador de VisuAlg do Potoo IDE usa a versão 3.0.5.2 como base de compatibilidade e tem como objetivo oferecer suporte completo à pseudolinguagem.</p>
       <p class="manual-meta"><span><b>Pseudolinguagem</b> VisuAlg</span><span><b>Estado no Potoo IDE</b> Em desenvolvimento</span></p>
     </div>
   </section>
@@ -53,9 +53,9 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Escopo</p>
           <h2>Sobre VisuAlg</h2>
-          <p>VisuAlg interpreta uma pseudolinguagem em português baseada em convenções didáticas de Portugol, com estruturas próprias para ensinar algoritmos. As regras desta página se referem ao dialeto do VisuAlg e não são intercambiáveis com as do Portugol 2.0.</p>
+          <p>VisuAlg interpreta uma pseudolinguagem em português baseada em convenções didáticas de Portugol, com estruturas próprias para ensinar algoritmos. Esta página descreve os comandos e as convenções específicos de VisuAlg.</p>
           <p>A referência reúne o manual da pseudolinguagem distribuído pelo autor e as regras de compatibilidade adotadas pelo interpretador de VisuAlg do Potoo IDE. O manual também descreve extensões do ambiente, e o interpretador toma a versão 3.0.5.2 como referência.</p>
-          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar o dialeto completo de referência. O conteúdo abaixo documenta a pseudolinguagem e não promete que cada item já esteja disponível no aplicativo.</div>
+          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar todos os recursos documentados de VisuAlg. O conteúdo abaixo documenta a pseudolinguagem e não promete que cada item já esteja disponível no aplicativo.</div>
         </section>
 
         <section id="estrutura">
@@ -108,7 +108,7 @@ inicio
               </tbody>
             </table>
           </div>
-          <p>As variáveis são declaradas após <code>var</code>, com os nomes à esquerda dos dois-pontos e o tipo à direita. É possível declarar vários nomes do mesmo tipo separados por vírgulas. O dialeto não usa uma palavra-chave geral de declaração de constantes; valores fixos aparecem como literais ou em expressões.</p>
+          <p>As variáveis são declaradas após <code>var</code>, com os nomes à esquerda dos dois-pontos e o tipo à direita. É possível declarar vários nomes do mesmo tipo separados por vírgulas. VisuAlg não usa uma palavra-chave geral para declarar constantes; valores fixos aparecem como literais ou em expressões.</p>
           <pre class="manual-code"><code>algoritmo "Declaracoes"
 var
     tentativas, acertos: inteiro
@@ -184,7 +184,7 @@ fimescolha</code></pre>
         <section id="repeticao">
           <p class="kicker">08 · Laços</p>
           <h2>Repetição</h2>
-          <p>O dialeto documenta três laços principais. <code>para</code> conta a partir do valor inicial até o limite, incluindo-o, com passo padrão 1; um passo negativo permite contagem decrescente. A variável de controle é inteira.</p>
+          <p>VisuAlg documenta três laços principais. <code>para</code> conta a partir do valor inicial até o limite, incluindo-o, com passo padrão 1; um passo negativo permite contagem decrescente. A variável de controle é inteira.</p>
           <pre class="manual-code"><code>para indice de 1 ate 5 faca
     escreva(indice:3)
 fimpara
@@ -278,7 +278,7 @@ inicio
     escreval(pos("Brasil", "Brasil e Portugal"))
 fimalgoritmo</code></pre>
           <p>Saída: <code>7</code>, <code>3</code> e <code>1</code>, cada resultado em uma linha.</p>
-          <p>O dialeto de referência também descreve comandos de apoio ao ensino e ao ambiente:</p>
+          <p>A documentação de VisuAlg também descreve comandos de apoio ao ensino e ao ambiente:</p>
           <ul>
             <li><code>aleatorio [on]</code> ativa a geração usada por <code>leia</code>; sem faixa explícita, números vão de 0 a 100 e caracteres viram textos aleatórios de cinco letras maiúsculas. <code>aleatorio maximo</code> usa a faixa inclusiva de 0 ao limite; <code>aleatorio minimo, maximo</code> define os dois limites inclusivos. Ambos devem ser constantes numéricas, não expressões; se vierem invertidos, o VisuAlg troca a ordem. <code>aleatorio off</code> encerra a geração.</li>
             <li><code>arquivo "caminho"</code> associa leituras a um arquivo-texto e fica na área de declarações.</li>
@@ -333,8 +333,8 @@ fimalgoritmo</code></pre>
           <p class="kicker">14 · Compatibilidade</p>
           <h2>Estado do interpretador VisuAlg</h2>
           <p>O Potoo IDE ainda não integra o interpretador VisuAlg ao aplicativo desktop. Não é possível executar um algoritmo pelo editor do Potoo nesta etapa.</p>
-          <p>O interpretador de VisuAlg do projeto usa a versão 3.0.5.2 como referência de compatibilidade. Já conta com análise e execução parciais de estruturas principais, tipos escalares, vetores de uma ou duas dimensões, funções, procedimentos, controle de fluxo, entrada e saída, funções embutidas catalogadas e comandos auxiliares. O dialeto completo ainda não está coberto, e o interpretador não foi integrado à aplicação.</p>
-          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> o objetivo continua sendo completar o dialeto de referência e, depois, definir sua integração com a interface do Potoo IDE.</div>
+          <p>O interpretador de VisuAlg do projeto usa a versão 3.0.5.2 como referência de compatibilidade. Já conta com análise e execução parciais de estruturas principais, tipos escalares, vetores de uma ou duas dimensões, funções, procedimentos, controle de fluxo, entrada e saída, funções embutidas catalogadas e comandos auxiliares. Ainda não oferece suporte a todos os recursos documentados de VisuAlg nem foi integrado à aplicação.</p>
+          <div class="manual-note planned"><strong>Em desenvolvimento:</strong> o objetivo continua sendo oferecer suporte completo a VisuAlg e, depois, definir sua integração com a interface do Potoo IDE.</div>
         </section>
 
         <section id="fontes">
@@ -346,7 +346,7 @@ fimalgoritmo</code></pre>
             <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Cópia de consulta do manual em repositório universitário</a>.</li>
             <li><a href="https://github.com/diegopn/potoo-ide">Repositório do Potoo IDE</a>, onde podem ser acompanhados o desenvolvimento do interpretador VisuAlg e sua futura integração com o aplicativo.</li>
           </ul>
-          <p>O comportamento pode variar entre o VisuAlg e outros ambientes de execução. Use o manual do dialeto como referência de sintaxe e confira a compatibilidade adotada pelo Potoo IDE.</p>
+          <p>O comportamento pode variar entre o VisuAlg e outros ambientes de execução. Use o manual de VisuAlg como referência de sintaxe e confira a compatibilidade adotada pelo Potoo IDE.</p>
         </section>
       </article>
     </div>
