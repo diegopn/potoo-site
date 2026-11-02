@@ -10,7 +10,7 @@ pt-BR:
     proposal: Proposta
     features: Recursos
     flow: Fluxo
-    languages: Linguagens
+    languages: Pseudolinguagens
     progress: Andamento
     manual: Manual
   footer:
@@ -29,7 +29,7 @@ en:
     proposal: About
     features: Features
     flow: Workflow
-    languages: Languages
+    languages: Pseudolanguages
     progress: Progress
     manual: Manual
   footer:
@@ -48,7 +48,7 @@ es:
     proposal: Propuesta
     features: Funciones
     flow: Flujo
-    languages: Lenguajes
+    languages: Pseudolenguajes
     progress: Avances
     manual: Manual
   footer:

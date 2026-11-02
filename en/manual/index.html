@@ -37,7 +37,7 @@ body_class: manual-page
           <li><a href="#sobre">What is Potoo IDE?</a></li>
           <li><a href="#estado">Current status</a></li>
           <li><a href="#fluxo">Planned workflow</a></li>
-          <li><a href="#linguagens">Languages</a></li>
+          <li><a href="#linguagens">Pseudolanguages</a></li>
           <li><a href="#recursos">Editor and help</a></li>
           <li><a href="#desenvolvimento">Development</a></li>
           <li><a href="#ficha">Project details</a></li>
@@ -57,7 +57,7 @@ body_class: manual-page
         <section id="estado">
           <p class="kicker">02 · Current status</p>
           <h2>What exists today</h2>
-          <p>The initial foundation opens a Potoo IDE window with a welcome message. Independent crates for Portugol and VisuAlg are in development, but they are not connected to the desktop app yet. The editor, language selection, algorithm execution, contextual help and debugging have not been implemented.</p>
+          <p>The initial foundation opens a Potoo IDE window with a welcome message. Independent crates for the Portugol 2.0 and VisuAlg pseudolanguages are in development, but they are not connected to the desktop app yet. The editor, pseudolanguage selection, algorithm execution, contextual help and debugging have not been implemented.</p>
           <p>For now, the app cannot create a programming project, run pseudocode or show errors in the IDE.</p>
           <div class="manual-note planned"><strong>In development:</strong> planned next steps include the main interface, IDE panels and integration of the independent interpreters.</div>
         </section>
@@ -67,7 +67,7 @@ body_class: manual-page
           <h2>How the workflow is intended to work</h2>
           <p>The steps below describe the intended experience, not an available product tutorial:</p>
           <ol>
-            <li>Choose a pseudocode language for the exercise.</li>
+            <li>Choose a pseudolanguage for the exercise.</li>
             <li>Write and arrange the algorithm in the editor.</li>
             <li>Ask for contextual help about a line or concept.</li>
             <li>Run the code and read its output and issues in companion panels.</li>
@@ -76,12 +76,12 @@ body_class: manual-page
         </section>
 
         <section id="linguagens">
-          <p class="kicker">04 · Languages</p>
-          <h2>Which languages are in scope?</h2>
-          <p>The project aims to implement the complete Portugol Studio / Portugol 2.0 and VisuAlg dialects. The pages below document those references and separate dialect scope from current support in the crates and app:</p>
+          <p class="kicker">04 · Pseudolanguages</p>
+          <h2>Which pseudolanguages are in scope?</h2>
+          <p>The project aims to implement the complete Portugol 2.0 and VisuAlg dialects. The pages below document these reference pseudolanguages and separate dialect scope from current support in the crates and app:</p>
           <ul class="manual-list">
-            <li><span><strong>Portugol Studio · Portugol 2.0:</strong> the independent crate already implements part of the dialect, but it is not connected to the app. <a href="{{ '/en/manual/portugol/' | relative_url }}">Read the complete Portugol reference</a>.</span></li>
-            <li><span><strong>VisuAlg:</strong> the crate uses VisuAlg 3.0.5.2 as its compatibility baseline and is not integrated into the app either. <a href="{{ '/en/manual/visualg/' | relative_url }}">Read the complete VisuAlg reference</a>.</span></li>
+            <li><span><strong>Portugol 2.0:</strong> the independent crate already implements part of the dialect, but it is not connected to the app. <a href="{{ '/en/manual/portugol/' | relative_url }}">Read the complete Portugol 2.0 pseudolanguage reference</a>.</span></li>
+            <li><span><strong>VisuAlg:</strong> the crate uses VisuAlg 3.0.5.2 as its compatibility baseline and is not integrated into the app either. <a href="{{ '/en/manual/visualg/' | relative_url }}">Read the complete VisuAlg pseudolanguage reference</a>.</span></li>
           </ul>
           <p><strong>Potigol, PSeInt, Linotte, C0 (Simplified C), and Karel the Robot</strong> remain possibilities under evaluation, with no commitment to integrate them at this stage.</p>
         </section>
@@ -93,7 +93,7 @@ body_class: manual-page
             <li><span><strong>Pseudocode editor:</strong> a place to write algorithms without unnecessary distractions.</span></li>
             <li><span><strong>Contextual help:</strong> an explanation tied to the selected line and the idea behind it.</span></li>
             <li><span><strong>Bottom panels:</strong> planned space for output, issues and debugging.</span></li>
-            <li><span><strong>Several languages:</strong> a choice between languages once their integrations are defined.</span></li>
+            <li><span><strong>Several pseudolanguages:</strong> a choice between pseudolanguages once their integrations are defined.</span></li>
           </ul>
           <div class="manual-note"><strong>Keep in mind:</strong> this list describes product goals. The editor, execution, contextual help and debugging are not available in the desktop app yet.</div>
         </section>
@@ -101,7 +101,7 @@ body_class: manual-page
         <section id="desenvolvimento">
           <p class="kicker">06 · Development</p>
           <h2>How to follow the project</h2>
-          <p>Potoo IDE is in development. Its foundation is currently a welcome window; the editor and planned panels still need to be built, and the independent Portugol and VisuAlg crates still need to be integrated into the app.</p>
+          <p>Potoo IDE is in development. Its foundation is currently a welcome window; the editor and planned panels still need to be built, and the independent crates for the Portugol 2.0 and VisuAlg pseudolanguages still need to be integrated into the app.</p>
           <p>No release date has been announced. This page describes the current known state and can be updated as the application progresses.</p>
         </section>
 
@@ -111,7 +111,7 @@ body_class: manual-page
           <dl class="manual-facts">
             <div><dt>Type</dt><dd>Desktop IDE for learning logic</dd></div>
             <div><dt>Audience</dt><dd>Students and teachers</dd></div>
-            <div><dt>Initial scope</dt><dd>Portugol and VisuAlg</dd></div>
+            <div><dt>Initial scope</dt><dd>Portugol 2.0 and VisuAlg pseudolanguages</dd></div>
             <div><dt>Foundation technologies</dt><dd>Rust · GTK 4 · Relm4</dd></div>
             <div><dt>License</dt><dd>To be decided after integration reviews</dd></div>
           </dl>
@@ -121,7 +121,7 @@ body_class: manual-page
           <p class="kicker">08 · FAQ</p>
           <h2>Common questions</h2>
           <details><summary>Can I write programs in Potoo IDE yet?</summary><p>Not yet. Potoo IDE currently opens a welcome window; the editor and algorithm execution are in development.</p></details>
-          <details><summary>Which languages are already integrated?</summary><p>None is integrated into the desktop app. Partially implemented independent crates exist for Portugol and VisuAlg; Potigol, PSeInt, Linotte, C0 (Simplified C), and Karel the Robot remain under evaluation.</p></details>
+          <details><summary>Which pseudolanguages are already integrated?</summary><p>None is integrated into the desktop app. Partially implemented independent crates exist for Portugol 2.0 and VisuAlg; Potigol, PSeInt, Linotte, C0 (Simplified C), and Karel the Robot remain under evaluation.</p></details>
           <details><summary>When will the app be ready?</summary><p>The project is still in development and has no announced release date.</p></details>
         </section>
       </article>

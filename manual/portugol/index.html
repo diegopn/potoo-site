@@ -3,10 +3,10 @@ layout: default
 lang: "pt-BR"
 page_kind: "manual"
 permalink: "/manual/portugol/"
-title: "Portugol Studio e Portugol 2.0 | Manual do Potoo IDE"
-description: "Referência ampla do dialeto Portugol Studio (Portugol 2.0): estrutura, tipos, operadores, controle de fluxo, vetores, funções e bibliotecas."
-og_title: "Referência de Portugol Studio e Portugol 2.0"
-og_description: "Consulte a sintaxe e os recursos do dialeto Portugol Studio usado como referência pelo Potoo IDE."
+title: "Pseudolinguagem Portugol 2.0 | Manual do Potoo IDE"
+description: "Referência ampla da pseudolinguagem Portugol 2.0: estrutura, tipos, operadores, controle de fluxo, vetores, funções e bibliotecas."
+og_title: "Referência da pseudolinguagem Portugol 2.0"
+og_description: "Consulte a sintaxe e os recursos do dialeto Portugol 2.0, adotado pelo Potoo IDE."
 og_type: "article"
 home_path: "/"
 manual_path: "/manual/"
@@ -19,10 +19,10 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Referência de pseudolinguagem · dialeto Portugol Studio</p>
-      <h1>Portugol Studio e Portugol 2.0</h1>
-      <p class="manual-intro">Esta página descreve o dialeto associado ao Portugol Studio. Ela serve como referência para o objetivo do Potoo IDE de implementar o dialeto completo e separa essa meta do suporte existente hoje.</p>
-      <p class="manual-meta"><span><b>Dialeto</b> Portugol Studio · Portugol 2.0</span><span><b>Estado no Potoo IDE</b> Em desenvolvimento</span></p>
+      <p class="kicker">Referência de pseudolinguagem · dialeto Portugol 2.0</p>
+      <h1>Pseudolinguagem Portugol 2.0</h1>
+      <p class="manual-intro">Esta página documenta o dialeto completo da pseudolinguagem Portugol 2.0, que o Potoo IDE pretende implementar. A referência separa esse objetivo do suporte existente hoje.</p>
+      <p class="manual-meta"><span><b>Pseudolinguagem</b> Portugol 2.0</span><span><b>Estado no Potoo IDE</b> Em desenvolvimento</span></p>
     </div>
   </section>
 
@@ -52,9 +52,9 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Escopo</p>
           <h2>Sobre o dialeto</h2>
-          <p><strong>Portugol</strong> é o nome usado por diferentes pseudolinguagens. Esta documentação trata especificamente do dialeto do Portugol Studio, também chamado de Portugol 2.0; as regras abaixo não definem um padrão universal para todas as ferramentas chamadas Portugol.</p>
-          <p>A gramática e o léxico publicados pelo projeto UNIVALI-LITE são a referência sintática principal. A documentação de bibliotecas do próprio Portugol Studio complementa essa referência com funções e constantes.</p>
-          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar o dialeto completo como referência de linguagem. Os recursos descritos nesta página não significam que já possam ser executados no aplicativo.</div>
+          <p><strong>Portugol</strong> é um nome usado por diferentes pseudolinguagens. Esta documentação trata especificamente do dialeto Portugol 2.0; as regras abaixo não definem um padrão universal para todas as pseudolinguagens chamadas Portugol.</p>
+          <p>A gramática e o léxico usados como base para esta referência estão indicados na seção de referências. Eles orientam o escopo do dialeto Portugol 2.0 adotado pelo Potoo IDE.</p>
+          <div class="manual-note"><strong>Objetivo do projeto:</strong> implementar o dialeto completo desta pseudolinguagem. Os recursos descritos nesta página não significam que já possam ser executados no aplicativo.</div>
         </section>
 
         <section id="estrutura">
@@ -96,7 +96,7 @@ logico aprovado = verdadeiro</code></pre>
         <section id="tipos">
           <p class="kicker">04 · Dados</p>
           <h2>Tipos, variáveis e constantes</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Tipos do Portugol Studio" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Tipos da pseudolinguagem Portugol 2.0" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Tipo</th><th scope="col">Uso</th></tr></thead>
               <tbody>
@@ -121,7 +121,7 @@ logico concluiu = falso</code></pre>
         <section id="operadores">
           <p class="kicker">05 · Expressões</p>
           <h2>Operadores e precedência</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Operadores do Portugol Studio" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Operadores da pseudolinguagem Portugol 2.0" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Significado</th></tr></thead>
               <tbody>
@@ -232,8 +232,8 @@ funcao inicio() {
         <section id="bibliotecas">
           <p class="kicker">11 · Recursos padrão</p>
           <h2>Bibliotecas do dialeto</h2>
-          <p>Uma biblioteca é incluída com <code>inclua biblioteca Nome</code> e pode receber um apelido após <code>--&gt;</code>. As chamadas usam o nome ou o apelido seguido de ponto. A tabela resume os módulos publicados pelo Portugol Studio; a documentação oficial de cada classe lista assinaturas, parâmetros e constantes.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Bibliotecas do Portugol Studio" tabindex="0">
+          <p>Uma biblioteca é incluída com <code>inclua biblioteca Nome</code> e pode receber um apelido após <code>--&gt;</code>. As chamadas usam o nome ou o apelido seguido de ponto. A tabela resume os módulos da pseudolinguagem documentados nas fontes desta referência; a documentação de cada classe lista assinaturas, parâmetros e constantes.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Bibliotecas da pseudolinguagem Portugol 2.0" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Biblioteca</th><th scope="col">Recursos de referência</th></tr></thead>
               <tbody>
@@ -258,7 +258,7 @@ funcao inicio() {
 funcao inicio() {
     escreva(mat.potencia(2, 3), "\n")
 }</code></pre>
-          <p>O conjunto de bibliotecas pertence ao ambiente de referência do Portugol Studio; nem toda biblioteca é apropriada para qualquer interpretador ou contexto de execução.</p>
+          <p>O conjunto de bibliotecas pertence ao ambiente de referência deste dialeto; nem toda biblioteca é apropriada para qualquer interpretador ou contexto de execução.</p>
         </section>
 
         <section id="exemplo">
@@ -288,15 +288,16 @@ funcao inicio() {
           <p class="kicker">13 · Compatibilidade</p>
           <h2>O que já funciona no Potoo IDE</h2>
           <p>O Potoo IDE está em desenvolvimento e ainda não integra o interpretador à aplicação desktop. Portanto, esta página é uma referência do dialeto desejado, não uma lista de recursos disponíveis no aplicativo.</p>
-          <p>O repositório do Potoo IDE contém um crate independente para Portugol Studio / Portugol 2.0. Ele implementa um subconjunto: estrutura de programa e funções, declarações, tipos, vetores e matrizes, passagem por valor e referência, operadores, controle de fluxo, entrada e saída e partes das bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> e <code>Util</code>. O próprio crate identifica essa implementação como parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> e <code>Arquivos</code> não estão implementadas nele.</p>
+          <p>O repositório do Potoo IDE contém um crate independente para a pseudolinguagem Portugol 2.0. Ele implementa um subconjunto: estrutura de programa e funções, declarações, tipos, vetores e matrizes, passagem por valor e referência, operadores, controle de fluxo, entrada e saída e partes das bibliotecas <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> e <code>Util</code>. O próprio crate identifica essa implementação como parcial; bibliotecas como <code>Calendario</code>, <code>Objetos</code> e <code>Arquivos</code> não estão implementadas nele.</p>
           <div class="manual-note planned"><strong>Em desenvolvimento:</strong> a meta é avançar para o dialeto completo. Até a integração com a interface desktop acontecer, não é possível escrever ou executar esses exemplos no Potoo IDE.</div>
         </section>
 
         <section id="fontes">
           <p class="kicker">14 · Leitura adicional</p>
-          <h2>Referências do Portugol Studio</h2>
+          <h2>Referências da pseudolinguagem Portugol 2.0</h2>
+          <p>O dialeto Portugol 2.0 documentado nesta página tem origem no Portugol Studio. Essa ferramenta aparece aqui somente como fonte de referência; o nome usado pelo Potoo IDE para a pseudolinguagem é Portugol 2.0.</p>
           <ul>
-            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositório oficial do Portugol Studio</a>, que identifica a linguagem como Portugol 2.0.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositório oficial do Portugol Studio</a>, que identifica a pseudolinguagem como Portugol 2.0.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ajuda oficial de entrada e saída</a>, incluindo o uso de <code>\n</code> para pular linha, e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analisador semântico</a>, que lista as funções predefinidas.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código-fonte das bibliotecas padrão</a> e suas funções documentadas.</li>
@@ -308,7 +309,7 @@ funcao inicio() {
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Volte ao Manual do Potoo IDE</h2><p>Veja como Portugol Studio se encaixa no escopo das linguagens do projeto.</p></div>
+      <div><h2>Volte ao Manual do Potoo IDE</h2><p>Veja como a pseudolinguagem Portugol 2.0 se encaixa no escopo do projeto.</p></div>
       <a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a>
     </section>
   </div>

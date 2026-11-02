@@ -3,10 +3,10 @@ layout: default
 lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/visualg/"
-title: "VisuAlg | Manual de Potoo IDE"
-description: "Referencia amplia de VisuAlg: estructura, tipos, operadores, vectores, subprogramas, funciones y comandos de apoyo a la enseñanza."
-og_title: "Referencia del lenguaje VisuAlg"
-og_description: "Consulta la sintaxis y los recursos del dialecto VisuAlg que Potoo IDE toma como referencia."
+title: "Pseudolenguaje VisuAlg | Manual de Potoo IDE"
+description: "Referencia amplia del pseudolenguaje VisuAlg: estructura, tipos, operadores, vectores, subprogramas, funciones y comandos didácticos."
+og_title: "Referencia del pseudolenguaje VisuAlg"
+og_description: "Consulta la sintaxis y los recursos del pseudolenguaje VisuAlg que Potoo IDE toma como referencia."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -20,9 +20,9 @@ body_class: manual-page
   <section class="manual-hero" id="inicio">
     <div class="wrap">
       <p class="kicker">Referencia de pseudolenguaje · dialecto VisuAlg</p>
-      <h1>Lenguaje VisuAlg</h1>
-      <p class="manual-intro">Esta página reúne una referencia amplia del lenguaje VisuAlg, incluidos los recursos educativos descritos en el manual del autor. El intérprete de Potoo IDE usa VisuAlg 3.0.5.2 como base de compatibilidad y tiene como objetivo abarcar el dialecto completo.</p>
-      <p class="manual-meta"><span><b>Dialecto</b> VisuAlg</span><span><b>Estado en Potoo IDE</b> En desarrollo</span></p>
+      <h1>Pseudolenguaje VisuAlg</h1>
+      <p class="manual-intro">Esta página reúne una referencia amplia del pseudolenguaje VisuAlg, incluidos los recursos educativos descritos en el manual del autor. El intérprete de Potoo IDE usa VisuAlg 3.0.5.2 como base de compatibilidad y tiene como objetivo abarcar el dialecto completo.</p>
+      <p class="manual-meta"><span><b>Pseudolenguaje</b> VisuAlg</span><span><b>Estado en Potoo IDE</b> En desarrollo</span></p>
     </div>
   </section>
 
@@ -31,7 +31,7 @@ body_class: manual-page
       <aside class="manual-toc" aria-label="Contenido de la referencia de VisuAlg">
         <h2>En esta referencia</h2>
         <ol>
-          <li><a href="#sobre">Acerca del lenguaje</a></li>
+          <li><a href="#sobre">Acerca del pseudolenguaje</a></li>
           <li><a href="#estrutura">Estructura del algoritmo</a></li>
           <li><a href="#lexico">Nombres, comentarios y valores</a></li>
           <li><a href="#tipos">Tipos y declaraciones</a></li>
@@ -51,10 +51,10 @@ body_class: manual-page
       <article class="manual-content">
         <section id="sobre">
           <p class="kicker">01 · Alcance</p>
-          <h2>Acerca del lenguaje VisuAlg</h2>
-          <p>VisuAlg interpreta un pseudolenguaje en portugués basado en convenciones didácticas de Portugol, con estructuras propias para enseñar algoritmos. Las reglas de esta página se refieren al dialecto VisuAlg; no se pueden intercambiar con las de Portugol Studio.</p>
-          <p>La referencia combina el manual del lenguaje distribuido por su autor con el objetivo de compatibilidad del intérprete de Potoo IDE. El manual describe sintaxis y extensiones del entorno; la implementación de Potoo usa la línea 3.0.5.2 como referencia de compatibilidad.</p>
-          <div class="manual-note"><strong>Objetivo del proyecto:</strong> implementar el dialecto completo de referencia. El contenido explica el lenguaje y no promete que cada elemento esté disponible en la aplicación.</div>
+          <h2>Acerca del pseudolenguaje VisuAlg</h2>
+          <p>VisuAlg interpreta un pseudolenguaje en portugués basado en convenciones didácticas de Portugol, con estructuras propias para enseñar algoritmos. Las reglas de esta página se refieren al dialecto VisuAlg y no se pueden intercambiar con las de Portugol 2.0.</p>
+          <p>La referencia combina el manual del pseudolenguaje distribuido por su autor con el objetivo de compatibilidad del intérprete de Potoo IDE. El manual describe sintaxis y extensiones del entorno; la implementación de Potoo usa la línea 3.0.5.2 como referencia de compatibilidad.</p>
+          <div class="manual-note"><strong>Objetivo del proyecto:</strong> implementar el dialecto completo de referencia. El contenido documenta el pseudolenguaje y no promete que cada elemento esté disponible en la aplicación.</div>
         </section>
 
         <section id="estrutura">
@@ -69,7 +69,7 @@ inicio
     leia(nome)
     escreval("Hola, ", nome, "!")
 fimalgoritmo</code></pre>
-          <p>No se usan llaves para delimitar bloques. Las estructuras tienen palabras de inicio y cierre, como <code>se</code>/<code>fimse</code> y <code>enquanto</code>/<code>fimenquanto</code>. El estilo del lenguaje prevé un comando por línea.</p>
+          <p>No se usan llaves para delimitar bloques. Las estructuras tienen palabras de inicio y cierre, como <code>se</code>/<code>fimse</code> y <code>enquanto</code>/<code>fimenquanto</code>. El estilo del pseudolenguaje prevé un comando por línea.</p>
           <p>Para usar la extensión de lectura de archivos, <code>arquivo "datos.txt"</code> aparece en la sección de declaraciones, antes del cuerpo principal. Consulta <a href="#funcoes">Funciones y comandos auxiliares</a>.</p>
         </section>
 
@@ -81,7 +81,7 @@ fimalgoritmo</code></pre>
             <li>Los nombres empiezan con una letra y pueden continuar con letras, dígitos o guiones bajos. El manual de referencia establece un límite de 30 caracteres.</li>
             <li>Los comentarios de línea empiezan con <code>//</code> y terminan al final de esa línea. Para comentar varias líneas, cada una necesita su propio marcador.</li>
             <li>Los literales de texto usan comillas dobles; los valores decimales usan punto. Los valores lógicos son <code>VERDADEIRO</code> y <code>FALSO</code>.</li>
-            <li>Una línea representa un comando; el lenguaje no requiere punto y coma para separar comandos.</li>
+            <li>Una línea representa un comando; el pseudolenguaje no requiere punto y coma para separar comandos.</li>
           </ul>
           <pre class="manual-code"><code>// los nombres ignoran mayúsculas y minúsculas
 var
@@ -242,7 +242,7 @@ fimalgoritmo</code></pre>
         </section>
 
         <section id="funcoes">
-          <p class="kicker">11 · Recursos del lenguaje</p>
+          <p class="kicker">11 · Recursos del pseudolenguaje</p>
           <h2>Funciones y comandos auxiliares</h2>
           <p>El manual del autor describe <code>escreva</code>, <code>escreval</code> y <code>leia</code> como operaciones disponibles de entrada y salida. El crate VisuAlg de Potoo también cataloga las funciones siguientes en su implementación de compatibilidad; esta lista describe el crate, no la integración de escritorio.</p>
           <div class="manual-table-wrap" role="region" aria-label="Funciones de la implementación de compatibilidad de VisuAlg" tabindex="0">
@@ -303,7 +303,7 @@ fimalgoritmo</code></pre>
           <p class="kicker">14 · Lectura adicional</p>
           <h2>Referencias de VisuAlg</h2>
           <ul>
-            <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual del lenguaje distribuido por el autor de VisuAlg</a>, con sintaxis, tipos, operadores, comandos, rutinas y extensiones educativas; la <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referencia de comandos de la versión 3.0.5.2</a> también detalla <code>aleatorio</code> y <code>limpatela</code>.</li>
+            <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual del pseudolenguaje distribuido por el autor de VisuAlg</a>, con sintaxis, tipos, operadores, comandos, rutinas y extensiones educativas; la <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referencia de comandos de la versión 3.0.5.2</a> también detalla <code>aleatorio</code> y <code>limpatela</code>.</li>
             <li><a href="https://sistemas.eel.usp.br/docentes/arquivos/5840003/241/VisuAlg.pdf">Copia del manual en un repositorio universitario</a>.</li>
             <li><a href="https://github.com/diegopn/potoo-ide/tree/main/crates/potoo-interpreter-visualg">Crate VisuAlg de Potoo IDE</a>, con la referencia de compatibilidad 3.0.5.2 y el estado de la implementación.</li>
           </ul>
@@ -313,7 +313,7 @@ fimalgoritmo</code></pre>
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Vuelve al Manual de Potoo IDE</h2><p>Consulta cómo encaja VisuAlg en el alcance de lenguajes del proyecto.</p></div>
+      <div><h2>Vuelve al Manual de Potoo IDE</h2><p>Consulta cómo encaja el pseudolenguaje VisuAlg en el alcance del proyecto.</p></div>
       <a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a>
     </section>
   </div>

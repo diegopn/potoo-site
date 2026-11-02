@@ -3,10 +3,10 @@ layout: default
 lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/portugol/"
-title: "Portugol Studio and Portugol 2.0 | Potoo IDE Manual"
-description: "A broad reference for the Portugol Studio dialect (Portugol 2.0): program structure, types, operators, control flow, arrays, functions and libraries."
-og_title: "Portugol Studio and Portugol 2.0 reference"
-og_description: "Explore the syntax and features of the Portugol Studio dialect used as a reference by Potoo IDE."
+title: "Portugol 2.0 pseudolanguage | Potoo IDE Manual"
+description: "A broad reference for the Portugol 2.0 pseudolanguage: program structure, types, operators, control flow, arrays, functions and libraries."
+og_title: "Portugol 2.0 pseudolanguage reference"
+og_description: "Explore the syntax and features of the Portugol 2.0 dialect adopted by Potoo IDE."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -19,10 +19,10 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Pseudocode reference · Portugol Studio dialect</p>
-      <h1>Portugol Studio and Portugol 2.0</h1>
-      <p class="manual-intro">This page describes the dialect associated with Portugol Studio. It is a reference for Potoo IDE's goal of implementing the complete dialect and separates that goal from current support.</p>
-      <p class="manual-meta"><span><b>Dialect</b> Portugol Studio · Portugol 2.0</span><span><b>Potoo IDE status</b> In development</span></p>
+      <p class="kicker">Pseudolanguage reference · Portugol 2.0 dialect</p>
+      <h1>Portugol 2.0 pseudolanguage</h1>
+      <p class="manual-intro">This page documents the complete Portugol 2.0 pseudolanguage dialect that Potoo IDE aims to implement. It separates that goal from current support.</p>
+      <p class="manual-meta"><span><b>Pseudolanguage</b> Portugol 2.0</span><span><b>Potoo IDE status</b> In development</span></p>
     </div>
   </section>
 
@@ -52,9 +52,9 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Scope</p>
           <h2>About the dialect</h2>
-          <p><strong>Portugol</strong> is a name used by several pseudocode languages. This documentation covers the specific dialect used by Portugol Studio, also called Portugol 2.0; these rules do not define one universal standard for every tool named Portugol.</p>
-          <p>The grammar and lexer published by UNIVALI-LITE are the primary syntax reference. Portugol Studio's own library documentation adds the available functions and constants.</p>
-          <div class="manual-note"><strong>Project goal:</strong> implement the complete dialect as the language reference. Features described here are not necessarily available to run in the app today.</div>
+          <p><strong>Portugol</strong> is a name used by several pseudolanguages. This page covers the Portugol 2.0 dialect specifically; these rules do not define one universal standard for every pseudolanguage called Portugol.</p>
+          <p>The grammar and lexer used as the basis for this reference are listed in the references section. They guide the scope of the Portugol 2.0 dialect adopted by Potoo IDE.</p>
+          <div class="manual-note"><strong>Project goal:</strong> implement the complete dialect of this pseudolanguage. Features described here are not necessarily available to run in the app today.</div>
         </section>
 
         <section id="estrutura">
@@ -96,7 +96,7 @@ logico aprovado = verdadeiro</code></pre>
         <section id="tipos">
           <p class="kicker">04 · Data</p>
           <h2>Types, variables and constants</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio types" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage types" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Type</th><th scope="col">Use</th></tr></thead>
               <tbody>
@@ -121,7 +121,7 @@ logico concluiu = falso</code></pre>
         <section id="operadores">
           <p class="kicker">05 · Expressions</p>
           <h2>Operators and precedence</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio operators" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage operators" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Group</th><th scope="col">Operators</th><th scope="col">Meaning</th></tr></thead>
               <tbody>
@@ -232,8 +232,8 @@ funcao inicio() {
         <section id="bibliotecas">
           <p class="kicker">11 · Standard resources</p>
           <h2>Dialect libraries</h2>
-          <p>Include a library with <code>inclua biblioteca Name</code>; an alias may follow <code>--&gt;</code>. Calls use the name or alias followed by a period. The table summarizes modules published by Portugol Studio; official class documentation lists signatures, parameters and constants.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio libraries" tabindex="0">
+          <p>Include a library with <code>inclua biblioteca Name</code>; an alias may follow <code>--&gt;</code>. Calls use the name or alias followed by a period. The table summarizes the pseudolanguage modules documented in the sources for this reference; class documentation lists signatures, parameters and constants.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage libraries" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Library</th><th scope="col">Reference features</th></tr></thead>
               <tbody>
@@ -258,7 +258,7 @@ funcao inicio() {
 funcao inicio() {
     escreva(mat.potencia(2, 3), "\n")
 }</code></pre>
-          <p>The libraries belong to the Portugol Studio reference environment; not every library fits every interpreter or execution context.</p>
+          <p>The libraries belong to this dialect's reference environment; not every library fits every interpreter or execution context.</p>
         </section>
 
         <section id="exemplo">
@@ -288,15 +288,16 @@ funcao inicio() {
           <p class="kicker">13 · Compatibility</p>
           <h2>What works in Potoo IDE today</h2>
           <p>Potoo IDE is in development and does not yet integrate the interpreter into the desktop app. This page is a reference for the intended dialect, not a list of features available in the application.</p>
-          <p>The Potoo IDE repository contains an independent crate for Portugol Studio / Portugol 2.0. It implements a subset: program and function structure, declarations, types, vectors and matrices, value and reference parameters, operators, control flow, input and output, and parts of the <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> and <code>Util</code> libraries. The crate identifies itself as a partial implementation; libraries such as <code>Calendario</code>, <code>Objetos</code> and <code>Arquivos</code> are not implemented there.</p>
+          <p>The Potoo IDE repository contains an independent crate for the Portugol 2.0 pseudolanguage. It implements a subset: program and function structure, declarations, types, vectors and matrices, value and reference parameters, operators, control flow, input and output, and parts of the <code>Matematica</code>, <code>Texto</code>, <code>Tipos</code> and <code>Util</code> libraries. The crate identifies itself as a partial implementation; libraries such as <code>Calendario</code>, <code>Objetos</code> and <code>Arquivos</code> are not implemented there.</p>
           <div class="manual-note planned"><strong>In development:</strong> the goal is to work toward the complete dialect. Until it is integrated with the desktop interface, these examples cannot be written or run in Potoo IDE.</div>
         </section>
 
         <section id="fontes">
           <p class="kicker">14 · Further reading</p>
-          <h2>Portugol Studio references</h2>
+          <h2>Portugol 2.0 pseudolanguage references</h2>
+          <p>The Portugol 2.0 dialect documented here originates from Portugol Studio. That tool appears here only as a reference source; Potoo IDE uses Portugol 2.0 as the pseudolanguage's name.</p>
           <ul>
-            <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the language as Portugol 2.0.</li>
+            <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the pseudolanguage as Portugol 2.0.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">official grammar</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">official lexer</a>.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">official input/output help</a>, including the <code>\n</code> newline escape, and its <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">semantic analyzer</a>, which lists predefined functions.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Standard library source code</a> and its documented functions.</li>
@@ -308,7 +309,7 @@ funcao inicio() {
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Return to the Potoo IDE Manual</h2><p>See how Portugol Studio fits the project's language scope.</p></div>
+      <div><h2>Return to the Potoo IDE Manual</h2><p>See how the Portugol 2.0 pseudolanguage fits the project's scope.</p></div>
       <a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a>
     </section>
   </div>
