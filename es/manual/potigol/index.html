@@ -4,9 +4,9 @@ lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/potigol/"
 title: "Potigol | Manual de Potoo IDE"
-description: "Referencia de Potigol: sintaxis en portugués, tipos, variables, operadores, funciones, colecciones y la biblioteca de juegos Jerimum."
+description: "Referencia de Potigol: sintaxis en portugués, tipos, listas, matemáticas, funciones de orden superior, emparejamiento de patrones y biblioteca de juegos Jerimum."
 og_title: "Referencia de Potigol"
-og_description: "Conoce la sintaxis de Potigol y la biblioteca de juegos Jerimum."
+og_description: "Consulta la sintaxis de Potigol, sus colecciones y funciones, y la biblioteca de juegos Jerimum."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -28,7 +28,12 @@ body_class: manual-page
       <li><a href="#escrita">Nombres y comentarios</a></li><li><a href="#tipos">Tipos y variables</a></li>
       <li><a href="#operadores">Operadores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li>
       <li><a href="#controle">Condiciones y repeticiones</a></li><li><a href="#funcoes">Funciones y colecciones</a></li>
-      <li><a href="#tipos-compostos">Tipos propios</a></li><li><a href="#jerimum">Jerimum: juegos con Potigol</a></li>
+      <li><a href="#tipos-compostos">Tipos propios</a></li>
+      <li><a href="#matematica-textos">Matemáticas y textos</a></li>
+      <li><a href="#listas-detalhadas">Listas en detalle</a></li>
+      <li><a href="#programacao-funcional">Funciones de orden superior</a></li>
+      <li><a href="#padroes">Emparejamiento de patrones</a></li>
+      <li><a href="#jerimum">Jerimum: juegos con Potigol</a></li>
       <li><a href="#exemplo">Ejemplo integrado</a></li><li><a href="#fontes">Referencias</a></li>
     </ol></aside>
     <article class="manual-content">
@@ -132,7 +137,79 @@ aluna = Pessoa("Lia")
 escreva aluna.saudacao</code></pre>
         <p>La documentación oficial también trata tipos abstractos, herencia, genéricos, tuplas, funciones como valores y emparejamiento de patrones.</p>
       </section>
-      <section id="jerimum"><p class="kicker">10 · Biblioteca de juegos</p><h2>Jerimum: juegos con Potigol</h2>
+            <section id="matematica-textos">
+        <p class="kicker">10 · Operaciones integradas</p><h2>Matemáticas y textos</h2>
+        <p>Potigol ofrece operaciones matemáticas para números y métodos para consultar o transformar textos. Los nombres permanecen en portugués; comprueba el tipo de cada resultado antes de combinarlo con otra expresión.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Operaciones matemáticas y de texto en Potigol" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Grupo</th><th scope="col">Formas documentadas</th><th scope="col">Uso</th></tr></thead><tbody>
+            <tr><td>Constante y trigonometría</td><td><code>PI</code>, <code>sen(x)</code>, <code>cos(x)</code>, <code>tg(x)</code>, <code>arcsen(x)</code>, <code>arccos(x)</code>, <code>arctg(x)</code></td><td>Constante π y funciones trigonométricas.</td></tr>
+            <tr><td>Matemáticas</td><td><code>abs(x)</code>, <code>raiz(x)</code>, <code>log(x)</code>, <code>log10(x)</code>, <code>aleatório(...)</code></td><td>Valor absoluto, raíz, logaritmos y valor aleatorio.</td></tr>
+            <tr><td>Texto</td><td><code>.tamanho</code>, <code>.posição(c)</code>, <code>.contém(c)</code>, <code>.maiúsculo</code>, <code>.minúsculo</code>, <code>.inverta</code></td><td>Consultar tamaño, buscar caracteres y transformar texto.</td></tr>
+            <tr><td>Fragmentos de texto</td><td><code>.divida</code>, <code>.pegue(n)</code>, <code>.descarte(n)</code>, <code>.cabeça</code>, <code>.cauda</code>, <code>.último</code></td><td>Dividir, recortar o consultar caracteres.</td></tr>
+          </tbody></table></div>
+        <pre class="manual-code"><code>raio = 3.0
+area = PI * raio ^ 2
+frase = "lógica e programación"
+partes = frase.divida(" ")
+
+escreva "Área: {area}"
+escreva "La frase tiene {frase.tamanho} caracteres"
+escreva partes</code></pre>
+        <p>Los textos también pueden concatenarse con <code>+</code>. Las conversiones <code>.inteiro</code> y <code>.real</code> interpretan el inicio de un texto numérico; valida los datos de entrada antes de usarlos en un cálculo.</p>
+      </section>
+      <section id="listas-detalhadas">
+        <p class="kicker">11 · Colecciones</p><h2>Listas en detalle</h2>
+        <p>Una lista mantiene sus elementos en orden y, por defecto, es inmutable: insertar, quitar o actualizar produce otra lista. Los índices empiezan en <strong>1</strong>, a diferencia del patrón habitual en otros pseudolenguajes documentados aquí.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Operaciones de listas en Potigol" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Operación</th><th scope="col">Ejemplo</th><th scope="col">Efecto</th></tr></thead><tbody>
+            <tr><td>Primero y resto</td><td><code>lista.cabeça</code>, <code>lista.cauda</code></td><td>Consulta el primer elemento y la lista sin él.</td></tr>
+            <tr><td>Posición</td><td><code>lista[1]</code>, <code>lista.último</code></td><td>Lee por índice o consulta el último elemento.</td></tr>
+            <tr><td>Tamaño y presencia</td><td><code>lista.tamanho</code>, <code>lista.contém(valor)</code></td><td>Cuenta elementos o comprueba si un valor está presente.</td></tr>
+            <tr><td>Fragmento</td><td><code>lista.pegue(n)</code>, <code>lista.descarte(n)</code></td><td>Conserva o quita los primeros <code>n</code> elementos.</td></tr>
+            <tr><td>Nueva lista</td><td><code>lista.insira(i, valor)</code>, <code>lista.remova(i)</code>, <code>lista.atualize(i, valor)</code></td><td>Inserta, quita o reemplaza un elemento por índice.</td></tr>
+            <tr><td>Composición</td><td><code>a + b</code>, <code>valor :: lista</code></td><td>Concatena listas o añade un valor al principio.</td></tr>
+          </tbody></table></div>
+        <pre class="manual-code"><code>original = [2, 4, 6, 8]
+var atualizada := original
+atualizada[2] := 5
+
+escreva original       # [2, 4, 6, 8]
+escreva atualizada     # [2, 5, 6, 8]</code></pre>
+        <p><code>:=</code> actualiza una variable mutable, pero no modifica la lista referenciada por <code>original</code>. Los métodos <code>.atualize</code>, <code>.insira</code> y <code>.remova</code> hacen explícito que el resultado es una lista nueva.</p>
+      </section>
+      <section id="programacao-funcional">
+        <p class="kicker">12 · Abstracción</p><h2>Funciones de orden superior</h2>
+        <p>Una función puede recibir otra función como argumento o devolverla como resultado. Las expresiones lambda, escritas con <code>=&gt;</code>, describen operaciones breves sin declarar una función con nombre.</p>
+        <pre class="manual-code"><code>numeros = [1, 2, 3, 4, 5, 6, 7, 8]
+pares = numeros.selecione(n => n mod 2 == 0)
+dobros = pares.mapeie(n => n * 2)
+soma = numeros.injete(0)((total, n) => total + n)
+
+aplique(f: Inteiro =&gt; Inteiro, valor: Inteiro) = f(valor)
+sucessor(n: Inteiro) = n + 1
+escreva aplique(sucessor, 5)</code></pre>
+        <ul><li><code>selecione</code> conserva los elementos que cumplen una condición.</li><li><code>mapeie</code> transforma cada elemento y devuelve una lista.</li><li><code>injete</code> recorre la colección y combina sus elementos con un acumulador inicial.</li></ul>
+        <p>Estas operaciones no cambian la lista de origen. Los tipos de parámetros y resultados permiten comprobar que la transformación corresponde a los datos.</p>
+      </section>
+      <section id="padroes">
+        <p class="kicker">13 · Decisiones por estructura</p><h2>Emparejamiento de patrones</h2>
+        <p><code>escolha</code> puede comparar un valor con casos o examinar la estructura de una lista. El patrón <code>[]</code> representa una lista vacía; <code>cabeça :: cauda</code> separa el primer elemento del resto. El patrón <code>_</code> acepta cualquier valor y una condición adicional puede limitar un caso.</p>
+        <pre class="manual-code"><code>quantidade(itens: Lista[Inteiro]): Inteiro = escolha itens
+  caso [] =&gt; 0
+  caso _ :: restante =&gt; 1 + quantidade(restante)
+fim
+
+classifique(n: Inteiro) = escolha n
+  caso valor se valor &lt; 0 =&gt; "negativo"
+  caso 0 =&gt; "cero"
+  caso _ =&gt; "positivo"
+fim
+
+escreva quantidade([3, 5, 8])
+escreva classifique(-2)</code></pre>
+        <p>Los casos se evalúan en orden; coloca los patrones específicos antes de uno amplio como <code>_</code>. En funciones recursivas, el caso vacío ofrece la condición de parada.</p>
+      </section>
+      <section id="jerimum"><p class="kicker">14 · Biblioteca de juegos</p><h2>Jerimum: juegos con Potigol</h2>
         <p><strong>Jerimum</strong> es una biblioteca de juegos para Potigol. El repositorio oficial reúne ejemplos y módulos para abrir una ventana, dibujar imágenes y texto, consultar teclado y ratón, medir tiempo y reproducir audio. Añade recursos para juegos y se mantiene separado de la sintaxis central de Potigol.</p>
         <h3>Inicio y ciclo del juego</h3>
         <p>Un programa comienza con <code>use "jerimum"</code> y define <code>atualize()</code> para actualizar el estado y <code>desenhe()</code> para registrar lo que se dibuja. <code>jogo.iniciar</code> recibe título, ancho, alto, ambas funciones y una tasa de cuadros opcional, cuyo valor predeterminado es 60.</p>
@@ -194,7 +271,7 @@ fim
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
         <p>Los detalles de cada método están en la documentación y el código fuente del repositorio Jerimum. La biblioteca usa recursos Java para ventanas, dibujo y audio; sus ejemplos se refieren a programas Potigol de escritorio.</p>
       </section>
-      <section id="exemplo"><p class="kicker">11 · Ejemplo integrado</p><h2>Calcular el promedio</h2>
+      <section id="exemplo"><p class="kicker">15 · Ejemplo integrado</p><h2>Calcular el promedio</h2>
         <pre class="manual-code"><code>media(a: Real, b: Real, c: Real) = (a + b + c) / 3
 escreva "Digite três notas:"
 a, b, c = leia_numero
@@ -205,8 +282,8 @@ senão
   escreva "Em recuperação: {resultado}"
 fim</code></pre>
       </section>
-      <section id="fontes"><p class="kicker">12 · Lectura adicional</p><h2>Referencias</h2>
-        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
+      <section id="fontes"><p class="kicker">16 · Lectura adicional</p><h2>Referencias</h2>
+        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>, con temas de sintaxis, estructuras, funciones, tipos, listas y tuplas.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemáticas</a> y <a href="https://potigol.github.io/docs/funcoes/">funciones</a>.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a> y <a href="https://potigol.github.io/docs/funcional/">programación funcional</a>, con operaciones de transformación, expresiones lambda y emparejamiento de patrones.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>

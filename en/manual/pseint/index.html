@@ -4,9 +4,9 @@ lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/pseint/"
 title: "PSeInt | Potoo IDE Manual"
-description: "PSeInt reference: algorithm structure, variables, operators, input and output, decisions, loops, subprograms, and arrays."
+description: "PSeInt reference: algorithm structure, types, operators, built-in functions, decisions, loops, arrays, subprograms, and syntax profiles."
 og_title: "PSeInt reference"
-og_description: "Read the pseudocode constructs documented by PSeInt."
+og_description: "Explore PSeInt pseudocode structures, built-in functions, and syntax profiles."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -22,7 +22,9 @@ body_class: manual-page
     <p class="manual-meta"><span><b>Reference</b> PSeInt</span><span><b>Focus</b> Algorithms in pseudocode</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contents of the PSeInt reference"><h2>In this reference</h2><ol>
-    <li><a href="#sobre">About PSeInt</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Variables and types</a></li><li><a href="#operadores">Operators and functions</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Decisions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#vetores">Arrays and matrices</a></li><li><a href="#subprogramas">Subprograms</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#fontes">References</a></li>
+    <li><a href="#sobre">About PSeInt</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Variables and types</a></li><li><a href="#operadores">Operators and functions</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Decisions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#vetores">Arrays and matrices</a></li><li><a href="#subprogramas">Subprograms</a></li><li><a href="#exemplo">Complete example</a></li>        <li><a href="#funciones-integradas">Built-in functions</a></li><li><a href="#perfiles">Profiles and variants</a></li>
+        <li><a href="#verificacion">Testing and tracing</a></li>
+<li><a href="#fontes">References</a></li>
   </ol></aside><article class="manual-content">
     <section id="sobre"><p class="kicker">01 · Overview</p><h2>About PSeInt</h2><p>PSeInt is an educational environment for writing and running algorithms in pseudocode. Its official reference describes Spanish-language instructions and profiles with more flexible or stricter rules.</p><p>The environment can also display algorithms as flowcharts, making sequences, decisions, and loops easier to follow alongside the instructions.</p></section>
     <section id="estrutura"><p class="kicker">02 · Organization</p><h2>Algorithm structure</h2><p>The documented format places instructions between <code>Proceso</code> and <code>FinProceso</code>. Some versions and profiles also accept <code>Algoritmo</code> and <code>FinAlgoritmo</code>. Depending on the profile, statements may require semicolons or be separated by lines.</p><pre class="manual-code"><code>Proceso Saludo
@@ -69,18 +71,18 @@ FinPara
 Repetir
     Leer clave
 Hasta Que clave = "fin"</code></pre><p>Make sure the stopping condition can become true to avoid an infinite loop.</p></section>
-    <section id="vetores"><p class="kicker">08 · Collections</p><h2>Arrays and matrices</h2><p><code>Dimension</code> declares an array with one or more indexes. Access uses parentheses and numeric positions; valid bounds depend on the declared dimension and selected profile.</p><pre class="manual-code"><code>Definir notas Como Real
-Dimension notas(5)
-Para i &lt;- 1 Hasta 5 Hacer
-    Leer notas(i)
+    <section id="vetores"><p class="kicker">08 · Collections</p><h2>Arrays and matrices</h2><p><code>Dimension</code> declares an array or matrix. Its notation and starting index depend on the active profile, so do not assume the bounds. This example has five positions numbered from 0 through 4:</p><pre class="manual-code"><code>Definir notas Como Real
+Dimension notas[5]
+Para i &lt;- 0 Hasta 4 Hacer
+    Leer notas[i]
 FinPara
-Escribir "First grade: ", notas(1)</code></pre><p>Two dimensions represent a matrix. Arrays can also be passed to subprograms when the signature and selected profile allow it.</p></section>
-    <section id="subprogramas"><p class="kicker">09 · Reuse</p><h2>Subprograms</h2><p><code>SubProceso</code> defines a reusable routine. A function declares its return value in the header; a routine without a result receives parameters and performs instructions. The body ends with <code>FinSubProceso</code>.</p><pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
+Escribir "First grade: ", notas[0]</code></pre><p>A second dimension creates a matrix and requires one index per dimension. Check the size and bounds set by the profile before accessing a position. Arrays can also be passed to subprograms when their signature is supported by the profile.</p></section>
+    <section id="subprogramas"><p class="kicker">09 · Reuse</p><h2>Subprograms</h2><p><code>SubProceso</code> defines a reusable routine. If it returns a value, the header names the variable that receives the result; otherwise, it performs actions without returning one. Call it by name with arguments in parentheses. Parameters can be inputs or, when the profile supports the form, passed by reference to return changes to the caller.</p><pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
     resultado &lt;- numero * 2
 FinSubProceso
 Proceso Principal
     Escribir Doble(6)
-FinProceso</code></pre><p>Depending on the signature and profile, parameters can also be modified to return results. Keep input and output roles clear.</p></section>
+FinProceso</code></pre><p>Local variables stay within the routine. The reference includes recursive calls, such as a power calculation, and passing arrays as arguments. Prefer value parameters for calculations that should not change the original variable; use references only when a routine truly needs to return a modification.</p></section>
     <section id="exemplo"><p class="kicker">10 · Combined example</p><h2>Average and result</h2><pre class="manual-code"><code>Proceso Promedio
     Definir a, b, c, media Como Real
     Escribir "Enter three grades:"
@@ -92,6 +94,56 @@ FinProceso</code></pre><p>Depending on the signature and profile, parameters can
         Escribir "Keep practicing: ", media
     FinSi
 FinProceso</code></pre></section>
-    <section id="fontes"><p class="kicker">11 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Official pseudocode reference</a>, with structure, operators, functions, and lexical rules.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li>Rules vary by selected profile; use the integrated help for the same version to confirm its settings.</li></ul></section>
+          <section id="funciones-integradas"><p class="kicker">11 · Math library</p><h2>Built-in functions</h2>
+        <p>The functions below appear in PSeInt's basic reference. Write arguments in parentheses; assign, display, or combine the returned value in another expression.</p>
+        <div class="manual-table-wrap" role="region" aria-label="PSeInt built-in functions" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Form</th><th scope="col">Result</th></tr></thead><tbody>
+            <tr><td><code>RC(x)</code></td><td>Square root.</td></tr><tr><td><code>ABS(x)</code></td><td>Absolute value.</td></tr>
+            <tr><td><code>LN(x)</code>, <code>EXP(x)</code></td><td>Natural logarithm and exponential function.</td></tr>
+            <tr><td><code>SEN(x)</code>, <code>COS(x)</code>, <code>ATAN(x)</code></td><td>Trigonometric functions.</td></tr>
+            <tr><td><code>TRUNC(x)</code>, <code>REDON(x)</code></td><td>Integer part and nearest integer.</td></tr>
+            <tr><td><code>AZAR(n)</code></td><td>Random integer from <code>0</code> through <code>n - 1</code>.</td></tr>
+            <tr><td><code>Longitud(texto)</code></td><td>Number of characters.</td></tr>
+            <tr><td><code>SubCadena(texto, inicio, fin)</code></td><td>Substring between the specified positions.</td></tr>
+            <tr><td><code>Concatenar(a, b)</code></td><td>Joins two character strings.</td></tr>
+            <tr><td><code>Mayusculas(texto)</code>, <code>Minusculas(texto)</code></td><td>Converts letters to uppercase or lowercase.</td></tr>
+          </tbody></table></div>
+        <pre class="manual-code"><code>Definir radio, area Como Real
+radio &lt;- 3
+area &lt;- 3.14159 * radio ^ 2
+Escribir "Area: ", REDON(area)
+Escribir "Die: ", AZAR(6) + 1</code></pre>
+        <pre class="manual-code"><code>Definir frase, minuscula Como Caracter
+frase &lt;- "Hola, Potoo!"
+minuscula &lt;- Minusculas(frase)
+Escribir "Characters: ", Longitud(minuscula)
+Escribir "Start: ", SubCadena(minuscula, 1, 3)
+Escribir Concatenar("Text: ", minuscula)</code></pre>
+        <p>Check the domain of each math function. String operations depend on the profile that enables them. This example starts indexes at 1, so adjust <code>SubCadena</code> to match the active profile.</p>
+      </section>
+      <section id="perfiles"><p class="kicker">12 · Syntax variants</p><h2>Profiles and variants</h2>
+        <p>The selected profile determines which spellings the interpreter accepts. PSeInt can require the original structured form, accept flexible variants, or use intermediate options set by an institution or teacher.</p>
+        <div class="manual-table-wrap" role="region" aria-label="PSeInt profile variants" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Aspect</th><th scope="col">What can vary</th><th scope="col">Recommendation</th></tr></thead><tbody>
+            <tr><td>Opening and closing</td><td><code>Proceso / FinProceso</code> or alternatives such as <code>Algoritmo / FinAlgoritmo</code>.</td><td>Keep each pair consistent.</td></tr>
+            <tr><td>Declarations</td><td>A profile may require <code>Definir</code> or allow type inference.</td><td>Declare data explicitly while learning.</td></tr>
+            <tr><td>Separators</td><td>Required semicolons or line breaks between statements.</td><td>Use one style throughout an algorithm.</td></tr>
+            <tr><td>Arrays</td><td>Dimension notation and starting index.</td><td>Check the active profile's bounds.</td></tr>
+            <tr><td>Loops</td><td><code>Para i &lt;- ...</code> or <code>Para Cada Elemento de Lista</code>.</td><td>Use the form enabled by the selected profile.</td></tr>
+            <tr><td>Conditions</td><td>Operators such as <code>&gt;</code> or descriptive forms such as <code>Es Mayor Que</code>.</td><td>Do not mix forms from different profiles.</td></tr>
+          </tbody></table></div>
+        <p>An example valid in one profile may need changes in another. If a class or course provides a profile, use it as the authority for names, types, and syntax in that exercise.</p>
+      </section>
+      <section id="verificacion"><p class="kicker">13 · Problem solving</p><h2>Testing and tracing</h2>
+        <p>Before running an algorithm, identify its inputs, expected result, and conditions that can change its path. Then try simple values whose results you can calculate independently.</p>
+        <ul>
+          <li>Test a normal case and boundary values such as zero, one item, and the largest expected input.</li>
+          <li>At each loop, watch the condition, counter, and variables that change.</li>
+          <li>For arrays, verify every index falls inside the declared dimension.</li>
+          <li>For a function, compare its arguments with the returned value and inspect each return path.</li>
+        </ul>
+        <p>The interpreter can trace execution step by step and compare it with a flowchart. A trace helps locate the moment a variable stops matching the expected value; it does not replace choosing useful test cases.</p>
+      </section>
+<section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Official pseudocode reference</a>, with structure, operators, functions, and lexical rules.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Official string operations example</a>; this feature must be enabled in the selected profile.</li><li>Rules vary by selected profile; use the integrated help for the same version to confirm its settings.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

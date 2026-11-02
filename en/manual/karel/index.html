@@ -17,9 +17,11 @@ translations:
 body_class: manual-page
 ---
 <main id="conteudo">
-  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Reference · Karel the Robot</p><h1>Karel the Robot</h1><p class="manual-intro">This page documents Stanford's Java reference for Karel. Karel appears in several educational implementations, and commands and rules can differ between them. The examples below use the syntax and features in Stanford's Java material.</p><p class="manual-meta"><span><b>Reference</b> Stanford Karel</span><span><b>Syntax</b> Java</span></p></div></section>
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Reference · Karel the Robot</p><h1>Karel the Robot</h1><p class="manual-intro">This reference details the Java model for Karel used in Stanford's material: the grid world, robot state, commands, sensors, control flow, methods, and ways to plan and test solutions. Other implementations may follow different rules.</p><p class="manual-meta"><span><b>Reference</b> Stanford Karel</span><span><b>Syntax</b> Java</span></p></div></section>
   <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contents of the Karel the Robot reference"><h2>In this reference</h2><ol>
-    <li><a href="#sobre">About Karel</a></li><li><a href="#mundo">The grid world</a></li><li><a href="#programa">Program structure</a></li><li><a href="#comandos">Basic commands</a></li><li><a href="#sensores">Sensors and conditions</a></li><li><a href="#controle">Decisions and loops</a></li><li><a href="#metodos">Custom methods</a></li><li><a href="#dados">State and data</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#fontes">References</a></li>
+    <li><a href="#sobre">About Karel</a></li><li><a href="#mundo">The grid world</a></li><li><a href="#programa">Program structure</a></li><li><a href="#comandos">Basic commands</a></li><li><a href="#sensores">Sensors and conditions</a></li><li><a href="#controle">Decisions and loops</a></li><li><a href="#metodos">Custom methods</a></li><li><a href="#dados">State and data</a></li><li><a href="#exemplo">Complete example</a></li>      <li><a href="#superkarel">SuperKarel features</a></li><li><a href="#estrategias">Loops and boundaries</a></li>
+      <li><a href="#decomposicao">Decomposition and contracts</a></li><li><a href="#testes">Scenario testing</a></li>
+<li><a href="#fontes">References</a></li>
   </ol></aside><article class="manual-content">
     <section id="sobre"><p class="kicker">01 · Overview</p><h2>About Karel</h2><p>Karel is a robot that receives instructions to solve simple tasks in a world of streets, corners, and walls. The model was created so early programming exercises emphasize breaking down problems and sequencing commands.</p><p>This page follows Stanford's Java reference, which defines a program class and a <code>run</code> method. Other implementations may use Python or their own syntax; do not mix examples from different versions.</p></section>
     <section id="mundo"><p class="kicker">02 · Environment</p><h2>The grid world</h2><p>The robot occupies a corner, faces one of four directions, and can carry or place beepers. Walls block movement between corners. Each task defines the initial world state and the state the program should reach.</p><ul><li><strong>Position:</strong> the corner occupied by the robot.</li><li><strong>Direction:</strong> north, south, east, or west.</li><li><strong>Beepers:</strong> markers the robot can pick up or place.</li><li><strong>Walls:</strong> obstacles that block the path.</li></ul><p>Trying to walk through a wall, pick up a missing beeper, or place one without having it in the bag causes a runtime error.</p></section>
@@ -32,7 +34,19 @@ public class ExampleKarel extends SuperKarel {
     }
 }</code></pre><p>Code uses braces for blocks, semicolons after instructions, and Java comments with <code>//</code> or <code>/* ... */</code>.</p></section>
     <section id="comandos"><p class="kicker">04 · Actions</p><h2>Basic commands</h2><div class="manual-table-wrap" role="region" aria-label="Basic Karel commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Action</th></tr></thead><tbody><tr><td><code>move()</code></td><td>Moves one corner forward if no wall is ahead.</td></tr><tr><td><code>turnLeft()</code></td><td>Turns 90 degrees to the left.</td></tr><tr><td><code>putBeeper()</code></td><td>Places a beeper on the current corner.</td></tr><tr><td><code>pickBeeper()</code></td><td>Picks up a beeper from the current corner.</td></tr><tr><td><code>turnRight()</code></td><td>Turns 90 degrees right; provided by <code>SuperKarel</code>.</td></tr><tr><td><code>turnAround()</code></td><td>Turns 180 degrees; provided by <code>SuperKarel</code>.</td></tr></tbody></table></div><p>Primitive commands use empty parentheses and a semicolon. Beeper actions depend on the corner and the robot's bag.</p></section>
-    <section id="sensores"><p class="kicker">05 · Observation</p><h2>Sensors and conditions</h2><p>Karel does not receive the whole map as a value. It checks local conditions to decide what to do next.</p><div class="manual-table-wrap" role="region" aria-label="Karel conditions" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Condition</th><th scope="col">True when</th></tr></thead><tbody><tr><td><code>frontIsClear()</code></td><td>No wall is immediately ahead.</td></tr><tr><td><code>leftIsClear()</code>, <code>rightIsClear()</code></td><td>The indicated path is clear.</td></tr><tr><td><code>beepersPresent()</code></td><td>There is at least one beeper on this corner.</td></tr><tr><td><code>noBeepersPresent()</code></td><td>There are no beepers on this corner.</td></tr><tr><td><code>facingNorth()</code>, <code>facingEast()</code>, <code>facingSouth()</code>, <code>facingWest()</code></td><td>The robot faces the indicated direction.</td></tr></tbody></table></div><p>Conditions appear in parentheses and can be combined with Java boolean operators.</p></section>
+    <section id="sensores"><p class="kicker">05 · Observation</p><h2>Sensors and conditions</h2>
+        <p>Karel checks its immediate surroundings; it does not receive the whole map as a value. Each sensor returns a boolean that can be used in <code>if</code>, <code>while</code>, and boolean expressions.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Karel sensors" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Sensor</th><th scope="col">True when</th></tr></thead><tbody>
+          <tr><td><code>frontIsClear()</code> / <code>frontIsBlocked()</code></td><td>There is no wall / there is a wall ahead.</td></tr>
+          <tr><td><code>leftIsClear()</code> / <code>leftIsBlocked()</code></td><td>The path to the left is clear / blocked.</td></tr>
+          <tr><td><code>rightIsClear()</code> / <code>rightIsBlocked()</code></td><td>The path to the right is clear / blocked.</td></tr>
+          <tr><td><code>beepersPresent()</code> / <code>noBeepersPresent()</code></td><td>There are / are no beepers on the current corner.</td></tr>
+          <tr><td><code>beepersInBag()</code> / <code>noBeepersInBag()</code></td><td>The bag contains / does not contain beepers.</td></tr>
+          <tr><td><code>facingNorth()</code>, <code>facingEast()</code>, <code>facingSouth()</code>, <code>facingWest()</code></td><td>Karel faces the named direction.</td></tr>
+          <tr><td><code>notFacingNorth()</code>, <code>notFacingEast()</code>, <code>notFacingSouth()</code>, <code>notFacingWest()</code></td><td>Karel faces a different direction.</td></tr>
+        </tbody></table></div>
+        <p>Wall sensors are relative to Karel's current direction. In Java, negate a condition with <code>!</code> or combine them with <code>&amp;&amp;</code> and <code>||</code>; use the opposite sensor names when they make the intent clearer.</p>
+      </section>
     <section id="controle"><p class="kicker">06 · Flow</p><h2>Decisions and loops</h2><p>The Java reference uses <code>if</code>, <code>if/else</code>, <code>while</code>, and <code>for</code> to respond to world conditions and repeat actions.</p><pre class="manual-code"><code>if (frontIsClear()) {
     move();
 } else {
@@ -72,6 +86,50 @@ public class MarkDestination extends SuperKarel {
         }
     }
 }</code></pre></section>
-    <section id="fontes"><p class="kicker">10 · Further reading</p><h2>References</h2><ul><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Stanford Karel Reader, Java version</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Reference for commands, conditions, and program structure</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/original.pdf">Original Karel introductory book</a> about the robot's world and the educational purpose of the project.</li></ul></section>
+          <section id="superkarel"><p class="kicker">10 · Additional features</p><h2>SuperKarel features</h2>
+        <p><code>SuperKarel</code> adds actions to the robot's base commands. They are available only when the program class extends <code>SuperKarel</code>; the base reference has fewer commands.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Additional SuperKarel commands" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Command</th><th scope="col">Action</th></tr></thead><tbody>
+            <tr><td><code>turnRight()</code></td><td>Turns 90 degrees to the right.</td></tr><tr><td><code>turnAround()</code></td><td>Turns 180 degrees.</td></tr>
+            <tr><td><code>random(p)</code></td><td>Returns a random boolean choice using the given probability.</td></tr>
+            <tr><td><code>paintCorner(color)</code></td><td>Paints the current corner.</td></tr>
+          </tbody></table></div>
+        <p>These calls follow Java rules: arguments go in parentheses and statements end with semicolons. The colors accepted by <code>paintCorner</code> depend on the Stanford library used by the project.</p>
+      </section>
+      <section id="estrategias"><p class="kicker">11 · Safe repetition</p><h2>Loops, boundaries, and off-by-one errors</h2>
+        <p>Use <code>for</code> when the number of steps is known. Use <code>while</code> when the robot must respond to the world, such as moving until a wall. A <code>while</code> condition is checked before its body, which may run zero times.</p>
+        <pre class="manual-code"><code>while (frontIsClear()) {
+    if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+        putBeeper();
+    }
+    move();
+}
+if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+    putBeeper();
+}</code></pre>
+        <p>The check inside the loop covers each corner before moving; the final check covers the corner where Karel stops. Confusing the number of corners with the number of moves causes a common off-by-one error.</p>
+        <p>Every loop needs a reachable stopping condition. In a sensor loop, each iteration must change position, direction, or beepers so the condition can change.</p>
+      </section>
+      <section id="decomposicao"><p class="kicker">12 · Planning</p><h2>Decomposition and contracts</h2>
+        <p>Before writing commands, describe the initial state and the expected result: where Karel starts, which way it faces, which walls exist, and how many beepers are available. Split the solution into named actions that express an intention.</p>
+        <p>A private method without parameters works like a new instruction. For each method, consider its precondition — what must be true before the call — and postcondition — what it guarantees when it returns. One method's result must satisfy what the next method expects.</p>
+        <pre class="manual-code"><code>private void moveToWall() {
+    while (frontIsClear()) {
+        move();
+    }
+}
+
+public void run() {
+    moveToWall();
+    turnAround();
+}</code></pre>
+        <p>This method leaves Karel at the farthest corner ahead, still facing the wall. Stating that result makes the sequence easier to reuse and review.</p>
+      </section>
+      <section id="testes"><p class="kicker">13 · Verification</p><h2>Test more than one world</h2>
+        <p>A correct solution must respect the world state, not only work in the scenario used while writing it. Vary grid size, wall positions, starting direction, and beeper placement.</p>
+        <ul><li>Test a minimal grid and a corridor with only one move available.</li><li>Test a wall directly ahead at the start.</li><li>Test corners with and without beepers, and an empty bag when the task allows it.</li><li>Check final position, direction, walls, and beeper count.</li></ul>
+        <p>Trying to cross a wall, pick up a missing beeper, or place one with an empty bag causes an error in that world. Use sensors to guard actions that depend on these conditions.</p>
+      </section>
+<section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Stanford Karel Reader, Java version</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Reference for commands, conditions, and program structure</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/original.pdf">Original Karel introductory book</a> about the robot's world and the educational purpose of the project.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

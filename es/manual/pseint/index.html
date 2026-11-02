@@ -4,9 +4,9 @@ lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/pseint/"
 title: "PSeInt | Manual de Potoo IDE"
-description: "Referencia de PSeInt: algoritmos, variables, operadores, entrada y salida, decisiones, bucles, subprocesos y arreglos."
+description: "Referencia de PSeInt: algoritmos, tipos, operadores, funciones integradas, decisiones, bucles, arreglos, subprocesos y perfiles."
 og_title: "Referencia de PSeInt"
-og_description: "Consulta las construcciones de pseudocódigo documentadas por PSeInt."
+og_description: "Consulta estructuras, funciones y perfiles del pseudocódigo documentado por PSeInt."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -23,7 +23,9 @@ body_class: manual-page
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
     <aside class="manual-toc" aria-label="Contenido de la referencia de PSeInt"><h2>En esta referencia</h2><ol>
-      <li><a href="#sobre">Sobre PSeInt</a></li><li><a href="#estructura">Estructura del algoritmo</a></li><li><a href="#datos">Variables y tipos</a></li><li><a href="#operadores">Operadores y funciones</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Decisiones</a></li><li><a href="#repeticoes">Bucles</a></li><li><a href="#vetores">Arreglos y matrices</a></li><li><a href="#subprogramas">Subprocesos</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#fontes">Referencias</a></li>
+      <li><a href="#sobre">Sobre PSeInt</a></li><li><a href="#estructura">Estructura del algoritmo</a></li><li><a href="#datos">Variables y tipos</a></li><li><a href="#operadores">Operadores y funciones</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Decisiones</a></li><li><a href="#repeticoes">Bucles</a></li><li><a href="#vetores">Arreglos y matrices</a></li><li><a href="#subprogramas">Subprocesos</a></li><li><a href="#exemplo">Ejemplo completo</a></li>        <li><a href="#funciones-integradas">Funciones integradas</a></li><li><a href="#perfiles">Perfiles y variantes</a></li>
+        <li><a href="#verificacion">Pruebas y seguimiento</a></li>
+<li><a href="#fontes">Referencias</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visión general</p><h2>Sobre PSeInt</h2><p>PSeInt es un entorno educativo para escribir y ejecutar algoritmos en pseudocódigo. Su referencia oficial describe instrucciones en español y perfiles con reglas más flexibles o más estrictas.</p><p>El entorno también puede mostrar algoritmos como diagramas de flujo, para seguir secuencias, decisiones y repeticiones junto con las instrucciones.</p></section>
@@ -73,18 +75,18 @@ FinPara
 Repetir
     Leer clave
 Hasta Que clave = "fin"</code></pre><p>Comprueba que la condición de salida pueda alcanzarse para evitar ciclos infinitos.</p></section>
-      <section id="vetores"><p class="kicker">08 · Colecciones</p><h2>Arreglos y matrices</h2><p><code>Dimension</code> declara un arreglo con uno o más índices. El acceso usa paréntesis y posiciones numéricas; los límites válidos dependen de la dimensión y el perfil seleccionado.</p><pre class="manual-code"><code>Definir notas Como Real
-Dimension notas(5)
-Para i &lt;- 1 Hasta 5 Hacer
-    Leer notas(i)
+      <section id="vetores"><p class="kicker">08 · Colecciones</p><h2>Arreglos y matrices</h2><p><code>Dimension</code> declara un arreglo o una matriz. La notación y el índice inicial dependen del perfil activo; no se deben suponer sus límites. En este ejemplo, el arreglo tiene cinco posiciones numeradas de 0 a 4:</p><pre class="manual-code"><code>Definir notas Como Real
+Dimension notas[5]
+Para i &lt;- 0 Hasta 4 Hacer
+    Leer notas[i]
 FinPara
-Escribir "Primera nota: ", notas(1)</code></pre><p>Dos dimensiones representan una matriz. Los arreglos también pueden pasarse a subprocesos cuando la firma y el perfil seleccionado aceptan esa forma.</p></section>
-      <section id="subprogramas"><p class="kicker">09 · Reutilización</p><h2>Subprocesos</h2><p><code>SubProceso</code> define una rutina reutilizable. Una función declara el valor que devuelve en el encabezado; una rutina sin resultado solo recibe parámetros y ejecuta instrucciones. El cuerpo termina en <code>FinSubProceso</code>.</p><pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
+Escribir "Primera nota: ", notas[0]</code></pre><p>Una segunda dimensión crea una matriz y exige un índice por dimensión. Antes de acceder a una posición, comprueba el tamaño y los límites definidos por el perfil. Los arreglos también pueden recibirse en subprocesos según la firma que acepte el perfil.</p></section>
+      <section id="subprogramas"><p class="kicker">09 · Reutilización</p><h2>Subprocesos</h2><p><code>SubProceso</code> define una rutina reutilizable. Si devuelve un valor, el encabezado nombra la variable que recibe el resultado; si no, la rutina ejecuta acciones sin producirlo. La llamada usa el nombre y los argumentos entre paréntesis. Los parámetros pueden ser de entrada o, cuando el perfil admite esta forma, por referencia para devolver cambios a quien llamó.</p><pre class="manual-code"><code>SubProceso resultado &lt;- Doble(numero)
     resultado &lt;- numero * 2
 FinSubProceso
 Proceso Principal
     Escribir Doble(6)
-FinProceso</code></pre><p>Según la firma y el perfil, los parámetros también pueden modificarse para devolver resultados. Mantén clara la diferencia entre datos de entrada y salida.</p></section>
+FinProceso</code></pre><p>Las variables locales quedan restringidas a la rutina. La referencia incluye llamadas recursivas, como calcular una potencia, y el paso de arreglos como argumento. Prefiere el paso por valor para cálculos que no deben cambiar la variable original; usa la referencia solo cuando la rutina realmente necesite devolver una modificación.</p></section>
       <section id="exemplo"><p class="kicker">10 · Ejemplo integrado</p><h2>Promedio y resultado</h2><pre class="manual-code"><code>Proceso Promedio
     Definir a, b, c, media Como Real
     Escribir "Ingresa tres notas:"
@@ -96,7 +98,57 @@ FinProceso</code></pre><p>Según la firma y el perfil, los parámetros también 
         Escribir "Sigue practicando: ", media
     FinSi
 FinProceso</code></pre></section>
-      <section id="fontes"><p class="kicker">11 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://pseint.sourceforge.net/">Sitio oficial de PSeInt</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referencia oficial de pseudocódigo</a>, con estructura, operadores, funciones y reglas léxicas.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Ejemplos oficiales</a> con pseudocódigo y diagramas de flujo.</li><li>Las reglas pueden variar según el perfil elegido; consulta la ayuda integrada de la misma versión.</li></ul></section>
+      <section id="funciones-integradas"><p class="kicker">11 · Biblioteca matemática</p><h2>Funciones integradas</h2>
+        <p>Las funciones de la tabla forman parte de la referencia básica publicada por PSeInt. Sus argumentos se escriben entre paréntesis; el resultado puede asignarse, mostrarse o combinarse con otra expresión.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Funciones integradas de PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Forma</th><th scope="col">Resultado</th></tr></thead><tbody>
+            <tr><td><code>RC(x)</code></td><td>Raíz cuadrada.</td></tr><tr><td><code>ABS(x)</code></td><td>Valor absoluto.</td></tr>
+            <tr><td><code>LN(x)</code>, <code>EXP(x)</code></td><td>Logaritmo natural y función exponencial.</td></tr>
+            <tr><td><code>SEN(x)</code>, <code>COS(x)</code>, <code>ATAN(x)</code></td><td>Funciones trigonométricas.</td></tr>
+            <tr><td><code>TRUNC(x)</code>, <code>REDON(x)</code></td><td>Parte entera y entero más cercano.</td></tr>
+            <tr><td><code>AZAR(n)</code></td><td>Entero aleatorio de <code>0</code> a <code>n - 1</code>.</td></tr>
+            <tr><td><code>Longitud(texto)</code></td><td>Cantidad de caracteres.</td></tr>
+            <tr><td><code>SubCadena(texto, inicio, fin)</code></td><td>Fragmento entre las posiciones indicadas.</td></tr>
+            <tr><td><code>Concatenar(a, b)</code></td><td>Une dos cadenas de caracteres.</td></tr>
+            <tr><td><code>Mayusculas(texto)</code>, <code>Minusculas(texto)</code></td><td>Convierte las letras a mayúsculas o minúsculas.</td></tr>
+          </tbody></table></div>
+        <pre class="manual-code"><code>Definir radio, area Como Real
+radio &lt;- 3
+area &lt;- 3.14159 * radio ^ 2
+Escribir "Área: ", REDON(area)
+Escribir "Dado: ", AZAR(6) + 1</code></pre>
+        <pre class="manual-code"><code>Definir frase, minuscula Como Caracter
+frase &lt;- "Hola, Potoo!"
+minuscula &lt;- Minusculas(frase)
+Escribir "Caracteres: ", Longitud(minuscula)
+Escribir "Inicio: ", SubCadena(minuscula, 1, 3)
+Escribir Concatenar("Texto: ", minuscula)</code></pre>
+        <p>Comprueba el dominio de cada función matemática. Las operaciones con cadenas dependen del perfil que las habilita; este ejemplo usa índices desde 1, así que ajusta <code>SubCadena</code> al perfil activo.</p>
+      </section>
+      <section id="perfiles"><p class="kicker">12 · Variantes de escritura</p><h2>Perfiles y variantes</h2>
+        <p>El perfil seleccionado determina qué formas de escritura acepta el intérprete. PSeInt puede exigir la forma estructurada original, admitir variantes flexibles o aplicar opciones intermedias configuradas por la institución o el docente.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Variaciones entre perfiles de PSeInt" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Aspecto</th><th scope="col">Qué puede variar</th><th scope="col">Recomendación</th></tr></thead><tbody>
+            <tr><td>Inicio y cierre</td><td><code>Proceso / FinProceso</code> o formas alternativas como <code>Algoritmo / FinAlgoritmo</code>.</td><td>Usar una pareja coherente.</td></tr>
+            <tr><td>Declaraciones</td><td>El perfil puede exigir <code>Definir</code> o permitir inferencia de tipos.</td><td>Declarar los datos explícitamente al aprender.</td></tr>
+            <tr><td>Separadores</td><td>Punto y coma obligatorio o separación por líneas.</td><td>Seguir un solo estilo en todo el algoritmo.</td></tr>
+            <tr><td>Arreglos</td><td>Notación de dimensión e índice inicial.</td><td>Comprobar los límites en el perfil activo.</td></tr>
+            <tr><td>Bucles</td><td><code>Para i &lt;- ...</code> o <code>Para Cada Elemento de Lista</code>.</td><td>Usar la forma disponible en el perfil elegido.</td></tr>
+            <tr><td>Condiciones</td><td>Operadores como <code>&gt;</code> o formas descriptivas como <code>Es Mayor Que</code>.</td><td>No mezclar formas de perfiles distintos.</td></tr>
+          </tbody></table></div>
+        <p>Por eso, un ejemplo válido en un perfil puede necesitar cambios en otro. Si una clase o material entrega un perfil, ese perfil es la referencia para los nombres, tipos y sintaxis del ejercicio.</p>
+      </section>
+      <section id="verificacion"><p class="kicker">13 · Resolución de problemas</p><h2>Pruebas y seguimiento</h2>
+        <p>Antes de ejecutar, identifica qué datos recibe el algoritmo, qué resultado debe producir y qué condiciones pueden cambiar su recorrido. Luego prueba con valores sencillos cuyo resultado puedas calcular por separado.</p>
+        <ul>
+          <li>Prueba el caso habitual y los límites, como cero, un único elemento o la cantidad máxima prevista.</li>
+          <li>En cada repetición, observa la condición, el contador y las variables que cambian.</li>
+          <li>En los arreglos, comprueba que cada índice esté dentro de la dimensión declarada.</li>
+          <li>En una función, compara los argumentos con el valor devuelto y revisa cada camino de retorno.</li>
+        </ul>
+        <p>El intérprete permite seguir la ejecución paso a paso y contrastarla con el diagrama de flujo. La traza ayuda a encontrar el momento en que una variable deja de tener el valor esperado; no reemplaza la selección de buenos casos de prueba.</p>
+      </section>
+<section id="fontes"><p class="kicker">14 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://pseint.sourceforge.net/">Sitio oficial de PSeInt</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Referencia oficial de pseudocódigo</a>, con estructura, operadores, funciones y reglas léxicas.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Ejemplos oficiales</a> con pseudocódigo y diagramas de flujo.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Ejemplo oficial de operaciones con cadenas</a>; requiere habilitarlas en el perfil.</li><li>Las reglas pueden variar según el perfil elegido; consulta la ayuda integrada de la misma versión.</li></ul></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

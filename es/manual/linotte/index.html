@@ -4,9 +4,9 @@ lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/linotte/"
 title: "Linotte | Manual de Potoo IDE"
-description: "Referencia de Linotte: sintaxis en francés, variables, tipos, entrada y salida, operadores, condiciones, bucles, funciones y colecciones."
+description: "Referencia de Linotte: sintaxis en francés, actores, colecciones, funciones, matemáticas, especies y recursos gráficos del Atelier."
 og_title: "Referencia de Linotte"
-og_description: "Consulta la sintaxis y los recursos educativos de Linotte."
+og_description: "Consulta las construcciones de Linotte, sus colecciones, funciones y recursos del Atelier."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -17,9 +17,12 @@ translations:
 body_class: manual-page
 ---
 <main id="conteudo">
-  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Referencia · Linotte</p><h1>Linotte</h1><p class="manual-intro">Esta página presenta las construcciones centrales de Linotte a partir del repositorio oficial y sus ejemplos introductorios. Los términos de sintaxis se mantienen en francés, como en el material original; las explicaciones en español muestran cómo leerlos.</p><p class="manual-meta"><span><b>Referencia</b> Linotte</span><span><b>Sintaxis</b> Francés</span></p></div></section>
+  <section class="manual-hero" id="inicio"><div class="wrap"><p class="kicker">Referencia · Linotte</p><h1>Linotte</h1><p class="manual-intro">Esta referencia amplía la sintaxis y los recursos documentados para Linotte 3.x: actores y roles, expresiones, colecciones, funciones, especies, eventos y herramientas del Atelier. Los términos de código permanecen en francés; las explicaciones muestran cómo interpretar cada construcción sin traducir la sintaxis.</p><p class="manual-meta"><span><b>Referencia</b> Linotte</span><span><b>Sintaxis</b> Francés</span></p></div></section>
   <div class="manual-body"><div class="wrap manual-layout"><aside class="manual-toc" aria-label="Contenido de la referencia de Linotte"><h2>En esta referencia</h2><ol>
-    <li><a href="#sobre">Sobre Linotte</a></li><li><a href="#estrutura">Programa y comentarios</a></li><li><a href="#dados">Variables y valores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#operadores">Operadores y matemáticas</a></li><li><a href="#condicoes">Condiciones</a></li><li><a href="#repeticoes">Repeticiones</a></li><li><a href="#funcoes">Funciones</a></li><li><a href="#colecoes">Colecciones y extensiones</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#fontes">Referencias</a></li>
+    <li><a href="#sobre">Sobre Linotte</a></li><li><a href="#estrutura">Programa y comentarios</a></li><li><a href="#dados">Variables y valores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#operadores">Operadores y matemáticas</a></li><li><a href="#condicoes">Condiciones</a></li><li><a href="#repeticoes">Repeticiones</a></li><li><a href="#funcoes">Funciones</a></li><li><a href="#colecoes">Colecciones y extensiones</a></li><li><a href="#exemplo">Ejemplo completo</a></li>      <li><a href="#casier-avance">Colecciones y recorridos</a></li><li><a href="#atajos">Atajos e interpolación</a></li>
+      <li><a href="#biblioteca">Funciones integradas</a></li><li><a href="#especies">Especies y prototipos</a></li>
+      <li><a href="#ambiente">Eventos y recursos del Atelier</a></li><li><a href="#depuracion">Errores y depuración</a></li>
+      <li><a href="#fontes">Referencias</a></li>
   </ol></aside><article class="manual-content">
     <section id="sobre"><p class="kicker">01 · Visión general</p><h2>Sobre Linotte</h2><p>Linotte es un proyecto educativo cuya sintaxis utiliza palabras y frases en francés. El proyecto oficial presenta un entorno para aprender fundamentos de programación y mantiene ejemplos de variables, interacción, condiciones, repeticiones, cálculos y funciones.</p><p>El código de esta referencia se conserva en francés para poder compararlo con los archivos originales. Traducir palabras como <code>affiche</code>, <code>prend</code> o <code>ferme</code> cambiaría la sintaxis.</p></section>
     <section id="estrutura"><p class="kicker">02 · Organización</p><h2>Programa y comentarios</h2><p>Un programa Linotte se escribe como un conjunto de instrucciones en el archivo del proyecto. Los ejemplos iniciales no necesitan un bloque externo que envuelva todo el programa. Las instrucciones pueden ocupar una línea; los bloques de varias líneas terminan con <code>ferme</code>.</p><p>Los comentarios de línea comienzan con <code>//</code>. Los comentarios de varias líneas se escriben entre <code>/*</code> y <code>*/</code>.</p><pre class="manual-code"><code>affiche "Bonjour !"
@@ -90,6 +93,74 @@ pour compteur de 1 à limite
         affiche compteur + " est impair"
     ferme
 ferme</code></pre><p>Este ejemplo combina declaración, entrada, repetición y decisión. Las palabras de sintaxis permanecen en francés.</p></section>
-    <section id="fontes"><p class="kicker">11 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://github.com/cpc6128/LangageLinotte">Repositorio oficial de Linotte</a>.</li><li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Ejemplos oficiales</a> de variables, entrada, condiciones, bucles, matemáticas y funciones.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Wiki del proyecto</a> y <a href="http://langagelinotte.free.fr">sitio oficial</a>.</li></ul></section>
+          <section id="casier-avance"><p class="kicker">11 · Colecciones</p><h2>Colecciones y recorridos</h2>
+        <p>Un <code>casier</code> agrupa valores y permite recorrerlos sin repetir instrucciones. Los ejemplos oficiales empiezan los índices en cero: para tres elementos, las posiciones son <code>0</code>, <code>1</code> y <code>2</code>. Las llaves leen una posición; <code>ajoute</code> incorpora un valor a otra colección.</p>
+        <pre class="manual-code"><code>nombres est un casier de textes valant "Lia", "Caio", "Noa"
+indice est un nombre
+pour indice de 0 à 2
+    affiche nombres{indice}
+ferme
+
+pour chaque nombres
+    affiche joker
+ferme</code></pre>
+        <p>En <code>pour chaque</code>, <code>joker</code> representa el elemento de la iteración actual, por lo que no es necesario calcular el último índice.</p>
+      </section>
+      <section id="atajos"><p class="kicker">12 · Escritura compacta</p><h2>Atajos e interpolación</h2>
+        <p>El tutorial oficial documenta atajos para mostrar, solicitar y asignar valores. La interpolación inserta el valor de un actor en un texto entre llaves.</p>
+        <pre class="manual-code"><code>prénom est un texte
+prénom ?                    // solicita el valor
+"Bonjour, {prénom} !" !     // muestra texto interpolado
+prénom = "Jules"            // forma abreviada de prend
+"Bonjour, " & prénom !</code></pre>
+        <p><code>&amp;</code> puede agrupar acciones o valores y <code>§</code> puede reemplazar <code>ferme</code> en ciertas formas abreviadas. Para estudiar la estructura, empieza por las instrucciones completas.</p>
+      </section>
+      <section id="biblioteca"><p class="kicker">13 · Operaciones disponibles</p><h2>Funciones integradas</h2>
+        <p>Linotte incluye operaciones matemáticas y métodos para consultar o transformar texto. Algunas funciones usan notación prefija; los métodos de texto aparecen después del valor y llevan punto y paréntesis.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Operaciones de Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas documentadas</th><th scope="col">Uso</th></tr></thead><tbody>
+          <tr><td>Matemáticas</td><td><code>carré</code>, <code>cube</code>, <code>racine</code>, <code>abs</code>, <code>arrondi</code>, <code>puiss</code>, <code>mod</code></td><td>Potencias, raíz, valor absoluto, redondeo y resto.</td></tr>
+          <tr><td>Trigonometría</td><td><code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code></td><td>Funciones trigonométricas.</td></tr>
+          <tr><td>Texto</td><td><code>inverser()</code>, <code>minuscule()</code>, <code>majuscule()</code>, <code>capitaliser()</code>, <code>remplacer()</code></td><td>Transformar o sustituir texto.</td></tr>
+          <tr><td>Consulta</td><td><code>taille()</code>, <code>position()</code>, <code>extraire()</code></td><td>Medir, localizar y extraer fragmentos.</td></tr>
+        </tbody></table></div>
+        <pre class="manual-code"><code>phrase prend "Bonjour la Terre"
+affiche phrase.majuscule()
+affiche phrase.remplacer("Terre", "Lune")
+affiche phrase.taille()</code></pre>
+        <p><code>et</code>, <code>ou</code> y <code>xou</code> aparecen como operaciones lógicas en los ejemplos; consulta la referencia original para la forma concreta de cada llamada.</p>
+      </section>
+      <section id="especies"><p class="kicker">14 · Modelado</p><h2>Especies y prototipos</h2>
+        <p>Una <code>espèce</code> define un tipo propio de actor con atributos. La declaración indica el papel de cada atributo; al crear un actor se le asignan valores. Los ejemplos acceden a ellos como <code>atributo de actor</code> o <code>atributo@actor</code>.</p>
+        <pre class="manual-code"><code>espèces
+    nom &amp; famille est un texte
+    pattes est un nombre
+    espèce animal contient nom, famille, pattes
+
+principal :
+    chat est un animal, nom prend "Mimi", famille prend "félin", pattes prend 4
+    affiche nom de chat
+    affiche famille@chat</code></pre>
+        <p>Una especie puede heredar de otra y añadir atributos. El Atelier también permite asociar funciones a prototipos; esos recursos amplían el modelo básico de datos.</p>
+        <pre class="manual-code"><code>espèces
+    couleur est un texte
+    espèce fleur hérite de point et contient couleur</code></pre>
+      </section>
+      <section id="ambiente"><p class="kicker">15 · Recursos del Atelier</p><h2>Eventos, gráficos y tareas</h2>
+        <p>El Atelier ofrece objetos gráficos como <code>toile</code>, <code>cercle</code>, <code>rectangle</code>, <code>image</code> y <code>graffiti</code>, además de eventos del ratón y tareas iniciadas con <code>appelle</code> y sincronizadas con <code>observe</code>. Estos recursos dependen del entorno y no son necesarios para los algoritmos de texto.</p>
+        <pre class="manual-code"><code>alarme :
+    attends 2 secondes
+    affiche "Temps écoulé."
+    reviens
+
+appelle alarme
+observe alarme</code></pre>
+        <p>Los tipos de eventos incluyen clic, doble clic y entrada o salida del puntero. Consulta el proyecto original para los atributos gráficos y las reglas de ejecución de tareas.</p>
+      </section>
+      <section id="depuracion"><p class="kicker">16 · Diagnóstico</p><h2>Errores y depuración</h2>
+        <p>El tutorial presenta <code>essaie</code> con una alternativa <code>sinon</code> para responder a errores de ejecución, y <code>débogue</code> para iniciar el seguimiento paso a paso en el Atelier.</p>
+        <ul><li>Lee el error e identifica la instrucción activa.</li><li>Avanza paso a paso y observa los actores usados en cada cálculo.</li><li>Comprueba que los bucles cambian el estado y alcanzan su condición de salida.</li><li>Prueba colecciones vacías, un elemento y los límites de los índices.</li></ul>
+        <p>La forma y disponibilidad de estas herramientas dependen del Atelier Linotte; la referencia describe el entorno original.</p>
+      </section>
+<section id="fontes"><p class="kicker">17 · Lectura adicional</p><h2>Referencias</h2><ul><li><a href="https://github.com/cpc6128/LangageLinotte">Repositorio oficial de Linotte</a>.</li><li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Ejemplos oficiales</a> de variables, entrada, condiciones, bucles, matemáticas y funciones.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Wiki del proyecto</a> y <a href="http://langagelinotte.free.fr">sitio oficial</a>.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

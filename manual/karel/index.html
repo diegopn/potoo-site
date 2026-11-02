@@ -19,7 +19,7 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência · Karel the Robot</p><h1>Karel the Robot</h1>
-    <p class="manual-intro">Esta página documenta a referência Java de Karel mantida pela Stanford. Karel aparece em várias implementações educacionais; os nomes de comandos e as regras podem variar entre elas. Os exemplos abaixo usam a sintaxe e os recursos descritos pelo material Java da Stanford.</p>
+    <p class="manual-intro">Esta referência detalha o modelo Java de Karel usado no material da Stanford: mundo em grade, estado do robô, comandos, sensores, estruturas de controle, métodos e técnicas para planejar e testar soluções. Outras implementações podem ter regras diferentes.</p>
     <p class="manual-meta"><span><b>Referência</b> Stanford Karel</span><span><b>Sintaxe</b> Java</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -28,7 +28,9 @@ body_class: manual-page
       <li><a href="#programa">Estrutura do programa</a></li><li><a href="#comandos">Comandos básicos</a></li>
       <li><a href="#sensores">Sensores e condições</a></li><li><a href="#controle">Decisões e repetições</a></li>
       <li><a href="#metodos">Métodos próprios</a></li><li><a href="#dados">Estado e dados</a></li>
-      <li><a href="#exemplo">Exemplo completo</a></li><li><a href="#fontes">Referências</a></li>
+      <li><a href="#exemplo">Exemplo completo</a></li>      <li><a href="#superkarel">Recursos de SuperKarel</a></li><li><a href="#estrategias">Laços e limites</a></li>
+      <li><a href="#decomposicao">Decomposição e contratos</a></li><li><a href="#testes">Testes de cenários</a></li>
+<li><a href="#fontes">Referências</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Karel</h2>
@@ -70,16 +72,18 @@ public class ExemploKarel extends SuperKarel {
         <p>Os comandos primitivos são chamados com parênteses vazios e ponto e vírgula. As ações de beeper dependem do conteúdo da esquina e da bolsa do robô.</p>
       </section>
       <section id="sensores"><p class="kicker">05 · Observação</p><h2>Sensores e condições</h2>
-        <p>Karel não recebe o mapa inteiro como um valor. Ele consulta condições locais para decidir o que fazer.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Condições de Karel" tabindex="0"><table class="manual-table">
-          <thead><tr><th scope="col">Condição</th><th scope="col">É verdadeira quando</th></tr></thead><tbody>
-            <tr><td><code>frontIsClear()</code></td><td>Não há parede imediatamente à frente.</td></tr>
-            <tr><td><code>leftIsClear()</code>, <code>rightIsClear()</code></td><td>O caminho indicado está livre.</td></tr>
-            <tr><td><code>beepersPresent()</code></td><td>Há pelo menos um beeper na esquina atual.</td></tr>
-            <tr><td><code>noBeepersPresent()</code></td><td>Não há beeper na esquina atual.</td></tr>
-            <tr><td><code>facingNorth()</code>, <code>facingEast()</code>, <code>facingSouth()</code>, <code>facingWest()</code></td><td>O robô aponta para a direção indicada.</td></tr>
+        <p>Karel consulta condições do entorno imediato; ele não recebe o mapa inteiro como um valor. Cada sensor devolve um valor lógico que pode ser usado em <code>if</code>, <code>while</code> e expressões booleanas.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Sensores de Karel" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Sensor</th><th scope="col">Verdadeiro quando</th></tr></thead><tbody>
+            <tr><td><code>frontIsClear()</code> / <code>frontIsBlocked()</code></td><td>Não há / há uma parede à frente.</td></tr>
+            <tr><td><code>leftIsClear()</code> / <code>leftIsBlocked()</code></td><td>O caminho à esquerda está livre / bloqueado.</td></tr>
+            <tr><td><code>rightIsClear()</code> / <code>rightIsBlocked()</code></td><td>O caminho à direita está livre / bloqueado.</td></tr>
+            <tr><td><code>beepersPresent()</code> / <code>noBeepersPresent()</code></td><td>Há / não há beepers na esquina atual.</td></tr>
+            <tr><td><code>beepersInBag()</code> / <code>noBeepersInBag()</code></td><td>A bolsa contém / não contém beepers.</td></tr>
+            <tr><td><code>facingNorth()</code>, <code>facingEast()</code>, <code>facingSouth()</code>, <code>facingWest()</code></td><td>Karel aponta para a direção indicada.</td></tr>
+            <tr><td><code>notFacingNorth()</code>, <code>notFacingEast()</code>, <code>notFacingSouth()</code>, <code>notFacingWest()</code></td><td>Karel não aponta para a direção indicada.</td></tr>
           </tbody></table></div>
-        <p>As condições aparecem entre parênteses em expressões Java e podem ser combinadas com operadores booleanos do Java.</p>
+        <p>Os sensores de parede referem-se à direção atual do robô. Em Java, condições podem ser negadas com <code>!</code> ou combinadas com <code>&amp;&amp;</code> e <code>||</code>; use os nomes opostos da tabela quando isso deixar a intenção mais clara.</p>
       </section>
       <section id="controle"><p class="kicker">06 · Fluxo</p><h2>Decisões e repetições</h2>
         <p>A referência Java usa as estruturas <code>if</code>, <code>if/else</code>, <code>while</code> e <code>for</code>. Elas permitem reagir às condições do mundo e repetir uma sequência de ações.</p>
@@ -138,7 +142,57 @@ public class MarcarDestino extends SuperKarel {
     }
 }</code></pre>
       </section>
-      <section id="fontes"><p class="kicker">10 · Leitura adicional</p><h2>Referências</h2>
+            <section id="superkarel"><p class="kicker">10 · Recursos adicionais</p><h2>Recursos de SuperKarel</h2>
+        <p><code>SuperKarel</code> acrescenta ações à base do robô. Elas só estão disponíveis quando a classe do programa herda de <code>SuperKarel</code>; a referência base oferece menos comandos.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Comandos adicionais de SuperKarel" tabindex="0"><table class="manual-table">
+          <thead><tr><th scope="col">Comando</th><th scope="col">Ação</th></tr></thead><tbody>
+            <tr><td><code>turnRight()</code></td><td>Gira 90 graus para a direita.</td></tr>
+            <tr><td><code>turnAround()</code></td><td>Gira 180 graus.</td></tr>
+            <tr><td><code>random(p)</code></td><td>Retorna uma escolha lógica aleatória com probabilidade especificada.</td></tr>
+            <tr><td><code>paintCorner(color)</code></td><td>Pinta a esquina atual com uma cor.</td></tr>
+          </tbody></table></div>
+        <p>Essas chamadas seguem as regras Java: recebem argumentos entre parênteses e terminam com ponto e vírgula. O conjunto de cores aceito por <code>paintCorner</code> depende da biblioteca da Stanford usada no projeto.</p>
+      </section>
+      <section id="estrategias"><p class="kicker">11 · Repetição com segurança</p><h2>Laços, limites e erro de uma posição</h2>
+        <p><code>for</code> é adequado quando a quantidade de passos é conhecida. <code>while</code> é adequado quando o robô deve reagir ao mundo, como avançar até uma parede. A condição de um <code>while</code> é verificada antes do corpo, então o corpo pode não executar nenhuma vez.</p>
+        <pre class="manual-code"><code>while (frontIsClear()) {
+    if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+        putBeeper();
+    }
+    move();
+}
+if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+    putBeeper();
+}</code></pre>
+        <p>O teste dentro do laço cobre cada esquina antes do movimento; a verificação final cobre a esquina onde Karel para. Essa diferença entre quantas esquinas existem e quantas vezes o robô consegue avançar é a origem comum do erro de uma posição.</p>
+        <p>Todo laço precisa de uma condição de parada que possa ser alcançada. Em laços de sensores, cada volta deve mudar a posição, a orientação ou os beepers de modo que o teste possa mudar.</p>
+      </section>
+      <section id="decomposicao"><p class="kicker">12 · Planejamento</p><h2>Decomposição e contratos</h2>
+        <p>Antes de escrever comandos, descreva o estado inicial e o resultado esperado: onde Karel começa, para que lado olha, quais paredes existem e quantos beepers estão disponíveis. Divida a solução em ações nomeadas que expressem uma intenção, como <code>moveToWall()</code> ou <code>turnAround()</code>.</p>
+        <p>Um método privado sem parâmetros funciona como uma instrução nova. Para cada método, registre mentalmente a precondição — o que deve ser verdade antes da chamada — e a pós-condição — o que o método garante ao terminar. A saída de um método precisa satisfazer o que o próximo método espera.</p>
+        <pre class="manual-code"><code>private void moveToWall() {
+    while (frontIsClear()) {
+        move();
+    }
+}
+
+public void run() {
+    moveToWall();
+    turnAround();
+}</code></pre>
+        <p>Esse método deixa Karel na esquina mais distante em frente a ele, ainda voltado para a parede. Explicitar esse resultado facilita reutilizar e revisar a sequência.</p>
+      </section>
+      <section id="testes"><p class="kicker">13 · Verificação</p><h2>Testar mais de um cenário</h2>
+        <p>Uma solução correta deve respeitar o estado do mundo, e não apenas funcionar no cenário usado para escrevê-la. Varie o tamanho da grade, a posição das paredes, a orientação inicial e a presença de beepers.</p>
+        <ul>
+          <li>Teste uma grade mínima e um corredor com apenas uma esquina de avanço.</li>
+          <li>Teste o caso em que a parede já está à frente no início.</li>
+          <li>Teste esquinas com e sem beepers e a bolsa vazia quando a tarefa permite isso.</li>
+          <li>Confira o estado final: posição, direção, paredes preservadas e quantidade de beepers.</li>
+        </ul>
+        <p>Uma tentativa inválida de atravessar uma parede, recolher um beeper ausente ou colocar um beeper sem estoque é erro do programa para aquele mundo. Sensores devem proteger as ações que dependem dessas condições.</p>
+      </section>
+<section id="fontes"><p class="kicker">14 · Leitura adicional</p><h2>Referências</h2>
         <ul>
           <li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Karel Reader da Stanford, versão Java</a>.</li>
           <li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Referência de comandos, condições e estrutura do programa</a>.</li>
