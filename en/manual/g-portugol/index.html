@@ -4,9 +4,9 @@ lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/g-portugol/"
 title: "G-Portugol | Potoo IDE Manual"
-description: "G-Portugol pseudolanguage reference: program structure, types, matrices, operators, input and output, control flow, and functions."
+description: "Complete G-Portugol pseudolanguage reference: structure, writing rules, types, operators, matrices, control flow, functions, the GPT tool, and differences from Portugol 2.0."
 og_title: "G-Portugol reference"
-og_description: "Read about the syntax, types, control structures, and functions documented for G-Portugol."
+og_description: "Read about the structure, types, operators, functions, and execution rules documented for G-Portugol."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -31,11 +31,12 @@ body_class: manual-page
       <li><a href="#repeticoes">Repetition</a></li><li><a href="#funcoes">Functions</a></li>
       <li><a href="#exemplo">Complete example</a></li><li><a href="#semantica">Behavior and limits</a></li>
       <li><a href="#gpt">The GPT program</a></li><li><a href="#fontes">References</a></li>
+      <li><a href="#comparacao">Differences from Portugol 2.0</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Overview</p><h2>About G-Portugol</h2>
         <p>G-Portugol organizes algorithms in Portuguese using explicit declarations, imperative statements, and delimited blocks. Its syntax brings together familiar forms from logic courses, such as <code>algoritmo</code>, <code>variáveis</code>, <code>início</code>, <code>se</code>, and <code>para</code>.</p>
-        <p>This page documents the pseudolanguage according to the manual maintained by the G-Portugol project. It keeps syntax rules separate from the GPT tool's commands and options, which have their own section.</p>
+        <p>This page documents the pseudolanguage according to the manual maintained by the G-Portugol project. It keeps syntax rules separate from the GPT tool's commands and options, which have their own section. The official reference also lists adapting vocabulary to teaching practices as a design goal; GPT does not document a mechanism for configuring those forms, so this page records the standard syntax published by the project.</p>
         <div class="manual-note"><strong>Scope:</strong> this reference describes syntax documented by the project. It does not mean that G-Portugol execution is already integrated into Potoo IDE.</div>
       </section>
       <section id="estrutura"><p class="kicker">02 · Organization</p><h2>Program structure</h2>
@@ -56,7 +57,7 @@ fim
 função dobro(valor:inteiro) : inteiro
     retorne valor * 2;
 fim</code></pre>
-        <p><code>algoritmo</code> requires an identifier and a semicolon. The main block starts with <code>início</code> and ends with <code>fim</code>; functions are declared after it. Simple statements end with a semicolon; blocks close with their own delimiter and no trailing semicolon. Indentation is optional, but it helps show the structure.</p>
+        <p><code>algoritmo</code> requires an identifier and a semicolon; that name identifies the algorithm in the file but does not change execution. The main block starts with <code>início</code> and ends with <code>fim</code>; functions are declared after it. Simple statements end with a semicolon; blocks close with their own delimiter and no trailing semicolon. Indentation is optional, but it helps show the structure. The main block can also return early with <code>retorne</code> followed by an integer, which acts as the exit code.</p>
       </section>
       <section id="lexico"><p class="kicker">03 · Writing</p><h2>Identifiers, comments, and literals</h2>
         <p>The pseudolanguage is case-sensitive. Reserved words must keep their defined spelling and accents, including <code>variáveis</code>, <code>início</code>, <code>então</code>, <code>faça</code>, and <code>função</code>. Identifiers — names for variables, algorithms, and functions — start with an ASCII letter (<code>A–Z</code> or <code>a–z</code>) or underscore and may continue with ASCII letters, digits, and underscores.</p>
@@ -75,8 +76,8 @@ início
     inicial := 'J';
     codigo := 0x2A;
 fim</code></pre>
-        <p>Documented reserved words include <code>algoritmo</code>, <code>variáveis</code>, <code>fim-variáveis</code>, <code>início</code>, <code>fim</code>, the five type names and their plural forms for matrices, <code>se</code>, <code>então</code>, <code>senão</code>, <code>fim-se</code>, <code>enquanto</code>, <code>faça</code>, <code>fim-enquanto</code>, <code>repita</code>, <code>até</code>, <code>para</code>, <code>de</code>, <code>passo</code>, <code>fim-para</code>, <code>função</code>, and <code>retorne</code>, as well as logical operators written as words.</p>
-        <p>Integers support decimal, hexadecimal (<code>0x</code>), octal (<code>0c</code>), and binary (<code>0b</code>) bases. Real numbers use a decimal point. Characters use single quotes and text uses double quotes; sequences such as <code>\n</code> represent special characters. A text literal occupies one physical line of source code.</p>
+        <p>The standard reserved words are <code>algoritmo</code>, <code>variáveis</code>, <code>fim-variáveis</code>, <code>início</code>, <code>fim</code>, <code>inteiro</code>, <code>real</code>, <code>caractere</code>, <code>literal</code>, <code>lógico</code>, <code>verdadeiro</code>, <code>falso</code>, <code>matriz</code>, <code>inteiros</code>, <code>reais</code>, <code>caracteres</code>, <code>literais</code>, <code>lógicos</code>, <code>se</code>, <code>então</code>, <code>senão</code>, <code>fim-se</code>, <code>enquanto</code>, <code>faça</code>, <code>fim-enquanto</code>, <code>repita</code>, <code>até</code>, <code>para</code>, <code>de</code>, <code>passo</code>, <code>fim-para</code>, <code>função</code>, <code>retorne</code>, <code>ou</code>, <code>e</code>, and <code>não</code>.</p>
+        <p>Integers accept decimal, hexadecimal (<code>0x</code>/<code>0X</code>), octal (<code>0c</code>/<code>0C</code>), and binary (<code>0b</code>/<code>0B</code>) bases. Real numbers use a decimal point with digits on both sides. Characters use single quotes; <code>''</code> represents the null character. Documented character escapes include <code>\n</code>, <code>\r</code>, and <code>\\</code>. Text uses double quotes, may contain escapes, and occupies one physical line of source code.</p>
       </section>
       <section id="dados"><p class="kicker">04 · Data</p><h2>Types and variables</h2>
         <p>The official manual documents five primitive types. A declaration lists one or more names, a colon, the type, and a semicolon.</p>
@@ -91,7 +92,7 @@ fim-variáveis</code></pre>
         <p>Declared variables start with a zero or null value, depending on the type. The syntax does not declare constants. User-defined compound types such as records are not documented.</p>
       </section>
       <section id="matrizes"><p class="kicker">05 · Collections</p><h2>Vectors and matrices</h2>
-        <p>Homogeneous collections use the word <code>matriz</code>, followed by one bracketed dimension for each axis, <code>de</code>, and the plural name of a primitive type. A single dimension forms a vector.</p>
+        <p>Homogeneous collections use the word <code>matriz</code>, followed by one bracketed dimension for each axis, <code>de</code>, and the plural name of a primitive type. Each dimension is a positive integer literal; a single dimension forms a vector.</p>
         <pre class="manual-code"><code>variáveis
     notas : matriz[5] de reais;
     tabuleiro : matriz[3][3] de caracteres;
@@ -102,10 +103,10 @@ início
     tabuleiro[1][2] := 'X';
     imprima(notas[0]);
 fim</code></pre>
-        <p>Indexes start at zero. Therefore, <code>matriz[5]</code> has positions <code>0</code> through <code>4</code>; accessing position <code>5</code> is out of bounds. Each element receives its type's default initial value. Matrices passed to functions are copied by value, according to the reference.</p>
+        <p>Indexes start at zero. Therefore, the vector <code>valores</code> declared with size <code>5</code> has positions <code>0</code> through <code>4</code>; accessing <code>valores[5]</code> is out of bounds. Each element receives its type's default initial value. Matrices passed to functions are copied by value, according to the reference.</p>
       </section>
       <section id="expressoes"><p class="kicker">06 · Expressions</p><h2>Assignment and operators</h2>
-        <p>Assignment uses <code>:=</code>. The left side can be a variable or a matrix position; the right side is an expression compatible with the destination type.</p>
+        <p>Assignment uses <code>:=</code>. The left side can be a primitive variable or an indexed matrix element; the right side is an expression compatible with the destination type. A whole matrix cannot be assigned or passed to <code>imprima</code> as one value.</p>
         <div class="manual-table-wrap" role="region" aria-label="G-Portugol operators and precedence" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Order</th><th scope="col">Operators</th><th scope="col">Operation</th></tr></thead><tbody>
           <tr><td>1 · lowest</td><td><code>ou</code>, <code>||</code></td><td>Logical OR.</td></tr><tr><td>2</td><td><code>e</code>, <code>&amp;&amp;</code></td><td>Logical AND.</td></tr><tr><td>3</td><td><code>|</code></td><td>Bitwise OR.</td></tr><tr><td>4</td><td><code>^</code></td><td>Bitwise exclusive OR.</td></tr><tr><td>5</td><td><code>&amp;</code></td><td>Bitwise AND.</td></tr><tr><td>6</td><td><code>=</code>, <code>&lt;&gt;</code></td><td>Equality and inequality.</td></tr><tr><td>7</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td><td>Relational comparisons.</td></tr><tr><td>8</td><td><code>+</code>, <code>-</code></td><td>Addition and subtraction.</td></tr><tr><td>9</td><td><code>*</code>, <code>/</code>, <code>%</code></td><td>Multiplication, division, and remainder.</td></tr><tr><td>10 · highest</td><td><code>+</code>, <code>-</code>, <code>~</code>, <code>não</code>, <code>()</code></td><td>Unary signs, bitwise NOT, logical NOT, and grouping.</td></tr>
         </tbody></table></div>
@@ -116,7 +117,7 @@ fim-se</code></pre>
         <p>The table follows the documented order, from lowest to highest precedence. Parentheses make the intended order explicit.</p>
       </section>
       <section id="entrada-saida"><p class="kicker">07 · Interaction</p><h2>Input and output</h2>
-        <p><code>leia()</code> reads one value from standard input and takes no arguments. The assignment context converts the value to the expected primitive type. <code>imprima()</code> accepts one or more primitive values, joins them in the given order, and writes the result to standard output followed by a line break.</p>
+        <p><code>leia()</code> takes no arguments: it reads a line from standard input through the line break and converts the contents to the primitive type expected by its context. It can appear alone on the right side of an assignment, in a condition, or in a matrix index; the reference does not allow combining it with other operands, as in <code>total := base + leia();</code>. <code>imprima()</code> accepts at least one primitive value, converts each value to text, concatenates them in order without separators, and appends a line break.</p>
         <pre class="manual-code"><code>algoritmo saudacao;
 variáveis
     nome : literal;
@@ -132,13 +133,13 @@ fim</code></pre>
         <p>Text cannot be implicitly continued across separate physical lines. To print values of different types together, pass them as separate arguments to <code>imprima</code>.</p>
       </section>
       <section id="condicoes"><p class="kicker">08 · Decisions</p><h2>Conditionals</h2>
-        <p><code>se</code> evaluates an expression and starts a block; <code>senão</code> is optional. Every conditional block ends with <code>fim-se</code>. Parentheses around the condition are optional.</p>
+        <p><code>se</code> evaluates an expression and starts a block; <code>senão</code> is optional. Every conditional block ends with <code>fim-se</code>. Parentheses around the condition are optional. The manual documents this as the pseudolanguage's selection structure; it does not describe a separate multi-branch selection statement.</p>
         <pre class="manual-code"><code>se nota &gt;= 7 então
     imprima("Aprovado");
 senão
     imprima("Precisa recuperar");
 fim-se</code></pre>
-        <p>Conditions accept logical expressions. The reference also describes value conversion: zero and empty text are false; nonzero numbers and nonempty text are true.</p>
+        <p>Any expression can be evaluated as a condition: zero, empty text, and the null character are false; nonzero numbers and nonempty text are true. Logical values are also written as <code>verdadeiro</code> and <code>falso</code>.</p>
       </section>
       <section id="repeticoes"><p class="kicker">09 · Repetition</p><h2>Loops</h2>
         <p>G-Portugol documents three repetition structures: <code>enquanto</code>, <code>repita</code>, and <code>para</code>. Each structure closes its block with a dedicated reserved word.</p>
@@ -195,17 +196,60 @@ fim</code></pre>
         <p>The example combines declarations, input, assignment, remainder, comparison, branching, and an inclusive loop.</p>
       </section>
       <section id="semantica"><p class="kicker">12 · Important rules</p><h2>Behavior and limits</h2>
-        <ul><li>Reserved words and identifiers are case-sensitive; accents are part of reserved words but are not accepted in identifiers.</li><li>Primitive types can form homogeneous vectors and matrices; compound types such as records and declared constants are not documented.</li><li><code>inteiro</code>, <code>real</code>, <code>lógico</code>, and <code>caractere</code> are compatible in numeric operations; <code>literal</code> does not take part in arithmetic. There is no explicit type conversion. Compatible numeric operands may be promoted implicitly; for example, <code>5 / 2</code> is integer division, while <code>5.0 / 2</code> produces a real result.</li><li>Equality comparisons between real values can vary because of numeric representation, especially across interpreted, compiled, and translated execution.</li><li>Text literals are compared with case sensitivity. The official reference defines ordering comparisons between literals by their character counts.</li><li>Matrix indexes start at zero; accessing an out-of-bounds position may cause a runtime error.</li></ul>
+        <ul><li>Reserved words and identifiers are case-sensitive; accents are part of reserved words but are not accepted in identifiers.</li><li>Primitive types can form homogeneous vectors and matrices with one or more dimensions. Matrices are initialized element by element and passed to functions by value; they cannot be assigned or returned as a whole.</li><li><code>inteiro</code>, <code>real</code>, <code>lógico</code>, and <code>caractere</code> are compatible in numeric operations; <code>literal</code> does not take part in arithmetic. There is no explicit type conversion. Compatible operands are promoted when no data is lost; assignment conversion can truncate a real assigned to an integer. For example, <code>5 / 2</code> is integer division, while <code>5.0 / 2</code> produces a real result.</li><li>Equality comparisons between real values can vary because of numeric representation, especially across interpreted, compiled, and translated execution.</li><li>Text literals are compared with case sensitivity. The official reference defines ordering comparisons between literals by their character counts.</li><li>Matrix indexes start at zero. GPT checks bounds in interpreted execution; the manual does not describe that check for other modes.</li><li>GPT provides two built-in input/output functions: <code>leia()</code> and <code>imprima(...)</code>. The reference does not document a dedicated statement for including standard libraries.</li></ul>
       </section>
       <section id="gpt"><p class="kicker">13 · Reference tool</p><h2>The GPT program</h2>
         <p>The official manual describes GPT as the project tool for analyzing and executing G-Portugol files. The options below belong to that program; they do not describe commands available in the Potoo IDE interface.</p>
         <div class="manual-table-wrap" role="region" aria-label="Documented options of the GPT program" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Option</th><th scope="col">Documented purpose</th></tr></thead><tbody>
           <tr><td><code>-i</code></td><td>Interprets and runs the algorithm.</td></tr><tr><td><code>-o file</code></td><td>Compiles and writes an executable.</td></tr><tr><td><code>-t file</code></td><td>Generates C source code.</td></tr><tr><td><code>-s file</code></td><td>Generates Assembly code.</td></tr><tr><td><code>-d</code></td><td>Adds hints to the error report.</td></tr><tr><td><code>-h</code></td><td>Shows the program help.</td></tr>
         </tbody></table></div>
-        <p>The manual limits executable generation with <code>-o</code> to 32-bit x86 machines; for other architectures, it describes generating C with <code>-t</code> and compiling that code with the system toolchain. The GPT reference expects equivalent results from interpretation, compilation, and translation.</p>
+        <p>The general form is <code>gpt [options] files...</code>. When several files are supplied, the first contains the algorithm declaration and main block; the remaining files provide supporting code and must not repeat the algorithm declaration, global variable block, or main block. The <code>GPT_INCLUDE</code> environment variable can also specify additional files; its paths are separated by <code>:</code> on Unix systems and <code>;</code> on Windows. The manual expects equivalent results from interpretation, compilation, and translation, except that matrix bounds are checked in interpreted mode. Executable generation with <code>-o</code> is limited to 32-bit x86 machines; for other architectures, the manual describes generating C with <code>-t</code> and compiling it with the system toolchain.</p>
       </section>
       <section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2>
-        <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Official G-Portugol manual</a>, with chapters on features, programming, syntax, the GPT tool, and grammar.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Programming chapter</a>, with examples of variables, matrices, control flow, functions, input, and output.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Official grammar</a>, with lexical rules and syntax productions.</li><li><a href="https://github.com/gportugol/gpt">Official project repository</a> and <a href="https://gportugol.github.io/">official website</a>.</li></ul>
+        <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Official G-Portugol manual</a>, with chapters on features, programming, syntax, the GPT tool, and grammar.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Programming chapter</a>, with examples of variables, matrices, control flow, functions, input, and output.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/implementacao.html">Implementation chapter</a>, explaining structure, expressions, assignments, functions, and input/output.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programa-gpt.html">GPT program manual</a>, with its execution, compilation, and translation options.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Official grammar</a>, with lexical rules and syntax productions.</li><li><a href="https://github.com/gportugol/gpt">Official project repository</a> and <a href="https://gportugol.github.io/">official website</a>.</li></ul>
+      </section>
+      <section id="comparacao"><p class="kicker">15 · Comparison</p><h2>Differences from Portugol 2.0</h2>
+        <p>G-Portugol and Portugol 2.0 are distinct pseudolanguages. They share the goal of expressing algorithms in Portuguese, but their programs are not interchangeable: their structure, reserved words, types, operators, and execution rules differ.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Differences between G-Portugol and Portugol 2.0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Aspect</th><th scope="col">G-Portugol</th><th scope="col">Portugol 2.0</th></tr></thead><tbody>
+          <tr><th scope="row">Structure</th><td><code>algoritmo name;</code>, a main block <code>início ... fim</code>, then function declarations.</td><td><code>programa { ... }</code> with an entry function named <code>funcao inicio()</code>.</td></tr>
+          <tr><th scope="row">Spelling</th><td>Reserved words include accents, such as <code>variáveis</code>, <code>início</code>, and <code>função</code>.</td><td>Keywords omit accents, such as <code>funcao</code>, <code>senao</code>, and <code>nao</code>.</td></tr>
+          <tr><th scope="row">Declarations and types</th><td><code>name : inteiro</code>; types include <code>inteiro</code>, <code>real</code>, <code>caractere</code>, <code>literal</code>, and <code>lógico</code>. <code>const</code> is not documented.</td><td><code>inteiro name</code>; it uses <code>caracter</code>, <code>cadeia</code>, <code>logico</code>, and <code>vazio</code>, and documents <code>const</code>.</td></tr>
+          <tr><th scope="row">Assignment and comparison</th><td><code>:=</code> assigns; <code>=</code> and <code>&lt;&gt;</code> compare.</td><td><code>=</code> assigns; <code>==</code> and <code>!=</code> compare. Compound assignments and <code>++</code>/<code>--</code> are also documented.</td></tr>
+          <tr><th scope="row">Arrays and matrices</th><td><code>matriz[rows][columns] de inteiros</code>; supports one or more dimensions and passes collections by value.</td><td><code>inteiro table[rows][columns]</code>; the reference documents vectors, two-dimensional matrices, initializers, and reference parameters with <code>&amp;</code>.</td></tr>
+          <tr><th scope="row">Control flow</th><td>Uses <code>fim-se</code>, <code>fim-enquanto</code>, <code>repita ... até</code>, and <code>para ... de ... até ... passo</code>; no multi-branch selection or loop interruption command is documented.</td><td>Uses brace-delimited blocks, <code>escolha/caso</code>, <code>faca ... enquanto</code>, a three-part <code>para</code> loop, and <code>pare</code>.</td></tr>
+          <tr><th scope="row">Functions</th><td><code>função dobro(valor:inteiro): inteiro</code>; parameters are passed by value, only primitive return values are supported, and functions cannot be nested.</td><td><code>funcao inteiro dobro(inteiro valor)</code>; <code>&amp;</code> can pass a parameter by reference and <code>vazio</code> marks a function with no return value.</td></tr>
+          <tr><th scope="row">Input and output</th><td><code>leia()</code> returns a value converted by context; <code>imprima(...)</code> concatenates values and appends a line break.</td><td><code>leia(variable)</code> stores input in a variable; <code>escreva(...)</code> does not append a line break automatically.</td></tr>
+          <tr><th scope="row">Libraries</th><td>Documents <code>leia</code> and <code>imprima</code> as built-in functions; no dedicated library-inclusion statement is documented.</td><td>Includes modules with <code>inclua biblioteca</code> and provides standard libraries such as <code>Matematica</code>, <code>Texto</code>, and <code>Tipos</code>.</td></tr>
+          <tr><th scope="row">Expressions</th><td>Any expression can be used as a condition; zero and empty values are false. Operator precedence is listed explicitly.</td><td>Conditions are documented with logical values; the grammar does not provide a complete precedence table, so parentheses make the intended order explicit.</td></tr>
+        </tbody></table></div>
+        <h3>The same exercise, in two syntaxes</h3>
+        <p>This example checks whether a number is even. The algorithm is the same; delimiters, operators, and input/output follow each pseudolanguage's rules.</p>
+        <p><strong>G-Portugol</strong></p><pre class="manual-code"><code>algoritmo paridade;
+variáveis
+    numero : inteiro;
+fim-variáveis
+início
+    imprima("Digite um inteiro:");
+    numero := leia();
+    se numero % 2 = 0 então
+        imprima("Par");
+    senão
+        imprima("Ímpar");
+    fim-se
+fim</code></pre>
+        <p><strong>Portugol 2.0</strong></p><pre class="manual-code"><code>programa {
+    funcao inicio() {
+        inteiro numero
+        escreva("Digite um inteiro: ")
+        leia(numero)
+        se (numero % 2 == 0) {
+            escreva("Par\n")
+        } senao {
+            escreva("Ímpar\n")
+        }
+    }
+}</code></pre>
+        <p>For each pseudolanguage's full reference, see <a href="{{ '/en/manual/portugol/' | relative_url }}">Portugol 2.0</a> and the <a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">official G-Portugol rules</a>.</p>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
