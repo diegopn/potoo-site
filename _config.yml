@@ -13,6 +13,14 @@ application:
     pt-BR: "Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens."
     es: "Proyecto de IDE de escritorio en desarrollo para aprender y enseñar lógica de programación con pseudolenguajes."
     en: "Desktop IDE project in development for learning and teaching programming logic with pseudocode."
+author:
+  name: "Diego Pereira do Nascimento"
+  url: "https://diegopn.github.io/"
+  same_as:
+    - "https://www.linkedin.com/in/diegopn/"
+    - "https://orcid.org/0009-0008-6487-9890"
+    - "https://lattes.cnpq.br/7591623955074344"
+    - "https://github.com/diegopn"
 url: "https://diegopn.github.io"
 baseurl: "/potoo-site"
 default_lang: pt-BR

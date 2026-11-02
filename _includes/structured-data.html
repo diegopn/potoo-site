@@ -3,6 +3,7 @@
 {%- assign schema_website_id = schema_site_url | append: "#website" -%}
 {%- assign schema_webpage_id = schema_page_url | append: "#webpage" -%}
 {%- assign schema_software_id = schema_site_url | append: "#software" -%}
+{%- assign schema_author_id = site.author.url | append: "#person" -%}
 {%- assign schema_article_id = schema_page_url | append: "#article" -%}
 {%- assign schema_language = page.lang | default: site.default_lang -%}
 {%- assign schema_language_config = site.languages | where: "code", schema_language | first -%}
@@ -50,6 +51,13 @@
       "softwareHelp": { "@id": {{ schema_manual_page_id | jsonify }} }
     }{% if schema_is_manual %},
     {
+      "@type": "Person",
+      "@id": {{ schema_author_id | jsonify }},
+      "name": {{ site.author.name | jsonify }},
+      "url": {{ site.author.url | jsonify }},
+      "sameAs": {{ site.author.same_as | jsonify }}
+    },
+    {
       "@type": "TechArticle",
       "@id": {{ schema_article_id | jsonify }},
       "url": {{ schema_page_url | jsonify }},
@@ -61,6 +69,7 @@
         "caption": {{ schema_image_alt | jsonify }}
       },
       "inLanguage": {{ schema_language | jsonify }},
+      "author": { "@id": {{ schema_author_id | jsonify }} },
       "about": { "@id": {{ schema_software_id | jsonify }} },
       "mainEntityOfPage": { "@id": {{ schema_webpage_id | jsonify }} }
     }{% endif %},
