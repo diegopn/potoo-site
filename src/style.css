@@ -364,6 +364,7 @@ img, svg { max-width: 100%; }
   color: var(--mint);
 }
 .section-heading { max-width: 760px; margin-bottom: 43px; }
+.language-heading { max-width: 520px; }
 .section-heading h2, .split-heading h2, .manual-cta h2 {
   margin: 0;
   color: var(--ink-deep);
