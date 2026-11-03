@@ -4,9 +4,9 @@ lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/"
 title: "Potoo IDE manual"
-description: "Potoo IDE manual: learn about the editor and current support for Portugol 2.0, VisuAlg, G-Portugol and Potigol."
+description: "Potoo IDE manual: learn about the editor, the Portugol family and the Potigol programming language."
 og_title: "Potoo IDE manual"
-og_description: "See how to use Potoo IDE and which pseudolanguages the app already runs."
+og_description: "See how to use Potoo IDE, its Portugol family pseudolanguages and the Potigol programming language."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -21,7 +21,7 @@ body_class: manual-page
       <div class="wrap">
         <p class="kicker">Product guide · in development</p>
         <h1>Potoo IDE manual</h1>
-        <p class="manual-intro">This guide introduces Potoo IDE, its available features, and what is still in development. The project is at an early stage and already runs pseudolanguages from the Portugol family and Potigol.</p>
+        <p class="manual-intro">This guide introduces Potoo IDE, its available features, and what is still in development. The project is at an early stage and already runs pseudolanguages from the Portugol family and the Potigol programming language.</p>
         <p class="manual-meta">
           <span><b>Project</b> Potoo IDE</span>
           <span><b>Status</b> In development</span>
@@ -37,7 +37,7 @@ body_class: manual-page
           <li><a href="#sobre">What is Potoo IDE?</a></li>
           <li><a href="#estado">Current status</a></li>
           <li><a href="#fluxo">Using the app</a></li>
-          <li><a href="#linguagens">Pseudolanguages</a></li>
+          <li><a href="#linguagens">Languages and pseudolanguages</a></li>
           <li><a href="#recursos">App features</a></li>
           <li><a href="#desenvolvimento">Development</a></li>
           <li><a href="#ficha">Project details</a></li>
@@ -49,16 +49,16 @@ body_class: manual-page
         <section id="sobre">
           <p class="kicker">01 · Overview</p>
           <h2>What is Potoo IDE?</h2>
-          <p>Potoo IDE is a desktop environment for students and teachers learning and teaching programming logic through pseudolanguages. The app already brings together an editor, projects and algorithm execution.</p>
-          <p>The project is at an early stage: it already supports the Portugol family and Potigol, while compatibility and teaching features continue to evolve.</p>
+          <p>Potoo IDE is a desktop environment for students and teachers learning and teaching programming logic with Portugol family pseudolanguages and the Potigol programming language. The app already brings together an editor, projects and algorithm execution.</p>
+          <p>The project is at an early stage: it already supports the Portugol family and the Potigol programming language, while compatibility and teaching features continue to evolve.</p>
           <div class="manual-note"><strong>How to read this manual:</strong> “Planned” marks a product goal. “Available” describes something that exists in the current application foundation.</div>
         </section>
 
         <section id="estado">
           <p class="kicker">02 · Current status</p>
           <h2>What exists today</h2>
-          <p>Potoo IDE already lets you create and edit projects and run algorithms in Portugol 2.0, VisuAlg, G-Portugol and Potigol. All four pseudolanguages can be selected in the app.</p>
-          <p>Compatibility is still being developed; command and feature coverage can vary between pseudolanguages.</p>
+          <p>Potoo IDE already lets you create and edit projects and run algorithms in Portugol Studio 2.0, VisuAlg, G-Portugol and Potigol. All four options are available in the app: three Portugol family pseudolanguages and the Potigol programming language.</p>
+          <p>Compatibility is still being developed; command and feature coverage can vary across the Portugol variants and the Potigol programming language.</p>
           <div class="manual-note planned"><strong>In development:</strong> the project continues to expand compatibility and improve learning support.</div>
         </section>
 
@@ -67,27 +67,27 @@ body_class: manual-page
           <h2>How to create and run an algorithm</h2>
           <p>The basic workflow is already available in the app:</p>
           <ol>
-            <li>Create a project and choose an available pseudolanguage.</li>
+            <li>Create a project and choose an available language or variant.</li>
             <li>Write and arrange the algorithm in the editor.</li>
             <li>Run the program and provide any requested input.</li>
             <li>Review the output, diagnostics and available debugging features.</li>
           </ol>
-          <p>Diagnostic and debugging coverage varies by pseudolanguage and continues to improve.</p>
+          <p>Diagnostic and debugging coverage varies by language or variant and continues to improve.</p>
         </section>
 
         <section id="linguagens">
-          <p class="kicker">04 · Pseudolanguages</p>
+          <p class="kicker">04 · Languages and pseudolanguages</p>
           <h2>Portugol and Potigol are already available</h2>
-          <p>Portugol is a family of educational pseudolanguages written in Portuguese, with no single syntax. Potoo IDE already runs the Portugol 2.0, VisuAlg and G-Portugol variants, each with its own rules; programs in one variant are not automatically compatible with the others. The app also runs Potigol, a separate pseudolanguage.</p>
+          <p>Portugol is a family of educational pseudolanguages written in Portuguese, with no single syntax. Potoo IDE already runs the Portugol Studio 2.0, VisuAlg and G-Portugol variants, each with its own rules; programs in one variant are not automatically compatible with the others. The app also runs Potigol, an educational programming language independent of the Portugol family.</p>
           <h3>Portugol family references</h3>
           <ul class="manual-list">
-            <li><span><strong>Portugol 2.0:</strong> structure, types, operators, control flow, arrays, functions and libraries.<br><a href="{{ '/en/manual/portugol/' | relative_url }}">Read the complete Portugol 2.0 reference</a>.</span></li>
+            <li><span><strong>Portugol Studio 2.0:</strong> structure, types, operators, control flow, arrays, functions and libraries.<br><a href="{{ '/en/manual/portugol/' | relative_url }}">Read the complete Portugol Studio 2.0 reference</a>.</span></li>
             <li><span><strong>VisuAlg:</strong> structure, types, operators, vectors, subprograms, functions and teaching commands.<br><a href="{{ '/en/manual/visualg/' | relative_url }}">Read the complete VisuAlg reference</a>.</span></li>
             <li><span><strong>G-Portugol:</strong> structure, types, matrices, operators, input and output, control flow, and functions.<br><a href="{{ '/en/manual/g-portugol/' | relative_url }}">Read the complete G-Portugol reference</a>.</span></li>
           </ul>
           <h3>Potigol</h3>
           <ul class="manual-list">
-            <li><span><strong>Potigol:</strong> syntax, types, collections, math and functional operations, pattern matching, and the Jerimum game library. Potoo IDE supports a subset of its graphics and audio features.<br><a href="{{ '/en/manual/potigol/' | relative_url }}">Read the Potigol reference</a>.</span></li>
+            <li><span><strong>Potigol programming language:</strong> syntax, types, collections, math and functional operations, pattern matching, and the Jerimum game library. Potoo IDE supports a subset of its graphics and audio features.<br><a href="{{ '/en/manual/potigol/' | relative_url }}">Read the Potigol reference</a>.</span></li>
           </ul>
           <h3>Other documented references</h3>
           <ul class="manual-list">
@@ -102,18 +102,18 @@ body_class: manual-page
           <p class="kicker">05 · App features</p>
           <h2>What you can do today</h2>
           <ul class="manual-list">
-            <li><span><strong>Pseudocode editor:</strong> create and edit algorithm files within projects.</span></li>
+            <li><span><strong>Program editor:</strong> create and edit program files within projects.</span></li>
             <li><span><strong>Execution:</strong> run algorithms, respond to interactive input and view output.</span></li>
             <li><span><strong>Diagnostics:</strong> messages tied to the source of code issues.</span></li>
-            <li><span><strong>Debugging:</strong> follow program execution with the controls available for each pseudolanguage.</span></li>
+            <li><span><strong>Debugging:</strong> follow program execution with the controls available for each language or variant.</span></li>
           </ul>
-          <div class="manual-note"><strong>Compatibility:</strong> support is in development and varies across Portugol 2.0, VisuAlg, G-Portugol and Potigol.</div>
+          <div class="manual-note"><strong>Compatibility:</strong> support is in development and varies across the Portugol variants and the Potigol programming language.</div>
         </section>
 
         <section id="desenvolvimento">
           <p class="kicker">06 · Development</p>
           <h2>How to follow the project</h2>
-          <p>Potoo IDE already includes an editor and execution for Portugol 2.0, VisuAlg, G-Portugol and Potigol. Development continues to expand compatibility and improve learning features.</p>
+          <p>Potoo IDE already includes an editor and execution for Portugol Studio 2.0, VisuAlg, G-Portugol and Potigol. Development continues to expand compatibility and improve learning features.</p>
           <p>No release date has been announced. This page describes the current known state and can be updated as the application progresses.</p>
         </section>
 
@@ -123,7 +123,7 @@ body_class: manual-page
           <dl class="manual-facts">
             <div><dt>Type</dt><dd>Desktop IDE for learning logic</dd></div>
             <div><dt>Audience</dt><dd>Students and teachers</dd></div>
-            <div><dt>Available pseudolanguages</dt><dd>Portugol family (Portugol 2.0, VisuAlg and G-Portugol) and Potigol</dd></div>
+            <div><dt>Available languages and pseudolanguages</dt><dd>Portugol family (Portugol Studio 2.0, VisuAlg and G-Portugol) and the Potigol programming language</dd></div>
             <div><dt>Foundation technologies</dt><dd>Rust · GTK 4 · Relm4</dd></div>
             <div><dt>License</dt><dd><a href="https://github.com/diegopn/potoo-ide/blob/main/LICENSE">GNU GPL v3 or later (GPL-3.0-or-later)</a></dd></div>
           </dl>
@@ -132,15 +132,15 @@ body_class: manual-page
         <section class="faq" id="perguntas">
           <p class="kicker">08 · FAQ</p>
           <h2>Common questions</h2>
-          <details><summary>Can I write programs in Potoo IDE yet?</summary><p>Yes. You can create and edit projects and run algorithms in Portugol 2.0, VisuAlg, G-Portugol and Potigol. The app is still in development, and compatibility varies by pseudolanguage.</p></details>
-          <details><summary>Which pseudolanguages does the app run?</summary><p>Potoo IDE runs Portugol 2.0, VisuAlg and G-Portugol, variants in the Portugol family, as well as Potigol. PSeInt, Linotte, C0 (Simplified C) and Karel the Robot remain under evaluation.</p></details>
+          <details><summary>Can I write programs in Potoo IDE yet?</summary><p>Yes. You can create and edit projects and run algorithms in Portugol Studio 2.0, VisuAlg, G-Portugol and Potigol. The app is still in development, and compatibility varies by language or variant.</p></details>
+          <details><summary>Which languages and pseudolanguages does the app run?</summary><p>Potoo IDE runs Portugol Studio 2.0, VisuAlg and G-Portugol, variants in the Portugol family, as well as the Potigol programming language. PSeInt, Linotte, C0 (Simplified C) and Karel the Robot remain under evaluation.</p></details>
           <details><summary>When will the app be ready?</summary><p>The project is still in development and has no announced release date.</p></details>
         </section>
       </article>
     </div>
 
     <section class="wrap manual-cta">
-      <div><h2>Explore the project</h2><p>See the available pseudolanguages and follow development on the home page.</p></div>
+      <div><h2>Explore the project</h2><p>See the available languages and pseudolanguages and follow development on the home page.</p></div>
       <a class="button" href="{{ page.home_path | relative_url }}#inicio">Go to the home page <span aria-hidden="true">↗</span></a>
     </section>
     </div>

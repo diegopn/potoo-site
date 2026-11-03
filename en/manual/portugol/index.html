@@ -3,10 +3,10 @@ layout: default
 lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/portugol/"
-title: "Portugol 2.0 | Potoo IDE Manual"
-description: "A broad reference for the Portugol 2.0 pseudolanguage: program structure, types, operators, control flow, arrays, functions and libraries."
-og_title: "Portugol 2.0 reference"
-og_description: "Explore the syntax and standard libraries of the Portugol 2.0 pseudolanguage."
+title: "Portugol Studio 2.0 | Potoo IDE Manual"
+description: "A broad reference for the Portugol Studio 2.0 pseudolanguage: program structure, types, operators, control flow, arrays, functions and libraries."
+og_title: "Portugol Studio 2.0 reference"
+og_description: "Explore the syntax and standard libraries of the Portugol Studio 2.0 pseudolanguage."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -19,10 +19,10 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio">
     <div class="wrap">
-      <p class="kicker">Pseudolanguage reference · Portugol 2.0</p>
-      <h1>Portugol 2.0</h1>
-      <p class="manual-intro">This page documents the Portugol 2.0 pseudolanguage using the public grammar, lexer, and references that describe it.</p>
-      <p class="manual-meta"><span><b>Pseudolanguage</b> Portugol 2.0</span></p>
+      <p class="kicker">Pseudolanguage reference · Portugol Studio 2.0</p>
+      <h1>Portugol Studio 2.0</h1>
+      <p class="manual-intro">This page documents the Portugol Studio 2.0 pseudolanguage using the public grammar, lexer, and references that describe it.</p>
+      <p class="manual-meta"><span><b>Pseudolanguage</b> Portugol Studio 2.0</span></p>
     </div>
   </section>
 
@@ -31,7 +31,7 @@ body_class: manual-page
       <aside class="manual-toc" aria-label="Contents of the Portugol reference">
         <h2>In this reference</h2>
         <ol>
-          <li><a href="#sobre">About Portugol 2.0</a></li>
+          <li><a href="#sobre">About Portugol Studio 2.0</a></li>
           <li><a href="#estrutura">Program structure</a></li>
           <li><a href="#lexico">Names, comments and literals</a></li>
           <li><a href="#tipos">Types and declarations</a></li>
@@ -49,7 +49,7 @@ body_class: manual-page
       </aside>
 
       <article class="manual-content">
-        <section id="sobre"><p class="kicker">01 · Scope</p><h2>About Portugol 2.0</h2><p><strong>Portugol</strong> is a name used for several pseudolanguages. This page covers Portugol 2.0 specifically; its rules do not define one universal standard for every pseudolanguage called Portugol.</p><p>The rules presented here describe the Portugol 2.0 pseudolanguage and follow the sources listed at the end of this reference.</p></section>
+        <section id="sobre"><p class="kicker">01 · Scope</p><h2>About Portugol Studio 2.0</h2><p><strong>Portugol</strong> is a name used for several pseudolanguages. This page covers Portugol Studio 2.0 specifically; its rules do not define one universal standard for every pseudolanguage called Portugol.</p><p>The rules presented here describe the Portugol Studio 2.0 pseudolanguage and follow the sources listed at the end of this reference.</p></section>
 
         <section id="estrutura">
           <p class="kicker">02 · Organization</p>
@@ -90,7 +90,7 @@ logico aprovado = verdadeiro</code></pre>
         <section id="tipos">
           <p class="kicker">04 · Data</p>
           <h2>Types, variables and constants</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage types" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio 2.0 pseudolanguage types" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Type</th><th scope="col">Use</th></tr></thead>
               <tbody>
@@ -115,7 +115,7 @@ logico concluiu = falso</code></pre>
         <section id="operadores">
           <p class="kicker">05 · Expressions</p>
           <h2>Operators and precedence</h2>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage operators" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio 2.0 pseudolanguage operators" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Group</th><th scope="col">Operators</th><th scope="col">Meaning</th></tr></thead>
               <tbody>
@@ -171,7 +171,7 @@ escolha (opcao) {
         <section id="repeticao">
           <p class="kicker">08 · Loops</p>
           <h2>Repetition</h2>
-          <p>Portugol 2.0 defines conditional loops and a loop with initialization, condition and increment fields:</p>
+          <p>Portugol Studio 2.0 defines conditional loops and a loop with initialization, condition and increment fields:</p>
           <pre class="manual-code"><code>inteiro contador = 1
 enquanto (contador <= 3) {
     escreva(contador, "\n")
@@ -225,9 +225,9 @@ funcao inicio() {
 
         <section id="bibliotecas">
           <p class="kicker">11 · Standard resources</p>
-          <h2>Portugol 2.0 libraries</h2>
+          <h2>Portugol Studio 2.0 libraries</h2>
           <p>Include a library with <code>inclua biblioteca Name</code>; an alias may follow <code>--&gt;</code>. Calls use the name or alias followed by a period. The table summarizes the pseudolanguage modules documented in the sources for this reference; class documentation lists signatures, parameters and constants.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Portugol 2.0 pseudolanguage libraries" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Portugol Studio 2.0 pseudolanguage libraries" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Library</th><th scope="col">Reference features</th></tr></thead>
               <tbody>
@@ -252,7 +252,7 @@ funcao inicio() {
 funcao inicio() {
     escreva(mat.potencia(2, 3), "\n")
 }</code></pre>
-          <p>The libraries belong to the Portugol 2.0 reference environment; not every library fits every interpreter or execution context.</p>
+          <p>The libraries belong to the Portugol Studio 2.0 reference environment; not every library fits every interpreter or execution context.</p>
           <h3>Signatures and results</h3>
           <p>The calls below use the <code>mat</code> alias from the previous example. Functions return values that can be assigned to variables or combined in expressions.</p>
           <div class="manual-table-wrap" role="region" aria-label="Signatures for the Matematica, Texto, Tipos and Util libraries" tabindex="0">
@@ -336,10 +336,10 @@ funcao inicio() {
 
         <section id="fontes">
           <p class="kicker">14 · Further reading</p>
-          <h2>Portugol 2.0 pseudolanguage references</h2>
-          <p>Portugol 2.0 originates from Portugol Studio. That project appears in this section only as a source for the references used to document the pseudolanguage.</p>
+          <h2>Portugol Studio 2.0 pseudolanguage references</h2>
+          <p>Portugol Studio 2.0 originates from Portugol Studio. That project appears in this section only as a source for the references used to document the pseudolanguage.</p>
           <ul>
-            <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the pseudolanguage as Portugol 2.0.</li>
+            <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the pseudolanguage as Portugol Studio 2.0.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">official grammar</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">official lexer</a>.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">official input/output help</a>, including the <code>\n</code> newline escape, and its <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">semantic analyzer</a>, which lists predefined functions.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Standard library source code</a> and documented functions; see <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a> directly.</li>

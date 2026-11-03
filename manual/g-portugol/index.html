@@ -4,7 +4,7 @@ lang: "pt-BR"
 page_kind: "manual"
 permalink: "/manual/g-portugol/"
 title: "G-Portugol | Manual do Potoo IDE"
-description: "Referência completa da pseudolinguagem G-Portugol: estrutura, escrita, tipos, operadores, matrizes, controle de fluxo, funções, ferramenta GPT e diferenças para Portugol 2.0."
+description: "Referência completa da pseudolinguagem G-Portugol: estrutura, escrita, tipos, operadores, matrizes, controle de fluxo, funções, ferramenta GPT e diferenças para Portugol Studio 2.0."
 og_title: "Referência de G-Portugol"
 og_description: "Consulte a estrutura, os tipos, os operadores, as funções e as regras de execução documentadas para G-Portugol."
 og_type: "article"
@@ -31,7 +31,7 @@ body_class: manual-page
       <li><a href="#repeticoes">Repetições</a></li><li><a href="#funcoes">Funções</a></li>
       <li><a href="#exemplo">Exemplo completo</a></li><li><a href="#semantica">Comportamento e limites</a></li>
       <li><a href="#gpt">Programa GPT</a></li><li><a href="#fontes">Referências</a></li>
-      <li><a href="#comparacao">Diferenças para Portugol 2.0</a></li>
+      <li><a href="#comparacao">Diferenças para Portugol Studio 2.0</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre G-Portugol</h2>
@@ -208,9 +208,9 @@ fim</code></pre>
       <section id="fontes"><p class="kicker">14 · Leitura complementar</p><h2>Referências</h2>
         <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Manual oficial do G-Portugol</a>, com capítulos de características, programação, sintaxe, ferramenta GPT e gramática.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Capítulo de programação</a>, com exemplos de variáveis, matrizes, controle de fluxo, funções e entrada e saída.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/implementacao.html">Capítulo de implementação</a>, que explica as decisões de estrutura, expressões, atribuições, funções e entrada e saída.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programa-gpt.html">Manual do programa GPT</a>, com as opções de execução, compilação e tradução.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Gramática oficial</a>, com regras léxicas e produções sintáticas.</li><li><a href="https://github.com/gportugol/gpt">Repositório oficial do projeto</a> e <a href="https://gportugol.github.io/">site oficial</a>.</li></ul>
       </section>
-      <section id="comparacao"><p class="kicker">15 · Comparação</p><h2>Diferenças para Portugol 2.0</h2>
-        <p>G-Portugol e Portugol 2.0 são pseudolinguagens distintas. Elas compartilham o objetivo de expressar algoritmos em português, mas seus programas não são intercambiáveis: estrutura, palavras reservadas, tipos, operadores e regras de execução diferem.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Diferenças entre G-Portugol e Portugol 2.0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Aspecto</th><th scope="col">G-Portugol</th><th scope="col">Portugol 2.0</th></tr></thead><tbody>
+      <section id="comparacao"><p class="kicker">15 · Comparação</p><h2>Diferenças para Portugol Studio 2.0</h2>
+        <p>G-Portugol e Portugol Studio 2.0 são pseudolinguagens distintas. Elas compartilham o objetivo de expressar algoritmos em português, mas seus programas não são intercambiáveis: estrutura, palavras reservadas, tipos, operadores e regras de execução diferem.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Diferenças entre G-Portugol e Portugol Studio 2.0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Aspecto</th><th scope="col">G-Portugol</th><th scope="col">Portugol Studio 2.0</th></tr></thead><tbody>
           <tr><th scope="row">Estrutura</th><td><code>algoritmo nome;</code>, bloco principal <code>início ... fim</code> e funções depois dele.</td><td><code>programa { ... }</code> com a função de entrada <code>funcao inicio()</code>.</td></tr>
           <tr><th scope="row">Escrita</th><td>Palavras reservadas com acentos, como <code>variáveis</code>, <code>início</code> e <code>função</code>.</td><td>Palavras-chave sem acentos, como <code>funcao</code>, <code>senao</code> e <code>nao</code>.</td></tr>
           <tr><th scope="row">Declarações e tipos</th><td><code>nome : inteiro</code>; tipos <code>inteiro</code>, <code>real</code>, <code>caractere</code>, <code>literal</code> e <code>lógico</code>. Não documenta <code>const</code>.</td><td><code>inteiro nome</code>; usa <code>caracter</code>, <code>cadeia</code>, <code>logico</code> e <code>vazio</code>, além de declarações com <code>const</code>.</td></tr>
@@ -237,7 +237,7 @@ início
         imprima("Ímpar");
     fim-se
 fim</code></pre>
-        <p><strong>Portugol 2.0</strong></p><pre class="manual-code"><code>programa {
+        <p><strong>Portugol Studio 2.0</strong></p><pre class="manual-code"><code>programa {
     funcao inicio() {
         inteiro numero
         escreva("Digite um inteiro: ")
@@ -249,7 +249,7 @@ fim</code></pre>
         }
     }
 }</code></pre>
-        <p>Para consultar cada pseudolinguagem em detalhe, veja a <a href="{{ '/manual/portugol/' | relative_url }}">referência de Portugol 2.0</a> e as <a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">regras oficiais de G-Portugol</a>.</p>
+        <p>Para consultar cada pseudolinguagem em detalhe, veja a <a href="{{ '/manual/portugol/' | relative_url }}">referência de Portugol Studio 2.0</a> e as <a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">regras oficiais de G-Portugol</a>.</p>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>

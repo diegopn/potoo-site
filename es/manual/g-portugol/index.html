@@ -4,7 +4,7 @@ lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/g-portugol/"
 title: "G-Portugol | Manual de Potoo IDE"
-description: "Referencia completa del pseudolenguaje G-Portugol: estructura, escritura, tipos, operadores, matrices, control de flujo, funciones, herramienta GPT y diferencias con Portugol 2.0."
+description: "Referencia completa del pseudolenguaje G-Portugol: estructura, escritura, tipos, operadores, matrices, control de flujo, funciones, herramienta GPT y diferencias con Portugol Studio 2.0."
 og_title: "Referencia de G-Portugol"
 og_description: "Consulta la estructura, los tipos, los operadores, las funciones y las reglas de ejecución documentadas para G-Portugol."
 og_type: "article"
@@ -31,7 +31,7 @@ body_class: manual-page
       <li><a href="#repeticoes">Repeticiones</a></li><li><a href="#funcoes">Funciones</a></li>
       <li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#semantica">Comportamiento y límites</a></li>
       <li><a href="#gpt">Programa GPT</a></li><li><a href="#fontes">Referencias</a></li>
-      <li><a href="#comparacao">Diferencias con Portugol 2.0</a></li>
+      <li><a href="#comparacao">Diferencias con Portugol Studio 2.0</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visión general</p><h2>Sobre G-Portugol</h2>
@@ -208,9 +208,9 @@ fim</code></pre>
       <section id="fontes"><p class="kicker">14 · Lectura complementaria</p><h2>Referencias</h2>
         <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Manual oficial de G-Portugol</a>, con capítulos sobre características, programación, sintaxis, la herramienta GPT y la gramática.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Capítulo de programación</a>, con ejemplos de variables, matrices, control de flujo, funciones y entrada y salida.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/implementacao.html">Capítulo de implementación</a>, que explica la estructura, las expresiones, las asignaciones, las funciones y la entrada y salida.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programa-gpt.html">Manual del programa GPT</a>, con sus opciones de ejecución, compilación y traducción.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Gramática oficial</a>, con reglas léxicas y producciones sintácticas.</li><li><a href="https://github.com/gportugol/gpt">Repositorio oficial del proyecto</a> y <a href="https://gportugol.github.io/">sitio oficial</a>.</li></ul>
       </section>
-      <section id="comparacao"><p class="kicker">15 · Comparación</p><h2>Diferencias con Portugol 2.0</h2>
-        <p>G-Portugol y Portugol 2.0 son pseudolenguajes distintos. Comparten el objetivo de expresar algoritmos en portugués, pero sus programas no son intercambiables: difieren en la estructura, las palabras reservadas, los tipos, los operadores y las reglas de ejecución.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Diferencias entre G-Portugol y Portugol 2.0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Aspecto</th><th scope="col">G-Portugol</th><th scope="col">Portugol 2.0</th></tr></thead><tbody>
+      <section id="comparacao"><p class="kicker">15 · Comparación</p><h2>Diferencias con Portugol Studio 2.0</h2>
+        <p>G-Portugol y Portugol Studio 2.0 son pseudolenguajes distintos. Comparten el objetivo de expresar algoritmos en portugués, pero sus programas no son intercambiables: difieren en la estructura, las palabras reservadas, los tipos, los operadores y las reglas de ejecución.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Diferencias entre G-Portugol y Portugol Studio 2.0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Aspecto</th><th scope="col">G-Portugol</th><th scope="col">Portugol Studio 2.0</th></tr></thead><tbody>
           <tr><th scope="row">Estructura</th><td><code>algoritmo nombre;</code>, bloque principal <code>início ... fim</code> y funciones después.</td><td><code>programa { ... }</code> con la función de entrada <code>funcao inicio()</code>.</td></tr>
           <tr><th scope="row">Escritura</th><td>Palabras reservadas con acentos, como <code>variáveis</code>, <code>início</code> y <code>função</code>.</td><td>Palabras clave sin acentos, como <code>funcao</code>, <code>senao</code> y <code>nao</code>.</td></tr>
           <tr><th scope="row">Declaraciones y tipos</th><td><code>nombre : inteiro</code>; tipos <code>inteiro</code>, <code>real</code>, <code>caractere</code>, <code>literal</code> y <code>lógico</code>. No documenta <code>const</code>.</td><td><code>inteiro nombre</code>; usa <code>caracter</code>, <code>cadeia</code>, <code>logico</code> y <code>vazio</code>, además de declaraciones con <code>const</code>.</td></tr>
@@ -237,7 +237,7 @@ início
         imprima("Ímpar");
     fim-se
 fim</code></pre>
-        <p><strong>Portugol 2.0</strong></p><pre class="manual-code"><code>programa {
+        <p><strong>Portugol Studio 2.0</strong></p><pre class="manual-code"><code>programa {
     funcao inicio() {
         inteiro numero
         escreva("Digite um inteiro: ")
@@ -249,7 +249,7 @@ fim</code></pre>
         }
     }
 }</code></pre>
-        <p>Para consultar cada pseudolenguaje en detalle, abre la <a href="{{ '/es/manual/portugol/' | relative_url }}">referencia de Portugol 2.0</a> y las <a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">reglas oficiales de G-Portugol</a>.</p>
+        <p>Para consultar cada pseudolenguaje en detalle, abre la <a href="{{ '/es/manual/portugol/' | relative_url }}">referencia de Portugol Studio 2.0</a> y las <a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">reglas oficiales de G-Portugol</a>.</p>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>
