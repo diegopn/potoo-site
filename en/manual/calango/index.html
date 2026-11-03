@@ -1,0 +1,116 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/calango/"
+title: "Calango | Potoo IDE Manual"
+description: "Reference for the Calango pseudolanguage: program structure, types, vectors, operators, input and output, decisions, loops, functions, and procedures."
+og_title: "Calango reference"
+og_description: "Reference for the Calango pseudolanguage: program structure, types, vectors, operators, input and output, decisions, loops, functions, and procedures."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/calango/"
+  es: "/es/manual/calango/"
+  en: "/en/manual/calango/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Pseudolanguage reference · Calango</p><h1>Calango</h1>
+    <p class="manual-intro">This guide introduces algorithm writing in Calango, from the main structure to declarations, expressions, decisions, loops, and routines.</p>
+    <p class="manual-meta"><span><b>Category</b> Pseudolanguage</span><span><b>Reference</b> Calango</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Calango reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Calango</a></li><li><a href="#estrutura">Algorithm structure</a></li><li><a href="#dados">Types, variables, and vectors</a></li><li><a href="#expressoes">Assignment and operators</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Conditions and choice</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#rotinas">Functions and procedures</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#fontes">References</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Overview</p><h2>About Calango</h2><p>Calango is a pseudolanguage and learning environment for algorithms. Its Portuguese commands keep attention on steps, conditions, and data before learners move on to the syntax of other languages. Materials from the University of Brasília describe its educational use, interpreted execution, and step-by-step debugging.</p><p>This reference combines that teaching purpose with the Calango structures described in the sources at the end of the page.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organization</p><h2>Algorithm structure</h2><p>The header starts with <code>algoritmo</code>, followed by a name and semicolon. The main block starts with <code>principal</code> and ends with <code>fimPrincipal</code>. Functions and procedures appear outside this block.</p><pre class="manual-code"><code>algoritmo boasVindas;
+principal
+    texto nome;
+    escreva("What is your name?");
+    leia(nome);
+    escreval("Hello, ", nome);
+fimPrincipal</code></pre><p>A line beginning with <code>//</code> is a comment. The body can contain declarations and commands; simple statements end with semicolons.</p></section>
+<section id="dados"><p class="kicker">03 · Data</p><h2>Types, variables, and vectors</h2><p>Declare a variable by writing its type followed by its name. Basic types include <code>inteiro</code>, <code>real</code>, <code>logico</code>, <code>caracter</code>, and <code>texto</code>. Text literals use double quotes; real numbers use a decimal point; logical values are <code>verdadeiro</code> and <code>falso</code>.</p><pre class="manual-code"><code>inteiro quantidade;
+real preco;
+logico disponivel;
+caracter inicial;
+texto titulo;
+inteiro notas[5];
+
+quantidade = 3;
+preco = 2.5;
+disponivel = verdadeiro;
+titulo = "Algorithms";
+notas[0] = 10;</code></pre><p>Vectors are declared by adding dimensions in square brackets after the name. Access an element with brackets as well. The interpreter accepts multiple dimensions; every index must be an integer.</p></section>
+<section id="expressoes"><p class="kicker">04 · Expressions</p><h2>Assignment and operators</h2><p>Assignments use <code>=</code>. Parentheses group operations. The table summarizes arithmetic forms, comparisons, and logical connectors in the documented syntax.</p><div class="manual-table-wrap" role="region" aria-label="Calango operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Category</th><th scope="col">Operators</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * / \ % mod</code></td><td>Calculations, division, and remainder.</td></tr><tr><td>Comparison</td><td><code>= == != &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Compare values.</td></tr><tr><td>Logical</td><td><code>nao e ou</code></td><td>Negate or combine conditions with AND/OR.</td></tr></tbody></table></div><pre class="manual-code"><code>real total;
+total = preco * quantidade;
+se (quantidade &gt; 0 e disponivel) entao
+    escreva("Total: ", total);
+fimSe</code></pre><p>Use <code>mod</code> or <code>%</code> to get a remainder. Precedence follows mathematical and logical priorities; parentheses make long expressions easier to read.</p></section>
+<section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input and output</h2><p><code>escreva(...)</code> displays values; <code>escreval(...)</code> adds a line break. Both accept comma-separated expressions. <code>leia(...)</code> reads a value for a variable, and <code>leiaCaracter(...)</code> is the dedicated character input form.</p><pre class="manual-code"><code>texto nome;
+inteiro idade;
+escreva("Name: ");
+leia(nome);
+escreva("Age: ");
+leia(idade);
+escreval("Hello, ", nome, " — ", idade, " years old.");</code></pre><p><code>limpaTela();</code> clears the output area. Input should match the declared type of its destination variable.</p></section>
+<section id="decisoes"><p class="kicker">06 · Decisions</p><h2>Conditions and choice</h2><p><code>se</code> begins a conditional block; <code>senaoSe</code> tests another condition and <code>senao</code> defines the final branch. The block ends with <code>fimSe</code>. <code>escolha</code> compares an expression with <code>caso</code> alternatives and can include <code>outroCaso</code>.</p><pre class="manual-code"><code>se (nota &gt;= 7) entao
+    escreval("Passed");
+senaoSe (nota &gt;= 5) entao
+    escreval("Review period");
+senao
+    escreval("Not passed");
+fimSe
+
+escolha opcao
+    caso 1
+        escreval("New exercise");
+    outroCaso
+        escreval("Unknown option");
+fimEscolha</code></pre><p>Conditions must produce a logical value. Each <code>caso</code> runs the block associated with its matching value.</p></section>
+<section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>Enquanto, faça-enquanto, and para</h2><p><code>enquanto</code> checks its condition before the body. <code>faca ... enquanto</code> runs first and checks at the end. <code>para</code> traverses a numeric sequence with explicit start, end, and step values.</p><pre class="manual-code"><code>inteiro i;
+i = 1;
+enquanto (i &lt;= 3) faca
+    escreval(i);
+    i = i + 1;
+fimEnquanto
+
+para i de 1 ate 3 passo 1 faca
+    escreval(i);
+fimPara</code></pre><p><code>interrompa;</code> immediately exits the innermost loop. Avoid conditions that never become false.</p></section>
+<section id="rotinas"><p class="kicker">08 · Reuse</p><h2>Functions, procedures, and parameters</h2><p>A function declares its return type before its name and ends with <code>fimFuncao</code>. A procedure has no return type and ends with <code>fimProcedimento</code>. Parameters appear in parentheses with type and name; <code>ref</code> marks a reference parameter. <code>retorna</code> returns a function result.</p><pre class="manual-code"><code>funcao inteiro dobro(inteiro valor)
+    retorna valor * 2;
+fimFuncao
+
+procedimento mostrar(texto mensagem)
+    escreval(mensagem);
+fimProcedimento
+
+principal
+    escreval(dobro(4));
+    mostrar("Practice one step at a time");
+fimPrincipal</code></pre><p>Call a routine by name with the arguments it expects. Use reference parameters when a routine should update the variable it receives.</p></section>
+<section id="exemplo"><p class="kicker">09 · In practice</p><h2>Complete example</h2><p>This program reads three grades, calculates the average, and reports a result using a vector, loop, and condition.</p><pre class="manual-code"><code>algoritmo mediaTurma;
+principal
+    inteiro i;
+    real notas[3];
+    real soma;
+    soma = 0;
+    para i de 0 ate 2 passo 1 faca
+        escreva("Grade: ");
+        leia(notas[i]);
+        soma = soma + notas[i];
+    fimPara
+    se (soma / 3 &gt;= 7) entao
+        escreval("Passed");
+    senao
+        escreval("Keep studying");
+    fimSe
+fimPrincipal</code></pre></section>
+<section id="fontes"><p class="kicker">10 · Sources</p><h2>References</h2><ul><li><a href="https://github.com/GeovanaRamos/calango">Official Calango repository</a>.</li><li><a href="https://sae.unb.br/cae/conteudo/unbfga/apc/new_ambientedealgoritmo.html">Algorithm environment — University of Brasília</a>, on interpretation, execution, and educational use.</li></ul><p>Examples on this page were written to explain the syntax and do not reproduce long passages from the reference materials.</p></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

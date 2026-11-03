@@ -1,0 +1,102 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/logic-basic/"
+title: "Logic Basic | Manual do Potoo IDE"
+description: "Referência de Logic Basic: arquivos, memórias, expressões, comandos de entrada e saída, condições, rotinas, interfaces gráficas, matrizes e banco de dados."
+og_title: "Referência de Logic Basic"
+og_description: "Referência de Logic Basic: arquivos, memórias, expressões, comandos de entrada e saída, condições, rotinas, interfaces gráficas, matrizes e banco de dados."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/logic-basic/"
+  es: "/es/manual/logic-basic/"
+  en: "/en/manual/logic-basic/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência de linguagem de programação · Logic Basic</p><h1>Logic Basic</h1>
+    <p class="manual-intro">Esta página organiza os conceitos e comandos apresentados no manual do autor de Logic Basic, incluindo o modelo de memórias, a janela visual e os recursos de programação descritos.</p>
+    <p class="manual-meta"><span><b>Categoria</b> Linguagem de programação</span><span><b>Referência</b> Logic Basic</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de Logic Basic"><h2>Nesta referência</h2><ol><li><a href="#sobre">Sobre Logic Basic</a></li><li><a href="#arquivos">Programa, janela e arquivo</a></li><li><a href="#memorias">Memórias e valores</a></li><li><a href="#expressoes">Atribuição e operadores</a></li><li><a href="#entrada-saida">Entrada e saída</a></li><li><a href="#controle">Se, CasoContrario e VaPara</a></li><li><a href="#funcoes">Funções e extensões</a></li><li><a href="#matrizes">Matrizes</a></li><li><a href="#interface">Recursos visuais</a></li><li><a href="#banco">Banco de dados nativo</a></li><li><a href="#exemplo">Exemplo integrado</a></li><li><a href="#fontes">Manual consultado</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Logic Basic</h2><p>Logic Basic é uma linguagem de programação associada a um ambiente visual: além do código, o programa pode interagir com uma janela, componentes, desenhos, sons e arquivos de dados. O manual do autor apresenta a linguagem por comandos e exercícios progressivos, com uma abordagem voltada a iniciantes.</p><p>Esta referência resume os conceitos e as formas de escrita documentados no manual consultado. Como o material é organizado por comandos e recursos do ambiente, consulte a fonte para obter detalhes de cada opção visual.</p></section>
+<section id="arquivos"><p class="kicker">02 · Organização</p><h2>Programa, janela e arquivo</h2><p>O manual descreve duas áreas de trabalho: o código e a janela em que o programa apresenta resultados e componentes. A execução percorre o código em sequência até o final ou até encontrar <code>FimPrograma</code> ou <code>FimJanela</code>. Arquivos de código são identificados pela extensão <code>.LBC</code>.</p><p>Uma linha pode conter vários comandos separados por ponto e vírgula; cada comando separado é tratado como uma linha lógica. O apóstrofo introduz um comentário no código.</p><pre class="manual-code"><code>Memoria Nome
+Nome = "Ana"
+Posicione 1, 1
+Escreva "Olá, ", Nome
+FimPrograma</code></pre></section>
+<section id="memorias"><p class="kicker">03 · Dados</p><h2>Memórias e valores</h2><p><code>Memoria</code> cria os nomes usados para guardar valores. O manual recomenda colocar essas declarações no início do código principal. Uma memória pode conter texto, números e elementos do ambiente visual, como objetos e sons. O mesmo nome pode receber um valor novo durante a execução.</p><pre class="manual-code"><code>Memoria Nome, Pontos, Fundo
+Nome = "Ana"
+Pontos = 12
+Fundo = "fundo-verde"</code></pre><p>Textos ficam entre aspas. Um número sem aspas é tratado como número e pode participar de cálculos; entre aspas, é texto. O manual usa vírgula como separador decimal, por exemplo <code>3,5</code>. Nomes de memórias não contêm espaços.</p></section>
+<section id="expressoes"><p class="kicker">04 · Expressões</p><h2>Atribuição e operadores</h2><p>Fora de uma condição, <code>=</code> atribui um valor. Em uma condição, <code>=</code> compara valores. A linguagem documenta operações aritméticas, atualizações compostas e comparações. <code>SIM</code> e <code>NAO</code> representam valores lógicos nos exemplos do manual.</p><div class="manual-table-wrap" role="region" aria-label="Operadores de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas documentadas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>+ - * / %</code></td><td>Cálculo e resto da divisão.</td></tr><tr><td>Atualização</td><td><code>++ -- += -=</code></td><td>Incrementar, decrementar ou atualizar um valor.</td></tr><tr><td>Comparação</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Testar igualdade e ordem dentro de uma condição.</td></tr><tr><td>Lógicos</td><td><code>E OU</code></td><td>Combinar condições.</td></tr></tbody></table></div><pre class="manual-code"><code>Memoria X, Y, Soma
+X = 8
+Y = 3
+Soma = X + Y
+Soma += 1
+Se Soma &gt;= 12
+Escreva "Atingiu o valor"
+FimSe</code></pre><p>Os operadores e o tratamento de números seguem o manual do Logic Basic. A grafia dos nomes de comandos nos exemplos acompanha a forma apresentada pelo autor.</p></section>
+<section id="entrada-saida"><p class="kicker">05 · Interação</p><h2>Entrada, mensagens e saída</h2><p><code>Escreva</code> apresenta um ou mais itens na janela, na ordem em que aparecem. <code>Posicione</code> define a posição da saída e <code>LimpaJanela</code> limpa a área visual. <code>Mensagem</code> exibe uma mensagem em uma caixa de diálogo.</p><p><code>EntraTexto</code> solicita um texto e retorna o que foi digitado para uma memória. O manual também descreve componentes de interface como caixas de texto, listas, opções e caixas de seleção; seus valores podem ser lidos com <code>Componente Valor</code>.</p><pre class="manual-code"><code>Memoria Nome
+Nome = EntraTexto, "Digite seu nome:"
+LimpaJanela
+Posicione 1, 1
+Escreva "Olá, ", Nome
+Mensagem "Cadastro concluído"</code></pre></section>
+<section id="controle"><p class="kicker">06 · Decisões e repetição</p><h2>Se, CasoContrario e VaPara</h2><p><code>Se</code> executa instruções quando uma condição é verdadeira. <code>CasoContrario</code> define a alternativa opcional e <code>FimSe</code> encerra o bloco. Para repetir comandos, o manual apresenta rótulos e o comando <code>VaPara</code>, que transfere a execução para uma linha identificada pelo nome.</p><pre class="manual-code"><code>Memoria Tentativa
+Tentativa = 0
+INICIO
+Tentativa = Tentativa + 1
+Escreva "Tentativa ", Tentativa
+Se Tentativa &lt; 3
+VaPara INICIO
+CasoContrario
+Escreva "Fim das tentativas"
+FimSe</code></pre><p>Essa forma permite construir laços, mas exige controlar explicitamente o estado que encerra a repetição. Um salto incorreto pode fazer o programa repetir sem fim.</p></section>
+<section id="funcoes"><p class="kicker">07 · Reuso</p><h2>Funções e extensões</h2><p>O manual descreve rotinas nomeadas fora do fluxo principal. <code>Execute Nome()</code> chama uma rotina e <code>Retorne</code> devolve a execução ao comando seguinte ao ponto de chamada. Uma rotina pode chamar outras rotinas e pode ser recursiva. O material também apresenta painéis de extensão para organizar códigos reutilizáveis.</p><pre class="manual-code"><code>Escreva "Antes da rotina"
+Execute Saudacao()
+Escreva "Depois da rotina"
+FimPrograma
+
+Saudacao()
+Escreva "Olá!"
+Retorne</code></pre><p>Use nomes de rotina consistentes e garanta que toda execução que entra nela alcance <code>Retorne</code>, evitando que o fluxo continue para instruções que não fazem parte da rotina.</p></section>
+<section id="matrizes"><p class="kicker">08 · Coleções</p><h2>Matrizes</h2><p>Uma memória pode ser declarada com quantidade de posições entre parênteses. Os índices começam em zero. Por exemplo, <code>Memoria Nome(20)</code> cria posições de <code>Nome(0)</code> até <code>Nome(19)</code>. Uma variável numérica pode servir como índice dentro de uma rotina de repetição.</p><pre class="manual-code"><code>Memoria Nome(3), I
+Nome(0) = "Ana"
+Nome(1) = "Beto"
+Nome(2) = "Caio"
+I = 0
+INICIO
+Escreva Nome(I)
+I = I + 1
+Se I &lt; 3
+VaPara INICIO
+FimSe</code></pre><p><code>ProcureMatriz</code> procura um valor em uma matriz e retorna o índice correspondente; quando não encontra o valor, o manual descreve o retorno <code>-1</code>.</p></section>
+<section id="interface"><p class="kicker">09 · Recursos visuais</p><h2>Janela, componentes e multimídia</h2><p>Os comandos visuais podem posicionar texto, desenhar objetos, exibir imagens e responder a interações. <code>Componente</code> cria controles de formulário; <code>Desenhe</code> apresenta objetos ou recursos visuais; <code>Aguarde</code> pausa a execução ou recebe uma interação conforme os argumentos descritos no manual.</p><p>O material também documenta recursos de mouse, som e vídeo. A organização de canais, posições, dimensões e controles depende dos parâmetros de cada comando; consulte a fonte antes de usar as opções avançadas.</p><pre class="manual-code"><code>LimpaJanela
+Posicione 5, 5
+Desenhe "personagem"
+Aguarde</code></pre></section>
+<section id="banco"><p class="kicker">10 · Dados persistentes</p><h2>Banco de dados nativo</h2><p>O manual descreve blocos <code>BD ... FimBD</code> para definir campos e o comando <code>AbreBD</code> para abrir um arquivo de dados. Campos são preenchidos por meio do nome do banco e do campo; <code>AdicionaRegistro</code> grava um registro, <code>LeRegistro</code> lê pela posição, e <code>FechaBD</code> fecha o arquivo. Também são descritos comandos para ordenar, procurar e contar registros.</p><div class="manual-table-wrap" role="region" aria-label="Comandos do banco de dados de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Finalidade no manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Definir os campos de uma tabela.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Abrir ou fechar o arquivo associado.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Gravar os campos preenchidos como novo registro.</td></tr><tr><td><code>LeRegistro</code></td><td>Ler um registro pela posição.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Ordenar ou localizar registros.</td></tr><tr><td><code>TotalRegistros</code></td><td>Obter a quantidade de registros.</td></tr></tbody></table></div><p>O banco usa arquivos próprios e uma definição de campos. Antes de gravar ou ler registros, siga a sequência de abertura e fechamento descrita no manual.</p></section>
+<section id="exemplo"><p class="kicker">11 · Aplicação</p><h2>Exemplo integrado</h2><p>O exemplo usa memórias, entrada e condição para apresentar uma saudação personalizada. Ele reúne os comandos básicos sem depender de recursos gráficos avançados.</p><pre class="manual-code"><code>Memoria Nome, Pontos
+Nome = EntraTexto, "Qual é o seu nome?"
+Pontos = 0
+LimpaJanela
+Posicione 1, 1
+Escreva "Bem-vindo, ", Nome
+Se Nome = ""
+Mensagem "Informe um nome para continuar"
+CasoContrario
+Pontos = Pontos + 1
+Escreva "Pontos: ", Pontos
+FimSe
+FimPrograma</code></pre></section>
+<section id="fontes"><p class="kicker">12 · Fontes</p><h2>Manual consultado</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Manual do Logic Basic</a>, de Eleusmário Mariano Rabelo — referência para comandos, memórias, interface, matrizes, rotinas e banco de dados.</li></ul><p>Os exemplos desta página foram redigidos para explicar os conceitos; para conhecer os parâmetros completos de cada comando, consulte o manual original.</p></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

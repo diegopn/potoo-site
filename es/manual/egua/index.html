@@ -1,0 +1,107 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/egua/"
+title: "Égua | Manual de Potoo IDE"
+description: "Referencia del lenguaje de programación Égua: sintaxis en portugués, variables, valores, operadores, flujo de control, funciones, listas, diccionarios, clases y bibliotecas."
+og_title: "Referência de Égua"
+og_description: "Referencia del lenguaje de programación Égua: sintaxis en portugués, variables, valores, operadores, flujo de control, funciones, listas, diccionarios, clases y bibliotecas."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/egua/"
+  es: "/es/manual/egua/"
+  en: "/en/manual/egua/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia de lenguaje de programación · Égua</p><h1>Égua</h1>
+    <p class="manual-intro">Esta referencia presenta el lenguaje de programación Égua y su sintaxis en portugués, incluidos datos, flujo de control, funciones, colecciones, objetos y bibliotecas estándar.</p>
+    <p class="manual-meta"><span><b>Categoría</b> Lenguaje de programación</span><span><b>Referencia</b> Égua</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Égua"><h2>En esta referencia</h2><ol><li><a href="#sobre">Sobre Égua</a></li><li><a href="#estrutura">Archivo y escritura del código</a></li><li><a href="#variaveis">Variables y ámbito</a></li><li><a href="#tipos">Tipos y colecciones</a></li><li><a href="#operadores">Operadores y comparaciones</a></li><li><a href="#controle">Condiciones y repeticiones</a></li><li><a href="#funcoes">Funciones</a></li><li><a href="#objetos">Clases y objetos</a></li><li><a href="#bibliotecas">Funciones y bibliotecas</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#fontes">Documentación oficial</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Panorama</p><h2>Sobre Égua</h2><p>Égua es un lenguaje de programación interpretado, con palabras clave y mensajes en portugués. Su sitio oficial lo presenta como una forma accesible de practicar conceptos de programación sin depender del vocabulario en inglés; su implementación combina recursos imperativos y funcionales con orientación a objetos.</p><p>Esta página organiza la sintaxis y las funciones descritas en la documentación oficial. Es una guía de consulta, no sustituye la documentación completa del lenguaje.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organización</p><h2>Archivo y escritura del código</h2><p>Un programa se compone de instrucciones y bloques entre llaves. La documentación del proyecto usa archivos <code>.egua</code>, comentarios que comienzan con <code>//</code> y punto y coma para terminar las instrucciones. La ejecución puede comenzar directamente con instrucciones en el archivo; las funciones y clases se declaran donde se necesiten.</p><pre class="manual-code"><code>// Primer programa
+var nome = "Ana";
+escreva("Hola, " + nome);</code></pre><p>Entre las palabras reservadas principales están <code>var</code>, <code>se</code>, <code>senão</code>, <code>para</code>, <code>função</code>, <code>retorna</code> y <code>classe</code>. La escritura en portugués forma parte de la sintaxis.</p></section>
+<section id="variaveis"><p class="kicker">03 · Datos</p><h2>Variables y ámbito</h2><p><code>var</code> declara una variable, con o sin valor inicial. La asignación posterior usa <code>=</code>. Las variables pueden tener ámbito global o local dentro de un bloque entre llaves; una variable externa es visible en bloques internos, pero una variable local no está disponible fuera del bloque donde se declaró.</p><pre class="manual-code"><code>var pontos = 0;
+pontos = pontos + 1;
+
+se (pontos &gt; 0) {
+  var mensagem = "Hay puntos";
+  escreva(mensagem);
+}</code></pre><p>Égua determina el tipo a partir del valor en ejecución; no se escribe un tipo junto al nombre. Usa nombres descriptivos y mantén cada variable en el ámbito más pequeño que necesite el algoritmo.</p></section>
+<section id="tipos"><p class="kicker">04 · Valores</p><h2>Tipos y colecciones</h2><p>Los valores incluyen números enteros o decimales, textos entre comillas simples o dobles, valores lógicos <code>verdadeiro</code> y <code>falso</code>, y el valor ausente <code>nulo</code>. Las listas son ordenadas y usan corchetes; los diccionarios asocian claves con valores y usan llaves.</p><div class="manual-table-wrap" role="region" aria-label="Tipos y colecciones de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Ejemplo</th><th scope="col">Observación</th></tr></thead><tbody><tr><td>Número</td><td><code>12</code>, <code>3.5</code></td><td>Entero o punto flotante.</td></tr><tr><td>Texto</td><td><code>"Hola"</code>, <code>'a'</code></td><td>Secuencia entre comillas.</td></tr><tr><td>Lógico</td><td><code>verdadeiro</code>, <code>falso</code></td><td>Se usa en condiciones.</td></tr><tr><td>Lista</td><td><code>[4, "cinco"]</code></td><td>Índices desde cero; tamaño variable.</td></tr><tr><td>Diccionario</td><td><code>{'nome': 'Ana'}</code></td><td>Acceso mediante clave.</td></tr></tbody></table></div><pre class="manual-code"><code>var notas = [8, 6.5, 9];
+var cadastro = {"nome": "Ana"};
+escreva(notas[0]);
+escreva(cadastro["nome"]);</code></pre><p>Las listas y los textos se indexan desde cero. La documentación también describe índices negativos para textos, contados desde el final; leer un índice inexistente de una lista produce un error, mientras que asignar después del final puede ampliarla y rellenar las posiciones intermedias con <code>nulo</code>.</p></section>
+<section id="operadores"><p class="kicker">05 · Expresiones</p><h2>Operadores y comparaciones</h2><div class="manual-table-wrap" role="region" aria-label="Operadores de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>** * / + - %</code></td><td>Potencia, cálculos y resto.</td></tr><tr><td>Comparación</td><td><code>&gt; &gt;= &lt; &lt;= == !=</code></td><td>Compara valores; la igualdad exige mismo tipo y valor.</td></tr><tr><td>Lógicos</td><td><code>e ou</code></td><td>Conjunción y disyunción.</td></tr><tr><td>Pertenencia</td><td><code>em</code></td><td>Comprueba si un valor está en una lista, texto o clave de diccionario.</td></tr><tr><td>Bit a bit</td><td><code>&lt;&lt; &gt;&gt; &amp; ^ |</code></td><td>Desplazamientos y operaciones sobre bits.</td></tr></tbody></table></div><pre class="manual-code"><code>var resultado = 2 ** 3 + 1;
+var aprovado = resultado &gt;= 8 e resultado &lt; 10;
+var tem_nota = 8 em [6, 8, 9];
+escreva(aprovado);</code></pre><p>La prioridad de los operadores determina el orden de evaluación. Usa paréntesis cuando una expresión combine varias categorías.</p></section>
+<section id="controle"><p class="kicker">06 · Flujo</p><h2>Condiciones y repeticiones</h2><p><code>se</code>, <code>senão se</code> y <code>senão</code> seleccionan un bloque. Los bucles incluyen <code>enquanto</code> y <code>para</code>; la forma de <code>para</code> se parece a un bucle con inicialización, prueba y actualización. Las condiciones usan valores lógicos.</p><pre class="manual-code"><code>var notas = [8, 5.5, 9];
+para (var i = 0; i &lt; tamanho(notas); i = i + 1) {
+  se (notas[i] &gt;= 7) {
+    escreva("Aprobado");
+  } senão se (notas[i] &gt;= 5) {
+    escreva("Recuperación");
+  } senão {
+    escreva("No aprobado");
+  }
+}
+
+var contador = 0;
+enquanto (contador &lt; 2) {
+  escreva(contador);
+  contador = contador + 1;
+}</code></pre><p><code>verdadeiro</code> y los valores distintos de <code>falso</code> y <code>nulo</code> se evalúan como verdaderos según las reglas descritas en la documentación.</p></section>
+<section id="funcoes"><p class="kicker">07 · Reutilización</p><h2>Funciones</h2><p>Una función con nombre se declara con <code>função</code>, parámetros entre paréntesis y un bloque entre llaves. <code>retorna</code> entrega un valor al punto de llamada. Las funciones anónimas pueden almacenarse o pasarse a otras funciones, por ejemplo para transformar elementos de una lista.</p><pre class="manual-code"><code>função classificar(nota) {
+  se (nota &gt;= 7) {
+    retorna("Aprobado");
+  } senão {
+    retorna("Sigue estudiando");
+  }
+}
+
+var resultado = classificar(8);
+escreva(resultado);</code></pre><p>Los parámetros se separan con comas. Una función puede devolver listas, textos, números u otros valores; las funciones integradas <code>mapear</code>, <code>filtrar</code> y <code>para_cada</code> reciben funciones como argumento.</p></section>
+<section id="objetos"><p class="kicker">08 · Modelado</p><h2>Clases y objetos</h2><p><code>classe</code> declara una estructura con métodos. Crear una instancia llama el nombre de la clase con paréntesis; los métodos se llaman desde la instancia con punto. El método especial <code>construtor</code> se ejecuta al crearla y <code>isto</code> hace referencia a la instancia actual. La documentación también presenta herencia con <code>herda</code> y acceso a la implementación padre con <code>super</code>.</p><pre class="manual-code"><code>classe Contador {
+  construtor(valor) {
+    isto.valor = valor;
+  }
+  avancar() {
+    isto.valor = isto.valor + 1;
+    retorna isto.valor;
+  }
+}
+
+var contador = Contador(2);
+escreva(contador.avancar());</code></pre><p>Usa clases para agrupar datos y comportamientos relacionados; para transformaciones breves, una función sencilla suele bastar.</p></section>
+<section id="bibliotecas"><p class="kicker">09 · Recursos integrados</p><h2>Funciones y bibliotecas</h2><p><code>escreva</code> muestra valores. Entre las funciones integradas documentadas están <code>aleatório</code>, <code>aleatório_entre</code>, <code>inteiro</code>, <code>real</code>, <code>tamanho</code>, <code>para_cada</code>, <code>mapear</code>, <code>filtrar</code> y <code>ordenar</code>. Consulta las páginas oficiales para la lista completa y las reglas de cada función.</p><p>Las bibliotecas estándar se cargan explícitamente con <code>importar(...)</code>. La documentación oficial presenta bibliotecas para matemáticas, textos, tiempo y solicitudes HTTP.</p><pre class="manual-code"><code>var tempo = importar("tempo");
+escreva(tempo.agora());
+
+var dobro = mapear([1, 2, 3], função(valor) {
+  retorna valor * 2;
+});
+escreva(dobro);</code></pre></section>
+<section id="exemplo"><p class="kicker">10 · Aplicación</p><h2>Ejemplo completo</h2><p>Este programa clasifica una lista de resultados y muestra cuántos elementos alcanzaron el promedio esperado.</p><pre class="manual-code"><code>função aprovado(nota) {
+  retorna nota &gt;= 7;
+}
+
+var notas = [8, 5.5, 9, 6];
+var aprovadas = filtrar(notas, função(nota) {
+  retorna aprovado(nota);
+});
+
+escreva("Notas: ", notas);
+escreva("Aprobadas: ", aprovadas);
+escreva("Cantidad: ", tamanho(aprovadas));</code></pre></section>
+<section id="fontes"><p class="kicker">11 · Fuentes</p><h2>Documentación oficial</h2><ul><li><a href="https://egua.dev/">Sitio oficial del lenguaje Égua</a> y <a href="https://github.com/eguadev/egua">repositorio del proyecto</a>.</li><li>Guías oficiales: <a href="https://egua.dev/egua/variaveis">variables</a>, <a href="https://egua.dev/egua/tipos-dados">tipos de datos</a>, <a href="https://egua.dev/egua/operadores">operadores</a>, <a href="https://egua.dev/egua/fluxo-controle">flujo de control</a>, <a href="https://egua.dev/egua/funcao">funciones</a>, <a href="https://egua.dev/egua/classes">clases</a>, <a href="https://egua.dev/egua/funcoes-integradas">funciones integradas</a> y <a href="https://egua.dev/egua/bibliotecas">bibliotecas</a>.</li></ul></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Volver al manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

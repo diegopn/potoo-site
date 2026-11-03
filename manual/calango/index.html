@@ -1,0 +1,116 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/calango/"
+title: "Calango | Manual do Potoo IDE"
+description: "Referência da pseudolinguagem Calango: estrutura, tipos, vetores, operadores, entrada e saída, decisões, laços, funções e procedimentos."
+og_title: "Referência de Calango"
+og_description: "Referência da pseudolinguagem Calango: estrutura, tipos, vetores, operadores, entrada e saída, decisões, laços, funções e procedimentos."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/calango/"
+  es: "/es/manual/calango/"
+  en: "/en/manual/calango/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência de pseudolinguagem · Calango</p><h1>Calango</h1>
+    <p class="manual-intro">Este guia apresenta a escrita de algoritmos em Calango, da estrutura principal às declarações, expressões, decisões, repetições e rotinas.</p>
+    <p class="manual-meta"><span><b>Categoria</b> Pseudolinguagem</span><span><b>Referência</b> Calango</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de Calango"><h2>Nesta referência</h2><ol><li><a href="#sobre">Sobre Calango</a></li><li><a href="#estrutura">Estrutura do algoritmo</a></li><li><a href="#dados">Tipos, variáveis e vetores</a></li><li><a href="#expressoes">Atribuição e operadores</a></li><li><a href="#entrada-saida">Entrada e saída</a></li><li><a href="#decisoes">Condições e escolha</a></li><li><a href="#repeticoes">Repetições</a></li><li><a href="#rotinas">Funções e procedimentos</a></li><li><a href="#exemplo">Exemplo completo</a></li><li><a href="#fontes">Referências</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Calango</h2><p>Calango é uma pseudolinguagem e ambiente de apoio ao ensino de algoritmos. Os comandos em português permitem concentrar o estudo na sequência de passos, nas condições e nos dados antes de avançar para a sintaxe de outras linguagens. Materiais da Universidade de Brasília descrevem o uso didático do Calango, a execução interpretada e a depuração passo a passo.</p><p>Esta referência combina essa finalidade educacional com as estruturas de Calango descritas nas fontes ao final da página.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organização</p><h2>Estrutura do algoritmo</h2><p>O cabeçalho começa com <code>algoritmo</code>, seguido do nome e de ponto e vírgula. O bloco principal abre com <code>principal</code> e termina em <code>fimPrincipal</code>. Funções e procedimentos ficam fora desse bloco.</p><pre class="manual-code"><code>algoritmo boasVindas;
+principal
+    texto nome;
+    escreva("Qual é o seu nome?");
+    leia(nome);
+    escreval("Olá, ", nome);
+fimPrincipal</code></pre><p>Uma linha iniciada por <code>//</code> é um comentário. O corpo pode conter declarações e comandos; cada instrução simples termina com ponto e vírgula.</p></section>
+<section id="dados"><p class="kicker">03 · Dados</p><h2>Tipos, variáveis e vetores</h2><p>Declare uma variável escrevendo o tipo seguido do nome. Os tipos básicos incluem <code>inteiro</code>, <code>real</code>, <code>logico</code>, <code>caracter</code> e <code>texto</code>. Literais de texto usam aspas duplas; números reais usam ponto decimal; valores lógicos são <code>verdadeiro</code> e <code>falso</code>.</p><pre class="manual-code"><code>inteiro quantidade;
+real preco;
+logico disponivel;
+caracter inicial;
+texto titulo;
+inteiro notas[5];
+
+quantidade = 3;
+preco = 2.5;
+disponivel = verdadeiro;
+titulo = "Algoritmos";
+notas[0] = 10;</code></pre><p>Vetores são declarados acrescentando dimensões entre colchetes ao nome. Acesso a um elemento também usa colchetes. O interpretador aceita vetores de mais de uma dimensão; cada índice deve ser inteiro.</p></section>
+<section id="expressoes"><p class="kicker">04 · Expressões</p><h2>Atribuição e operadores</h2><p>Atribuições usam <code>=</code>. Parênteses agrupam operações. A tabela reúne as formas aritméticas, comparações e conectivos disponíveis na sintaxe documentada.</p><div class="manual-table-wrap" role="region" aria-label="Operadores de Calango" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Categoria</th><th scope="col">Operadores</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>+ - * / \ % mod</code></td><td>Cálculos, divisão e resto.</td></tr><tr><td>Comparação</td><td><code>= == != &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Comparar valores.</td></tr><tr><td>Lógicos</td><td><code>nao e ou</code></td><td>Negar, combinar por conjunção ou disjunção.</td></tr></tbody></table></div><pre class="manual-code"><code>real total;
+total = preco * quantidade;
+se (quantidade &gt; 0 e disponivel) entao
+    escreva("Total: ", total);
+fimSe</code></pre><p>Use <code>mod</code> ou <code>%</code> para obter o resto. A precedência segue a prioridade matemática e lógica; parênteses tornam expressões longas mais fáceis de ler.</p></section>
+<section id="entrada-saida"><p class="kicker">05 · Interação</p><h2>Entrada e saída</h2><p><code>escreva(...)</code> exibe valores sem avançar obrigatoriamente a linha; <code>escreval(...)</code> acrescenta uma quebra de linha. Ambos aceitam expressões separadas por vírgulas. <code>leia(...)</code> recebe um dado para uma variável, e <code>leiaCaracter(...)</code> é a forma específica para leitura de caractere.</p><pre class="manual-code"><code>texto nome;
+inteiro idade;
+escreva("Nome: ");
+leia(nome);
+escreva("Idade: ");
+leia(idade);
+escreval("Olá, ", nome, " — ", idade, " anos.");</code></pre><p><code>limpaTela();</code> limpa a área de saída. A entrada deve ser compatível com o tipo declarado para a variável de destino.</p></section>
+<section id="decisoes"><p class="kicker">06 · Decisões</p><h2>Condições e escolha</h2><p><code>se</code> inicia um bloco condicional; <code>senaoSe</code> permite testar outra condição e <code>senao</code> define o ramo final. O bloco encerra com <code>fimSe</code>. <code>escolha</code> compara uma expressão com alternativas <code>caso</code> e pode incluir <code>outroCaso</code>.</p><pre class="manual-code"><code>se (nota &gt;= 7) entao
+    escreval("Aprovado");
+senaoSe (nota &gt;= 5) entao
+    escreval("Recuperação");
+senao
+    escreval("Reprovado");
+fimSe
+
+escolha opcao
+    caso 1
+        escreval("Novo exercício");
+    outroCaso
+        escreval("Opção não reconhecida");
+fimEscolha</code></pre><p>As condições precisam resultar em valor lógico. Um <code>caso</code> executa o bloco associado ao valor correspondente.</p></section>
+<section id="repeticoes"><p class="kicker">07 · Repetição</p><h2>Enquanto, faça-enquanto e para</h2><p><code>enquanto</code> testa a condição antes do corpo. <code>faca ... enquanto</code> executa primeiro e testa no final. <code>para</code> percorre uma sequência numérica com início, fim e passo explicitados.</p><pre class="manual-code"><code>inteiro i;
+i = 1;
+enquanto (i &lt;= 3) faca
+    escreval(i);
+    i = i + 1;
+fimEnquanto
+
+para i de 1 ate 3 passo 1 faca
+    escreval(i);
+fimPara</code></pre><p><code>interrompa;</code> encerra imediatamente o laço mais interno. Evite condições que nunca se tornam falsas em laços condicionais.</p></section>
+<section id="rotinas"><p class="kicker">08 · Reuso</p><h2>Funções, procedimentos e parâmetros</h2><p>Uma função declara seu tipo de retorno antes do nome e encerra com <code>fimFuncao</code>. Um procedimento não declara valor de retorno e termina com <code>fimProcedimento</code>. Parâmetros aparecem entre parênteses com tipo e nome; <code>ref</code> indica passagem por referência. <code>retorna</code> devolve o resultado de uma função.</p><pre class="manual-code"><code>funcao inteiro dobro(inteiro valor)
+    retorna valor * 2;
+fimFuncao
+
+procedimento mostrar(texto mensagem)
+    escreval(mensagem);
+fimProcedimento
+
+principal
+    escreval(dobro(4));
+    mostrar("Pratique um passo por vez");
+fimPrincipal</code></pre><p>Uma rotina pode ser chamada pelo nome e pelos argumentos esperados. Use parâmetros por referência quando a rotina deve atualizar a variável recebida.</p></section>
+<section id="exemplo"><p class="kicker">09 · Aplicação</p><h2>Exemplo completo</h2><p>Este programa lê três notas, calcula a média e informa o resultado usando vetor, repetição e condição.</p><pre class="manual-code"><code>algoritmo mediaTurma;
+principal
+    inteiro i;
+    real notas[3];
+    real soma;
+    soma = 0;
+    para i de 0 ate 2 passo 1 faca
+        escreva("Nota: ");
+        leia(notas[i]);
+        soma = soma + notas[i];
+    fimPara
+    se (soma / 3 &gt;= 7) entao
+        escreval("Aprovado");
+    senao
+        escreval("Continue estudando");
+    fimSe
+fimPrincipal</code></pre></section>
+<section id="fontes"><p class="kicker">10 · Fontes</p><h2>Referências consultadas</h2><ul><li><a href="https://github.com/GeovanaRamos/calango">Repositório oficial de Calango</a>.</li><li><a href="https://sae.unb.br/cae/conteudo/unbfga/apc/new_ambientedealgoritmo.html">Ambiente de Algoritmo — Universidade de Brasília</a>, sobre interpretação, execução e uso didático.</li></ul><p>Os exemplos desta página foram redigidos para explicar a sintaxe e não reproduzem trechos extensos dos materiais de referência.</p></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

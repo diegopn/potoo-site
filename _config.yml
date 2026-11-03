@@ -1,6 +1,6 @@
 title: Potoo IDE
 name: Potoo IDE
-description: Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens da família Portugol e a linguagem de programação Potigol.
+description: IDE desktop em desenvolvimento para aprender lógica com variantes da família Portugol, a pseudolinguagem Calango e a linguagem de programação Potigol.
 social_image: "/src/assets/images/potoo-mascot-v4.png"
 social_image_alt:
   pt: "Mascote verde do Potoo IDE empoleirado em um galho."
@@ -10,9 +10,9 @@ application:
   name: Potoo IDE
   category: DeveloperApplication
   descriptions:
-    pt-BR: "Projeto de IDE desktop em desenvolvimento para aprender e ensinar lógica de programação com pseudolinguagens da família Portugol e a linguagem de programação Potigol."
-    es: "Proyecto de IDE de escritorio en desarrollo para aprender y enseñar lógica de programación con pseudolenguajes de la familia Portugol y el lenguaje de programación Potigol."
-    en: "Desktop IDE project in development for learning and teaching programming logic with Portugol family pseudolanguages and the Potigol programming language."
+    pt-BR: "IDE desktop em desenvolvimento para aprender lógica com variantes da família Portugol, a pseudolinguagem Calango e a linguagem de programação Potigol."
+    es: "IDE de escritorio en desarrollo para aprender lógica con variantes de la familia Portugol, el pseudolenguaje Calango y el lenguaje de programación Potigol."
+    en: "Desktop IDE in development for learning logic with Portugol family variants, the Calango pseudolanguage, and the Potigol programming language."
 author:
   name: "Diego Pereira do Nascimento"
   url: "https://diegopn.github.io/"

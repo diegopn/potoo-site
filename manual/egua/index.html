@@ -1,0 +1,107 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/egua/"
+title: "Égua | Manual do Potoo IDE"
+description: "Referência da linguagem de programação Égua: sintaxe em português, variáveis, valores, operadores, controle de fluxo, funções, listas, dicionários, classes e bibliotecas."
+og_title: "Referência de Égua"
+og_description: "Referência da linguagem de programação Égua: sintaxe em português, variáveis, valores, operadores, controle de fluxo, funções, listas, dicionários, classes e bibliotecas."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/egua/"
+  es: "/es/manual/egua/"
+  en: "/en/manual/egua/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência de linguagem de programação · Égua</p><h1>Égua</h1>
+    <p class="manual-intro">Esta referência apresenta a linguagem de programação Égua e sua sintaxe em português, incluindo dados, controle de fluxo, funções, coleções, orientação a objetos e bibliotecas padrão.</p>
+    <p class="manual-meta"><span><b>Categoria</b> Linguagem de programação</span><span><b>Referência</b> Égua</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de Égua"><h2>Nesta referência</h2><ol><li><a href="#sobre">Sobre Égua</a></li><li><a href="#estrutura">Arquivo e escrita do código</a></li><li><a href="#variaveis">Variáveis e escopo</a></li><li><a href="#tipos">Tipos e coleções</a></li><li><a href="#operadores">Operadores e comparações</a></li><li><a href="#controle">Condições e repetições</a></li><li><a href="#funcoes">Funções</a></li><li><a href="#objetos">Classes e objetos</a></li><li><a href="#bibliotecas">Funções e bibliotecas</a></li><li><a href="#exemplo">Exemplo completo</a></li><li><a href="#fontes">Documentação oficial</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Égua</h2><p>Égua é uma linguagem de programação interpretada, com palavras-chave e mensagens em português. Seu site oficial a apresenta como uma forma acessível de praticar conceitos de programação sem depender do vocabulário em inglês; a implementação combina recursos imperativos e funcionais com orientação a objetos.</p><p>Esta página organiza a sintaxe e os recursos descritos na documentação oficial. Ela serve como guia de consulta, não como substituto da documentação completa da linguagem.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organização</p><h2>Arquivo e escrita do código</h2><p>Um programa é formado por instruções e blocos entre chaves. A documentação do projeto usa arquivos <code>.egua</code>, comentários iniciados por <code>//</code> e ponto e vírgula para encerrar instruções. A execução pode começar diretamente por instruções no arquivo; funções e classes são declaradas onde serão usadas.</p><pre class="manual-code"><code>// Primeiro programa
+var nome = "Ana";
+escreva("Olá, " + nome);</code></pre><p>As palavras reservadas mais importantes incluem <code>var</code>, <code>se</code>, <code>senão</code>, <code>para</code>, <code>função</code>, <code>retorna</code> e <code>classe</code>. A grafia portuguesa faz parte da sintaxe.</p></section>
+<section id="variaveis"><p class="kicker">03 · Dados</p><h2>Variáveis e escopo</h2><p><code>var</code> declara uma variável, com ou sem valor inicial. A atribuição posterior usa <code>=</code>. Variáveis podem existir no escopo global ou em um bloco entre chaves; uma variável externa é visível nos blocos internos, mas uma variável local não fica disponível fora do bloco em que foi criada.</p><pre class="manual-code"><code>var pontos = 0;
+pontos = pontos + 1;
+
+se (pontos &gt; 0) {
+  var mensagem = "Há pontos";
+  escreva(mensagem);
+}</code></pre><p>Égua determina o tipo a partir do valor em execução; não se declara um tipo junto ao nome da variável. Use nomes descritivos e mantenha a variável no menor escopo que atenda ao algoritmo.</p></section>
+<section id="tipos"><p class="kicker">04 · Valores</p><h2>Tipos e coleções</h2><p>Os valores incluem números inteiros ou decimais, textos entre aspas simples ou duplas, valores lógicos <code>verdadeiro</code> e <code>falso</code>, e o valor ausente <code>nulo</code>. Listas são ordenadas e usam colchetes; dicionários associam chaves a valores e usam chaves.</p><div class="manual-table-wrap" role="region" aria-label="Tipos e coleções de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Exemplo</th><th scope="col">Observação</th></tr></thead><tbody><tr><td>Número</td><td><code>12</code>, <code>3.5</code></td><td>Inteiro ou ponto flutuante.</td></tr><tr><td>Texto</td><td><code>"Olá"</code>, <code>'a'</code></td><td>Uma sequência entre aspas.</td></tr><tr><td>Lógico</td><td><code>verdadeiro</code>, <code>falso</code></td><td>Usado em condições.</td></tr><tr><td>Lista</td><td><code>[4, "cinco"]</code></td><td>Índices começam em zero; o tamanho pode mudar.</td></tr><tr><td>Dicionário</td><td><code>{'nome': 'Ana'}</code></td><td>Acesso por uma chave.</td></tr></tbody></table></div><pre class="manual-code"><code>var notas = [8, 6.5, 9];
+var cadastro = {"nome": "Ana"};
+escreva(notas[0]);
+escreva(cadastro["nome"]);</code></pre><p>Listas e textos são indexados a partir de zero. A documentação também descreve índices negativos para textos, contados a partir do fim; acessar um índice inexistente em uma lista gera erro, enquanto atribuir depois do fim pode ampliar a lista e preencher posições intermediárias com <code>nulo</code>.</p></section>
+<section id="operadores"><p class="kicker">05 · Expressões</p><h2>Operadores e comparações</h2><div class="manual-table-wrap" role="region" aria-label="Operadores de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>** * / + - %</code></td><td>Potência, cálculos e resto da divisão.</td></tr><tr><td>Comparação</td><td><code>&gt; &gt;= &lt; &lt;= == !=</code></td><td>Compara valores; igualdade exige mesmo tipo e valor.</td></tr><tr><td>Lógicos</td><td><code>e ou</code></td><td>Conjunção e disjunção.</td></tr><tr><td>Pertencimento</td><td><code>em</code></td><td>Verifica se um valor aparece em uma lista, texto ou chave de dicionário.</td></tr><tr><td>Bit a bit</td><td><code>&lt;&lt; &gt;&gt; &amp; ^ |</code></td><td>Deslocamentos e operações sobre bits.</td></tr></tbody></table></div><pre class="manual-code"><code>var resultado = 2 ** 3 + 1;
+var aprovado = resultado &gt;= 8 e resultado &lt; 10;
+var tem_nota = 8 em [6, 8, 9];
+escreva(aprovado);</code></pre><p>As prioridades dos operadores definem a ordem de avaliação. Use parênteses quando uma expressão combinar várias categorias.</p></section>
+<section id="controle"><p class="kicker">06 · Fluxo</p><h2>Condições e repetições</h2><p><code>se</code>, <code>senão se</code> e <code>senão</code> selecionam um bloco. As repetições incluem <code>enquanto</code> e <code>para</code>; a forma de <code>para</code> lembra um laço com inicialização, teste e atualização. Condições usam valores lógicos.</p><pre class="manual-code"><code>var notas = [8, 5.5, 9];
+para (var i = 0; i &lt; tamanho(notas); i = i + 1) {
+  se (notas[i] &gt;= 7) {
+    escreva("Aprovado");
+  } senão se (notas[i] &gt;= 5) {
+    escreva("Recuperação");
+  } senão {
+    escreva("Reprovado");
+  }
+}
+
+var contador = 0;
+enquanto (contador &lt; 2) {
+  escreva(contador);
+  contador = contador + 1;
+}</code></pre><p><code>verdadeiro</code> e valores diferentes de <code>falso</code> e <code>nulo</code> são avaliados como verdadeiros nas regras de veracidade descritas pela documentação.</p></section>
+<section id="funcoes"><p class="kicker">07 · Reuso</p><h2>Funções</h2><p>Uma função nomeada é declarada com <code>função</code>, parâmetros entre parênteses e um bloco entre chaves. <code>retorna</code> entrega um valor ao ponto de chamada. Funções anônimas podem ser armazenadas ou passadas a outras funções, por exemplo, para transformar os elementos de uma lista.</p><pre class="manual-code"><code>função classificar(nota) {
+  se (nota &gt;= 7) {
+    retorna("Aprovado");
+  } senão {
+    retorna("Continue estudando");
+  }
+}
+
+var resultado = classificar(8);
+escreva(resultado);</code></pre><p>Parâmetros são separados por vírgulas. Funções podem retornar listas, textos, números ou outros valores; as funções integradas <code>mapear</code>, <code>filtrar</code> e <code>para_cada</code> recebem funções como argumento.</p></section>
+<section id="objetos"><p class="kicker">08 · Modelagem</p><h2>Classes e objetos</h2><p><code>classe</code> declara uma estrutura com métodos. Criar uma instância chama o nome da classe com parênteses; métodos são chamados pela instância usando ponto. O método especial <code>construtor</code> é executado durante a criação, e <code>isto</code> referencia a instância atual. A documentação também apresenta herança com <code>herda</code> e acesso à implementação pai por <code>super</code>.</p><pre class="manual-code"><code>classe Contador {
+  construtor(valor) {
+    isto.valor = valor;
+  }
+  avancar() {
+    isto.valor = isto.valor + 1;
+    retorna isto.valor;
+  }
+}
+
+var contador = Contador(2);
+escreva(contador.avancar());</code></pre><p>Use classes quando dados e comportamentos relacionados precisarem ser agrupados; para transformações curtas, uma função simples costuma ser suficiente.</p></section>
+<section id="bibliotecas"><p class="kicker">09 · Recursos integrados</p><h2>Funções e bibliotecas</h2><p><code>escreva</code> apresenta valores. Funções integradas documentadas incluem <code>aleatório</code>, <code>aleatório_entre</code>, <code>inteiro</code>, <code>real</code>, <code>tamanho</code>, <code>para_cada</code>, <code>mapear</code>, <code>filtrar</code> e <code>ordenar</code>. Confira as páginas oficiais para a lista completa e as regras de cada função.</p><p>Bibliotecas padrão são carregadas explicitamente com <code>importar(...)</code>. A documentação oficial apresenta bibliotecas para matemática, textos, tempo e requisições HTTP.</p><pre class="manual-code"><code>var tempo = importar("tempo");
+escreva(tempo.agora());
+
+var dobro = mapear([1, 2, 3], função(valor) {
+  retorna valor * 2;
+});
+escreva(dobro);</code></pre></section>
+<section id="exemplo"><p class="kicker">10 · Aplicação</p><h2>Exemplo completo</h2><p>Este programa classifica uma lista de resultados e mostra quantos elementos atingiram a média.</p><pre class="manual-code"><code>função aprovado(nota) {
+  retorna nota &gt;= 7;
+}
+
+var notas = [8, 5.5, 9, 6];
+var aprovadas = filtrar(notas, função(nota) {
+  retorna aprovado(nota);
+});
+
+escreva("Notas: ", notas);
+escreva("Aprovadas: ", aprovadas);
+escreva("Quantidade: ", tamanho(aprovadas));</code></pre></section>
+<section id="fontes"><p class="kicker">11 · Fontes</p><h2>Documentação oficial</h2><ul><li><a href="https://egua.dev/">Site oficial da linguagem Égua</a> e <a href="https://github.com/eguadev/egua">repositório do projeto</a>.</li><li>Guias oficiais: <a href="https://egua.dev/egua/variaveis">variáveis</a>, <a href="https://egua.dev/egua/tipos-dados">tipos de dados</a>, <a href="https://egua.dev/egua/operadores">operadores</a>, <a href="https://egua.dev/egua/fluxo-controle">fluxo de controle</a>, <a href="https://egua.dev/egua/funcao">funções</a>, <a href="https://egua.dev/egua/classes">classes</a>, <a href="https://egua.dev/egua/funcoes-integradas">funções integradas</a> e <a href="https://egua.dev/egua/bibliotecas">bibliotecas</a>.</li></ul></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

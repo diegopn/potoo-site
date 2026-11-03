@@ -1,0 +1,115 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/mapler/"
+title: "Mapler | Potoo IDE Manual"
+description: "Reference for the Mapler Portugol variant: program structure, types, vectors, operators, input and output, decisions, loops, and modules."
+og_title: "Mapler reference"
+og_description: "Reference for the Mapler Portugol variant: program structure, types, vectors, operators, input and output, decisions, loops, and modules."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/mapler/"
+  es: "/es/manual/mapler/"
+  en: "/en/manual/mapler/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Portugol variant reference · Mapler</p><h1>Mapler</h1>
+    <p class="manual-intro">This page brings together the documented syntax of Mapler, a variant in the Portugol family for writing and running algorithms in structured Portuguese.</p>
+    <p class="manual-meta"><span><b>Category</b> Variant in the Portugol family</span><span><b>Reference</b> Mapler</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Mapler reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Mapler</a></li><li><a href="#estrutura">Program structure</a></li><li><a href="#dados">Variables, types, and vectors</a></li><li><a href="#expressoes">Assignment and operators</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Conditions with se and senao</a></li><li><a href="#repeticoes">para, enquanto, and repita loops</a></li><li><a href="#modulos">Modules</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#arquivos">File extension</a></li><li><a href="#fontes">References</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Overview</p><h2>About Mapler</h2><p>Mapler is an educational Portugol variant: its commands describe algorithms in structured Portuguese and organize them into readable blocks. The primary reference is the Mapler project manual, supplemented by its official examples for structure, types, operations, decisions, loops, and modules.</p><p>This page describes Mapler specifically. Its rules do not define a single syntax for the other variants in the Portugol family.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organization</p><h2>Program structure</h2><p>A program has a <code>variaveis</code> area, an executable block introduced by <code>inicio</code>, and the closing marker <code>fim</code>. Declarations go before the main algorithm; modules are declared in that area and defined after the main block.</p><pre class="manual-code"><code>variaveis
+    nome: cadeia;
+    idade: inteiro;
+inicio
+    escrever "What is your name?";
+    ler nome;
+    escrever "Hello, ", nome;
+fim.</code></pre><p>The period after <code>fim</code> appears in the project's structure examples. Commands inside blocks end with semicolons.</p></section>
+<section id="dados"><p class="kicker">03 · Data</p><h2>Variables, types, and vectors</h2><p>A declaration places a colon and type after the variable name inside <code>variaveis</code>. Documented types include <code>inteiro</code>, <code>real</code>, <code>logico</code>, <code>caractere</code>, and <code>cadeia</code>. Use <code>verdadeiro</code> and <code>falso</code> for logical values; text is quoted and individual characters use character literals.</p><pre class="manual-code"><code>variaveis
+    tentativas: inteiro;
+    media: real;
+    aprovado: logico;
+    inicial: caractere;
+    mensagem: cadeia;
+    notas: vetor [1..5] de real;
+inicio
+    tentativas &lt;- 0;
+    aprovado &lt;- falso;
+    notas[1] &lt;- 8.5;
+fim</code></pre><p>Vector bounds are written in square brackets. The official example starts at 1; use indices within the declared bounds.</p></section>
+<section id="expressoes"><p class="kicker">04 · Calculations</p><h2>Assignment and operators</h2><p>Assignment uses <code>&lt;-</code>. The mathematics reference documents addition, subtraction, multiplication, and division with <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>. Expressions can combine variables, literals, and parentheses; use parentheses to make the intended order explicit.</p><div class="manual-table-wrap" role="region" aria-label="Operators documented in Mapler" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Forms</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * /</code></td><td>Add, subtract, multiply, and divide numbers.</td></tr><tr><td>Relational</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Compare values in conditions.</td></tr><tr><td>Logical</td><td><code>e ou nao</code></td><td>Combine or negate logical conditions.</td></tr></tbody></table></div><pre class="manual-code"><code>total &lt;- preco * quantidade;
+se total &gt;= limite entao
+    escrever "Over the limit";
+fim se;</code></pre></section>
+<section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input and output</h2><p><code>escrever</code> displays text or values in the terminal and accepts multiple items separated by commas. <code>ler</code> reads a value from the keyboard and stores it in the named variable.</p><pre class="manual-code"><code>variaveis
+    nome: cadeia;
+    idade: inteiro;
+inicio
+    escrever "Name:";
+    ler nome;
+    escrever "Age:";
+    ler idade;
+    escrever nome, " is ", idade, " years old.";
+fim</code></pre><p>The variable type should match the value entered. A prompt before <code>ler</code> makes the expected input clear.</p></section>
+<section id="decisoes"><p class="kicker">06 · Decisions</p><h2>Conditions with se and senao</h2><p><code>se</code> evaluates a condition; <code>entao</code> starts the block that runs when the condition is true. The optional <code>senao</code> introduces the alternative. Every conditional block ends with <code>fim se;</code>.</p><pre class="manual-code"><code>se nota &gt;= 7 entao
+    escrever "Passed";
+senao
+    escrever "Keep studying";
+fim se;</code></pre><p>Conditions may be nested as long as each block closes before its parent. Relational and logical operators can form compound expressions.</p></section>
+<section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>para, enquanto, and repita loops</h2><p><code>para</code> traverses a range with a control variable, start, end, and step. <code>enquanto</code> checks its condition before each iteration. <code>repita</code> runs its block and checks the condition afterward, so the body runs at least once.</p><pre class="manual-code"><code>variaveis
+    i: inteiro;
+inicio
+    para i de 1 ate 5 passo 1 faca
+        escrever i;
+    fim para;
+
+    i &lt;- 1;
+    enquanto i &lt;= 5 faca
+        escrever i;
+        i &lt;- i + 1;
+    fim enquanto;
+
+    repita
+        i &lt;- i - 1;
+    ate i = 0;
+fim</code></pre><p>Blocks close with the command name in <code>fim para;</code> and <code>fim enquanto;</code>. Choose a step and condition that let the loop reach its intended end.</p></section>
+<section id="modulos"><p class="kicker">08 · Reuse</p><h2>Modules</h2><p>Modules are named blocks defined outside the main program and called by name. They are declared in <code>variaveis</code> with the type <code>modulo</code>; the official reference says modules can access variables in the main block.</p><pre class="manual-code"><code>variaveis
+    dizerOla: modulo;
+inicio
+    dizerOla;
+fim
+
+modulo dizerOla;
+    escrever "Reusable routine";
+fim modulo;</code></pre><p>This form organizes repeated tasks. Mapler's material presents modules without parameters; they are different from functions in other variants.</p></section>
+<section id="exemplo"><p class="kicker">09 · In practice</p><h2>Complete example</h2><p>This example combines declarations, input, a calculation, and a decision. It uses structures described in the Mapler reference.</p><pre class="manual-code"><code>variaveis
+    valor_a: real;
+    valor_b: real;
+    media: real;
+inicio
+    escrever "First value:";
+    ler valor_a;
+    escrever "Second value:";
+    ler valor_b;
+    media &lt;- (valor_a + valor_b) / 2;
+    escrever "Average: ", media;
+    se media &gt;= 7 entao
+        escrever "Sufficient result";
+    senao
+        escrever "Review the material";
+    fim se;
+fim.</code></pre></section>
+<section id="arquivos"><p class="kicker">10 · Files</p><h2>File extension in Potoo IDE</h2><p>The Mapler manual describes source text files with a <code>.txt</code> extension. Potoo IDE uses <code>.mapler</code> for Mapler files, a choice inspired by the DesignLiquido/mapler project. That repository is cited only as background for the adopted extension; syntax and features on this page come from Mapler's official manual and examples.</p></section>
+<section id="fontes"><p class="kicker">11 · Sources</p><h2>References</h2><ul><li><a href="https://portugol.sourceforge.io/manuais.html">Mapler user manual</a> — purpose, editing, execution, and debugging.</li><li><a href="https://portugol.sourceforge.io/exemplos/estrutura-codigo.html">Code structure</a>, <a href="https://portugol.sourceforge.io/exemplos/tipos.html">types and vectors</a>, <a href="https://portugol.sourceforge.io/exemplos/operacoes.html">operations</a>, <a href="https://portugol.sourceforge.io/exemplos/entrada-saida.html">input and output</a>, <a href="https://portugol.sourceforge.io/exemplos/condicionais.html">conditions</a>, <a href="https://portugol.sourceforge.io/exemplos/lacos.html">loops</a>, and <a href="https://portugol.sourceforge.io/exemplos/modulos.html">modules</a>.</li><li><a href="https://github.com/DesignLiquido/mapler">DesignLiquido/mapler</a> — inspiration for the <code>.mapler</code> extension used by Potoo IDE.</li></ul></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

@@ -1,0 +1,102 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/logic-basic/"
+title: "Logic Basic | Potoo IDE Manual"
+description: "Reference for Logic Basic: files, memory values, expressions, input and output, conditions, routines, graphical interfaces, matrices, and database."
+og_title: "Logic Basic reference"
+og_description: "Reference for Logic Basic: files, memory values, expressions, input and output, conditions, routines, graphical interfaces, matrices, and database."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/logic-basic/"
+  es: "/es/manual/logic-basic/"
+  en: "/en/manual/logic-basic/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Programming language reference · Logic Basic</p><h1>Logic Basic</h1>
+    <p class="manual-intro">This page organizes concepts and commands from the Logic Basic author manual, including the memory model, visual window, and documented programming features.</p>
+    <p class="manual-meta"><span><b>Category</b> Programming language</span><span><b>Reference</b> Logic Basic</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Logic Basic reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Logic Basic</a></li><li><a href="#arquivos">Program, window, and file</a></li><li><a href="#memorias">Memory values</a></li><li><a href="#expressoes">Assignment and operators</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#controle">Se, CasoContrario, and VaPara</a></li><li><a href="#funcoes">Functions and extensions</a></li><li><a href="#matrizes">Matrices</a></li><li><a href="#interface">Visual features</a></li><li><a href="#banco">Native database</a></li><li><a href="#exemplo">Integrated example</a></li><li><a href="#fontes">Manual consulted</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Overview</p><h2>About Logic Basic</h2><p>Logic Basic is a programming language paired with a visual environment: besides code, a program can interact with a window, controls, drawings, sounds, and data files. The author's manual introduces it through commands and progressive exercises for beginners.</p><p>This reference summarizes concepts and forms of writing documented in the manual consulted. Since the material is organized around commands and environment features, use the source for details of each visual option.</p></section>
+<section id="arquivos"><p class="kicker">02 · Organization</p><h2>Program, window, and file</h2><p>The manual describes two work areas: the code and the window where the program displays results and controls. Execution proceeds through the code until the end or until <code>FimPrograma</code> or <code>FimJanela</code>. Source files use the <code>.LBC</code> extension.</p><p>A line can contain multiple commands separated by semicolons; each separated command is treated as a logical line. An apostrophe begins a code comment.</p><pre class="manual-code"><code>Memoria Nome
+Nome = "Ana"
+Posicione 1, 1
+Escreva "Hello, ", Nome
+FimPrograma</code></pre></section>
+<section id="memorias"><p class="kicker">03 · Data</p><h2>Memory values</h2><p><code>Memoria</code> creates names used to store values. The manual recommends putting these declarations at the beginning of the main code. A memory value can hold text, numbers, and visual-environment items such as objects and sounds. The same name can receive a new value during execution.</p><pre class="manual-code"><code>Memoria Nome, Pontos, Fundo
+Nome = "Ana"
+Pontos = 12
+Fundo = "fundo-verde"</code></pre><p>Text is quoted. An unquoted number is numeric and can be used in calculations; a quoted number is text. The manual uses a comma as the decimal separator, for example <code>3,5</code>. Memory names cannot contain spaces.</p></section>
+<section id="expressoes"><p class="kicker">04 · Expressions</p><h2>Assignment and operators</h2><p>Outside a condition, <code>=</code> assigns a value. Inside a condition, <code>=</code> compares values. The language documents arithmetic operations, compound updates, and comparisons. The manual's examples use <code>SIM</code> and <code>NAO</code> for logical values.</p><div class="manual-table-wrap" role="region" aria-label="Logic Basic operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Documented forms</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * / %</code></td><td>Calculations and remainder.</td></tr><tr><td>Updates</td><td><code>++ -- += -=</code></td><td>Increment, decrement, or update a value.</td></tr><tr><td>Comparison</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Test equality and ordering in a condition.</td></tr><tr><td>Logical</td><td><code>E OU</code></td><td>Combine conditions.</td></tr></tbody></table></div><pre class="manual-code"><code>Memoria X, Y, Soma
+X = 8
+Y = 3
+Soma = X + Y
+Soma += 1
+Se Soma &gt;= 12
+Escreva "Reached the value"
+FimSe</code></pre><p>Operators and numeric handling follow the Logic Basic manual. Command spelling in examples follows the forms shown by the author.</p></section>
+<section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input, messages, and output</h2><p><code>Escreva</code> displays one or more items in the window in sequence. <code>Posicione</code> sets the output position and <code>LimpaJanela</code> clears the visual area. <code>Mensagem</code> displays a dialog message.</p><p><code>EntraTexto</code> prompts for text and returns the input to a memory value. The manual also describes controls such as text boxes, lists, options, and check boxes; their values can be read with <code>Componente Valor</code>.</p><pre class="manual-code"><code>Memoria Nome
+Nome = EntraTexto, "Enter your name:"
+LimpaJanela
+Posicione 1, 1
+Escreva "Hello, ", Nome
+Mensagem "Entry complete"</code></pre></section>
+<section id="controle"><p class="kicker">06 · Decisions and repetition</p><h2>Se, CasoContrario, and VaPara</h2><p><code>Se</code> executes statements when a condition is true. <code>CasoContrario</code> defines an optional alternative and <code>FimSe</code> closes the block. For repetition, the manual presents labels and <code>VaPara</code>, which transfers execution to a named line.</p><pre class="manual-code"><code>Memoria Tentativa
+Tentativa = 0
+INICIO
+Tentativa = Tentativa + 1
+Escreva "Attempt ", Tentativa
+Se Tentativa &lt; 3
+VaPara INICIO
+CasoContrario
+Escreva "Attempts complete"
+FimSe</code></pre><p>This form can create loops, but it requires explicit control of the state that ends repetition. An incorrect jump can make the program repeat forever.</p></section>
+<section id="funcoes"><p class="kicker">07 · Reuse</p><h2>Functions and extensions</h2><p>The manual describes named routines outside the main flow. <code>Execute Name()</code> calls a routine, and <code>Retorne</code> returns execution to the command after the call. A routine can call other routines and can be recursive. The material also presents extension panels for organizing reusable code.</p><pre class="manual-code"><code>Escreva "Before the routine"
+Execute Saudacao()
+Escreva "After the routine"
+FimPrograma
+
+Saudacao()
+Escreva "Hello!"
+Retorne</code></pre><p>Use consistent routine names and make sure every execution path that enters a routine reaches <code>Retorne</code>, so it does not continue into unrelated code.</p></section>
+<section id="matrizes"><p class="kicker">08 · Collections</p><h2>Matrices</h2><p>A memory value can be declared with a number of positions in parentheses. Indices start at zero. For example, <code>Memoria Nome(20)</code> creates positions from <code>Nome(0)</code> through <code>Nome(19)</code>. A numeric value can serve as an index inside a loop.</p><pre class="manual-code"><code>Memoria Nome(3), I
+Nome(0) = "Ana"
+Nome(1) = "Beto"
+Nome(2) = "Caio"
+I = 0
+INICIO
+Escreva Nome(I)
+I = I + 1
+Se I &lt; 3
+VaPara INICIO
+FimSe</code></pre><p><code>ProcureMatriz</code> searches for a value in a matrix and returns its matching index; the manual says it returns <code>-1</code> when the value is not found.</p></section>
+<section id="interface"><p class="kicker">09 · Visual features</p><h2>Window, controls, and media</h2><p>Visual commands can position text, draw objects, display images, and respond to interactions. <code>Componente</code> creates form controls; <code>Desenhe</code> displays objects or visual resources; <code>Aguarde</code> pauses execution or receives an interaction, depending on the arguments documented in the manual.</p><p>The material also covers mouse input, sound, and video. Channels, positions, dimensions, and controls depend on each command's parameters; consult the source before using advanced options.</p><pre class="manual-code"><code>LimpaJanela
+Posicione 5, 5
+Desenhe "personagem"
+Aguarde</code></pre></section>
+<section id="banco"><p class="kicker">10 · Persistent data</p><h2>Native database</h2><p>The manual describes <code>BD ... FimBD</code> blocks for defining fields and <code>AbreBD</code> for opening a data file. Fields are populated through the database and field names; <code>AdicionaRegistro</code> saves a record, <code>LeRegistro</code> reads by position, and <code>FechaBD</code> closes the file. Commands for sorting, searching, and counting records are also documented.</p><div class="manual-table-wrap" role="region" aria-label="Logic Basic database commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Purpose in the manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Define a table's fields.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Open or close the associated file.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Save populated fields as a new record.</td></tr><tr><td><code>LeRegistro</code></td><td>Read a record by position.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Sort or locate records.</td></tr><tr><td><code>TotalRegistros</code></td><td>Get the number of records.</td></tr></tbody></table></div><p>The database uses its own files and a field definition. Follow the manual's open and close sequence before reading or saving records.</p></section>
+<section id="exemplo"><p class="kicker">11 · In practice</p><h2>Integrated example</h2><p>This example uses memory values, input, and a condition to display a personalized greeting. It brings together basic commands without depending on advanced graphics.</p><pre class="manual-code"><code>Memoria Nome, Pontos
+Nome = EntraTexto, "What is your name?"
+Pontos = 0
+LimpaJanela
+Posicione 1, 1
+Escreva "Welcome, ", Nome
+Se Nome = ""
+Mensagem "Enter a name to continue"
+CasoContrario
+Pontos = Pontos + 1
+Escreva "Points: ", Pontos
+FimSe
+FimPrograma</code></pre></section>
+<section id="fontes"><p class="kicker">12 · Sources</p><h2>Manual consulted</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Logic Basic manual</a> by Eleusmário Mariano Rabelo — reference for commands, memory values, interface, matrices, routines, and database.</li></ul><p>Examples on this page were written to explain the concepts; consult the original manual for every parameter of each command.</p></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>
+</main>

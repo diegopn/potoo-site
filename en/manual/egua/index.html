@@ -1,0 +1,107 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/egua/"
+title: "Égua | Potoo IDE Manual"
+description: "Reference for the Égua programming language: Portuguese syntax, variables, values, operators, control flow, functions, lists, dictionaries, classes, and libraries."
+og_title: "Égua reference"
+og_description: "Reference for the Égua programming language: Portuguese syntax, variables, values, operators, control flow, functions, lists, dictionaries, classes, and libraries."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/egua/"
+  es: "/es/manual/egua/"
+  en: "/en/manual/egua/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Programming language reference · Égua</p><h1>Égua</h1>
+    <p class="manual-intro">This reference introduces the Égua programming language and its Portuguese syntax, including data, control flow, functions, collections, object-oriented features, and standard libraries.</p>
+    <p class="manual-meta"><span><b>Category</b> Programming language</span><span><b>Reference</b> Égua</span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Égua reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Égua</a></li><li><a href="#estrutura">Source files and code</a></li><li><a href="#variaveis">Variables and scope</a></li><li><a href="#tipos">Types and collections</a></li><li><a href="#operadores">Operators and comparisons</a></li><li><a href="#controle">Conditions and loops</a></li><li><a href="#funcoes">Functions</a></li><li><a href="#objetos">Classes and objects</a></li><li><a href="#bibliotecas">Functions and libraries</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#fontes">Official documentation</a></li></ol></aside>
+    <article class="manual-content">
+<section id="sobre"><p class="kicker">01 · Overview</p><h2>About Égua</h2><p>Égua is an interpreted programming language with Portuguese keywords and messages. Its official site presents it as an accessible way to practice programming concepts without relying on English vocabulary; its implementation combines imperative and functional features with object-oriented programming.</p><p>This page organizes syntax and features described in the official documentation. It is a reference guide, not a replacement for the complete language documentation.</p></section>
+<section id="estrutura"><p class="kicker">02 · Organization</p><h2>Source files and code</h2><p>A program consists of statements and blocks enclosed in braces. The project documentation uses <code>.egua</code> source files, <code>//</code> line comments, and semicolons to end statements. Execution can begin with statements directly in the file; functions and classes are declared where needed.</p><pre class="manual-code"><code>// First program
+var nome = "Ana";
+escreva("Hello, " + nome);</code></pre><p>Key reserved words include <code>var</code>, <code>se</code>, <code>senão</code>, <code>para</code>, <code>função</code>, <code>retorna</code>, and <code>classe</code>. Their Portuguese spelling is part of the syntax.</p></section>
+<section id="variaveis"><p class="kicker">03 · Data</p><h2>Variables and scope</h2><p><code>var</code> declares a variable, with or without an initial value. Later assignment uses <code>=</code>. Variables can have global scope or local scope inside a brace-delimited block; an outer variable is visible inside nested blocks, but a local variable is unavailable outside its defining block.</p><pre class="manual-code"><code>var pontos = 0;
+pontos = pontos + 1;
+
+se (pontos &gt; 0) {
+  var mensagem = "There are points";
+  escreva(mensagem);
+}</code></pre><p>Égua determines a value's type at runtime; a type is not written next to a variable name. Use descriptive names and keep each variable in the narrowest scope that suits the algorithm.</p></section>
+<section id="tipos"><p class="kicker">04 · Values</p><h2>Types and collections</h2><p>Values include whole or decimal numbers, text in single or double quotes, logical values <code>verdadeiro</code> and <code>falso</code>, and the missing value <code>nulo</code>. Lists are ordered and use square brackets; dictionaries associate keys with values and use braces.</p><div class="manual-table-wrap" role="region" aria-label="Égua types and collections" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Example</th><th scope="col">Note</th></tr></thead><tbody><tr><td>Number</td><td><code>12</code>, <code>3.5</code></td><td>Integer or floating-point value.</td></tr><tr><td>Text</td><td><code>"Hello"</code>, <code>'a'</code></td><td>A quoted sequence.</td></tr><tr><td>Logical</td><td><code>verdadeiro</code>, <code>falso</code></td><td>Used in conditions.</td></tr><tr><td>List</td><td><code>[4, "five"]</code></td><td>Zero-based index; variable length.</td></tr><tr><td>Dictionary</td><td><code>{'nome': 'Ana'}</code></td><td>Access by key.</td></tr></tbody></table></div><pre class="manual-code"><code>var notas = [8, 6.5, 9];
+var cadastro = {"nome": "Ana"};
+escreva(notas[0]);
+escreva(cadastro["nome"]);</code></pre><p>Lists and text are indexed from zero. The documentation also describes negative indices for text, counted from the end; reading a missing list index raises an error, while assigning beyond the end can extend the list and fill skipped positions with <code>nulo</code>.</p></section>
+<section id="operadores"><p class="kicker">05 · Expressions</p><h2>Operators and comparisons</h2><div class="manual-table-wrap" role="region" aria-label="Égua operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Operators</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>** * / + - %</code></td><td>Power, calculations, and remainder.</td></tr><tr><td>Comparison</td><td><code>&gt; &gt;= &lt; &lt;= == !=</code></td><td>Compare values; equality requires matching type and value.</td></tr><tr><td>Logical</td><td><code>e ou</code></td><td>Conjunction and disjunction.</td></tr><tr><td>Membership</td><td><code>em</code></td><td>Checks a list value, text character, or dictionary key.</td></tr><tr><td>Bitwise</td><td><code>&lt;&lt; &gt;&gt; &amp; ^ |</code></td><td>Shifts and operations on bits.</td></tr></tbody></table></div><pre class="manual-code"><code>var resultado = 2 ** 3 + 1;
+var aprovado = resultado &gt;= 8 e resultado &lt; 10;
+var tem_nota = 8 em [6, 8, 9];
+escreva(aprovado);</code></pre><p>Operator precedence sets evaluation order. Use parentheses when an expression combines several groups.</p></section>
+<section id="controle"><p class="kicker">06 · Flow</p><h2>Conditions and loops</h2><p><code>se</code>, <code>senão se</code>, and <code>senão</code> select a block. Loop forms include <code>enquanto</code> and <code>para</code>; <code>para</code> resembles a loop with initialization, test, and update steps. Conditions use logical values.</p><pre class="manual-code"><code>var notas = [8, 5.5, 9];
+para (var i = 0; i &lt; tamanho(notas); i = i + 1) {
+  se (notas[i] &gt;= 7) {
+    escreva("Passed");
+  } senão se (notas[i] &gt;= 5) {
+    escreva("Review period");
+  } senão {
+    escreva("Not passed");
+  }
+}
+
+var contador = 0;
+enquanto (contador &lt; 2) {
+  escreva(contador);
+  contador = contador + 1;
+}</code></pre><p><code>verdadeiro</code> and values other than <code>falso</code> and <code>nulo</code> evaluate as true under the truthiness rules in the documentation.</p></section>
+<section id="funcoes"><p class="kicker">07 · Reuse</p><h2>Functions</h2><p>A named function uses <code>função</code>, comma-separated parameters in parentheses, and a brace-delimited body. <code>retorna</code> sends a value to the call site. Anonymous functions can be stored or passed to other functions, for example to transform list elements.</p><pre class="manual-code"><code>função classificar(nota) {
+  se (nota &gt;= 7) {
+    retorna("Passed");
+  } senão {
+    retorna("Keep studying");
+  }
+}
+
+var resultado = classificar(8);
+escreva(resultado);</code></pre><p>Functions can return lists, text, numbers, or other values. Built-ins <code>mapear</code>, <code>filtrar</code>, and <code>para_cada</code> accept functions as arguments.</p></section>
+<section id="objetos"><p class="kicker">08 · Modeling</p><h2>Classes and objects</h2><p><code>classe</code> declares a structure with methods. Calling the class name with parentheses creates an instance; methods are called on that instance with a dot. The special <code>construtor</code> method runs when an instance is created, and <code>isto</code> refers to the current instance. The documentation also covers inheritance with <code>herda</code> and access to a parent implementation with <code>super</code>.</p><pre class="manual-code"><code>classe Contador {
+  construtor(valor) {
+    isto.valor = valor;
+  }
+  avancar() {
+    isto.valor = isto.valor + 1;
+    retorna isto.valor;
+  }
+}
+
+var contador = Contador(2);
+escreva(contador.avancar());</code></pre><p>Use classes to group related data and behavior; a simple function is often enough for a short transformation.</p></section>
+<section id="bibliotecas"><p class="kicker">09 · Built-in features</p><h2>Functions and libraries</h2><p><code>escreva</code> displays values. Documented built-ins include <code>aleatório</code>, <code>aleatório_entre</code>, <code>inteiro</code>, <code>real</code>, <code>tamanho</code>, <code>para_cada</code>, <code>mapear</code>, <code>filtrar</code>, and <code>ordenar</code>. See the official pages for the full list and each function's behavior.</p><p>Standard libraries are loaded explicitly with <code>importar(...)</code>. Official documentation describes libraries for mathematics, text, time, and HTTP requests.</p><pre class="manual-code"><code>var tempo = importar("tempo");
+escreva(tempo.agora());
+
+var dobro = mapear([1, 2, 3], função(valor) {
+  retorna valor * 2;
+});
+escreva(dobro);</code></pre></section>
+<section id="exemplo"><p class="kicker">10 · In practice</p><h2>Complete example</h2><p>This program classifies a list of results and shows how many reached the target score.</p><pre class="manual-code"><code>função aprovado(nota) {
+  retorna nota &gt;= 7;
+}
+
+var notas = [8, 5.5, 9, 6];
+var aprovadas = filtrar(notas, função(nota) {
+  retorna aprovado(nota);
+});
+
+escreva("Grades: ", notas);
+escreva("Passed: ", aprovadas);
+escreva("Count: ", tamanho(aprovadas));</code></pre></section>
+<section id="fontes"><p class="kicker">11 · Sources</p><h2>Official documentation</h2><ul><li><a href="https://egua.dev/">Égua official website</a> and the <a href="https://github.com/eguadev/egua">project repository</a>.</li><li>Official guides: <a href="https://egua.dev/egua/variaveis">variables</a>, <a href="https://egua.dev/egua/tipos-dados">data types</a>, <a href="https://egua.dev/egua/operadores">operators</a>, <a href="https://egua.dev/egua/fluxo-controle">control flow</a>, <a href="https://egua.dev/egua/funcao">functions</a>, <a href="https://egua.dev/egua/classes">classes</a>, <a href="https://egua.dev/egua/funcoes-integradas">built-in functions</a>, and <a href="https://egua.dev/egua/bibliotecas">libraries</a>.</li></ul></section>
+    </article>
+  </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>
+</main>
