@@ -1,0 +1,359 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/portugol-studio/"
+title: "Portugol Studio 2.0 | Manual de Potoo IDE"
+description: "Referencia amplia del pseudolenguaje Portugol Studio 2.0: estructura, tipos, operadores, control de flujo, vectores, funciones y bibliotecas."
+og_title: "Referencia de Portugol Studio 2.0"
+og_description: "Consulta la sintaxis y las bibliotecas estándar del pseudolenguaje Portugol Studio 2.0."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/portugol-studio/"
+  es: "/es/manual/portugol-studio/"
+  en: "/en/manual/portugol-studio/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio">
+    <div class="wrap">
+      <p class="kicker">Referencia de pseudolenguaje · Portugol Studio 2.0</p>
+      <h1>Portugol Studio 2.0</h1>
+      <p class="manual-intro">Esta página documenta el pseudolenguaje Portugol Studio 2.0 a partir de la gramática, el léxico y las referencias públicas que lo describen.</p>
+      <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.1.0</span><span><b>Actualizado</b> 4 de noviembre de 2026</span></p>
+      <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+    </div>
+  </section>
+
+  <div class="manual-body">
+    <div class="wrap manual-layout">
+      <aside class="manual-toc" aria-label="Contenido de la referencia de Portugol">
+        <h2>En esta referencia</h2>
+        <ol>
+          <li><a href="#sobre">Sobre Portugol Studio 2.0</a></li>
+          <li><a href="#estrutura">Estructura del programa</a></li>
+          <li><a href="#lexico">Nombres, comentarios y literales</a></li>
+          <li><a href="#tipos">Tipos y declaraciones</a></li>
+          <li><a href="#operadores">Operadores y precedencia</a></li>
+          <li><a href="#entrada-saida">Entrada y salida</a></li>
+          <li><a href="#controle">Condiciones y selección</a></li>
+          <li><a href="#repeticao">Repetición</a></li>
+          <li><a href="#vetores">Vectores y matrices</a></li>
+          <li><a href="#funcoes">Funciones y parámetros</a></li>
+          <li><a href="#bibliotecas">Bibliotecas estándar</a></li>
+          <li><a href="#exemplo">Ejemplo completo</a></li>
+          <li><a href="#erros">Errores frecuentes</a></li>
+          <li><a href="#interpretador">Intérprete</a></li><li><a href="#fontes">Referencias</a></li>
+        </ol>
+      </aside>
+
+      <article class="manual-content">
+        <section id="sobre"><p class="kicker">01 · Alcance</p><h2>Sobre Portugol Studio 2.0</h2><p><strong>Portugol</strong> es un nombre que se usa para distintos pseudolenguajes. Esta documentación describe específicamente Portugol Studio 2.0; sus reglas no definen un estándar universal para todos los pseudolenguajes llamados Portugol.</p><p>Las reglas presentadas corresponden al pseudolenguaje Portugol Studio 2.0 y a las fuentes enumeradas al final de esta referencia.</p></section>
+
+        <section id="estrutura">
+          <p class="kicker">02 · Organización</p>
+          <h2>Estructura de un programa</h2>
+          <p>Un archivo comienza con <code>programa</code> y un bloque delimitado por llaves. Las inclusiones de bibliotecas aparecen al principio del bloque; después pueden venir declaraciones globales y funciones. La forma habitual de punto de entrada es una función llamada <code>inicio</code>.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Matematica --> mat
+
+    const inteiro tentativas = 3
+    inteiro acertos = 0
+
+    funcao inicio() {
+        escreva("Bienvenido al ejercicio")
+    }
+}</code></pre>
+          <p>Los bloques de funciones, condiciones y bucles usan <code>{</code> y <code>}</code>. El punto y coma se usa en los tres campos de la cabecera de <code>para</code>; los ejemplos habituales escriben un comando por línea y no terminan cada comando con punto y coma.</p>
+        </section>
+
+        <section id="lexico">
+          <p class="kicker">03 · Escritura</p>
+          <h2>Nombres, comentarios y literales</h2>
+          <ul>
+            <li>Los identificadores empiezan con una letra ASCII o guion bajo; después pueden incluir letras ASCII, dígitos y guiones bajos. La gramática publicada no admite letras acentuadas en identificadores.</li>
+            <li>Las palabras clave se escriben sin acentos y la gramática las reconoce en minúsculas, por ejemplo <code>programa</code>, <code>funcao</code> y <code>enquanto</code>.</li>
+            <li>Los comentarios de línea empiezan con <code>//</code>; los comentarios de bloque se delimitan con <code>/*</code> y <code>*/</code>.</li>
+            <li>Los números reales usan punto como separador decimal. Los textos usan comillas dobles y los caracteres individuales, comillas simples; el léxico también define escapes y literales hexadecimales.</li>
+            <li>Los valores lógicos son <code>verdadeiro</code> y <code>falso</code>.</li>
+          </ul>
+          <pre class="manual-code"><code>// comentario de línea
+/* comentario
+   de bloque */
+cadeia mensagem = "Hola"
+caracter inicial = 'A'
+real media = 7.5
+logico aprovado = verdadeiro</code></pre>
+        </section>
+
+        <section id="tipos">
+          <p class="kicker">04 · Datos</p>
+          <h2>Tipos, variables y constantes</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Tipos del pseudolenguaje Portugol Studio 2.0" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Tipo</th><th scope="col">Uso</th></tr></thead>
+              <tbody>
+                <tr><td><code>inteiro</code></td><td>Números enteros.</td></tr>
+                <tr><td><code>real</code></td><td>Números con parte fraccionaria.</td></tr>
+                <tr><td><code>logico</code></td><td>Valores <code>verdadeiro</code> o <code>falso</code>.</td></tr>
+                <tr><td><code>caracter</code></td><td>Un carácter.</td></tr>
+                <tr><td><code>cadeia</code></td><td>Secuencia de caracteres.</td></tr>
+                <tr><td><code>vazio</code></td><td>Indica una función sin valor de retorno.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Declara el tipo antes del nombre. Una declaración puede agrupar nombres del mismo tipo e incluir una expresión inicial. La palabra clave <code>const</code> marca declaraciones constantes. Los valores y tipos deben ser compatibles.</p>
+          <pre class="manual-code"><code>inteiro idade = 18, ano
+real altura = 1.72
+const real pi_aproximado = 3.14
+cadeia nome = "Lia"
+logico concluiu = falso</code></pre>
+          <p>Una variable declarada dentro de una función o bloque tiene alcance local; las declaraciones del cuerpo principal, fuera de las funciones, son globales. La lista de declaraciones también permite inicializadores de vectores y matrices, que se explican en <a href="#vetores">Vectores y matrices</a>.</p>
+        </section>
+
+        <section id="operadores">
+          <p class="kicker">05 · Expresiones</p>
+          <h2>Operadores y precedencia</h2>
+          <div class="manual-table-wrap" role="region" aria-label="Operadores del pseudolenguaje Portugol Studio 2.0" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Significado</th></tr></thead>
+              <tbody>
+                <tr><td>Aritméticos</td><td><code>+ - * / %</code></td><td>Suma, resta, multiplicación, división y resto.</td></tr>
+                <tr><td>Unarios</td><td><code>+ - nao ~ ++ --</code></td><td>Signo, negación lógica, negación bit a bit, incremento y decremento. <code>++</code> y <code>--</code> pueden aparecer antes o después del identificador.</td></tr>
+                <tr><td>Asignación</td><td><code>= += -= *= /=</code></td><td>Asignación simple y compuesta. <code>=</code> no es el operador de igualdad.</td></tr>
+                <tr><td>Comparación</td><td><code>== != &gt; &lt; &lt;= &gt;=</code></td><td>Igualdad, diferencia y comparaciones relacionales.</td></tr>
+                <tr><td>Lógicos</td><td><code>e ou</code></td><td>Conjunción y disyunción lógica.</td></tr>
+                <tr><td>Bit a bit</td><td><code>^ &lt;&lt; &gt;&gt; &amp; |</code></td><td>XOR, desplazamientos a izquierda y derecha, AND y OR bit a bit.</td></tr>
+                <tr><td>Agrupación</td><td><code>( )</code></td><td>Controla explícitamente el orden de evaluación.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>La gramática oficial define los operadores mediante alternativas recursivas, pero no publica una tabla de precedencia clara para todas las combinaciones. Usa paréntesis para hacer explícito el orden, sobre todo al mezclar comparaciones, lógica y operaciones bit a bit.</p>
+          <div class="manual-note"><strong>Recomendación:</strong> la propia regla gramatical señala que la igualdad tiene prioridad baja, así que no dependas de un orden supuesto en expresiones compuestas.</div>
+        </section>
+
+        <section id="entrada-saida">
+          <p class="kicker">06 · Interacción</p>
+          <h2>Entrada y salida</h2>
+          <p><code>escreva</code> muestra una o más expresiones. Para saltar de línea, incluye la secuencia de escape <code>\n</code> en una cadena que pases a la función. <code>leia</code> recibe datos para variables. La función predefinida <code>limpa()</code> limpia el área de salida.</p>
+          <pre class="manual-code"><code>programa {
+    funcao inicio() {
+        cadeia nome
+        escreva("¿Cuál es tu nombre? ")
+        leia(nome)
+        escreva("Hola, ", nome, "!\n")
+    }
+}</code></pre>
+          <p>La forma de mostrar y leer datos depende de las funciones y bibliotecas disponibles en el entorno de ejecución descrito por las referencias.</p>
+        </section>
+
+        <section id="controle">
+          <p class="kicker">07 · Decisiones</p>
+          <h2>Condiciones y selección</h2>
+          <p><code>se</code> ejecuta una rama cuando la expresión lógica es verdadera; <code>senao</code> define la rama alternativa. Los bloques pueden contener varios comandos. La selección múltiple usa <code>escolha</code>, etiquetas <code>caso</code> y la alternativa <code>contrario</code>.</p>
+          <pre class="manual-code"><code>se (nota >= 7) {
+    escreva("Aprobado\n")
+} senao {
+    escreva("Sigue practicando\n")
+}
+
+escolha (opcao) {
+    caso 1:
+        escreva("Iniciar\n")
+        pare
+    caso contrario:
+        escreva("Opción desconocida\n")
+}</code></pre>
+          <p><code>pare</code> termina el caso actual de <code>escolha</code> o interrumpe un bucle. Usa una expresión de tipo lógico como condición.</p>
+        </section>
+
+        <section id="repeticao">
+          <p class="kicker">08 · Bucles</p>
+          <h2>Repetición</h2>
+          <p>Portugol Studio 2.0 define bucles condicionales y un bucle con inicialización, condición e incremento:</p>
+          <pre class="manual-code"><code>inteiro contador = 1
+enquanto (contador <= 3) {
+    escreva(contador, "\n")
+    contador++
+}
+
+faca {
+    contador--
+} enquanto (contador > 0)
+
+para (inteiro i = 0; i < 3; i++) {
+    escreva(i, "\n")
+}</code></pre>
+          <p><code>enquanto</code> evalúa antes de cada repetición; <code>faca ... enquanto</code> evalúa después del bloque. En <code>para</code>, los campos se separan por punto y coma y pueden inicializar una variable, comprobar una condición y actualizar el contador. <code>pare</code> termina el bucle actual.</p>
+        </section>
+
+        <section id="vetores">
+          <p class="kicker">09 · Colecciones</p>
+          <h2>Vectores y matrices</h2>
+          <p>Los vectores usan un índice entre corchetes; las matrices usan dos índices. Cada dimensión declarada debe ser una expresión constante de tipo entero y valor positivo; si hay un inicializador, el tamaño puede inferirse. La gramática también permite inicializar matrices por filas.</p>
+          <pre class="manual-code"><code>programa {
+    funcao inicio() {
+        inteiro notas[3] = {8, 9, 10}
+        inteiro quadro[2][2] = &#123;&#123;1, 2&#125;, &#123;3, 4&#125;&#125;
+        escreva(notas[0], "\n")
+        escreva(quadro[1][0], "\n")
+    }
+}</code></pre>
+          <p>Los índices son expresiones enteras. Los parámetros de función pueden declarar dimensiones sin fijar sus tamaños, por ejemplo <code>inteiro valores[]</code> o <code>inteiro tabela[][]</code>.</p>
+        </section>
+
+        <section id="funcoes">
+          <p class="kicker">10 · Reutilización</p>
+          <h2>Funciones y parámetros</h2>
+          <p>Una función puede declarar un tipo de retorno antes del nombre; omitir el tipo equivale a usarla sin valor de retorno, que también se puede escribir con <code>vazio</code>. Los parámetros tienen tipo y nombre, pueden separarse por comas y pueden recibir vectores o matrices. Un <code>&amp;</code> antes del nombre indica paso por referencia.</p>
+          <pre class="manual-code"><code>funcao inteiro dobrar(inteiro valor) {
+    retorne valor * 2
+}
+
+funcao atualizar(inteiro &amp;total, inteiro acrescimo) {
+    total += acrescimo
+}
+
+funcao inicio() {
+    inteiro resultado = dobrar(4)
+    atualizar(resultado, 1)
+    escreva(resultado, "\n")
+}</code></pre>
+          <p><code>retorne</code> termina la función y puede devolver una expresión. La referencia oficial describe llamadas dentro de expresiones, funciones con retorno y funciones sin retorno.</p>
+        </section>
+
+        <section id="bibliotecas">
+          <p class="kicker">11 · Recursos estándar</p>
+          <h2>Bibliotecas de Portugol Studio 2.0</h2>
+          <p>Una biblioteca se incluye con <code>inclua biblioteca Nombre</code> y puede recibir un alias después de <code>--&gt;</code>. Las llamadas usan el nombre o el alias seguido de un punto. La tabla resume los módulos del pseudolenguaje documentados en las fuentes de esta referencia; la documentación de cada clase enumera firmas, parámetros y constantes.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Bibliotecas del pseudolenguaje Portugol Studio 2.0" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Biblioteca</th><th scope="col">Recursos de referencia</th></tr></thead>
+              <tbody>
+                <tr><td><code>Arquivos</code></td><td>Abrir, cerrar, leer y escribir archivos; comprobar el fin, seleccionar archivos, listar archivos y carpetas, crear carpetas, reemplazar texto y comprobar o borrar archivos.</td></tr>
+                <tr><td><code>Calendario</code></td><td>Día, mes, año, hora, minuto, segundo, milisegundo y nombres de los días de la semana.</td></tr>
+                <tr><td><code>Graficos</code></td><td>Ventanas gráficas, dibujos geométricos, imágenes, animaciones GIF, texto, fuentes, colores, gradientes, dimensiones, pantalla completa y transformaciones visuales.</td></tr>
+                <tr><td><code>Internet</code></td><td>Tiempo límite, lectura de contenido de una dirección, descarga de imágenes y comprobación de disponibilidad.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>PI</code>, <code>potencia</code>, <code>raiz</code>, <code>arredondar</code>, <code>logaritmo</code>, seno, coseno, tangente, valor absoluto, número mayor y menor.</td></tr>
+                <tr><td><code>Mouse</code></td><td>Consultar botones y posición del puntero; ocultar o mostrar el cursor.</td></tr>
+                <tr><td><code>Objetos</code></td><td>Crear objetos desde JSON/XML o propiedades, consultar y asignar propiedades tipadas, trabajar con vectores de propiedades y liberar o exportar objetos.</td></tr>
+                <tr><td><code>ServicosWeb</code></td><td>Conexiones y solicitudes web, encabezados y parámetros; operaciones para obtener, publicar, actualizar y eliminar datos.</td></tr>
+                <tr><td><code>Sons</code></td><td>Cargar, reproducir, pausar, detener y liberar sonidos; consultar posición, duración y volumen.</td></tr>
+                <tr><td><code>Teclado</code></td><td>Consultar y leer teclas y caracteres, con constantes para teclas comunes, letras, números y funciones.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>numero_caracteres</code>, <code>caixa_alta</code>, <code>caixa_baixa</code>, <code>substituir</code>, <code>preencher_a_esquerda</code>, <code>obter_caracter</code>, <code>posicao_texto</code> y <code>extrair_subtexto</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td>Comprobar si los textos representan números, valores lógicos o caracteres, y convertir entre cadena, entero, real, lógico y caracter.</td></tr>
+                <tr><td><code>Util</code></td><td>Directorio del usuario, tamaños de vectores y matrices, sorteo, espera y tiempo transcurrido.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="manual-code"><code>inclua biblioteca Matematica --> mat
+
+funcao inicio() {
+    escreva(mat.potencia(2, 3), "\n")
+}</code></pre>
+          <p>El conjunto de bibliotecas pertenece al entorno de referencia de Portugol Studio 2.0; no todas las bibliotecas son apropiadas para cualquier intérprete o contexto de ejecución.</p>
+          <h3>Firmas y resultados</h3>
+          <p>Las llamadas siguientes usan el alias <code>mat</code> del ejemplo anterior. Las funciones devuelven valores que pueden asignarse a variables o combinarse en expresiones.</p>
+          <div class="manual-table-wrap" role="region" aria-label="Firmas de las bibliotecas Matematica, Texto, Tipos y Util" tabindex="0">
+            <table class="manual-table">
+              <thead><tr><th scope="col">Biblioteca</th><th scope="col">Firma o llamada</th><th scope="col">Comportamiento</th></tr></thead>
+              <tbody>
+                <tr><td><code>Matematica</code></td><td><code>potencia(base, expoente)</code></td><td>Devuelve un número real con la base elevada al exponente. Ejemplo: <code>potencia(2, 3)</code> da <code>8</code>.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>raiz(radicando, indice)</code></td><td>Devuelve un número real con la raíz indicada por el índice. <code>raiz(27, 3)</code> da <code>3</code>.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>arredondar(numero, casas)</code>, <code>logaritmo(numero, base)</code></td><td>Devuelven números reales: redondeo a los decimales indicados y logaritmo en la base especificada.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>seno(angulo)</code>, <code>cosseno(angulo)</code>, <code>tangente(angulo)</code></td><td>Devuelven números reales con el resultado trigonométrico; los ángulos se expresan en radianes.</td></tr>
+                <tr><td><code>Matematica</code></td><td><code>valor_absoluto(numero)</code>, <code>maior_numero(a, b)</code>, <code>menor_numero(a, b)</code>, <code>PI</code></td><td>Devuelven números reales: valor absoluto, mayor o menor de dos números y la constante π.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>numero_caracteres(cadeia)</code>, <code>caixa_alta(cad)</code>, <code>caixa_baixa(cad)</code></td><td>La primera devuelve un entero; las otras devuelven la cadena en mayúsculas o minúsculas.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>substituir(cad, pesquisa, substituto)</code></td><td>Devuelve una cadena con todas las apariciones del fragmento buscado reemplazadas.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>preencher_a_esquerda(car, tamanho, cad)</code></td><td>Devuelve una cadena rellenada por la izquierda hasta el tamaño indicado; las cadenas que ya tienen ese tamaño no cambian.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>obter_caracter(cad, indice)</code>, <code>posicao_texto(texto, cadeia, posicao_inicial)</code></td><td>La primera devuelve un carácter; la segunda, un entero con la posición. Los índices empiezan en cero; la búsqueda devuelve <code>-1</code> si no encuentra el texto.</td></tr>
+                <tr><td><code>Texto</code></td><td><code>extrair_subtexto(cadeia, posicao_inicial, posicao_final)</code></td><td>Devuelve una cadena desde el índice inicial hasta el final, sin incluirlo. Ejemplo: <code>extrair_subtexto("salgado", 0, 3)</code> da <code>"sal"</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>cadeia_e_inteiro(cad, base)</code>, <code>cadeia_e_real(cad)</code>, <code>cadeia_e_logico(cad)</code>, <code>cadeia_e_caracter(cad)</code></td><td>Devuelven valores lógicos para indicar si la cadena representa el tipo indicado. Para enteros, las bases documentadas son <code>2</code>, <code>10</code> y <code>16</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>inteiro_e_caracter(valor)</code>, <code>caracter_e_inteiro(car)</code>, <code>caracter_e_logico(car)</code></td><td>Devuelven valores lógicos para comprobar si los valores se pueden convertir a los tipos indicados.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>cadeia_para_inteiro(valor, base)</code>, <code>cadeia_para_real(valor)</code>, <code>cadeia_para_logico(valor)</code>, <code>cadeia_para_caracter(valor)</code></td><td>Devuelven un entero, real, lógico o carácter según la función. La conversión lógica reconoce <code>verdadeiro</code> o <code>falso</code>; para convertir a carácter se requiere exactamente un carácter.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>inteiro_para_cadeia(valor, base)</code>, <code>inteiro_para_caracter(valor)</code>, <code>inteiro_para_logico(valor)</code>, <code>inteiro_para_real(valor)</code></td><td>Devuelven una cadena, carácter, valor lógico o real; para cadenas, usa la base <code>2</code>, <code>10</code> o <code>16</code>.</td></tr>
+                <tr><td><code>Tipos</code></td><td><code>caracter_para_cadeia(valor)</code>, <code>caracter_para_inteiro(valor)</code>, <code>caracter_para_logico(valor)</code>, <code>logico_para_cadeia(valor)</code>, <code>logico_para_inteiro(valor)</code>, <code>logico_para_caracter(valor)</code>, <code>real_para_cadeia(valor)</code>, <code>real_para_inteiro(valor)</code></td><td>Devuelven cadena, entero, valor lógico o carácter según el tipo de origen y la función; consulta la referencia de la biblioteca para cada conversión.</td></tr>
+                <tr><td><code>Util</code></td><td><code>obter_diretorio_usuario()</code>, <code>numero_elementos(vetor)</code>, <code>numero_linhas(matriz)</code>, <code>numero_colunas(matriz)</code></td><td>La primera devuelve una cadena; las demás, enteros con las dimensiones. La matriz debe tener al menos una fila para consultar las columnas.</td></tr>
+                <tr><td><code>Util</code></td><td><code>sorteia(minimo, maximo)</code>, <code>aguarde(intervalo)</code>, <code>tempo_decorrido()</code></td><td><code>sorteia</code> devuelve un entero dentro del intervalo inclusivo si <code>minimo</code> es menor que <code>maximo</code>; <code>aguarde</code> no devuelve valor y pausa en milisegundos; <code>tempo_decorrido</code> devuelve un entero en milisegundos desde el primer uso de la biblioteca.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="manual-code"><code>inclua biblioteca Texto --> txt
+
+funcao inicio() {
+    cadeia palavra = "logica"
+    escreva(txt.numero_caracteres(palavra), "\n")
+    escreva(txt.caixa_alta(palavra), "\n")
+    escreva(txt.extrair_subtexto(palavra, 0, 3), "\n")
+}</code></pre>
+          <p>Salida: <code>6</code>, <code>LOGICA</code> y <code>log</code>, cada valor en una línea.</p>
+          <pre class="manual-code"><code>inclua biblioteca Tipos --> tipos
+
+funcao inicio() {
+    escreva(tipos.cadeia_e_inteiro("101", 2), "\n")
+    escreva(tipos.cadeia_para_inteiro("101", 2), "\n")
+}</code></pre>
+          <p>Salida: <code>verdadeiro</code> y <code>5</code>. La primera llamada valida la escritura binaria; la segunda convierte el mismo valor a entero.</p>
+        </section>
+
+        <section id="exemplo">
+          <p class="kicker">12 · Ejemplo</p>
+          <h2>Programa completo</h2>
+          <p>Este ejemplo combina declaración, entrada y salida, condición, función y expresión lógica:</p>
+          <pre class="manual-code"><code>programa {
+    funcao logico eh_par(inteiro numero) {
+        retorne numero % 2 == 0
+    }
+
+    funcao inicio() {
+        inteiro valor
+        escreva("Ingresa un número entero: ")
+        leia(valor)
+
+        se (eh_par(valor)) {
+            escreva("El número es par\n")
+        } senao {
+            escreva("El número es impar\n")
+        }
+    }
+}</code></pre>
+        </section>
+
+        <section id="erros">
+          <p class="kicker">13 · Consejos de lectura</p>
+          <h2>Errores frecuentes y cómo evitarlos</h2>
+          <ul>
+            <li><strong>Confundir asignación e igualdad:</strong> usa <code>=</code> para asignar y <code>==</code> para comparar valores.</li>
+            <li><strong>Olvidar los separadores del bucle <code>para</code>:</strong> los campos de inicialización, condición y actualización se separan con punto y coma.</li>
+            <li><strong>Usar índices fuera del vector:</strong> los índices empiezan en cero; un vector de tamaño 3 ocupa las posiciones <code>0</code> a <code>2</code>.</li>
+            <li><strong>Esperar una operación de otra biblioteca:</strong> incluye el módulo con <code>inclua biblioteca Nombre</code> y usa el mismo nombre o alias antes del punto.</li>
+            <li><strong>Confundir el tamaño con el último índice:</strong> una cadena de seis caracteres tiene como último índice el <code>5</code>; en <code>extrair_subtexto</code>, el índice final marca el límite y no se incluye en el resultado.</li>
+            <li><strong>Usar <code>pare</code> en cualquier lugar:</strong> termina el bucle o caso de selección actual; fuera de esos contextos no sustituye a <code>retorne</code>.</li>
+          </ul>
+          <div class="manual-note"><strong>Al investigar un error:</strong> comprueba primero los tipos declarados, los delimitadores del bloque, el nombre de la biblioteca y los límites de los índices. En expresiones con operadores distintos, usa paréntesis para explicitar el orden.</div>
+        </section>
+
+        <section id="interpretador"><p class="kicker">14 · Intérprete</p><h2>Intérprete de Portugol Studio 2.0 en Potoo IDE</h2><p>El intérprete, mantenido en su propio repositorio, es una biblioteca reutilizable con ejecutor de terminal y tiene como objetivo el pseudolenguaje Portugol Studio 2.0. Cubre programas, funciones tipadas y sin retorno, variables, vectores y matrices, operadores, estructuras de control, entrada y salida y bibliotecas estándar.</p><p>Los servicios que dependen del entorno —como archivos, gráficos, teclado, ratón, audio, HTTP y calendario— se solicitan a la aplicación mediante una interfaz de integración. Potoo IDE ya proporciona soporte para gráficos, teclado, ratón y audio; estas funciones aún requieren validación manual en cada plataforma. El analizador informa del primer error léxico o sintáctico que encuentra.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Repositorio del intérprete Portugol Studio 2.0</a></p></section>
+<section id="fontes">
+          <p class="kicker">15 · Lectura adicional</p>
+          <h2>Referencias del pseudolenguaje Portugol Studio 2.0</h2>
+          <p>Portugol Studio 2.0 tiene su origen en Portugol Studio. Ese proyecto aparece en esta sección únicamente como fuente de las referencias utilizadas para documentar el pseudolenguaje.</p>
+          <ul>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositorio oficial de Portugol Studio</a>, que identifica el pseudolenguaje como Portugol Studio 2.0.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ayuda oficial sobre entrada y salida</a>, incluido el uso de <code>\n</code> para saltar de línea, y el <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analizador semántico</a>, que enumera las funciones predefinidas.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código fuente de las bibliotecas estándar</a> y sus funciones documentadas; consulta directamente <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> y <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
+          </ul>
+          <p>Las referencias pertenecen a proyectos distintos. Consúltalas para verificar detalles de comportamiento y compatibilidad antes de usar una función específica.</p>
+        </section>
+      </article>
+    </div>
+
+    <section class="wrap manual-cta">
+      <div><h2>Vuelve al Manual de Potoo IDE</h2><p>Consulta otras secciones del Manual.</p></div>
+      <a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a>
+    </section>
+  </div>
+</main>
