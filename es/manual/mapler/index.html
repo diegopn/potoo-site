@@ -4,9 +4,9 @@ lang: "es"
 page_kind: "manual"
 permalink: "/es/manual/mapler/"
 title: "Mapler | Manual de Potoo IDE"
-description: "Referencia de la variante Portugol Mapler: estructura, tipos, vectores, operadores, entrada y salida, decisiones, repeticiones y módulos."
+description: "Referencia de la variante Portugol Mapler: tipos, vectores, operadores, precedencia, decisiones, repeticiones y módulos."
 og_title: "Referência de Mapler"
-og_description: "Referencia de la variante Portugol Mapler: estructura, tipos, vectores, operadores, entrada y salida, decisiones, repeticiones y módulos."
+og_description: "Referencia de la variante Portugol Mapler: tipos, vectores, operadores, precedencia, decisiones, repeticiones y módulos."
 og_type: "article"
 home_path: "/es/"
 manual_path: "/es/manual/"
@@ -23,49 +23,53 @@ body_class: manual-page
     <p class="manual-meta"><span><b>Categoría</b> Variante de la familia Portugol</span><span><b>Referencia</b> Mapler</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
-    <aside class="manual-toc" aria-label="Contenido de la referencia de Mapler"><h2>En esta referencia</h2><ol><li><a href="#sobre">Sobre Mapler</a></li><li><a href="#estrutura">Estructura del algoritmo</a></li><li><a href="#dados">Variables, tipos y vectores</a></li><li><a href="#expressoes">Asignación y operadores</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Condiciones con se y senao</a></li><li><a href="#repeticoes">Bucles para, enquanto y repita</a></li><li><a href="#modulos">Módulos</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#arquivos">Extensión de archivo</a></li><li><a href="#fontes">Referencias</a></li></ol></aside>
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Mapler"><h2>En esta referencia</h2><ol><li><a href="#sobre">Sobre Mapler</a></li><li><a href="#estrutura">Estructura del algoritmo</a></li><li><a href="#dados">Variables, tipos y vectores</a></li><li><a href="#expressoes">Operadores y precedencia</a></li><li><a href="#entrada-saida">Entrada y salida</a></li><li><a href="#decisoes">Condiciones con se y senao</a></li><li><a href="#repeticoes">Bucles para, enquanto y repita</a></li><li><a href="#modulos">Módulos</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#arquivos">Extensión de archivo</a></li><li><a href="#fontes">Referencias</a></li></ol></aside>
     <article class="manual-content">
 <section id="sobre"><p class="kicker">01 · Panorama</p><h2>Sobre Mapler</h2><p>Mapler es una variante educativa de Portugol: sus comandos describen algoritmos en portugués estructurado y se organizan en bloques legibles. La referencia principal es el manual del proyecto Mapler, complementado por sus ejemplos oficiales de estructura, tipos, operaciones, decisiones, bucles y módulos.</p><p>Las reglas de esta página se refieren específicamente a Mapler. No establecen una sintaxis única para las demás variantes de la familia Portugol.</p></section>
-<section id="estrutura"><p class="kicker">02 · Organización</p><h2>Estructura del algoritmo</h2><p>Un programa tiene un área <code>variaveis</code>, el bloque ejecutable que comienza con <code>inicio</code> y el cierre <code>fim</code>. Las declaraciones se escriben antes del algoritmo principal; los módulos se declaran en esa área y se definen después del cierre principal.</p><pre class="manual-code"><code>variaveis
-    nome: cadeia;
-    idade: inteiro;
+<section id="estrutura"><p class="kicker">02 · Organización</p><h2>Estructura del algoritmo</h2><p>Un algoritmo Mapler tiene tres áreas: declaraciones en <code>variaveis</code>, comandos entre <code>inicio</code> y <code>fim</code>, y el cierre del programa. Declara variables y módulos antes de <code>inicio</code>; define los módulos después del bloque principal.</p><pre class="manual-code"><code>variaveis
+    nombre: cadeia;
+    edad: inteiro;
 inicio
+    // La entrada viene después del mensaje
     escrever "¿Cómo te llamas?";
-    ler nome;
-    escrever "Hola, ", nome;
-fim.</code></pre><p>El punto después de <code>fim</code> aparece en los ejemplos de estructura del proyecto. Dentro de los bloques, los comandos terminan en punto y coma.</p></section>
-<section id="dados"><p class="kicker">03 · Datos</p><h2>Variables, tipos y vectores</h2><p>Una declaración usa el nombre seguido de dos puntos y el tipo, dentro del área <code>variaveis</code>. Los tipos documentados incluyen <code>inteiro</code>, <code>real</code>, <code>logico</code>, <code>caractere</code> y <code>cadeia</code>. Usa <code>verdadeiro</code> y <code>falso</code> para valores lógicos; los textos van entre comillas y los caracteres individuales se representan como literales de carácter.</p><pre class="manual-code"><code>variaveis
-    tentativas: inteiro;
+    ler nombre;
+    escrever "Hola, ", nombre;
+fim.</code></pre><p>Los comandos simples terminan en punto y coma. Los comentarios de línea comienzan con <code>//</code>. El punto después de <code>fim</code> aparece en los ejemplos oficiales de estructura.</p></section>
+<section id="dados"><p class="kicker">03 · Datos</p><h2>Variables, tipos y vectores</h2><p>Declara cada variable en el área <code>variaveis</code> con la forma <code>nombre: tipo;</code>. <code>inteiro</code> representa números sin parte decimal; <code>real</code>, números decimales con punto; <code>logico</code>, <code>verdadeiro</code> o <code>falso</code>; <code>caractere</code>, un carácter; y <code>cadeia</code>, texto entre comillas dobles.</p><pre class="manual-code"><code>variaveis
+    intentos: inteiro;
     media: real;
-    aprovado: logico;
+    aprobado: logico;
     inicial: caractere;
-    mensagem: cadeia;
+    mensaje: cadeia;
     notas: vetor [1..5] de real;
 inicio
-    tentativas &lt;- 0;
-    aprovado &lt;- falso;
+    intentos &lt;- 0;
+    aprobado &lt;- falso;
+    inicial &lt;- "M";
+    mensaje &lt;- "Bienvenida";
     notas[1] &lt;- 8.5;
-fim</code></pre><p>Los límites del vector se escriben entre corchetes. El ejemplo oficial usa un rango que comienza en 1; accede solo a índices dentro de los límites declarados.</p></section>
-<section id="expressoes"><p class="kicker">04 · Cálculos</p><h2>Asignación y operadores</h2><p>La asignación usa <code>&lt;-</code>. La referencia matemática presenta suma, resta, multiplicación y división con <code>+</code>, <code>-</code>, <code>*</code> y <code>/</code>. Las expresiones pueden combinar variables, literales y paréntesis; úsalos para dejar explícito el orden del cálculo.</p><div class="manual-table-wrap" role="region" aria-label="Operadores documentados en Mapler" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>+ - * /</code></td><td>Sumar, restar, multiplicar y dividir números.</td></tr><tr><td>Relacionales</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Comparar valores en condiciones.</td></tr><tr><td>Lógicos</td><td><code>e ou nao</code></td><td>Combinar o negar condiciones lógicas.</td></tr></tbody></table></div><pre class="manual-code"><code>total &lt;- precio * cantidad;
-se total &gt;= limite entao
-    escribir "Supera el límite";
+fim</code></pre><p>Los límites del vector son inclusivos y forman parte de la declaración: en <code>[1..5]</code>, los índices válidos van de 1 a 5. Usa el índice entre corchetes para leer o cambiar un elemento. Los vectores reúnen valores de un mismo tipo.</p><p>No trates <code>inteiro</code> y <code>real</code> como tipos intercambiables. La referencia de Mapler indica que asignar directamente un real a un entero produce un error. La conversión de entero a real solo ocurre dentro de una expresión que ya contiene un operando real: <code>2.5 + 2</code> produce real, mientras que <code>2 + 2</code> sigue siendo entero.</p></section>
+<section id="expressoes"><p class="kicker">04 · Cálculos</p><h2>Asignación, operadores y precedencia</h2><p>Asigna el resultado de una expresión con <code>&lt;-</code>. Las operaciones aritméticas documentadas son suma, resta, multiplicación y división. Las comparaciones producen valores lógicos y pueden combinarse con <code>e</code>, <code>ou</code> y <code>nao</code>.</p><div class="manual-table-wrap" role="region" aria-label="Operadores documentados en Mapler" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>+ - * /</code></td><td>Sumar, restar, multiplicar y dividir números.</td></tr><tr><td>Relacionales</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Comparar valores en condiciones.</td></tr><tr><td>Lógicos</td><td><code>e ou nao</code></td><td>Combinar o negar condiciones lógicas.</td></tr></tbody></table></div><p>En aritmética, primero se evalúan los paréntesis; luego, la multiplicación y la división; por último, la suma y la resta. Los operadores del mismo nivel se evalúan de izquierda a derecha. Usa paréntesis para hacer explícito otro orden.</p><pre class="manual-code"><code>total &lt;- precio * cantidad;
+media &lt;- (nota1 + nota2) / 2;
+se total &gt;= limite e aprobado entao
+    escrever "Puedes continuar";
 fim se;</code></pre></section>
-<section id="entrada-saida"><p class="kicker">05 · Interacción</p><h2>Entrada y salida</h2><p><code>escrever</code> muestra texto o valores en la terminal y acepta varios elementos separados por comas. <code>ler</code> recibe un valor del teclado y lo guarda en la variable indicada.</p><pre class="manual-code"><code>variaveis
-    nome: cadeia;
-    idade: inteiro;
+<section id="entrada-saida"><p class="kicker">05 · Interacción</p><h2>Entrada y salida</h2><p><code>escrever</code> muestra textos y valores. Separa los elementos con comas; aparecen en el mismo orden, así que añade espacios dentro de los textos cuando necesites separarlos visualmente. <code>ler</code> recibe el siguiente dato escrito y lo asigna a la variable indicada.</p><pre class="manual-code"><code>variaveis
+    nombre: cadeia;
+    edad: inteiro;
 inicio
-    escrever "Nombre:";
-    ler nome;
-    escrever "Edad:";
-    ler idade;
-    escrever nome, " tiene ", idade, " años.";
-fim</code></pre><p>El tipo de la variable debe corresponder al dato introducido. Los mensajes antes de <code>ler</code> aclaran qué espera el algoritmo.</p></section>
-<section id="decisoes"><p class="kicker">06 · Decisiones</p><h2>Condiciones con se y senao</h2><p><code>se</code> evalúa una condición; <code>entao</code> inicia el bloque que se ejecuta cuando es verdadera. <code>senao</code> introduce la alternativa opcional. Cada bloque condicional termina con <code>fim se;</code>.</p><pre class="manual-code"><code>se nota &gt;= 7 entao
+    escrever "Nombre: ";
+    ler nombre;
+    escrever "Edad: ";
+    ler edad;
+    escrever nombre, " tiene ", edad, " años.";
+fim</code></pre><p>Declara la variable con un tipo compatible con la entrada. Un mensaje antes de <code>ler</code> indica qué espera el algoritmo.</p></section>
+<section id="decisoes"><p class="kicker">06 · Decisiones</p><h2>Condiciones con se y senao</h2><p><code>se</code> evalúa una condición lógica y <code>entao</code> inicia el bloque que se ejecuta cuando es verdadera. <code>senao</code> es opcional y define la alternativa. El bloque termina con <code>fim se;</code>. Una condición puede combinar comparaciones y conectores lógicos.</p><pre class="manual-code"><code>se nota &gt;= 7 entao
     escrever "Aprobado";
 senao
     escrever "Sigue estudiando";
-fim se;</code></pre><p>Se permiten condiciones anidadas, siempre que cada bloque se cierre antes que el exterior. Los operadores relacionales y lógicos permiten formar expresiones compuestas.</p></section>
-<section id="repeticoes"><p class="kicker">07 · Repetición</p><h2>Bucles para, enquanto y repita</h2><p><code>para</code> recorre un intervalo con una variable de control, inicio, fin y paso. <code>enquanto</code> comprueba la condición antes de cada repetición. <code>repita</code> ejecuta el bloque y comprueba la condición al final, por lo que siempre se ejecuta al menos una vez.</p><pre class="manual-code"><code>variaveis
+fim se;</code></pre><p>Se pueden anidar condiciones. Cierra cada bloque interno antes del externo y usa paréntesis para que las expresiones compuestas sean fáciles de seguir.</p></section>
+<section id="repeticoes"><p class="kicker">07 · Repetición</p><h2>Bucles para, enquanto y repita</h2><p><code>para</code> recorre un rango con variable de control, inicio, fin y paso. En la forma documentada, cuando el inicio es menor que el fin la variable avanza; si son iguales, el cuerpo se ejecuta una vez, y si el inicio es mayor, no se ejecuta. <code>enquanto</code> comprueba antes de cada pasada, por lo que puede ejecutarse cero veces.</p><p><code>repita</code> ejecuta el cuerpo antes de comprobar su condición. El cuerpo se ejecuta al menos una vez y vuelve a repetirse mientras la condición después de <code>ate</code> sea verdadera; el bucle termina cuando se vuelve falsa.</p><pre class="manual-code"><code>variaveis
     i: inteiro;
 inicio
     para i de 1 ate 5 passo 1 faca
@@ -78,19 +82,24 @@ inicio
         i &lt;- i + 1;
     fim enquanto;
 
+    i &lt;- 1;
     repita
-        i &lt;- i - 1;
-    ate i = 0;
-fim</code></pre><p>Los bloques se delimitan con el nombre del comando en <code>fim para;</code> y <code>fim enquanto;</code>. Elige el paso y la condición para que el bucle alcance el final esperado.</p></section>
-<section id="modulos"><p class="kicker">08 · Reutilización</p><h2>Módulos</h2><p>Los módulos son bloques con nombre definidos fuera del principal y llamados por su nombre. Se declaran en <code>variaveis</code> con el tipo <code>modulo</code>; según la referencia oficial, pueden acceder a variables del bloque principal.</p><pre class="manual-code"><code>variaveis
-    dizerOla: modulo;
+        escrever i;
+        i &lt;- i + 1;
+    ate i &lt;= 5;
+fim</code></pre><p>Los bucles se pueden anidar. En <code>enquanto</code>, actualiza las variables usadas por la condición para que el algoritmo llegue al final previsto.</p></section>
+<section id="modulos"><p class="kicker">08 · Reutilización</p><h2>Módulos</h2><p>Un módulo agrupa comandos que pueden llamarse desde distintos puntos del algoritmo. Decláralo en <code>variaveis</code> con el tipo <code>modulo</code>, llámalo por su nombre dentro del bloque principal y escribe su definición después del cierre principal.</p><pre class="manual-code"><code>variaveis
+    decirHola: modulo;
+    nombre: cadeia;
 inicio
-    dizerOla;
+    escrever "Nombre: ";
+    ler nombre;
+    decirHola;
 fim
 
-modulo dizerOla;
-    escrever "Rutina reutilizada";
-fim modulo;</code></pre><p>Esta forma organiza tareas repetidas. El material de Mapler presenta módulos sin parámetros; no los confundas con funciones de otras variantes.</p></section>
+modulo decirHola;
+    escrever "Hola, ", nombre;
+fim modulo;</code></pre><p>Según el material oficial, los módulos pueden acceder a variables del bloque principal y no reciben parámetros. Úsalos para agrupar acciones reutilizables; no devuelven un valor como una función.</p></section>
 <section id="exemplo"><p class="kicker">09 · Aplicación</p><h2>Ejemplo completo</h2><p>El ejemplo combina declaraciones, lectura, cálculo y una decisión. Solo usa estructuras descritas en la referencia de Mapler.</p><pre class="manual-code"><code>variaveis
     valor_a: real;
     valor_b: real;

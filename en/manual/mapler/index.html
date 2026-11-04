@@ -4,9 +4,9 @@ lang: "en"
 page_kind: "manual"
 permalink: "/en/manual/mapler/"
 title: "Mapler | Potoo IDE Manual"
-description: "Reference for the Mapler Portugol variant: program structure, types, vectors, operators, input and output, decisions, loops, and modules."
+description: "Reference for the Mapler Portugol variant: types, vectors, operators, precedence, decisions, loops, and modules."
 og_title: "Mapler reference"
-og_description: "Reference for the Mapler Portugol variant: program structure, types, vectors, operators, input and output, decisions, loops, and modules."
+og_description: "Reference for the Mapler Portugol variant: types, vectors, operators, precedence, decisions, loops, and modules."
 og_type: "article"
 home_path: "/en/"
 manual_path: "/en/manual/"
@@ -23,49 +23,53 @@ body_class: manual-page
     <p class="manual-meta"><span><b>Category</b> Variant in the Portugol family</span><span><b>Reference</b> Mapler</span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
-    <aside class="manual-toc" aria-label="Contents of the Mapler reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Mapler</a></li><li><a href="#estrutura">Program structure</a></li><li><a href="#dados">Variables, types, and vectors</a></li><li><a href="#expressoes">Assignment and operators</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Conditions with se and senao</a></li><li><a href="#repeticoes">para, enquanto, and repita loops</a></li><li><a href="#modulos">Modules</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#arquivos">File extension</a></li><li><a href="#fontes">References</a></li></ol></aside>
+    <aside class="manual-toc" aria-label="Contents of the Mapler reference"><h2>In this reference</h2><ol><li><a href="#sobre">About Mapler</a></li><li><a href="#estrutura">Program structure</a></li><li><a href="#dados">Variables, types, and vectors</a></li><li><a href="#expressoes">Operators and precedence</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#decisoes">Conditions with se and senao</a></li><li><a href="#repeticoes">para, enquanto, and repita loops</a></li><li><a href="#modulos">Modules</a></li><li><a href="#exemplo">Complete example</a></li><li><a href="#arquivos">File extension</a></li><li><a href="#fontes">References</a></li></ol></aside>
     <article class="manual-content">
 <section id="sobre"><p class="kicker">01 · Overview</p><h2>About Mapler</h2><p>Mapler is an educational Portugol variant: its commands describe algorithms in structured Portuguese and organize them into readable blocks. The primary reference is the Mapler project manual, supplemented by its official examples for structure, types, operations, decisions, loops, and modules.</p><p>This page describes Mapler specifically. Its rules do not define a single syntax for the other variants in the Portugol family.</p></section>
-<section id="estrutura"><p class="kicker">02 · Organization</p><h2>Program structure</h2><p>A program has a <code>variaveis</code> area, an executable block introduced by <code>inicio</code>, and the closing marker <code>fim</code>. Declarations go before the main algorithm; modules are declared in that area and defined after the main block.</p><pre class="manual-code"><code>variaveis
-    nome: cadeia;
-    idade: inteiro;
+<section id="estrutura"><p class="kicker">02 · Organization</p><h2>Program structure</h2><p>A Mapler algorithm has three areas: declarations in <code>variaveis</code>, commands between <code>inicio</code> and <code>fim</code>, and the program ending. Declare variables and modules before <code>inicio</code>; define modules after the main block.</p><pre class="manual-code"><code>variaveis
+    name: cadeia;
+    age: inteiro;
 inicio
+    // Ask before reading input
     escrever "What is your name?";
-    ler nome;
-    escrever "Hello, ", nome;
-fim.</code></pre><p>The period after <code>fim</code> appears in the project's structure examples. Commands inside blocks end with semicolons.</p></section>
-<section id="dados"><p class="kicker">03 · Data</p><h2>Variables, types, and vectors</h2><p>A declaration places a colon and type after the variable name inside <code>variaveis</code>. Documented types include <code>inteiro</code>, <code>real</code>, <code>logico</code>, <code>caractere</code>, and <code>cadeia</code>. Use <code>verdadeiro</code> and <code>falso</code> for logical values; text is quoted and individual characters use character literals.</p><pre class="manual-code"><code>variaveis
-    tentativas: inteiro;
-    media: real;
-    aprovado: logico;
-    inicial: caractere;
-    mensagem: cadeia;
-    notas: vetor [1..5] de real;
+    ler name;
+    escrever "Hello, ", name;
+fim.</code></pre><p>Simple commands end with semicolons. Line comments start with <code>//</code>. The period after <code>fim</code> appears in the official structure examples.</p></section>
+<section id="dados"><p class="kicker">03 · Data</p><h2>Variables, types, and vectors</h2><p>Declare each variable in the <code>variaveis</code> area as <code>name: type;</code>. <code>inteiro</code> represents whole numbers; <code>real</code>, decimal numbers written with a period; <code>logico</code>, <code>verdadeiro</code> or <code>falso</code>; <code>caractere</code>, one character; and <code>cadeia</code>, text in double quotes.</p><pre class="manual-code"><code>variaveis
+    attempts: inteiro;
+    average: real;
+    passed: logico;
+    initial: caractere;
+    message: cadeia;
+    grades: vetor [1..5] de real;
 inicio
-    tentativas &lt;- 0;
-    aprovado &lt;- falso;
-    notas[1] &lt;- 8.5;
-fim</code></pre><p>Vector bounds are written in square brackets. The official example starts at 1; use indices within the declared bounds.</p></section>
-<section id="expressoes"><p class="kicker">04 · Calculations</p><h2>Assignment and operators</h2><p>Assignment uses <code>&lt;-</code>. The mathematics reference documents addition, subtraction, multiplication, and division with <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>. Expressions can combine variables, literals, and parentheses; use parentheses to make the intended order explicit.</p><div class="manual-table-wrap" role="region" aria-label="Operators documented in Mapler" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Forms</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * /</code></td><td>Add, subtract, multiply, and divide numbers.</td></tr><tr><td>Relational</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Compare values in conditions.</td></tr><tr><td>Logical</td><td><code>e ou nao</code></td><td>Combine or negate logical conditions.</td></tr></tbody></table></div><pre class="manual-code"><code>total &lt;- preco * quantidade;
-se total &gt;= limite entao
-    escrever "Over the limit";
+    attempts &lt;- 0;
+    passed &lt;- falso;
+    initial &lt;- "M";
+    message &lt;- "Welcome";
+    grades[1] &lt;- 8.5;
+fim</code></pre><p>Vector bounds are inclusive and part of the declaration: in <code>[1..5]</code>, valid indices range from 1 to 5. Use a bracketed index to read or change an element. Vectors hold values of one type.</p><p>Do not treat <code>inteiro</code> and <code>real</code> as interchangeable types. The Mapler reference says assigning a real directly to an integer is an error. Integer-to-real conversion only occurs in an expression that already contains a real operand: <code>2.5 + 2</code> produces a real, while <code>2 + 2</code> remains an integer.</p></section>
+<section id="expressoes"><p class="kicker">04 · Calculations</p><h2>Assignment, operators, and precedence</h2><p>Assign an expression result with <code>&lt;-</code>. The documented arithmetic operations are addition, subtraction, multiplication, and division. Comparisons produce logical values and can be combined with <code>e</code>, <code>ou</code>, and <code>nao</code>.</p><div class="manual-table-wrap" role="region" aria-label="Operators documented in Mapler" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Forms</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * /</code></td><td>Add, subtract, multiply, and divide numbers.</td></tr><tr><td>Relational</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Compare values in conditions.</td></tr><tr><td>Logical</td><td><code>e ou nao</code></td><td>Combine or negate logical conditions.</td></tr></tbody></table></div><p>For arithmetic, parentheses are evaluated first, followed by multiplication and division, then addition and subtraction. Operators at the same level are evaluated from left to right. Use parentheses to make another order explicit.</p><pre class="manual-code"><code>total &lt;- price * quantity;
+average &lt;- (grade1 + grade2) / 2;
+se total &gt;= limit e passed entao
+    escrever "You can continue";
 fim se;</code></pre></section>
-<section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input and output</h2><p><code>escrever</code> displays text or values in the terminal and accepts multiple items separated by commas. <code>ler</code> reads a value from the keyboard and stores it in the named variable.</p><pre class="manual-code"><code>variaveis
-    nome: cadeia;
-    idade: inteiro;
+<section id="entrada-saida"><p class="kicker">05 · Interaction</p><h2>Input and output</h2><p><code>escrever</code> displays text and values. Separate items with commas; they appear in the same order, so include spaces in text literals when you want visual separation. <code>ler</code> reads the next value entered and assigns it to the named variable.</p><pre class="manual-code"><code>variaveis
+    name: cadeia;
+    age: inteiro;
 inicio
-    escrever "Name:";
-    ler nome;
-    escrever "Age:";
-    ler idade;
-    escrever nome, " is ", idade, " years old.";
-fim</code></pre><p>The variable type should match the value entered. A prompt before <code>ler</code> makes the expected input clear.</p></section>
-<section id="decisoes"><p class="kicker">06 · Decisions</p><h2>Conditions with se and senao</h2><p><code>se</code> evaluates a condition; <code>entao</code> starts the block that runs when the condition is true. The optional <code>senao</code> introduces the alternative. Every conditional block ends with <code>fim se;</code>.</p><pre class="manual-code"><code>se nota &gt;= 7 entao
+    escrever "Name: ";
+    ler name;
+    escrever "Age: ";
+    ler age;
+    escrever name, " is ", age, " years old.";
+fim</code></pre><p>Declare the variable with a type compatible with the input. A prompt before <code>ler</code> tells the user what the algorithm expects.</p></section>
+<section id="decisoes"><p class="kicker">06 · Decisions</p><h2>Conditions with se and senao</h2><p><code>se</code> evaluates a logical condition and <code>entao</code> starts the block that runs when it is true. The optional <code>senao</code> defines the alternative. The block ends with <code>fim se;</code>. A condition can combine comparisons and logical operators.</p><pre class="manual-code"><code>se grade &gt;= 7 entao
     escrever "Passed";
 senao
-    escrever "Keep studying";
-fim se;</code></pre><p>Conditions may be nested as long as each block closes before its parent. Relational and logical operators can form compound expressions.</p></section>
-<section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>para, enquanto, and repita loops</h2><p><code>para</code> traverses a range with a control variable, start, end, and step. <code>enquanto</code> checks its condition before each iteration. <code>repita</code> runs its block and checks the condition afterward, so the body runs at least once.</p><pre class="manual-code"><code>variaveis
+    escrever "Keep practicing";
+fim se;</code></pre><p>Conditions can be nested. Close each inner block before the outer one, and use parentheses to make compound expressions easy to follow.</p></section>
+<section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>para, enquanto, and repita loops</h2><p><code>para</code> traverses a range with a control variable, start, end, and step. In the documented form, the variable advances when the start is less than the end; equal values run the body once, and a start greater than the end skips it. <code>enquanto</code> checks before each pass, so its body may run zero times.</p><p><code>repita</code> runs its body before checking the condition. The body runs at least once and repeats while the condition after <code>ate</code> is true; the loop ends when it becomes false.</p><pre class="manual-code"><code>variaveis
     i: inteiro;
 inicio
     para i de 1 ate 5 passo 1 faca
@@ -78,19 +82,24 @@ inicio
         i &lt;- i + 1;
     fim enquanto;
 
+    i &lt;- 1;
     repita
-        i &lt;- i - 1;
-    ate i = 0;
-fim</code></pre><p>Blocks close with the command name in <code>fim para;</code> and <code>fim enquanto;</code>. Choose a step and condition that let the loop reach its intended end.</p></section>
-<section id="modulos"><p class="kicker">08 · Reuse</p><h2>Modules</h2><p>Modules are named blocks defined outside the main program and called by name. They are declared in <code>variaveis</code> with the type <code>modulo</code>; the official reference says modules can access variables in the main block.</p><pre class="manual-code"><code>variaveis
-    dizerOla: modulo;
+        escrever i;
+        i &lt;- i + 1;
+    ate i &lt;= 5;
+fim</code></pre><p>Loops can be nested. In <code>enquanto</code>, update the variables used by the condition so the algorithm reaches its intended end.</p></section>
+<section id="modulos"><p class="kicker">08 · Reuse</p><h2>Modules</h2><p>A module names commands that can be called from different points in an algorithm. Declare it in <code>variaveis</code> with type <code>modulo</code>, call it by name inside the main block, and define it after the main block ends.</p><pre class="manual-code"><code>variaveis
+    sayHello: modulo;
+    name: cadeia;
 inicio
-    dizerOla;
+    escrever "Name: ";
+    ler name;
+    sayHello;
 fim
 
-modulo dizerOla;
-    escrever "Reusable routine";
-fim modulo;</code></pre><p>This form organizes repeated tasks. Mapler's material presents modules without parameters; they are different from functions in other variants.</p></section>
+modulo sayHello;
+    escrever "Hello, ", name;
+fim modulo;</code></pre><p>According to the official material, modules can access variables from the main block and take no parameters. Use them to group reusable actions; they do not return a value like a function.</p></section>
 <section id="exemplo"><p class="kicker">09 · In practice</p><h2>Complete example</h2><p>This example combines declarations, input, a calculation, and a decision. It uses structures described in the Mapler reference.</p><pre class="manual-code"><code>variaveis
     valor_a: real;
     valor_b: real;
