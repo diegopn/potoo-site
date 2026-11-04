@@ -45,7 +45,7 @@ body_class: manual-page
           <li><a href="#funcoes">Functions and helper commands</a></li>
           <li><a href="#exemplo">Complete example</a></li>
           <li><a href="#erros">Common mistakes</a></li>
-          <li><a href="#fontes">References</a></li>
+          <li><a href="#interpretador">Interpreter</a></li><li><a href="#fontes">References</a></li>
         </ol>
       </aside>
 
@@ -322,8 +322,9 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>When tracking down an error:</strong> check declaration order, variable types, vector bounds and block endings. In conditions, distinguish <code>=</code> (comparison) from <code>&lt;-</code> (assignment).</div>
         </section>
 
-        <section id="fontes">
-          <p class="kicker">14 · Further reading</p>
+        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>VisuAlg interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, targeting classic VisuAlg 3.0.5.2. It covers declarations, types, vectors and matrices, procedures and functions, control structures, input and output, math functions, and helper commands.</p><p>The integration provides line-and-column diagnostics, debugging events, and input, output, file, and timer services. Compatibility is still being validated: nested functions and procedures are unsupported, and <code>limpatela</code> has no visible effect in Potoo IDE, which does not provide a simulated DOS screen.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">VisuAlg interpreter repository</a></p></section>
+<section id="fontes">
+          <p class="kicker">15 · Further reading</p>
           <h2>VisuAlg references</h2>
           <ul>
             <li>The <a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">pseudolanguage manual distributed by VisuAlg's author</a>, covering syntax, types, operators, commands, routines and teaching extensions; the <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">command reference</a> also details <code>aleatorio</code> and <code>limpatela</code>.</li>

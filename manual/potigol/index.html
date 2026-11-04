@@ -46,7 +46,7 @@ body_class: manual-page
           <li><a href="#padroes">Casamento de padrões</a></li>
           <li><a href="#jerimum">Jerimum: jogos com Potigol</a></li>
           <li><a href="#exemplo">Exemplo integrado</a></li>
-          <li><a href="#fontes">Referências</a></li>
+          <li><a href="#interpretador">Interpretador</a></li><li><a href="#fontes">Referências</a></li>
         </ol>
       </aside>
       <article class="manual-content">
@@ -408,8 +408,9 @@ senão
   escreva "Em recuperação: {resultado}"
 fim</code></pre>
         </section>
-        <section id="fontes">
-          <p class="kicker">16 · Leitura adicional</p>
+        <section id="interpretador"><p class="kicker">16 · Interpretador</p><h2>Interpretador da linguagem Potigol no Potoo IDE</h2><p>O Potoo IDE usa uma implementação independente em Rust, mantida em repositório próprio, que tem como alvo o núcleo documentado do Potigol 1.0.0-RC2. Ela oferece inferência e verificação de tipos, funções, coleções, casamento de padrões e recursos funcionais; não executa nem inclui o interpretador oficial Scala/JVM.</p><p>A camada Jerimum encaminha pedidos de gráficos, áudio, entrada, janela e arquivos ao aplicativo. O Potoo IDE atende esses pedidos com seus recursos GTK e restringe caminhos de arquivos e mídia ao projeto aberto; as fachadas Java cobrem operações selecionadas, não a interoperabilidade geral com JVM, Swing ou AWT.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Repositório do interpretador Potigol</a></p></section>
+<section id="fontes">
+          <p class="kicker">17 · Leitura adicional</p>
           <h2>Referências</h2>
           <ul>
             <li><a href="https://potigol.github.io/docs/">Documentação oficial de Potigol</a>, incluindo tópicos de sintaxe, estruturas, funções, tipos, listas e tuplas.</li>

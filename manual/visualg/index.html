@@ -45,7 +45,7 @@ body_class: manual-page
           <li><a href="#funcoes">Funções e comandos auxiliares</a></li>
           <li><a href="#exemplo">Exemplo completo</a></li>
           <li><a href="#erros">Erros frequentes</a></li>
-          <li><a href="#fontes">Referências</a></li>
+          <li><a href="#interpretador">Interpretador</a></li><li><a href="#fontes">Referências</a></li>
         </ol>
       </aside>
 
@@ -322,8 +322,9 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>Ao investigar um erro:</strong> confira a ordem das declarações, o tipo da variável, os limites do vetor e se todos os blocos foram fechados. Em condições, diferencie <code>=</code> (comparação) de <code>&lt;-</code> (atribuição).</div>
         </section>
 
-        <section id="fontes">
-          <p class="kicker">14 · Leitura adicional</p>
+        <section id="interpretador"><p class="kicker">14 · Interpretador</p><h2>Interpretador de VisuAlg no Potoo IDE</h2><p>O interpretador é uma biblioteca reutilizável mantida em repositório próprio, com executor de terminal, e tem como alvo o VisuAlg clássico 3.0.5.2. Ele cobre declarações, tipos, vetores e matrizes, procedimentos e funções, estruturas de controle, entrada e saída, funções matemáticas e comandos auxiliares.</p><p>A integração fornece diagnósticos com linha e coluna, eventos para depuração e serviços de entrada, saída, arquivos e temporizadores. A compatibilidade continua em validação: funções e procedimentos aninhados não são suportados, e <code>limpatela</code> não tem efeito visual no Potoo IDE, que não oferece uma tela DOS simulada.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">Repositório do interpretador VisuAlg</a></p></section>
+<section id="fontes">
+          <p class="kicker">15 · Leitura adicional</p>
           <h2>Referências de VisuAlg</h2>
           <ul>
             <li><a href="https://sourceforge.net/projects/visualg30/files/Linguagem_Visualg2.0.pdf/download">Manual da pseudolinguagem distribuído pelo autor do VisuAlg</a>, com sintaxe, tipos, operadores, comandos, rotinas e extensões de ensino; a <a href="https://documentation.help/VISUALG-Versao/linguagem5.htm">referência de comandos da versão 3.0.5.2</a> detalha também <code>aleatorio</code> e <code>limpatela</code>.</li>
