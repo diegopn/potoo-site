@@ -459,9 +459,9 @@ img, svg { max-width: 100%; }
 .download-button { gap: 11px; }
 .download-button .platform-icon { width: 22px; height: 22px; flex: 0 0 22px; }
 :root:not([data-theme="dark"]) .section.deep .download-button--linux,
-:root[data-theme="dark"] .section.deep .download-button--linux { border-color: #D8E1D9; background: #D8E1D9; color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--linux { border-color: #CBD6CD; background: #CBD6CD; color: #103b2d; }
 :root:not([data-theme="dark"]) .section.deep .download-button--linux:hover,
-:root[data-theme="dark"] .section.deep .download-button--linux:hover { border-color: #C7D4C9; background: #C7D4C9; color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--linux:hover { border-color: #BECABF; background: #BECABF; color: #103b2d; }
 :root:not([data-theme="dark"]) .section.deep .download-button--linux span,
 :root[data-theme="dark"] .section.deep .download-button--linux span { color: #103b2d; }
 :root:not([data-theme="dark"]) .section.deep .download-button--windows,
