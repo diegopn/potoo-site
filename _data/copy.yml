@@ -14,7 +14,7 @@ pt-BR:
     progress: Andamento
     manual: Manual
   footer:
-    home: "Projeto em desenvolvimento · Rust · GTK 4 · libadwaita"
+    home: "Projeto em desenvolvimento · Rust · GTK 4 · Relm4"
     manual: "Manual inicial · Projeto em desenvolvimento"
   back_to_top: "Voltar ao início ↑"
 en:
@@ -33,7 +33,7 @@ en:
     progress: Progress
     manual: Manual
   footer:
-    home: "Project in development · Rust · GTK 4 · libadwaita"
+    home: "Project in development · Rust · GTK 4 · Relm4"
     manual: "First edition · Project in development"
   back_to_top: "Back to top ↑"
 es:
@@ -52,6 +52,6 @@ es:
     progress: Avances
     manual: Manual
   footer:
-    home: "Proyecto en desarrollo · Rust · GTK 4 · libadwaita"
+    home: "Proyecto en desarrollo · Rust · GTK 4 · Relm4"
     manual: "Primera edición · Proyecto en desarrollo"
   back_to_top: "Volver arriba ↑"
