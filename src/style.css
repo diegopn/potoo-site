@@ -459,17 +459,17 @@ img, svg { max-width: 100%; }
 .download-button { gap: 11px; }
 .download-button .platform-icon { width: 22px; height: 22px; flex: 0 0 22px; }
 :root:not([data-theme="dark"]) .section.deep .download-button--linux,
-:root[data-theme="dark"] .section.deep .download-button--linux { border-color: #CBD6CD; background: #CBD6CD; color: #103b2d; }
-:root:not([data-theme="dark"]) .section.deep .download-button--linux:hover,
-:root[data-theme="dark"] .section.deep .download-button--linux:hover { border-color: #BECABF; background: #BECABF; color: #103b2d; }
-:root:not([data-theme="dark"]) .section.deep .download-button--linux span,
-:root[data-theme="dark"] .section.deep .download-button--linux span { color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--linux,
 :root:not([data-theme="dark"]) .section.deep .download-button--windows,
-:root[data-theme="dark"] .section.deep .download-button--windows { border-color: #FFFFFF; background: #FFFFFF; color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--windows { border-color: #CBD6CD; background: #CBD6CD; color: #103B2D; }
+:root:not([data-theme="dark"]) .section.deep .download-button--linux:hover,
+:root[data-theme="dark"] .section.deep .download-button--linux:hover,
 :root:not([data-theme="dark"]) .section.deep .download-button--windows:hover,
-:root[data-theme="dark"] .section.deep .download-button--windows:hover { border-color: #F4F8F4; background: #F4F8F4; color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--windows:hover { border-color: #BECABF; background: #BECABF; color: #103B2D; }
+:root:not([data-theme="dark"]) .section.deep .download-button--linux span,
+:root[data-theme="dark"] .section.deep .download-button--linux span,
 :root:not([data-theme="dark"]) .section.deep .download-button--windows span,
-:root[data-theme="dark"] .section.deep .download-button--windows span { color: #103b2d; }
+:root[data-theme="dark"] .section.deep .download-button--windows span { color: #103B2D; }
 .download-meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin: 52px 0 0; padding: 22px 0 0; border-top: 1px solid rgba(255, 255, 255, .24); }
 .download-meta div { min-width: 0; }
 .download-meta dt { color: var(--mint); font-size: 11px; font-weight: 800; letter-spacing: .09em; }
@@ -745,9 +745,9 @@ img, svg { max-width: 100%; }
 :root:not([data-theme="dark"]) #download .download-copy p,
 :root:not([data-theme="dark"]) #download .download-meta dd { color: #225B42; }
 :root:not([data-theme="dark"]) #download .download-meta { border-color: #C7D9CB; }
-:root:not([data-theme="dark"]) #download .download-button--linux { border-color: #CBD6CD; background: #CBD6CD; color: #103B2D; }
-:root:not([data-theme="dark"]) #download .download-button--linux:hover { border-color: #BECABF; background: #BECABF; color: #103B2D; }
-:root:not([data-theme="dark"]) #download .download-button--windows { border-color: #AFC8B7; background: #FFFFFF; color: #103B2D; }
-:root:not([data-theme="dark"]) #download .download-button--windows:hover { border-color: #92B69D; background: #F4F8F4; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button--linux,
+:root:not([data-theme="dark"]) #download .download-button--windows { border-color: #CBD6CD; background: #CBD6CD; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button--linux:hover,
+:root:not([data-theme="dark"]) #download .download-button--windows:hover { border-color: #BECABF; background: #BECABF; color: #103B2D; }
 :root:not([data-theme="dark"]) #download .download-button span { color: #103B2D; }
 :root[data-theme="dark"] .section#download { background: #10251B; }
