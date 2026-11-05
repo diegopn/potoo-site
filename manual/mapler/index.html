@@ -14,6 +14,11 @@ translations:
   pt: "/manual/mapler/"
   es: "/es/manual/mapler/"
   en: "/en/manual/mapler/"
+interpreter_installation:
+  repository: "potoo-portugol-mapler-interpreter"
+  command: "potoo-mapler"
+  example: "example.mapler"
+  revision: "147b5b88bd4aa8833bc7966e048d6f835fc3c7ce"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -119,7 +124,7 @@ inicio
     fim se;
 fim.</code></pre></section>
 <section id="arquivos"><p class="kicker">10 · Arquivos</p><h2>Extensão de arquivo no Potoo IDE</h2><p>O manual do Mapler registra arquivos-fonte de texto com extensão <code>.txt</code>. No Potoo IDE, os arquivos Mapler usam <code>.mapler</code>, escolha inspirada no projeto DesignLiquido/mapler. Esse repositório é citado somente como referência para a extensão adotada; a sintaxe e os recursos documentados aqui vêm do manual e dos exemplos oficiais de Mapler.</p></section>
-<section id="interpretador"><p class="kicker">11 · Interpretador</p><h2>Interpretador de Mapler no Potoo IDE</h2><p>O interpretador implementa a sintaxe documentada pelo Projeto Mapler e é mantido em repositório independente. Cobre os tipos e vetores descritos nas referências, expressões aritméticas e lógicas, <code>escrever</code>/<code>ler</code>, decisões, repetições e módulos declarados.</p><p>A execução oferece verificação de tipos, limites de recursos, diagnósticos com localização no código, entrada e saída fornecidas pelo aplicativo e eventos de depuração. O repositório também contém um executor de terminal.</p><p><a href="https://github.com/diegopn/potoo-portugol-mapler-interpreter">Repositório do interpretador Mapler</a></p></section>
+<section id="interpretador"><p class="kicker">11 · Interpretador</p><h2>Interpretador de Mapler no Potoo IDE</h2><p>O interpretador implementa a sintaxe documentada pelo Projeto Mapler e é mantido em repositório independente. Cobre os tipos e vetores descritos nas referências, expressões aritméticas e lógicas, <code>escrever</code>/<code>ler</code>, decisões, repetições e módulos declarados.</p><p>A execução oferece verificação de tipos, limites de recursos, diagnósticos com localização no código, entrada e saída fornecidas pelo aplicativo e eventos de depuração. O repositório também contém um executor de terminal.</p><p><a href="https://github.com/diegopn/potoo-portugol-mapler-interpreter">Repositório do interpretador Mapler</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes"><p class="kicker">12 · Fontes</p><h2>Referências consultadas</h2><ul><li><a href="https://portugol.sourceforge.io/manuais.html">Manual de uso do Mapler</a> — finalidade, edição, execução e depuração.</li><li><a href="https://portugol.sourceforge.io/exemplos/estrutura-codigo.html">Estrutura do código</a>, <a href="https://portugol.sourceforge.io/exemplos/tipos.html">tipos e vetores</a>, <a href="https://portugol.sourceforge.io/exemplos/operacoes.html">operações</a>, <a href="https://portugol.sourceforge.io/exemplos/entrada-saida.html">entrada e saída</a>, <a href="https://portugol.sourceforge.io/exemplos/condicionais.html">condições</a>, <a href="https://portugol.sourceforge.io/exemplos/lacos.html">laços</a> e <a href="https://portugol.sourceforge.io/exemplos/modulos.html">módulos</a>.</li><li><a href="https://github.com/DesignLiquido/mapler">DesignLiquido/mapler</a> — inspiração para a extensão <code>.mapler</code> usada pelo Potoo IDE.</li></ul></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Voltar ao Manual do Potoo IDE</h2><p>Consulte as outras referências e as informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>

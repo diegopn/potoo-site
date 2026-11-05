@@ -14,6 +14,11 @@ translations:
   pt: "/manual/calango/"
   es: "/es/manual/calango/"
   en: "/en/manual/calango/"
+interpreter_installation:
+  repository: "potoo-calango-interpreter"
+  command: "potoo-calango"
+  example: "example.clg"
+  revision: "e81b43757d77c8bd59a39163c76003d76d7e0761"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -129,7 +134,7 @@ principal
         escreval("Keep studying");
     fimSe
 fimPrincipal</code></pre></section>
-<section id="interpretador"><p class="kicker">11 · Interpreter</p><h2>Calango interpreter in Potoo IDE</h2><p>Potoo IDE runs Calango through an interpreter library maintained in its own repository. It covers the <code>algoritmo</code>/<code>principal</code> structure, typed data, vectors, expressions, decisions, loops, functions, and procedures.</p><p>The app provides input and output. The interpreter also provides line-and-column diagnostics, cancellation, and debugging events; its repository includes a terminal runner without an interactive debugger.</p><p><a href="https://github.com/diegopn/potoo-calango-interpreter">Calango interpreter repository</a></p></section>
+<section id="interpretador"><p class="kicker">11 · Interpreter</p><h2>Calango interpreter in Potoo IDE</h2><p>Potoo IDE runs Calango through an interpreter library maintained in its own repository. It covers the <code>algoritmo</code>/<code>principal</code> structure, typed data, vectors, expressions, decisions, loops, functions, and procedures.</p><p>The app provides input and output. The interpreter also provides line-and-column diagnostics, cancellation, and debugging events; its repository includes a terminal runner without an interactive debugger.</p><p><a href="https://github.com/diegopn/potoo-calango-interpreter">Calango interpreter repository</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes"><p class="kicker">12 · Sources</p><h2>References</h2><ul><li><a href="https://github.com/GeovanaRamos/calango">Calango repository and bundled help materials</a>.</li><li><a href="https://github.com/GeovanaRamos/calango-interpreter">Calango interpreter implementation</a>.</li><li><a href="https://sae.unb.br/cae/conteudo/unbfga/apc/new_ambientedealgoritmo.html">Algorithm Environment — University of Brasília</a>, on interpretation, execution, and educational use.</li></ul><p>Examples on this page were written to explain the syntax and do not reproduce long passages from the source materials.</p></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>

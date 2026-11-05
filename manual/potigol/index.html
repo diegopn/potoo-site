@@ -14,6 +14,11 @@ translations:
   pt: "/manual/potigol/"
   es: "/es/manual/potigol/"
   en: "/en/manual/potigol/"
+interpreter_installation:
+  repository: "potoo-potigol-interpreter"
+  command: "potoo-potigol"
+  example: "example.poti"
+  revision: "ab2c74af7cec16f5dd2a5bff2391a01f0b61001f"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -408,7 +413,7 @@ senão
   escreva "Em recuperação: {resultado}"
 fim</code></pre>
         </section>
-        <section id="interpretador"><p class="kicker">16 · Interpretador</p><h2>Interpretador da linguagem Potigol no Potoo IDE</h2><p>O Potoo IDE usa uma implementação independente em Rust, mantida em repositório próprio, que tem como alvo o núcleo documentado do Potigol 1.0.0-RC2. Ela oferece inferência e verificação de tipos, funções, coleções, casamento de padrões e recursos funcionais; não executa nem inclui o interpretador oficial Scala/JVM.</p><p>A camada Jerimum encaminha pedidos de gráficos, áudio, entrada, janela e arquivos ao aplicativo. O Potoo IDE atende esses pedidos com seus recursos GTK e restringe caminhos de arquivos e mídia ao projeto aberto; as fachadas Java cobrem operações selecionadas, não a interoperabilidade geral com JVM, Swing ou AWT.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Repositório do interpretador Potigol</a></p></section>
+        <section id="interpretador"><p class="kicker">16 · Interpretador</p><h2>Interpretador da linguagem Potigol no Potoo IDE</h2><p>O Potoo IDE usa uma implementação independente em Rust, mantida em repositório próprio, que tem como alvo o núcleo documentado do Potigol 1.0.0-RC2. Ela oferece inferência e verificação de tipos, funções, coleções, casamento de padrões e recursos funcionais; não executa nem inclui o interpretador oficial Scala/JVM.</p><p>A camada Jerimum encaminha pedidos de gráficos, áudio, entrada, janela e arquivos ao aplicativo. O Potoo IDE atende esses pedidos com seus recursos GTK e restringe caminhos de arquivos e mídia ao projeto aberto; as fachadas Java cobrem operações selecionadas, não a interoperabilidade geral com JVM, Swing ou AWT.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Repositório do interpretador Potigol</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes">
           <p class="kicker">17 · Leitura adicional</p>
           <h2>Referências</h2>

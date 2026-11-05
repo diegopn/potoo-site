@@ -14,6 +14,11 @@ translations:
   pt: "/manual/visualg/"
   es: "/es/manual/visualg/"
   en: "/en/manual/visualg/"
+interpreter_installation:
+  repository: "potoo-portugol-visualg-interpreter"
+  command: "potoo-visualg"
+  example: "example.alg"
+  revision: "515d415298a4ce336338584177b7905d263dfe76"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -322,7 +327,7 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>When tracking down an error:</strong> check declaration order, variable types, vector bounds and block endings. In conditions, distinguish <code>=</code> (comparison) from <code>&lt;-</code> (assignment).</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>VisuAlg interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, targeting classic VisuAlg 3.0.5.2. It covers declarations, types, vectors and matrices, procedures and functions, control structures, input and output, math functions, and helper commands.</p><p>The integration provides line-and-column diagnostics, debugging events, and input, output, file, and timer services. Compatibility is still being validated: nested functions and procedures are unsupported, and <code>limpatela</code> has no visible effect in Potoo IDE, which does not provide a simulated DOS screen.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">VisuAlg interpreter repository</a></p></section>
+        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>VisuAlg interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, targeting classic VisuAlg 3.0.5.2. It covers declarations, types, vectors and matrices, procedures and functions, control structures, input and output, math functions, and helper commands.</p><p>The integration provides line-and-column diagnostics, debugging events, and input, output, file, and timer services. Compatibility is still being validated: nested functions and procedures are unsupported, and <code>limpatela</code> has no visible effect in Potoo IDE, which does not provide a simulated DOS screen.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">VisuAlg interpreter repository</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Further reading</p>
           <h2>VisuAlg references</h2>

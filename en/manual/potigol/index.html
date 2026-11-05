@@ -14,6 +14,11 @@ translations:
   pt: "/manual/potigol/"
   es: "/es/manual/potigol/"
   en: "/en/manual/potigol/"
+interpreter_installation:
+  repository: "potoo-potigol-interpreter"
+  command: "potoo-potigol"
+  example: "example.poti"
+  revision: "ab2c74af7cec16f5dd2a5bff2391a01f0b61001f"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -313,7 +318,7 @@ senão
   escreva "Em recuperação: {resultado}"
 fim</code></pre>
       </section>
-      <section id="interpretador"><p class="kicker">16 · Interpreter</p><h2>Potigol language interpreter in Potoo IDE</h2><p>Potoo IDE uses an independent Rust implementation maintained in its own repository, targeting the documented Potigol 1.0.0-RC2 core. It provides type inference and checking, functions, collections, pattern matching, and functional features; it does not run or bundle the official Scala/JVM interpreter.</p><p>The Jerimum layer sends graphics, audio, input, window, and file requests to the app. Potoo IDE handles them through its GTK services and confines file and media paths to the open project; Java facades cover selected operations, not general JVM, Swing, or AWT interoperability.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Potigol interpreter repository</a></p></section>
+      <section id="interpretador"><p class="kicker">16 · Interpreter</p><h2>Potigol language interpreter in Potoo IDE</h2><p>Potoo IDE uses an independent Rust implementation maintained in its own repository, targeting the documented Potigol 1.0.0-RC2 core. It provides type inference and checking, functions, collections, pattern matching, and functional features; it does not run or bundle the official Scala/JVM interpreter.</p><p>The Jerimum layer sends graphics, audio, input, window, and file requests to the app. Potoo IDE handles them through its GTK services and confines file and media paths to the open project; Java facades cover selected operations, not general JVM, Swing, or AWT interoperability.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Potigol interpreter repository</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes"><p class="kicker">17 · Further reading</p><h2>References</h2>
         <ul><li><a href="https://potigol.github.io/docs/">Official Potigol documentation</a>, including syntax, structures, functions, types, lists, and tuples.</li><li>Official references for <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">numbers</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">text</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">math</a>, and <a href="https://potigol.github.io/docs/funcoes/">functions</a>.</li><li>Official references for <a href="https://potigol.github.io/docs/tipos_compostos/listas/">lists</a>, <a href="https://potigol.github.io/docs/tipos_compostos/tuplas/">tuples</a>, and <a href="https://potigol.github.io/docs/funcional/">functional programming</a>, with list comprehensions, lambda expressions, currying, tail recursion, and pattern matching.</li><li><a href="https://github.com/potigol/potigol">Official Potigol repository</a> and its <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">published grammar</a>.</li><li><a href="https://github.com/potigol/Jerimum">Official Jerimum repository</a>, with <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentation and examples</a>.</li><li>References for <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a>, and <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; the source code also describes audio, animation, and file reading.</li></ul>
       </section>

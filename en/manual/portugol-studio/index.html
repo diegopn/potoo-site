@@ -14,6 +14,11 @@ translations:
   pt: "/manual/portugol-studio/"
   es: "/es/manual/portugol-studio/"
   en: "/en/manual/portugol-studio/"
+interpreter_installation:
+  repository: "potoo-portugol-studio-2-interpreter"
+  command: "potoo-portugol-studio-2"
+  example: "example.por"
+  revision: "0e7e799b83daa80a3e8189327d5d7f9126ae69ef"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -335,7 +340,7 @@ funcao inicio() {
           <div class="manual-note"><strong>When tracking down an error:</strong> first check declared types, block delimiters, the library name and index bounds. Use parentheses to make precedence explicit when expressions combine different operators.</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>Portugol Studio 2.0 interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, and targets the Portugol Studio 2.0 pseudolanguage. It covers programs, typed and void functions, variables, vectors and matrices, operators, control structures, input and output, and standard libraries.</p><p>Environment-dependent services—such as files, graphics, keyboard, mouse, audio, HTTP, and calendar—are requested from the app through an integration interface. Potoo IDE already provides handlers for graphics, keyboard, mouse, and audio; these features still need manual validation on each platform. The parser reports the first lexical or syntax error it finds.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Portugol Studio 2.0 interpreter repository</a></p></section>
+        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>Portugol Studio 2.0 interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, and targets the Portugol Studio 2.0 pseudolanguage. It covers programs, typed and void functions, variables, vectors and matrices, operators, control structures, input and output, and standard libraries.</p><p>Environment-dependent services—such as files, graphics, keyboard, mouse, audio, HTTP, and calendar—are requested from the app through an integration interface. Potoo IDE already provides handlers for graphics, keyboard, mouse, and audio; these features still need manual validation on each platform. The parser reports the first lexical or syntax error it finds.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Portugol Studio 2.0 interpreter repository</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Further reading</p>
           <h2>Portugol Studio 2.0 pseudolanguage references</h2>

@@ -1,0 +1,41 @@
+{% assign install = page.interpreter_installation %}
+{% assign copy = site.data.interpreter_installation[page.lang] %}
+<div class="interpreter-installation">
+  <h3>{{ copy.heading | escape }}</h3>
+  <p>{{ copy.release_intro | escape }} <a href="https://github.com/diegopn/{{ install.repository | escape }}/releases">{{ copy.release_link | escape }}</a>. {{ copy.release_details | escape }}</p>
+  <p>{{ copy.platform_note | escape }}</p>
+
+  <h4>{{ copy.linux_heading | escape }}</h4>
+  <p>{{ copy.linux_text | escape }}</p>
+  <pre class="manual-code"><code>asset=$(ls -1 {{ install.repository }}-v*-x86_64-unknown-linux-gnu.tar.gz | head -n 1)
+sha256sum "$asset"
+tar -xzf "$asset"
+mkdir -p "$HOME/.local/bin"
+install -m 755 "${asset%.tar.gz}/{{ install.command }}" "$HOME/.local/bin/{{ install.command }}"
+export PATH="$HOME/.local/bin:$PATH"
+{{ install.command }} {{ install.example }}</code></pre>
+
+  <h4>{{ copy.windows_heading | escape }}</h4>
+  <p>{{ copy.windows_text | escape }}</p>
+  <pre class="manual-code"><code>$archive = Get-ChildItem -Filter "{{ install.repository }}-v*-x86_64-pc-windows-msvc.zip" | Select-Object -First 1
+Get-FileHash $archive.FullName -Algorithm SHA256
+Expand-Archive $archive.FullName -DestinationPath .\{{ install.command }}
+$exe = Get-ChildItem .\{{ install.command }} -Filter "{{ install.command }}.exe" -Recurse | Select-Object -First 1
+&amp; $exe.FullName .\{{ install.example }}</code></pre>
+
+  <h4>{{ copy.macos_heading | escape }}</h4>
+  <p>{{ copy.macos_text | escape }}</p>
+  <pre class="manual-code"><code>asset=$(ls -1 {{ install.repository }}-v*-x86_64-apple-darwin.tar.gz | head -n 1)
+shasum -a 256 "$asset"
+tar -xzf "$asset"
+mkdir -p "$HOME/.local/bin"
+install -m 755 "${asset%.tar.gz}/{{ install.command }}" "$HOME/.local/bin/{{ install.command }}"
+export PATH="$HOME/.local/bin:$PATH"
+{{ install.command }} {{ install.example }}</code></pre>
+  <p>{{ copy.profile_note | escape }}</p>
+
+  <h3>{{ copy.source_heading | escape }}</h3>
+  <p>{{ copy.source_text | escape }}</p>
+  <pre class="manual-code"><code>cargo install --git https://github.com/diegopn/{{ install.repository }}.git --rev {{ install.revision }} --bin {{ install.command }}</code></pre>
+  <p>{{ copy.run_note | escape }} <code>{{ install.command | escape }} {{ install.example | escape }}</code>. {{ copy.example_note | escape }}</p>
+</div>

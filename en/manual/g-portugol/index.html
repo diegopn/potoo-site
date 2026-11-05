@@ -14,6 +14,11 @@ translations:
   pt: "/manual/g-portugol/"
   es: "/es/manual/g-portugol/"
   en: "/en/manual/g-portugol/"
+interpreter_installation:
+  repository: "potoo-gportugol-interpreter"
+  command: "potoo-gportugol"
+  example: "example.gpt"
+  revision: "795e262f4ac160b720266e149d8fc3e2cd916a1c"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -206,7 +211,7 @@ fim</code></pre>
         </tbody></table></div>
         <p>The general form is <code>gpt [options] files...</code>. When several files are supplied, the first contains the algorithm declaration and main block; the remaining files provide supporting code and must not repeat the algorithm declaration, global variable block, or main block. The <code>GPT_INCLUDE</code> environment variable can also specify additional files; its paths are separated by <code>:</code> on Unix systems and <code>;</code> on Windows. The manual expects equivalent results from interpretation, compilation, and translation, except that matrix bounds are checked in interpreted mode. Executable generation with <code>-o</code> is limited to 32-bit x86 machines; for other architectures, the manual describes generating C with <code>-t</code> and compiling it with the system toolchain.</p>
       </section>
-      <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>G-Portugol interpreter in Potoo IDE</h2><p>The interpreter is an independent Rust library maintained in its own repository, with G-Portugol 1.4.0 as its reference. It parses and checks types before execution, covering declarations, vectors, matrices, functions, control flow, <code>imprima</code>, <code>leia()</code>, and the math functions from <code>base.gpt</code>.</p><p>The app provides input, output, and debugging events. The library accepts function modules in separate files, but Potoo IDE currently runs only the active <code>.gpt</code> document; project-level module selection is not integrated.</p><p><a href="https://github.com/diegopn/potoo-gportugol-interpreter">G-Portugol interpreter repository</a></p></section>
+      <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>G-Portugol interpreter in Potoo IDE</h2><p>The interpreter is an independent Rust library maintained in its own repository, with G-Portugol 1.4.0 as its reference. It parses and checks types before execution, covering declarations, vectors, matrices, functions, control flow, <code>imprima</code>, <code>leia()</code>, and the math functions from <code>base.gpt</code>.</p><p>The app provides input, output, and debugging events. The library accepts function modules in separate files, but Potoo IDE currently runs only the active <code>.gpt</code> document; project-level module selection is not integrated.</p><p><a href="https://github.com/diegopn/potoo-gportugol-interpreter">G-Portugol interpreter repository</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes"><p class="kicker">15 · Further reading</p><h2>References</h2>
         <ul><li><a href="https://gportugol.readthedocs.io/pt-br/latest/">Official G-Portugol manual</a>, with chapters on features, programming, syntax, the GPT tool, and grammar.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programando.html">Programming chapter</a>, with examples of variables, matrices, control flow, functions, input, and output.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/implementacao.html">Implementation chapter</a>, explaining structure, expressions, assignments, functions, and input/output.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/programa-gpt.html">GPT program manual</a>, with its execution, compilation, and translation options.</li><li><a href="https://gportugol.readthedocs.io/pt-br/latest/gramatica.html">Official grammar</a>, with lexical rules and syntax productions.</li><li><a href="https://github.com/gportugol/gpt">Official project repository</a> and <a href="https://gportugol.github.io/">official website</a>.</li></ul>
       </section>

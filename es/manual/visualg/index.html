@@ -14,6 +14,11 @@ translations:
   pt: "/manual/visualg/"
   es: "/es/manual/visualg/"
   en: "/en/manual/visualg/"
+interpreter_installation:
+  repository: "potoo-portugol-visualg-interpreter"
+  command: "potoo-visualg"
+  example: "example.alg"
+  revision: "515d415298a4ce336338584177b7905d263dfe76"
 body_class: manual-page
 ---
 <main id="conteudo">
@@ -322,7 +327,7 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>Al investigar un error:</strong> comprueba el orden de las declaraciones, el tipo de variable, los límites del vector y el cierre de los bloques. En condiciones, distingue <code>=</code> (comparación) de <code>&lt;-</code> (asignación).</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Intérprete</p><h2>Intérprete de VisuAlg en Potoo IDE</h2><p>El intérprete es una biblioteca reutilizable mantenida en su propio repositorio, con ejecutor de terminal, y tiene como objetivo el VisuAlg clásico 3.0.5.2. Cubre declaraciones, tipos, vectores y matrices, procedimientos y funciones, estructuras de control, entrada y salida, funciones matemáticas y comandos auxiliares.</p><p>La integración proporciona diagnósticos con línea y columna, eventos de depuración y servicios de entrada, salida, archivos y temporizadores. La compatibilidad sigue en validación: no se admiten funciones ni procedimientos anidados, y <code>limpatela</code> no tiene efecto visual en Potoo IDE, que no ofrece una pantalla DOS simulada.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">Repositorio del intérprete VisuAlg</a></p></section>
+        <section id="interpretador"><p class="kicker">14 · Intérprete</p><h2>Intérprete de VisuAlg en Potoo IDE</h2><p>El intérprete es una biblioteca reutilizable mantenida en su propio repositorio, con ejecutor de terminal, y tiene como objetivo el VisuAlg clásico 3.0.5.2. Cubre declaraciones, tipos, vectores y matrices, procedimientos y funciones, estructuras de control, entrada y salida, funciones matemáticas y comandos auxiliares.</p><p>La integración proporciona diagnósticos con línea y columna, eventos de depuración y servicios de entrada, salida, archivos y temporizadores. La compatibilidad sigue en validación: no se admiten funciones ni procedimientos anidados, y <code>limpatela</code> no tiene efecto visual en Potoo IDE, que no ofrece una pantalla DOS simulada.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">Repositorio del intérprete VisuAlg</a></p>{% include interpreter_installation.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Lectura adicional</p>
           <h2>Referencias de VisuAlg</h2>
