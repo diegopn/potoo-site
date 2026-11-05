@@ -734,3 +734,20 @@ img, svg { max-width: 100%; }
 :root:not([data-theme="dark"]) .manual-body .manual-table th,
 :root:not([data-theme="dark"]) .manual-body .manual-table td,
 :root:not([data-theme="dark"]) .manual-body .manual-table td:first-child { color: #111111; }
+
+:root:not([data-theme="dark"]) .section#download {
+  background: #FFFFFF;
+  color: #103B2D;
+}
+:root:not([data-theme="dark"]) #download .download-heading .kicker,
+:root:not([data-theme="dark"]) #download .download-meta dt { color: #13794A; }
+:root:not([data-theme="dark"]) #download .download-heading h2 { color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-copy p,
+:root:not([data-theme="dark"]) #download .download-meta dd { color: #225B42; }
+:root:not([data-theme="dark"]) #download .download-meta { border-color: #C7D9CB; }
+:root:not([data-theme="dark"]) #download .download-button--linux { border-color: #CBD6CD; background: #CBD6CD; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button--linux:hover { border-color: #BECABF; background: #BECABF; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button--windows { border-color: #AFC8B7; background: #FFFFFF; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button--windows:hover { border-color: #92B69D; background: #F4F8F4; color: #103B2D; }
+:root:not([data-theme="dark"]) #download .download-button span { color: #103B2D; }
+:root[data-theme="dark"] .section#download { background: #10251B; }
