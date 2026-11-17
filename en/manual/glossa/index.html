@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · Greek curriculum notation · under evaluation</p>
     <h1>Glossa (ΓΛΩΣΣΑ)</h1>
-    <p class="manual-intro">ΓΛΩΣΣΑ (“Glossa”, literally “language”) is a teaching language presented in Greek secondary-school computer science materials. This reference follows the official school textbook: there is no single official interpreter defining the whole ecosystem. Glossa is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-intro">ΓΛΩΣΣΑ is a Greek curriculum notation for teaching algorithms, described in an official textbook.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -37,6 +37,8 @@ body_class: manual-page
         <li><a href="#exemplo">Average and classification</a></li>
         <li><a href="#estudo">How to study and test</a></li>
         <li><a href="#escopo">Scope and variants</a></li>
+        <li><a href="#metodologia">From problem to algorithm</a></li>
+        <li><a href="#roteiro">Learning and debugging sequence</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -63,6 +65,17 @@ body_class: manual-page
   ΜΕΣΟΣ &lt;- (Α + Β) / 2
   ΓΡΑΨΕ ΜΕΣΟΣ
 ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre><p><code>ΠΡΟΓΡΑΜΜΑ</code> names the program, <code>ΜΕΤΑΒΛΗΤΕΣ</code> starts declarations, <code>ΑΡΧΗ</code> opens the instructions, and <code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code> closes the program. Follow the course rules for typography and identifiers.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Reference to Greek forms shown in examples" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form in examples</th><th scope="col">Shown purpose</th><th scope="col">Reference limit</th></tr></thead><tbody>
+          <tr><td><code>ΠΡΟΓΡΑΜΜΑ name</code></td><td>Identifies the program.</td><td>The textbook example defines the full header form.</td></tr>
+          <tr><td><code>ΜΕΤΑΒΛΗΤΕΣ</code></td><td>Starts the declaration section.</td><td>See the textbook for additional types and declarations.</td></tr>
+          <tr><td><code>ΑΡΧΗ</code></td><td>Opens the instruction body.</td><td>Used here as shown in the curriculum example.</td></tr>
+          <tr><td><code>ΔΙΑΒΑΣΕ</code>, <code>ΓΡΑΨΕ</code></td><td>Reads data and displays values or messages.</td><td>The examples use them with declared variables.</td></tr>
+          <tr><td><code>&lt;-</code></td><td>Assigns the result of an expression.</td><td>The example places the destination variable on the left.</td></tr>
+          <tr><td><code>ΑΝ ... ΤΟΤΕ ... ΑΛΛΙΩΣ ... ΤΕΛΟΣ_ΑΝ</code></td><td>Selects between the branches of a condition.</td><td>Form reproduced from the example; check delimiters and variants in the textbook.</td></tr>
+          <tr><td><code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></td><td>Ends the program.</td><td>Closing shown in the program example.</td></tr>
+        </tbody></table></div>
+        <p>This table indexes only forms already used on this page. It does not define a complete grammar or confirm variants used by every course or simulator.</p>
+
       </section>
       <section id="dados">
         <p class="kicker">04 · data</p>
@@ -106,8 +119,37 @@ body_class: manual-page
         <h2>Scope and variants</h2>
 <p>ΓΛΩΣΣΑ is a curriculum notation. There is no single official software package defining the syntax used by every student tool. Content and presentation can vary between textbook editions and course instructions.</p><p>This reference describes central constructs in the school material consulted and keeps Greek keywords in examples. Confirm types, operators, subprograms, truth tables, and array rules in the edition assigned by your course. Glossa remains under evaluation in Potoo IDE.</p>
       </section>
+      <section id="metodologia">
+        <p class="kicker">11 · problem-solving method</p>
+        <h2>From problem to algorithm</h2>
+        <p>The curriculum textbook presents programming as a sequence of decisions: understand the problem, organize the data, formulate a solution, and check that it meets the prompt. ΓΛΩΣΣΑ gives students a shared notation for recording algorithms in exercises. The workflow below separates the solution's logic from writing details required by a particular edition or course.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Steps for solving a problem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Step</th><th scope="col">Question</th><th scope="col">Record</th></tr></thead><tbody>
+          <tr><td>Understand</td><td>Which data are provided? What must be calculated or decided?</td><td>Inputs, expected result, and constraints in the prompt.</td></tr>
+          <tr><td>Plan</td><td>Which operations, decisions, and repetitions solve the task?</td><td>A sequence of steps in plain language or the form taught in class.</td></tr>
+          <tr><td>Trace</td><td>How does each variable change for a known input?</td><td>A state table with values before and after each operation.</td></tr>
+          <tr><td>Check</td><td>Does the algorithm cover ordinary and boundary cases?</td><td>Results worked out by hand for comparison with a run or textbook example.</td></tr>
+        </tbody></table></div>
+        <p>For the two-value average example, use <code>Α=12</code> and <code>Β=18</code>. After <code>ΔΙΑΒΑΣΕ</code>, the table records 12 and 18; after the assignment, <code>ΜΕΣΟΣ</code> is 15; <code>ΓΡΑΨΕ</code> displays that result. A second test should use different values. If an exercise permits fractional averages, check that the declared types and division produce the expected precision.</p>
+        <p>An execution table also helps locate faults. If the output is wrong, first check the values read, then each calculation, and finally the condition or repetition that chooses a path. Change one part at a time and trace it again.</p>
+      </section>
+      <section id="roteiro">
+        <p class="kicker">12 · practice sequence</p>
+        <h2>Learning and debugging sequence</h2>
+        <p>The school material's contents move from basic concepts to structures used in larger problems, including arrays, stacks, queues, search, sorting, and recursion. The sequence below uses those topics to plan exercises; it does not replace the definitions and examples in the adopted edition.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Exercise sequence for Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Practice task</th><th scope="col">What to check</th></tr></thead><tbody>
+          <tr><td>Types and input/output</td><td>Read values and display a simple calculation.</td><td>Declarations, units, values read, and expected result.</td></tr>
+          <tr><td>Selection and repetition</td><td>Count how many values meet a condition.</td><td>No matches, one match, and the exact loop boundary.</td></tr>
+          <tr><td>Arrays</td><td>Find the minimum, maximum, or average of a collection.</td><td>Dimension, index range, and processing every element.</td></tr>
+          <tr><td>Stacks and queues</td><td>Simulate a short sequence of insertions and removals.</td><td>The order items enter and leave and the state after each operation.</td></tr>
+          <tr><td>Search and sorting</td><td>Find a value and sort a few elements.</td><td>Empty or single-item input, duplicates, and boundary positions.</td></tr>
+          <tr><td>Recursion</td><td>Solve a small case through successive calls.</td><td>Base case, reduction of the problem, and each call's return value.</td></tr>
+        </tbody></table></div>
+        <h3>Common errors</h3>
+        <ul><li><strong>Uninitialized data:</strong> check that each variable receives a value before use.</li><li><strong>Wrong boundary:</strong> test the condition when a value equals the limit, not only above or below it.</li><li><strong>Loop without progress:</strong> confirm that the instructions change the variable or state controlling repetition.</li><li><strong>Out-of-range array access:</strong> compare each index with the range set by the exercise and course edition.</li><li><strong>Recursion that does not stop:</strong> check that each call moves its input toward the base case.</li></ul>
+        <p>Third-party tools may interpret different conventions. When debugging, record the textbook edition, reproduce its examples, and compare the sequence of states before deciding that a tool reflects the curriculum rule. For assessments, use the notation specified by the teacher or exam.</p>
+      </section>
       <section id="fontes">
-        <p class="kicker">11 · further reading</p>
+        <p class="kicker">13 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://ebooks.edu.gr/ebooks/v/html/8547/2718/Pliroforiki_G-Lykeiou_html-empl/">Official secondary-school computer science textbook</a>, on the Greek schoolbook portal.</li><li><a href="https://www.iep.edu.gr/">Greek Institute of Educational Policy (IEP)</a>, responsible for curriculum and education materials.</li></ul><p>Use the textbook to confirm Greek spelling, type definitions, and the form expected in exercises and exams.</p>
       </section>

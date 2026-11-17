@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · ambiente educacional alemão · em avaliação</p>
     <h1>Robot Karol</h1>
-    <p class="manual-intro">Robot Karol é um ambiente educacional alemão em que estudantes programam um robô em uma grade. O projeto online atual combina tarefas visuais, blocos e edição textual, com materiais de apoio e modos de código. É diferente de Karel the Robot, que tem uma referência separada. Robot Karol está em avaliação e não é executado pelo Potoo IDE.</p>
+    <p class="manual-intro">Robot Karol ensina algoritmos com um robô em grade, comandos, sensores, blocos e texto.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -53,32 +53,97 @@ body_class: manual-page
       <section id="comandos">
         <p class="kicker">03 · ações</p>
         <h2>Comandos e sensores</h2>
-<p>As ações fundamentais mudam a posição ou a orientação do robô. Condições consultam o entorno para que um programa responda ao cenário. No curso de Python associado ao projeto, os exemplos usam chamadas da interface <code>Robot</code>:</p><pre class="manual-code"><code>karol = Robot()
-karol.schritt()
-karol.linksDrehen()</code></pre><p>O trecho cria o objeto do robô, avança um passo e gira à esquerda conforme a API do material. Os nomes alemães e as chamadas exatas dependem do modo de código selecionado. Confirme no tutorial da versão online antes de combinar comandos de ambientes diferentes.</p><ul><li><strong>Ações:</strong> avançar, girar e interagir com objetos previstos na tarefa.</li><li><strong>Condições:</strong> verificar caminho livre, obstáculos ou elementos na posição atual.</li><li><strong>Observação:</strong> consultar o estado do mundo antes de decidir o próximo passo.</li></ul>
-      </section>
+<p>As ações fundamentais mudam a posição ou a orientação do robô. Condições consultam o entorno para que um programa responda ao cenário. No modo textual próprio, uma sequência pode usar comandos alemães:</p><pre class="manual-code"><code>Schritt
+LinksDrehen</code></pre><p>O trecho avança uma célula e gira à esquerda. Esses comandos também correspondem a blocos do editor visual; os modos de Python ou Java são materiais separados.</p><ul><li><strong>Ações:</strong> avançar, girar e interagir com objetos previstos na tarefa.</li><li><strong>Condições:</strong> verificar caminho livre, obstáculos ou elementos na posição atual.</li><li><strong>Observação:</strong> consultar o estado do mundo antes de decidir o próximo passo.</li></ul>
+
+<h3>Vocabulário do modo textual</h3>
+<p>O projeto documenta comandos em alemão. Eles aparecem no modo textual próprio e também correspondem a blocos no editor visual. A tabela resume as instruções principais do repositório:</p>
+<div class="manual-table-wrap" role="region" aria-label="Comandos textuais de Robot Karol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Efeito documentado</th></tr></thead><tbody>
+<tr><td><code>Schritt</code> / <code>Schritt(anzahl)</code></td><td>Avança uma célula ou a quantidade indicada.</td></tr>
+<tr><td><code>LinksDrehen</code> / <code>RechtsDrehen</code></td><td>Gira 90 graus para a esquerda ou para a direita; o modo textual aceita uma quantidade opcional.</td></tr>
+<tr><td><code>Hinlegen</code> / <code>Hinlegen(anzahl)</code></td><td>Coloca um ou a quantidade indicada de tijolos à frente.</td></tr>
+<tr><td><code>Aufheben</code> / <code>Aufheben(anzahl)</code></td><td>Recolhe um ou a quantidade indicada de tijolos à frente.</td></tr>
+<tr><td><code>MarkeSetzen</code> / <code>MarkeLöschen</code></td><td>Marca a célula atual ou remove a marca existente.</td></tr>
+<tr><td><code>Beenden</code></td><td>Encerra o programa naquele ponto.</td></tr>
+</tbody></table></div>
+<p>Os nomes fazem parte da notação de Robot Karol e preservam a grafia alemã. Já <code>karol.schritt()</code> é uma chamada Python exibida no curso associado; não é a mesma sintaxe. Confira o modo de código ativo antes de copiar um exemplo.</p>
+
+</section>
       <section id="estruturas">
         <p class="kicker">04 · controle de fluxo</p>
         <h2>Sequência, laços e condições</h2>
 <p>O ambiente ensina a compor programas com instruções em sequência, repetições e decisões condicionais. Alguns materiais incluem repetição por número de vezes e repetição condicionada a um sensor.</p><div class="manual-table-wrap" role="region" aria-label="Estruturas de programação de Robot Karol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Ideia</th><th scope="col">Pergunta útil</th></tr></thead><tbody><tr><td>Sequência</td><td>Qual ação deve acontecer primeiro?</td></tr><tr><td>Repetição contada</td><td>Quantos passos ou giros são necessários?</td></tr><tr><td>Repetição condicional</td><td>Que sensor indica que é hora de continuar ou parar?</td></tr><tr><td>Decisão</td><td>O que fazer quando o caminho estiver livre ou bloqueado?</td></tr><tr><td>Procedimento</td><td>Que sequência recebe um nome para ser reutilizada?</td></tr></tbody></table></div><p>Condições sobre o entorno tornam o algoritmo mais adaptável a cenários relacionados. Ainda assim, teste todos os casos previstos pelo exercício e garanta uma condição de término.</p>
-      </section>
+
+<h3>Formas textuais de repetição e decisão</h3>
+<p>A referência do repositório documenta repetição contada, repetição condicionada, repetição contínua e decisão com ou sem alternativa. No modo textual, os blocos são delimitados por palavras próprias:</p>
+<pre class="manual-code"><code>wiederhole 4 mal
+  Schritt
+endewiederhole
+
+wenn IstWand dann
+  LinksDrehen
+sonst
+  Schritt
+endewenn</code></pre>
+<p>Use uma repetição contada quando a quantidade de ações for conhecida. Prefira uma condição quando a tarefa depende do ambiente, como continuar até encontrar uma parede. A forma contínua só deve ser usada quando o programa tiver uma maneira clara de terminar, por exemplo uma ação de encerramento ou uma condição externa.</p>
+<h3>Sensores e decisões</h3>
+<p>O modo textual inclui perguntas sobre parede, tijolo, marca e orientação do robô. Há formas afirmativas e negativas, e algumas perguntas aceitam a quantidade de tijolos esperada. Antes de combinar sensores, determine se a pergunta se refere à célula atual, à posição à frente ou à direção absoluta; essa distinção muda a decisão do programa.</p>
+
+
+<h3>Consulta rápida das formas de controle</h3>
+<div class="manual-table-wrap" role="region" aria-label="Sintaxe de controle textual de Robot Karol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma textual</th><th scope="col">Função</th><th scope="col">Observação</th></tr></thead><tbody>
+<tr><td><code>wiederhole n mal … endewiederhole</code></td><td>Repete uma quantidade definida de vezes.</td><td>Use quando o número de ações for conhecido.</td></tr>
+<tr><td><code>wiederhole solange condição … endewiederhole</code></td><td>Repete enquanto a condição for verdadeira.</td><td>Verifique que cada iteração pode aproximar o programa da saída.</td></tr>
+<tr><td><code>wiederhole immer … endewiederhole</code></td><td>Repete continuamente.</td><td>Precisa de uma forma explícita de terminar.</td></tr>
+<tr><td><code>wenn condição dann … endewenn</code></td><td>Executa ações quando a condição é verdadeira.</td><td>É uma decisão de um ramo.</td></tr>
+<tr><td><code>wenn … dann … sonst … endewenn</code></td><td>Escolhe entre dois ramos.</td><td>Teste o resultado verdadeiro e o falso.</td></tr>
+</tbody></table></div>
+<div class="manual-table-wrap" role="region" aria-label="Consultas de sensores textuais de Robot Karol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Consulta</th><th scope="col">O que verifica</th><th scope="col">Referência espacial</th></tr></thead><tbody>
+<tr><td><code>IstWand</code> / <code>NichtIstWand</code></td><td>Presença ou ausência de parede.</td><td>À frente do robô.</td></tr>
+<tr><td><code>IstZiegel</code> / <code>NichtIstZiegel</code></td><td>Presença ou ausência de tijolos; também há forma com quantidade.</td><td>À frente do robô.</td></tr>
+<tr><td><code>IstMarke</code> / <code>NichtIstMarke</code></td><td>Presença ou ausência de marca.</td><td>Na célula ocupada pelo robô.</td></tr>
+<tr><td><code>IstNorden</code>, <code>IstOsten</code>, <code>IstSüden</code>, <code>IstWesten</code> e formas negativas</td><td>Orientação atual do robô.</td><td>Direção absoluta, em vez de posição relativa.</td></tr>
+</tbody></table></div>
+</section>
       <section id="editores">
         <p class="kicker">05 · formas de editar</p>
         <h2>Blocos, texto e atividades</h2>
 <p>O projeto online oferece edição visual por blocos e formas de edição textual. Os blocos deixam a estrutura dos laços e das condições visível; o texto ajuda a estudar comandos e pode preparar a passagem para linguagens de programação.</p><p>A plataforma também organiza tarefas e materiais de curso. Ao trabalhar em uma sequência didática:</p><ol><li>leia o objetivo e examine o estado inicial do mundo;</li><li>escreva uma estratégia antes de colocar blocos;</li><li>execute e observe onde o robô se desvia da meta;</li><li>corrija a menor parte necessária e teste novamente.</li></ol><p>Alguns cursos acompanham as atividades com Python ou Java. Esses modos são materiais específicos e não devem ser confundidos com a representação própria de Robot Karol.</p>
-      </section>
+
+<h3>Procedimentos reutilizáveis e fluxo do editor</h3>
+<p>Uma instrução própria dá nome a um conjunto de comandos para reutilizá-lo em diferentes partes da solução. O repositório documenta definições delimitadas por <code>Anweisung</code> e <code>endeAnweisung</code>. Isso ajuda a nomear operações do problema, como percorrer um corredor, construir um lado ou retornar ao ponto inicial.</p>
+<p>Em tarefas com vários blocos, o bloco marcado como programa principal é o que executa. Blocos auxiliares ficam inativos até serem chamados. No texto, um programa contínuo pode ser executado sem a estrutura visual de blocos. A documentação também descreve comentários com <code>//</code> e formas antigas com asterisco; use a forma indicada pelo material do curso.</p>
+<p>O editor de tarefas permite que um docente monte cenários e objetivos próprios e os compartilhe por link ou arquivo. Ao preparar uma atividade, descreva claramente posição e direção iniciais, obstáculos, objetos disponíveis e estado final esperado.</p>
+
+</section>
       <section id="exemplo">
         <p class="kicker">06 · exemplo guiado</p>
         <h2>Percorrer uma linha segura</h2>
-<p>Suponha que uma tarefa peça ao robô para avançar por um corredor de comprimento conhecido. Na forma textual do curso Python, a ideia é repetir uma ação de passo a passo; no editor de blocos, use o bloco de repetição correspondente.</p><pre class="manual-code"><code>karol = Robot()
-for _ in range(4):
-    karol.schritt()</code></pre><p>Antes de executar, confirme que o corredor tem pelo menos quatro células livres e que o robô aponta para ele. Depois teste um corredor mais curto ou com obstáculo para entender por que um sensor é necessário quando o comprimento não é conhecido antecipadamente.</p>
-      </section>
+<p>Suponha que uma tarefa peça ao robô para avançar por um corredor de comprimento conhecido. No modo textual próprio, a forma documentada de repetição pode envolver o comando de avançar quatro vezes; no editor de blocos, use o bloco equivalente.</p><pre class="manual-code"><code>wiederhole 4 mal
+    Schritt
+endewiederhole</code></pre><p>Antes de executar, confirme que o corredor tem pelo menos quatro células livres e que o robô aponta para ele. Depois teste um corredor mais curto ou com obstáculo para entender por que um sensor é necessário quando o comprimento não é conhecido antecipadamente.</p>
+
+<h3>Exercícios progressivos</h3>
+<p>Resolva estas tarefas no modo textual próprio ou com os blocos equivalentes. Em cada etapa, escreva o estado inicial, o estado final e o teste que comprova a solução antes de tentar generalizar:</p>
+<div class="manual-table-wrap" role="region" aria-label="Sequência progressiva de exercícios de Robot Karol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Tarefa</th><th scope="col">Ponto de verificação</th></tr></thead><tbody>
+<tr><td>1 · sequência</td><td>Avance por um corredor vazio de tamanho fixo.</td><td>Confirme quantidade e orientação após o último passo.</td></tr>
+<tr><td>2 · repetição</td><td>Construa um quadrado de tijolos ou percorra quatro lados.</td><td>Compare posição, direção e objetos com o estado de partida.</td></tr>
+<tr><td>3 · decisão</td><td>Escolha virar ou avançar conforme exista uma parede à frente.</td><td>Execute um cenário livre e outro bloqueado.</td></tr>
+<tr><td>4 · procedimento</td><td>Dê nome a uma ação composta e reutilize-a em outra parte da rota.</td><td>Altere uma instrução auxiliar e confira todos os pontos de chamada.</td></tr>
+<tr><td>5 · generalização</td><td>Repita a tarefa em um mundo personalizado com outra posição inicial.</td><td>Separe as hipóteses garantidas das que precisam de sensores.</td></tr>
+</tbody></table></div>
+</section>
       <section id="estrategias">
         <p class="kicker">07 · planejamento</p>
         <h2>Planejar e depurar tarefas</h2>
 <p>Problemas de robô são bons exercícios de decomposição. Nomeie ações repetidas, identifique decisões com sensores e desenhe a rota em uma grade. Uma execução visual ajuda a localizar o passo em que a orientação ou posição se tornou inesperada.</p><ul><li>Teste o cenário inicial exatamente como descrito.</li><li>Observe a orientação depois de cada giro.</li><li>Verifique se sensores são relativos à direção atual.</li><li>Teste casos de borda, como corredor de tamanho mínimo e obstáculo imediatamente à frente.</li><li>Se uma solução usa Python ou Java, confira a semântica dessa integração no material associado.</li></ul><p>O objetivo é que a sequência funcione de acordo com as condições do exercício, não apenas no primeiro cenário que foi executado.</p>
-      </section>
+
+<h3>Casos de teste para um mundo em grade</h3>
+<p>Uma tarefa pode parecer resolvida em um cenário e falhar quando a distância ou a posição inicial muda. Separe o algoritmo da configuração concreta: anote as hipóteses que a solução faz e confira se elas estão garantidas pelo enunciado.</p>
+<ul><li>Teste o menor corredor válido e o maior previsto pela tarefa.</li><li>Coloque um obstáculo imediatamente à frente para verificar a resposta do sensor.</li><li>Teste os dois lados de cada condição, incluindo a ausência de uma marca ou tijolo.</li><li>Depois de um giro, confirme a orientação antes de interpretar uma pergunta direcional.</li><li>Execute novamente a tarefa depois de trocar a ordem das instruções de um procedimento.</li></ul>
+<p>Quando o robô para antes da meta, compare o estado após cada comando: célula, orientação e objetos alterados. Essa trilha costuma revelar se o erro está na rota, no limite de uma repetição ou na condição de parada.</p>
+
+</section>
       <section id="distincao">
         <p class="kicker">08 · projetos relacionados</p>
         <h2>Robot Karol e Karel the Robot</h2>

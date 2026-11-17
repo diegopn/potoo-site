@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · linguagem educacional de algoritmos · em avaliação</p>
     <h1>SL</h1>
-    <p class="manual-intro">SL é uma linguagem educacional em espanhol para expressar algoritmos e aprender programação. O projeto da Universidad Nacional de Asunción reúne linguagem, ferramentas de desenvolvimento e materiais didáticos. Esta página organiza estruturas documentadas no projeto; SL está em avaliação e não é executada pelo Potoo IDE.</p>
+    <p class="manual-intro">SL é a linguagem educacional de algoritmos documentada pela Universidad Nacional de Asunción.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -36,6 +36,8 @@ body_class: manual-page
         <li><a href="#exemplo">Calcular a média de duas notas</a></li>
         <li><a href="#estudo">Como praticar com SL</a></li>
         <li><a href="#escopo">Implementação e limites</a></li>
+        <li><a href="#regras">Identificadores, operadores e escrita</a></li>
+        <li><a href="#subprogramas">Funções, procedimentos e parâmetros</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -53,14 +55,13 @@ body_class: manual-page
       <section id="estrutura">
         <p class="kicker">03 · programa</p>
         <h2>Estrutura de um algoritmo</h2>
-<p>Um programa simples pode declarar variáveis, iniciar a sequência executável, receber dados, calcular um resultado e encerrar. A documentação do projeto usa palavras reservadas em espanhol e letras minúsculas nos exemplos. O fragmento abaixo segue a forma ilustrada no material introdutório:</p><pre class="manual-code"><code>programa cuadrado
-var
-    n, resultado: entero
+<p>Um programa simples pode declarar variáveis, iniciar a sequência executável, receber dados, calcular um resultado e encerrar. A documentação do projeto usa palavras reservadas em espanhol e letras minúsculas nos exemplos. O fragmento abaixo segue a forma ilustrada no material introdutório:</p><pre class="manual-code"><code>var
+    n, resultado : numerico
 inicio
     leer(n)
     resultado = n * n
     imprimir(resultado)
-fin</code></pre><p><code>programa</code> nomeia o algoritmo, <code>var</code> introduz a declaração, <code>inicio</code> abre o corpo e <code>fin</code> encerra o programa. As regras para pontuação e declarações devem ser confirmadas na versão do material usada pela turma.</p>
+fin</code></pre><p><code>var</code> introduz as declarações, <code>inicio</code> abre o corpo e <code>fin</code> encerra o programa. Os nomes de programas, variáveis e sub-rotinas seguem as regras de identificadores descritas no livro.</p>
       </section>
       <section id="dados">
         <p class="kicker">04 · dados e operadores</p>
@@ -70,10 +71,14 @@ fin</code></pre><p><code>programa</code> nomeia o algoritmo, <code>var</code> in
       <section id="entrada">
         <p class="kicker">05 · interação</p>
         <h2>Entrada, saída e cálculos</h2>
-<p>Os exemplos do projeto usam instruções de leitura e impressão para ligar o algoritmo aos dados fornecidos pela pessoa que o executa. Uma expressão pode combinar valores e armazenar o cálculo em uma variável antes de exibi-lo.</p><pre class="manual-code"><code>imprimir("Ingrese la base:")
-leer(base)
-area = base * altura
-imprimir(area)</code></pre><p>Este fragmento é esquemático: declare <code>base</code>, <code>altura</code> e <code>area</code> conforme a gramática aceita pela versão do SLE. A forma de representar texto literal, separar argumentos e finalizar instruções precisa ser conferida no livro e nos exemplos oficiais.</p><p>Separar entrada, processamento e saída facilita testar o cálculo sem confundir uma falha de leitura com um erro na fórmula.</p>
+<p>Os exemplos do projeto usam instruções de leitura e impressão para ligar o algoritmo aos dados fornecidos pela pessoa que o executa. Uma expressão pode combinar valores e armazenar o cálculo em uma variável antes de exibi-lo.</p><pre class="manual-code"><code>var
+    base, altura, area : numerico
+inicio
+    imprimir("Ingrese la base y la altura:")
+    leer(base, altura)
+    area = base * altura
+    imprimir(area)
+fin</code></pre><p>O exemplo declara os dados e separa entrada, cálculo e saída. Consulte o livro para detalhes de literais e pontuação na versão do SLE usada pela turma.</p><p>Separar entrada, processamento e saída facilita testar o cálculo sem confundir uma falha de leitura com um erro na fórmula.</p>
       </section>
       <section id="controle">
         <p class="kicker">06 · controle de fluxo</p>
@@ -83,9 +88,8 @@ imprimir(area)</code></pre><p>Este fragmento é esquemático: declare <code>base
       <section id="exemplo">
         <p class="kicker">07 · exemplo guiado</p>
         <h2>Calcular a média de duas notas</h2>
-<p>Uma média simples permite praticar dados, entrada, expressão e saída. Primeiro declare as duas notas e a variável que guarda o resultado com um tipo apropriado. Depois, leia cada valor, calcule a soma dividida por dois e mostre a média.</p><pre class="manual-code"><code>programa media
-var
-    nota1, nota2, media: real
+<p>Uma média simples permite praticar dados, entrada, expressão e saída. Primeiro declare as duas notas e a variável que guarda o resultado com um tipo apropriado. Depois, leia cada valor, calcule a soma dividida por dois e mostre a média.</p><pre class="manual-code"><code>var
+    nota1, nota2, media : numerico
 inicio
     leer(nota1)
     leer(nota2)
@@ -103,8 +107,76 @@ fin</code></pre><p>Para estender o exemplo, valide se as notas pertencem ao inte
         <h2>Implementação e limites</h2>
 <p>O ecossistema de SL inclui a linguagem e o SLE, mas o portal pode oferecer versões e arquivos diferentes ao longo do tempo. Recursos de interface, depuração, bibliotecas e sintaxe devem ser confirmados no pacote efetivamente instalado.</p><p>Esta referência resume as famílias de recursos documentadas publicamente. Ela não promete que toda construção histórica esteja disponível em todas as versões, nem que um programa SL possa ser executado por outro interpretador sem adaptação. SL segue em avaliação como possibilidade futura para o Potoo IDE.</p>
       </section>
+      <section id="regras">
+        <p class="kicker">10 · sintaxe e leitura</p>
+        <h2>Identificadores, operadores e escrita</h2>
+        <p>O livro de SL especifica três tipos básicos: <code>numerico</code>, <code>cadena</code> e <code>logico</code>. O tipo numérico representa valores inteiros e reais; cadeias têm tamanho dinâmico; vetores e registros podem ser compostos desses tipos. O livro descreve compatibilidade estrita de tipos e estruturas agregadas com checagem estrutural.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos e operadores documentados em SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Uso documentado</th></tr></thead><tbody>
+          <tr><td><code>numerico</code></td><td>Inteiros e valores reais no mesmo tipo básico.</td></tr>
+          <tr><td><code>cadena</code></td><td>Texto de tamanho ajustável; <code>+</code> concatena duas cadeias.</td></tr>
+          <tr><td><code>logico</code></td><td>Condições usadas em seleções e laços.</td></tr>
+          <tr><td><code>vector</code>, <code>matriz</code>, <code>registro</code></td><td>Estruturas compostas, inclusive vetores multidimensionais e registros com campos.</td></tr>
+        </tbody></table></div>
+        <p>Os identificadores diferenciam maiúsculas de minúsculas, começam por letra ou sublinhado e podem ter até 32 caracteres. O material aceita <code>ñ</code>, mas não letras acentuadas em identificadores; palavras reservadas devem ser escritas em minúsculas. Esses detalhes são comuns fontes de erro ao transcrever exemplos.</p>
+        <p>Atribuições usam <code>=</code>; comparações incluem <code>==</code> para igualdade e <code>&lt;&gt;</code> para diferença. Expressões também podem usar <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> e <code>&gt;=</code>, além dos operadores lógicos <code>and</code>, <code>or</code> e <code>not</code>. Sentenças podem atravessar linhas; várias sentenças na mesma linha são separadas por ponto e vírgula.</p>
+        <p>As duas formas de repetição destacam diferenças úteis na execução: <code>mientras</code> testa antes do corpo e pode não rodar nenhuma vez; <code>repetir</code> roda o corpo e só depois testa <code>hasta</code>. Em ambos os casos, indique qual valor muda e por que o limite será alcançado.</p>
+        <pre class="manual-code"><code>var
+    n : numerico
+inicio
+    n = 1
+    repetir
+        n = n + 1
+    hasta (n >= 5)
+    imprimir (n)
+fin</code></pre>
+        <h3>Referência rápida</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Regras de identificadores em SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Regra</th><th scope="col">Descrição</th><th scope="col">Exemplo ou observação</th></tr></thead><tbody>
+          <tr><td>Início</td><td>Comece com uma letra ou sublinhado.</td><td><code>nota_final</code></td></tr>
+          <tr><td>Comprimento</td><td>Use no máximo 32 caracteres.</td><td>Conte também letras e dígitos depois do primeiro caractere.</td></tr>
+          <tr><td>Caracteres</td><td>A documentação aceita <code>ñ</code>, mas não letras acentuadas em identificadores.</td><td>Palavras reservadas são escritas em minúsculas.</td></tr>
+          <tr><td>Maiúsculas</td><td>Identificadores diferenciam caixa.</td><td><code>nota</code> e <code>Nota</code> são nomes distintos.</td></tr>
+        </tbody></table></div>
+        <div class="manual-table-wrap" role="region" aria-label="Operadores de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Categoria</th><th scope="col">Forma</th><th scope="col">Uso</th></tr></thead><tbody>
+          <tr><td>Atribuição</td><td><code>=</code></td><td>Armazena o valor à direita na variável à esquerda.</td></tr>
+          <tr><td>Igualdade</td><td><code>==</code></td><td>Compara se dois valores são iguais.</td></tr>
+          <tr><td>Diferença</td><td><code>&lt;&gt;</code></td><td>Compara se dois valores são diferentes.</td></tr>
+          <tr><td>Relacionais</td><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>Comparam ordem e limites.</td></tr>
+          <tr><td>Lógicos</td><td><code>and or not</code></td><td>Combinam ou negam condições.</td></tr>
+          <tr><td>Texto</td><td><code>+</code></td><td>Concatena cadeias; a operação requer operandos compatíveis.</td></tr>
+        </tbody></table></div>
+        <div class="manual-table-wrap" role="region" aria-label="Estruturas de controle documentadas em SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma documentada</th><th scope="col">Quando usar</th><th scope="col">Ordem de execução</th></tr></thead><tbody>
+          <tr><td><code>si (condición) { ... sino ... }</code></td><td>Escolhe entre caminhos com base em uma condição.</td><td>Executa o bloco correspondente ao resultado lógico.</td></tr>
+          <tr><td><code>mientras (condición) { ... }</code></td><td>Repete enquanto a condição for verdadeira.</td><td>Testa antes do corpo; pode executar zero vezes.</td></tr>
+          <tr><td><code>repetir ... hasta (condición)</code></td><td>Repete até a condição de parada ocorrer.</td><td>Executa o corpo antes do primeiro teste.</td></tr>
+        </tbody></table></div>
+
+      </section>
+      <section id="subprogramas">
+        <p class="kicker">11 · decomposição</p>
+        <h2>Funções, procedimentos e parâmetros</h2>
+        <p>O livro diferencia funções, que devolvem um valor e podem aparecer em expressões, de procedimentos, que executam ações sem produzir um resultado. Sub-rotinas ficam depois do programa principal e podem declarar constantes, tipos e variáveis locais. Uma função declara o tipo retornado e usa <code>retorna</code> para entregar o resultado:</p>
+        <pre class="manual-code"><code>subrutina cuadrado (n : numerico) retorna numerico
+inicio
+    retorna (n * n)
+fin</code></pre>
+        <p>Parâmetros podem ser passados por valor ou por referência. Por valor, a sub-rotina recebe uma cópia inicial; alterar o parâmetro não altera o argumento original. Com <code>ref</code>, a rotina recebe a referência e suas atribuições mudam a variável chamada. A diferença deve ficar explícita no contrato de cada sub-rotina.</p>
+        <pre class="manual-code"><code>subrutina duplicar (ref valor : numerico)
+inicio
+    valor = valor * 2
+fin</code></pre>
+        <p>Variáveis declaradas no programa principal são globais; as declaradas numa sub-rotina ou como parâmetros são locais. Um nome local pode ocultar um nome global igual durante a execução da rotina. O escopo local torna as sub-rotinas mais independentes e também permite recursão, mas exige cuidado para não confundir valores distintos com o mesmo identificador.</p>
+        <p>Ao desenhar uma função, liste os parâmetros, o tipo do resultado e os casos de fronteira. Para um procedimento por referência, anote qual argumento será alterado. Teste primeiro a rotina com dados pequenos e só então a integre ao algoritmo principal.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Consulta de sub-rotinas de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Papel</th><th scope="col">Observação</th></tr></thead><tbody>
+          <tr><td><code>subrutina nome (parâmetros) retorna tipo</code></td><td>Declara uma função.</td><td>O tipo indica o valor que a função devolve.</td></tr>
+          <tr><td><code>retorna (expressão)</code></td><td>Entrega o resultado da função.</td><td>A expressão precisa corresponder ao tipo declarado.</td></tr>
+          <tr><td><code>subrutina nome (parâmetros)</code></td><td>Declara um procedimento.</td><td>Executa ações sem retornar um valor de função.</td></tr>
+          <tr><td><code>ref nome : tipo</code></td><td>Declara um parâmetro passado por referência.</td><td>Alterações podem modificar o argumento fornecido pelo programa chamador.</td></tr>
+          <tr><td>Variável local ou global</td><td>Define o escopo de um nome.</td><td>Parâmetros e declarações em sub-rotinas são locais; as do programa principal são globais.</td></tr>
+        </tbody></table></div>
+
+      </section>
       <section id="fontes">
-        <p class="kicker">10 · leitura adicional</p>
+        <p class="kicker">12 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.cnc.una.py/sl/SL-index.html">Portal oficial de SL</a>, da Universidad Nacional de Asunción.</li><li><a href="https://www.cnc.una.py/sl/SL-documentos.html">Documentos e materiais de SL</a>.</li><li><a href="https://www.cnc.una.py/sl/libro-sl.pdf">Livro de SL</a>, com conteúdo didático e exemplos.</li><li><a href="https://www.cnc.una.py/sl/SL-stdf.html">Referência de funções padrão</a>.</li></ul><p>Os documentos oficiais em espanhol são a fonte para confirmar grafia, precedência de operadores e sintaxe completa.</p>
       </section>

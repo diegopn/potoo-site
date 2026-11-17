@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · notação de avaliação · em avaliação</p>
     <h1>Cambridge Pseudocode</h1>
-    <p class="manual-intro">Cambridge pseudocode é a notação usada nos materiais e exames de Computer Science da Cambridge International. Os guias padronizam como escrever algoritmos para avaliação; a notação não é, por si só, um interpretador ou linguagem de produção. As regras são vinculadas ao ano de exame. Esta referência segue o guia de 2026 e está em avaliação para o Potoo IDE.</p>
+    <p class="manual-intro">Notação dos exames Cambridge 9618 de Computer Science; em avaliação no Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -36,6 +36,9 @@ body_class: manual-page
         <li><a href="#rotinas">Procedimentos e funções</a></li>
         <li><a href="#exemplo">Somar os elementos de um vetor</a></li>
         <li><a href="#estudo">Como escrever e conferir respostas</a></li>
+        <li><a href="#expressoes-casos">Operadores e seleção por casos</a></li>
+        <li><a href="#strings">Usar funções de texto fornecidas</a></li>
+        <li><a href="#parametros">Escolher passagem por valor ou referência</a></li>
         <li><a href="#limites">Versões e limites</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
@@ -49,15 +52,15 @@ body_class: manual-page
       <section id="documentos">
         <p class="kicker">02 · contexto de avaliação</p>
         <h2>Guias e anos de exame</h2>
-<p>A Cambridge International publica guias de pseudocódigo associados aos seus programas de estudo. A versão aplicável depende do ano de exame; atualizações podem alterar exemplos, regras ou recomendações para professores.</p><p>Esta página toma como base o guia de 2026 para Computer Science. O estudante deve consultar a documentação do programa e ano específicos antes de preparar uma resposta de avaliação. Guias futuros não devem ser tratados como retroativamente aplicáveis a um exame anterior.</p><p>O propósito do pseudocódigo é tornar a lógica legível e consistente para quem escreve e corrige respostas, não definir uma plataforma de execução.</p>
+<p>A Cambridge International publica guias de pseudocódigo associados aos programas de estudo. A edição aplicável depende do ano de exame; atualizações podem alterar exemplos, regras ou recomendações para professores.</p><p>Para exames de 2026, esta página segue o guia de 2026. O guia publicado para 2027–2029 aplica-se aos exames desses três anos. Compare o ano da sua avaliação com a capa do PDF antes de preparar respostas; uma edição futura não deve ser aplicada retroativamente a exames anteriores.</p><p>O propósito do pseudocódigo é tornar a lógica legível e consistente para quem escreve e corrige respostas, não definir uma plataforma de execução.</p>
       </section>
       <section id="declaracoes">
         <p class="kicker">03 · dados</p>
         <h2>Declarações, tipos e atribuição</h2>
 <p>O guia representa declarações com <code>DECLARE</code>, nome de identificador, dois-pontos e tipo. A atribuição usa uma seta apontando para a variável. Tipos comuns incluem inteiros, reais, caracteres, cadeias e valores booleanos.</p><pre class="manual-code"><code>DECLARE mark : INTEGER
 DECLARE passed : BOOLEAN
-mark &lt;- 72
-passed &lt;- mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Tipos no Cambridge pseudocode" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Uso habitual</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Valores inteiros.</td></tr><tr><td><code>REAL</code></td><td>Valores numéricos com fração.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>Um caractere ou uma sequência de texto.</td></tr><tr><td><code>BOOLEAN</code></td><td>Condições verdadeiras ou falsas.</td></tr></tbody></table></div><p>O guia também especifica declaração de vetores e, conforme o curso, outras estruturas. Escreva tipos e limites como aparecem no documento vigente.</p>
+mark ← 72
+passed ← mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Tipos no Cambridge pseudocode" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Uso habitual</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Valores inteiros.</td></tr><tr><td><code>REAL</code></td><td>Valores numéricos com fração.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>Um caractere ou uma sequência de texto.</td></tr><tr><td><code>BOOLEAN</code></td><td>Condições verdadeiras ou falsas.</td></tr></tbody></table></div><p>O guia também especifica declaração de vetores e, conforme o curso, outras estruturas. Escreva tipos e limites como aparecem no documento vigente.</p>
       </section>
       <section id="io">
         <p class="kicker">04 · entrada e saída</p>
@@ -78,7 +81,7 @@ ENDIF</code></pre><p>Em um <code>FOR</code>, explicite o intervalo e a direção
       <section id="vetores">
         <p class="kicker">06 · coleções</p>
         <h2>Vetores e estruturas</h2>
-<p>Vetores armazenam vários valores de um tipo e são acessados por índice. O guia permite declarar dimensão e limites; não presuma que todo vetor começa em 0 ou em 1 sem ler a declaração específica.</p><p>O pseudocódigo também documenta registros e estruturas de dados quando o nível do curso exige esses tópicos. Para cada coleção:</p><ul><li>anote tipo e dimensão;</li><li>verifique que cada índice está dentro dos limites;</li><li>distinga o tamanho da posição atual;</li><li>ao percorrer, confirme o primeiro e o último valor do contador.</li></ul><p>Respostas de exame precisam manter os mesmos nomes e limites entre declaração, acesso e laço.</p>
+<p>Vetores armazenam vários valores de um tipo e são acessados por índice. O guia permite declarar dimensão e limites; não presuma que todo vetor começa em 0 ou em 1 sem ler a declaração específica.</p><p>O pseudocódigo também documenta registros e estruturas de dados quando o nível do curso exige esses tópicos. Para cada coleção:</p><ul><li>anote tipo e dimensão;</li><li>verifique que cada índice está dentro dos limites;</li><li>distinga o tamanho da posição atual;</li><li>ao percorrer, confirme o primeiro e o último valor do contador.</li></ul><p>Respostas de exame precisam manter os mesmos nomes e limites entre declaração, acesso e laço.</p><div class="manual-table-wrap" role="region" aria-label="Consulta de limites de vetores Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Leitura</th><th scope="col">Verificação</th></tr></thead><tbody><tr><td>Declaração <code>ARRAY[1:5]</code></td><td>Limites inclusivos de 1 a 5.</td><td>Há cinco posições; o índice inicial está declarado.</td></tr><tr><td><code>A[index]</code></td><td>Elemento de uma posição.</td><td>Confira se <code>index</code> está dentro dos limites.</td></tr><tr><td><code>A[row, column]</code></td><td>Elemento de uma matriz.</td><td>Valide cada dimensão separadamente.</td></tr></tbody></table></div>
       </section>
       <section id="rotinas">
         <p class="kicker">07 · rotinas</p>
@@ -92,9 +95,9 @@ ENDIF</code></pre><p>Em um <code>FOR</code>, explicite o intervalo e a direção
 DECLARE total : INTEGER
 DECLARE index : INTEGER
 
-total &lt;- 0
-FOR index &lt;- 1 TO 5
-    total &lt;- total + numbers[index]
+total ← 0
+FOR index ← 1 TO 5
+    total ← total + numbers[index]
 NEXT index
 OUTPUT total</code></pre><p>O exemplo demonstra atribuição, índice e laço. Uma resposta completa também precisa mostrar como os valores de <code>numbers</code> foram lidos ou definidos, conforme o enunciado. Trace o acumulador após cada iteração para evitar omitir o primeiro ou o último elemento.</p>
       </section>
@@ -103,15 +106,43 @@ OUTPUT total</code></pre><p>O exemplo demonstra atribuição, índice e laço. U
         <h2>Como escrever e conferir respostas</h2>
 <p>Em uma resposta de exame, a consistência ajuda tanto quanto a ideia do algoritmo. Use nomes descritivos, indentação estável e os delimitadores de bloco previstos no guia.</p><ul><li>Declare variáveis e vetores antes do uso, quando exigido.</li><li>Confira que o tipo de cada variável corresponde aos valores atribuídos.</li><li>Trace pelo menos um caso normal e um caso de limite.</li><li>Verifique a condição de término e a atualização dos contadores.</li><li>Para funções, confira todos os caminhos de retorno.</li></ul><p>O pseudocódigo comunica o algoritmo; clareza e fidelidade ao padrão do ano de exame facilitam sua leitura e avaliação.</p>
       </section>
+      <section id="expressoes-casos">
+        <p class="kicker">10 · operadores e seleção</p>
+        <h2>Operadores e seleção por casos</h2>
+<p>As convenções de operadores da Cambridge diferem em alguns pontos de outras linguagens: <code>DIV</code> fornece o quociente inteiro, <code>MOD</code> o resto, e <code>&lt;&gt;</code> significa “diferente de”. Comparações produzem um valor booleano; use parênteses quando uma expressão combinar várias operações.</p><p><code>CASE</code> organiza alternativas para um mesmo identificador. Os intervalos deste exemplo pressupõem notas na escala de 0 a 100:</p><pre class="manual-code"><code>CASE OF Mark
+    80 TO 100 : OUTPUT "Distinction"
+    50 TO 79 : OUTPUT "Pass"
+    OTHERWISE : OUTPUT "Resit"
+ENDCASE</code></pre><p>As alternativas são verificadas em sequência. Quando uma corresponde ao valor, seu bloco é executado e o fluxo continua depois de <code>ENDCASE</code>. <code>OTHERWISE</code>, quando usado, fica por último e cobre os valores que não correspondem às opções anteriores. Antes de escrever faixas, confira se elas não deixam lacunas ou se sobrepõem para os dados permitidos pelo enunciado.</p><div class="manual-table-wrap" role="region" aria-label="Operadores Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Função</th></tr></thead><tbody><tr><td>Aritmética inteira</td><td><code>DIV</code>, <code>MOD</code></td><td>Quociente inteiro e resto.</td></tr><tr><td>Comparação</td><td><code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td><td>Produz um valor <code>BOOLEAN</code>.</td></tr><tr><td>Lógica</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Combina ou inverte condições booleanas.</td></tr></tbody></table></div>
+      </section>
+      <section id="strings">
+        <p class="kicker">11 · cadeias</p>
+        <h2>Usar funções de texto fornecidas</h2>
+<p>O guia descreve funções como <code>LENGTH</code>, <code>MID</code> e <code>RIGHT</code> para contar caracteres, extrair um trecho ou obter o final de uma cadeia. Em exames, as funções de manipulação de texto necessárias são fornecidas no enunciado; não presuma que a assinatura seja igual à de outra linguagem.</p><pre class="manual-code"><code>DECLARE ItemCode : STRING
+INPUT ItemCode
+IF LENGTH(ItemCode) &gt;= 3 THEN
+    OUTPUT MID(ItemCode, 1, 3)
+ELSE
+    OUTPUT ItemCode
+ENDIF</code></pre><p>A condição protege a extração do trecho quando o texto tem menos de três caracteres. Ao resolver uma questão, destaque na descrição da função qual posição inicia a seleção e quantos caracteres são pedidos. Depois teste uma cadeia exatamente do tamanho mínimo e outra maior, além do caso curto.</p><div class="manual-table-wrap" role="region" aria-label="Funções de cadeia Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Função</th><th scope="col">Resultado</th><th scope="col">Exemplo</th></tr></thead><tbody><tr><td><code>LENGTH(text)</code></td><td>Quantidade de caracteres.</td><td><code>LENGTH("Happy Days")</code> resulta em 10.</td></tr><tr><td><code>MID(text, start, count)</code></td><td>Trecho com o comprimento indicado.</td><td><code>MID("ABCDEFGH", 2, 3)</code> resulta em <code>BCD</code>.</td></tr><tr><td><code>RIGHT(text, count)</code></td><td>Os caracteres finais.</td><td><code>RIGHT("ABCDEFGH", 3)</code> resulta em <code>FGH</code>.</td></tr></tbody></table></div>
+      </section>
+      <section id="parametros">
+        <p class="kicker">12 · subprogramas</p>
+        <h2>Escolher passagem por valor ou referência</h2>
+<p>Procedimentos recebem parâmetros por valor, a menos que o guia ou o enunciado indique outro modo. Com passagem por valor, o parâmetro funciona como uma cópia local. <code>BYREF</code> sinaliza que o procedimento pode alterar a variável fornecida na chamada.</p><pre class="manual-code"><code>PROCEDURE AddBonus(BYREF Score : INTEGER, BYVAL Bonus : INTEGER)
+    Score ← Score + Bonus
+ENDPROCEDURE
+CALL AddBonus(CurrentScore, 5)</code></pre><p>Após a chamada, <code>CurrentScore</code> aumenta em cinco porque <code>Score</code> é passado por referência; <code>Bonus</code> continua sendo parâmetro por valor. Observe que a chamada de procedimento é uma instrução completa e começa com <code>CALL</code>.</p><p>Uma função é diferente: ela devolve um valor único e a chamada entra em uma expressão ou atribuição. O guia orienta a não usar <code>CALL</code> para chamar funções nem passagem por referência para seus parâmetros. Ao ler uma rotina, identifique o tipo de subprograma, os parâmetros e o local onde o resultado é usado.</p><div class="manual-table-wrap" role="region" aria-label="Passagem de parâmetros Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efeito</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Padrão / <code>BYVAL</code></td><td>O procedimento recebe o valor do argumento.</td><td>Alterações locais não substituem a variável original.</td></tr><tr><td><code>BYREF</code></td><td>O parâmetro referencia a variável fornecida.</td><td>O procedimento pode alterar o argumento do chamador.</td></tr><tr><td>Parâmetro de função</td><td>A função devolve um valor; não recebe parâmetro por referência.</td><td>Use a chamada em expressão e não escreva <code>CALL</code>.</td></tr></tbody></table></div>
+      </section>
       <section id="limites">
-        <p class="kicker">10 · versões e escopo</p>
+        <p class="kicker">13 · versões e escopo</p>
         <h2>Versões e limites</h2>
-<p>Os programas e guias da Cambridge International têm ciclos próprios. A página usa o guia de 2026 indicado nas referências; consulte a página oficial do curso para encontrar o documento que corresponde ao seu ano.</p><p>Cambridge pseudocode não define compilador, biblioteca padrão executável ou compatibilidade com uma linguagem concreta. Esta documentação descreve convenções de avaliação e não afirma que o Potoo IDE as interprete.</p>
+<p>Use o guia de 2026 para exames desse ano e o guia de 2027–2029 para as avaliações correspondentes. Consulte a página oficial do curso para localizar uma edição posterior.</p><p>Cambridge pseudocode não define compilador, biblioteca padrão executável ou compatibilidade com uma linguagem concreta. Esta documentação descreve convenções de avaliação e não afirma que o Potoo IDE as interprete.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · leitura adicional</p>
+        <p class="kicker">14 · leitura adicional</p>
         <h2>Referências</h2>
-<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Guia de pseudocódigo Cambridge para professores (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Programa Cambridge International AS &amp; A Level Computer Science 9618</a>, com guias associados aos anos do exame.</li></ul><p>Consulte a edição exata fornecida para seu curso; regras de exame devem ser verificadas na fonte oficial vigente.</p>
+<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Guia de pseudocódigo Cambridge para professores (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Guia de pseudocódigo Cambridge para professores (2027–2029)</a>, para exames nesses anos.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Programa Cambridge International AS &amp; A Level Computer Science 9618</a>, com guias associados aos anos do exame.</li></ul><p>Consulte a edição exata fornecida para seu curso; regras de exame devem ser verificadas na fonte oficial vigente.</p>
       </section>
     </article>
   </div>

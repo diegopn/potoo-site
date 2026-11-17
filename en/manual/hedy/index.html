@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · gradual multilingual language · under evaluation</p>
     <h1>Hedy</h1>
-    <p class="manual-intro">Hedy is a gradual textual programming language and educational platform for learning programming step by step. Each level introduces additional concepts and conventions, helping students move toward a language such as Python. The platform includes Portuguese and other languages. Hedy is under evaluation; Potoo IDE does not run Hedy programs.</p>
+    <p class="manual-intro">A gradual, multilingual language for learning to code; under evaluation in Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,9 @@ body_class: manual-page
         <li><a href="#exemplo">Create an interactive greeting</a></li>
         <li><a href="#ambiente">Activities and classroom use</a></li>
         <li><a href="#depuracao">Understanding errors</a></li>
+        <li><a href="#projeto">Plan a small project across levels</a></li>
+        <li><a href="#erros-frequentes">Common errors and what to check</a></li>
+        <li><a href="#ponte-python">What carries from Hedy to Python</a></li>
         <li><a href="#limites">Languages, levels, and change</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -84,13 +87,30 @@ print so your favorite sport is answer</code></pre><p>First, run the activity an
         <h2>Understanding errors</h2>
 <p>Environment feedback is part of learning. When a program does not work, first check what the lesson allows at that level and language. Then read the error message and reduce the problem to one change at a time.</p><ul><li>Check whether the command was introduced at the current level.</li><li>Verify translated spelling and required punctuation.</li><li>Run the smallest version that reproduces the issue.</li><li>Compare supplied input with expected output.</li><li>When moving toward Python, note which rules are Hedy-specific and which carry over.</li></ul><p>A syntax error can result from using a convention from another level; it does not necessarily mean the algorithmic idea is wrong.</p>
       </section>
+      <section id="projeto">
+        <p class="kicker">09 · guided practice</p>
+        <h2>Plan a small project across levels</h2>
+<p>A short activity can follow the platform’s progression without introducing commands before a lesson. Start with a greeting and a question in an introductory form:</p><pre class="manual-code"><code>print Welcome to the quiz!
+ask What is 3 + 4?
+print The answer is 7</code></pre><p>This first version fixes the answer in the text. Use the activity to observe instruction order and edit a sentence. When a lesson introduces variables, store the input and use it in a message. Later, after conditions appear, compare an answer and show different feedback. Add lists or repetition only after the selected level introduces those concepts.</p><div class="manual-table-wrap" role="region" aria-label="Stages for extending a Hedy activity" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Stage</th><th scope="col">Goal</th><th scope="col">Next check</th></tr></thead><tbody><tr><td>Message</td><td>Show a question and a fixed answer.</td><td>Change the text without changing the sequence.</td></tr><tr><td>Input</td><td>Receive an answer with <code>ask</code>.</td><td>Use <code>answer</code> after the question.</td></tr><tr><td>Variable</td><td>Store and reuse input when the lesson teaches it.</td><td>Check the value in more than one message.</td></tr><tr><td>Decision</td><td>Choose a response based on a condition.</td><td>Test both true and false cases.</td></tr><tr><td>Later practice</td><td>Add a list or repetition after its lesson.</td><td>Review state after each loop pass.</td></tr></tbody></table></div><p>This plan separates the program idea from the writing rules taught at each stage. The same activity can grow without mixing syntax from different levels.</p>
+      </section>
+      <section id="erros-frequentes">
+        <p class="kicker">10 · diagnosis</p>
+        <h2>Common errors and what to check</h2>
+<p>Many early problems occur because a program does not match the current lesson’s conventions. Check the level and command language before changing the logic.</p><div class="manual-table-wrap" role="region" aria-label="Common Hedy problems" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Symptom</th><th scope="col">What to check</th></tr></thead><tbody><tr><td>Unknown command</td><td>Check that it has been taught at this level and that its spelling matches the selected language.</td></tr><tr><td>Empty or outdated answer</td><td>Check that an <code>ask</code> instruction ran before <code>answer</code> was used.</td></tr><tr><td>Text treated as code</td><td>Check whether the lesson requires quotation marks and where they belong.</td></tr><tr><td>Block not recognized</td><td>Check whether indentation has been introduced and whether block lines align.</td></tr></tbody></table></div><p>Read the environment’s message alongside the highlighted code and make one change at a time. If it does not explain the cause, reduce the program to the lines that reproduce the problem. A program can be valid for another level and still fail in the current activity.</p>
+      </section>
+      <section id="ponte-python">
+        <p class="kicker">11 · transfer</p>
+        <h2>What carries from Hedy to Python</h2>
+<p>Hedy helps learners build ideas that also appear in Python and other languages: running instructions in order, storing data, choosing a path, repeating operations, and breaking a task into parts. As the course progresses, compare how each concept is represented and which new conventions appear.</p><p>Do not expect a Hedy example to be a finished Python program. Levels may omit punctuation, localize commands, and reveal syntax rules gradually; Python has its own grammar from the first program. Move across in stages:</p><ol><li>describe the algorithm with words and sample input;</li><li>mark which commands and values belong to the logic;</li><li>look up the corresponding form in the Python material;</li><li>rewrite a small block and test it before migrating the rest.</li></ol><p>An idea such as “ask, compare, and choose a message” still applies after the written form changes. Separating the concept from the syntax makes it easier to transfer reasoning without copying commands the new language does not recognize.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">09 · versions and scope</p>
+        <p class="kicker">12 · versions and scope</p>
         <h2>Languages, levels, and change</h2>
 <p>Hedy evolves as a platform and curriculum. The number of levels, lessons, translations, and features may change. This page avoids fixing a level count and describes the general progression in current official materials.</p><p>Syntax depends on level and language. A single example therefore does not represent the entire language. Consult the current platform and teacher manual before preparing class materials. Hedy remains under evaluation for Potoo IDE.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">10 · further reading</p>
+        <p class="kicker">13 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.hedy.org/">Official Hedy platform</a>, with editor, lessons, and language options.</li><li><a href="https://www.hedy.org/for-teachers/manual">Official teacher manual</a>, with information about the approach and classroom use.</li><li><a href="https://www.hedy.org/translating">Official translation information</a>, including available languages and translation work.</li><li><a href="https://www.hedy.org/cheatsheet">Official command cheat sheet</a>, organized by level.</li></ul><p>Consult the current lesson to confirm the exact syntax for the level and language you use.</p>
       </section>

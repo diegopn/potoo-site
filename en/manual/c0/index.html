@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · programming language · under evaluation</p>
     <h1>C0 (Simplified C)</h1>
-    <p class="manual-intro">C0 is a subset of C used in introductory programming courses at Carnegie Mellon University. This reference covers its imperative model, common types and structures, functions, contracts, and safety checks. C0 is under evaluation for Potoo IDE; this manual describes the source language and does not imply current app support.</p>
+    <p class="manual-intro">A safe C subset for teaching algorithms; under evaluation in Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,7 @@ body_class: manual-page
         <li><a href="#contratos">Contracts, invariants, and safety</a></li>
         <li><a href="#exemplo">Plan a search function</a></li>
         <li><a href="#estudo">How to study and debug C0</a></li>
+        <li><a href="#memoria-indices">Traverse an array with a contract</a></li>
         <li><a href="#limites">Scope of this reference</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -75,7 +76,7 @@ int main() {
       <section id="contratos">
         <p class="kicker">06 · correctness</p>
         <h2>Contracts, invariants, and safety</h2>
-<p>Contracts record the conditions under which a function can be called and what it guarantees when it finishes. A precondition states an input requirement; a postcondition describes the result. A loop invariant summarizes a property that should remain true after every iteration.</p><ul><li><strong>Precondition:</strong> state bounds and relationships that arguments must satisfy.</li><li><strong>Postcondition:</strong> relate the returned value to the problem the function solves.</li><li><strong>Invariant:</strong> explain the meaning of state maintained during an iterative algorithm.</li></ul><p>The reference writes preconditions and postconditions in special comments, such as <code>//@requires expression;</code> and <code>//@ensures expression;</code>. In a postcondition, <code>\result</code> represents the returned value. Loop invariants use <code>//@loop_invariant expression;</code> and must be Boolean expressions. When dynamic checking is enabled, tools evaluate these contracts at points defined by the reference; writers remain responsible for correct contracts and bounds reasoning.</p><pre class="manual-code"><code>int maximum(int x, int y)
+<p>Contracts record the conditions under which a function can be called and what it guarantees when it finishes. A precondition states an input requirement; a postcondition describes the result. A loop invariant summarizes a property that should remain true after every iteration.</p><ul><li><strong>Precondition:</strong> state bounds and relationships that arguments must satisfy.</li><li><strong>Postcondition:</strong> relate the returned value to the problem the function solves.</li><li><strong>Invariant:</strong> explain the meaning of state maintained during an iterative algorithm.</li></ul><div class="manual-table-wrap" role="region" aria-label="C0 contract annotations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Annotation</th><th scope="col">What it specifies</th><th scope="col">Dynamic check</th></tr></thead><tbody><tr><td><code>//@requires</code></td><td>Condition that arguments must satisfy.</td><td>Before the function body.</td></tr><tr><td><code>//@ensures</code></td><td>Property of the result; may use <code>\result</code>.</td><td>Before the function returns.</td></tr><tr><td><code>//@loop_invariant</code></td><td>Property that must hold during the loop.</td><td>Every iteration, before the exit test.</td></tr></tbody></table></div><p>The reference writes preconditions and postconditions in special comments, such as <code>//@requires expression;</code> and <code>//@ensures expression;</code>. In a postcondition, <code>\result</code> represents the returned value. Loop invariants use <code>//@loop_invariant expression;</code> and must be Boolean expressions. When dynamic checking is enabled, tools evaluate these contracts at points defined by the reference; writers remain responsible for correct contracts and bounds reasoning.</p><pre class="manual-code"><code>int maximum(int x, int y)
 //@ensures \result &gt;= x &amp;&amp; \result &gt;= y;
 {
     if (x &gt; y) {
@@ -95,13 +96,30 @@ int main() {
         <h2>How to study and debug C0</h2>
 <p>Compile small pieces as you learn. For each function, write down its signature, input cases, and the meaning of its expected result. Then trace execution with a variable table; for collection algorithms, include the index and the range already processed.</p><ul><li>Test boundary values: zero, minimum size, first index, and last index.</li><li>Exercise both true and false paths in every condition.</li><li>Include empty, one-element, and repeated-value arrays when the contract allows them.</li><li>Read verifier or compiler messages alongside the relevant precondition and invariant.</li></ul><p>A program that compiles can still solve the wrong problem. Compare its output with an independent calculation and test cases that exercise every branch.</p>
       </section>
+      <section id="memoria-indices">
+        <p class="kicker">09 · guided trace</p>
+        <h2>Traverse an array with a contract</h2>
+<p>A traversal makes the relationship between bounds, indices, and the stopping condition visible. In this function, <code>n</code> specifies how many array values to add:</p><pre class="manual-code"><code>int sum_prefix(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
+{
+    int i = 0;
+    int total = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    {
+        total = total + values[i];
+        i = i + 1;
+    }
+    return total;
+}</code></pre><div class="manual-table-wrap" role="region" aria-label="C0 data and memory reference" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Form and purpose</th><th scope="col">Important limit</th></tr></thead><tbody><tr><td>Integer</td><td><code>int</code>, a 32-bit word.</td><td>Arithmetic is modular; values can overflow.</td></tr><tr><td>Array</td><td><code>t[]</code>, created with <code>alloc_array(t, n)</code>.</td><td>Valid indices run from 0 to <code>n - 1</code>.</td></tr><tr><td>Pointer</td><td><code>t*</code>, created with <code>alloc(t)</code>.</td><td>Dereferencing <code>NULL</code> terminates the program.</td></tr><tr><td>Struct</td><td><code>struct</code>, fields accessed with <code>.</code> or <code>-&gt;</code>.</td><td>Structs are allocated and passed by pointer.</td></tr><tr><td>Text</td><td>Constant ASCII <code>string</code>.</td><td><code>\0</code> is not allowed; use library functions for comparison.</td></tr></tbody></table></div><p>The contract bounds <code>n</code> by the array length; because the body runs only while <code>i &lt; n</code>, each access uses a valid index. If <code>n</code> is zero, the loop reads no elements and the function returns zero. With values <code>[4, 2, 5]</code> and <code>n = 3</code>, the partial totals are 4, 6, and 11.</p><p>The invariant shown tracks the index bound, not the full mathematical relationship between <code>total</code> and the elements already read. A more detailed proof should state that relationship too. To debug, test an empty array, one element, and the full prefix, keeping values small to avoid modular overflow of <code>int</code>.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">09 · version and scope</p>
+        <p class="kicker">10 · version and scope</p>
         <h2>Scope of this reference</h2>
-<p>C0 is a teaching language and toolchain; it does not promise compatibility with C, C++, or a particular distribution. Courses may provide their own libraries, compiler options, and conventions. The official reference and course material take precedence when details differ.</p><p>This page is limited to introductory ideas shared by the references consulted. It does not claim C0 support in Potoo IDE and does not replace the manual for the version used in class. The language remains under evaluation as a project candidate.</p>
+<p>The CMU reference linked here is edition C0.2, revision 707, dated February 18, 2025. It separates the base language from the C1 extension, which contains experimental features enabled for <code>.c1</code> files. This page describes base C0; check the version used by your course.</p><p>This page is limited to introductory ideas shared by the references consulted. It does not claim C0 support in Potoo IDE and does not replace the manual for the version used in class. The language remains under evaluation as a project candidate.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">10 · further reading</p>
+        <p class="kicker">11 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Official C0 language reference</a>, published by Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Course 15-122 page</a>, with its curriculum context for imperative programming and data structures.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">2026 course 15-122 syllabus</a>, summarizing C0 safety, garbage collection, integer arithmetic, and contracts.</li><li><a href="https://www.cs.cmu.edu/~c0/">C0 project portal</a>, with project materials and tools.</li></ul><p>Consult the reference edition adopted by the course: libraries, contracts, and tool behavior can change between versions.</p>
       </section>

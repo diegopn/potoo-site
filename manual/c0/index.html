@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · linguagem de programação · em avaliação</p>
     <h1>C0 (C Simplificado)</h1>
-    <p class="manual-intro">C0 é um subconjunto de C usado em cursos introdutórios de programação na Carnegie Mellon University. Esta referência apresenta seu modelo imperativo, os tipos e estruturas mais comuns, funções, contratos e verificações de segurança. C0 está em avaliação para o Potoo IDE; este manual descreve a linguagem de origem e não indica suporte atual no aplicativo.</p>
+    <p class="manual-intro">Subconjunto seguro de C para ensinar algoritmos; em avaliação no Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,7 @@ body_class: manual-page
         <li><a href="#contratos">Contratos, invariantes e segurança</a></li>
         <li><a href="#exemplo">Planejar uma função de busca</a></li>
         <li><a href="#estudo">Como estudar e depurar C0</a></li>
+        <li><a href="#memoria-indices">Percorrer um vetor com um contrato</a></li>
         <li><a href="#limites">Escopo desta referência</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
@@ -75,7 +76,7 @@ int main() {
       <section id="contratos">
         <p class="kicker">06 · correção</p>
         <h2>Contratos, invariantes e segurança</h2>
-<p>Contratos registram as condições sob as quais uma função pode ser chamada e o que ela garante ao terminar. Uma pré-condição descreve uma exigência de entrada; uma pós-condição descreve o resultado. Um invariante de laço resume uma propriedade que deve continuar verdadeira a cada repetição.</p><ul><li><strong>Pré-condição:</strong> indique limites e relações que os argumentos precisam satisfazer.</li><li><strong>Pós-condição:</strong> relacione o valor retornado ao problema que a função resolve.</li><li><strong>Invariante:</strong> explique o significado do estado mantido durante um algoritmo iterativo.</li></ul><p>A referência escreve pré-condições e pós-condições em comentários especiais, por exemplo <code>//@requires expressão;</code> e <code>//@ensures expressão;</code>. Em uma pós-condição, <code>\result</code> representa o valor devolvido. Invariantes de laço usam <code>//@loop_invariant expressão;</code> e precisam expressar um valor lógico. Quando a verificação dinâmica está habilitada, as ferramentas avaliam esses contratos nos pontos definidos pela referência; contratos e provas de limites continuam sendo responsabilidade de quem escreve o programa.</p><pre class="manual-code"><code>int maximum(int x, int y)
+<p>Contratos registram as condições sob as quais uma função pode ser chamada e o que ela garante ao terminar. Uma pré-condição descreve uma exigência de entrada; uma pós-condição descreve o resultado. Um invariante de laço resume uma propriedade que deve continuar verdadeira a cada repetição.</p><ul><li><strong>Pré-condição:</strong> indique limites e relações que os argumentos precisam satisfazer.</li><li><strong>Pós-condição:</strong> relacione o valor retornado ao problema que a função resolve.</li><li><strong>Invariante:</strong> explique o significado do estado mantido durante um algoritmo iterativo.</li></ul><div class="manual-table-wrap" role="region" aria-label="Anotações de contrato em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Anotação</th><th scope="col">O que especifica</th><th scope="col">Verificação dinâmica</th></tr></thead><tbody><tr><td><code>//@requires</code></td><td>Condição que os argumentos devem satisfazer.</td><td>Antes do corpo da função.</td></tr><tr><td><code>//@ensures</code></td><td>Propriedade do resultado; pode usar <code>\result</code>.</td><td>Antes do retorno da função.</td></tr><tr><td><code>//@loop_invariant</code></td><td>Propriedade que deve valer durante o laço.</td><td>Em cada iteração, antes do teste de saída.</td></tr></tbody></table></div><p>A referência escreve pré-condições e pós-condições em comentários especiais, por exemplo <code>//@requires expressão;</code> e <code>//@ensures expressão;</code>. Em uma pós-condição, <code>\result</code> representa o valor devolvido. Invariantes de laço usam <code>//@loop_invariant expressão;</code> e precisam expressar um valor lógico. Quando a verificação dinâmica está habilitada, as ferramentas avaliam esses contratos nos pontos definidos pela referência; contratos e provas de limites continuam sendo responsabilidade de quem escreve o programa.</p><pre class="manual-code"><code>int maximum(int x, int y)
 //@ensures \result &gt;= x &amp;&amp; \result &gt;= y;
 {
     if (x &gt; y) {
@@ -95,13 +96,30 @@ int main() {
         <h2>Como estudar e depurar C0</h2>
 <p>Compile pequenos trechos enquanto aprende. Para cada função, anote a assinatura, os casos de entrada e o significado esperado do resultado. Depois acompanhe manualmente a execução com uma tabela de variáveis; em algoritmos sobre coleções, inclua o índice e o intervalo já processado.</p><ul><li>Teste valores de fronteira: zero, tamanho mínimo, primeiro e último índice.</li><li>Exercite caminhos verdadeiro e falso em cada condição.</li><li>Inclua vetores vazios, de um elemento e com valores repetidos quando o contrato permitir.</li><li>Leia a mensagem do verificador ou compilador e compare-a com a pré-condição e o invariante relevantes.</li></ul><p>Um programa que compila ainda pode resolver o problema errado. Compare a saída com um cálculo independente e teste casos que exercitem todos os ramos.</p>
       </section>
+      <section id="memoria-indices">
+        <p class="kicker">09 · percurso guiado</p>
+        <h2>Percorrer um vetor com um contrato</h2>
+<p>Um percurso torna visível a relação entre limite, índice e condição de parada. Nesta função, <code>n</code> informa quantos valores do vetor serão somados:</p><pre class="manual-code"><code>int sum_prefix(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
+{
+    int i = 0;
+    int total = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    {
+        total = total + values[i];
+        i = i + 1;
+    }
+    return total;
+}</code></pre><div class="manual-table-wrap" role="region" aria-label="Referência de dados e memória em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construção</th><th scope="col">Forma e função</th><th scope="col">Limite importante</th></tr></thead><tbody><tr><td>Inteiro</td><td><code>int</code>, palavra de 32 bits.</td><td>A aritmética é modular; valores podem transbordar.</td></tr><tr><td>Vetor</td><td><code>t[]</code>, criado com <code>alloc_array(t, n)</code>.</td><td>Índices válidos vão de 0 a <code>n - 1</code>.</td></tr><tr><td>Ponteiro</td><td><code>t*</code>, criado com <code>alloc(t)</code>.</td><td>Desreferenciar <code>NULL</code> termina o programa.</td></tr><tr><td>Estrutura</td><td><code>struct</code>, campos acessados com <code>.</code> ou <code>-&gt;</code>.</td><td>Estruturas são alocadas e passadas por ponteiro.</td></tr><tr><td>Texto</td><td><code>string</code> constante de caracteres ASCII.</td><td><code>\0</code> não é permitido e a comparação usa funções da biblioteca.</td></tr></tbody></table></div><p>O contrato limita <code>n</code> ao comprimento do vetor; como o corpo só executa enquanto <code>i &lt; n</code>, cada acesso usa um índice válido. Se <code>n</code> for zero, o laço não lê nenhum elemento e a função retorna zero. Com os valores <code>[4, 2, 5]</code> e <code>n = 3</code>, os totais parciais são 4, 6 e 11.</p><p>O invariante mostrado acompanha o limite do índice, não a relação matemática completa entre <code>total</code> e os elementos já lidos. Em uma prova mais detalhada, declare também essa relação. Para depurar, teste vetor vazio, um elemento e o prefixo inteiro, mantendo os valores pequenos para evitar o transbordamento modular de <code>int</code>.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">09 · versão e escopo</p>
+        <p class="kicker">10 · versão e escopo</p>
         <h2>Escopo desta referência</h2>
-<p>C0 é uma linguagem e um conjunto de ferramentas voltados ao ensino; não é uma promessa de compatibilidade com C, C++ ou uma distribuição específica. Os cursos podem fornecer bibliotecas, opções de compilação e convenções próprias. A referência oficial e os materiais da disciplina prevalecem quando houver diferenças.</p><p>Esta página se limita às ideias introdutórias compartilhadas pelas referências consultadas. Não presume suporte de C0 no Potoo IDE, nem substitui o manual da versão usada em sala. A linguagem permanece em avaliação como candidata do projeto.</p>
+<p>A referência da CMU listada aqui é a edição C0.2, revisão 707, de 18 de fevereiro de 2025. Ela separa a linguagem-base da extensão C1, que reúne recursos experimentais habilitados em arquivos <code>.c1</code>. Esta página descreve a linguagem-base C0; confira a versão adotada pela disciplina.</p><p>Esta página se limita às ideias introdutórias compartilhadas pelas referências consultadas. Não presume suporte de C0 no Potoo IDE, nem substitui o manual da versão usada em sala. A linguagem permanece em avaliação como candidata do projeto.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">10 · leitura adicional</p>
+        <p class="kicker">11 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Referência oficial da linguagem C0</a>, publicada pela Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Página do curso 15-122</a>, com o contexto curricular de programação imperativa e estruturas de dados.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">Programa do curso 15-122 de 2026</a>, que resume a segurança, a coleta de memória, os inteiros e os contratos em C0.</li><li><a href="https://www.cs.cmu.edu/~c0/">Portal de C0</a>, com materiais e ferramentas do projeto.</li></ul><p>Consulte a edição de referência adotada pela disciplina: detalhes de biblioteca, contratos e ferramentas podem mudar entre versões.</p>
       </section>

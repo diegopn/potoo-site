@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · Arabic programming language · under evaluation</p>
     <h1>Kalimat</h1>
-    <p class="manual-intro">Kalimat is an Arabic-language programming language aimed at beginners. The official project describes object-oriented features, CSP-inspired concurrency, 2D graphics, and interoperability with C. Since the full grammar is in documents distributed by the project, this page presents confirmed concepts without inventing syntax examples.</p>
+    <p class="manual-intro">Kalimat is an Arabic beginner language with objects, 2D graphics, concurrency, and C interoperability.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -49,37 +49,90 @@ body_class: manual-page
         <p class="kicker">02 · audience and goals</p>
         <h2>Who it was designed for</h2>
 <p>The project describes Kalimat as a language for beginners, including children. Arabic syntax aims to bring written code closer to a learner’s language, while libraries and language features allow programs beyond console exercises.</p><p>When studying Kalimat, separate three parts:</p><ul><li>the language and its writing rules;</li><li>the tools needed to edit and run programs;</li><li>libraries that provide graphics or integration with other languages.</li></ul><p>Availability of each component may depend on the distribution being used. Guides in the official package are the source for installing and running a current version.</p>
-      </section>
+
+<h3>Language, tool, and library are separate layers</h3>
+<p>The project presents Arabic as part of making an early programming experience accessible: learners can connect names and instructions to a language they already read and use. That does not remove the need to learn ideas such as state, decisions, and repetition; it changes the vocabulary used to introduce them.</p>
+<p>Separate study into three layers. First, find the language rules in the distributed guide. Then learn to use the environment that edits and runs a program. Finally, consult each library only when an exercise needs it. A drawing function belongs to its library, not necessarily to the core grammar.</p>
+
+</section>
       <section id="paradigmas">
         <p class="kicker">03 · programming model</p>
         <h2>Object orientation and organization</h2>
 <p>Project documentation states that Kalimat provides object-oriented features. Classes and objects help group state and related operations, but details such as visibility, inheritance, and constructors should be checked in the rules document for the relevant version.</p><p>This organization can support exercises that progress from small functions to object models. A useful first step is to identify which values belong to each entity and which operations change those values before choosing a language construct.</p><p>Do not automatically transfer rules from Java, C++, or another object-oriented language. Kalimat’s model is defined by its own official documentation.</p>
-      </section>
+
+<h3>Plan a model before looking for syntax</h3>
+<p>To understand object orientation without assuming specific features, start with the problem: what entities exist, what data does each one hold, and which actions change that data? An activity about a shape, for example, can separate position, color, and drawing operations. Then look up how the current Kalimat guide represents each idea.</p>
+<div class="manual-table-wrap" role="region" aria-label="Questions for studying object orientation in Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Concept</th><th scope="col">What to check in the guide</th></tr></thead><tbody>
+<tr><td>Type or class</td><td>How is a category of objects declared and named?</td></tr>
+<tr><td>Instance</td><td>How is a value created, and how are its fields initialized?</td></tr>
+<tr><td>State</td><td>Which data belongs to each object, and how can it change?</td></tr>
+<tr><td>Operation</td><td>How does a method receive arguments and produce effects or results?</td></tr>
+</tbody></table></div>
+<p>This is a reading guide, not a claim that every object-oriented feature matches Java or C++. Inheritance, visibility, constructors, and overloading should be used only when they appear explicitly in the Kalimat documentation.</p>
+
+</section>
       <section id="concorrencia">
         <p class="kicker">04 · concurrent execution</p>
         <h2>Concurrency in the CSP model</h2>
 <p>Kalimat also advertises a concurrency model related to CSP (<em>Communicating Sequential Processes</em>). Rather than treating all work as one sequence, the model allows learners to reason about processes that execute and communicate.</p><ul><li><strong>Process:</strong> an execution unit with an identifiable task.</li><li><strong>Communication:</strong> data exchange or synchronization between processes using language constructs.</li><li><strong>Coordination:</strong> define when each process can continue and how results are combined.</li></ul><p>Concurrency requires attention to order and synchronization. Consult the official guide before using particular terminology or communication forms; this page does not specify CSP operators absent from the sources summarized here.</p>
-      </section>
+
+<h3>Reasoning about processes and communication</h3>
+<p>The CSP label points to reasoning about sequential processes that communicate. Before looking for syntax, describe each process as a task and identify the data or event that lets information pass between them. A conceptual exercise could have one process produce values and another draw each value it receives.</p>
+<p>Check three conditions while planning this kind of solution:</p>
+<ul><li>which process produces each item of data and which one consumes it;</li><li>where communication synchronizes the two sides;</li><li>what happens if one process ends first or does not produce a value.</li></ul>
+<p>This planning avoids treating concurrency as simply “running two lines at once.” The names of operators, channels, processes, and synchronization instructions must come from the installed grammar; this page does not translate or reconstruct them.</p>
+
+</section>
       <section id="graficos">
         <p class="kicker">05 · libraries</p>
         <h2>2D graphics and games</h2>
 <p>The project highlights a 2D graphics library for building scenes and games. This feature connects programming concepts to visible outcomes: drawing objects, responding to events, and updating a scene.</p><p>A learning sequence can start with a window and a simple shape, then introduce movement and interaction. For each exercise, identify:</p><ol><li>which objects appear on screen;</li><li>which properties change between updates;</li><li>which events trigger an action;</li><li>which rules keep the scene within desired bounds.</li></ol><p>Module, function, and event names depend on the API distributed with Kalimat. Use the examples shipped with the package to confirm exact calls.</p>
-      </section>
+
+<h3>From a first shape to a small game</h3>
+<p>Study the graphics library in stages that keep a program easy to check. Begin with a static shape; then change one property, such as position or color; only then connect updates to an event or a sequence of frames if the version's materials document that feature.</p>
+<ol><li>Find how an official example creates a window or drawing surface.</li><li>Identify the arguments needed for a simple shape.</li><li>Change one argument and observe only that visual difference.</li><li>Read how the library receives input and updates a scene.</li><li>Separate the game's rule from its visual presentation into testable parts.</li></ol>
+<p>This is a way to study a 2D graphics library, not a list of exact API names. Use the package examples to confirm events, coordinates, units, colors, and the update cycle.</p>
+
+</section>
       <section id="interop">
         <p class="kicker">06 · interoperability</p>
         <h2>Integrating with C</h2>
 <p>The official portal also documents interoperability with C. This bridge can provide access to native code or libraries where appropriate, but it crosses type and resource-management models that need to agree.</p><p>Before calling external code, confirm:</p><ul><li>how types on each side are represented;</li><li>who allocates and releases each resource;</li><li>how errors and return values are communicated;</li><li>which conventions and header files the tool requires.</li></ul><p>Interoperability is an advanced topic and is not needed for first programs. A native library must be compatible with the version and platform in use.</p>
-      </section>
+
+<h3>A careful boundary between languages</h3>
+<p>Interoperability with C is an advanced feature. Before connecting a routine, write down the contract on both sides: argument names and order, accepted types, result, possible errors, and who releases memory. The package documentation should explain how a function is found and how its types are represented.</p>
+<div class="manual-table-wrap" role="region" aria-label="Checks before integrating Kalimat with C" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Question</th><th scope="col">Why check</th></tr></thead><tbody>
+<tr><td>Do the types match?</td><td>An incorrect conversion can corrupt values or memory.</td></tr>
+<tr><td>Who owns the resource?</td><td>Both languages must agree on allocation and release.</td></tr>
+<tr><td>How are errors returned?</td><td>A failure must be detected without leaving inconsistent state.</td></tr>
+<tr><td>Which environment is supported?</td><td>Compiled libraries and calling conventions vary by platform.</td></tr>
+</tbody></table></div>
+<p>Start with the smallest example supplied with the distribution. Do not treat an FFI example as a requirement for every Kalimat program.</p>
+
+</section>
       <section id="sintaxe">
         <p class="kicker">07 · syntax and features</p>
         <h2>Finding the grammar</h2>
 <p>The project distributes language rule documents and examples with its installation files. Those documents are the appropriate source for checking keywords, punctuation, declarations, expressions, classes, processes, and graphics APIs.</p><p>Because the public page consulted does not expose a complete, stable grammar as plain text, this reference does not reconstruct a “Hello, world” example. To get a verifiable program:</p><ol><li>download a release from the official portal;</li><li>open the language rules documents included in the package;</li><li>run one of the provided examples first;</li><li>change one part of the example and compare the result.</li></ol><p>This avoids assigning Kalimat syntax guessed from a description written in another language.</p>
-      </section>
+
+<h3>What comes with the official package</h3>
+<p>The official getting-started guide recommends downloading the distribution, extracting it, and launching its included executable. The package contains two PDF documents: a short rules summary and a longer guide. It also includes simple and complete example folders. These are the best sources for checking the grammar of that release and trying programs without reconstructing syntax from a project description.</p>
+<p>Beginners can follow the introductory course linked by the project; experienced programmers can start with the short PDF and consult the detailed reference when a new construct appears. The official page currently labels a distribution dated May 3, 2025; check the version label on the portal before comparing examples.</p>
+<h3>How to read an example without mixing versions</h3>
+<ul><li>Record the version and system used by the material.</li><li>Run the example unchanged and save its output.</li><li>Change one declaration or expression and compare the result.</li><li>Use the detailed PDF to confirm the rule behind the change.</li><li>Do not copy reserved words from one Arabic programming language into another.</li></ul>
+
+</section>
       <section id="estudo">
         <p class="kicker">08 · study and debugging</p>
         <h2>A learning path</h2>
 <p>Start with official examples and identify the required runtime. Then move from text output to variables, conditions, loops, and functions. Introduce objects, concurrency, graphics, or native integration only when an exercise calls for those features.</p><ul><li>Keep the package version with the examples you test.</li><li>Change one thing at a time, especially in Arabic writing and text direction.</li><li>In a visual program, validate the logic before adding extra events.</li><li>For concurrency, test different orders and inspect synchronization points.</li><li>For C interoperability, begin with a minimal project example.</li></ul><p>Materials and implementation choices can evolve; check the guides shipped with the installed version.</p>
-      </section>
+
+<h3>A sequence of exercises with checkpoints</h3>
+<p>A short progression helps separate language features from library features:</p>
+<ol><li>run a minimal example included in the distribution;</li><li>change an input and predict the result before running it;</li><li>find the rule used by the example in the manual;</li><li>study a program organized around objects or functions if the guide presents that form;</li><li>choose a graphics, concurrency, or interoperability task only after understanding its prerequisites.</li></ol>
+<p>When an error appears, keep the complete message, note the version, and reduce the program to the smallest part that still fails. This record helps distinguish a syntax error from a library or environment configuration problem.</p>
+
+</section>
       <section id="escopo">
         <p class="kicker">09 · versions and scope</p>
         <h2>What this reference covers</h2>

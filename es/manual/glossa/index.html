@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia educativa · notación curricular griega · en evaluación</p>
     <h1>Glossa (ΓΛΩΣΣΑ)</h1>
-    <p class="manual-intro">ΓΛΩΣΣΑ («Glossa», literalmente «lengua») es un lenguaje didáctico presentado en materiales curriculares griegos de informática de secundaria. Esta referencia sigue el libro escolar oficial: no existe un único intérprete oficial que defina todo el ecosistema. Glossa está en evaluación y Potoo IDE no lo ejecuta.</p>
+    <p class="manual-intro">ΓΛΩΣΣΑ es una notación curricular griega para enseñar algoritmos, descrita en un libro oficial.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -37,6 +37,8 @@ body_class: manual-page
         <li><a href="#exemplo">Media y clasificación</a></li>
         <li><a href="#estudo">Cómo estudiar y probar</a></li>
         <li><a href="#escopo">Alcance y variantes</a></li>
+        <li><a href="#metodologia">Del problema al algoritmo</a></li>
+        <li><a href="#roteiro">Secuencia de aprendizaje y depuración</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -63,6 +65,17 @@ body_class: manual-page
   ΜΕΣΟΣ &lt;- (Α + Β) / 2
   ΓΡΑΨΕ ΜΕΣΟΣ
 ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre><p><code>ΠΡΟΓΡΑΜΜΑ</code> nombra el programa; <code>ΜΕΤΑΒΛΗΤΕΣ</code> inicia las declaraciones; <code>ΑΡΧΗ</code> abre las instrucciones y <code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code> cierra el programa. Sigue las reglas del curso para la tipografía y los identificadores.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Consulta de las formas griegas ejemplificadas" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma en los ejemplos</th><th scope="col">Función mostrada</th><th scope="col">Límite de la referencia</th></tr></thead><tbody>
+          <tr><td><code>ΠΡΟΓΡΑΜΜΑ nombre</code></td><td>Identifica el programa.</td><td>El ejemplo del libro determina la forma completa del encabezado.</td></tr>
+          <tr><td><code>ΜΕΤΑΒΛΗΤΕΣ</code></td><td>Inicia la sección de declaraciones.</td><td>Consulta el libro para otros tipos y declaraciones.</td></tr>
+          <tr><td><code>ΑΡΧΗ</code></td><td>Abre el cuerpo de instrucciones.</td><td>Se usa aquí tal como aparece en el ejemplo curricular.</td></tr>
+          <tr><td><code>ΔΙΑΒΑΣΕ</code>, <code>ΓΡΑΨΕ</code></td><td>Lee datos y muestra valores o mensajes.</td><td>Los ejemplos los usan con variables declaradas.</td></tr>
+          <tr><td><code>&lt;-</code></td><td>Asigna el resultado de una expresión.</td><td>El ejemplo coloca a la izquierda la variable de destino.</td></tr>
+          <tr><td><code>ΑΝ ... ΤΟΤΕ ... ΑΛΛΙΩΣ ... ΤΕΛΟΣ_ΑΝ</code></td><td>Elige entre los bloques de una condición.</td><td>Forma reproducida del ejemplo; comprueba delimitadores y variantes en el libro.</td></tr>
+          <tr><td><code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></td><td>Termina el programa.</td><td>Cierre mostrado en el programa de ejemplo.</td></tr>
+        </tbody></table></div>
+        <p>Este cuadro indexa únicamente las formas ya usadas en esta página. No define una gramática completa ni confirma variantes utilizadas por todos los cursos o simuladores.</p>
+
       </section>
       <section id="dados">
         <p class="kicker">04 · datos</p>
@@ -106,8 +119,37 @@ body_class: manual-page
         <h2>Alcance y variantes</h2>
 <p>ΓΛΩΣΣΑ es una notación curricular. No existe un único paquete oficial que determine la sintaxis de todas las herramientas utilizadas por los estudiantes. El contenido y su presentación pueden variar entre ediciones del libro e instrucciones del curso.</p><p>Esta referencia describe las construcciones centrales del material escolar consultado y conserva las palabras clave griegas en los ejemplos. Comprueba tipos, operadores, subprogramas, tablas de verdad y reglas de arreglos en la edición asignada por el curso. Glossa sigue en evaluación para Potoo IDE.</p>
       </section>
+      <section id="metodologia">
+        <p class="kicker">11 · método de resolución</p>
+        <h2>Del problema al algoritmo</h2>
+        <p>El libro curricular presenta la programación como una serie de decisiones: comprender el problema, organizar los datos, formular una solución y comprobar que responde al enunciado. ΓΛΩΣΣΑ ofrece una notación común para registrar algoritmos en los ejercicios. El método siguiente separa la lógica de la solución de los detalles de escritura que exige una edición o un curso específico.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Pasos para resolver un problema" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Pregunta</th><th scope="col">Registro</th></tr></thead><tbody>
+          <tr><td>Comprender</td><td>¿Qué datos se proporcionan? ¿Qué hay que calcular o decidir?</td><td>Entradas, resultado esperado y condiciones del enunciado.</td></tr>
+          <tr><td>Planificar</td><td>¿Qué operaciones, decisiones y repeticiones resuelven la tarea?</td><td>Una secuencia de pasos en lenguaje común o en la forma enseñada en clase.</td></tr>
+          <tr><td>Seguir</td><td>¿Cómo cambia cada variable con una entrada conocida?</td><td>Una tabla de estado con valores antes y después de cada operación.</td></tr>
+          <tr><td>Comprobar</td><td>¿El algoritmo cubre los casos habituales y los límites?</td><td>Resultados calculados a mano para compararlos con la ejecución o con el libro.</td></tr>
+        </tbody></table></div>
+        <p>Para el ejemplo de la media de dos valores, usa <code>Α=12</code> y <code>Β=18</code>. Después de <code>ΔΙΑΒΑΣΕ</code>, la tabla registra 12 y 18; tras la asignación, <code>ΜΕΣΟΣ</code> vale 15; <code>ΓΡΑΨΕ</code> muestra ese resultado. Una segunda prueba debe usar otros valores. Si el ejercicio admite medias fraccionarias, comprueba que los tipos declarados y la división ofrecen la precisión esperada.</p>
+        <p>Una tabla de ejecución también ayuda a localizar fallos. Si la salida es incorrecta, revisa primero los datos leídos, después cada cálculo y, por último, la condición o repetición que elige el camino. Cambia una parte cada vez y vuelve a seguir los pasos.</p>
+      </section>
+      <section id="roteiro">
+        <p class="kicker">12 · secuencia de práctica</p>
+        <h2>Secuencia de aprendizaje y depuración</h2>
+        <p>El índice del material escolar avanza desde conceptos básicos hasta estructuras usadas en problemas mayores, como vectores, pilas, colas, búsqueda, ordenación y recursión. La secuencia siguiente usa esos temas para planificar ejercicios; no sustituye las definiciones y los ejemplos de la edición adoptada.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Secuencia de ejercicios para Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tema</th><th scope="col">Ejercicio práctico</th><th scope="col">Qué comprobar</th></tr></thead><tbody>
+          <tr><td>Tipos y entrada/salida</td><td>Leer datos y mostrar un cálculo sencillo.</td><td>Declaraciones, unidades, datos leídos y resultado esperado.</td></tr>
+          <tr><td>Selección y repetición</td><td>Contar cuántos valores cumplen una condición.</td><td>Ninguna coincidencia, una coincidencia y el límite exacto del bucle.</td></tr>
+          <tr><td>Vectores</td><td>Calcular el mínimo, el máximo o la media de una colección.</td><td>Dimensión, intervalo de índices y procesamiento de todos los elementos.</td></tr>
+          <tr><td>Pilas y colas</td><td>Simular una secuencia breve de inserciones y extracciones.</td><td>El orden de entrada y salida de los elementos y el estado tras cada operación.</td></tr>
+          <tr><td>Búsqueda y ordenación</td><td>Localizar un valor y ordenar unos pocos elementos.</td><td>Entrada vacía o unitaria, repetidos y posiciones límite.</td></tr>
+          <tr><td>Recursión</td><td>Resolver un caso pequeño mediante llamadas sucesivas.</td><td>Caso base, reducción del problema y valor devuelto por cada llamada.</td></tr>
+        </tbody></table></div>
+        <h3>Errores frecuentes</h3>
+        <ul><li><strong>Dato sin inicializar:</strong> comprueba que cada variable recibe un valor antes de usarse.</li><li><strong>Límite incorrecto:</strong> prueba la condición cuando el valor es igual al límite, no solo por encima o por debajo.</li><li><strong>Bucle sin avance:</strong> confirma que las instrucciones cambian la variable o el estado que controla la repetición.</li><li><strong>Acceso fuera del vector:</strong> compara cada índice con el intervalo definido por el ejercicio y la edición del curso.</li><li><strong>Recursión sin fin:</strong> comprueba que cada llamada acerca la entrada al caso base.</li></ul>
+        <p>Las herramientas de terceros pueden interpretar convenciones distintas. Al depurar, anota la edición del libro, reproduce sus ejemplos y compara la secuencia de estados antes de concluir que una herramienta refleja la regla curricular. En las evaluaciones, usa la notación que indique el profesor o el examen.</p>
+      </section>
       <section id="fontes">
-        <p class="kicker">11 · lecturas adicionales</p>
+        <p class="kicker">13 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://ebooks.edu.gr/ebooks/v/html/8547/2718/Pliroforiki_G-Lykeiou_html-empl/">Libro oficial de informática de secundaria</a>, en el portal de libros escolares de Grecia.</li><li><a href="https://www.iep.edu.gr/">Instituto de Política Educativa de Grecia (IEP)</a>, responsable de materiales curriculares y educativos.</li></ul><p>Utiliza el libro escolar para confirmar la grafía griega, las definiciones de tipos y la forma exigida en ejercicios y exámenes.</p>
       </section>

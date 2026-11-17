@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia educativa · notación de evaluación · en evaluación</p>
     <h1>Pseudocódigo AP CSP</h1>
-    <p class="manual-intro">El pseudocódigo AP CSP es la notación compartida en los materiales de AP Computer Science Principles del College Board. Comunica algoritmos para la enseñanza y la evaluación; no pretende ser un lenguaje de programación completo ni un formato para ejecutar programas. Esta referencia sigue la hoja de referencia del examen de 2026. La notación está en evaluación para Potoo IDE.</p>
+    <p class="manual-intro">Notación del College Board para algoritmos y exámenes AP CSP; en evaluación en Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -36,6 +36,9 @@ body_class: manual-page
         <li><a href="#robos">Comandos de robot</a></li>
         <li><a href="#exemplo">Recorrer una lista</a></li>
         <li><a href="#estudo">Cómo interpretar preguntas</a></li>
+        <li><a href="#tracos">Seguir un bucle hasta la condición de salida</a></li>
+        <li><a href="#mutacao-listas">Insertar, eliminar y seguir los índices</a></li>
+        <li><a href="#procedimentos-pratica">Usar parámetros y valores de retorno</a></li>
         <li><a href="#limites">Vigencia y límites</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
@@ -54,7 +57,7 @@ body_class: manual-page
       <section id="valores">
         <p class="kicker">03 · valores y expresiones</p>
         <h2>Variables, operadores y datos</h2>
-<p>Una asignación relaciona una expresión con una variable. La notación utiliza operadores aritméticos y relacionales habituales y palabras para las operaciones lógicas. Los paréntesis aclaran el orden en que se evalúa una expresión.</p><div class="manual-table-wrap" role="region" aria-label="Elementos de la notación AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>←</code></td><td>Asigna el valor calculado a la variable de la izquierda.</td></tr><tr><td><code>MOD</code></td><td>Resto de una división entera.</td></tr><tr><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Conjunción, disyunción y negación lógica.</td></tr><tr><td><code>INPUT()</code></td><td>Representa un valor de entrada en los ejemplos.</td></tr><tr><td><code>DISPLAY(...)</code></td><td>Muestra un valor al usuario.</td></tr></tbody></table></div><p>No interpretes la hoja como una especificación de tipos o del comportamiento de una plataforma. Su objetivo es representar pasos algorítmicos en preguntas curriculares.</p>
+<p>Una asignación relaciona una expresión con una variable. La notación utiliza operadores aritméticos y relacionales habituales y palabras para las operaciones lógicas. Los paréntesis aclaran el orden en que se evalúa una expresión.</p><div class="manual-table-wrap" role="region" aria-label="Elementos de la notación AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>←</code></td><td>Asigna el valor calculado a la variable de la izquierda.</td></tr><tr><td><code>MOD</code></td><td>Resto; requiere dividendo entero ≥ 0 y divisor entero &gt; 0.</td></tr><tr><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Conjunción, disyunción y negación lógica.</td></tr><tr><td><code>INPUT()</code></td><td>Recibe y devuelve un valor introducido por el usuario.</td></tr><tr><td><code>DISPLAY(...)</code></td><td>Muestra el valor y añade un espacio.</td></tr></tbody></table></div><p>No interpretes la hoja como una especificación de tipos o del comportamiento de una plataforma. Su objetivo es representar pasos algorítmicos en preguntas curriculares.</p>
       </section>
       <section id="controle">
         <p class="kicker">04 · flujo de control</p>
@@ -67,7 +70,7 @@ IF (number MOD 2 = 0)
 ELSE
 {
     DISPLAY("odd")
-}</code></pre><p>El algoritmo lee un número, calcula el resto de dividirlo entre dos y elige un mensaje. Analiza por separado los casos verdadero y falso. La hoja oficial también define formas de repetir una cantidad fija de veces y hasta que ocurra una condición.</p>
+}</code></pre><p>El algoritmo lee un número, calcula el resto de dividirlo entre dos y elige un mensaje. El ejemplo presupone una entrada entera no negativa, según las restricciones de MOD: dividendo ≥ 0 y divisor &gt; 0. Analiza por separado los casos verdadero y falso. La hoja oficial también define formas de repetir una cantidad fija de veces y hasta que ocurra una condición.</p>
       </section>
       <section id="listas">
         <p class="kicker">05 · colecciones</p>
@@ -82,7 +85,7 @@ ELSE
       <section id="robos">
         <p class="kicker">07 · aplicaciones con robots</p>
         <h2>Comandos de robot</h2>
-<p>La referencia incluye notación para controlar un robot en un mundo con cuadrícula, direcciones y obstáculos. Las acciones modifican la posición o la orientación; las condiciones observan el entorno y pueden guiar una decisión.</p><ul><li>Lee la posición y la orientación iniciales del robot.</li><li>Determina qué celdas están bloqueadas y cuáles son accesibles.</li><li>Sigue cada movimiento y giro en el orden de las instrucciones.</li><li>Utiliza sensores solo para las propiedades que defina el ejercicio.</li></ul><p>Este modelo forma parte del contenido de AP CSP, pero no describe necesariamente un lenguaje o simulador de robótica externo al examen.</p>
+<p>La referencia incluye notación para controlar un robot en un mundo con cuadrícula, direcciones y obstáculos. Las acciones modifican la posición o la orientación; las condiciones observan el entorno y pueden guiar una decisión.</p><div class="manual-table-wrap" role="region" aria-label="Comandos de robot de AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Efecto</th></tr></thead><tbody><tr><td><code>MOVE_FORWARD()</code></td><td>Avanza una casilla en la dirección hacia la que mira el robot.</td></tr><tr><td><code>ROTATE_LEFT()</code></td><td>Gira 90° en sentido antihorario sin cambiar de casilla.</td></tr><tr><td><code>ROTATE_RIGHT()</code></td><td>Gira 90° en sentido horario sin cambiar de casilla.</td></tr><tr><td><code>CAN_MOVE(direction)</code></td><td>Devuelve <code>true</code> si la casilla abierta en esa dirección relativa está disponible; <code>direction</code> puede ser <code>left</code>, <code>right</code>, <code>forward</code> o <code>backward</code>.</td></tr></tbody></table></div><p>Si <code>MOVE_FORWARD()</code> intenta entrar en una casilla bloqueada o salir de la cuadrícula, el robot permanece en su posición y el programa termina.</p><ul><li>Lee la posición y la orientación iniciales del robot.</li><li>Determina qué celdas están bloqueadas y cuáles son accesibles.</li><li>Sigue cada movimiento y giro en el orden de las instrucciones.</li><li>Utiliza sensores solo para las propiedades que defina el ejercicio.</li></ul><p>Este modelo forma parte del contenido de AP CSP, pero no describe necesariamente un lenguaje o simulador de robótica externo al examen.</p>
       </section>
       <section id="exemplo">
         <p class="kicker">08 · ejemplo guiado</p>
@@ -103,13 +106,41 @@ REPEAT LENGTH(numbers) TIMES
         <h2>Cómo interpretar preguntas</h2>
 <p>En una pregunta de AP CSP, sigue una instrucción cada vez y anota los cambios en variables y listas. Presta atención a las palabras que definen el orden, la cantidad de repeticiones y las condiciones de parada.</p><ul><li>No confundas asignación con comparación de igualdad.</li><li>Utiliza índices de listas que empiezan en 1.</li><li>Evalúa los operadores booleanos según la precedencia indicada en el material.</li><li>En un bucle, cuenta cada iteración y actualiza el estado en el orden correcto.</li><li>En un procedimiento, sustituye mentalmente cada parámetro por su argumento.</li></ul><p>Si dos respuestas parecen posibles, simula la secuencia en una tabla. Así reduces errores de índice y de seguimiento de ramas.</p>
       </section>
+      <section id="tracos">
+        <p class="kicker">10 · práctica guiada</p>
+        <h2>Seguir un bucle hasta la condición de salida</h2>
+<p><code>REPEAT UNTIL</code> comprueba la condición después de ejecutar el bloque. Por eso, el cuerpo se ejecuta al menos una vez. Sigue este comportamiento al sumar del 1 al 4 y detenerse cuando el contador supere 4:</p><pre class="manual-code"><code>value ← 1
+sum ← 0
+REPEAT UNTIL (value &gt; 4)
+{
+    sum ← sum + value
+    value ← value + 1
+}
+DISPLAY(sum)</code></pre><div class="manual-table-wrap" role="region" aria-label="Seguimiento del bucle AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pasada</th><th scope="col">value al inicio</th><th scope="col">sum tras sumar</th><th scope="col">value tras actualizar</th><th scope="col">¿Termina?</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td><td>2</td><td>No</td></tr><tr><td>2</td><td>2</td><td>3</td><td>3</td><td>No</td></tr><tr><td>3</td><td>3</td><td>6</td><td>4</td><td>No</td></tr><tr><td>4</td><td>4</td><td>10</td><td>5</td><td>Sí</td></tr></tbody></table></div><p>En la primera pasada, <code>value</code> vale 1 y <code>sum</code> pasa a 1. Las siguientes dejan el total en 3, 6 y 10. Al final de la cuarta, el contador recibe 5; solo entonces la condición es verdadera y termina el bucle. La salida es 10.</p><p>Al seguir una pregunta, registra los valores antes y después del cuerpo y también la condición. Si el contador empieza en 5, esta estructura aun así se ejecuta una vez. Utiliza un bucle de cantidad fija cuando la tarea pida un número conocido de iteraciones, incluso si puede ser cero.</p>
+      </section>
+      <section id="mutacao-listas">
+        <p class="kicker">11 · colecciones cambiantes</p>
+        <h2>Insertar, eliminar y seguir los índices</h2>
+<p>Insertar o eliminar un elemento modifica las posiciones que vienen después. Empieza con una lista de tres valores:</p><pre class="manual-code"><code>scores ← [10, 20, 30]
+INSERT(scores, 2, 15)
+REMOVE(scores, 4)</code></pre><div class="manual-table-wrap" role="region" aria-label="Estados de la lista AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Momento</th><th scope="col">Lista</th><th scope="col">Longitud</th></tr></thead><tbody><tr><td>Inicial</td><td><code>[10, 20, 30]</code></td><td>3</td></tr><tr><td>Después de INSERT</td><td><code>[10, 15, 20, 30]</code></td><td>4</td></tr><tr><td>Después de REMOVE</td><td><code>[10, 15, 20]</code></td><td>3</td></tr></tbody></table></div><p>Después de <code>INSERT</code>, la lista queda como <code>[10, 15, 20, 30]</code>: el antiguo segundo elemento y los siguientes avanzan una posición. <code>REMOVE(scores, 4)</code> elimina el último valor y deja <code>[10, 15, 20]</code>. La longitud primero aumenta y luego vuelve a tres.</p><p>Cuando una pregunta combina acceso por índice y cambios en la lista, actualiza la secuencia tras cada operación; no conserves los índices anteriores. Si durante el recorrido se elimina el elemento actual, el siguiente ocupa ese mismo índice. Avanzar el contador en ese momento puede saltarlo. Comprueba la longitud actual antes de acceder a una posición y recuerda que los índices empiezan en 1.</p>
+      </section>
+      <section id="procedimentos-pratica">
+        <p class="kicker">12 · abstracción</p>
+        <h2>Usar parámetros y valores de retorno</h2>
+<p>Un procedimiento puede recibir una entrada, aplicar una regla y devolver un valor a quien lo llamó. En este ejemplo, <code>isEven</code> recibe un número y devuelve el resultado de una expresión booleana:</p><pre class="manual-code"><code>PROCEDURE isEven(value)
+{
+    RETURN(value MOD 2 = 0)
+}
+answer ← isEven(8)</code></pre><p>En la llamada, el argumento <code>8</code> se asigna al parámetro <code>value</code>. La expresión devuelve <code>true</code>, que pasa a ser el valor de <code>answer</code>. Con <code>isEven(7)</code>, el resultado sería <code>false</code>. La instrucción <code>RETURN</code> sale del procedimiento de inmediato; el código que venga después no participa en esa llamada.</p><p>Para analizar una rutina, separa su definición de la llamada: anota cada argumento, sustitúyelo por el parámetro correspondiente y sigue las instrucciones hasta el retorno. Si un procedimiento no devuelve un valor, sigue sus efectos, como cambios en una lista o el texto mostrado.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">10 · versiones y alcance</p>
+        <p class="kicker">13 · versiones y alcance</p>
         <h2>Vigencia y límites</h2>
 <p>La hoja de referencia y el marco del curso pueden revisarse entre años escolares y exámenes. Esta página se basa en la hoja de 2026; los estudiantes deben confirmar qué material corresponde a su evaluación.</p><p>El pseudocódigo AP CSP es una notación compartida para la enseñanza y los exámenes, no un lenguaje de propósito general ni una API. Esta página no afirma que Potoo IDE lo ejecute ni sustituye el documento oficial.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · lecturas adicionales</p>
+        <p class="kicker">14 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-exam-reference-sheet.pdf">Hoja oficial de referencia del examen AP Computer Science Principles (2026)</a>.</li><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf?course=ap-computer-science-principles">Descripción oficial del curso y examen</a>, con el marco curricular.</li><li><a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles">Página oficial del curso AP CSP</a>.</li></ul><p>Al responder preguntas de evaluación, utiliza la hoja de referencia correspondiente al año de tu examen.</p>
       </section>

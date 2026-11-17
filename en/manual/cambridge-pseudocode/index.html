@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · assessment notation · under evaluation</p>
     <h1>Cambridge Pseudocode</h1>
-    <p class="manual-intro">Cambridge pseudocode is the notation used in Cambridge International Computer Science materials and exams. Guides standardize how algorithms are written for assessment; the notation is not itself an interpreter or production language. Rules are tied to the exam year. This reference follows the 2026 guide and is under evaluation for Potoo IDE.</p>
+    <p class="manual-intro">Cambridge 9618 Computer Science exam notation; under evaluation in Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -36,6 +36,9 @@ body_class: manual-page
         <li><a href="#rotinas">Procedures and functions</a></li>
         <li><a href="#exemplo">Sum the elements of an array</a></li>
         <li><a href="#estudo">Writing and checking answers</a></li>
+        <li><a href="#expressoes-casos">Operators and CASE selection</a></li>
+        <li><a href="#strings">Use the supplied string functions</a></li>
+        <li><a href="#parametros">Choose pass-by-value or pass-by-reference</a></li>
         <li><a href="#limites">Versions and limits</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -49,15 +52,15 @@ body_class: manual-page
       <section id="documentos">
         <p class="kicker">02 · assessment context</p>
         <h2>Guides and exam years</h2>
-<p>Cambridge International publishes pseudocode guides linked to its study programmes. The applicable edition depends on the exam year; updates may change examples, rules, or teacher recommendations.</p><p>This page is based on the 2026 Computer Science guide. Students should check the programme and year-specific documentation before preparing an assessment response. Future guides should not be treated as retroactively applicable to an earlier exam.</p><p>Pseudocode exists to make algorithm writing readable and consistent for writers and markers, not to define a software runtime.</p>
+<p>Cambridge International publishes pseudocode guides linked to its study programmes. The applicable edition depends on the exam year; updates may change examples, rules, or teacher recommendations.</p><p>For 2026 exams, this page follows the 2026 guide. The published 2027–2029 guide applies to exams in those three years. Match your assessment year to the cover of the PDF before preparing answers; a later edition should not be applied retroactively to an earlier exam.</p><p>Pseudocode exists to make algorithm writing readable and consistent for writers and markers, not to define a software runtime.</p>
       </section>
       <section id="declaracoes">
         <p class="kicker">03 · data</p>
         <h2>Declarations, types, and assignment</h2>
 <p>The guide represents declarations using <code>DECLARE</code>, an identifier, a colon, and a type. Assignment uses an arrow pointing to the variable. Common types include integers, real numbers, characters, strings, and Boolean values.</p><pre class="manual-code"><code>DECLARE mark : INTEGER
 DECLARE passed : BOOLEAN
-mark &lt;- 72
-passed &lt;- mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Cambridge pseudocode types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Type</th><th scope="col">Typical use</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Whole-number values.</td></tr><tr><td><code>REAL</code></td><td>Numeric values with a fractional part.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>A character or a sequence of text.</td></tr><tr><td><code>BOOLEAN</code></td><td>True or false conditions.</td></tr></tbody></table></div><p>The guide also specifies array declarations and, where required by the course, other structures. Write types and bounds as shown in the current document.</p>
+mark ← 72
+passed ← mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Cambridge pseudocode types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Type</th><th scope="col">Typical use</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Whole-number values.</td></tr><tr><td><code>REAL</code></td><td>Numeric values with a fractional part.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>A character or a sequence of text.</td></tr><tr><td><code>BOOLEAN</code></td><td>True or false conditions.</td></tr></tbody></table></div><p>The guide also specifies array declarations and, where required by the course, other structures. Write types and bounds as shown in the current document.</p>
       </section>
       <section id="io">
         <p class="kicker">04 · input and output</p>
@@ -78,7 +81,7 @@ ENDIF</code></pre><p>For a <code>FOR</code> loop, state the range and counter di
       <section id="vetores">
         <p class="kicker">06 · collections</p>
         <h2>Arrays and structures</h2>
-<p>Arrays store multiple values of one type and are accessed by index. The guide allows declarations with dimensions and bounds; do not assume every array starts at zero or one without reading its declaration.</p><p>The pseudocode also documents records and data structures when the course level requires them. For each collection:</p><ul><li>record its type and dimensions;</li><li>check that each index lies within its bounds;</li><li>distinguish the array’s size from the current position;</li><li>when traversing, verify the counter’s first and last values.</li></ul><p>Exam answers should keep bounds consistent between the declaration, accesses, and loop.</p>
+<p>Arrays store multiple values of one type and are accessed by index. The guide allows declarations with dimensions and bounds; do not assume every array starts at zero or one without reading its declaration.</p><p>The pseudocode also documents records and data structures when the course level requires them. For each collection:</p><ul><li>record its type and dimensions;</li><li>check that each index lies within its bounds;</li><li>distinguish the array’s size from the current position;</li><li>when traversing, verify the counter’s first and last values.</li></ul><p>Exam answers should keep bounds consistent between the declaration, accesses, and loop.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge array bounds reference" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">Reading</th><th scope="col">Check</th></tr></thead><tbody><tr><td>Declaration <code>ARRAY[1:5]</code></td><td>Inclusive bounds from 1 to 5.</td><td>There are five positions; the lower index is declared.</td></tr><tr><td><code>A[index]</code></td><td>Element at one position.</td><td>Check that <code>index</code> lies within the bounds.</td></tr><tr><td><code>A[row, column]</code></td><td>Element in a matrix.</td><td>Validate each dimension separately.</td></tr></tbody></table></div>
       </section>
       <section id="rotinas">
         <p class="kicker">07 · routines</p>
@@ -92,9 +95,9 @@ ENDIF</code></pre><p>For a <code>FOR</code> loop, state the range and counter di
 DECLARE total : INTEGER
 DECLARE index : INTEGER
 
-total &lt;- 0
-FOR index &lt;- 1 TO 5
-    total &lt;- total + numbers[index]
+total ← 0
+FOR index ← 1 TO 5
+    total ← total + numbers[index]
 NEXT index
 OUTPUT total</code></pre><p>The example demonstrates assignment, indexing, and a loop. A complete answer must also show how <code>numbers</code> was read or assigned, as required by the problem. Trace the accumulator after each iteration to avoid missing the first or last element.</p>
       </section>
@@ -103,15 +106,43 @@ OUTPUT total</code></pre><p>The example demonstrates assignment, indexing, and a
         <h2>Writing and checking answers</h2>
 <p>Consistency matters as much as the algorithmic idea in an exam response. Use descriptive names, steady indentation, and block delimiters from the guide.</p><ul><li>Declare variables and arrays before use when required.</li><li>Check that each variable’s type matches its assigned values.</li><li>Trace at least one typical case and a boundary case.</li><li>Check the stopping condition and counter update.</li><li>For functions, verify every return path.</li></ul><p>Pseudocode communicates an algorithm; clarity and fidelity to the exam-year standard make it easier to read and assess.</p>
       </section>
+      <section id="expressoes-casos">
+        <p class="kicker">10 · operators and selection</p>
+        <h2>Operators and CASE selection</h2>
+<p>Cambridge operator conventions differ from those in some other languages: <code>DIV</code> gives the integer quotient, <code>MOD</code> the remainder, and <code>&lt;&gt;</code> means “not equal”. Comparisons produce a Boolean value; use parentheses when an expression combines several operations.</p><p><code>CASE</code> organizes alternatives for one identifier. The ranges in this example assume marks use a scale from 0 to 100:</p><pre class="manual-code"><code>CASE OF Mark
+    80 TO 100 : OUTPUT "Distinction"
+    50 TO 79 : OUTPUT "Pass"
+    OTHERWISE : OUTPUT "Resit"
+ENDCASE</code></pre><p>Cases are checked in sequence. When a value matches, its statements run and control continues after <code>ENDCASE</code>. If present, <code>OTHERWISE</code> comes last and handles values not matched earlier. Before writing ranges, check that they leave no gaps or overlaps for the data allowed by the question.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Forms</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td>Integer arithmetic</td><td><code>DIV</code>, <code>MOD</code></td><td>Integer quotient and remainder.</td></tr><tr><td>Comparison</td><td><code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td><td>Produces a <code>BOOLEAN</code> value.</td></tr><tr><td>Logic</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Combines or negates Boolean conditions.</td></tr></tbody></table></div>
+      </section>
+      <section id="strings">
+        <p class="kicker">11 · strings</p>
+        <h2>Use the supplied string functions</h2>
+<p>The guide describes functions such as <code>LENGTH</code>, <code>MID</code>, and <code>RIGHT</code> to count characters, extract a section, or obtain the end of a string. In exams, the string-manipulation functions you need are supplied in the question; do not assume their signatures match those in another language.</p><pre class="manual-code"><code>DECLARE ItemCode : STRING
+INPUT ItemCode
+IF LENGTH(ItemCode) &gt;= 3 THEN
+    OUTPUT MID(ItemCode, 1, 3)
+ELSE
+    OUTPUT ItemCode
+ENDIF</code></pre><p>The condition protects the substring operation when the text has fewer than three characters. When solving a question, identify in the function description where selection starts and how many characters it requests. Then test a string exactly at the minimum length, a longer one, and a short case.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge string functions" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Function</th><th scope="col">Result</th><th scope="col">Example</th></tr></thead><tbody><tr><td><code>LENGTH(text)</code></td><td>Number of characters.</td><td><code>LENGTH("Happy Days")</code> returns 10.</td></tr><tr><td><code>MID(text, start, count)</code></td><td>Substring of the given length.</td><td><code>MID("ABCDEFGH", 2, 3)</code> returns <code>BCD</code>.</td></tr><tr><td><code>RIGHT(text, count)</code></td><td>The final characters.</td><td><code>RIGHT("ABCDEFGH", 3)</code> returns <code>FGH</code>.</td></tr></tbody></table></div>
+      </section>
+      <section id="parametros">
+        <p class="kicker">12 · subprograms</p>
+        <h2>Choose pass-by-value or pass-by-reference</h2>
+<p>Procedures receive parameters by value unless the guide or question specifies another mode. With pass-by-value, a parameter acts as a local copy. <code>BYREF</code> signals that a procedure can change the variable supplied at the call.</p><pre class="manual-code"><code>PROCEDURE AddBonus(BYREF Score : INTEGER, BYVAL Bonus : INTEGER)
+    Score ← Score + Bonus
+ENDPROCEDURE
+CALL AddBonus(CurrentScore, 5)</code></pre><p>After the call, <code>CurrentScore</code> has increased by five because <code>Score</code> is passed by reference; <code>Bonus</code> remains a pass-by-value parameter. A procedure call is a complete statement and begins with <code>CALL</code>.</p><p>A function is different: it returns one value, and its call appears in an expression or assignment. The guide says not to use <code>CALL</code> for functions or pass their parameters by reference. When reading a routine, identify its kind, its parameters, and where its result is used.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge parameter passing" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Default / <code>BYVAL</code></td><td>The procedure receives the argument’s value.</td><td>Local changes do not replace the original variable.</td></tr><tr><td><code>BYREF</code></td><td>The parameter refers to the supplied variable.</td><td>The procedure can change the caller’s argument.</td></tr><tr><td>Function parameter</td><td>A function returns a value; its parameter is not passed by reference.</td><td>Use the call in an expression and do not write <code>CALL</code>.</td></tr></tbody></table></div>
+      </section>
       <section id="limites">
-        <p class="kicker">10 · versions and scope</p>
+        <p class="kicker">13 · versions and scope</p>
         <h2>Versions and limits</h2>
-<p>Cambridge International programmes and guides have their own cycles. This page uses the 2026 guide listed in the references; consult the official course page to find the document for your year.</p><p>Cambridge pseudocode does not define a compiler, executable standard library, or compatibility with a specific language. This documentation covers assessment conventions and does not claim that Potoo IDE interprets them.</p>
+<p>Use the 2026 guide for that exam year and the 2027–2029 guide for the corresponding assessments. Consult the official programme page for a later edition.</p><p>Cambridge pseudocode does not define a compiler, executable standard library, or compatibility with a specific language. This documentation covers assessment conventions and does not claim that Potoo IDE interprets them.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · further reading</p>
+        <p class="kicker">14 · further reading</p>
         <h2>References</h2>
-<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Cambridge pseudocode guide for teachers (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Cambridge International AS &amp; A Level Computer Science 9618 programme</a>, with guides associated with exam years.</li></ul><p>Use the exact edition supplied for your course; assessment rules should be checked in the current official source.</p>
+<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Cambridge pseudocode guide for teachers (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Cambridge pseudocode guide for teachers (2027–2029)</a>, for exams in those years.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Cambridge International AS &amp; A Level Computer Science 9618 programme</a>, with guides associated with exam years.</li></ul><p>Use the exact edition supplied for your course; assessment rules should be checked in the current official source.</p>
       </section>
     </article>
   </div>

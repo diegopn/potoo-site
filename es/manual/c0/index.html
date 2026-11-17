@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia educativa · lenguaje de programación · en evaluación</p>
     <h1>C0 (C simplificado)</h1>
-    <p class="manual-intro">C0 es un subconjunto de C utilizado en cursos introductorios de programación de Carnegie Mellon University. Esta referencia presenta su modelo imperativo, tipos y estructuras habituales, funciones, contratos y comprobaciones de seguridad. C0 está en evaluación para Potoo IDE; este manual describe el lenguaje original y no implica que la aplicación lo admita actualmente.</p>
+    <p class="manual-intro">Subconjunto seguro de C para enseñar algoritmos; en evaluación en Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,7 @@ body_class: manual-page
         <li><a href="#contratos">Contratos, invariantes y seguridad</a></li>
         <li><a href="#exemplo">Planificar una función de búsqueda</a></li>
         <li><a href="#estudo">Cómo estudiar y depurar C0</a></li>
+        <li><a href="#memoria-indices">Recorrer un arreglo con un contrato</a></li>
         <li><a href="#limites">Alcance de esta referencia</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
@@ -75,7 +76,7 @@ int main() {
       <section id="contratos">
         <p class="kicker">06 · corrección</p>
         <h2>Contratos, invariantes y seguridad</h2>
-<p>Los contratos registran las condiciones para llamar a una función y lo que garantiza al terminar. Una precondición expresa un requisito de entrada; una poscondición describe el resultado. Un invariante de bucle resume una propiedad que debe seguir siendo cierta en cada repetición.</p><ul><li><strong>Precondición:</strong> indica límites y relaciones que deben cumplir los argumentos.</li><li><strong>Poscondición:</strong> relaciona el valor devuelto con el problema resuelto por la función.</li><li><strong>Invariante:</strong> explica el significado del estado mantenido durante un algoritmo iterativo.</li></ul><p>La referencia escribe precondiciones y poscondiciones en comentarios especiales, como <code>//@requires expresión;</code> y <code>//@ensures expresión;</code>. En una poscondición, <code>\result</code> representa el valor devuelto. Los invariantes de bucle utilizan <code>//@loop_invariant expresión;</code> y deben ser expresiones lógicas. Cuando se habilita la comprobación dinámica, las herramientas evalúan estos contratos en los puntos definidos por la referencia; quien escribe el programa sigue siendo responsable de los contratos correctos y del razonamiento sobre límites.</p><pre class="manual-code"><code>int maximum(int x, int y)
+<p>Los contratos registran las condiciones para llamar a una función y lo que garantiza al terminar. Una precondición expresa un requisito de entrada; una poscondición describe el resultado. Un invariante de bucle resume una propiedad que debe seguir siendo cierta en cada repetición.</p><ul><li><strong>Precondición:</strong> indica límites y relaciones que deben cumplir los argumentos.</li><li><strong>Poscondición:</strong> relaciona el valor devuelto con el problema resuelto por la función.</li><li><strong>Invariante:</strong> explica el significado del estado mantenido durante un algoritmo iterativo.</li></ul><div class="manual-table-wrap" role="region" aria-label="Anotaciones de contrato en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Anotación</th><th scope="col">Qué especifica</th><th scope="col">Comprobación dinámica</th></tr></thead><tbody><tr><td><code>//@requires</code></td><td>Condición que deben cumplir los argumentos.</td><td>Antes del cuerpo de la función.</td></tr><tr><td><code>//@ensures</code></td><td>Propiedad del resultado; puede usar <code>\result</code>.</td><td>Antes de que la función retorne.</td></tr><tr><td><code>//@loop_invariant</code></td><td>Propiedad que debe cumplirse durante el bucle.</td><td>En cada iteración, antes del test de salida.</td></tr></tbody></table></div><p>La referencia escribe precondiciones y poscondiciones en comentarios especiales, como <code>//@requires expresión;</code> y <code>//@ensures expresión;</code>. En una poscondición, <code>\result</code> representa el valor devuelto. Los invariantes de bucle utilizan <code>//@loop_invariant expresión;</code> y deben ser expresiones lógicas. Cuando se habilita la comprobación dinámica, las herramientas evalúan estos contratos en los puntos definidos por la referencia; quien escribe el programa sigue siendo responsable de los contratos correctos y del razonamiento sobre límites.</p><pre class="manual-code"><code>int maximum(int x, int y)
 //@ensures \result &gt;= x &amp;&amp; \result &gt;= y;
 {
     if (x &gt; y) {
@@ -95,13 +96,30 @@ int main() {
         <h2>Cómo estudiar y depurar C0</h2>
 <p>Compila fragmentos pequeños mientras aprendes. Para cada función, anota su firma, los casos de entrada y el significado esperado del resultado. Después sigue la ejecución con una tabla de variables; en algoritmos sobre colecciones, incluye el índice y el intervalo ya procesado.</p><ul><li>Prueba valores límite: cero, tamaño mínimo, primer y último índice.</li><li>Ejercita las ramas verdadera y falsa de cada condición.</li><li>Incluye arreglos vacíos, de un elemento y con valores repetidos cuando el contrato lo permita.</li><li>Lee los mensajes del verificador o compilador junto con la precondición y el invariante pertinentes.</li></ul><p>Un programa que compila aún puede resolver el problema equivocado. Compara la salida con un cálculo independiente y prueba casos que recorran todas las ramas.</p>
       </section>
+      <section id="memoria-indices">
+        <p class="kicker">09 · recorrido guiado</p>
+        <h2>Recorrer un arreglo con un contrato</h2>
+<p>Un recorrido hace visible la relación entre límites, índices y condición de salida. En esta función, <code>n</code> indica cuántos valores del arreglo se suman:</p><pre class="manual-code"><code>int sum_prefix(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
+{
+    int i = 0;
+    int total = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    {
+        total = total + values[i];
+        i = i + 1;
+    }
+    return total;
+}</code></pre><div class="manual-table-wrap" role="region" aria-label="Referencia de datos y memoria en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Forma y función</th><th scope="col">Límite importante</th></tr></thead><tbody><tr><td>Entero</td><td><code>int</code>, palabra de 32 bits.</td><td>La aritmética es modular; los valores pueden desbordarse.</td></tr><tr><td>Arreglo</td><td><code>t[]</code>, creado con <code>alloc_array(t, n)</code>.</td><td>Los índices válidos van de 0 a <code>n - 1</code>.</td></tr><tr><td>Puntero</td><td><code>t*</code>, creado con <code>alloc(t)</code>.</td><td>Desreferenciar <code>NULL</code> termina el programa.</td></tr><tr><td>Estructura</td><td><code>struct</code>, campos con acceso <code>.</code> o <code>-&gt;</code>.</td><td>Las estructuras se asignan y pasan mediante punteros.</td></tr><tr><td>Texto</td><td><code>string</code> constante de caracteres ASCII.</td><td>No admite <code>\0</code>; utiliza funciones de biblioteca para comparar.</td></tr></tbody></table></div><p>El contrato limita <code>n</code> a la longitud del arreglo; como el cuerpo se ejecuta solo mientras <code>i &lt; n</code>, cada acceso usa un índice válido. Si <code>n</code> es cero, el bucle no lee elementos y la función devuelve cero. Con los valores <code>[4, 2, 5]</code> y <code>n = 3</code>, los totales parciales son 4, 6 y 11.</p><p>El invariante mostrado sigue el límite del índice, no la relación matemática completa entre <code>total</code> y los elementos ya leídos. Una demostración más detallada también debe expresar esa relación. Para depurar, prueba un arreglo vacío, uno con un elemento y el prefijo completo; utiliza valores pequeños para evitar el desbordamiento modular de <code>int</code>.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">09 · versión y alcance</p>
+        <p class="kicker">10 · versión y alcance</p>
         <h2>Alcance de esta referencia</h2>
-<p>C0 es un lenguaje y conjunto de herramientas para la enseñanza; no garantiza compatibilidad con C, C++ ni con una distribución concreta. Los cursos pueden proporcionar bibliotecas, opciones de compilación y convenciones propias. Cuando haya diferencias, prevalecen la referencia oficial y los materiales de la asignatura.</p><p>Esta página se limita a ideas introductorias compartidas por las referencias consultadas. No afirma que Potoo IDE admita C0 ni sustituye el manual de la versión usada en clase. El lenguaje sigue en evaluación como candidato del proyecto.</p>
+<p>La referencia de CMU enlazada aquí es la edición C0.2, revisión 707, del 18 de febrero de 2025. Distingue el lenguaje base de la extensión C1, que reúne funciones experimentales habilitadas en archivos <code>.c1</code>. Esta página describe C0 base; comprueba la versión adoptada por la asignatura.</p><p>Esta página se limita a ideas introductorias compartidas por las referencias consultadas. No afirma que Potoo IDE admita C0 ni sustituye el manual de la versión usada en clase. El lenguaje sigue en evaluación como candidato del proyecto.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">10 · lecturas adicionales</p>
+        <p class="kicker">11 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Referencia oficial del lenguaje C0</a>, publicada por Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Página del curso 15-122</a>, con el contexto curricular de programación imperativa y estructuras de datos.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">Programa del curso 15-122 de 2026</a>, con un resumen de la seguridad, recolección de memoria, aritmética entera y contratos de C0.</li><li><a href="https://www.cs.cmu.edu/~c0/">Portal del proyecto C0</a>, con materiales y herramientas.</li></ul><p>Consulta la edición de referencia adoptada por la asignatura: las bibliotecas, los contratos y las herramientas pueden cambiar entre versiones.</p>
       </section>

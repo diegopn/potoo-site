@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · linguagem francesa histórica · em avaliação</p>
     <h1>LSE — Langage Symbolique d’Enseignement</h1>
-    <p class="manual-intro">LSE (Langage Symbolique d’Enseignement) é uma linguagem francesa concebida para o ensino de programação e documentada em fontes históricas. Esta página reúne o contexto e os recursos que as referências consultadas sustentam. Como não há uma implementação oficial atual nem uma gramática consolidada acessível, ela não inventa exemplos executáveis. LSE está em avaliação como referência histórica.</p>
+    <p class="manual-intro">LSE foi uma linguagem francesa de ensino de programação documentada em fontes históricas.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -34,6 +34,8 @@ body_class: manual-page
         <li><a href="#ensino">Como interpretar exercícios históricos</a></li>
         <li><a href="#limites">Estado das referências</a></li>
         <li><a href="#uso">Roteiro para pesquisa e leitura</a></li>
+                <li><a href="#fragmentos">Fragmentos documentados na publicação histórica</a></li>
+        <li><a href="#projeto">Critérios pedagógicos e contexto técnico</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -73,8 +75,48 @@ body_class: manual-page
         <h2>Roteiro para pesquisa e leitura</h2>
 <p>Ao usar LSE em um estudo histórico, cite o documento e sua data em vez de citar apenas o nome da linguagem. Guarde uma reprodução da fonte consultada e anote se a transcrição veio de um artigo, de um livro ou de um manual de software.</p><ul><li>Compare a descrição de LSE com a linguagem que a publicação ensina.</li><li>Distinga explicações conceituais de listagens de código.</li><li>Não misture palavras-chave de Portugol, BASIC ou outra pseudolinguagem nos exemplos.</li><li>Se converter um exercício, apresente a linguagem de destino e explique as mudanças necessárias.</li></ul><p>Esse roteiro é especialmente importante porque o projeto é histórico e as páginas atuais não oferecem uma fonte única para validar cada detalhe sintático.</p>
       </section>
+      <section id="fragmentos">
+        <p class="kicker">8 · leitura de fontes</p>
+        <h2>Fragmentos documentados na publicação histórica</h2>
+        <p>O artigo de Jacques Hebenstreit e Yves Noyelle descreve recursos específicos da linguagem. Os trechos abaixo são recortes da publicação reproduzida pela EPI, não um programa completo nem uma especificação executável:</p>
+        <pre class="manual-code"><code>CHAINE DATE
+DATE = '11 AVRIL 1972'
+
+X = 1
+REMISE = 'RABAIS 1 DE' ! X</code></pre>
+        <p>O texto documenta a declaração de variáveis de cadeia com <code>CHAINE</code>, literais entre apóstrofos e o operador <code>!</code> para concatenar. Também descreve a função <code>SCH</code> para extrair uma subcadeia e <code>ALE(1)</code> para obter um valor aleatório entre zero e um, sem incluir as extremidades.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Recursos citados na fonte histórica de LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Recurso</th><th scope="col">O que a fonte registra</th></tr></thead><tbody>
+          <tr><td>Valores numéricos</td><td>As variáveis aritméticas são reais; o artigo não descreve um tipo inteiro separado.</td></tr>
+          <tr><td>Memória</td><td><code>LIBERER</code> permite liberar espaço ocupado por variáveis ou tabelas.</td></tr>
+          <tr><td>Cadeias</td><td><code>CHAINE</code>, constantes entre apóstrofos, concatenação com <code>!</code> e extração por <code>SCH</code>.</td></tr>
+          <tr><td>Abstração</td><td>Procedimentos, funções de complexidade razoável e recursão são citados entre os recursos didáticos.</td></tr>
+        </tbody></table></div>
+        <p>Os nomes e exemplos devem ser lidos no contexto do artigo de época. Um fragmento isolado não esclarece todos os delimitadores, declarações e regras de execução; por isso esta página não o apresenta como código pronto para um compilador atual.</p>
+        <h3>Consulta das funções descritas</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Funções citadas no artigo histórico de LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma documentada</th><th scope="col">Resultado ou finalidade</th><th scope="col">Observação da fonte</th></tr></thead><tbody>
+          <tr><td><code>SCH(α, β, y, δ)</code></td><td>Extrai uma subcadeia da cadeia de origem.</td><td><code>β</code> indica a posição inicial; <code>y</code> pode indicar comprimento ou caracteres de parada; <code>δ</code> é opcional e recebe a posição após o trecho.</td></tr>
+          <tr><td><code>GRL(α, β, δ)</code></td><td>Extrai um grupo de letras.</td><td>Começa na posição indicada e ignora caracteres que não sejam letras até formar um grupo.</td></tr>
+          <tr><td><code>CCA(α)</code></td><td>Converte o resultado de uma expressão aritmética em cadeia.</td><td>O artigo exemplifica com valores positivos e negativos.</td></tr>
+          <tr><td><code>EQC(α)</code></td><td>Devolve a cadeia de um caractere correspondente ao código ASCII.</td><td>A expressão numérica deve estar entre 0 e 127.</td></tr>
+          <tr><td><code>DAT</code></td><td>Devolve data e hora atuais como cadeia.</td><td>O exemplo histórico apresenta dia, mês, ano e horário.</td></tr>
+          <tr><td><code>LGR(α)</code></td><td>Devolve o comprimento de uma expressão-cadeia.</td><td>O artigo mostra a aplicação após avaliar a expressão.</td></tr>
+          <tr><td><code>POS(α, β, y)</code></td><td>Procura a cadeia <code>y</code> em <code>α</code>, a partir da posição <code>β</code>.</td><td>A publicação descreve a finalidade, sem resumir aqui todos os casos de retorno.</td></tr>
+          <tr><td><code>ALE(1)</code></td><td>Gera um número aleatório real.</td><td>O valor é maior que 0 e menor que 1.</td></tr>
+        </tbody></table></div>
+        <p>Essas assinaturas são reproduzidas para consulta histórica. Elas não formam uma especificação moderna nem garantem que um interpretador atual implemente as mesmas funções.</p>
+
+      </section>
+      <section id="projeto">
+        <p class="kicker">9 · contexto técnico</p>
+        <h2>Critérios pedagógicos e contexto técnico</h2>
+        <p>Os autores explicam que a escolha de palavras reservadas francesas pretendia evitar que estudantes precisassem usar inglês para se comunicar com o computador. A proposta também procurava atravessar as disciplinas escolares, atender a alunos de áreas científicas e literárias e oferecer uma interação conversacional tanto na compilação quanto na execução.</p>
+        <p>O desenho combinava um núcleo mínimo, fácil de aprender, com recursos mais avançados para explorar procedimentos, passagem de parâmetros por valor e por nome, recursão e funções. Isso mostra uma intenção pedagógica dupla: permitir primeiras experiências simples e, ao mesmo tempo, discutir decomposição e abstração sem trocar de linguagem.</p>
+        <p>O artigo situa a implementação em um minicomputador compartilhado com 16 kilobytes de memória, disco de 100 kilobytes e oito terminais. Esses limites ajudam a entender por que o texto fala de liberação de memória e de sistemas de tempo compartilhado. Eles descrevem o ambiente da época, não os requisitos de uma instalação atual.</p>
+        <p>Para estudar um exercício de LSE hoje, separe três camadas: o conceito de algoritmo; a notação exata mostrada pela fonte; e as condições materiais do sistema em que ela era executada. Preserve os termos franceses ao transcrever exemplos, anote quando a fonte não explica uma regra e descreva a lógica em prosa se não houver gramática suficiente para escrever um programa completo.</p>
+        <ol><li>Identifique o autor, a publicação e o contexto de data da fonte.</li><li>Marque cada instrução, tipo ou função realmente exemplificada.</li><li>Compare relatos posteriores com o artigo de época sem tratá-los como equivalentes.</li><li>Se adaptar o exercício a uma linguagem moderna, identifique explicitamente a adaptação.</li></ol>
+      </section>
       <section id="fontes">
-        <p class="kicker">08 · fontes históricas</p>
+        <p class="kicker">10 · fontes históricas</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.epi.asso.fr/revue/06/b06p010.htm">“Un langage symbolique destiné à l’enseignement : LSE”</a>, publicação histórica reproduzida pela EPI.</li><li><a href="https://www.epi.asso.fr/revue/histo/h70-lse_jb-2015.htm">Panorama histórico de LSE</a>, com referências ao desenvolvimento e uso da linguagem.</li><li><a href="https://en.wikipedia.org/wiki/LSE_(programming_language)">Verbete histórico sobre LSE</a>, útil como orientação bibliográfica inicial, não como especificação normativa.</li></ul><p>As publicações de época são necessárias para confirmar grafia, semântica e recursos de qualquer exemplo concreto.</p>
       </section>

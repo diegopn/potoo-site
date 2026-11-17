@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · sistema educacional russo · em avaliação</p>
     <h1>Kumir (КуМир)</h1>
-    <p class="manual-intro">КуМир (Kumir) é um sistema educacional russo para ensinar algoritmos e programação na escola. Ele combina uma linguagem algorítmica em russo com ferramentas e executores virtuais. Esta página resume construções documentadas em materiais oficiais e acadêmicos; a grafia e os recursos dependem da versão. Kumir está em avaliação, sem suporte atual no Potoo IDE.</p>
+    <p class="manual-intro">КуМир combina uma linguagem algorítmica russa com ferramentas escolares e executores virtuais.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -54,43 +54,95 @@ body_class: manual-page
         <p class="kicker">03 · estrutura</p>
         <h2>Forma de um algoritmo</h2>
 <p>Um algoritmo escolar pode usar cabeçalho, declarações, seção executável e encerramento. O exemplo abaixo ilustra o vocabulário russo frequentemente associado à linguagem algorítmica de Kumir; confirme a forma completa no manual correspondente à sua versão:</p><pre class="manual-code"><code>алг квадрат
-цел n, результат
 нач
+  цел n, результат
   ввод n
   результат := n * n
   вывод результат
 кон</code></pre><p><code>алг</code> introduz o algoritmo, <code>нач</code> inicia o corpo e <code>кон</code> encerra. <code>ввод</code> e <code>вывод</code> fazem entrada e saída; <code>:=</code> atribui o resultado à variável. Os nomes de tipos e a posição das declarações devem seguir a documentação específica.</p>
-      </section>
+
+<h3>Ler o esqueleto por partes</h3>
+<p>As palavras do cabeçalho e do corpo ajudam a localizar onde começa cada responsabilidade. No exemplo anterior, <code>алг</code> nomeia o algoritmo; a declaração informa o tipo dos dados; <code>нач</code> inicia as instruções; e <code>кон</code> encerra o corpo. As chamadas de entrada e saída ficam junto às operações que dependem delas.</p>
+<div class="manual-table-wrap" role="region" aria-label="Vocabulário de estrutura em Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma documentada</th><th scope="col">Papel no exemplo</th></tr></thead><tbody>
+<tr><td><code>алг</code></td><td>Identifica o algoritmo que será descrito.</td></tr>
+<tr><td><code>нач</code> / <code>кон</code></td><td>Marcam o início e o fim do corpo.</td></tr>
+<tr><td><code>ввод</code></td><td>Recebe um valor para a variável indicada.</td></tr>
+<tr><td><code>вывод</code></td><td>Mostra um valor ou uma expressão.</td></tr>
+<tr><td><code>:=</code></td><td>Armazena o resultado de uma expressão em uma variável.</td></tr>
+</tbody></table></div>
+<p>Ao ler um algoritmo, localize a entrada antes de interpretar os cálculos e siga a ordem das instruções até a saída. Não confunda atribuição com comparação: o símbolo exibido para guardar um resultado é diferente do teste de igualdade usado em uma condição.</p>
+
+</section>
       <section id="dados">
         <p class="kicker">04 · dados e expressões</p>
         <h2>Tipos e valores</h2>
 <p>A linguagem algorítmica apresenta tipos como inteiros e valores reais, além de dados textuais e lógicos conforme a versão. As palavras reservadas são escritas em cirílico.</p><div class="manual-table-wrap" role="region" aria-label="Vocabulário comum da linguagem Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Uso</th></tr></thead><tbody><tr><td><code>цел</code></td><td>Declara valores inteiros em materiais escolares.</td></tr><tr><td><code>вещ</code></td><td>Declara valores reais em materiais escolares.</td></tr><tr><td><code>ввод</code></td><td>Recebe valores.</td></tr><tr><td><code>вывод</code></td><td>Apresenta valores ou texto.</td></tr><tr><td><code>:=</code></td><td>Armazena o valor de uma expressão.</td></tr></tbody></table></div><p>Operadores aritméticos e relações formam expressões usadas em cálculos e condições. Confirme nos materiais da versão como declarar cadeias, caracteres, valores lógicos e coleções; nomes e regras não devem ser generalizados a partir de uma implementação distinta.</p>
-      </section>
+
+<h3>Escolher um tipo para a tarefa</h3>
+<p>Uma declaração explicita que espécie de valor a variável deve guardar. Inteiros servem para contadores, quantidades e posições; reais representam medidas que podem incluir parte fracionária; valores lógicos expressam resultados de testes. Materiais da linguagem também distinguem caracteres e textos, com regras próprias para cada versão.</p>
+<p>Antes de escolher o tipo, pergunte se o problema admite valores fracionários, qual a faixa de dados prevista e se o valor será usado em uma condição ou em um índice. Em uma expressão, combine operandos de forma coerente e consulte a documentação para conversões e divisão. A aceitação de uma expressão pelo editor não substitui a verificação de que o resultado faz sentido para a tarefa.</p>
+<p>Quando uma estrutura guarda vários valores, confira o tipo da coleção, sua dimensão e a forma de acessar cada posição. Evite supor índices começando em zero ou em um: siga o enunciado e o exemplo da versão instalada.</p>
+
+</section>
       <section id="controle">
         <p class="kicker">05 · controle de fluxo</p>
         <h2>Condições e repetições</h2>
 <p>Kumir oferece construções para decisões, laços contados e laços condicionais. A notação usa pares de palavras de abertura e encerramento, o que ajuda iniciantes a identificar o limite de cada bloco.</p><ul><li><strong>Decisão:</strong> escolhe um ramo conforme uma condição.</li><li><strong>Laço condicional:</strong> repete um conjunto de instruções enquanto um critério for verdadeiro.</li><li><strong>Laço contado:</strong> percorre uma faixa ou quantidade determinada.</li><li><strong>Subprogramas:</strong> organizam soluções em algoritmos auxiliares, conforme a versão.</li></ul><p>O material oficial apresenta as formas exatas de cada estrutura. Sempre verifique o fechamento do bloco e o que acontece quando o limite é atingido.</p>
-      </section>
+
+<h3>Reconhecer os limites dos blocos</h3>
+<p>Materiais de Kumir usam palavras russas para seleção e repetição. Entre as formas listadas em documentação técnica estão <code>если</code>, <code>то</code>, <code>иначе</code> e <code>все</code> para estruturas condicionais, além de vocabulário de laços como <code>пока</code>, <code>нц</code>, <code>кц</code>, <code>для</code>, <code>от</code>, <code>до</code> e <code>шаг</code>. A palavra final e a posição do início do bloco dependem da construção e da versão; confira o exemplo completo antes de digitar um bloco de memória.</p>
+<p>Para revisar uma condição, escreva em linguagem natural o que cada ramo significa. Para revisar um laço, registre:</p>
+<ul><li>o valor inicial do contador, quando houver;</li><li>a condição que permite uma nova repetição;</li><li>o passo ou a atualização que muda o estado;</li><li>o estado esperado quando a execução termina.</li></ul>
+<p>Se a variável de controle nunca se aproxima da condição de saída, o algoritmo pode não terminar. Se o limite está incluído ou excluído, teste um caso pequeno no ambiente antes de generalizar.</p>
+
+</section>
       <section id="executores">
         <p class="kicker">06 · executores virtuais</p>
         <h2>Robô, desenhista e tarefas</h2>
 <p>Um destaque do sistema é o uso de executores virtuais em atividades. O executor Robô pode ser programado para percorrer um cenário; o Desenhista (Чертёжник) pode produzir figuras com comandos de movimento. Eles tornam o resultado de um algoritmo observável e fornecem um contexto para decompor trajetórias em ações.</p><p>Em uma tarefa com executor, leia as condições iniciais, os comandos aceitos e a meta. Depois:</p><ol><li>divida o percurso em trechos ou formas simples;</li><li>identifique movimentos que se repetem;</li><li>use decisões quando o cenário exigir reação;</li><li>execute e compare o mundo final com a meta.</li></ol><p>Os comandos disponíveis variam por executor e distribuição; não há um conjunto único compartilhado por todas as tarefas de Kumir.</p>
-      </section>
+
+<h3>Comandos, perguntas e estado do executor</h3>
+<p>Um executor virtual é um modelo com estado próprio e um conjunto de comandos aceitos. Em uma tarefa do Robô, o estado pode incluir célula, direção e paredes do campo; um comando de movimento altera esse estado, enquanto uma pergunta consulta uma propriedade do entorno. O Desenhista trabalha com uma tarefa gráfica e movimentos de traçado.</p>
+<p>Antes de escrever o percurso, transforme o enunciado em condições iniciais e meta. Depois divida a meta em movimentos verificáveis: alcançar uma célula, contornar um obstáculo ou concluir uma figura. Só use comandos que apareçam na lista do executor daquela versão; nomes de outro mundo não são intercambiáveis.</p>
+<p>A execução passo a passo ajuda a observar os efeitos de cada ação. Se o executor ficar fora do cenário esperado, compare a posição e a direção após cada comando em vez de alterar vários trechos ao mesmo tempo.</p>
+
+</section>
       <section id="exemplo">
         <p class="kicker">07 · exemplo guiado</p>
         <h2>Dobrar uma sequência de valores</h2>
 <p>Um programa que lê valores e os transforma pode ser desenvolvido em três partes: entrada, cálculo e saída. Para cada novo dado, calcule o dobro e mostre o resultado. O laço termina quando a regra da atividade indicar que não há mais entradas.</p><ol><li>Declare o valor lido e o valor calculado.</li><li>Leia a entrada com o comando de leitura indicado pelo manual.</li><li>Atribua à segunda variável o produto por dois.</li><li>Mostre o resultado.</li><li>Se houver várias entradas, envolva as ações no laço documentado.</li></ol><p>Esse planejamento não impõe uma condição de parada arbitrária. A sentinela ou quantidade de dados precisa estar definida no enunciado.</p>
-      </section>
+
+<h3>Traçar a execução antes de ampliar o programa</h3>
+<p>Para o cálculo do quadrado, acompanhe uma linha por vez: a leitura fornece <code>n</code>, a multiplicação calcula o valor e a saída apresenta o resultado. Teste <code>0</code>, um inteiro positivo pequeno e um valor negativo, caso o domínio do exercício permita. Esses casos verificam se o algoritmo depende de uma faixa que o enunciado não informou.</p>
+<div class="manual-table-wrap" role="region" aria-label="Rastreamento do exemplo de quadrado" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Entrada</th><th scope="col">Expressão calculada</th><th scope="col">Resultado esperado</th></tr></thead><tbody>
+<tr><td>0</td><td>0 × 0</td><td>0</td></tr>
+<tr><td>3</td><td>3 × 3</td><td>9</td></tr>
+<tr><td>−2</td><td>(−2) × (−2)</td><td>4</td></tr>
+</tbody></table></div>
+<p>Uma tabela de rastreamento assim torna visível o papel da entrada, da variável de resultado e da expressão, sem acrescentar sintaxe que não seja necessária ao exemplo.</p>
+
+</section>
       <section id="estudo">
         <p class="kicker">08 · estudo e depuração</p>
         <h2>Testar programas Kumir</h2>
 <p>Teste um algoritmo com entradas pequenas e use as mensagens do ambiente para localizar erros de sintaxe ou de execução. A execução passo a passo ajuda a verificar tipos, condições e valores intermediários.</p><ul><li>Experimente valores zero e negativos quando o domínio permitir.</li><li>Teste os dois resultados possíveis de uma condição.</li><li>Confira o número de iterações e o valor do contador em cada passo.</li><li>Em tarefas com executor, comece no cenário inicial original.</li><li>Leia a documentação do executor antes de usar uma ação especializada.</li></ul><p>Uma execução bem-sucedida não garante que a solução cubra todos os cenários. Compare o resultado com a especificação da tarefa.</p>
-      </section>
+
+<h3>Uma lista de verificação para depurar</h3>
+<p>O editor da suíte verifica a escrita continuamente e pode apontar problemas junto ao código. Use o diagnóstico como pista: examine a linha indicada, a declaração associada e a construção que a contém. Não corrija apenas o primeiro sublinhado sem conferir se uma linha anterior deixou o bloco incompleto.</p>
+<ol><li>Execute um exemplo oficial intacto para reconhecer a configuração do ambiente.</li><li>Teste primeiro os valores de entrada mais simples.</li><li>Acompanhe as atribuições e as condições passo a passo.</li><li>Altere uma instrução por vez e repita o mesmo caso.</li><li>Em uma tarefa com executor, restaure o cenário inicial antes de comparar resultados.</li></ol>
+<p>Guarde junto ao exercício a versão de Kumir, o executor selecionado e a entrada usada. Isso ajuda a distinguir um problema no algoritmo de uma diferença entre pacotes ou materiais.</p>
+
+</section>
       <section id="limites">
         <p class="kicker">09 · versões e escopo</p>
         <h2>Versões e variantes</h2>
 <p>A página oficial de NIISI e os artigos do projeto tratam de versões diferentes da suíte. Menus, bibliotecas, executores e sintaxe podem ter mudado entre Kumir 1.x, Kumir 2.x e pacotes distribuídos por sistemas operacionais.</p><p>Esta referência usa construções escolares documentadas como orientação geral e deve ser conferida com o manual da instalação concreta. Kumir segue em avaliação; o manual não indica um interpretador disponível no Potoo IDE.</p>
-      </section>
+
+<h3>O que confirmar antes de compartilhar um programa</h3>
+<p>A família Kumir inclui mais de uma geração e distribuições diferentes. Um arquivo pode depender de palavras, bibliotecas ou executores que não existem em outra instalação. Ao compartilhar um exercício, indique a versão e o manual consultado, inclua qualquer recurso externo exigido e descreva o cenário inicial do executor.</p>
+<p>A página oficial do NIISI apresenta a suíte como um ambiente escolar para aprender algoritmos e programação e publica distribuições para diferentes sistemas. Isso não elimina as diferenças entre versões: confirme no portal oficial qual pacote corresponde ao curso e use o manual que o acompanha.</p>
+
+</section>
       <section id="fontes">
         <p class="kicker">10 · leitura adicional</p>
         <h2>Referências</h2>

@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia educativa · lenguaje de programación en árabe · en evaluación</p>
     <h1>Kalimat</h1>
-    <p class="manual-intro">Kalimat es un lenguaje de programación en árabe dirigido a principiantes. El proyecto oficial describe orientación a objetos, concurrencia inspirada en CSP, gráficos 2D e interoperabilidad con C. Como la gramática completa está en documentos distribuidos por el proyecto, esta página presenta conceptos confirmados sin inventar ejemplos de sintaxis.</p>
+    <p class="manual-intro">Kalimat es un lenguaje árabe para principiantes con objetos, gráficos 2D, concurrencia e integración con C.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -49,37 +49,90 @@ body_class: manual-page
         <p class="kicker">02 · público y objetivos</p>
         <h2>Para quién se creó</h2>
 <p>El proyecto presenta Kalimat como un lenguaje para principiantes, incluidos niños. La sintaxis en árabe busca acercar el código escrito al idioma del estudiante, mientras que las bibliotecas y funciones permiten crear programas que van más allá de ejercicios de consola.</p><p>Al estudiar Kalimat, conviene distinguir tres elementos:</p><ul><li>el lenguaje y sus reglas de escritura;</li><li>las herramientas necesarias para editar y ejecutar programas;</li><li>las bibliotecas que ofrecen gráficos o integración con otros lenguajes.</li></ul><p>La disponibilidad de cada componente puede depender de la distribución utilizada. Las guías del paquete oficial son la fuente para instalar y ejecutar la versión actual.</p>
-      </section>
+
+<h3>Lenguaje, herramienta y biblioteca son capas distintas</h3>
+<p>El proyecto presenta el árabe como parte de una experiencia inicial más accesible: el alumnado puede relacionar nombres e instrucciones con una lengua que ya lee y usa. Esto no elimina el aprendizaje de ideas como estado, decisión y repetición; cambia el vocabulario con el que se introducen.</p>
+<p>Separa el estudio en tres capas. Primero, consulta las reglas del lenguaje en la guía distribuida. Después, aprende a usar el entorno que edita y ejecuta programas. Por último, consulta cada biblioteca solo cuando un ejercicio la necesite. Una función gráfica pertenece a su biblioteca, no necesariamente a la gramática central.</p>
+
+</section>
       <section id="paradigmas">
         <p class="kicker">03 · modelo de programación</p>
         <h2>Orientación a objetos y organización</h2>
 <p>La documentación del proyecto indica que Kalimat ofrece funciones orientadas a objetos. Las clases y los objetos ayudan a agrupar estado y operaciones relacionadas; los detalles —como visibilidad, herencia y constructores— deben consultarse en las reglas de la versión correspondiente.</p><p>Esta organización puede servir para pasar de funciones pequeñas a modelos con objetos. Un primer ejercicio consiste en identificar qué valores pertenecen a cada entidad y qué operaciones los modifican antes de elegir una construcción del lenguaje.</p><p>No traslades automáticamente las reglas de Java, C++ u otro lenguaje orientado a objetos. El modelo de Kalimat está definido por su propia documentación oficial.</p>
-      </section>
+
+<h3>Planificar un modelo antes de buscar la sintaxis</h3>
+<p>Para entender la orientación a objetos sin suponer funciones concretas, empieza por el problema: qué entidades existen, qué datos guarda cada una y qué acciones los modifican. Una actividad sobre figuras, por ejemplo, puede separar posición, color y operación de dibujo. Después busca en la guía de la versión cómo representa Kalimat cada concepto.</p>
+<div class="manual-table-wrap" role="region" aria-label="Preguntas para estudiar la orientación a objetos en Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Concepto</th><th scope="col">Qué comprobar en la guía</th></tr></thead><tbody>
+<tr><td>Tipo o clase</td><td>¿Cómo se declara y nombra una categoría de objetos?</td></tr>
+<tr><td>Instancia</td><td>¿Cómo se crea un valor y cómo se inicializan sus campos?</td></tr>
+<tr><td>Estado</td><td>¿Qué datos pertenecen a cada objeto y cómo pueden cambiar?</td></tr>
+<tr><td>Operación</td><td>¿Cómo recibe argumentos un método y qué efectos o resultados produce?</td></tr>
+</tbody></table></div>
+<p>Esta lista guía la lectura; no afirma que las funciones orientadas a objetos sean iguales a las de Java o C++. Herencia, visibilidad, constructores y sobrecarga deben usarse solo si aparecen explícitamente en la documentación de Kalimat.</p>
+
+</section>
       <section id="concorrencia">
         <p class="kicker">04 · ejecución concurrente</p>
         <h2>Concurrencia en el modelo CSP</h2>
 <p>Kalimat también anuncia un modelo de concurrencia relacionado con CSP (<em>Communicating Sequential Processes</em>). En lugar de tratar todo el trabajo como una sola secuencia, permite razonar sobre procesos que se ejecutan y se comunican.</p><ul><li><strong>Proceso:</strong> una unidad de ejecución con una tarea identificable.</li><li><strong>Comunicación:</strong> intercambio de datos o sincronización entre procesos mediante las construcciones del lenguaje.</li><li><strong>Coordinación:</strong> definir cuándo puede avanzar cada proceso y cómo se combinan los resultados.</li></ul><p>La concurrencia exige prestar atención al orden y la sincronización. Consulta la guía oficial antes de utilizar una terminología o forma de comunicación concreta; esta página no define operadores de CSP que no aparecen en las fuentes resumidas.</p>
-      </section>
+
+<h3>Razonar sobre procesos y comunicación</h3>
+<p>La etiqueta CSP orienta el razonamiento sobre procesos secuenciales que se comunican. Antes de buscar la sintaxis, describe cada proceso como una tarea e identifica el dato o evento que permite transmitir información. Un ejercicio conceptual puede tener un proceso que produce valores y otro que dibuja cada valor recibido.</p>
+<p>Comprueba tres condiciones al planificar este tipo de solución:</p>
+<ul><li>qué proceso produce cada dato y cuál lo consume;</li><li>en qué punto la comunicación sincroniza ambos lados;</li><li>qué sucede si un proceso termina antes que el otro o no produce un valor.</li></ul>
+<p>Esta planificación evita confundir concurrencia con “ejecutar dos líneas a la vez”. Los nombres de operadores, canales, procesos e instrucciones de sincronización deben salir de la gramática instalada; esta página no los traduce ni los reconstruye.</p>
+
+</section>
       <section id="graficos">
         <p class="kicker">05 · bibliotecas</p>
         <h2>Gráficos 2D y juegos</h2>
 <p>El proyecto destaca una biblioteca de gráficos 2D para crear escenas y juegos. Este recurso conecta conceptos de programación con resultados visibles: dibujar objetos, responder a eventos y actualizar una escena.</p><p>Una secuencia de aprendizaje puede empezar con una ventana y una forma sencilla, y después añadir movimiento e interacción. En cada ejercicio, identifica:</p><ol><li>qué objetos aparecen en pantalla;</li><li>qué propiedades cambian entre actualizaciones;</li><li>qué eventos provocan una acción;</li><li>qué reglas mantienen la escena dentro de los límites previstos.</li></ol><p>Los nombres de módulos, funciones y eventos dependen de la API distribuida con Kalimat. Utiliza los ejemplos del paquete para confirmar las llamadas exactas.</p>
-      </section>
+
+<h3>De una primera figura a un pequeño juego</h3>
+<p>Estudia la biblioteca gráfica por etapas que mantengan el programa fácil de comprobar. Empieza con una figura estática; después cambia una propiedad, como posición o color; solo entonces vincula las actualizaciones a un evento o a una secuencia de cuadros si los materiales de la versión documentan esa función.</p>
+<ol><li>Localiza cómo un ejemplo oficial crea una ventana o superficie de dibujo.</li><li>Identifica los argumentos necesarios para una figura sencilla.</li><li>Cambia un argumento y observa solo esa diferencia visual.</li><li>Lee cómo la biblioteca recibe entradas y actualiza la escena.</li><li>Separa la regla del juego y su presentación visual en partes comprobables.</li></ol>
+<p>Es una forma de estudiar una biblioteca gráfica 2D, no una lista de nombres exactos de API. Usa los ejemplos del paquete para confirmar eventos, coordenadas, unidades, colores y ciclo de actualización.</p>
+
+</section>
       <section id="interop">
         <p class="kicker">06 · interoperabilidad</p>
         <h2>Integración con C</h2>
 <p>El portal oficial también documenta interoperabilidad con C. Este puente puede permitir acceder a código o bibliotecas nativas en casos adecuados, pero conecta modelos de tipos y gestión de recursos que deben ser compatibles.</p><p>Antes de llamar código externo, confirma:</p><ul><li>cómo se representan los tipos de ambos lados;</li><li>quién reserva y libera cada recurso;</li><li>cómo se comunican errores y valores de retorno;</li><li>qué convenciones y archivos de cabecera requiere la herramienta.</li></ul><p>La interoperabilidad es un tema avanzado y no hace falta para los primeros programas. Una biblioteca nativa debe ser compatible con la versión y la plataforma utilizadas.</p>
-      </section>
+
+<h3>Una frontera cuidadosa entre lenguajes</h3>
+<p>La interoperabilidad con C es una función avanzada. Antes de conectar una rutina, escribe el contrato de ambos lados: orden de argumentos, tipos aceptados, resultado, errores posibles y quién libera la memoria. La documentación del paquete debe explicar cómo se localiza la función y cómo se representan sus tipos.</p>
+<div class="manual-table-wrap" role="region" aria-label="Comprobaciones para integrar Kalimat con C" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pregunta</th><th scope="col">Por qué comprobarlo</th></tr></thead><tbody>
+<tr><td>¿Coinciden los tipos?</td><td>Una conversión incorrecta puede dañar valores o memoria.</td></tr>
+<tr><td>¿Quién controla el recurso?</td><td>Ambos lenguajes deben acordar la asignación y liberación.</td></tr>
+<tr><td>¿Cómo se devuelven los errores?</td><td>Un fallo debe detectarse sin dejar un estado incoherente.</td></tr>
+<tr><td>¿Qué entorno está admitido?</td><td>Las bibliotecas compiladas y convenciones de llamada varían por plataforma.</td></tr>
+</tbody></table></div>
+<p>Empieza con el ejemplo mínimo de la distribución. No conviertas una muestra de FFI en requisito para todo programa de Kalimat.</p>
+
+</section>
       <section id="sintaxe">
         <p class="kicker">07 · sintaxis y recursos</p>
         <h2>Cómo consultar la gramática</h2>
 <p>El proyecto distribuye documentos con las reglas del lenguaje y ejemplos junto con sus archivos de instalación. Esos documentos son la fuente adecuada para confirmar palabras clave, puntuación, declaraciones, expresiones, clases, procesos y API gráficas.</p><p>Como la página pública consultada no expone una gramática completa y estable en texto plano, esta referencia no reconstruye un ejemplo de «Hola, mundo». Para obtener un programa verificable:</p><ol><li>descarga una versión desde el portal oficial;</li><li>abre los documentos de reglas incluidos en el paquete;</li><li>ejecuta primero uno de los ejemplos proporcionados;</li><li>modifica una parte del ejemplo y compara el resultado.</li></ol><p>Así se evita atribuir a Kalimat una sintaxis deducida a partir de una descripción en otro idioma.</p>
-      </section>
+
+<h3>Qué incluye el paquete oficial</h3>
+<p>La guía oficial para comenzar recomienda descargar la distribución, extraerla e iniciar el ejecutable incluido. El paquete contiene dos documentos PDF: un resumen breve de las reglas y una guía más extensa. También incluye carpetas de ejemplos sencillos y completos. Son las mejores fuentes para comprobar la gramática de esa versión y probar programas sin reconstruir la sintaxis a partir de una descripción.</p>
+<p>Quienes empiezan pueden seguir el curso introductorio enlazado por el proyecto; quienes ya programan pueden comenzar por el PDF breve y consultar la referencia detallada cuando aparezca una construcción nueva. La página oficial identifica actualmente una distribución fechada el 3 de mayo de 2025; comprueba la etiqueta de versión antes de comparar ejemplos.</p>
+<h3>Cómo leer un ejemplo sin mezclar versiones</h3>
+<ul><li>Registra la versión y el sistema del material.</li><li>Ejecuta el ejemplo sin cambios y guarda su salida.</li><li>Modifica una declaración o expresión y compara el resultado.</li><li>Consulta el PDF detallado para confirmar la regla que explica el cambio.</li><li>No copies palabras reservadas de un lenguaje de programación árabe a otro.</li></ul>
+
+</section>
       <section id="estudo">
         <p class="kicker">08 · estudio y depuración</p>
         <h2>Ruta de aprendizaje</h2>
 <p>Empieza con los ejemplos oficiales e identifica el entorno de ejecución necesario. Después pasa de la salida de texto a variables, condiciones, bucles y funciones. Incorpora objetos, concurrencia, gráficos o integración nativa solo cuando la actividad lo requiera.</p><ul><li>Guarda la versión del paquete junto con los ejemplos probados.</li><li>Cambia una cosa cada vez, sobre todo en la escritura árabe y la dirección del texto.</li><li>En un programa visual, valida primero la lógica antes de añadir eventos.</li><li>En concurrencia, prueba órdenes diferentes y examina los puntos de sincronización.</li><li>Para interoperar con C, empieza con un ejemplo mínimo del proyecto.</li></ul><p>Los materiales y las decisiones de implementación pueden evolucionar; comprueba las guías que acompañan a la versión instalada.</p>
-      </section>
+
+<h3>Secuencia de ejercicios con puntos de control</h3>
+<p>Una progresión breve ayuda a separar las funciones del lenguaje de las bibliotecas:</p>
+<ol><li>ejecuta un ejemplo mínimo incluido en la distribución;</li><li>cambia una entrada y predice el resultado antes de ejecutarlo;</li><li>localiza en el manual la regla usada por el ejemplo;</li><li>estudia un programa organizado con objetos o funciones si la guía presenta esa forma;</li><li>elige una actividad gráfica, concurrente o de interoperabilidad solo después de entender sus requisitos.</li></ol>
+<p>Cuando aparezca un error, conserva el mensaje completo, anota la versión y reduce el programa a la parte más pequeña que aún falla. Así podrás distinguir un error de sintaxis de uno de biblioteca o configuración del entorno.</p>
+
+</section>
       <section id="escopo">
         <p class="kicker">09 · versiones y alcance</p>
         <h2>Qué cubre esta referencia</h2>

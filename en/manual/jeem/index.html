@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · historical Arabic educational language · under evaluation</p>
     <h1>Jeem</h1>
-    <p class="manual-intro">Jeem is described in historical sources as an educational language that uses Arabic letters, words, and numerals to teach programming. The technical documentation publicly accessible today is limited and does not establish a complete executable grammar. This reference separates documented facts from gaps; Jeem is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-intro">Jeem was an Arabic school language; a 2007 study records part of its syntax.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -30,7 +30,7 @@ body_class: manual-page
         <li><a href="#sobre">About Jeem</a></li>
         <li><a href="#contexto">Educational motivation</a></li>
         <li><a href="#caracteristicas">What can be said</a></li>
-        <li><a href="#sintaxe">Why there is no code example</a></li>
+        <li><a href="#sintaxe">Historical example without executable code</a></li>
         <li><a href="#leitura">How to study the proposal</a></li>
         <li><a href="#comparacao">Jeem and Kalimat are different projects</a></li>
         <li><a href="#limites">Availability and limits</a></li>
@@ -51,18 +51,49 @@ body_class: manual-page
       <section id="caracteristicas">
         <p class="kicker">03 · documented characteristics</p>
         <h2>What can be said</h2>
-<p>The public sources consulted support a high-level description, not a formal command catalogue. This table makes that limit explicit so inferences are not presented as a specification.</p><div class="manual-table-wrap" role="region" aria-label="Documented and unknown information about Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Status in consulted sources</th></tr></thead><tbody><tr><td>Writing</td><td>Accounts describe Arabic letters and words.</td></tr><tr><td>Purpose</td><td>The project was presented as a tool for teaching programming in schools.</td></tr><tr><td>Grammar</td><td>No complete, current public reference was located.</td></tr><tr><td>Types and commands</td><td>There is not enough information to publish a normative list here.</td></tr><tr><td>Current environment</td><td>A maintained official distributor with current instructions was not confirmed.</td></tr></tbody></table></div><p>This separation is part of the manual: without a verifiable grammar, code examples would be conjecture.</p>
-      </section>
+<p>The public sources consulted support a high-level description, not a formal command catalogue. This table makes that limit explicit so inferences are not presented as a specification.</p><div class="manual-table-wrap" role="region" aria-label="Documented and unknown information about Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Status in consulted sources</th></tr></thead><tbody><tr><td>Writing</td><td>Accounts describe Arabic letters and words.</td></tr><tr><td>Purpose</td><td>The project was presented as a tool for teaching programming in schools.</td></tr><tr><td>Grammar</td><td>No complete, current public reference was located.</td></tr><tr><td>The 2007 study lists historical types, structures, and commands; no normative list is confirmed for a current version.</td><td>There is not enough information to publish a normative list here.</td></tr><tr><td>Current environment</td><td>A maintained official distributor with current instructions was not confirmed.</td></tr></tbody></table></div><p>This separation is part of the manual: without a verifiable grammar, code examples would be conjecture.</p>
+
+<h3>What the 2007 technical study records</h3>
+<p>A comparative paper by Taha Zerrouki, presented at a Supreme Council of the Arabic Language conference in Algiers in December 2007, describes Jeem alongside Zay and an Arabic version of Logo. It provides more detail than newspaper accounts, but it remains a historical snapshot: it does not confirm the project’s current status or replace documentation for an implementation.</p>
+<p>The paper describes Jeem as a high-level language derived from Arabic. It reports a writing, debugging, and execution program called Al-Khwarizmi and records families of commands, types, and examples. The table summarizes what the source actually presents:</p>
+<div class="manual-table-wrap" role="region" aria-label="Jeem vocabulary and features described in a 2007 source" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">Historical record</th><th scope="col">How to interpret it</th></tr></thead><tbody>
+<tr><td>Statements</td><td>The paper separates definitions, executable statements, and compiler directives.</td><td>These categories help explain organization but do not define a current grammar.</td></tr>
+<tr><td>Data</td><td>Integers, real numbers, logical values, characters, text, and pointers; arrays, records, and files are also mentioned.</td><td>These are features reported by the study, with no guarantee about version or availability.</td></tr>
+<tr><td>Control</td><td>Selection with an alternative and four loop forms: counted, while, until, and range-based.</td><td>The paper explains the ideas and shows period examples; check exact words in the original source.</td></tr>
+<tr><td>Subprograms</td><td>Procedures, functions, and recursion are cited.</td><td>This is a capability description, not a reusable function signature.</td></tr>
+<tr><td>Graphics</td><td>A drawing library with basic shapes and color operations is described.</td><td>Use this only if the matching implementation and library are available.</td></tr>
+</tbody></table></div>
+<p>This breadth makes Jeem worth studying as a project, but it does not justify copying syntax from Kalimat, Pascal, or C. The paper treats Jeem as its own language.</p>
+</section>
       <section id="sintaxe">
         <p class="kicker">04 · syntax</p>
-        <h2>Why there is no code example</h2>
+        <h2>Historical example without executable code</h2>
 <p>An executable example requires a source that confirms reserved words, writing direction, delimiters, types, and execution rules. The historical sources found describe Jeem’s proposal, but do not provide a complete grammar with which to validate these choices.</p><p>To document an example safely, researchers would need:</p><ol><li>the technical manual or textbook for the original version;</li><li>the environment that runs the language, if it is still available;</li><li>a sample program with its expected output;</li><li>information about character encoding and Arabic text order.</li></ol><p>Until then, do not replace the missing grammar with translated Arabic words or with Kalimat constructs; these are separate projects.</p>
-      </section>
+
+<h3>What the source says about its writing</h3>
+<p>The historical paper explains that names and declarations use nominal constructions and that many instructions begin with verbs in a first-person form. This choice was intended to bring commands closer to Arabic morphology and reduce confusion with imperative forms. The source also lists words for assignment, reading, writing, repetition, conditions, drawing, and file control.</p>
+<p>These observations make it possible to study the language’s design without reproducing tokens that may be corrupted by font conversion or text direction. The original document shows examples, but its public file and extracted text are not enough to validate every character, delimiter, and behavior in a current interpreter. Exact forms should be checked against the original publication and an original copy of the environment.</p>
+<h3>Historical worked example: factorial</h3>
+<p>The paper presents a factorial program. At the algorithm level, it reads an integer, initializes an accumulator to one, repeats while the input is greater than one, multiplies the accumulator by the current value, reduces that value, and finally displays the accumulator. The sequence illustrates input, assignment, a conditional loop, and output, but this description is not executable Jeem code.</p>
+<div class="manual-table-wrap" role="region" aria-label="Test cases for the historically described factorial algorithm" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Input</th><th scope="col">Check</th><th scope="col">Expected result</th></tr></thead><tbody>
+<tr><td>0</td><td>The loop does not multiply; the accumulator stays at one.</td><td>1</td></tr>
+<tr><td>1</td><td>The loop also needs no iteration.</td><td>1</td></tr>
+<tr><td>4</td><td>The accumulator receives 4 × 3 × 2.</td><td>24</td></tr>
+</tbody></table></div>
+<p>Before translating this outline into code, confirm how the original manual declares a type, reads input, writes the test, and closes the loop. This preserves the example’s teaching value without presenting an uncertain transcription as official syntax.</p>
+</section>
       <section id="leitura">
         <p class="kicker">05 · reading the project</p>
         <h2>How to study the proposal</h2>
 <p>Even without an available implementation, the educational intention can be analyzed. Compare the language proposal with a student’s experience: which terms would be familiar, how would code be edited on screen, and how would the notation present sequence, selection, and repetition?</p><ul><li>Use accounts as historical sources for purpose and audience.</li><li>Mark whether a claim comes from an interview rather than a specification.</li><li>Do not turn a general description into a guarantee of a technical feature.</li><li>If an original manual is found, record its institution, year, and version before reproducing examples.</li></ul><p>This method lets readers study the project’s contribution without inventing features absent from accessible sources.</p>
-      </section>
+
+<h3>Progressive exercises without pretending they are executable code</h3>
+<p>The capabilities reported in 2007 support a conceptual sequence of activities. Solve each problem in plain language first, and use the original grammar only if you find a verifiable interpreter and manual:</p>
+<ol><li>Read a number and display the same value to study input and output.</li><li>Calculate a simple transformation, such as doubling, to practice variables and assignment.</li><li>Classify a value as positive, negative, or zero, planning every branch of the condition.</li><li>Sum a short range of integers or trace factorial, recording the state before and after each iteration.</li><li>If the original graphics library is available, draw a simple shape and then change its position or color.</li></ol>
+<h3>Debug against evidence for the version</h3>
+<p>The 2007 paper describes the Al-Khwarizmi environment as a tool for writing, debugging, and running Jeem. That is evidence of a historical implementation, not confirmation of current downloads or compatibility. If a copy is found, record its source and version, run an included example first, and save messages and output before adapting the program.</p>
+<p>To locate an error, reduce the example, check every declaration, and trace values after assignments and repetitions by hand. In Arabic text, check encoding, visual order, numerals, and character spelling; an editor can display signs in a different order from their stored sequence. Record separately what the source describes and what the environment actually accepts.</p>
+</section>
       <section id="comparacao">
         <p class="kicker">06 · related projects</p>
         <h2>Jeem and Kalimat are different projects</h2>
@@ -76,7 +107,7 @@ body_class: manual-page
       <section id="fontes">
         <p class="kicker">08 · further reading</p>
         <h2>References</h2>
-<ul><li><a href="https://www.alriyadh.com/236226">Interview about Jeem</a>, published by Al-Riyadh and attributed to the project’s creator.</li><li><a href="https://en.wikipedia.org/wiki/Non-English-based_programming_languages#Arabic">Overview of non-English-based programming languages</a>, with a section on Arabic projects; use it as a bibliographic lead, not a normative reference.</li></ul><p>A detailed technical manual requires access to Jeem manuals, sample programs, or original tools, none of which were confirmed in the consulted sources.</p>
+<ul><li><a href="https://arabproglang.wordpress.com/wp-content/uploads/2011/01/arabproglang.pdf">Taha Zerrouki, comparative study of three Arabic languages (Jeem, Zay, and Logo)</a>, presented in Algiers in December 2007; a historical source for the features and examples described.</li><li><a href="https://www.alriyadh.com/236226">Interview about Jeem</a>, published by Al-Riyadh and attributed to the project’s creator.</li><li><a href="https://en.wikipedia.org/wiki/Non-English-based_programming_languages#Arabic">Overview of non-English-based programming languages</a>, with a section on Arabic projects; use it as a bibliographic lead, not a normative reference.</li></ul><p>The comparative paper preserves a historical account, but does not replace a complete technical manual or confirm current Jeem tools.</p>
       </section>
     </article>
   </div>

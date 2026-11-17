@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · Russian educational system · under evaluation</p>
     <h1>Kumir (КуМир)</h1>
-    <p class="manual-intro">КуМир (Kumir) is a Russian educational system for teaching school algorithms and programming. It combines a Russian-language algorithmic language with tools and virtual performers. This page summarizes constructs documented in official and academic material; spelling and features depend on the version. Kumir is under evaluation and is not currently supported by Potoo IDE.</p>
+    <p class="manual-intro">Kumir combines a Russian school algorithmic language, learning tools, and virtual performers.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -54,43 +54,95 @@ body_class: manual-page
         <p class="kicker">03 · program structure</p>
         <h2>The shape of an algorithm</h2>
 <p>A school algorithm can have a heading, declarations, an executable section, and an ending. The example below illustrates Russian vocabulary commonly associated with Kumir’s algorithmic language; confirm the complete form in the manual for your version:</p><pre class="manual-code"><code>алг квадрат
-цел n, результат
 нач
+  цел n, результат
   ввод n
   результат := n * n
   вывод результат
 кон</code></pre><p><code>алг</code> introduces the algorithm, <code>нач</code> starts its body, and <code>кон</code> ends it. <code>ввод</code> and <code>вывод</code> handle input and output; <code>:=</code> assigns an expression result. Type names and declaration placement should follow version-specific documentation.</p>
-      </section>
+
+<h3>Read the program frame in layers</h3>
+<p>Header and body words help identify where each responsibility begins. In the earlier example, <code>алг</code> names the algorithm; the declaration gives the data type; <code>нач</code> starts the instructions; and <code>кон</code> closes the body. Input and output calls sit beside the operations that depend on them.</p>
+<div class="manual-table-wrap" role="region" aria-label="Kumir structural vocabulary" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Documented form</th><th scope="col">Role in the example</th></tr></thead><tbody>
+<tr><td><code>алг</code></td><td>Identifies the algorithm being described.</td></tr>
+<tr><td><code>нач</code> / <code>кон</code></td><td>Mark the beginning and end of the body.</td></tr>
+<tr><td><code>ввод</code></td><td>Reads a value into the named variable.</td></tr>
+<tr><td><code>вывод</code></td><td>Displays a value or expression.</td></tr>
+<tr><td><code>:=</code></td><td>Stores an expression result in a variable.</td></tr>
+</tbody></table></div>
+<p>When reading an algorithm, find the input before interpreting the calculation, then follow the instructions in order to the output. Do not confuse assignment with comparison: the symbol shown for storing a result differs from the equality test used in a condition.</p>
+
+</section>
       <section id="dados">
         <p class="kicker">04 · data and expressions</p>
         <h2>Types and values</h2>
 <p>The algorithmic language presents types such as integers and real values, along with text and logical data depending on the version. Reserved words are written in Cyrillic.</p><div class="manual-table-wrap" role="region" aria-label="Common Kumir language vocabulary" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Use</th></tr></thead><tbody><tr><td><code>цел</code></td><td>Declares integer values in school materials.</td></tr><tr><td><code>вещ</code></td><td>Declares real values in school materials.</td></tr><tr><td><code>ввод</code></td><td>Receives values.</td></tr><tr><td><code>вывод</code></td><td>Displays values or text.</td></tr><tr><td><code>:=</code></td><td>Stores the value of an expression.</td></tr></tbody></table></div><p>Arithmetic operators and relations form expressions used in calculations and conditions. Check the materials for the version to confirm how strings, characters, logical values, and collections are declared; do not generalize names and rules from a different implementation.</p>
-      </section>
+
+<h3>Choose a type for the task</h3>
+<p>A declaration makes explicit what kind of value a variable should hold. Integers suit counters, quantities, and positions; real values represent measurements that can include a fraction; logical values express test results. Language materials also distinguish characters and text, with rules that depend on the version.</p>
+<p>Before choosing a type, ask whether the problem permits fractions, what range of values is expected, and whether the value will be used in a condition or an index. Keep operands compatible and consult the documentation for conversions and division. A construct accepted by the editor does not guarantee that its result makes sense for the task.</p>
+<p>When a structure stores several values, check the collection type, its dimensions, and how each position is accessed. Do not assume that indices begin at zero or one; follow the task and the example from the installed version.</p>
+
+</section>
       <section id="controle">
         <p class="kicker">05 · control flow</p>
         <h2>Conditions and loops</h2>
 <p>Kumir provides constructs for decisions, counted loops, and conditional loops. Its notation uses opening and closing words, helping beginners identify the boundary of each block.</p><ul><li><strong>Decision:</strong> select a branch based on a condition.</li><li><strong>Conditional loop:</strong> repeat instructions while a condition is true.</li><li><strong>Counted loop:</strong> traverse a defined range or quantity.</li><li><strong>Subprograms:</strong> organize a solution into helper algorithms, depending on the version.</li></ul><p>Official material provides each construct’s exact form. Check the block ending and what happens when a limit is reached.</p>
-      </section>
+
+<h3>Recognize block boundaries</h3>
+<p>Kumir materials use Russian words for selection and repetition. Technical documentation lists <code>если</code>, <code>то</code>, <code>иначе</code>, and <code>все</code> for conditional structures, as well as loop vocabulary such as <code>пока</code>, <code>нц</code>, <code>кц</code>, <code>для</code>, <code>от</code>, <code>до</code>, and <code>шаг</code>. The closing word and the position of the block start depend on the construct and version; check a complete example before typing a block from memory.</p>
+<p>To review a condition, write in plain language what each branch means. To review a loop, record:</p>
+<ul><li>the counter's initial value, when there is one;</li><li>the condition that permits another iteration;</li><li>the step or update that changes state;</li><li>the expected state when execution ends.</li></ul>
+<p>If the control variable never approaches the stopping condition, the algorithm may not terminate. If a boundary is included or excluded, test a small case in the environment before generalizing.</p>
+
+</section>
       <section id="executores">
         <p class="kicker">06 · virtual performers</p>
         <h2>Robot, Drafter, and tasks</h2>
 <p>A notable feature of the system is its use of virtual performers in activities. The Robot can be programmed to traverse a scenario; the Drafter (<em>Чертёжник</em>) can draw figures using movement commands. They make an algorithm’s outcome visible and provide a context for decomposing paths into actions.</p><p>For a performer task, read the initial conditions, available commands, and goal. Then:</p><ol><li>split the route into simple segments or shapes;</li><li>identify repeated movements;</li><li>use decisions when the scenario requires a response;</li><li>run the program and compare the final world with the goal.</li></ol><p>Commands differ by performer and distribution; there is no single set shared by every Kumir task.</p>
-      </section>
+
+<h3>Commands, questions, and performer state</h3>
+<p>A virtual performer is a model with its own state and accepted commands. For a Robot task, state may include the cell, direction, and field walls; a movement command changes that state, while a question checks a property of the surroundings. The Drafter works with a graphics task and drawing movements.</p>
+<p>Before writing a route, turn the prompt into initial conditions and a goal. Then divide the goal into observable steps: reach a cell, go around an obstacle, or finish a figure. Use only commands listed for the performer in that version; names from another world are not interchangeable.</p>
+<p>Step-by-step execution helps reveal the effect of each action. If the performer leaves the expected scenario, compare position and direction after each command instead of changing several parts at once.</p>
+
+</section>
       <section id="exemplo">
         <p class="kicker">07 · worked example</p>
         <h2>Double a sequence of values</h2>
 <p>A program that reads values and transforms them can be developed in three parts: input, calculation, and output. For each new item, calculate twice its value and display the result. The loop ends when the exercise’s rule says no further inputs remain.</p><ol><li>Declare the input value and calculated value.</li><li>Read the input using the command specified in the manual.</li><li>Assign the second variable the value multiplied by two.</li><li>Display the result.</li><li>If there are several inputs, place the actions inside the documented loop.</li></ol><p>This plan does not impose an arbitrary stopping condition. A sentinel or item count must be specified by the exercise.</p>
-      </section>
+
+<h3>Trace execution before expanding the program</h3>
+<p>For the square calculation, follow one line at a time: input supplies <code>n</code>, multiplication computes the value, and output displays it. Try <code>0</code>, a small positive integer, and a negative value if the exercise domain allows it. These cases check whether the algorithm depends on a range the prompt never stated.</p>
+<div class="manual-table-wrap" role="region" aria-label="Trace table for the square example" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Input</th><th scope="col">Expression</th><th scope="col">Expected result</th></tr></thead><tbody>
+<tr><td>0</td><td>0 × 0</td><td>0</td></tr>
+<tr><td>3</td><td>3 × 3</td><td>9</td></tr>
+<tr><td>−2</td><td>(−2) × (−2)</td><td>4</td></tr>
+</tbody></table></div>
+<p>A trace table like this makes the role of input, result variable, and expression visible without adding syntax that the example does not need.</p>
+
+</section>
       <section id="estudo">
         <p class="kicker">08 · study and debugging</p>
         <h2>Testing Kumir programs</h2>
 <p>Test an algorithm with small inputs and use environment messages to locate syntax or execution errors. Step-by-step execution helps check types, conditions, and intermediate values.</p><ul><li>Try zero and negative values when the domain allows them.</li><li>Test both outcomes of a condition.</li><li>Check loop counts and the counter’s value at each step.</li><li>For performer tasks, begin with the original scenario.</li><li>Read the performer documentation before using a specialized action.</li></ul><p>A successful run does not guarantee a solution covers every scenario. Compare the result with the task specification.</p>
-      </section>
+
+<h3>A debugging checklist</h3>
+<p>The suite's editor checks written programs continuously and can point to problems beside the code. Treat a diagnostic as a clue: inspect the marked line, its declaration, and the construct that contains it. Do not fix only the first underline without checking whether an earlier line left a block unfinished.</p>
+<ol><li>Run an untouched official example to recognize the environment setup.</li><li>Start with the simplest input values.</li><li>Follow assignments and conditions step by step.</li><li>Change one instruction at a time and repeat the same case.</li><li>For a performer task, restore the initial world before comparing results.</li></ol>
+<p>Keep the Kumir version, selected performer, and test input with the exercise. This helps distinguish an algorithm problem from a difference between packages or course materials.</p>
+
+</section>
       <section id="limites">
         <p class="kicker">09 · versions and scope</p>
         <h2>Versions and variants</h2>
 <p>The official NIISI page and project papers discuss different suite versions. Menus, libraries, performers, and syntax may have changed between Kumir 1.x, Kumir 2.x, and operating-system packages.</p><p>This reference uses documented school constructs as a general guide and should be checked against the manual for the specific installation. Kumir is under evaluation; this manual does not indicate that Potoo IDE has a Kumir interpreter.</p>
-      </section>
+
+<h3>What to confirm before sharing a program</h3>
+<p>The Kumir family includes more than one generation and different distributions. A file may depend on words, libraries, or performers that another installation does not have. When sharing an exercise, state the version and manual used, include any required external resource, and describe the performer’s initial world.</p>
+<p>The official NIISI page presents the suite as a school environment for learning algorithms and programming and lists packages for multiple systems. That does not remove version differences: confirm on the official portal which package matches the course and use its accompanying manual.</p>
+
+</section>
       <section id="fontes">
         <p class="kicker">10 · further reading</p>
         <h2>References</h2>

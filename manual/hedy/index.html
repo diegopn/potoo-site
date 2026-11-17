@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · linguagem gradual multilíngue · em avaliação</p>
     <h1>Hedy</h1>
-    <p class="manual-intro">Hedy é uma linguagem textual gradual e uma plataforma educacional para aprender programação passo a passo. Cada nível introduz conceitos e convenções adicionais, ajudando estudantes a avançar em direção a uma linguagem como Python. A plataforma inclui português e outros idiomas. Hedy está em avaliação; o Potoo IDE não executa programas Hedy.</p>
+    <p class="manual-intro">Linguagem textual gradual e multilíngue para aprender programação; em avaliação no Potoo IDE.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,9 @@ body_class: manual-page
         <li><a href="#exemplo">Criar uma saudação interativa</a></li>
         <li><a href="#ambiente">Atividades e uso em sala</a></li>
         <li><a href="#depuracao">Como entender erros</a></li>
+        <li><a href="#projeto">Planejar um pequeno projeto por níveis</a></li>
+        <li><a href="#erros-frequentes">Erros frequentes e o que conferir</a></li>
+        <li><a href="#ponte-python">O que levar de Hedy para Python</a></li>
         <li><a href="#limites">Idiomas, níveis e mudanças</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
@@ -84,13 +87,30 @@ print so your favorite sport is answer</code></pre><p>Primeiro, execute a ativid
         <h2>Como entender erros</h2>
 <p>O feedback do ambiente faz parte da aprendizagem. Quando um programa não funciona, verifique primeiro o que a lição permite naquele nível e idioma. Depois leia a mensagem de erro e reduza o problema a uma mudança por vez.</p><ul><li>Confira se o comando foi introduzido no nível atual.</li><li>Verifique a grafia traduzida e a pontuação exigida.</li><li>Execute a menor versão que reproduz o problema.</li><li>Compare a entrada fornecida com a saída esperada.</li><li>Ao avançar para Python, note quais regras são específicas de Hedy e quais continuam válidas.</li></ul><p>Um erro de sintaxe pode resultar de usar uma convenção de outro nível; isso não significa necessariamente que a ideia do algoritmo esteja errada.</p>
       </section>
+      <section id="projeto">
+        <p class="kicker">09 · prática guiada</p>
+        <h2>Planejar um pequeno projeto por níveis</h2>
+<p>Uma atividade curta pode acompanhar a progressão da plataforma sem introduzir comandos antes da lição. Comece com uma saudação e uma pergunta em uma forma inicial:</p><pre class="manual-code"><code>print Welcome to the quiz!
+ask What is 3 + 4?
+print The answer is 7</code></pre><p>Nessa primeira versão, o texto da resposta está fixo. Use a atividade para observar a ordem das instruções e editar uma frase. Quando a lição apresentar variáveis, guarde a entrada e use-a em uma mensagem. Depois, nas lições que introduzem condições, compare uma resposta e exiba comentários diferentes. Só acrescente listas ou repetições depois que esses conceitos aparecerem no nível escolhido.</p><div class="manual-table-wrap" role="region" aria-label="Etapas para ampliar una actividad de Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Objetivo</th><th scope="col">Próximo teste</th></tr></thead><tbody><tr><td>Mensagem</td><td>Mostrar uma pergunta e uma resposta fixa.</td><td>Alterar o texto sem mudar a sequência.</td></tr><tr><td>Entrada</td><td>Receber uma resposta com <code>ask</code>.</td><td>Usar <code>answer</code> depois da pergunta.</td></tr><tr><td>Variável</td><td>Guardar e reutilizar a entrada, quando a lição ensinar.</td><td>Conferir o valor em mais de uma mensagem.</td></tr><tr><td>Decisão</td><td>Escolher uma resposta conforme uma condição.</td><td>Testar o caso verdadeiro e o falso.</td></tr><tr><td>Prática posterior</td><td>Adicionar lista ou repetição após a lição correspondente.</td><td>Rever o estado após cada volta do laço.</td></tr></tbody></table></div><p>Esse roteiro separa a ideia do programa das regras de escrita introduzidas em cada etapa. A mesma atividade pode crescer sem misturar sintaxe de níveis diferentes.</p>
+      </section>
+      <section id="erros-frequentes">
+        <p class="kicker">10 · diagnóstico</p>
+        <h2>Erros frequentes e o que conferir</h2>
+<p>Vários problemas iniciais surgem quando o programa não corresponde às convenções da lição atual. Confira primeiro o nível e o idioma de comandos e só depois altere a lógica.</p><div class="manual-table-wrap" role="region" aria-label="Problemas frequentes em Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Sintoma</th><th scope="col">O que conferir</th></tr></thead><tbody><tr><td>Comando desconhecido</td><td>Confirme se foi ensinado no nível e se a grafia corresponde ao idioma selecionado.</td></tr><tr><td>Resposta vazia ou antiga</td><td>Verifique se uma instrução <code>ask</code> foi executada antes de usar <code>answer</code>.</td></tr><tr><td>Texto interpretado como código</td><td>Confira se a lição já exige aspas e se elas estão na posição esperada.</td></tr><tr><td>Bloco não reconhecido</td><td>Veja se o nível já introduziu recuo e se as linhas do bloco têm a mesma indentação.</td></tr></tbody></table></div><p>Leia a mensagem do ambiente com o trecho destacado e faça uma alteração por vez. Se a mensagem não esclarecer a causa, reduza o programa às linhas que reproduzem o problema. Um exercício pode estar escrito corretamente para outro nível e ainda assim falhar na atividade atual.</p>
+      </section>
+      <section id="ponte-python">
+        <p class="kicker">11 · transferência</p>
+        <h2>O que levar de Hedy para Python</h2>
+<p>Hedy ajuda a construir ideias que também aparecem em Python e em outras linguagens: executar instruções em sequência, guardar dados, escolher caminhos, repetir operações e decompor uma tarefa. Ao avançar, compare como esses conceitos são representados e quais convenções novas aparecem.</p><p>Não espere que um exemplo de Hedy seja um programa Python pronto. Os níveis podem dispensar pontuação, localizar comandos e revelar regras de sintaxe aos poucos; Python usa uma gramática própria desde o primeiro programa. Faça a transição em etapas:</p><ol><li>descreva o algoritmo com palavras e exemplos de entrada;</li><li>marque os comandos e dados que pertencem à lógica;</li><li>consulte a forma correspondente no material de Python;</li><li>reescreva um bloco pequeno e teste-o antes de migrar o restante.</li></ol><p>Uma ideia como “perguntar, comparar e escolher uma mensagem” continua válida, mesmo quando a escrita muda. Distinguir conceito de sintaxe ajuda a transferir o raciocínio sem copiar comandos que a nova linguagem não reconhece.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">09 · versões e escopo</p>
+        <p class="kicker">12 · versões e escopo</p>
         <h2>Idiomas, níveis e mudanças</h2>
 <p>Hedy evolui como plataforma e currículo. Quantidade de níveis, lições, traduções e recursos podem mudar. Esta página evita fixar um número de níveis e descreve a progressão geral observada nos materiais oficiais.</p><p>A sintaxe depende do nível e do idioma. Portanto, um exemplo isolado não representa toda a linguagem. Consulte a plataforma e o manual docente atuais antes de preparar material de aula. Hedy continua em avaliação para o Potoo IDE.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">10 · leitura adicional</p>
+        <p class="kicker">13 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.hedy.org/">Plataforma oficial do Hedy</a>, com editor, lições e opções de idioma.</li><li><a href="https://www.hedy.org/for-teachers/manual">Manual oficial para docentes</a>, com informações sobre a abordagem e o uso em sala.</li><li><a href="https://www.hedy.org/translating">Informações oficiais sobre traduções</a>, incluindo idiomas disponíveis e contribuição de traduções.</li><li><a href="https://www.hedy.org/cheatsheet">Folha de referência oficial de comandos</a>, organizada por nível.</li></ul><p>Consulte a lição da versão atual para conferir a sintaxe exata do nível e do idioma utilizados.</p>
       </section>

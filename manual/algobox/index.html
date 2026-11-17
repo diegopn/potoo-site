@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência educacional · ambiente francês de algoritmos · em avaliação</p>
     <h1>AlgoBox</h1>
-    <p class="manual-intro">AlgoBox é um ambiente francês para aprender a construir e executar algoritmos. Sua interface orienta a escrita por blocos estruturados e também oferece edição textual. Este manual descreve a linguagem e o fluxo didático conforme o site oficial; AlgoBox está em avaliação e não é executado pelo Potoo IDE.</p>
+    <p class="manual-intro">AlgoBox combina editores visual e textual para criar e executar algoritmos.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,8 @@ body_class: manual-page
         <li><a href="#exemplo">Calcular o quadrado de um número</a></li>
         <li><a href="#estudo">Como praticar</a></li>
         <li><a href="#limites">Versões e limites</a></li>
+                <li><a href="#editores">Modos de edição e fluxo de trabalho</a></li>
+        <li><a href="#recursos">Listas, funções e acompanhamento da execução</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -61,6 +63,16 @@ DEBUT_ALGORITHME
   carre PREND_LA_VALEUR n * n
   AFFICHER carre
 FIN_ALGORITHME</code></pre><p>O editor estruturado ajuda a inserir cada elemento na posição esperada. Ao editar texto diretamente, confira acentos, palavras reservadas e pontuação no manual da versão em uso.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Formas de instruções de AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma documentada</th><th scope="col">Função</th><th scope="col">Observação</th></tr></thead><tbody>
+          <tr><td><code>VARIABLES</code></td><td>Inicia as declarações.</td><td>Declare cada variável antes de usá-la.</td></tr>
+          <tr><td><code>x EST_DU_TYPE NOMBRE</code></td><td>Declara uma variável numérica.</td><td>Também existem os tipos <code>CHAINE</code> e <code>LISTE</code>.</td></tr>
+          <tr><td><code>DEBUT_ALGORITHME</code></td><td>Marca o início do algoritmo.</td><td>Instruções executáveis vêm depois desta linha.</td></tr>
+          <tr><td><code>LIRE x</code></td><td>Lê um valor para uma variável.</td><td>Para um item de lista, informe também o posto.</td></tr>
+          <tr><td><code>x PREND_LA_VALEUR expression</code></td><td>Atribui o resultado de uma expressão.</td><td>A variável e os tipos da expressão precisam ser compatíveis.</td></tr>
+          <tr><td><code>AFFICHER x</code></td><td>Exibe uma variável.</td><td>O mesmo comando também pode mostrar uma mensagem.</td></tr>
+          <tr><td><code>FIN_ALGORITHME</code></td><td>Encerra o algoritmo.</td><td>O modo normal não permite inserir linhas após o fim.</td></tr>
+        </tbody></table></div>
+
       </section>
       <section id="dados">
         <p class="kicker">04 · dados e expressões</p>
@@ -71,6 +83,15 @@ FIN_ALGORITHME</code></pre><p>O editor estruturado ajuda a inserir cada elemento
         <p class="kicker">05 · controle</p>
         <h2>Condições, laços e execução</h2>
 <p>Os algoritmos podem escolher um caminho conforme uma condição e repetir uma sequência. O ambiente também oferece modo de execução passo a passo, que mostra como a condição e as variáveis influenciam o percurso.</p><ul><li><strong>Condição:</strong> separa o tratamento de casos diferentes.</li><li><strong>Laço contado:</strong> repete um bloco para uma faixa ou quantidade conhecida.</li><li><strong>Laço condicional:</strong> repete enquanto uma condição definida pelo exercício permanecer válida.</li><li><strong>Lista:</strong> pode ser usada em exercícios de coleta e percurso de valores.</li></ul><p>Ao montar um laço, escolha claramente a inicialização, a regra de continuidade e a atualização do estado. Na execução passo a passo, confirme que cada repetição aproxima o programa da condição de término.</p><p>O manual documenta blocos como <code>SI</code>, <code>POUR</code> e <code>TANT_QUE</code>, além de funções locais. Também descreve comandos para desenhar pontos e segmentos em um referencial e a instrução <code>PAUSE</code>, útil ao investigar uma execução. Esses recursos dependem das opções do ambiente e devem ser aprendidos com o manual da versão.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Condições e laços de AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma ou bloco</th><th scope="col">Uso documentado</th><th scope="col">Limites e observações</th></tr></thead><tbody>
+          <tr><td><code>== != &lt; &lt;= &gt; &gt;=</code></td><td>Testa igualdade, diferença e relações de ordem.</td><td>Use a forma adequada à comparação desejada.</td></tr>
+          <tr><td><code>ET</code>, <code>OU</code></td><td>Combina condições em uma expressão lógica.</td><td>O manual exemplifica intervalos e alternativas.</td></tr>
+          <tr><td><code>SI ALORS</code></td><td>Executa um bloco condicional.</td><td>O editor estruturado cria o bloco e seus limites.</td></tr>
+          <tr><td><code>TANT QUE</code></td><td>Repete enquanto a condição continuar verdadeira.</td><td>Um laço individual é limitado a 500.000 iterações.</td></tr>
+          <tr><td><code>POUR ... DE ... A ...</code></td><td>Percorre uma faixa numérica.</td><td>A variável é numérica, aumenta de 1 em 1, e o valor inicial deve ser menor ou igual ao final.</td></tr>
+        </tbody></table></div>
+        <p>O manual também limita o total de iterações do algoritmo a cinco milhões. Esses limites protegem a execução, mas não substituem uma condição correta de parada.</p>
+
       </section>
       <section id="exemplo">
         <p class="kicker">06 · exemplo guiado</p>
@@ -96,8 +117,47 @@ FIN_ALGORITHME</code></pre><p>Execute com <code>n = 0</code>, <code>n = 1</code>
         <h2>Versões e limites</h2>
 <p>AlgoBox é um ambiente com sua própria gramática e ferramentas. O editor por blocos, o modo textual, os recursos de listas e a apresentação passo a passo pertencem ao projeto AlgoBox; não são características universais de pseudocódigo.</p><p>As opções e os detalhes de instalação podem mudar entre versões. Esta página resume os conceitos descritos no site e no manual oficial; consulte a documentação vinculada para confirmar o comportamento do software que você baixou. AlgoBox segue em avaliação para o Potoo IDE.</p>
       </section>
+      <section id="editores">
+        <p class="kicker">9 · fluxo de trabalho</p>
+        <h2>Modos de edição e construção</h2>
+        <p>O manual recomenda o modo normal para quem está começando. Nele, o algoritmo aparece como uma árvore de blocos lógicos; o editor textual permite digitar diretamente as instruções. Os dois modos ajudam a praticar a mesma lógica, mas o texto precisa obedecer à gramática do AlgoBox.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Modos de edição do AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Modo ou ação</th><th scope="col">Como funciona</th></tr></thead><tbody>
+          <tr><td>Modo normal</td><td>Insira uma linha na posição desejada e escolha no painel a instrução ou o bloco que deve ocupá-la.</td></tr>
+          <tr><td>Editor de texto</td><td>Digite os comandos diretamente e confira palavras-chave, condições e atribuições no manual.</td></tr>
+          <tr><td>Editar bloco</td><td>Altere os parâmetros de uma instrução quando o botão de edição estiver disponível.</td></tr>
+          <tr><td>Remover bloco</td><td>Apagar uma condição ou repetição também remove as instruções contidas nela.</td></tr>
+        </tbody></table></div>
+        <p>No modo normal, a variável precisa ser declarada antes de ser usada. Para inserir uma instrução, posicione o cursor onde ela deve ficar e use <strong>Nova linha</strong> (atalho <code>Ctrl+Enter</code>); só então selecione o comando. Uma linha depois de <code>FIN_ALGORITHME</code> não pode ser inserida. Ao remover um bloco <code>SI</code>, <code>POUR</code> ou <code>TANT_QUE</code>, revise todo o conteúdo interno, pois ele é apagado junto.</p>
+        <p>Antes de salvar, dê um nome claro ao algoritmo e descreva brevemente sua finalidade no campo de apresentação. O menu de arquivos também permite imprimir ou exportar o código. A exportação para uma página web pode limitar recursos como a execução passo a passo, a apresentação progressiva da entrada e a interrupção manual.</p>
+      </section>
+      <section id="recursos">
+        <p class="kicker">10 · ferramentas de execução</p>
+        <h2>Listas, funções e acompanhamento</h2>
+        <p>As listas permitem armazenar e percorrer uma série de valores. Para ler ou exibir um item, o manual pede o nome da lista e seu posto; esse posto pode ser um número ou uma variável <code>NOMBRE</code>. A biblioteca documentada inclui cálculos estatísticos sobre um intervalo de posições, como média, variância, desvio-padrão, mediana, quartis, mínimo, máximo e a posição dos extremos.</p>
+        <p>Alguns cálculos têm pré-condições: os quartis documentados exigem pelo menos quatro elementos. Se uma faixa estiver vazia ou a lista não cumprir o requisito, o ambiente informa erro. Confira os índices inicial e final antes de chamar a função, e compare o resultado com um conjunto pequeno que possa ser calculado à mão.</p>
+        <p>O recurso numérico <code>F1(x)</code> permite definir a expressão de uma função a partir de <code>x</code> na interface e chamar seu valor dentro de uma atribuição ou condição. O painel de funções locais também permite criar operações reutilizáveis, declarar variáveis locais e indicar o valor devolvido. O manual ainda descreve opções gráficas para desenhar pontos e segmentos em um referencial e o comando <code>PAUSE</code> para suspender uma execução.</p>
+        <p>No modo passo a passo, a linha atual é destacada e o estado das variáveis pode ser observado após leituras, atribuições e blocos de repetição. Use esse recurso para localizar o primeiro ponto em que o valor se afasta do esperado. O ambiente limita a 500.000 as iterações de cada laço como medida de segurança; isso evita execuções sem fim, mas não substitui uma condição de parada correta.</p>
+        <p>Cálculos com números reais também podem sofrer efeitos de representação e arredondamento. Para comparar resultados decimais, escolha uma tolerância coerente com a atividade, em vez de presumir que toda igualdade matemática será reproduzida exatamente pelo computador.</p>
+        <h3>Funções matemáticas e de texto</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Funções numéricas e operações de texto de AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas documentadas</th><th scope="col">Uso e observações</th></tr></thead><tbody>
+          <tr><td>Aritmética</td><td><code>sqrt(x)</code>, <code>pow(x,n)</code>, <code>x%y</code></td><td>Raiz quadrada, potência e resto da divisão.</td></tr>
+          <tr><td>Número e arredondamento</td><td><code>Math.PI</code>, <code>floor(x)</code>, <code>round(x)</code>, <code>abs(x)</code></td><td>Constante π, parte inteira, arredondamento ao inteiro mais próximo e valor absoluto.</td></tr>
+          <tr><td>Trigonometria</td><td><code>sin(x)</code>, <code>cos(x)</code>, <code>tan(x)</code>, <code>asin(x)</code>, <code>acos(x)</code>, <code>atan(x)</code></td><td>O manual especifica argumentos trigonométricos em radianos.</td></tr>
+          <tr><td>Outras funções</td><td><code>exp(x)</code>, <code>log(x)</code>, <code>random()</code>, <code>ALGOBOX_ALEA_ENT(p,n)</code></td><td>Exponencial, logaritmo natural e valores pseudoaleatórios; a última retorna um inteiro no intervalo informado.</td></tr>
+          <tr><td>Cadeias</td><td><code>texte.substr(position, longueur)</code>, <code>texte.length</code>, <code>nombre.toString()</code></td><td>Extrai um trecho, mede o texto e converte número em cadeia. As posições de caracteres começam em zero.</td></tr>
+          <tr><td>Caracteres</td><td><code>texte.charCodeAt(position)</code>, <code>String.fromCharCode(code)</code></td><td>Consulta o código ASCII na posição indicada ou converte um código em caractere; posições começam em zero.</td></tr>
+        </tbody></table></div>
+        <h3>Operações com listas</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Operações com listas no AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma ou grupo</th><th scope="col">Resultado</th><th scope="col">Observação</th></tr></thead><tbody>
+          <tr><td><code>nomliste[rang]</code></td><td>Lê ou atualiza um item da lista.</td><td>Informe o posto; os exemplos do manual começam pelo posto 1.</td></tr>
+          <tr><td><code>ALGOBOX_SOMME</code>, <code>ALGOBOX_MOYENNE</code>, <code>ALGOBOX_VARIANCE</code>, <code>ALGOBOX_ECART_TYPE</code>, <code>ALGOBOX_MEDIANE</code></td><td>Soma, média, variância, desvio-padrão ou mediana de um intervalo.</td><td>As chamadas recebem a lista e os postos inicial e final; o resultado é numérico.</td></tr>
+          <tr><td><code>ALGOBOX_MINIMUM</code>, <code>ALGOBOX_MAXIMUM</code>, <code>ALGOBOX_POS_MINIMUM</code>, <code>ALGOBOX_POS_MAXIMUM</code></td><td>Extremos da lista e postos correspondentes.</td><td>Informe os limites da faixa analisada.</td></tr>
+          <tr><td><code>ALGOBOX_QUARTILE1</code>, <code>ALGOBOX_QUARTILE3</code> e variantes <code>_BIS</code></td><td>Quartis com duas definições documentadas.</td><td>Requerem ao menos quatro valores e a definição precisa ser escolhida conforme o exercício.</td></tr>
+        </tbody></table></div>
+
+      </section>
       <section id="fontes">
-        <p class="kicker">09 · leitura adicional</p>
+        <p class="kicker">11 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.xm1math.net/algobox/index">Site oficial do AlgoBox</a>, com informações do projeto e downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Manual oficial do AlgoBox</a>, com sintaxe e orientações de uso.</li></ul><p>O manual em francês é a fonte para consultar a gramática integral, os comandos de listas e as diferenças entre versões.</p>
       </section>

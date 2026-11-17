@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · German educational environment · under evaluation</p>
     <h1>Robot Karol</h1>
-    <p class="manual-intro">Robot Karol is a German educational environment where students program a robot on a grid. The current online project combines visual tasks, blocks, and text editing, with supporting materials and code modes. It is distinct from Karel the Robot, which has a separate reference. Robot Karol is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-intro">Robot Karol teaches algorithms through a grid robot, commands, sensors, blocks, and text editing.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -53,32 +53,97 @@ body_class: manual-page
       <section id="comandos">
         <p class="kicker">03 · actions</p>
         <h2>Commands and sensors</h2>
-<p>Basic actions change the robot’s position or orientation. Conditions inspect the surroundings so a program can respond to its scenario. In the Python course associated with the project, examples use calls on the <code>Robot</code> interface:</p><pre class="manual-code"><code>karol = Robot()
-karol.schritt()
-karol.linksDrehen()</code></pre><p>The snippet creates the robot object, takes one step, and turns left according to that material’s API. German names and exact calls depend on the selected code mode. Check the tutorial for the active version before combining commands from different environments.</p><ul><li><strong>Actions:</strong> move, turn, and interact with objects defined by a task.</li><li><strong>Conditions:</strong> check a clear path, obstacles, or objects in the current cell.</li><li><strong>Observation:</strong> inspect world state before deciding what to do next.</li></ul>
-      </section>
+<p>Basic actions change the robot’s position or orientation. Conditions inspect the surroundings so a program can respond to its scenario. In the native text mode, a sequence can use German commands:</p><pre class="manual-code"><code>Schritt
+LinksDrehen</code></pre><p>The snippet moves forward one cell and turns left. These commands also correspond to blocks in the visual editor; Python and Java modes are separate teaching materials.</p><ul><li><strong>Actions:</strong> move, turn, and interact with objects defined by a task.</li><li><strong>Conditions:</strong> check a clear path, obstacles, or objects in the current cell.</li><li><strong>Observation:</strong> inspect world state before deciding what to do next.</li></ul>
+
+<h3>Text-mode vocabulary</h3>
+<p>The project documents commands in German. They appear in its own text mode and correspond to blocks in the visual editor. The repository summarizes the main instructions as follows:</p>
+<div class="manual-table-wrap" role="region" aria-label="Robot Karol text commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Documented effect</th></tr></thead><tbody>
+<tr><td><code>Schritt</code> / <code>Schritt(anzahl)</code></td><td>Moves forward one cell or the specified number of cells.</td></tr>
+<tr><td><code>LinksDrehen</code> / <code>RechtsDrehen</code></td><td>Turns 90 degrees left or right; text mode accepts an optional count.</td></tr>
+<tr><td><code>Hinlegen</code> / <code>Hinlegen(anzahl)</code></td><td>Places one brick or the specified number in front.</td></tr>
+<tr><td><code>Aufheben</code> / <code>Aufheben(anzahl)</code></td><td>Picks up one brick or the specified number in front.</td></tr>
+<tr><td><code>MarkeSetzen</code> / <code>MarkeLöschen</code></td><td>Marks the current cell or removes its mark.</td></tr>
+<tr><td><code>Beenden</code></td><td>Stops the program at that point.</td></tr>
+</tbody></table></div>
+<p>These names belong to Robot Karol's own notation and keep their German spelling. By contrast, <code>karol.schritt()</code> is a Python call shown in the associated course. They are different syntaxes; check which code mode is active before copying an example.</p>
+
+</section>
       <section id="estruturas">
         <p class="kicker">04 · control flow</p>
         <h2>Sequence, loops, and conditions</h2>
 <p>The environment teaches programs built from sequences, repetitions, and conditional choices. Some materials include repetition a fixed number of times and repetition controlled by a sensor.</p><div class="manual-table-wrap" role="region" aria-label="Robot Karol programming structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Idea</th><th scope="col">Useful question</th></tr></thead><tbody><tr><td>Sequence</td><td>Which action should happen first?</td></tr><tr><td>Counted repetition</td><td>How many steps or turns are needed?</td></tr><tr><td>Conditional repetition</td><td>Which sensor says to continue or stop?</td></tr><tr><td>Decision</td><td>What should happen when the path is clear or blocked?</td></tr><tr><td>Procedure</td><td>Which sequence should have a name so it can be reused?</td></tr></tbody></table></div><p>Sensor-based conditions make an algorithm adaptable to related scenarios. Still, test every case specified by the exercise and ensure that a loop can finish.</p>
-      </section>
+
+<h3>Text forms for repetition and decisions</h3>
+<p>The repository documents counted repetition, condition-based repetition, continuous repetition, and one-way or two-way decisions. In text mode, dedicated words delimit each block:</p>
+<pre class="manual-code"><code>wiederhole 4 mal
+  Schritt
+endewiederhole
+
+wenn IstWand dann
+  LinksDrehen
+sonst
+  Schritt
+endewenn</code></pre>
+<p>Use counted repetition when the number of actions is known. Use a condition when the task depends on the world, such as continuing until the robot finds a wall. An infinite loop needs a clear way to stop, such as an explicit stop command or an external condition.</p>
+<h3>Sensors and decisions</h3>
+<p>Text mode includes questions about walls, bricks, marks, and the robot's orientation. Affirmative and negative forms are available, and some questions accept an expected brick count. Before combining sensors, determine whether a question refers to the current cell, the cell ahead, or an absolute direction; that distinction changes the program's decision.</p>
+
+
+<h3>Quick reference for control forms</h3>
+<div class="manual-table-wrap" role="region" aria-label="Robot Karol text control syntax" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Text form</th><th scope="col">Purpose</th><th scope="col">Note</th></tr></thead><tbody>
+<tr><td><code>wiederhole n mal … endewiederhole</code></td><td>Repeats a known number of times.</td><td>Use when the number of actions is known.</td></tr>
+<tr><td><code>wiederhole solange condition … endewiederhole</code></td><td>Repeats while the condition is true.</td><td>Check that each iteration can move the program toward an exit.</td></tr>
+<tr><td><code>wiederhole immer … endewiederhole</code></td><td>Repeats continuously.</td><td>Needs an explicit way to stop.</td></tr>
+<tr><td><code>wenn condition dann … endewenn</code></td><td>Runs actions when the condition is true.</td><td>A one-branch decision.</td></tr>
+<tr><td><code>wenn … dann … sonst … endewenn</code></td><td>Chooses between two branches.</td><td>Test both true and false outcomes.</td></tr>
+</tbody></table></div>
+<div class="manual-table-wrap" role="region" aria-label="Robot Karol text sensor queries" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Query</th><th scope="col">What it checks</th><th scope="col">Spatial reference</th></tr></thead><tbody>
+<tr><td><code>IstWand</code> / <code>NichtIstWand</code></td><td>Whether a wall is present.</td><td>In front of the robot.</td></tr>
+<tr><td><code>IstZiegel</code> / <code>NichtIstZiegel</code></td><td>Whether bricks are present; a form with a count is also available.</td><td>In front of the robot.</td></tr>
+<tr><td><code>IstMarke</code> / <code>NichtIstMarke</code></td><td>Whether a mark is present.</td><td>On the robot’s current cell.</td></tr>
+<tr><td><code>IstNorden</code>, <code>IstOsten</code>, <code>IstSüden</code>, <code>IstWesten</code>, and negative forms</td><td>The robot’s current orientation.</td><td>Absolute direction rather than relative position.</td></tr>
+</tbody></table></div>
+</section>
       <section id="editores">
         <p class="kicker">05 · editing modes</p>
         <h2>Blocks, text, and activities</h2>
 <p>The online project offers visual block editing and text editing. Blocks make loop and condition structure visible; text helps students study commands and can prepare them to move into programming languages.</p><p>The platform also organizes tasks and course material. In a lesson sequence:</p><ol><li>read the goal and inspect the world’s initial state;</li><li>write a strategy before placing blocks;</li><li>run the program and observe where the robot diverges from the goal;</li><li>change the smallest necessary part and test again.</li></ol><p>Some courses accompany the activities with Python or Java. Those modes are specific teaching materials and should not be confused with Robot Karol’s own representation.</p>
-      </section>
+
+<h3>Reusable instructions and editor flow</h3>
+<p>A custom instruction names a group of commands so it can be reused in different parts of a solution. The repository documents definitions delimited by <code>Anweisung</code> and <code>endeAnweisung</code>. This makes it easier to name operations such as crossing a corridor, building one side, or returning to the starting point.</p>
+<p>When a task contains several blocks, the block designated as the main program is the one that runs. Helper blocks remain inactive until called. In text mode, a continuous program can run without a visual block structure. The documentation also describes comments with <code>//</code> and older asterisk forms; follow the syntax used in the course material.</p>
+<p>The task editor lets a teacher create custom worlds and goals, then share them as a link or file. A useful activity states the starting position and direction, obstacles, available objects, and expected final state.</p>
+
+</section>
       <section id="exemplo">
         <p class="kicker">06 · worked example</p>
         <h2>Traverse a clear row</h2>
-<p>Suppose a task asks the robot to move along a corridor of known length. In the Python text form used by the course, the idea is to repeat a step; in the block editor, use the corresponding repetition block.</p><pre class="manual-code"><code>karol = Robot()
-for _ in range(4):
-    karol.schritt()</code></pre><p>Before running, confirm that the corridor has at least four clear cells and that the robot faces it. Then try a shorter corridor or an obstacle to see why a sensor is needed when the length is not known in advance.</p>
-      </section>
+<p>Suppose a task asks the robot to move along a corridor of known length. In the native text mode, the documented repeat form can run the forward command four times; in the block editor, use the equivalent block.</p><pre class="manual-code"><code>wiederhole 4 mal
+    Schritt
+endewiederhole</code></pre><p>Before running, confirm that the corridor has at least four clear cells and that the robot faces it. Then try a shorter corridor or an obstacle to see why a sensor is needed when the length is not known in advance.</p>
+
+<h3>Progressive exercises</h3>
+<p>Try these tasks in Robot Karol’s own text mode or with the equivalent blocks. For each stage, write down the initial state, the goal state, and a test that proves the solution before generalizing it:</p>
+<div class="manual-table-wrap" role="region" aria-label="Progressive Robot Karol exercises" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Stage</th><th scope="col">Task</th><th scope="col">Checkpoint</th></tr></thead><tbody>
+<tr><td>1 · sequence</td><td>Move along an empty corridor of fixed length.</td><td>Check the count and orientation after the last step.</td></tr>
+<tr><td>2 · repetition</td><td>Build a square from bricks or walk its four sides.</td><td>Compare position, direction, and objects with the starting state.</td></tr>
+<tr><td>3 · decision</td><td>Turn or move depending on whether a wall is ahead.</td><td>Run one clear scenario and one blocked scenario.</td></tr>
+<tr><td>4 · procedure</td><td>Name a compound action and reuse it in another part of the route.</td><td>Change one helper instruction and check all its call sites.</td></tr>
+<tr><td>5 · generalization</td><td>Repeat the task in a custom world with a different starting position.</td><td>Separate assumptions guaranteed by the prompt from those needing sensors.</td></tr>
+</tbody></table></div>
+</section>
       <section id="estrategias">
         <p class="kicker">07 · planning</p>
         <h2>Plan and debug tasks</h2>
 <p>Robot tasks are useful decomposition exercises. Name repeated actions, identify sensor-based choices, and sketch the route on a grid. Visual execution helps locate the step where orientation or position became unexpected.</p><ul><li>Test the exact initial scenario from the exercise.</li><li>Watch orientation after every turn.</li><li>Check whether sensors are relative to the robot’s current direction.</li><li>Test boundary cases, such as the shortest corridor and an obstacle immediately ahead.</li><li>If a solution uses Python or Java, check the integration semantics in the accompanying material.</li></ul><p>The goal is a sequence that works under the exercise conditions, not only in the first scenario you tried.</p>
-      </section>
+
+<h3>Test cases for a grid world</h3>
+<p>A task may appear solved in one world and fail when the distance or starting position changes. Separate the algorithm from the concrete setup: write down its assumptions and check that the task guarantees them.</p>
+<ul><li>Test the shortest valid corridor and the longest one allowed by the task.</li><li>Place a wall immediately ahead to check the sensor response.</li><li>Test both sides of every decision, including a missing mark or brick.</li><li>After a turn, confirm orientation before interpreting a directional question.</li><li>Run the task again after changing the order of a helper instruction's commands.</li></ul>
+<p>When the robot stops short of the goal, compare its state after each command: cell, orientation, and changed objects. This trace often shows whether the error is in the route, a repetition boundary, or the stopping condition.</p>
+
+</section>
       <section id="distincao">
         <p class="kicker">08 · related projects</p>
         <h2>Robot Karol and Karel the Robot</h2>

@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · French algorithm environment · under evaluation</p>
     <h1>AlgoBox</h1>
-    <p class="manual-intro">AlgoBox is a French environment for learning to build and run algorithms. Its interface guides writing through structured blocks and also offers text editing. This manual describes its language and teaching workflow according to the official site; AlgoBox is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-intro">AlgoBox combines visual and text editors for building and running algorithms.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -35,6 +35,8 @@ body_class: manual-page
         <li><a href="#exemplo">Calculate the square of a number</a></li>
         <li><a href="#estudo">How to practise</a></li>
         <li><a href="#limites">Versions and limits</a></li>
+                <li><a href="#editores">Editing modes and workflow</a></li>
+        <li><a href="#recursos">Lists, functions, and execution tracing</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -61,6 +63,16 @@ DEBUT_ALGORITHME
   carre PREND_LA_VALEUR n * n
   AFFICHER carre
 FIN_ALGORITHME</code></pre><p>The structured editor helps insert each element in the expected place. When editing text directly, check accents, reserved words, and punctuation against the manual for your version.</p>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox instruction forms" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Documented form</th><th scope="col">Purpose</th><th scope="col">Note</th></tr></thead><tbody>
+          <tr><td><code>VARIABLES</code></td><td>Starts declarations.</td><td>Declare each variable before using it.</td></tr>
+          <tr><td><code>x EST_DU_TYPE NOMBRE</code></td><td>Declares a numeric variable.</td><td>The other types are <code>CHAINE</code> and <code>LISTE</code>.</td></tr>
+          <tr><td><code>DEBUT_ALGORITHME</code></td><td>Marks the algorithm's start.</td><td>Executable instructions follow this line.</td></tr>
+          <tr><td><code>LIRE x</code></td><td>Reads a value into a variable.</td><td>For a list item, provide its rank as well.</td></tr>
+          <tr><td><code>x PREND_LA_VALEUR expression</code></td><td>Assigns the result of an expression.</td><td>The variable and expression types must be compatible.</td></tr>
+          <tr><td><code>AFFICHER x</code></td><td>Displays a variable.</td><td>The same command can display a message.</td></tr>
+          <tr><td><code>FIN_ALGORITHME</code></td><td>Ends the algorithm.</td><td>Normal mode does not allow lines after the end.</td></tr>
+        </tbody></table></div>
+
       </section>
       <section id="dados">
         <p class="kicker">04 · data and expressions</p>
@@ -71,6 +83,15 @@ FIN_ALGORITHME</code></pre><p>The structured editor helps insert each element in
         <p class="kicker">05 · control flow</p>
         <h2>Conditions, loops, and execution</h2>
 <p>Algorithms can choose a path based on a condition and repeat a sequence. The environment also provides step-by-step execution, showing how conditions and variables affect the path.</p><ul><li><strong>Condition:</strong> handles different cases separately.</li><li><strong>Counted loop:</strong> repeats a block over a known range or quantity.</li><li><strong>Conditional loop:</strong> repeats while a condition set by the exercise remains true.</li><li><strong>List:</strong> can be used in exercises that collect and traverse values.</li></ul><p>When building a loop, make the initialization, continuation rule, and state update clear. In step-by-step mode, verify that each iteration moves the program toward its stopping condition.</p><p>The manual documents blocks such as <code>SI</code>, <code>POUR</code>, and <code>TANT_QUE</code>, as well as local functions. It also describes commands for drawing points and line segments on a graph and a <code>PAUSE</code> instruction that can help investigate execution. These features depend on the environment options and should be learned from the manual for the relevant version.</p>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox conditions and loops" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form or block</th><th scope="col">Documented use</th><th scope="col">Limits and notes</th></tr></thead><tbody>
+          <tr><td><code>== != &lt; &lt;= &gt; &gt;=</code></td><td>Tests equality, inequality, and ordering.</td><td>Choose the comparison that matches the condition.</td></tr>
+          <tr><td><code>ET</code>, <code>OU</code></td><td>Combines conditions in a logical expression.</td><td>The manual shows interval and alternative checks.</td></tr>
+          <tr><td><code>SI ALORS</code></td><td>Runs a conditional block.</td><td>The structured editor creates the block and its boundaries.</td></tr>
+          <tr><td><code>TANT QUE</code></td><td>Repeats while the condition remains true.</td><td>A single loop is limited to 500,000 iterations.</td></tr>
+          <tr><td><code>POUR ... DE ... A ...</code></td><td>Traverses a numeric range.</td><td>The variable is numeric, increases by 1, and the starting value must not exceed the ending value.</td></tr>
+        </tbody></table></div>
+        <p>The manual also limits total algorithm iterations to five million. These limits protect execution, but they do not replace a correct stopping condition.</p>
+
       </section>
       <section id="exemplo">
         <p class="kicker">06 · worked example</p>
@@ -96,8 +117,47 @@ FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n =
         <h2>Versions and limits</h2>
 <p>AlgoBox is an environment with its own grammar and tools. Structured block editing, text mode, list features, and step-by-step display belong to AlgoBox; they are not universal properties of pseudocode.</p><p>Options and installation details can change between versions. This page summarizes the official site and manual; consult the linked documentation to confirm the behavior of the software you downloaded. AlgoBox remains under evaluation for Potoo IDE.</p>
       </section>
+      <section id="editores">
+        <p class="kicker">9 · workflow</p>
+        <h2>Editing modes and building an algorithm</h2>
+        <p>The manual recommends normal mode for beginners. It displays an algorithm as a tree of logical blocks; the text editor lets users type instructions directly. Both modes help practise the same logic, but text must still follow AlgoBox grammar.</p>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox editing modes" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Mode or action</th><th scope="col">How it works</th></tr></thead><tbody>
+          <tr><td>Normal mode</td><td>Insert a line at the intended position, then choose the instruction or block for that line.</td></tr>
+          <tr><td>Text editor</td><td>Type commands directly and check keywords, conditions, and assignments against the manual.</td></tr>
+          <tr><td>Edit a block</td><td>Change an instruction's parameters when the edit button is available.</td></tr>
+          <tr><td>Delete a block</td><td>Removing a condition or loop also removes the instructions nested inside it.</td></tr>
+        </tbody></table></div>
+        <p>In normal mode, declare a variable before using it. To insert an instruction, move the cursor to the desired position and choose <strong>New line</strong> (shortcut <code>Ctrl+Enter</code>); then select a command. A line cannot be inserted after <code>FIN_ALGORITHME</code>. When deleting a <code>SI</code>, <code>POUR</code>, or <code>TANT_QUE</code> block, review its whole body because the nested instructions are removed with it.</p>
+        <p>Before saving, give the algorithm a clear name and briefly describe its purpose in the presentation field. The file menu can also print or export the code. Exporting an algorithm to a web page may limit features such as step-by-step execution, progressive input display, and manual stopping.</p>
+      </section>
+      <section id="recursos">
+        <p class="kicker">10 · execution tools</p>
+        <h2>Lists, functions, and execution tracing</h2>
+        <p>Lists store and traverse a sequence of values. To read or display an item, the manual requires both the list name and its rank; the rank can be a number or a <code>NOMBRE</code> variable. The documented library includes statistical calculations over a range of ranks, such as mean, variance, standard deviation, median, quartiles, minimum, maximum, and the positions of the extremes.</p>
+        <p>Some calculations have preconditions: the documented quartile functions require at least four elements. If a range is empty or the list does not meet the requirement, the environment reports an error. Check the first and last ranks before calling a function, and compare the result against a small set that can be calculated by hand.</p>
+        <p>The numeric feature <code>F1(x)</code> lets you define a function's expression in terms of <code>x</code> in the interface and call it inside an assignment or condition. The local-functions panel also supports reusable operations, local variables, and a returned value. The manual describes graphing options for drawing points and segments in a coordinate plane, plus the <code>PAUSE</code> command to suspend execution.</p>
+        <p>In step-by-step mode, the current line is highlighted and variable values can be inspected after reads, assignments, and loop blocks. Use this to find the first point where a value differs from what you expected. The environment limits each loop to 500,000 iterations as a safety measure; this prevents unbounded runs but does not replace a correct stopping condition.</p>
+        <p>Real-number calculations can also show representation and rounding effects. When comparing decimal results, choose a tolerance suitable for the exercise instead of assuming that every mathematical equality will be represented exactly by the computer.</p>
+        <h3>Math functions and text operations</h3>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox numeric functions and text operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Documented forms</th><th scope="col">Use and notes</th></tr></thead><tbody>
+          <tr><td>Arithmetic</td><td><code>sqrt(x)</code>, <code>pow(x,n)</code>, <code>x%y</code></td><td>Square root, power, and remainder.</td></tr>
+          <tr><td>Numbers and rounding</td><td><code>Math.PI</code>, <code>floor(x)</code>, <code>round(x)</code>, <code>abs(x)</code></td><td>Pi constant, integer part, rounding to the nearest integer, and absolute value.</td></tr>
+          <tr><td>Trigonometry</td><td><code>sin(x)</code>, <code>cos(x)</code>, <code>tan(x)</code>, <code>asin(x)</code>, <code>acos(x)</code>, <code>atan(x)</code></td><td>The manual specifies angles in radians.</td></tr>
+          <tr><td>Other functions</td><td><code>exp(x)</code>, <code>log(x)</code>, <code>random()</code>, <code>ALGOBOX_ALEA_ENT(p,n)</code></td><td>Exponential, natural logarithm, and pseudo-random values; the last returns an integer in the supplied range.</td></tr>
+          <tr><td>Strings</td><td><code>text.substr(position, length)</code>, <code>text.length</code>, <code>number.toString()</code></td><td>Extracts a substring, measures text, and converts a number to a string. Character positions start at zero.</td></tr>
+          <tr><td>Characters</td><td><code>text.charCodeAt(position)</code>, <code>String.fromCharCode(code)</code></td><td>Reads an ASCII code at a position or converts a code to a character; positions start at zero.</td></tr>
+        </tbody></table></div>
+        <h3>List operations</h3>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox list operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form or group</th><th scope="col">Result</th><th scope="col">Note</th></tr></thead><tbody>
+          <tr><td><code>listname[rank]</code></td><td>Reads or updates a list item.</td><td>Provide the rank; the manual's examples start at rank 1.</td></tr>
+          <tr><td><code>ALGOBOX_SOMME</code>, <code>ALGOBOX_MOYENNE</code>, <code>ALGOBOX_VARIANCE</code>, <code>ALGOBOX_ECART_TYPE</code>, <code>ALGOBOX_MEDIANE</code></td><td>Sum, mean, variance, standard deviation, or median over a range.</td><td>Calls take the list and first and last ranks; the result is numeric.</td></tr>
+          <tr><td><code>ALGOBOX_MINIMUM</code>, <code>ALGOBOX_MAXIMUM</code>, <code>ALGOBOX_POS_MINIMUM</code>, <code>ALGOBOX_POS_MAXIMUM</code></td><td>List extremes and their ranks.</td><td>Provide the range to examine.</td></tr>
+          <tr><td><code>ALGOBOX_QUARTILE1</code>, <code>ALGOBOX_QUARTILE3</code>, and <code>_BIS</code> variants</td><td>Quartiles under two documented definitions.</td><td>Require at least four values; choose the definition specified by the exercise.</td></tr>
+        </tbody></table></div>
+
+      </section>
       <section id="fontes">
-        <p class="kicker">09 · further reading</p>
+        <p class="kicker">11 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.xm1math.net/algobox/index">Official AlgoBox website</a>, with project information and downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Official AlgoBox manual</a>, with syntax and usage guidance.</li></ul><p>The French manual is the source for the full grammar, list commands, and differences between versions.</p>
       </section>
