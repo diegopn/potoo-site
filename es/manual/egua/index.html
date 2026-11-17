@@ -19,90 +19,398 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia de lenguaje de programación · Égua</p><h1>Égua</h1>
-    <p class="manual-intro">Referencia de Égua: sintaxis en portugués, datos, funciones, objetos y bibliotecas.</p>
+    <p class="manual-intro">Guía completa de Égua 1.3.16: sintaxis, ejecución, semántica, funciones y bibliotecas.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
-    <aside class="manual-toc" aria-label="Contenido de la referencia de Égua"><h2>En esta referencia</h2><ol><li><a href="#sobre">Sobre Égua</a></li><li><a href="#estrutura">Archivo y escritura del código</a></li><li><a href="#variaveis">Variables y ámbito</a></li><li><a href="#tipos">Tipos y colecciones</a></li><li><a href="#operadores">Operadores y comparaciones</a></li><li><a href="#controle">Condiciones y repeticiones</a></li><li><a href="#funcoes">Funciones</a></li><li><a href="#objetos">Clases y objetos</a></li><li><a href="#bibliotecas">Funciones y bibliotecas</a></li><li><a href="#exemplo">Ejemplo completo</a></li><li><a href="#fontes">Documentación oficial</a></li></ol></aside>
-    <article class="manual-content">
-<section id="sobre"><p class="kicker">01 · Panorama</p><h2>Sobre Égua</h2><p>Égua es un lenguaje de programación interpretado, con palabras clave y mensajes en portugués. Su sitio oficial lo presenta como una forma accesible de practicar conceptos de programación sin depender del vocabulario en inglés; su implementación combina recursos imperativos y funcionales con orientación a objetos.</p><p>Esta página organiza la sintaxis y las funciones descritas en la documentación oficial. Es una guía de consulta, no sustituye la documentación completa del lenguaje.</p></section>
-<section id="estrutura"><p class="kicker">02 · Organización</p><h2>Archivo y escritura del código</h2><p>Un programa se compone de instrucciones y bloques entre llaves. La documentación del proyecto usa archivos <code>.egua</code>, comentarios que comienzan con <code>//</code> y punto y coma para terminar las instrucciones. La ejecución puede comenzar directamente con instrucciones en el archivo; las funciones y clases se declaran donde se necesiten.</p><pre class="manual-code"><code>// Primer programa
-var nome = "Ana";
-escreva("Hola, " + nome);</code></pre><p>Entre las palabras reservadas principales están <code>var</code>, <code>se</code>, <code>senão</code>, <code>para</code>, <code>função</code>, <code>retorna</code> y <code>classe</code>. La escritura en portugués forma parte de la sintaxis.</p></section>
-<section id="variaveis"><p class="kicker">03 · Datos</p><h2>Variables y ámbito</h2><p><code>var</code> declara una variable, con o sin valor inicial. La asignación posterior usa <code>=</code>. Las variables pueden tener ámbito global o local dentro de un bloque entre llaves; una variable externa es visible en bloques internos, pero una variable local no está disponible fuera del bloque donde se declaró.</p><pre class="manual-code"><code>var pontos = 0;
-pontos = pontos + 1;
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Égua">
+  <h2>En esta referencia</h2><ol>
+    <li><a href="#sobre">Panorama y versión</a></li>
+    <li><a href="#executar">Entornos de ejecución</a></li>
+    <li><a href="#escrita">Escritura y estructura</a></li>
+    <li><a href="#variaveis">Variables y ámbito</a></li>
+    <li><a href="#tipos">Tipos y colecciones</a></li>
+    <li><a href="#operadores">Expresiones y precedencia</a></li>
+    <li><a href="#controle">Decisiones y repeticiones</a></li>
+    <li><a href="#funcoes">Funciones y parámetros</a></li>
+    <li><a href="#objetos">Clases y objetos</a></li>
+    <li><a href="#integradas">Funciones integradas</a></li>
+    <li><a href="#bibliotecas">Bibliotecas estándar</a></li>
+    <li><a href="#programa">Programa guiado</a></li>
+    <li><a href="#depuracao">Errores y depuración</a></li>
+    <li><a href="#estudo">Ruta de estudio</a></li>
+    <li><a href="#limites">Versión y alcance</a></li>
+    <li><a href="#fontes">Fuentes oficiales y de implementación</a></li>
+  </ol>
+</aside>
+<article class="manual-content">
+<section id="sobre">
+  <p class="kicker">01 · lenguaje y referencia</p><h2>Panorama y versión</h2>
+  <p>Égua es un lenguaje interpretado cuya sintaxis y mensajes usan vocabulario en portugués. Reúne programación imperativa, funciones como valores y orientación a objetos. El intérprete oficial recorre la estructura del programa para ejecutarlo; el proyecto distribuye una interfaz de línea de comandos y una experiencia en el navegador.</p>
+  <p>Este manual reúne los temas oficiales en una referencia continua: parte de la forma de escribir un archivo, explica las reglas que afectan el resultado de las expresiones y llega a las funciones integradas, las bibliotecas y las estrategias de depuración. Los nombres acentuados forman parte del lenguaje: escriba <code>função</code>, <code>senão</code>, <code>padrão</code> y <code>aleatório</code> con la grafía indicada.</p>
+  <div class="manual-note"><strong>Base de esta edición:</strong> versión oficial 1.3.16 y documentación consultada el 17 de noviembre de 2026. La documentación web se actualiza con el tiempo; este manual identifica la versión del intérprete cuando una regla depende de su implementación.</div>
+</section>
 
-se (pontos &gt; 0) {
-  var mensagem = "Hay puntos";
-  escreva(mensagem);
-}</code></pre><p>Égua determina el tipo a partir del valor en ejecución; no se escribe un tipo junto al nombre. Usa nombres descriptivos y mantén cada variable en el ámbito más pequeño que necesite el algoritmo.</p></section>
-<section id="tipos"><p class="kicker">04 · Valores</p><h2>Tipos y colecciones</h2><p>Los valores incluyen números enteros o decimales, textos entre comillas simples o dobles, valores lógicos <code>verdadeiro</code> y <code>falso</code>, y el valor ausente <code>nulo</code>. Las listas son ordenadas y usan corchetes; los diccionarios asocian claves con valores y usan llaves.</p><div class="manual-table-wrap" role="region" aria-label="Tipos y colecciones de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Ejemplo</th><th scope="col">Observación</th></tr></thead><tbody><tr><td>Número</td><td><code>12</code>, <code>3.5</code></td><td>Entero o punto flotante.</td></tr><tr><td>Texto</td><td><code>"Hola"</code>, <code>'a'</code></td><td>Secuencia entre comillas.</td></tr><tr><td>Lógico</td><td><code>verdadeiro</code>, <code>falso</code></td><td>Se usa en condiciones.</td></tr><tr><td>Lista</td><td><code>[4, "cinco"]</code></td><td>Índices desde cero; tamaño variable.</td></tr><tr><td>Diccionario</td><td><code>{'nome': 'Ana'}</code></td><td>Acceso mediante clave.</td></tr></tbody></table></div><pre class="manual-code"><code>var notas = [8, 6.5, 9];
-var cadastro = {"nome": "Ana"};
-escreva(notas[0]);
-escreva(cadastro["nome"]);</code></pre><p>Las listas y los textos se indexan desde cero. La documentación también describe índices negativos para textos, contados desde el final; leer un índice inexistente de una lista produce un error, mientras que asignar después del final puede ampliarla y rellenar las posiciones intermedias con <code>nulo</code>.</p></section>
-<section id="operadores"><p class="kicker">05 · Expresiones</p><h2>Operadores y comparaciones</h2><div class="manual-table-wrap" role="region" aria-label="Operadores de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Operadores</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>** * / + - %</code></td><td>Potencia, cálculos y resto.</td></tr><tr><td>Comparación</td><td><code>&gt; &gt;= &lt; &lt;= == !=</code></td><td>Compara valores; la igualdad exige mismo tipo y valor.</td></tr><tr><td>Lógicos</td><td><code>e ou</code></td><td>Conjunción y disyunción.</td></tr><tr><td>Pertenencia</td><td><code>em</code></td><td>Comprueba si un valor está en una lista, texto o clave de diccionario.</td></tr><tr><td>Bit a bit</td><td><code>&lt;&lt; &gt;&gt; &amp; ^ |</code></td><td>Desplazamientos y operaciones sobre bits.</td></tr></tbody></table></div><pre class="manual-code"><code>var resultado = 2 ** 3 + 1;
-var aprovado = resultado &gt;= 8 e resultado &lt; 10;
-var tem_nota = 8 em [6, 8, 9];
-escreva(aprovado);</code></pre><p>La prioridad de los operadores determina el orden de evaluación. Usa paréntesis cuando una expresión combine varias categorías.</p></section>
-<section id="controle"><p class="kicker">06 · Flujo</p><h2>Condiciones y repeticiones</h2><p><code>se</code>, <code>senão se</code> y <code>senão</code> seleccionan un bloque. Los bucles incluyen <code>enquanto</code> y <code>para</code>; la forma de <code>para</code> se parece a un bucle con inicialización, prueba y actualización. Las condiciones usan valores lógicos.</p><pre class="manual-code"><code>var notas = [8, 5.5, 9];
+<section id="executar">
+  <p class="kicker">02 · entorno de ejecución</p><h2>Entornos de ejecución</h2>
+  <p>El mismo algoritmo puede estudiarse en un editor del navegador o ejecutarse como archivo con Node.js. El proyecto oficial indica Node.js 18 o posterior para la instalación mediante la línea de comandos.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Formas oficiales de ejecutar Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Entorno</th><th scope="col">Cómo empezar</th><th scope="col">Útil para</th></tr></thead><tbody>
+    <tr><td>Editor del navegador</td><td>Abrir la plataforma en línea y escribir en su editor.</td><td>Primer contacto, demostraciones y experimentos sin instalar el intérprete.</td></tr>
+    <tr><td>Archivo local</td><td>Instalar el paquete oficial con <code>npm i -g egua</code> y ejecutar <code>egua programa.egua</code>.</td><td>Guardar programas en archivos <code>.egua</code> y ejecutarlos desde una terminal.</td></tr>
+    <tr><td>REPL</td><td>Ejecutar <code>egua</code> sin indicar un archivo.</td><td>Probar expresiones e instrucciones pequeñas de forma interactiva.</td></tr>
+  </tbody></table></div>
+  <p>Un archivo mínimo contiene una instrucción de salida:</p>
+  <pre class="manual-code"><code>escreva("¡Hola, mundo!");</code></pre>
+  <p>El REPL mantiene una sesión interactiva, mientras que la ejecución de un archivo procesa su contenido. Para programas que deban reproducirse después, guarde el código en un archivo y anote la versión del intérprete utilizada.</p>
+</section>
+
+<section id="escrita">
+  <p class="kicker">03 · forma del código</p><h2>Escritura y estructura</h2>
+  <p>Un archivo combina declaraciones, instrucciones y bloques delimitados por llaves. La indentación no define los bloques: las llaves sí. Termine las declaraciones e instrucciones simples con punto y coma. Las expresiones de la cabecera de <code>para</code> también se separan con punto y coma.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Elementos de escritura de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Forma</th><th scope="col">Cómo se lee</th></tr></thead><tbody>
+    <tr><td>Comentario de línea</td><td><code>// nota</code></td><td>El intérprete ignora el resto de la línea.</td></tr>
+    <tr><td>Declaración</td><td><code>var total = 0;</code></td><td>Crea un nombre; la expresión inicial es opcional.</td></tr>
+    <tr><td>Asignación</td><td><code>total = total + 1;</code></td><td>Actualiza una variable o una propiedad/posición accesible.</td></tr>
+    <tr><td>Llamada</td><td><code>escreva(total);</code></td><td>Llama a una función con argumentos entre paréntesis.</td></tr>
+    <tr><td>Bloque</td><td><code>{ ... }</code></td><td>Agrupa instrucciones y crea un ámbito local.</td></tr>
+    <tr><td>Texto</td><td><code>"Olá"</code> o <code>'Olá'</code></td><td>Usa comillas simples o dobles.</td></tr>
+  </tbody></table></div>
+  <p>Los identificadores distinguen mayúsculas de minúsculas. En la versión de referencia, pueden comenzar con guion bajo, una letra latina o letras acentuadas usadas en portugués; los siguientes caracteres también pueden incluir cifras. No use una palabra reservada como nombre de variable. Los comentarios documentados usan <code>//</code>; no suponga que se acepten comentarios de bloque con la forma <code>/* ... */</code>.</p>
+  <pre class="manual-code"><code>// Mantenga separado el cálculo de la presentación.
+var raio = 3;
+var area = 3.14159 * raio ** 2;
+escreva(area);</code></pre>
+  <p><code>escreva</code> recibe una expresión y muestra su valor. Para imprimir varios elementos, use llamadas separadas o una los textos con <code>+</code>; no trate la función como una lista de argumentos de impresión.</p>
+</section>
+
+<section id="variaveis">
+  <p class="kicker">04 · estado y ámbito</p><h2>Variables y ámbito</h2>
+  <p><code>var</code> declara un nombre sin anotar su tipo. El tipo depende del valor almacenado y puede cambiar con una nueva asignación. Sin inicializador, la variable recibe <code>nulo</code>. La asignación usa <code>=</code>; la comparación de igualdad usa <code>==</code>.</p>
+  <pre class="manual-code"><code>var tentativas;          // nulo
+tentativas = 0;
+tentativas = tentativas + 1;
+escreva(tentativas);     // 1</code></pre>
+  <p>El ámbito indica dónde puede leerse un nombre. Una declaración fuera de bloques es global. Una declaración dentro de un bloque es local; los bloques internos pueden leer y modificar nombres externos. Declarar el mismo nombre en un bloque interno crea un nombre local que oculta temporalmente al externo.</p>
+  <pre class="manual-code"><code>var mensagem = "fora";
+{
+  var mensagem = "dentro";
+  escreva(mensagem); // dentro
+}
+escreva(mensagem);   // fora</code></pre>
+  <p>Las funciones también crean ámbitos. Sus parámetros son nombres locales, y una función anónima puede usar un valor disponible en el contexto donde se creó. Este cierre sobre el contexto permite crear operaciones especializadas sin pasar cada valor como argumento explícito:</p>
+  <pre class="manual-code"><code>var fator = 3;
+var multiplicar = função(valor) {
+  retorna valor * fator;
+};
+escreva(multiplicar(4)); // 12</code></pre>
+  <p>No lea una variable local en su propio inicializador. Declárela primero con un valor válido y luego actualícela. Para evitar ocultaciones accidentales, elija nombres distintos para acumuladores, parámetros y variables de bloques internos.</p>
+</section>
+
+<section id="tipos">
+  <p class="kicker">05 · valores y colecciones</p><h2>Tipos y colecciones</h2>
+  <p>Égua no exige declarar tipos. Sus valores básicos y colecciones más comunes son:</p>
+  <div class="manual-table-wrap" role="region" aria-label="Tipos de valor de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Ejemplos</th><th scope="col">Uso y detalle</th></tr></thead><tbody>
+    <tr><td>Número</td><td><code>12</code>, <code>3.5</code></td><td>Los enteros y los decimales usan el mismo tipo numérico.</td></tr>
+    <tr><td>Texto</td><td><code>"Égua"</code>, <code>'Lógica'</code></td><td>Secuencia de caracteres entre comillas simples o dobles.</td></tr>
+    <tr><td>Lógico</td><td><code>verdadeiro</code>, <code>falso</code></td><td>Valores usados directamente en condiciones.</td></tr>
+    <tr><td>Nulo</td><td><code>nulo</code></td><td>Ausencia de un valor específico; también es el valor inicial de <code>var</code> sin inicializador.</td></tr>
+    <tr><td>Lista</td><td><code>[8, "A", falso]</code></td><td>Colección ordenada y heterogénea, accesible mediante índices numéricos.</td></tr>
+    <tr><td>Diccionario</td><td><code>{"nome": "Ana"}</code></td><td>Asocia claves con valores; se lee un valor mediante su clave.</td></tr>
+  </tbody></table></div>
+  <h3>Textos, listas y diccionarios</h3>
+  <p>Los índices de textos y listas empiezan en cero. Los textos también aceptan índices negativos contados desde el final: <code>-1</code> representa el último carácter. La documentación oficial describe un error al leer una posición inexistente de una lista. Asignar más allá del final amplía la lista; las posiciones omitidas reciben <code>nulo</code>.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Acceso y modificación de colecciones de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operación</th><th scope="col">Ejemplo</th><th scope="col">Efecto</th></tr></thead><tbody>
+    <tr><td>Leer una lista</td><td><code>notas[0]</code></td><td>Obtiene el primer elemento. Un índice inexistente genera un error.</td></tr>
+    <tr><td>Reemplazar un elemento</td><td><code>notas[1] = 7;</code></td><td>Reemplaza el elemento existente en la posición 1.</td></tr>
+    <tr><td>Ampliar una lista</td><td><code>notas[3] = 9;</code></td><td>Crea posiciones hasta la 3; los huecos pasan a ser <code>nulo</code>.</td></tr>
+    <tr><td>Leer texto</td><td><code>"abc"[-1]</code></td><td>Obtiene el último carácter, <code>"c"</code>.</td></tr>
+    <tr><td>Leer un diccionario</td><td><code>aluna["nome"]</code></td><td>Obtiene el valor asociado a la clave.</td></tr>
+  </tbody></table></div>
+  <pre class="manual-code"><code>var notas = [8, 6.5];
+notas[3] = 9;
+escreva(notas); // [8, 6.5, nulo, 9]
+
+var aluna = {"nome": "Ana", "turma": 2};
+escreva(aluna["nome"]); // Ana</code></pre>
+  <p>Use listas cuando importen la posición y el orden de los elementos; use diccionarios cuando una clave describa el dato. El operador <code>em</code> comprueba si un valor pertenece a una lista, si un carácter aparece en un texto o si existe una clave en un diccionario.</p>
+</section>
+
+<section id="operadores">
+  <p class="kicker">06 · cálculo y evaluación</p><h2>Expresiones y precedencia</h2>
+  <p>Una expresión combina valores, nombres, llamadas y operadores. Los paréntesis hacen explícita la intención. La tabla resume los grupos de operadores de la versión 1.3.16; las filas superiores se evalúan antes que las inferiores.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Operadores y significados de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Regla práctica</th></tr></thead><tbody>
+    <tr><td>Aritmética</td><td><code>** * / % + -</code></td><td>Potencia, multiplicación, división, resto, suma y resta.</td></tr>
+    <tr><td>Comparación numérica</td><td><code>&gt; &gt;= &lt; &lt;=</code></td><td>Compara dos números y produce un valor lógico.</td></tr>
+    <tr><td>Igualdad</td><td><code>== !=</code></td><td>Compara tipo y valor; <code>4 == "4"</code> resulta en <code>falso</code>. En la implementación 1.3.16, las listas, los diccionarios y las instancias se comparan por identidad.</td></tr>
+    <tr><td>Lógicos</td><td><code>e ou</code></td><td>Evaluación corta: <code>e</code> omite el lado derecho si el izquierdo es falso; <code>ou</code> lo omite si el izquierdo es verdadero.</td></tr>
+    <tr><td>Pertenencia</td><td><code>em</code></td><td>Comprueba un elemento en lista/texto o una clave en diccionario.</td></tr>
+    <tr><td>Bits</td><td><code>! ~ &amp; ^ | &lt;&lt; &gt;&gt;</code></td><td><code>!</code> niega la veracidad; <code>~</code> y los demás operadores actúan sobre bits numéricos.</td></tr>
+    <tr><td>Asignación</td><td><code>=</code></td><td>Guarda un valor; la asignación se asocia de derecha a izquierda, por lo que <code>a = b = 3</code> significa <code>a = (b = 3)</code>.</td></tr>
+  </tbody></table></div>
+  <div class="manual-table-wrap" role="region" aria-label="Precedencia de operadores de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Orden</th><th scope="col">Operadores</th><th scope="col">Ejemplo de agrupación</th></tr></thead><tbody>
+    <tr><td>1 · mayor</td><td>Paréntesis, llamadas, acceso a propiedades e índices</td><td><code>objeto.metodo(x)[0]</code></td></tr>
+    <tr><td>2</td><td>Unarios <code>- ! ~</code></td><td><code>-(x)</code></td></tr>
+    <tr><td>3</td><td><code>**</code></td><td><code>2 ** 3</code></td></tr>
+    <tr><td>4</td><td><code>* / %</code></td><td><code>a * b / c</code></td></tr>
+    <tr><td>5</td><td><code>+ -</code></td><td><code>a + b - c</code></td></tr>
+    <tr><td>6–8</td><td><code>&lt;&lt; &gt;&gt;</code>, después <code>&amp;</code>, después <code>| ^</code></td><td>Desplazamientos antes de las combinaciones bit a bit.</td></tr>
+    <tr><td>9–10</td><td><code>&gt; &gt;= &lt; &lt;=</code>, después <code>== !=</code></td><td>Comparación numérica antes de igualdad.</td></tr>
+    <tr><td>11–13</td><td><code>em</code>, después <code>e</code>, después <code>ou</code></td><td>Pertenencia antes de conjunción y disyunción.</td></tr>
+    <tr><td>14 · menor</td><td><code>=</code></td><td>Asignación; se asocia de derecha a izquierda: <code>a = b = 3</code> significa <code>a = (b = 3)</code>.</td></tr>
+  </tbody></table></div>
+  <p>En la implementación etiquetada como 1.3.16, las cadenas de potencias se agrupan de izquierda a derecha: <code>2 ** 3 ** 2</code> significa <code>(2 ** 3) ** 2</code>. Use paréntesis si el ejercicio requiere otra asociación. El operador <code>+</code> acepta dos números o dos textos; mezclar un número y un texto genera un error en vez de una conversión automática. En la implementación 1.3.16, las listas, los diccionarios y las instancias se comparan por identidad. Combine pruebas relacionales separadas con <code>e</code>; no encadene comparaciones como <code>1 &lt; x &lt; 10</code>.</p>
+  <p>La veracidad también importa fuera de las comparaciones: solo <code>falso</code> y <code>nulo</code> son falsos; los números, textos, listas y diccionarios, incluso vacíos, son verdaderos. <code>e</code> y <code>ou</code> devuelven el operando seleccionado, que no necesariamente es uno de los literales lógicos. Use una comparación cuando el resultado deba ser explícitamente <code>verdadeiro</code> o <code>falso</code>.</p>
+</section>
+
+<section id="controle">
+  <p class="kicker">07 · flujo de ejecución</p><h2>Decisiones y repeticiones</h2>
+  <p>Las condiciones eligen qué bloque ejecutar; los bucles repiten un bloque; los selectores eligen entre varios casos. Las llaves delimitan los bloques, que pueden contener otros bloques.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Formas de control de flujo de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Comportamiento</th><th scope="col">Cuándo usarla</th></tr></thead><tbody>
+    <tr><td><code>se (condição) { ... }</code></td><td>Ejecuta el bloque si la condición es verdadera.</td><td>Una decisión binaria o un caso principal.</td></tr>
+    <tr><td><code>senãose (condição)</code></td><td>Prueba otra condición si fallaron las anteriores.</td><td>Clasificaciones ordenadas; esta forma reservada se escribe sin espacio.</td></tr>
+    <tr><td><code>senão { ... }</code></td><td>Se ejecuta si no se seleccionó ninguna rama anterior.</td><td>Tratar los casos restantes.</td></tr>
+    <tr><td><code>enquanto (condição) { ... }</code></td><td>Prueba antes de cada repetición; puede ejecutarse cero veces.</td><td>Repetir hasta que una condición deje de cumplirse.</td></tr>
+    <tr><td><code>para (início; teste; passo) { ... }</code></td><td>Ejecuta el inicio una vez, prueba antes del cuerpo y aplica el paso después.</td><td>Contar o recorrer con una actualización previsible.</td></tr>
+    <tr><td><code>fazer { ... } enquanto (condição)</code></td><td>Ejecuta primero el cuerpo y prueba después; se ejecuta al menos una vez.</td><td>Repetir una acción que debe ocurrir antes de la primera prueba.</td></tr>
+    <tr><td><code>pausa;</code></td><td>Termina el bucle actual o una selección <code>escolha</code>.</td><td>Salir después de encontrar un elemento.</td></tr>
+    <tr><td><code>continua;</code></td><td>Omite el resto del cuerpo y pasa a la siguiente repetición.</td><td>Omitir un elemento sin terminar el bucle.</td></tr>
+    <tr><td><code>escolha / caso / padrão</code></td><td>Compara una expresión con cada caso; <code>padrão</code> cubre la falta de coincidencia.</td><td>Elegir una acción entre alternativas discretas.</td></tr>
+    <tr><td><code>tente / pegue / senão / finalmente</code></td><td>Permite tratar un fallo, ejecutar una rama opcional de éxito y realizar un paso final.</td><td>Importaciones u operaciones que pueden fallar durante la ejecución.</td></tr>
+  </tbody></table></div>
+  <pre class="manual-code"><code>var notas = [8, 5.5, 9];
 para (var i = 0; i &lt; tamanho(notas); i = i + 1) {
   se (notas[i] &gt;= 7) {
-    escreva("Aprobado");
-  } senão se (notas[i] &gt;= 5) {
+    escreva("Aprobada");
+  } senãose (notas[i] &gt;= 5) {
     escreva("Recuperación");
   } senão {
-    escreva("No aprobado");
+    escreva("Reprobada");
   }
-}
+}</code></pre>
+  <p>Cada una de las tres partes de <code>para</code> puede omitirse por separado. Si se omite la prueba, no hay una condición de parada: el bucle continúa hasta que el cuerpo lo termine con <code>pausa</code>. Para depurarlo, anote el valor inicial, la prueba, la actualización y el número de vueltas. En <code>escolha</code>, los casos usan igualdad estricta; pueden ejecutarse varios casos si varias etiquetas tienen el mismo valor. <code>pausa</code> termina la selección; sin <code>padrão</code>, no ocurre nada cuando ningún caso coincide.</p>
+  <p>La referencia web muestra un punto y coma después de su ejemplo de <code>fazer ... enquanto</code>, pero el parser de la etiqueta 1.3.16 no consume ese terminador como parte del bucle. Hay otra diferencia ortográfica: la guía web actual escribe <code>senão se</code> con espacio, mientras que el lexer etiquetado reserva <code>senãose</code> como una sola palabra. Los ejemplos de esta edición siguen la forma aceptada por el intérprete etiquetado. No mezcle convenciones de versiones distintas.</p>
+</section>
 
-var contador = 0;
-enquanto (contador &lt; 2) {
-  escreva(contador);
-  contador = contador + 1;
-}</code></pre><p><code>verdadeiro</code> y los valores distintos de <code>falso</code> y <code>nulo</code> se evalúan como verdaderos según las reglas descritas en la documentación.</p></section>
-<section id="funcoes"><p class="kicker">07 · Reutilización</p><h2>Funciones</h2><p>Una función con nombre se declara con <code>função</code>, parámetros entre paréntesis y un bloque entre llaves. <code>retorna</code> entrega un valor al punto de llamada. Las funciones anónimas pueden almacenarse o pasarse a otras funciones, por ejemplo para transformar elementos de una lista.</p><pre class="manual-code"><code>função classificar(nota) {
-  se (nota &gt;= 7) {
-    retorna("Aprobado");
-  } senão {
-    retorna("Sigue estudiando");
-  }
+<section id="funcoes">
+  <p class="kicker">08 · composición y reutilización</p><h2>Funciones y parámetros</h2>
+  <p>Una función con nombre usa <code>função</code>, un nombre, parámetros y un bloque. Puede realizar acciones, devolver un valor con <code>retorna</code> o terminar sin valor. Se llama con paréntesis y argumentos posicionales; este ejemplo recibe dos valores y devuelve un resultado reutilizable.</p>
+  <pre class="manual-code"><code>função média(a, b) {
+  retorna (a + b) / 2;
 }
+var resultado = média(8, 10);
+escreva(resultado); // 9</code></pre>
+  <p>El retorno termina la ejecución de la función en ese punto. Si no hay una instrucción de retorno con valor, la llamada produce <code>nulo</code>. Una función anónima usa la misma palabra clave, pero puede guardarse en una variable o pasarse como argumento. Esto es útil con <code>mapear</code>, <code>filtrar</code> y <code>reduzir</code>, que reciben una función de transformación, prueba o acumulación.</p>
+  <pre class="manual-code"><code>var dobrados = mapear([1, 2, 3], função(n) {
+  retorna n * 2;
+});
+escreva(dobrados); // [2, 4, 6]</code></pre>
+  <p>La gramática de la versión 1.3.16 también admite parámetros con un valor predeterminado simple y un parámetro final precedido por <code>*</code> para reunir los argumentos restantes. Como estos detalles no aparecen en todas las guías oficiales, compruébelos en el intérprete concreto antes de usarlos en material compartido:</p>
+  <div class="manual-table-wrap" role="region" aria-label="Formas avanzadas de parámetros de la versión 1.3.16" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Ejemplo</th><th scope="col">Efecto</th></tr></thead><tbody>
+    <tr><td>Valor predeterminado</td><td><code>função saudar(nome = "visitante") { ... }</code></td><td>Usa el valor indicado cuando no se proporciona un argumento.</td></tr>
+    <tr><td>Argumentos restantes</td><td><code>função somar(*valores) { ... }</code></td><td>Agrupa los argumentos restantes en una lista en el parámetro final.</td></tr>
+  </tbody></table></div>
+  <p>Para que las llamadas sean fáciles de revisar, use pocos parámetros, elija nombres que expliquen cada argumento y devuelva valores que puedan probarse por separado. Una función de cálculo no necesita también imprimir: separar el cálculo de la presentación permite reutilizar el resultado.</p>
+</section>
 
-var resultado = classificar(8);
-escreva(resultado);</code></pre><p>Los parámetros se separan con comas. Una función puede devolver listas, textos, números u otros valores; las funciones integradas <code>mapear</code>, <code>filtrar</code> y <code>para_cada</code> reciben funciones como argumento.</p></section>
-<section id="objetos"><p class="kicker">08 · Modelado</p><h2>Clases y objetos</h2><p><code>classe</code> declara una estructura con métodos. Crear una instancia llama el nombre de la clase con paréntesis; los métodos se llaman desde la instancia con punto. El método especial <code>construtor</code> se ejecuta al crearla y <code>isto</code> hace referencia a la instancia actual. La documentación también presenta herencia con <code>herda</code> y acceso a la implementación padre con <code>super</code>.</p><pre class="manual-code"><code>classe Contador {
-  construtor(valor) {
-    isto.valor = valor;
+<section id="objetos">
+  <p class="kicker">09 · orientación a objetos</p><h2>Clases y objetos</h2>
+  <p><code>classe</code> describe métodos y puede heredar de una clase base con <code>herda</code>. Llamar al nombre de la clase crea una instancia. Los métodos se declaran dentro de las llaves sin escribir <code>função</code>; el método <code>construtor</code> recibe los argumentos usados al crearla. Dentro de un método, <code>isto</code> se refiere a la instancia actual.</p>
+  <pre class="manual-code"><code>classe Contador {
+  construtor(valor_inicial) {
+    isto.valor = valor_inicial;
   }
-  avancar() {
+
+  avançar() {
     isto.valor = isto.valor + 1;
     retorna isto.valor;
   }
 }
 
 var contador = Contador(2);
-escreva(contador.avancar());</code></pre><p>Usa clases para agrupar datos y comportamientos relacionados; para transformaciones breves, una función sencilla suele bastar.</p></section>
-<section id="bibliotecas"><p class="kicker">09 · Recursos integrados</p><h2>Funciones y bibliotecas</h2><p><code>escreva</code> muestra valores. Entre las funciones integradas documentadas están <code>aleatório</code>, <code>aleatório_entre</code>, <code>inteiro</code>, <code>real</code>, <code>tamanho</code>, <code>para_cada</code>, <code>mapear</code>, <code>filtrar</code> y <code>ordenar</code>. Consulta las páginas oficiales para la lista completa y las reglas de cada función.</p><p>Las bibliotecas estándar se cargan explícitamente con <code>importar(...)</code>. La documentación oficial presenta bibliotecas para matemáticas, textos, tiempo y solicitudes HTTP.</p><pre class="manual-code"><code>var tempo = importar("tempo");
-escreva(tempo.agora());
+escreva(contador.avançar()); // 3</code></pre>
+  <p>Una propiedad se puede leer o actualizar con un punto, como <code>contador.valor</code>. La herencia reutiliza métodos; <code>super</code> accede a un método definido en la clase padre:</p>
+  <pre class="manual-code"><code>classe Animal {
+  apresentar() {
+    retorna "animal";
+  }
+}
 
-var dobro = mapear([1, 2, 3], função(valor) {
-  retorna valor * 2;
-});
-escreva(dobro);</code></pre></section>
-<section id="exemplo"><p class="kicker">10 · Aplicación</p><h2>Ejemplo completo</h2><p>Este programa clasifica una lista de resultados y muestra cuántos elementos alcanzaron el promedio esperado.</p><pre class="manual-code"><code>função aprovado(nota) {
+classe Cachorro herda Animal {
+  apresentar() {
+    retorna super.apresentar() + " doméstico";
+  }
+}
+
+var bicho = Cachorro();
+escreva(bicho.apresentar());</code></pre>
+  <p>Use una clase cuando varias instancias deban mantener estados independientes y operaciones relacionadas. Si el problema solo transforma una entrada en una salida, una función suele mostrar la dependencia con mayor claridad. La documentación no define palabras clave de visibilidad como <code>público</code> o <code>privado</code>; no atribuya a las propiedades reglas de encapsulamiento que el lenguaje no documenta.</p>
+</section>
+
+<section id="integradas">
+  <p class="kicker">10 · catálogo de referencia</p><h2>Funciones integradas</h2>
+  <p>Las funciones de esta tabla están disponibles sin <code>importar</code>. La grafía acentuada es significativa. Los nombres de parámetros explican la forma esperada; no se escriben en una llamada.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Catálogo de funciones integradas de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Función</th><th scope="col">Resultado</th><th scope="col">Detalle importante</th></tr></thead><tbody>
+    <tr><td><code>escreva(valor)</code></td><td>Muestra un valor.</td><td>Recibe una expresión por llamada.</td></tr>
+    <tr><td><code>aleatório()</code></td><td>Número en [0, 1).</td><td>Útil en simulaciones; la documentación no promete una secuencia reproducible.</td></tr>
+    <tr><td><code>aleatório_entre(mínimo, máximo)</code></td><td>Número a partir del mínimo.</td><td>Mínimo incluido; máximo excluido.</td></tr>
+    <tr><td><code>inteiro(valor)</code>, <code>real(valor)</code></td><td>Conversión numérica.</td><td>El texto de entrada debe representar un número y no contener letras.</td></tr>
+    <tr><td><code>texto(valor)</code></td><td>Representación textual.</td><td>Documentada para números, valores lógicos, <code>nulo</code> y diccionarios.</td></tr>
+    <tr><td><code>tamanho(texto_ou_lista)</code></td><td>Cantidad de caracteres o elementos.</td><td>El catálogo oficial describe textos y listas.</td></tr>
+    <tr><td><code>para_cada(lista, função)</code></td><td>No devuelve ningún valor.</td><td>Ejecuta una acción para cada elemento.</td></tr>
+    <tr><td><code>mapear(lista, função)</code></td><td>Una nueva lista transformada.</td><td>Llama a la función una vez por elemento.</td></tr>
+    <tr><td><code>filtrar(lista, função)</code></td><td>Una nueva lista de elementos aceptados.</td><td>Conserva los elementos cuya prueba devuelve un valor verdadero.</td></tr>
+    <tr><td><code>reduzir(lista, função, inicial)</code></td><td>Un valor acumulado.</td><td>El valor inicial es opcional; proporciónelo para definir el comportamiento ante listas vacías.</td></tr>
+    <tr><td><code>encontrar(lista, função)</code></td><td>Primer elemento que cumple la prueba.</td><td>Devuelve <code>nulo</code> si no hay coincidencias.</td></tr>
+    <tr><td><code>encontrar_índice(lista, função)</code></td><td>Índice de la primera coincidencia.</td><td>Devuelve <code>-1</code> si no hay coincidencias.</td></tr>
+    <tr><td><code>encontrar_último(lista, função)</code></td><td>Último elemento que cumple la prueba.</td><td>Devuelve <code>nulo</code> si no hay coincidencias.</td></tr>
+    <tr><td><code>encontrar_último_índice(lista, função)</code></td><td>Índice de la última coincidencia.</td><td>Devuelve <code>-1</code> si no hay coincidencias.</td></tr>
+    <tr><td><code>incluído(lista, valor)</code></td><td><code>verdadeiro</code> o <code>falso</code>.</td><td>Compara tipo y valor.</td></tr>
+    <tr><td><code>algum(lista, função)</code>, <code>todos(lista, função)</code></td><td>Un valor lógico.</td><td>Comprueba si al menos un elemento o todos cumplen la función.</td></tr>
+    <tr><td><code>ordenar(lista)</code></td><td>La lista ordenada.</td><td>Modifica la lista recibida y devuelve esa misma lista; acepta listas.</td></tr>
+  </tbody></table></div>
+  <p>Elija la operación según el resultado que necesite: <code>para_cada</code> ejecuta una acción, <code>mapear</code> transforma cada elemento, <code>filtrar</code> selecciona elementos y <code>reduzir</code> condensa una secuencia en un total. Elegir por efecto hace el código más legible que usar un bucle con variables auxiliares para todos los casos.</p>
+</section>
+
+<section id="bibliotecas">
+  <p class="kicker">11 · módulos estándar</p><h2>Bibliotecas estándar</h2>
+  <p>Las bibliotecas no se cargan automáticamente. <code>importar("nombre")</code> devuelve un módulo cuyos miembros se acceden con un punto. Estos nombres aparecen en la documentación de Égua 1.3.16; <code>matemática</code> y <code>requisição</code> llevan acento.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Bibliotecas estándar de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Biblioteca</th><th scope="col">Familias de recursos</th><th scope="col">Ejemplos de funciones</th></tr></thead><tbody>
+    <tr><td><code>matemática</code></td><td>Ángulos, trigonometría, potencias, estadística y cinemática.</td><td><code>raizq</code>, <code>média</code>, <code>mediana</code>, <code>velocidade_média</code>.</td></tr>
+    <tr><td><code>textos</code></td><td>Búsqueda, transformación, división, recorte y relleno.</td><td><code>maiúsculo</code>, <code>dividir</code>, <code>substituir_tudo</code>, <code>fatiar</code>.</td></tr>
+    <tr><td><code>tempo</code></td><td>Reloj del sistema, fechas, intervalos y pausa.</td><td><code>agora</code>, <code>texto_para_data</code>, <code>diferença</code>, <code>pausa</code>.</td></tr>
+    <tr><td><code>requisição</code></td><td>Llamadas HTTP a servicios web.</td><td><code>obter</code>, <code>enviar</code>, <code>atualizar</code>, <code>excluir</code>.</td></tr>
+  </tbody></table></div>
+  <h3>Firmas de las bibliotecas</h3>
+  <p>Las firmas siguientes reúnen las operaciones descritas en las páginas oficiales. Los argumentos entre corchetes son opcionales. Los nombres de la API se mantienen en portugués porque su grafía forma parte de la interfaz.</p>
+  <h4>Biblioteca <code>matemática</code></h4>
+  <div class="manual-table-wrap" role="region" aria-label="Firmas de la biblioteca matemática de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Familia</th><th scope="col">Firmas</th><th scope="col">Resultado y observaciones</th></tr></thead><tbody>
+    <tr><td>Ángulos</td><td><code>graus(radianos)</code>, <code>radiano(graus)</code>, <code>pi</code></td><td>Convierte radianes a grados y grados a radianes; <code>pi</code> es la constante π.</td></tr>
+    <tr><td>Trigonometría</td><td><code>sen(x)</code>, <code>cos(x)</code>, <code>tan(x)</code>, <code>arc_sen(x)</code>, <code>arcos(x)</code>, <code>arc_tan(x)</code></td><td>Seno, coseno, tangente y funciones inversas; las funciones trigonométricas usan radianes.</td></tr>
+    <tr><td>Trigonometría hiperbólica</td><td><code>sen_hiperbolico(x)</code>, <code>cos_hiperbolico(x)</code>, <code>tan_hiperbolico(x)</code></td><td>Calcula seno, coseno y tangente hiperbólicos.</td></tr>
+    <tr><td>Potencias y logaritmos</td><td><code>exp(x)</code>, <code>log(x)</code>, <code>log_base2(x)</code>, <code>log_base10(x)</code>, <code>potência(base, expoente)</code>, <code>raizq(x)</code>, <code>raiz_cubica(x)</code></td><td>Exponencial, logaritmos, potencias y raíces.</td></tr>
+    <tr><td>Redondeo</td><td><code>arredondar(x)</code>, <code>teto(x)</code>, <code>min_aprox(x)</code></td><td>Redondea al entero más próximo, al menor entero mayor o igual y al mayor entero menor o igual.</td></tr>
+    <tr><td>Signo y enteros</td><td><code>absoluto(x)</code>, <code>sinal(x)</code>, <code>fatorial(n)</code>, <code>eh_par(n)</code>, <code>eh_impar(n)</code></td><td>Valor absoluto; signo −1/0/1; factorial y pruebas de paridad. El factorial requiere un entero no negativo.</td></tr>
+    <tr><td>Ecuaciones</td><td><code>fun1R(a, b)</code>, <code>fun2R(a, b, c)</code></td><td>Resuelve <code>a*x+b=0</code> y <code>a*x²+b*x+c=0</code>; la segunda devuelve raíces reales y señala un error si no existen.</td></tr>
+    <tr><td>Aproximación y puntos</td><td><code>aprox(valor_o_lista, casas=2)</code>, <code>gerar_pontos_abscissa(distancia, centro, cantidad=7)</code>, <code>pontos_espaçados(inicio, fim, cantidad)</code></td><td>Redondea números/listas y genera secuencias equidistantes; <code>pontos_espaçados</code> incluye ambos extremos.</td></tr>
+    <tr><td>Estadística descriptiva</td><td><code>mediana(lista)</code>, <code>moda(lista)</code>, <code>número_ocorrências(lista, valor)</code>, <code>max(lista)</code>, <code>min(lista)</code>, <code>média(lista)</code></td><td>Calcula el valor central, los valores más frecuentes, las ocurrencias, los extremos y la media aritmética.</td></tr>
+    <tr><td>Agregación numérica</td><td><code>somatorio(lista)</code>, <code>produto(lista)</code></td><td>Suma o multiplica todos los elementos; la documentación requiere al menos un número en la lista.</td></tr>
+    <tr><td>Cinemática</td><td><code>velocidade_média(distancia, tempo)</code>, <code>delta_s(posição_inicial, posição_final)</code>, <code>delta_t(tempo_inicial, tempo_final)</code>, <code>aceleração(velocidade_final, velocidade_inicial, tempo_final, tempo_inicial)</code></td><td>Calcula velocidad media, cambios de posición/tiempo y aceleración media a partir de los valores y unidades proporcionados.</td></tr>
+    <tr><td>Movimiento</td><td><code>mrufh(posição_inicial, velocidade, duração)</code>, <code>mruv(velocidade_inicial, duração, aceleração)</code></td><td>Genera valores de movimiento uniforme y uniformemente acelerado en los instantes definidos por la biblioteca.</td></tr>
+  </tbody></table></div>
+  <h4>Biblioteca <code>textos</code></h4>
+  <div class="manual-table-wrap" role="region" aria-label="Firmas de la biblioteca textos de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Firma o constante</th><th scope="col">Resultado y observaciones</th></tr></thead><tbody>
+    <tr><td><code>letras_minúsculas</code>, <code>letras_maiúsculas</code>, <code>letras</code>, <code>dígitos</code>, <code>pontuações</code></td><td>Conjuntos publicados de letras latinas, cifras y signos de puntuación comunes.</td></tr>
+    <tr><td><code>maiúsculo(texto)</code>, <code>minúsculo(texto)</code></td><td>Cambia las mayúsculas y minúsculas del texto.</td></tr>
+    <tr><td><code>contém(texto, trecho)</code>, <code>começa_com(texto, prefixo)</code>, <code>termina_com(texto, sufixo)</code></td><td>Pruebas lógicas de presencia, prefijo y sufijo.</td></tr>
+    <tr><td><code>formate(texto, ...valores)</code></td><td>Sustituye cada marcador <code>{}</code> por el argumento correspondiente, en orden.</td></tr>
+    <tr><td><code>dividir(texto, separador, limite)</code></td><td>Devuelve una lista de partes; el límite es opcional.</td></tr>
+    <tr><td><code>tamanho(texto)</code>, <code>repita(texto, quantidade)</code></td><td>Devuelve la longitud o repite el texto.</td></tr>
+    <tr><td><code>substituir(texto, busca, novo)</code>, <code>substituir_tudo(texto, busca, novo)</code></td><td>Sustituye la primera aparición o todas; la búsqueda es literal.</td></tr>
+    <tr><td><code>busca(texto, trecho)</code></td><td>Índice de la primera aparición o <code>-1</code>; búsqueda literal, no expresión regular.</td></tr>
+    <tr><td><code>aparar(texto)</code></td><td>Elimina espacios en blanco del principio y del final.</td></tr>
+    <tr><td><code>caractere_em(texto, posição)</code>, <code>código_em(texto, posição)</code></td><td>Obtiene el carácter o el código Unicode en la posición, contando desde cero.</td></tr>
+    <tr><td><code>fatiar(texto, início, fim)</code></td><td>Extrae un rango; el límite final es opcional.</td></tr>
+    <tr><td><code>preencha_início(texto, tamanho, preenchimento=" ")</code>, <code>preencha_fim(texto, tamanho, preenchimento=" ")</code></td><td>Añade relleno al inicio o al final hasta alcanzar la longitud solicitada.</td></tr>
+  </tbody></table></div>
+  <h4>Bibliotecas <code>tempo</code> y <code>requisição</code></h4>
+  <div class="manual-table-wrap" role="region" aria-label="Firmas de las bibliotecas tempo y requisição de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Firma</th><th scope="col">Resultado y precaución</th></tr></thead><tbody>
+    <tr><td><code>tempo.agora()</code>, <code>tempo.segundos()</code>, <code>tempo.minutos()</code>, <code>tempo.horas()</code></td><td>Fecha/hora actual o un componente del reloj del sistema.</td></tr>
+    <tr><td><code>tempo.dia()</code>, <code>tempo.mes()</code>, <code>tempo.ano()</code>, <code>tempo.dia_da_semana()</code></td><td>Componentes de la fecha local y nombre del día de la semana.</td></tr>
+    <tr><td><code>tempo.texto_para_data("DD/MM/AAAA")</code>, <code>tempo.formate_data(data, formato)</code></td><td>Convierte texto en fecha o formatea campos con <code>DD</code>, <code>MM</code> y <code>AAAA</code>; una fecha imposible genera un error.</td></tr>
+    <tr><td><code>tempo.diferença(data1, data2)</code>, <code>tempo.pausa(milissegundos)</code></td><td>Diferencia absoluta en días enteros y una pausa no negativa.</td></tr>
+    <tr><td><code>requisição.obter(url)</code>, <code>requisição.excluir(url)</code></td><td>GET y DELETE; devuelven el cuerpo de la respuesta.</td></tr>
+    <tr><td><code>requisição.enviar(url, dados)</code>, <code>requisição.atualizar(url, dados)</code></td><td>POST y PUT; <code>dados</code> puede ser un diccionario o texto.</td></tr>
+  </tbody></table></div>
+  <p>Las llamadas HTTP son síncronas y pueden esperar hasta 30 segundos. La documentación indica que los errores de red, las URL no válidas y las respuestas 4xx/5xx producen un fallo; no se documenta la configuración de cabeceras personalizadas. Evite esas llamadas en bucles largos. En la biblioteca de tiempo, use el formato explícito y pruebe fechas límite, como el último día del mes.</p>
+  <pre class="manual-code"><code>var matemática = importar("matemática");
+var notas = [6, 8, 10];
+escreva(matemática.média(notas)); // 8</code></pre>
+  <p>Importar una biblioteca hace explícita la dependencia del programa. Impórtela una vez y reutilice el módulo, en lugar de llamar a <code>importar</code> en cada repetición.</p>
+</section>
+
+<section id="programa">
+  <p class="kicker">12 · ejemplo desarrollado</p><h2>Programa guiado: clasificar y resumir calificaciones</h2>
+  <p>Este ejemplo combina una función con nombre, un filtro, una reducción, una condición y conversión a texto. Antes de ejecutarlo, identifique los datos de entrada, la regla de aprobación y el caso en que la lista filtrada queda vacía.</p>
+  <pre class="manual-code"><code>função aprovado(nota) {
   retorna nota &gt;= 7;
 }
 
-var notas = [8, 5.5, 9, 6];
-var aprovadas = filtrar(notas, função(nota) {
-  retorna aprovado(nota);
-});
+var notas = [8, 6, 9.5, 7, 5];
+var aprovadas = filtrar(notas, aprovado);
+var soma = reduzir(aprovadas, função(total, nota) {
+  retorna total + nota;
+}, 0);
 
-escreva("Notas: ", notas);
-escreva("Aprobadas: ", aprovadas);
-escreva("Cantidad: ", tamanho(aprovadas));</code></pre></section>
-<section id="fontes"><p class="kicker">11 · Fuentes</p><h2>Documentación oficial</h2><ul><li><a href="https://egua.dev/">Sitio oficial del lenguaje Égua</a> y <a href="https://github.com/eguadev/egua">repositorio del proyecto</a>.</li><li>Guías oficiales: <a href="https://egua.dev/egua/variaveis">variables</a>, <a href="https://egua.dev/egua/tipos-dados">tipos de datos</a>, <a href="https://egua.dev/egua/operadores">operadores</a>, <a href="https://egua.dev/egua/fluxo-controle">flujo de control</a>, <a href="https://egua.dev/egua/funcao">funciones</a>, <a href="https://egua.dev/egua/classes">clases</a>, <a href="https://egua.dev/egua/funcoes-integradas">funciones integradas</a> y <a href="https://egua.dev/egua/bibliotecas">bibliotecas</a>.</li></ul></section>
-    </article>
+escreva("Cantidad de calificaciones:");
+escreva(tamanho(notas));
+escreva("Aprobadas:");
+escreva(aprovadas);
+
+se (tamanho(aprovadas) &gt; 0) {
+  var média = soma / tamanho(aprovadas);
+  escreva("Promedio de las aprobadas:");
+  escreva(média);
+} senão {
+  escreva("Ninguna calificación alcanzó el mínimo.");
+}</code></pre>
+  <p>El acumulador de <code>reduzir</code> empieza en cero y suma cada calificación aprobada al total anterior. Con esta entrada, el filtro devuelve <code>[8, 9.5, 7]</code>, el acumulador termina en <code>24.5</code> y el promedio es aproximadamente <code>8.17</code>.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Seguimiento del programa de calificaciones" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Valor observado</th><th scope="col">Por qué importa</th></tr></thead><tbody>
+    <tr><td>Entrada</td><td><code>[8, 6, 9.5, 7, 5]</code></td><td>Lista original, preservada por el filtro.</td></tr>
+    <tr><td>Predicado <code>aprovado</code></td><td><code>verdadeiro</code> para 8, 9.5 y 7</td><td>La regla se concentra en un lugar.</td></tr>
+    <tr><td>Resultado de <code>filtrar</code></td><td><code>[8, 9.5, 7]</code></td><td>Elementos para los que la función devuelve verdadero.</td></tr>
+    <tr><td>Reducción</td><td><code>0 → 8 → 17.5 → 24.5</code></td><td>Muestra cómo cada elemento modifica el acumulador.</td></tr>
+    <tr><td>Resultado</td><td><code>24.5 / 3 ≈ 8.17</code></td><td>La división solo ocurre si hay al menos una aprobación.</td></tr>
+  </tbody></table></div>
+  <p>Amplíe el ejercicio contando las notas inferiores a 7 con otro filtro, buscando la nota más alta con la biblioteca matemática o reemplazando la lista de entrada. Pruebe también <code>[]</code>: debe ejecutarse la rama alternativa sin intentar dividir entre cero.</p>
+</section>
+
+<section id="depuracao">
+  <p class="kicker">13 · lectura de fallos</p><h2>Errores y depuración</h2>
+  <p>Separe los errores de escritura, de resolución de nombres y de ejecución. El mensaje suele indicar el token o la línea más cercana al problema; la causa puede estar en la instrucción anterior, por ejemplo, una llave o un punto y coma ausente.</p>
+  <div class="manual-table-wrap" role="region" aria-label="Diagnóstico de errores comunes en Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Síntoma</th><th scope="col">Qué revisar</th><th scope="col">Ajuste típico</th></tr></thead><tbody>
+    <tr><td>Se esperaba <code>;</code> o <code>}</code></td><td>El final de la declaración y la apertura/cierre del bloque anterior.</td><td>Termine cada instrucción simple y compruebe los pares de llaves.</td></tr>
+    <tr><td>Nombre no reconocido</td><td>Grafía, acentos y ámbito de la variable.</td><td>Declare antes de usar; confirme <code>matemática</code> y otros nombres acentuados.</td></tr>
+    <tr><td>No se puede leer una variable en su inicializador</td><td>Una declaración como <code>var x = x;</code>.</td><td>Inicialice a partir de otro valor o asigne después de declarar.</td></tr>
+    <tr><td><code>+</code> falla durante la ejecución</td><td>Un lado es numérico y el otro textual, o los tipos son incompatibles.</td><td>Convierta explícitamente con <code>texto</code>/<code>real</code>/<code>inteiro</code> cuando corresponda.</td></tr>
+    <tr><td>El índice de una lista genera un error</td><td>Lista vacía, límite superior y cálculo del índice.</td><td>Compruebe <code>tamanho(lista)</code> y pruebe la primera y última posición.</td></tr>
+    <tr><td><code>pausa</code> o <code>continua</code> fuera de un bucle</td><td>¿El bloque está dentro de <code>enquanto</code>, <code>para</code> o <code>fazer</code>?</td><td>Mueva el control al cuerpo del bucle correspondiente.</td></tr>
+    <tr><td>Falla una importación o llamada HTTP</td><td>Nombre del módulo, acentos, URL, red y estado de respuesta.</td><td>Confirme el módulo y trate fallos de red con <code>pegue</code>.</td></tr>
+  </tbody></table></div>
+  <ol><li>Reduzca el programa hasta la secuencia mínima que todavía reproduce el problema.</li><li>Muestre valores intermedios con <code>escreva</code>, una expresión por llamada.</li><li>Pruebe los límites: lista vacía, un elemento, primer/último índice y las dos ramas de una condición.</li><li>Cambie una regla por vez y repita la misma entrada para identificar qué cambio corrigió el resultado.</li><li>Anote la versión del intérprete, el archivo y la entrada; esto ayuda a detectar diferencias entre versiones.</li></ol>
+</section>
+
+<section id="estudo">
+  <p class="kicker">14 · práctica guiada</p><h2>Ruta de estudio</h2>
+  <p>Una secuencia breve que reutiliza las mismas ideas en problemas progresivamente mayores:</p>
+  <ol>
+    <li><strong>Salida y expresiones:</strong> calcule el área y el perímetro de un círculo. Compruebe la precedencia de la multiplicación y la potencia con un cálculo manual.</li>
+    <li><strong>Decisiones:</strong> clasifique una calificación en tres rangos. Pruebe valores inferiores a 5, entre 5 y 7, y desde 7 para cubrir cada rama.</li>
+    <li><strong>Repetición:</strong> recorra una lista por índice. Anote el valor de <code>i</code>, la condición de parada y el número de vueltas.</li>
+    <li><strong>Funciones:</strong> extraiga la regla de aprobación en una función que devuelva un valor lógico. Pruébela por separado antes de aplicarla a la lista.</li>
+    <li><strong>Programación funcional:</strong> filtre y calcule el promedio de la lista con las funciones integradas; trate explícitamente una lista vacía.</li>
+    <li><strong>Objetos y módulos:</strong> cree una clase para un estado que cambia con el tiempo e importe solo la biblioteca necesaria para el ejercicio.</li>
+  </ol>
+  <p>En cada etapa, escriba también un caso que deba fallar o tomar otra rama. Explicar el valor esperado antes de ejecutar es una forma sencilla de comprobar si el algoritmo representa el problema.</p>
+</section>
+
+<section id="limites">
+  <p class="kicker">15 · alcance de compatibilidad</p><h2>Versión y alcance de esta referencia</h2>
+  <p>Égua evoluciona junto con su intérprete. El manual oficial, la aplicación del navegador, el paquete publicado y las implementaciones independientes pueden no exponer exactamente el mismo conjunto de funciones. Esta página describe el lenguaje oficial tomando la versión 1.3.16 como referencia e identifica detalles encontrados en el código de esa versión cuando la guía web es breve.</p>
+  <p>En particular, el catálogo de funciones y bibliotecas sigue las páginas oficiales; los detalles de precedencia, parámetros opcionales y terminadores de bucles también se comprobaron en el parser y el intérprete etiquetados como 1.3.16. Una implementación que solo cubra parte del lenguaje puede no reconocer listas, clases, excepciones, importaciones o bibliotecas descritas aquí. Consulte la tabla de compatibilidad del entorno que ejecutará el programa antes de reutilizar los ejemplos.</p>
+</section>
+
+<section id="fontes">
+  <p class="kicker">16 · consulta y verificación</p><h2>Fuentes oficiales y de implementación</h2>
+  <ul>
+    <li><a href="https://egua.dev/">Portal oficial de Égua</a> y <a href="https://github.com/eguadev/egua">repositorio del proyecto</a>.</li>
+    <li>Guías oficiales: <a href="https://egua.dev/egua/variaveis">variables</a>, <a href="https://egua.dev/egua/tipos-dados">tipos</a>, <a href="https://egua.dev/egua/operadores">operadores</a>, <a href="https://egua.dev/egua/fluxo-controle">control de flujo</a>, <a href="https://egua.dev/egua/funcao">funciones</a>, <a href="https://egua.dev/egua/classes">clases</a>, <a href="https://egua.dev/egua/funcoes-integradas">funciones integradas</a> y <a href="https://egua.dev/egua/bibliotecas">bibliotecas</a>.</li>
+    <li>Referencias de módulos: <a href="https://egua.dev/egua/biblioteca-matematica">matemática</a>, <a href="https://egua.dev/egua/biblioteca-textos">textos</a>, <a href="https://egua.dev/egua/biblioteca-tempo">tiempo</a> y <a href="https://egua.dev/egua/biblioteca-requisicao">solicitudes HTTP</a>.</li>
+    <li>Implementación oficial, etiqueta <a href="https://github.com/eguadev/egua/tree/v1.3.16">v1.3.16</a>: <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/lexer.js">reglas léxicas</a>, <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/parser.js">gramática y precedencia</a> y <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/interpreter.js">evaluación y ejecución</a>.</li>
+    <li><a href="https://github.com/eguadev/egua/blob/main/README.md">README oficial</a>, con la instalación de la CLI y los modos de ejecución. Compruebe la versión del paquete en la distribución utilizada.</li>
+  </ul>
+  <p>Cuando una guía web y una implementación difieran, pruebe con la versión nombrada en el material didáctico y conserve la fuente del comportamiento en que se basa.</p>
+</section>
+</article>
   </div><section class="wrap manual-cta"><div><h2>Volver al manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

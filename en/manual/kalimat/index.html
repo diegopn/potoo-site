@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#sintaxe">Finding the grammar</a></li>
         <li><a href="#estudo">A learning path</a></li>
         <li><a href="#escopo">What this reference covers</a></li>
+        <li><a href="#referencia-ampliada">Expanded reference</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -138,6 +139,28 @@ body_class: manual-page
         <h2>What this reference covers</h2>
 <p>The features described here—Arabic-language programming, object orientation, a CSP model, 2D graphics, and C interoperability—are those advertised by the official project consulted. This page does not attempt to fix every syntax detail or claim compatibility between versions.</p><p>The official distribution includes rules and examples that should be used to verify the grammar and runtime. Kalimat remains under evaluation for Potoo IDE; nothing on this page should be read as an implemented integration.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Project and package reference</p><h2>Features and version-specific choices</h2>
+<p>The official page consulted advertises a distribution dated May 3, 2025. Its getting-started guide says the archive contains <code>kalimat.exe</code>, two rule PDFs—one concise and one detailed—and folders of simple and complete examples. That distribution is the best source for checking grammar and calls because the public site describes features but does not publish the full syntax reference as navigable pages.</p>
+<div class="manual-table-wrap" role="region" aria-label="Map of documented Kalimat features" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Layer</th><th scope="col">What the project advertises</th><th scope="col">What to verify in the package</th></tr></thead><tbody>
+<tr><td>Language</td><td>Arabic vocabulary and writing, designed for people who are starting out.</td><td>Text direction, encoding, reserved names, literals, and punctuation for the version.</td></tr>
+<tr><td>Programming model</td><td>Object-oriented features.</td><td>Type declarations, object creation, state, methods, and call syntax.</td></tr>
+<tr><td>Concurrency</td><td>Concurrent programming described with reference to the CSP model.</td><td>How processes are declared, which communication synchronizes them, and how execution ends.</td></tr>
+<tr><td>Visual library</td><td>2D graphics and game features for educational goals.</td><td>Window setup, coordinate system, drawing, events, and update cycle.</td></tr>
+<tr><td>Interoperability</td><td>An FFI for calling procedures written in C.</td><td>Compatible types, calling convention, error handling, and memory ownership.</td></tr>
+<tr><td>Distribution</td><td>A Windows package; the FAQ describes running it on Linux through WINE.</td><td>Installed version, dependency files, and platforms actually tested by the course.</td></tr>
+</tbody></table></div>
+<p>The right-hand column contains research questions, not claims about the grammar. In particular, CSP does not justify importing keywords from occam, Go, or another language: use only the constructs shown in the PDF for the selected version.</p>
+<h3>Install and explore without losing the reference</h3>
+<ol><li>Record the archive name and date shown on the official download page.</li><li>Unpack it and open the executable named by the getting-started guide.</li><li>Read the concise PDF first to learn the symbols and terms.</li><li>Open the detailed PDF when an example introduces a new rule.</li><li>Run a simple example unchanged, then modify one expression or value.</li><li>Compare the result with the matching complete example before adding libraries or concurrency.</li></ol>
+<p>The official guide also recommends an introductory course for beginners. A learning sequence can move from input and output to variables, decisions, and repetition; objects and libraries can then be studied as additional layers. This order reduces the chance of confusing a core language rule with a graphics-library feature.</p>
+<h3>Choose an exercise by layer</h3>
+<div class="manual-table-wrap" role="region" aria-label="Conceptual exercises for studying Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Exercise</th><th scope="col">Isolated concept</th><th scope="col">Result to check</th></tr></thead><tbody>
+<tr><td>Calculate a purchase total</td><td>Input, variable, expression, and output.</td><td>The calculated total matches the inputs and the task rule.</td></tr>
+<tr><td>Represent a figure with position and color</td><td>State grouped in an object and a drawing operation.</td><td>Changing one property changes only the expected visual feature.</td></tr>
+<tr><td>Produce and consume a sequence of values</td><td>Separate processes and communication in the CSP model.</td><td>Each produced value is received once and in the order defined by the task.</td></tr>
+<tr><td>Call a C routine in a minimal example</td><td>The FFI boundary and type representation.</td><td>Arguments, return value, and resource lifetime match the contract.</td></tr>
+</tbody></table></div>
+<p>These exercises are investigation prompts, not Kalimat programs. To write code, copy syntax from the distributed examples and keep the reference file with the class project. Check the FAQ and current package for Linux and macOS options; the portal describes Linux through WINE and does not advertise a standalone macOS edition.</p></section>
       <section id="fontes">
         <p class="kicker">10 · further reading</p>
         <h2>References</h2>

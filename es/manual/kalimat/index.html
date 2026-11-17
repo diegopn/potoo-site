@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#sintaxe">Cómo consultar la gramática</a></li>
         <li><a href="#estudo">Ruta de aprendizaje</a></li>
         <li><a href="#escopo">Qué cubre esta referencia</a></li>
+        <li><a href="#referencia-ampliada">Referencia ampliada</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -138,6 +139,28 @@ body_class: manual-page
         <h2>Qué cubre esta referencia</h2>
 <p>Las funciones descritas aquí —programación en árabe, orientación a objetos, modelo CSP, gráficos 2D e interoperabilidad con C— son las anunciadas por el proyecto oficial consultado. Esta página no intenta fijar todos los detalles sintácticos ni afirmar compatibilidad entre versiones.</p><p>La distribución oficial incluye reglas y ejemplos que deben utilizarse para verificar la gramática y el entorno. Kalimat sigue en evaluación para Potoo IDE; nada en esta página debe interpretarse como una integración implementada.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Referencia del proyecto y del paquete</p><h2>Recursos y decisiones por versión</h2>
+<p>La página oficial consultada anuncia una distribución fechada el 3 de mayo de 2025. La guía para comenzar indica que el archivo comprimido incluye <code>kalimat.exe</code>, dos PDF de reglas —uno resumido y otro detallado— y carpetas con ejemplos simples y completos. Esa distribución es la mejor fuente para confirmar la gramática y las llamadas, porque el portal público describe recursos pero no publica toda la referencia sintáctica en páginas navegables.</p>
+<div class="manual-table-wrap" role="region" aria-label="Mapa de recursos documentados de Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Capa</th><th scope="col">Qué anuncia el proyecto</th><th scope="col">Qué confirmar en el paquete</th></tr></thead><tbody>
+<tr><td>Lenguaje</td><td>Vocabulario y escritura en árabe, con atención a quienes empiezan.</td><td>Dirección del texto, codificación, nombres reservados, literales y puntuación de la versión.</td></tr>
+<tr><td>Modelo de programación</td><td>Recursos de orientación a objetos.</td><td>Declaración de tipos, creación de objetos, estado, métodos y forma de llamada.</td></tr>
+<tr><td>Concurrencia</td><td>Programación concurrente descrita con referencia al modelo CSP.</td><td>Cómo se declaran procesos, qué comunicación sincroniza las partes y cómo termina la ejecución.</td></tr>
+<tr><td>Biblioteca visual</td><td>Gráficos 2D y juegos orientados a fines educativos.</td><td>Inicialización de la ventana, sistema de coordenadas, dibujo, eventos y ciclo de actualización.</td></tr>
+<tr><td>Interoperabilidad</td><td>Una FFI para llamar procedimientos escritos en C.</td><td>Tipos compatibles, convención de llamada, manejo de errores y propiedad de memoria.</td></tr>
+<tr><td>Distribución</td><td>Paquete para Windows; la FAQ describe su ejecución en Linux mediante WINE.</td><td>Versión instalada, archivos dependientes y plataformas probadas por el curso.</td></tr>
+</tbody></table></div>
+<p>La columna de la derecha contiene preguntas de consulta, no afirmaciones sobre la gramática. En particular, CSP no permite importar palabras de occam, Go u otro lenguaje: usa solo las construcciones que aparecen en el PDF de la versión elegida.</p>
+<h3>Instalar y explorar sin perder la referencia</h3>
+<ol><li>Anota el nombre y la fecha del archivo descargado del portal oficial.</li><li>Descomprímelo y abre el ejecutable indicado en la guía.</li><li>Lee primero el PDF resumido para conocer los símbolos y términos.</li><li>Abre el PDF detallado cuando un ejemplo introduzca una regla nueva.</li><li>Ejecuta un ejemplo simple sin cambios y luego modifica una expresión o un valor.</li><li>Compara el resultado con el ejemplo completo correspondiente antes de añadir bibliotecas o concurrencia.</li></ol>
+<p>La guía oficial también recomienda un curso introductorio para principiantes. La secuencia puede avanzar desde entrada y salida hasta variables, decisiones y repetición; después se pueden estudiar objetos y bibliotecas como capas adicionales. Así se reduce el riesgo de confundir una regla del lenguaje central con un recurso de la biblioteca gráfica.</p>
+<h3>Elegir un ejercicio según la capa</h3>
+<div class="manual-table-wrap" role="region" aria-label="Ejercicios conceptuales para estudiar Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Ejercicio</th><th scope="col">Concepto aislado</th><th scope="col">Resultado que se debe comprobar</th></tr></thead><tbody>
+<tr><td>Calcular el total de una compra</td><td>Entrada, variable, expresión y salida.</td><td>El total coincide con las entradas y la regla de la actividad.</td></tr>
+<tr><td>Representar una figura con posición y color</td><td>Estado agrupado en un objeto y una operación de dibujo.</td><td>Cambiar una propiedad modifica solo el aspecto esperado.</td></tr>
+<tr><td>Producir y consumir una secuencia de valores</td><td>Procesos separados y comunicación en el modelo CSP.</td><td>Cada valor producido se recibe una vez y en el orden definido por la tarea.</td></tr>
+<tr><td>Llamar una rutina de C en un ejemplo mínimo</td><td>Frontera FFI y representación de tipos.</td><td>Argumentos, retorno y ciclo de vida de recursos corresponden al contrato.</td></tr>
+</tbody></table></div>
+<p>Estos ejercicios son guías de investigación, no programas Kalimat. Para escribir código, copia la forma sintáctica de los ejemplos distribuidos y conserva el archivo de referencia junto al proyecto de clase. Confirma en la FAQ y en el paquete actual las opciones para Linux y macOS; el portal describe Linux mediante WINE y no anuncia una edición independiente para macOS.</p></section>
       <section id="fontes">
         <p class="kicker">10 · lecturas adicionales</p>
         <h2>Referencias</h2>

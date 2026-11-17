@@ -31,7 +31,8 @@ body_class: manual-page
       <li><a href="#metodos">Métodos próprios</a></li><li><a href="#dados">Estado e dados</a></li>
       <li><a href="#exemplo">Exemplo completo</a></li>      <li><a href="#superkarel">Recursos de SuperKarel</a></li><li><a href="#estrategias">Laços e limites</a></li>
       <li><a href="#decomposicao">Decomposição e contratos</a></li><li><a href="#testes">Testes de cenários</a></li>
-<li><a href="#fontes">Referências</a></li>
+<li><a href="#referencia-ampliada">Referência ampliada</a></li>
+        <li><a href="#fontes">Referências</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Karel</h2>
@@ -176,7 +177,44 @@ public void run() {
         </ul>
         <p>Uma tentativa inválida de atravessar uma parede, recolher um beeper ausente ou colocar um beeper sem estoque é erro do programa para aquele mundo. Sensores devem proteger as ações que dependem dessas condições.</p>
       </section>
-<section id="fontes"><p class="kicker">14 · Leitura adicional</p><h2>Referências</h2>
+<section id="referencia-ampliada"><p class="kicker">Referência operacional</p><h2>Referência de ações, sensores e estado</h2>
+<p>Na variante Java da Stanford, é útil separar a linguagem central de Karel, a extensão <code>SuperKarel</code> e as construções herdadas de Java. Os quatro comandos básicos e os sensores pertencem ao modelo do robô; <code>run()</code>, classes, métodos, variáveis e laços seguem a moldura Java usada pelo Reader. A referência oficial lista cada grupo separadamente.</p>
+<div class="manual-table-wrap" role="region" aria-label="Camadas da variante Java de Karel" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Camada</th><th scope="col">Exemplos</th><th scope="col">Papel</th></tr></thead><tbody>
+<tr><td>Karel básico</td><td><code>move()</code>, <code>turnLeft()</code>, <code>putBeeper()</code>, <code>pickBeeper()</code></td><td>Altera posição, direção ou beepers no mundo.</td></tr>
+<tr><td>Sensores</td><td><code>frontIsClear()</code>, <code>beepersPresent()</code>, <code>facingNorth()</code></td><td>Consulta somente o entorno local, a esquina atual ou a orientação.</td></tr>
+<tr><td>SuperKarel</td><td><code>turnRight()</code>, <code>turnAround()</code>, <code>random(p)</code>, <code>paintCorner(color)</code></td><td>Acrescenta atalhos e recursos visuais à base.</td></tr>
+<tr><td>Java do programa</td><td><code>class</code>, <code>run()</code>, <code>if</code>, <code>while</code>, <code>for</code></td><td>Organiza a solução e controla a ordem das chamadas.</td></tr>
+</tbody></table></div>
+<h3>Precondições e efeitos das ações</h3>
+<div class="manual-table-wrap" role="region" aria-label="Precondições dos comandos básicos de Karel" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operação</th><th scope="col">Pré-condição no mundo</th><th scope="col">Efeito observável</th></tr></thead><tbody>
+<tr><td><code>move()</code></td><td><code>frontIsClear()</code></td><td>Avança uma esquina; mantém a direção.</td></tr>
+<tr><td><code>turnLeft()</code></td><td>Nenhuma condição de parede.</td><td>Gira 90° à esquerda sem mudar de esquina.</td></tr>
+<tr><td><code>putBeeper()</code></td><td><code>beepersInBag()</code></td><td>Deixa um beeper na esquina e reduz a bolsa.</td></tr>
+<tr><td><code>pickBeeper()</code></td><td><code>beepersPresent()</code></td><td>Remove um beeper da esquina e o leva para a bolsa.</td></tr>
+<tr><td>Sensor</td><td>Nenhuma alteração necessária.</td><td>Retorna verdadeiro ou falso; não move o robô.</td></tr>
+</tbody></table></div>
+<p>Se a pré-condição falhar, a execução sinaliza erro. Um sensor não reserva o caminho nem protege uma ação executada depois de uma mudança no mundo; ele apenas informa o estado no momento da consulta.</p>
+<h3>Rastreamento de uma linha de quatro esquinas</h3>
+<p>Considere Karel na primeira esquina, voltado para leste, quatro esquinas em linha, sem beepers no chão e com pelo menos quatro beepers na bolsa. O corpo abaixo verifica a esquina antes de avançar; quando encontra a parede final, uma verificação separada cobre a última esquina:</p>
+<pre class="manual-code"><code>while (frontIsClear()) {
+    if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+        putBeeper();
+    }
+    move();
+}
+if (noBeepersPresent() &amp;&amp; beepersInBag()) {
+    putBeeper();
+}</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="Rastreamento de Karel em quatro esquinas" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Esquina antes da volta</th><th scope="col">Parede à frente?</th><th scope="col">Ação</th><th scope="col">Estado ao sair</th></tr></thead><tbody>
+<tr><td>1</td><td>Não</td><td>Coloca beeper; avança.</td><td>Na esquina 2.</td></tr>
+<tr><td>2</td><td>Não</td><td>Coloca beeper; avança.</td><td>Na esquina 3.</td></tr>
+<tr><td>3</td><td>Não</td><td>Coloca beeper; avança.</td><td>Na esquina 4.</td></tr>
+<tr><td>4</td><td>Sim</td><td>O laço termina; a condição final coloca o último beeper.</td><td>Na esquina 4, ainda voltado para leste.</td></tr>
+</tbody></table></div>
+<p>O exemplo deixa quatro beepers, um em cada esquina, se todos os testes de bolsa forem verdadeiros. Se a tarefa pedir apenas marcar o destino, coloque a ação somente após o laço. Se algumas esquinas já puderem conter beepers, mantenha o sensor <code>noBeepersPresent()</code> para evitar duplicá-los.</p>
+<h3>Escolher a referência correta</h3>
+<p>O Karel original, a implementação Java da Stanford e ambientes de outras instituições compartilham o mundo em grade, mas podem divergir em nomes de comandos, número de beepers, erros de parede, cores e recursos de <code>SuperKarel</code>. Antes de copiar código, confirme se o material usa <code>stanford.karel.*</code>, qual classe é estendida e quais condições aparecem na referência da instalação. Um exercício completo deve registrar estado inicial, orientação, paredes, conteúdo da bolsa e estado final esperado.</p></section>
+      <section id="fontes"><p class="kicker">14 · Leitura adicional</p><h2>Referências</h2>
         <ul>
           <li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Karel Reader da Stanford, versão Java</a>.</li>
           <li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Referência de comandos, condições e estrutura do programa</a>.</li>

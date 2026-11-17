@@ -33,7 +33,8 @@ body_class: manual-page
       <li><a href="#casier-avance">Acesso a coleções e iteração</a></li><li><a href="#atalhos">Atalhos e interpolação</a></li>
       <li><a href="#biblioteca">Funções integradas</a></li><li><a href="#especies">Espécies e protótipos</a></li>
       <li><a href="#ambiente">Eventos e recursos do Atelier</a></li><li><a href="#depuracao">Erros e depuração</a></li>
-      <li><a href="#fontes">Referências</a></li>
+      <li><a href="#referencia-ampliada">Referência ampliada</a></li>
+        <li><a href="#fontes">Referências</a></li>
     </ol></aside>
     <article class="manual-content">
       <section id="sobre"><p class="kicker">01 · Visão geral</p><h2>Sobre Linotte</h2>
@@ -249,8 +250,44 @@ observe alarme</code></pre>
         </ul>
         <p>O formato e a disponibilidade desses recursos dependem do Atelier Linotte. Os exemplos servem para explicar o ambiente de referência, não para pressupor uma interface gráfica em toda implementação.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Referência do modelo da linguagem</p><p>O parágrafo chamado <code>principal</code> é o nome usado nos exemplos para organizar a sequência principal. A execução começa pelo primeiro parágrafo executável do livro; <code>principal</code> não é uma palavra reservada.</p><h2>Modelo do programa e referência de conceitos</h2>
+<p>Linotte usa metáforas de livro, parágrafo, papel e ator para tornar a estrutura visível. Elas também são conceitos operacionais: o livro reúne parágrafos; um parágrafo organiza papéis e ações; o ator guarda um valor; e certas ações percorrem coleções ou devolvem um resultado.</p>
+<div class="manual-table-wrap" role="region" aria-label="Vocabulário central de Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Termo</th><th scope="col">Função na linguagem</th><th scope="col">Forma que aparece nos exemplos</th></tr></thead><tbody>
+<tr><td><code>livre</code> / livro</td><td>Unidade que contém o programa e seus parágrafos.</td><td>O arquivo não precisa de um bloco externo único.</td></tr>
+<tr><td>Parágrafo</td><td>Sequência nomeada de ações; <code>principal</code> é o ponto de entrada nos exemplos desta referência.</td><td><code>principal :</code> e um nome seguido de dois-pontos.</td></tr>
+<tr><td>Papel / ator</td><td>O papel declara a espécie de valor; o ator é a variável que o recebe.</td><td><code>compteur est un nombre</code></td></tr>
+<tr><td>Ação</td><td>Comando executável que mostra, lê, atribui, compara ou percorre dados.</td><td><code>affiche</code>, <code>demande</code>, <code>prend</code>, <code>si</code>, <code>pour</code>.</td></tr>
+<tr><td><code>joker</code></td><td>Referência ao item atual durante <code>pour chaque</code>.</td><td><code>pour chaque mois</code>, seguido de ações que usam <code>joker</code>.</td></tr>
+<tr><td><code>reviens</code></td><td>Encerra o parágrafo ou a tarefa atual sem devolver um valor.</td><td>Fechar o tratamento de um evento ou uma tarefa chamada.</td></tr><tr><td><code>retourne</code></td><td>Devolve o resultado calculado por uma função.</td><td>Usar no ponto em que a função entrega o seu valor.</td></tr>
+<tr><td><code>ferme</code></td><td>Fecha certas construções com várias ações, como os exemplos de condição e repetição.</td><td>Um marcador de fechamento alinhado ao bloco aberto.</td></tr>
+</tbody></table></div>
+<h3>Escolher uma estrutura para os dados</h3>
+<div class="manual-table-wrap" role="region" aria-label="Papéis de dados em Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Papel</th><th scope="col">Tipo de valor</th><th scope="col">Uso típico</th></tr></thead><tbody>
+<tr><td><code>texte</code></td><td>Sequência de caracteres.</td><td>Perguntas, mensagens e operações de texto.</td></tr>
+<tr><td><code>nombre</code></td><td>Valor numérico.</td><td>Contadores, medidas e expressões aritméticas.</td></tr>
+<tr><td><code>drapeau</code></td><td>Valor lógico, como <code>vrai</code> ou <code>faux</code>.</td><td>Condição que escolhe entre dois caminhos.</td></tr>
+<tr><td><code>casier</code></td><td>Coleção tipada de valores ou atores.</td><td>Iteração com <code>pour chaque</code> e acesso por índice entre chaves.</td></tr>
+<tr><td><code>espèce</code></td><td>Tipo composto definido pelo programa, com atributos.</td><td>Agrupar campos que representam uma entidade e instanciar atores desse tipo.</td></tr>
+</tbody></table></div>
+<p>Um casier é útil quando vários valores do mesmo papel precisam ser tratados como um conjunto. O item singular de uma iteração é <code>joker</code>; o nome do casier continua representando a coleção inteira. Em exemplos indexados, as posições começam em zero, mas confira a coleção e a versão antes de aplicar a mesma hipótese a outro recurso.</p>
+<h3>Exemplo calculado: somar um casier</h3>
+<p>Este exemplo usa três valores para mostrar o papel do acumulador e do item atual. A soma final é 29:</p>
+<pre class="manual-code"><code>notes est un casier de nombres valant 7, 10, 12
+total est un nombre
+total prend 0
+pour chaque notes
+    total prend total + joker
+ferme
+affiche total</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma de um casier em Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Item atual (<code>joker</code>)</th><th scope="col">Total antes</th><th scope="col">Total depois</th></tr></thead><tbody>
+<tr><td>7</td><td>0</td><td>7</td></tr><tr><td>10</td><td>7</td><td>17</td></tr><tr><td>12</td><td>17</td><td>29</td></tr>
+</tbody></table></div>
+<p>Se a coleção estiver vazia, o corpo não altera o acumulador, que permanece 0. Se a instrução dentro do laço usar o nome do casier no lugar de <code>joker</code>, o programa deixará de operar sobre um elemento de cada vez. Essa distinção entre coleção e item atual é central para percursos.</p>
+<h3>Versões e materiais de referência</h3>
+<p>O README do repositório oficial indica a versão 3.14 e oferece pacotes para vários sistemas, além de um arquivo sem Java incluído. A wiki organiza materiais para Linotte 3.x, 2.x, 1.x e 0.x; os exemplos do arquivo antigo de Linotte 2.0.4 continuam úteis para estudar o modelo, mas não são garantia de sintaxe idêntica na versão 3.x. Ao consultar um tutorial, anote a geração da linguagem e confirme o exemplo no Atelier correspondente.</p>
+<p>A página oficial de exemplos e a wiki devem ser lidas junto com o guia histórico, não como uma gramática única sem versão. Recursos de gráficos, eventos, protótipos e bancos de dados podem depender do Atelier e de extensões instaladas.</p></section>
       <section id="fontes"><p class="kicker">17 · Leitura adicional</p><h2>Referências</h2>
-        <ul>
+        <ul><li><a href="https://github.com/cpc6128/LangageLinotte/blob/master/README.md">README do repositório oficial</a>, que identifica a versão 3.14 e as formas de distribuição.</li><li><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/langagelinotte/Documentation_Linotte_version_2_0_4_0_0.pdf">Manual arquivado de Linotte 2.0.4</a>; use-o como referência histórica e confira sintaxe na versão atual.</li>
           <li><a href="https://github.com/cpc6128/LangageLinotte">Repositório oficial de Linotte</a>, mantido pelo projeto.</li>
           <li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Exemplos oficiais</a> de boas-vindas, variáveis, entrada, condições, laços, matemática e funções.</li>
           <li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Wiki do projeto</a> e <a href="http://langagelinotte.free.fr">site oficial</a>.</li>

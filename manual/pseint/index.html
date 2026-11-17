@@ -68,7 +68,14 @@ promedio &lt;- 8.25
 nombre &lt;- "Ana"
 aprobado &lt;- Verdadero</code></pre>
         <p>Os nomes começam com uma letra, podem continuar com letras ou números e não podem coincidir com palavras reservadas. Comentários começam com <code>//</code> e podem aparecer depois de uma instrução ou em uma linha própria.</p>
-      </section>
+
+<h3>Declaração, armazenamento e limites</h3>
+<div class="manual-table-wrap" role="region" aria-label="Dados e coleções em PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Responsabilidade</th><th scope="col">Conferência</th></tr></thead><tbody>
+<tr><td><code>Definir nome Como Tipo</code></td><td>Declara uma variável escalar e seu tipo.</td><td>O tipo escolhido precisa corresponder aos dados lidos e às operações aplicadas.</td></tr>
+<tr><td><code>Dimension dados[tamanho]</code></td><td>Reserva um vetor ou uma matriz.</td><td>A quantidade e os índices válidos dependem do perfil ativo.</td></tr>
+<tr><td><code>nome &lt;- expressão</code></td><td>Calcula a expressão e guarda o resultado.</td><td>Use o operador de atribuição, sem confundi-lo com <code>=</code> em uma comparação.</td></tr>
+<tr><td><code>// comentário</code></td><td>Registra uma observação para quem lê o algoritmo.</td><td>O comentário não é executado.</td></tr>
+</tbody></table></div></section>
       <section id="operadores"><p class="kicker">04 · Expressões</p><h2>Operadores e funções</h2>
         <div class="manual-table-wrap" role="region" aria-label="Operadores do PSeInt" tabindex="0"><table class="manual-table">
           <thead><tr><th scope="col">Categoria</th><th scope="col">Formas</th><th scope="col">Significado</th></tr></thead><tbody>
@@ -105,7 +112,14 @@ Segun opcion Hacer
     De Otro Modo:
         Escribir "Opción no válida"
 FinSegun</code></pre>
-      </section>
+
+<h3>Quando escolher cada seleção</h3>
+<div class="manual-table-wrap" role="region" aria-label="Estruturas de seleção em PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Estrutura</th><th scope="col">Use quando</th><th scope="col">Cobertura do fluxo</th></tr></thead><tbody>
+<tr><td><code>Si ... Entonces ... FinSi</code></td><td>Uma condição determina se um bloco será executado.</td><td>Sem <code>Sino</code>, a condição falsa segue após o bloco.</td></tr>
+<tr><td><code>Si ... Sino ... FinSi</code></td><td>Há duas alternativas.</td><td>Um dos dois ramos é executado.</td></tr>
+<tr><td><code>Segun ... De Otro Modo ... FinSegun</code></td><td>Um valor seleciona entre opções enumeradas.</td><td><code>De Otro Modo</code> trata valores não listados.</td></tr>
+</tbody></table></div>
+<p>Escreva condições que produzam um resultado lógico e teste ao menos um valor que entre em cada ramo. Na seleção múltipla, inclua o caso padrão se valores inesperados forem possíveis.</p></section>
       <section id="repeticoes"><p class="kicker">07 · Repetição</p><h2>Laços</h2>
         <p><code>Mientras</code> verifica a condição antes de cada execução e pode não executar o corpo nenhuma vez. <code>Repetir</code> executa o corpo primeiro e verifica a condição em <code>Hasta Que</code>, portanto roda ao menos uma vez. <code>Para</code> percorre valores de início a fim e aceita <code>Con Paso</code>.</p>
         <pre class="manual-code"><code>Para i &lt;- 1 Hasta 5 Con Paso 1 Hacer
@@ -116,7 +130,14 @@ Repetir
     Leer clave
 Hasta Que clave = "fin"</code></pre>
         <p>Garanta que a condição de saída possa ser alcançada; caso contrário, o laço continua indefinidamente.</p>
-      </section>
+
+<h3>Comparar os laços</h3>
+<div class="manual-table-wrap" role="region" aria-label="Comparação de laços em PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Teste</th><th scope="col">Execuções possíveis</th><th scope="col">Responsabilidade do algoritmo</th></tr></thead><tbody>
+<tr><td><code>Mientras condición Hacer</code></td><td>Antes de cada passagem.</td><td>Pode executar zero vezes.</td><td>Alterar no corpo os dados que determinam a condição.</td></tr>
+<tr><td><code>Repetir ... Hasta Que condición</code></td><td>Depois do corpo.</td><td>Executa pelo menos uma vez.</td><td>Garantir que a condição de parada possa se tornar verdadeira.</td></tr>
+<tr><td><code>Para i &lt;- inicio Hasta fin Con Paso paso</code></td><td>Usa o intervalo e o passo do contador.</td><td>Quantidade previsível conforme intervalo e passo.</td><td>Escolher limites que incluem exatamente as iterações necessárias.</td></tr>
+</tbody></table></div>
+<p>Use <code>Mientras</code> para continuar enquanto uma condição precisar valer, <code>Repetir</code> para validar depois de uma primeira tentativa e <code>Para</code> quando a progressão do contador for conhecida.</p></section>
       <section id="vetores"><p class="kicker">08 · Coleções</p><h2>Vetores e matrizes</h2>
         <p><code>Dimension</code> declara um vetor ou uma matriz. A grafia da dimensão e o índice inicial dependem do perfil ativo; os limites não devem ser presumidos. Neste exemplo, o vetor tem cinco posições numeradas de 0 a 4:</p>
         <pre class="manual-code"><code>Definir notas Como Real
@@ -139,7 +160,15 @@ Proceso Principal
     Escribir Doble(6)
 FinProceso</code></pre>
         <p>As variáveis locais ficam restritas à rotina. A referência inclui chamadas recursivas, como calcular potência, e passagem de vetores como argumento. Prefira parâmetros por valor para cálculos que não precisam alterar a variável original; use passagem por referência apenas quando a rotina realmente tiver de devolver uma alteração.</p>
-      </section>
+
+<h3>Contrato de uma sub-rotina</h3>
+<div class="manual-table-wrap" role="region" aria-label="Papéis e parâmetros de subprocessos PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Contrato</th><th scope="col">O que revisar na chamada</th></tr></thead><tbody>
+<tr><td><code>SubProceso resultado &lt;- Nome(parâmetros)</code></td><td>Calcula um valor que pode ser usado em uma expressão.</td><td>Tipo esperado, ordem dos argumentos e valor em todos os caminhos.</td></tr>
+<tr><td><code>SubProceso Nome(parâmetros)</code></td><td>Executa ações sem produzir resultado funcional.</td><td>Os efeitos esperados e se algum dado do chamador será alterado.</td></tr>
+<tr><td>Parâmetro por valor</td><td>Recebe um valor para usar no cálculo.</td><td>Alterações locais não devem ser tomadas como saída para o chamador.</td></tr>
+<tr><td>Parâmetro por referência</td><td>Pode devolver uma alteração ao argumento original quando o perfil aceita a forma.</td><td>Identifique claramente qual variável será modificada.</td></tr>
+</tbody></table></div>
+<p>Separe os parâmetros de entrada dos resultados. Uma função que calcula um valor costuma ser mais simples de testar do que uma rotina que altera várias variáveis globais.</p></section>
       <section id="exemplo"><p class="kicker">10 · Exemplo integrado</p><h2>Média e resultado</h2>
         <pre class="manual-code"><code>Proceso Promedio
     Definir a, b, c, media Como Real
@@ -213,7 +242,30 @@ Escribir Concatenar("Texto: ", minuscula)</code></pre>
           <li>Em uma função, compare os argumentos com o valor retornado e examine cada caminho de retorno.</li>
         </ul>
         <p>O interpretador permite acompanhar a execução passo a passo e compará-la com o diagrama de fluxo. A trilha ajuda a encontrar o momento em que uma variável deixa de ter o valor esperado; ela não substitui a escolha de bons casos de teste.</p>
-      </section>
+
+<h3>Rastrear uma soma antes de testar casos maiores</h3>
+<p>Uma tabela de teste de mesa registra os valores importantes em cada repetição. Para <code>n = 4</code>, a soma acumulada deve evoluir assim:</p>
+<pre class="manual-code"><code>Proceso SumaAcumulada
+    Definir n, i, suma Como Entero;
+    Leer n;
+    suma &lt;- 0;
+    Para i &lt;- 1 Hasta n Hacer
+        suma &lt;- suma + i;
+    FinPara
+    Escribir suma;
+FinProceso</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="Teste de mesa da soma acumulada em PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Repetição</th><th scope="col"><code>i</code></th><th scope="col">Soma antes</th><th scope="col">Soma depois</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>2</td><td>2</td><td>1</td><td>3</td></tr><tr><td>3</td><td>3</td><td>3</td><td>6</td></tr><tr><td>4</td><td>4</td><td>6</td><td>10</td></tr>
+</tbody></table></div>
+<p>Depois de confirmar o percurso, mude <code>n</code> para <code>0</code> e <code>1</code>. Isso verifica o limite inferior e o primeiro caso não trivial. No depurador, acompanhe <code>i</code>, <code>suma</code> e a condição de saída; se um resultado divergir da tabela, a primeira linha diferente identifica a etapa a rever.</p>
+<h3>Ferramentas para conferir uma execução</h3>
+<div class="manual-table-wrap" role="region" aria-label="Recursos de acompanhamento do PSeInt" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Recurso do ambiente</th><th scope="col">Pergunta que ajuda a responder</th></tr></thead><tbody>
+<tr><td>Execução passo a passo</td><td>Qual instrução foi executada imediatamente antes do valor mudar?</td></tr>
+<tr><td>Inspeção de variáveis e expressões</td><td>Que valor cada nome e condição tem neste ponto?</td></tr>
+<tr><td>Tabela de teste de mesa</td><td>Como evoluem contador, acumulador e resultado?</td></tr>
+<tr><td>Diagrama de fluxo</td><td>Qual caminho do algoritmo corresponde a este ramo?</td></tr>
+<tr><td>Repetir com dados alterados</td><td>O algoritmo continua correto em entradas-limite?</td></tr>
+</tbody></table></div></section>
       <section id="fontes"><p class="kicker">14 · Leitura adicional</p><h2>Referências</h2>
         <ul>
           <li><a href="https://pseint.sourceforge.net/">Site oficial do PSeInt</a>.</li>

@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#expressoes-casos">Operators and CASE selection</a></li>
         <li><a href="#strings">Use the supplied string functions</a></li>
         <li><a href="#parametros">Choose pass-by-value or pass-by-reference</a></li>
+        <li><a href="#recursos-avancados">Advanced types, files, and objects</a></li>
         <li><a href="#limites">Versions and limits</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -134,13 +135,34 @@ ENDIF</code></pre><p>The condition protects the substring operation when the tex
 ENDPROCEDURE
 CALL AddBonus(CurrentScore, 5)</code></pre><p>After the call, <code>CurrentScore</code> has increased by five because <code>Score</code> is passed by reference; <code>Bonus</code> remains a pass-by-value parameter. A procedure call is a complete statement and begins with <code>CALL</code>.</p><p>A function is different: it returns one value, and its call appears in an expression or assignment. The guide says not to use <code>CALL</code> for functions or pass their parameters by reference. When reading a routine, identify its kind, its parameters, and where its result is used.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge parameter passing" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Default / <code>BYVAL</code></td><td>The procedure receives the argument’s value.</td><td>Local changes do not replace the original variable.</td></tr><tr><td><code>BYREF</code></td><td>The parameter refers to the supplied variable.</td><td>The procedure can change the caller’s argument.</td></tr><tr><td>Function parameter</td><td>A function returns a value; its parameter is not passed by reference.</td><td>Use the call in an expression and do not write <code>CALL</code>.</td></tr></tbody></table></div>
       </section>
+            <section id="recursos-avancados">
+        <p class="kicker">13 · advanced structures</p>
+        <h2>User-defined types, files, and objects</h2>
+        <p>The Cambridge 9618 guide covers more than variables, arrays, and basic loops. In an exam, use the types and operations authorised by the guide for that exam year; these examples follow the 2027–2029 guide. Each construct below belongs to the curriculum specification, not to a general-purpose interpreter.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Advanced Cambridge pseudocode types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Documented form</th><th scope="col">Use and limit</th></tr></thead><tbody><tr><td>Enumeration</td><td><code>TYPE Season = (Spring, Summer, Autumn, Winter)</code></td><td>Restricts a value to an explicit list of named alternatives.</td></tr><tr><td>Pointer</td><td><code>TYPE TIntPointer = ^INTEGER</code></td><td>Represents a reference to a memory location of the stated type; declare the variable using the type name.</td></tr><tr><td>Record</td><td><code>TYPE StudentRecord ... ENDTYPE</code></td><td>Groups fields of different types, accessed with dot notation such as <code>Pupil.YearGroup</code>.</td></tr><tr><td>Set</td><td><code>TYPE LetterSet = SET OF CHAR</code></td><td>Groups values of a type and can be defined with <code>DEFINE</code>.</td></tr><tr><td>Text file</td><td><code>OPENFILE</code>, <code>READFILE</code>, <code>WRITEFILE</code>, <code>EOF</code>, <code>CLOSEFILE</code></td><td>Reads lines sequentially; opening in <code>WRITE</code> creates or replaces the contents.</td></tr><tr><td>Random file</td><td><code>SEEK</code>, <code>GETRECORD</code>, <code>PUTRECORD</code></td><td>Moves the file pointer to a record, then reads or replaces that record.</td></tr><tr><td>Class</td><td><code>CLASS</code>, <code>PRIVATE</code>, <code>PUBLIC</code>, <code>INHERITS</code>, <code>SUPER</code></td><td>Defines properties, methods, a <code>NEW</code> constructor, and inheritance in the exam guide.</td></tr></tbody></table></div>
+        <p>This example reads a text file line by line, replaces blank lines with dashes, and closes both files. It tests <code>EOF</code> before <code>READFILE</code>, so an empty file does not trigger a read that has no next line:</p>
+        <pre class="manual-code"><code>DECLARE LineOfText : STRING
+OPENFILE "Input.txt" FOR READ
+OPENFILE "Output.txt" FOR WRITE
+WHILE NOT EOF("Input.txt")
+    READFILE "Input.txt", LineOfText
+    IF LineOfText = "" THEN
+        WRITEFILE "Output.txt", "----------------------------"
+    ELSE
+        WRITEFILE "Output.txt", LineOfText
+    ENDIF
+ENDWHILE
+CLOSEFILE "Input.txt"
+CLOSEFILE "Output.txt"</code></pre>
+        <p><code>APPEND</code> keeps existing contents and writes after them; <code>WRITE</code> replaces the file. For random-access files, explain how the record address is calculated before using <code>SEEK</code>; <code>PUTRECORD</code> replaces the record at the current position. For classes, the guide uses constructor procedures named <code>NEW</code> and <code>SUPER.NEW(...)</code> to initialise the inherited part. Check the guide for the exam year, since examination examples and the syllabus have their own date ranges.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">13 · versions and scope</p>
+        <p class="kicker">14 · versions and scope</p>
         <h2>Versions and limits</h2>
 <p>Use the 2026 guide for that exam year and the 2027–2029 guide for the corresponding assessments. Consult the official programme page for a later edition.</p><p>Cambridge pseudocode does not define a compiler, executable standard library, or compatibility with a specific language. This documentation covers assessment conventions and does not claim that Potoo IDE interprets them.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">14 · further reading</p>
+        <p class="kicker">15 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Cambridge pseudocode guide for teachers (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Cambridge pseudocode guide for teachers (2027–2029)</a>, for exams in those years.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Cambridge International AS &amp; A Level Computer Science 9618 programme</a>, with guides associated with exam years.</li></ul><p>Use the exact edition supplied for your course; assessment rules should be checked in the current official source.</p>
       </section>

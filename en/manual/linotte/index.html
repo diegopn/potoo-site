@@ -24,7 +24,8 @@ body_class: manual-page
     <li><a href="#sobre">About Linotte</a></li><li><a href="#estrutura">Program and comments</a></li><li><a href="#dados">Variables and values</a></li><li><a href="#entrada-saida">Input and output</a></li><li><a href="#operadores">Operators and math</a></li><li><a href="#condicoes">Conditions</a></li><li><a href="#repeticoes">Loops</a></li><li><a href="#funcoes">Functions</a></li><li><a href="#colecoes">Collections and extensions</a></li><li><a href="#exemplo">Complete example</a></li>      <li><a href="#casier-avance">Collection access and iteration</a></li><li><a href="#atajos">Shortcuts and interpolation</a></li>
       <li><a href="#biblioteca">Built-in functions</a></li><li><a href="#especies">Species and prototypes</a></li>
       <li><a href="#ambiente">Events and Atelier features</a></li><li><a href="#depuracion">Errors and debugging</a></li>
-      <li><a href="#fontes">References</a></li>
+      <li><a href="#referencia-ampliada">Expanded reference</a></li>
+        <li><a href="#fontes">References</a></li>
   </ol></aside><article class="manual-content">
     <section id="sobre"><p class="kicker">01 · Overview</p><h2>About Linotte</h2><p>Linotte is an educational project whose syntax uses French words and phrases. The official project presents an environment for learning programming fundamentals and includes examples of variables, interaction, conditions, loops, calculations, and functions.</p><p>Code on this page remains in French so it can be compared with the original files. Translating keywords such as <code>affiche</code>, <code>prend</code>, or <code>ferme</code> would change the syntax.</p></section>
     <section id="estrutura"><p class="kicker">02 · Organization</p><h2>Program and comments</h2><p>A Linotte program is a set of instructions in a project file. Introductory examples do not require an outer block around the whole program. An instruction can occupy one line; multi-line blocks end with <code>ferme</code>.</p><p>Line comments start with <code>//</code>. Multiline comments use <code>/*</code> and <code>*/</code>.</p><pre class="manual-code"><code>affiche "Bonjour !"
@@ -180,6 +181,42 @@ observe alarme</code></pre>
         <ul><li>Read the error and identify the active instruction.</li><li>Step through execution and inspect actors used in each calculation.</li><li>Check that loops change state and can reach their stopping condition.</li><li>Test empty collections, a single item, and index boundaries.</li></ul>
         <p>The form and availability of these tools depend on Linotte Atelier; this reference describes the original environment.</p>
       </section>
-<section id="fontes"><p class="kicker">17 · Further reading</p><h2>References</h2><ul><li><a href="https://github.com/cpc6128/LangageLinotte">Official Linotte repository</a>.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki/D%C3%A9couvrir-Linotte-3-en-dix-minutes">Official tutorial “Découvrir Linotte 3 en dix minutes”</a> (in French), with examples of actors, types, input, functions, loops, and collections.</li><li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Official examples</a> for variables, input, conditions, loops, math, and functions.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Project wiki</a> and <a href="http://langagelinotte.free.fr">official site</a>.</li></ul></section>
+<section id="referencia-ampliada"><p class="kicker">Language model reference</p><p>The paragraph named <code>principal</code> is the name used in these examples for the main sequence. Execution starts at the book’s first executable paragraph; <code>principal</code> is not a reserved word.</p><h2>Program model and concept reference</h2>
+<p>Linotte uses the metaphors of book, paragraph, role, and actor to make program structure visible. They are also operational concepts: a book contains paragraphs; a paragraph organizes roles and actions; an actor stores a value; and some actions iterate over collections or return a result.</p>
+<div class="manual-table-wrap" role="region" aria-label="Core Linotte vocabulary" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Term</th><th scope="col">Language role</th><th scope="col">Form shown in examples</th></tr></thead><tbody>
+<tr><td><code>livre</code> / book</td><td>Unit that contains the program and its paragraphs.</td><td>The file does not need one outer block.</td></tr>
+<tr><td>Paragraph</td><td>Named sequence of actions; <code>principal</code> is the entry point in this reference’s examples.</td><td><code>principal :</code> and a name followed by a colon.</td></tr>
+<tr><td>Role / actor</td><td>The role declares the kind of value; the actor is the variable that receives it.</td><td><code>compteur est un nombre</code></td></tr>
+<tr><td>Action</td><td>Executable command for displaying, reading, assigning, testing, or iterating over data.</td><td><code>affiche</code>, <code>demande</code>, <code>prend</code>, <code>si</code>, <code>pour</code>.</td></tr>
+<tr><td><code>joker</code></td><td>Reference to the current item inside <code>pour chaque</code>.</td><td><code>pour chaque mois</code>, followed by actions using <code>joker</code>.</td></tr>
+<tr><td><code>reviens</code></td><td>Ends the current paragraph or task without returning a value.</td><td>Finish an event handler or a called task.</td></tr><tr><td><code>retourne</code></td><td>Returns the result computed by a function.</td><td>Use where the function hands back its value.</td></tr>
+<tr><td><code>ferme</code></td><td>Closes some multi-action constructs, as shown in condition and loop examples.</td><td>A closing marker aligned with its open block.</td></tr>
+</tbody></table></div>
+<h3>Choose a data structure</h3>
+<div class="manual-table-wrap" role="region" aria-label="Linotte data roles" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Role</th><th scope="col">Value type</th><th scope="col">Typical use</th></tr></thead><tbody>
+<tr><td><code>texte</code></td><td>Character sequence.</td><td>Questions, messages, and text operations.</td></tr>
+<tr><td><code>nombre</code></td><td>Numeric value.</td><td>Counters, measurements, and arithmetic expressions.</td></tr>
+<tr><td><code>drapeau</code></td><td>Logical value, such as <code>vrai</code> or <code>faux</code>.</td><td>A condition that chooses between two paths.</td></tr>
+<tr><td><code>casier</code></td><td>Typed collection of values or actors.</td><td>Iteration with <code>pour chaque</code> and indexed access using braces.</td></tr>
+<tr><td><code>espèce</code></td><td>Program-defined composite type with attributes.</td><td>Grouping fields for an entity and creating actors of that type.</td></tr>
+</tbody></table></div>
+<p>A casier is useful when several values of the same role should be handled as a group. The singular item during an iteration is <code>joker</code>; the casier name continues to mean the full collection. In indexed examples, positions start at zero, but check the collection and version before applying that assumption to another feature.</p>
+<h3>Worked example: sum a casier</h3>
+<p>This example uses three values to show the accumulator and current item. The final sum is 29:</p>
+<pre class="manual-code"><code>notes est un casier de nombres valant 7, 10, 12
+total est un nombre
+total prend 0
+pour chaque notes
+    total prend total + joker
+ferme
+affiche total</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="Trace of a Linotte casier sum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Current item (<code>joker</code>)</th><th scope="col">Total before</th><th scope="col">Total after</th></tr></thead><tbody>
+<tr><td>7</td><td>0</td><td>7</td></tr><tr><td>10</td><td>7</td><td>17</td></tr><tr><td>12</td><td>17</td><td>29</td></tr>
+</tbody></table></div>
+<p>If the collection is empty, the body does not change the accumulator, which stays at 0. If the loop uses the collection name instead of <code>joker</code>, the program no longer acts on one element at a time. The distinction between a collection and its current item is central to iteration.</p>
+<h3>Versions and reference materials</h3>
+<p>The official repository README identifies version 3.14 and offers packages for several systems, as well as an archive without Java included. The wiki organizes materials for Linotte 3.x, 2.x, 1.x, and 0.x; the archived Linotte 2.0.4 manual remains useful for studying the model but does not guarantee identical syntax in 3.x. When using a tutorial, note the language generation and check the example in the matching Atelier.</p>
+<p>The official examples and wiki should be read alongside the historical guide, not as one versionless grammar. Graphics, events, prototypes, and database features may depend on the Atelier and installed extensions.</p></section>
+      <section id="fontes"><p class="kicker">17 · Further reading</p><h2>References</h2><ul><li><a href="https://github.com/cpc6128/LangageLinotte/blob/master/README.md">Official repository README</a>, which identifies version 3.14 and its distribution options.</li><li><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/langagelinotte/Documentation_Linotte_version_2_0_4_0_0.pdf">Archived Linotte 2.0.4 manual</a>; use it as a historical reference and verify syntax against the current version.</li><li><a href="https://github.com/cpc6128/LangageLinotte">Official Linotte repository</a>.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki/D%C3%A9couvrir-Linotte-3-en-dix-minutes">Official tutorial “Découvrir Linotte 3 en dix minutes”</a> (in French), with examples of actors, types, input, functions, loops, and collections.</li><li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Official examples</a> for variables, input, conditions, loops, math, and functions.</li><li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Project wiki</a> and <a href="http://langagelinotte.free.fr">official site</a>.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

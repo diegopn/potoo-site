@@ -141,7 +141,16 @@ escreva "Digite dois números:"
 a, b = leia_inteiro
 escreva "{a} + {b} = {a + b}"</code></pre>
           <p>Em uma cadeia, <code>{expressão}</code> interpola o valor no texto. Para valores formatados, Potigol também documenta a expressão <code>valor formato padrão</code>.</p>
-        </section>
+
+<h3>Escolher a leitura pelo tipo de dado</h3>
+<div class="manual-table-wrap" role="region" aria-label="Formas de entrada de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Resultado esperado</th><th scope="col">Uso típico</th></tr></thead><tbody>
+<tr><td><code>leia_inteiro</code></td><td>Um <code>Inteiro</code>.</td><td>Contagem, posição ou quantidade.</td></tr>
+<tr><td><code>leia_numero</code></td><td>Um <code>Real</code>.</td><td>Medidas e valores que podem ter fração.</td></tr>
+<tr><td><code>leia_texto</code></td><td>Um <code>Texto</code>.</td><td>Nomes, frases e dados que não serão calculados.</td></tr>
+<tr><td><code>leia_inteiros(" ")</code></td><td>Uma <code>Lista[Inteiro]</code>.</td><td>Lê uma sequência separada pelo delimitador informado.</td></tr>
+<tr><td><code>a, b = leia_inteiro</code></td><td>Dois valores de entrada.</td><td>Atribui leituras múltiplas aos nomes na ordem declarada.</td></tr>
+</tbody></table></div>
+<p>O delimitador passado a <code>leia_inteiros</code> faz parte do formato esperado: se a entrada vier separada por espaço, use <code>" "</code>; se vier por vírgula, ajuste o delimitador. A leitura de lista fornece os dados para o mesmo tipo de transformação usado em listas criadas no código.</p></section>
         <section id="controle">
           <p class="kicker">07 · Fluxo</p>
           <h2>Condições e repetições</h2>
@@ -208,7 +217,15 @@ escreva ponto.segundo
 escreva aluna.terceiro</code></pre>
           <p>Use uma tupla para agrupar dados relacionados ou organizar vários valores produzidos por uma função. Para coleções homogêneas cujo tamanho pode variar, use uma lista.</p>
           <p>A documentação oficial também apresenta tipos abstratos, herança, tipos genéricos, funções como valores e casamento de padrões.</p>
-        </section>
+
+<h3>Escolher uma estrutura de dados</h3>
+<div class="manual-table-wrap" role="region" aria-label="Comparação de tipos compostos em Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Estrutura</th><th scope="col">Organização</th><th scope="col">Quando escolher</th><th scope="col">Exemplo</th></tr></thead><tbody>
+<tr><td><code>Lista[T]</code></td><td>Quantidade variável de elementos do mesmo tipo; índice inicia em 1.</td><td>Uma coleção que será filtrada, percorrida ou transformada.</td><td><code>[8, 6, 9]</code></td></tr>
+<tr><td>Tupla</td><td>Quantidade fixa e posições com significado; os tipos podem diferir.</td><td>Um pequeno grupo de valores relacionados, como coordenadas ou retorno múltiplo.</td><td><code>(3.5, 4.2)</code></td></tr>
+<tr><td>Registro</td><td>Campos nomeados que representam propriedades de um dado.</td><td>Quando os campos são mais importantes que a posição.</td><td><code>aluna.nome</code></td></tr>
+<tr><td><code>tipo</code></td><td>Declara uma estrutura do programa com atributos e métodos.</td><td>Para modelar um conceito com dados e operações próprias.</td><td><code>Pessoa("Lia")</code></td></tr>
+</tbody></table></div>
+<p>Uma variável mutável e uma lista mutável são decisões diferentes: <code>var</code> permite atualizar o vínculo que guarda o valor, enquanto as operações funcionais de lista produzem outra lista. A documentação também descreve formas específicas de listas mutáveis; use-as quando o exercício pedir atualização in-place, sem supor que todas as listas se comportem assim.</p></section>
         <section id="matematica-textos">
           <p class="kicker">10 · Operações integradas</p>
           <h2>Matemática e textos</h2>
@@ -298,7 +315,34 @@ escreva soma_dois(4)</code></pre>
 fim
 
 escreva conta(1000, 0)</code></pre>
-        </section>
+
+<h3>Trilha completa: filtrar, transformar e acumular</h3>
+<p>As operações de lista podem formar um pipeline: cada passo recebe uma lista e produz outra lista ou um único resultado. No exemplo, a entrada é tipada como <code>Lista[Inteiro]</code>; a seleção mantém as notas aprovadas; o mapeamento calcula quantos pontos cada nota ultrapassou a média; e a injeção soma esses pontos.</p>
+<pre class="manual-code"><code>escreva "Digite notas inteiras separadas por espaço:"
+notas = leia_inteiros(" ")
+aprovadas = notas.selecione(n =&gt; n &gt;= 7)
+pontos_acima = aprovadas.mapeie(n =&gt; n - 7)
+total_acima = pontos_acima.injete(0)((total, n) =&gt; total + n)
+
+escreva "Aprovadas: {aprovadas}"
+escreva "Pontos acima da média: {total_acima}"</code></pre>
+<p>Para a entrada <code>6 8 7 5</code>, os valores intermediários são:</p>
+<div class="manual-table-wrap" role="region" aria-label="Rastreamento do pipeline funcional em Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Operação</th><th scope="col">Valor</th><th scope="col">Tipo</th></tr></thead><tbody>
+<tr><td>Entrada</td><td><code>leia_inteiros</code></td><td><code>[6, 8, 7, 5]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Seleção</td><td><code>selecione(n =&gt; n &gt;= 7)</code></td><td><code>[8, 7]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Mapeamento</td><td><code>mapeie(n =&gt; n - 7)</code></td><td><code>[1, 0]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Acumulação</td><td><code>injete(0)</code></td><td><code>1</code></td><td><code>Inteiro</code></td></tr>
+</tbody></table></div>
+<p>Esse encadeamento ajuda a localizar erros de tipo: <code>selecione</code> e <code>mapeie</code> mantêm a forma de coleção, enquanto <code>injete</code> reduz a coleção a um acumulador. A lista original <code>notas</code> continua disponível, pois essas operações produzem resultados sem alterar a lista de origem.</p>
+<h3>O tipo de cada etapa funcional</h3>
+<p>Uma função de ordem superior recebe uma função como argumento; uma sequência de operações pode então ser lida como transformações de tipos. Potigol usa nomes em português para o filtro, o mapeamento e a redução.</p>
+<div class="manual-table-wrap" role="region" aria-label="Tipos de entrada e saída das operações funcionais de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operação</th><th scope="col">Recebe</th><th scope="col">Devolve</th><th scope="col">Pergunta para conferir</th></tr></thead><tbody>
+<tr><td><code>selecione(predicado)</code></td><td><code>Lista[T]</code> e <code>T =&gt; Lógico</code></td><td><code>Lista[T]</code></td><td>A condição seleciona os elementos desejados?</td></tr>
+<tr><td><code>mapeie(transformação)</code></td><td><code>Lista[T]</code> e <code>T =&gt; U</code></td><td><code>Lista[U]</code></td><td>O resultado da função tem o tipo esperado?</td></tr>
+<tr><td><code>injete(inicial)(combinação)</code></td><td>Um acumulador <code>A</code>, uma lista <code>Lista[T]</code> e uma função <code>(A, T) =&gt; A</code></td><td>Um valor <code>A</code></td><td>O valor inicial funciona também para uma lista vazia?</td></tr>
+<tr><td>Currying</td><td>Uma função com argumentos em etapas</td><td>Uma função parcial após cada chamada</td><td>Os parâmetros ainda necessários estão claros?</td></tr>
+</tbody></table></div>
+<p>Não há um operador de composição especial necessário nesses exemplos: passe o resultado de uma etapa à seguinte, ou nomeie cada lista intermediária. Dar um nome a cada etapa deixa visível o primeiro ponto em que o conteúdo ou o tipo diverge do esperado.</p></section>
         <section id="padroes">
           <p class="kicker">13 · Decisão por forma</p>
           <h2>Casamento de padrões</h2>
@@ -317,7 +361,15 @@ fim
 escreva quantidade([3, 5, 8])
 escreva classifique(-2)</code></pre>
           <p>Os casos são avaliados na ordem em que aparecem; coloque os padrões mais específicos antes de um caso amplo como <code>_</code>. Em funções recursivas, o caso vazio fornece a condição de parada.</p>
-        </section>
+
+<h3>Consulta de padrões</h3>
+<div class="manual-table-wrap" role="region" aria-label="Padrões de casamento em Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Padrão</th><th scope="col">O que reconhece</th><th scope="col">Papel no algoritmo</th></tr></thead><tbody>
+<tr><td><code>[]</code></td><td>Lista vazia.</td><td>Define a condição-base de uma recursão sobre lista.</td></tr>
+<tr><td><code>cabeca :: cauda</code></td><td>Lista não vazia separada em primeiro item e restante.</td><td>Permite processar um elemento e continuar sobre a cauda.</td></tr>
+<tr><td><code>caso x se condição</code></td><td>Um valor ligado a <code>x</code> que também satisfaz uma guarda.</td><td>Expressa um caso com restrição adicional.</td></tr>
+<tr><td><code>_</code></td><td>Qualquer valor ainda não correspondido.</td><td>Serve como caso geral final quando não há outra estrutura a inspecionar.</td></tr>
+</tbody></table></div>
+<p>Os casos são tentados na ordem escrita. Coloque antes os padrões mais específicos e deixe o caso amplo para o final; assim, um <code>_</code> anterior não encobre os ramos que você queria distinguir.</p></section>
         <section id="jerimum">
           <p class="kicker">14 · Biblioteca de jogos</p>
           <h2>Jerimum: jogos com Potigol</h2>
@@ -396,7 +448,14 @@ fim
 
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
           <p>Os detalhes de cada método estão na documentação e no código-fonte do repositório Jerimum. Essa biblioteca usa recursos da plataforma Java para janela, desenho e áudio; seus exemplos devem ser lidos como aplicações para desktop Potigol.</p>
-        </section>
+
+<h3>Linguagem central e biblioteca</h3>
+<div class="manual-table-wrap" role="region" aria-label="Diferença entre Potigol e a biblioteca Jerimum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Parte</th><th scope="col">Como aparece</th><th scope="col">O que acrescenta</th></tr></thead><tbody>
+<tr><td>Linguagem Potigol</td><td>Declarações, funções, listas, tuplas, tipos e controle de fluxo.</td><td>É a sintaxe e os tipos usados nos exemplos sem importação.</td></tr>
+<tr><td>Jerimum</td><td><code>use "jerimum"</code></td><td>Acrescenta recursos de janela, imagens, entrada, áudio, relógio e arquivos.</td></tr>
+<tr><td>Objetos da biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>As chamadas dependem da versão e da documentação do repositório Jerimum.</td></tr>
+</tbody></table></div>
+<p>Se um exemplo usa <code>use "jerimum"</code>, ele depende da biblioteca e de seus arquivos de recursos; não basta copiar a sintaxe para um ambiente que execute apenas o núcleo da linguagem.</p></section>
         <section id="exemplo">
           <p class="kicker">15 · Exemplo integrado</p>
           <h2>Calcular a média de três notas</h2>

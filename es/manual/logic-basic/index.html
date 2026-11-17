@@ -31,11 +31,27 @@ body_class: manual-page
 Nome = "Ana"
 Posicione 1, 1
 Escreva "Hola, ", Nome
-FimPrograma</code></pre></section>
+FimPrograma</code></pre>
+<h3>Orden del programa y extensiones</h3>
+<p>El archivo principal se ejecuta en secuencia, desde la primera instrucción hasta la última. <code>FimPrograma</code> termina la secuencia y deja abierta la ventana; <code>FimJanela</code> también la cierra. Las extensiones de código funcionan como fragmentos añadidos al código principal y son un lugar documentado para guardar rutinas llamadas por el programa. El manual recomienda declarar las memorias al comienzo del código principal.</p>
+<div class="manual-table-wrap" role="region" aria-label="Organización y finalización del programa en Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento</th><th scope="col">Cuándo usarlo</th><th scope="col">Efecto documentado</th></tr></thead><tbody>
+<tr><td><code>Memoria</code></td><td>En el encabezado del código principal.</td><td>Crea nombres que pueden guardar valores y recursos.</td></tr>
+<tr><td>Extensión numerada</td><td>Para separar rutinas del flujo principal.</td><td>Se añade al código principal durante la ejecución.</td></tr>
+<tr><td><code>FimPrograma</code></td><td>Cuando el algoritmo debe terminar y la ventana permanecer abierta.</td><td>Detiene el programa.</td></tr>
+<tr><td><code>FimJanela</code></td><td>Cuando también debe cerrarse la ventana.</td><td>Detiene el programa y cierra la ventana.</td></tr>
+</tbody></table></div></section>
 <section id="memorias"><p class="kicker">03 · Datos</p><h2>Memorias y valores</h2><p><code>Memoria</code> crea los nombres que guardan valores. El manual recomienda escribir estas declaraciones al inicio del código principal. Una memoria puede contener texto, números y elementos del entorno visual como objetos y sonidos. El mismo nombre puede recibir un nuevo valor durante la ejecución.</p><pre class="manual-code"><code>Memoria Nome, Pontos, Fundo
 Nome = "Ana"
 Pontos = 12
-Fundo = "fundo-verde"</code></pre><p>El texto va entre comillas. Un número sin comillas se trata como número y puede participar en cálculos; entre comillas, es texto. El manual usa coma decimal, por ejemplo <code>3,5</code>. Los nombres de memoria no contienen espacios.</p></section>
+Fundo = "fundo-verde"</code></pre><p>El texto va entre comillas. Un número sin comillas se trata como número y puede participar en cálculos; entre comillas, es texto. El manual usa coma decimal, por ejemplo <code>3,5</code>. Los nombres de memoria no contienen espacios.</p>
+<h3>Interpretar el valor almacenado</h3>
+<p><code>Memoria</code> enumera los nombres que puede usar el programa; el valor asignado determina cómo participa en una expresión. Las comillas importan: el texto que parece numérico sigue siendo texto. El manual consultado no muestra declaraciones de tipo para estas memorias.</p>
+<div class="manual-table-wrap" role="region" aria-label="Valores y memorias en Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Ejemplo</th><th scope="col">Lectura</th></tr></thead><tbody>
+<tr><td>Literal de texto</td><td><code>Nome = "Ana"</code></td><td>Guarda caracteres entre comillas.</td></tr>
+<tr><td>Número</td><td><code>Pontos = 12</code></td><td>Valor numérico que puede usarse en un cálculo.</td></tr>
+<tr><td>Texto que parece número</td><td><code>Pontos = "12"</code></td><td>Sigue siendo texto; no se debe tratar como el número <code>12</code>.</td></tr>
+<tr><td>Memoria indexada</td><td><code>Nome(0)</code></td><td>Consulta una posición de una matriz declarada con tamaño.</td></tr>
+</tbody></table></div></section>
 <section id="expressoes"><p class="kicker">04 · Expresiones</p><h2>Asignación y operadores</h2><p>Fuera de una condición, <code>=</code> asigna un valor. Dentro de una condición, <code>=</code> compara valores. El lenguaje documenta operaciones aritméticas, actualizaciones compuestas y comparaciones. <code>SIM</code> y <code>NAO</code> representan valores lógicos en los ejemplos del manual.</p><div class="manual-table-wrap" role="region" aria-label="Operadores de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas documentadas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Aritméticos</td><td><code>+ - * / %</code></td><td>Cálculo y resto de la división.</td></tr><tr><td>Actualización</td><td><code>++ -- += -=</code></td><td>Incrementar, decrementar o actualizar un valor.</td></tr><tr><td>Comparación</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Probar igualdad y orden en una condición.</td></tr><tr><td>Lógicos</td><td><code>E OU</code></td><td>Combinar condiciones.</td></tr></tbody></table></div><pre class="manual-code"><code>Memoria X, Y, Soma
 X = 8
 Y = 3
@@ -49,7 +65,18 @@ Nome = EntraTexto, "Escribe tu nombre:"
 LimpaJanela
 Posicione 1, 1
 Escreva "Hola, ", Nome
-Mensagem "Registro completado"</code></pre></section>
+Mensagem "Registro completado"</code></pre>
+<h3>Referencia de comandos de interacción</h3>
+<p>Los argumentos de un comando se separan con comas. <code>Escreva</code> presenta cada argumento en secuencia; las comillas distinguen el texto literal del nombre de una memoria. La ventana predeterminada usa coordenadas que comienzan en cero, aunque <code>Janela</code> puede cambiar su resolución.</p>
+<div class="manual-table-wrap" role="region" aria-label="Entrada y salida en Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Resultado</th><th scope="col">Detalle importante</th></tr></thead><tbody>
+<tr><td><code>Posicione fila, columna</code></td><td>Define la posición de la próxima salida en la ventana.</td><td>La cuadrícula predeterminada tiene 27 filas y 79 columnas, numeradas de 0 a 26 y de 0 a 78.</td></tr>
+<tr><td><code>Escreva expresión, ...</code></td><td>Muestra los argumentos en secuencia en una misma línea lógica.</td><td>El texto literal va entre comillas; un nombre de memoria sin comillas aporta su contenido.</td></tr>
+<tr><td><code>Mensagem texto</code></td><td>Abre un cuadro de mensaje centrado.</td><td>No usa la posición establecida por <code>Posicione</code>.</td></tr>
+<tr><td><code>nombre = EntraTexto, pregunta</code></td><td>Solicita texto y guarda la respuesta en una memoria.</td><td>La memoria debe estar declarada.</td></tr>
+<tr><td><code>Componente Valor, nombre</code></td><td>Lee el valor escrito en un control.</td><td>Primero se crea el control con <code>Componente</code>.</td></tr>
+<tr><td><code>Aguarde</code></td><td>Pausa hasta una interacción o el tiempo configurado.</td><td>Puede esperar una tecla, un clic en botón/objeto o unos segundos; el resultado de la interacción puede quedar en <code>Retorno</code>.</td></tr>
+</tbody></table></div>
+<p>El punto y coma permite escribir varios comandos en una misma línea física, pero el manual considera cada comando separado como una línea lógica. Esto importa al leer el depurador y al usar saltos a etiquetas.</p></section>
 <section id="controle"><p class="kicker">06 · Decisiones y repetición</p><h2>Se, CasoContrario y VaPara</h2><p><code>Se</code> ejecuta instrucciones cuando una condición es verdadera. <code>CasoContrario</code> define la alternativa opcional y <code>FimSe</code> cierra el bloque. Para repetir comandos, el manual presenta etiquetas y el comando <code>VaPara</code>, que transfiere la ejecución a una línea identificada por su nombre.</p><pre class="manual-code"><code>Memoria Tentativa
 Tentativa = 0
 INICIO
@@ -59,7 +86,14 @@ Se Tentativa &lt; 3
 VaPara INICIO
 CasoContrario
 Escreva "Fin de los intentos"
-FimSe</code></pre><p>Esta forma permite crear bucles, pero requiere controlar explícitamente el estado que detiene la repetición. Un salto incorrecto puede provocar un bucle infinito.</p></section>
+FimSe</code></pre><p>Esta forma permite crear bucles, pero requiere controlar explícitamente el estado que detiene la repetición. Un salto incorrecto puede provocar un bucle infinito.</p>
+<h3>Consulta de las formas de control</h3>
+<div class="manual-table-wrap" role="region" aria-label="Estructuras de flujo de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efecto</th><th scope="col">Punto de atención</th></tr></thead><tbody>
+<tr><td><code>Se condición ... FimSe</code></td><td>Ejecuta el bloque cuando la comparación es verdadera.</td><td><code>=</code> compara dentro de una condición, aunque asigna fuera de ella.</td></tr>
+<tr><td><code>CasoContrario</code></td><td>Marca el bloque alternativo de un <code>Se</code>.</td><td>Úsalo dentro del bloque correspondiente y ciérralo con <code>FimSe</code>.</td></tr>
+<tr><td><code>ROTULO</code> seguido de <code>VaPara ROTULO</code></td><td>Retoma la ejecución en la línea identificada.</td><td>Actualiza el valor que controla la condición antes de volver al inicio.</td></tr>
+</tbody></table></div>
+<p>El salto implementa la repetición mediante el flujo del programa: la etiqueta marca el comienzo y la condición decide si se vuelve a ella. Antes de ejecutar, recorre una iteración a mano y confirma que el valor comprobado avanza hacia la salida.</p></section>
 <section id="funcoes"><p class="kicker">07 · Reutilización</p><h2>Funciones y extensiones</h2><p>El manual describe rutinas con nombre fuera del flujo principal. <code>Execute Nombre()</code> llama una rutina y <code>Retorne</code> devuelve la ejecución al comando siguiente al punto de llamada. Una rutina puede llamar otras rutinas y ser recursiva. El material también presenta paneles de extensión para organizar código reutilizable.</p><pre class="manual-code"><code>Escreva "Antes de la rutina"
 Execute Saudacao()
 Escreva "Después de la rutina"
@@ -67,7 +101,18 @@ FimPrograma
 
 Saudacao()
 Escreva "¡Hola!"
-Retorne</code></pre><p>Usa nombres coherentes y asegúrate de que toda ejecución que entre en la rutina alcance <code>Retorne</code>, para evitar que el flujo continúe con instrucciones que no forman parte de ella.</p></section>
+Retorne</code></pre><p>Usa nombres coherentes y asegúrate de que toda ejecución que entre en la rutina alcance <code>Retorne</code>, para evitar que el flujo continúe con instrucciones que no forman parte de ella.</p>
+<h3>Rutinas, llamadas y retorno</h3>
+<p>Una rutina con nombre se escribe después del terminador del programa principal o en una extensión. La llamada <code>Execute Nombre()</code> transfiere el control a ella; <code>Retorne</code> vuelve al comando siguiente a la llamada. El manual introductorio describe este retorno como flujo de ejecución, no como una expresión que devuelve un valor calculado. En sus ejemplos básicos, las memorias compartidas permiten intercambiar datos: declárelas y lea o actualice su contenido dentro de la rutina.</p>
+<pre class="manual-code"><code>Memoria Resultado
+Resultado = "listo"
+Execute ExibaResultado()
+FimPrograma
+
+ExibaResultado()
+Escreva "Estado: ", Resultado
+Retorne</code></pre>
+<p>Separe una rutina cuando un conjunto de comandos tenga una responsabilidad clara o se llame desde más de un lugar. En una rutina recursiva, cada camino debe llegar a un caso de parada o a <code>Retorne</code>; de lo contrario, las llamadas pueden seguir acumulándose.</p></section>
 <section id="matrizes"><p class="kicker">08 · Colecciones</p><h2>Matrices</h2><p>Una memoria puede declararse con una cantidad de posiciones entre paréntesis. Los índices comienzan en cero. Por ejemplo, <code>Memoria Nome(20)</code> crea las posiciones desde <code>Nome(0)</code> hasta <code>Nome(19)</code>. Una variable numérica puede servir como índice dentro de un bucle.</p><pre class="manual-code"><code>Memoria Nome(3), I
 Nome(0) = "Ana"
 Nome(1) = "Beto"
@@ -82,8 +127,21 @@ FimSe</code></pre><p><code>ProcureMatriz</code> busca un valor en una matriz y d
 <section id="interface"><p class="kicker">09 · Recursos visuales</p><h2>Ventana, controles y multimedia</h2><p>Los comandos visuales pueden posicionar texto, dibujar objetos, mostrar imágenes y responder a interacciones. <code>Componente</code> crea controles de formulario; <code>Desenhe</code> muestra objetos o recursos visuales; <code>Aguarde</code> pausa la ejecución o recibe una interacción según los argumentos descritos en el manual.</p><p>El material también documenta el ratón, el sonido y el vídeo. La configuración de canales, posiciones, dimensiones y controles depende de los parámetros de cada comando; consulta la fuente antes de usar las opciones avanzadas.</p><pre class="manual-code"><code>LimpaJanela
 Posicione 5, 5
 Desenhe "personagem"
-Aguarde</code></pre></section>
-<section id="banco"><p class="kicker">10 · Datos persistentes</p><h2>Base de datos nativa</h2><p>El manual describe bloques <code>BD ... FimBD</code> para definir campos y el comando <code>AbreBD</code> para abrir un archivo de datos. Los campos se completan mediante el nombre de la base y del campo; <code>AdicionaRegistro</code> guarda un registro, <code>LeRegistro</code> lee por posición y <code>FechaBD</code> cierra el archivo. También se documentan comandos para ordenar, buscar y contar registros.</p><div class="manual-table-wrap" role="region" aria-label="Comandos de base de datos de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Finalidad en el manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Definir los campos de una tabla.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Abrir o cerrar el archivo asociado.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Guardar los campos como un nuevo registro.</td></tr><tr><td><code>LeRegistro</code></td><td>Leer un registro por posición.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Ordenar o localizar registros.</td></tr><tr><td><code>TotalRegistros</code></td><td>Obtener el número de registros.</td></tr></tbody></table></div><p>La base usa archivos propios y una definición de campos. Antes de leer o guardar registros, sigue la secuencia de apertura y cierre descrita en el manual.</p></section>
+Aguarde</code></pre>
+<h3>Depurar siguiendo el estado del programa</h3>
+<p>El modo <strong>Depurar</strong> del entorno muestra las líneas de comando a medida que se ejecutan. Compare la instrucción actual con el resultado en la ventana y con los valores de las memorias utilizadas. El manual recomienda comprobar que cada memoria esté declarada y que el comando esté escrito correctamente.</p>
+<div class="manual-table-wrap" role="region" aria-label="Pasos de diagnóstico en Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Síntoma</th><th scope="col">Qué comprobar primero</th></tr></thead><tbody>
+<tr><td>Se muestra un nombre literalmente.</td><td>Compruebe si se declaró con <code>Memoria</code> y recibió el valor esperado.</td></tr>
+<tr><td>El texto aparece en otra posición.</td><td>Revise el orden de argumentos de <code>Posicione fila, columna</code> y si las coordenadas caben en la resolución de la ventana.</td></tr>
+<tr><td>El bucle no termina.</td><td>Observe si cambia la memoria comprobada por <code>Se</code> antes del salto <code>VaPara</code>.</td></tr>
+<tr><td>Una rutina no vuelve al punto de llamada.</td><td>Siga el camino ejecutado y confirme que llega a <code>Retorne</code>.</td></tr>
+<tr><td>Una interacción no actualiza la memoria.</td><td>Compruebe que el control se creó primero y que la respuesta se lee con <code>Componente Valor</code> o <code>Retorno</code>, según el comando.</td></tr>
+</tbody></table></div></section>
+<section id="banco"><p class="kicker">10 · Datos persistentes</p><h2>Base de datos nativa</h2><p>El manual describe bloques <code>BD ... FimBD</code> para definir campos y el comando <code>AbreBD</code> para abrir un archivo de datos. Los campos se completan mediante el nombre de la base y del campo; <code>AdicionaRegistro</code> guarda un registro, <code>LeRegistro</code> lee por posición y <code>FechaBD</code> cierra el archivo. También se documentan comandos para ordenar, buscar y contar registros.</p><div class="manual-table-wrap" role="region" aria-label="Comandos de base de datos de Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Comando</th><th scope="col">Finalidad en el manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Definir los campos de una tabla.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Abrir o cerrar el archivo asociado.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Guardar los campos como un nuevo registro.</td></tr><tr><td><code>LeRegistro</code></td><td>Leer un registro por posición.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Ordenar o localizar registros.</td></tr><tr><td><code>TotalRegistros</code></td><td>Obtener el número de registros.</td></tr></tbody></table></div><p>La base usa archivos propios y una definición de campos. Antes de leer o guardar registros, sigue la secuencia de apertura y cierre descrita en el manual.</p>
+<h3>Esquema, apertura e índices de registros</h3>
+<p>Una declaración <code>BD</code> asocia un nombre lógico con una ruta y enumera cada campo de la tabla junto con su tamaño; se ubica en el encabezado después de <code>Memoria</code>. Los archivos de datos usan la extensión <code>.LBA</code>, que se puede omitir en <code>AbreBD</code>. Cada base solo puede tener un archivo abierto a la vez: ciérrelo antes de elegir otro archivo para el mismo esquema.</p>
+<p>Los registros se indexan desde cero. Si <code>TotalRegistros</code> devuelve <code>T</code>, los índices válidos van de <code>0</code> a <code>T - 1</code>. Ejecute <code>OrdemBD</code> antes de la rutina que utiliza el ordenamiento; luego las lecturas siguen ese orden hasta elegir <code>Sequencial</code> u otro orden. <code>Procure</code> usa el índice actual y devuelve <code>-1</code> si no encuentra el registro.</p>
+<p>Una secuencia segura es: definir los campos, abrir un archivo, completar los campos de un registro y guardarlo con <code>AdicionaRegistro</code>; para consultar, obtener la cantidad o buscar una posición, leer con <code>LeRegistro</code> y cerrar con <code>FechaBD</code> al terminar.</p></section>
 <section id="exemplo"><p class="kicker">11 · Aplicación</p><h2>Ejemplo integrado</h2><p>El ejemplo usa memorias, entrada y una condición para mostrar un saludo personalizado. Reúne comandos básicos sin depender de funciones gráficas avanzadas.</p><pre class="manual-code"><code>Memoria Nome, Pontos
 Nome = EntraTexto, "¿Cómo te llamas?"
 Pontos = 0
@@ -97,7 +155,8 @@ Pontos = Pontos + 1
 Escreva "Puntos: ", Pontos
 FimSe
 FimPrograma</code></pre></section>
-<section id="fontes"><p class="kicker">12 · Fuentes</p><h2>Manual consultado</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Manual de Logic Basic</a>, de Eleusmário Mariano Rabelo — fuente para comandos, memorias, interfaz, matrices, rutinas y base de datos.</li></ul><p>Los ejemplos de esta página se redactaron para explicar los conceptos; consulta el manual original para conocer todos los parámetros de cada comando.</p></section>
+<section id="fontes"><p class="kicker">12 · Fuentes</p><h2>Manual consultado</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Manual de Logic Basic</a>, de Eleusmário Mariano Rabelo — fuente para comandos, memorias, interfaz, matrices, rutinas y base de datos.</li></ul><p>Los ejemplos de esta página se redactaron para explicar los conceptos; consulta el manual original para conocer todos los parámetros de cada comando.</p>
+<p>El ejemplar consultado describe Logic Basic 7.0. Esta página no confirma la compatibilidad con ediciones posteriores ni la disponibilidad actual del entorno; los nombres de opciones y el comportamiento de recursos visuales deben comprobarse en la edición instalada. Las tablas resumen las formas descritas en el manual, no todos los parámetros posibles.</p></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#sintaxe">Como consultar a gramática</a></li>
         <li><a href="#estudo">Roteiro de aprendizagem</a></li>
         <li><a href="#escopo">O que esta referência cobre</a></li>
+        <li><a href="#referencia-ampliada">Referência ampliada</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -115,13 +116,9 @@ body_class: manual-page
         <h2>Como consultar a gramática</h2>
 <p>O projeto distribui documentos de regras da linguagem e exemplos junto com seus arquivos de instalação. Eles são a fonte apropriada para confirmar palavras-chave, pontuação, declarações, expressões, classes, processos e APIs gráficas.</p><p>Como a página pública consultada não expõe uma gramática de forma completa e estável em texto simples, esta referência não apresenta um “Olá, mundo” reconstruído. Para obter um programa verificável:</p><ol><li>baixe a distribuição pelo portal oficial;</li><li>abra os documentos de regras incluídos no pacote;</li><li>execute primeiro um dos exemplos fornecidos;</li><li>modifique uma parte do exemplo e compare o resultado.</li></ol><p>Isso evita atribuir a Kalimat uma sintaxe adivinhada a partir de sua descrição em outro idioma.</p>
 
-<h3>O que vem no pacote oficial</h3>
-<p>O guia oficial para começar recomenda baixar a distribuição, descompactar o arquivo e iniciar o executável incluído. O pacote contém dois documentos PDF: um resumo das regras e outro guia mais detalhado. Também traz diretórios de exemplos simples e completos. Eles são a melhor fonte para conferir a gramática da versão e experimentar programas sem reconstruir a sintaxe a partir de uma descrição.</p>
-<p>Quem está começando pode seguir o curso introdutório indicado pelo projeto; quem já programa pode começar pelo PDF resumido e consultar a referência detalhada quando surgir uma construção nova. A página oficial atualmente identifica uma distribuição datada de 3 de maio de 2025; confira o rótulo da versão no portal antes de comparar exemplos.</p>
-<h3>Como ler um exemplo sem misturar versões</h3>
-<ul><li>Registre a versão e o sistema usados pelo material.</li><li>Execute o exemplo sem alterações e guarde a saída.</li><li>Altere uma declaração ou expressão e compare o resultado.</li><li>Consulte o PDF detalhado para confirmar a regra por trás da mudança.</li><li>Não copie palavras reservadas de uma implementação de Kalimat para outra linguagem árabe.</li></ul>
-
-</section>
+<h3>Confirmar a regra na edição instalada</h3>
+<p>O guia atual recomenda começar por um dos PDFs de regras e pelos exemplos que acompanham o arquivo baixado. O artigo técnico do criador citado abaixo mostra uma edição de sintaxe inglesa em 2013; leia esses exemplos como evidência histórica da estrutura da linguagem, não como substituto da gramática árabe do pacote anunciado em 2025.</p>
+      </section>
       <section id="estudo">
         <p class="kicker">08 · estudo e depuração</p>
         <h2>Roteiro de aprendizagem</h2>
@@ -138,6 +135,28 @@ body_class: manual-page
         <h2>O que esta referência cobre</h2>
 <p>Os recursos descritos aqui — linguagem em árabe, orientação a objetos, modelo CSP, gráficos 2D e interoperabilidade com C — são os anunciados pelo projeto oficial consultado. A página não tenta fixar todos os detalhes sintáticos ou a compatibilidade entre versões.</p><p>A distribuição oficial inclui documentos de regras e exemplos que devem ser usados para confirmar a gramática e o ambiente. Kalimat segue em avaliação para o Potoo IDE; nenhum recurso desta página deve ser lido como compatibilidade já implementada.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Referência de projeto e pacote</p><h2>Recursos e decisões por versão</h2>
+<p>A página oficial consultada anuncia uma distribuição datada de 3 de maio de 2025. O guia de instalação diz que o arquivo compactado inclui o executável <code>kalimat.exe</code>, dois PDFs de regras — um resumido e outro detalhado — e diretórios com exemplos simples e completos. Essa distribuição é a melhor base para confirmar gramática e chamadas, pois o portal público apresenta recursos, mas não publica toda a referência sintática em páginas navegáveis.</p>
+<div class="manual-table-wrap" role="region" aria-label="Mapa dos recursos documentados de Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Camada</th><th scope="col">O projeto anuncia</th><th scope="col">O que deve ser confirmado no pacote</th></tr></thead><tbody>
+<tr><td>Linguagem</td><td>Vocabulário e escrita em árabe, com foco em quem está começando.</td><td>Direção do texto, codificação, nomes reservados, literais e pontuação da versão.</td></tr>
+<tr><td>Modelo de programação</td><td>Recursos de orientação a objetos.</td><td>Declaração de tipos, criação de objetos, estado, métodos e forma de chamada.</td></tr>
+<tr><td>Concorrência</td><td>Programação concorrente descrita pelo projeto com referência ao modelo CSP.</td><td>Como processos são declarados, que comunicação sincroniza as partes e como a execução termina.</td></tr>
+<tr><td>Biblioteca visual</td><td>Recursos de gráficos 2D e jogos voltados aos objetivos educacionais.</td><td>Inicialização da janela, sistema de coordenadas, desenho, eventos e ciclo de atualização.</td></tr>
+<tr><td>Interoperabilidade</td><td>FFI para chamar procedimentos escritos em C.</td><td>Tipos compatíveis, convenção de chamada, tratamento de erro e propriedade da memória.</td></tr>
+<tr><td>Distribuição</td><td>Pacote Windows; a FAQ descreve execução em Linux por WINE.</td><td>Versão instalada, arquivos de dependência e plataformas efetivamente testadas pelo curso.</td></tr>
+</tbody></table></div>
+<p>As colunas da direita são perguntas de consulta, não afirmações sobre a gramática. Em particular, CSP não autoriza importar palavras de occam, Go ou outra linguagem: use apenas as construções apresentadas no PDF da versão escolhida.</p>
+<h3>Instalar e explorar sem perder a referência</h3>
+<ol><li>Registre o nome e a data da distribuição baixada no portal oficial.</li><li>Descompacte o arquivo e abra o executável indicado pelo guia.</li><li>Leia primeiro o PDF resumido para conhecer os símbolos e termos.</li><li>Abra o PDF detalhado quando um exemplo introduzir uma regra nova.</li><li>Execute um exemplo simples sem alterações; depois modifique uma expressão ou um valor.</li><li>Compare o resultado com o exemplo completo correspondente antes de acrescentar bibliotecas ou concorrência.</li></ol>
+<p>O guia oficial também recomenda um curso introdutório para iniciantes. A sequência de aprendizagem pode avançar da entrada e saída para variáveis, decisões e repetição; em seguida, objetos e bibliotecas podem ser estudados como camadas adicionais. A ordem reduz a chance de confundir uma regra central da linguagem com um recurso da biblioteca gráfica.</p>
+<h3>Escolher um exercício conforme a camada</h3>
+<div class="manual-table-wrap" role="region" aria-label="Exercícios conceituais para estudar Kalimat" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Exercício</th><th scope="col">Conceito isolado</th><th scope="col">Resultado que deve ser conferido</th></tr></thead><tbody>
+<tr><td>Calcular o total de uma compra</td><td>Entrada, variável, expressão e saída.</td><td>O total calculado coincide com os dados de entrada e a regra da tarefa.</td></tr>
+<tr><td>Representar uma figura com posição e cor</td><td>Estado agrupado num objeto e operação de desenho.</td><td>Alterar uma propriedade muda apenas o aspecto esperado.</td></tr>
+<tr><td>Produzir e consumir uma sequência de valores</td><td>Processos separados e comunicação no modelo CSP.</td><td>Cada valor produzido é recebido uma vez, na ordem definida pela atividade.</td></tr>
+<tr><td>Chamar uma rotina de C em exemplo mínimo</td><td>Fronteira FFI e representação de tipos.</td><td>Argumentos, retorno e ciclo de vida de recursos correspondem ao contrato.</td></tr>
+</tbody></table></div>
+<p>Esses exercícios são roteiros de investigação, não programas Kalimat. Para escrever código, copie a forma sintática dos exemplos distribuídos e mantenha o arquivo de referência junto ao projeto da turma. As opções de Linux e macOS devem ser confirmadas na FAQ e na distribuição atual; o portal descreve Linux via WINE e não anuncia uma edição independente para macOS.</p></section>
       <section id="fontes">
         <p class="kicker">10 · leitura adicional</p>
         <h2>Referências</h2>

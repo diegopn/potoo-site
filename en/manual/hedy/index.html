@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#erros-frequentes">Common errors and what to check</a></li>
         <li><a href="#ponte-python">What carries from Hedy to Python</a></li>
         <li><a href="#limites">Languages, levels, and change</a></li>
+        <li><a href="#referencia-ampliada">Expanded reference</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -109,6 +110,52 @@ print The answer is 7</code></pre><p>This first version fixes the answer in the 
         <h2>Languages, levels, and change</h2>
 <p>Hedy evolves as a platform and curriculum. The number of levels, lessons, translations, and features may change. This page avoids fixing a level count and describes the general progression in current official materials.</p><p>Syntax depends on level and language. A single example therefore does not represent the entire language. Consult the current platform and teacher manual before preparing class materials. Hedy remains under evaluation for Potoo IDE.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Syntax reference</p><h2>Syntax map by level</h2>
+<p>The currently published teacher manual organizes the path into 16 levels: Basic (1–8), Advanced (9–12), and Expert (13–16). Each level accepts its own grammar. A program that works in an advanced lesson may be rejected at an early level because quotation marks, indentation, parentheses, or commands have not been introduced yet. This table summarizes the progression described by the project; the selected platform lesson is the authority for a specific activity.</p>
+<div class="manual-table-wrap" role="region" aria-label="Hedy level progression" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Level</th><th scope="col">Feature introduced</th><th scope="col">Change to recognize</th></tr></thead><tbody>
+<tr><td>1</td><td><code>print</code>, <code>ask</code>, <code>answer</code>, and early turtle commands.</td><td>Text may appear without quotes; the reply is available as <code>answer</code>.</td></tr>
+<tr><td>2</td><td>Variables with <code>is</code>, pauses with <code>sleep</code>, and turns in degrees.</td><td>The answer can be stored in a named variable.</td></tr>
+<tr><td>3</td><td>Lists, random selection, adding, and removing items.</td><td>List items are comma-separated; randomness can change the output.</td></tr>
+<tr><td>4</td><td>Quotation marks around text, plus screen and color features.</td><td>Literal text and variable names become visually distinct.</td></tr>
+<tr><td>5</td><td>Selection with <code>if</code> and <code>else</code>.</td><td>Alternatives use simple one-line forms; each branch needs a command.</td></tr>
+<tr><td>6</td><td><code>elif</code> and membership checks with <code>in</code>.</td><td>A chain can distinguish more than two answers or check a list.</td></tr>
+<tr><td>7</td><td>Arithmetic, decimals, and assignment with <code>=</code>.</td><td>Expressions can calculate with variables; a point separates decimal places.</td></tr>
+<tr><td>8</td><td>Repeat one line with <code>repeat ... times</code>.</td><td>The block contains one line; repeating multiple instructions comes later.</td></tr>
+<tr><td>9</td><td>Indentation and multi-line blocks.</td><td>Indentation shows which instructions belong to an <code>if</code> or repeat.</td></tr>
+<tr><td>10</td><td>Nested blocks and the <code>and</code> and <code>or</code> operators.</td><td>Indentation shows which decision sits inside another.</td></tr>
+<tr><td>11</td><td><code>for</code> loops over list items.</td><td>The singular name represents the current item; the plural name is the collection.</td></tr>
+<tr><td>12</td><td>Basic functions with <code>define</code> and <code>call</code>.</td><td>Defining a function does not run it; it must be called.</td></tr>
+<tr><td>13</td><td>Entry to Expert and a gradual shift toward Python-like syntax.</td><td>Some earlier forms stop applying while the new syntax is introduced.</td></tr>
+<tr><td>14</td><td>Lists with brackets and repetition with <code>for ... in range(...)</code>.</td><td>Random selection and list access change form.</td></tr>
+<tr><td>15</td><td>Functions with <code>def</code>, arguments, and <code>return</code>.</td><td>Parentheses, colons, and indentation structure the function.</td></tr>
+<tr><td>16</td><td>The <code>while</code> loop.</td><td>The condition must be able to become false to avoid an endless loop.</td></tr>
+</tbody></table></div>
+<p>This table describes the teacher manual consulted; earlier project materials may organize or name the sequence differently. When comparing versions, record the level and command language alongside the code.</p>
+<h3>One idea across different stages</h3>
+<p>A personalized greeting shows why syntax must be read in the context of its level:</p>
+<div class="manual-table-wrap" role="region" aria-label="Hedy syntax examples from different levels" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Stage</th><th scope="col">Representative snippet</th><th scope="col">What changed</th></tr></thead><tbody>
+<tr><td>Level 1</td><td><code>ask What is your name?</code><br><code>print Hello answer</code></td><td>The answer uses the special name <code>answer</code>.</td></tr>
+<tr><td>Level 2</td><td><code>name is ask What is your name?</code><br><code>print Hello name</code></td><td>The program chooses where to store the answer.</td></tr>
+<tr><td>Level 4</td><td><code>name is ask 'What is your name?'</code><br><code>print 'Hello ' name</code></td><td>Quotes delimit text while the variable stays outside them.</td></tr>
+<tr><td>Level 9</td><td><code>if name is Hedy</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print 'Welcome back'</code></td><td>Indentation marks the branch body.</td></tr>
+</tbody></table></div>
+<p>In the Expert path, follow the syntax shown by the lesson. For example, the documentation demonstrates a function with <code>def</code>, a parameter, and a return value:</p>
+<pre class="manual-code"><code>def room_for(number):
+    room_number = 1000 + number
+    return room_number
+
+favorite_number = 7
+room_number = room_for(favorite_number)
+print('Your room is ', room_number)</code></pre>
+<h3>Diagnose errors without mixing levels</h3>
+<div class="manual-table-wrap" role="region" aria-label="Hedy level error diagnosis" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Symptom</th><th scope="col">Likely check</th><th scope="col">How to isolate it</th></tr></thead><tbody>
+<tr><td>Unknown command</td><td>The command belongs to a later level or another code language.</td><td>Check the level, code language, and spelling shown in the lesson.</td></tr>
+<tr><td>A variable appears as literal text</td><td>Text and variables are not yet separated by that level's punctuation.</td><td>Compare the lesson example and move the variable outside quotes when required.</td></tr>
+<tr><td>Only one line repeats</td><td>The level allows only one instruction in a repeat.</td><td>Use the level that introduces indented blocks before grouping lines.</td></tr>
+<tr><td>The wrong branch runs</td><td>The equality test may confuse the variable name with the value being checked.</td><td>Read the condition left to right and use distinct test and data values.</td></tr>
+<tr><td>The program does not stop</td><td>A <code>while</code> loop does not change the state used by its condition.</td><td>Record the condition before and after each iteration and add an update that can reach the stopping state.</td></tr>
+</tbody></table></div>
+<p>For classroom work, keep a copy of the code from each stage. The grammar change is part of the curriculum; comparing versions side by side makes the transition to Python explicit instead of treating an earlier form as an error.</p></section>
       <section id="fontes">
         <p class="kicker">13 · further reading</p>
         <h2>References</h2>

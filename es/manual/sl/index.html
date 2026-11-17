@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia educativa · lenguaje educativo de algoritmos · en evaluación</p>
     <h1>SL</h1>
-    <p class="manual-intro">SL es el lenguaje educativo de algoritmos documentado por la Universidad Nacional de Asunción.</p>
+    <p class="manual-intro">Referencia práctica de SL: sintaxis, datos, control del flujo, subrutinas y funciones estándar.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -38,6 +38,7 @@ body_class: manual-page
         <li><a href="#escopo">Implementación y límites</a></li>
         <li><a href="#regras">Identificadores, operadores y escritura</a></li>
         <li><a href="#subprogramas">Funciones, procedimientos y parámetros</a></li>
+        <li><a href="#biblioteca">Biblioteca estándar y funciones</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -52,131 +53,91 @@ body_class: manual-page
         <h2>Proyecto y finalidad didáctica</h2>
 <p>El material oficial está asociado a la Facultad Politécnica de la Universidad Nacional de Asunción. Presenta SL como un recurso para enseñar algoritmos e incluye el entorno SLE, documentos, ejemplos y material complementario.</p><p>El lenguaje se concibió para practicar conceptos introductorios:</p><ul><li>describir una secuencia de instrucciones con inicio y fin explícitos;</li><li>declarar datos y componer expresiones;</li><li>leer entradas y mostrar resultados;</li><li>controlar decisiones y repeticiones;</li><li>organizar cálculos en funciones y subrutinas.</li></ul><p>El portal oficial y el libro del proyecto son las fuentes para confirmar detalles sintácticos y las funciones de una versión concreta de SLE.</p>
       </section>
-      <section id="estrutura">
-        <p class="kicker">03 · estructura del programa</p>
-        <h2>Estructura de un algoritmo</h2>
-<p>Un programa sencillo puede declarar variables, iniciar la secuencia ejecutable, recibir datos, calcular un resultado y terminar. La documentación del proyecto utiliza palabras reservadas en español y minúsculas en sus ejemplos. Este fragmento sigue la forma mostrada en el material introductorio:</p><pre class="manual-code"><code>var
-    n, resultado : numerico
+      <section id="estrutura"><p class="kicker">03 · estructura del programa</p><h2>Estructura de un algoritmo</h2><p>La forma mínima declara datos, inicia la ejecución en <code>inicio</code> y termina con <code>fin</code>. El encabezado opcional <code>programa nombre</code> identifica el archivo; no cambia la secuencia de ejecución.</p><pre class="manual-code"><code>programa saludo
+var
+    numero, cuadrado : numerico
 inicio
-    leer(n)
-    resultado = n * n
-    imprimir(resultado)
-fin</code></pre><p><code>var</code> introduce las declaraciones, <code>inicio</code> abre el cuerpo y <code>fin</code> termina el programa. Los nombres de programas, variables y subrutinas siguen las reglas de identificadores del libro.</p>
-      </section>
-      <section id="dados">
-        <p class="kicker">04 · datos y operadores</p>
-        <h2>Variables, tipos y colecciones</h2>
-<p>SL documenta valores numéricos y de texto, y valores lógicos, además de estructuras para agrupar datos y trabajar con colecciones. Los nombres exactos de tipos y las reglas de índices deben seguir el manual oficial de la versión correspondiente.</p><div class="manual-table-wrap" role="region" aria-label="Conceptos de datos de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Concepto</th><th scope="col">Uso didáctico</th></tr></thead><tbody><tr><td>Escalares</td><td>Representan números, caracteres o condiciones.</td></tr><tr><td>Arreglos y matrices</td><td>Guardan secuencias de elementos a los que se accede por índice.</td></tr><tr><td>Registros</td><td>Agrupan campos con nombre y tipos propios.</td></tr><tr><td>Expresiones</td><td>Combinan operadores aritméticos, relacionales y lógicos.</td></tr></tbody></table></div><p>Elige nombres que indiquen la función del dato y un tipo adecuado. Antes de acceder a una posición de un arreglo o a un campo de un registro, identifica los límites y la estructura declarados.</p>
-      </section>
-      <section id="entrada">
-        <p class="kicker">05 · interacción</p>
-        <h2>Entrada, salida y cálculos</h2>
-<p>Los ejemplos del proyecto usan instrucciones de lectura e impresión para relacionar el algoritmo con los datos proporcionados durante la ejecución. Una expresión puede combinar valores y guardar un cálculo en una variable antes de mostrarlo.</p><pre class="manual-code"><code>var
-    base, altura, area : numerico
+    leer(numero)
+    cuadrado = numero * numero
+    imprimir(&quot;Cuadrado: &quot;, cuadrado)
+fin</code></pre><p>Las declaraciones de <code>const</code>, <code>tipos</code> y <code>var</code> pueden aparecer antes de <code>inicio</code>, en cualquier orden y más de una vez. Una subrutina se declara después del programa principal y tiene sus propias declaraciones locales.</p><div aria-label="Partes de un programa SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Función</th><th scope="col">Nota</th></tr></thead><tbody><tr><td><code>programa nome</code></td><td>Encabezado opcional.</td><td>Identifica el programa.</td></tr><tr><td><code>const / tipos / var</code></td><td>Declara constantes, tipos y variables globales.</td><td>Puede aparecer más de una vez y en cualquier orden antes de inicio.</td></tr><tr><td><code>inicio</code></td><td>Inicia la ejecución del programa.</td><td>Va después de las declaraciones globales.</td></tr><tr><td><code>fin</code></td><td>Termina el programa principal.</td><td>Las subrutinas se definen después.</td></tr></tbody></table></div></section>
+      <section id="dados"><p class="kicker">04 · datos estructurados</p><h2>Tipos, variables y colecciones</h2><p>SL tiene tres tipos básicos. <code>numerico</code> representa enteros y números reales; no hay tipos separados para cada precisión. El verificador exige compatibilidad de tipos en las expresiones. Los tipos compuestos se crean con vectores, matrices, registros y nombres definidos bajo <code>tipos</code>.</p><div aria-label="Tipos e estruturas de dados de SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo o forma</th><th scope="col">Representa</th><th scope="col">Regla de uso</th></tr></thead><tbody><tr><td><code>numerico</code></td><td>Enteros y valores reales.</td><td>Un mismo tipo para contadores, medidas y cálculos.</td></tr><tr><td><code>cadena</code></td><td>Texto de longitud dinámica.</td><td>El operador + concatena dos cadenas; los caracteres se consultan por índice.</td></tr><tr><td><code>logico</code></td><td>Valores lógicos, como TRUE y FALSE en los ejemplos oficiales.</td><td>Las condiciones y los operadores relacionales producen valores lógicos.</td></tr><tr><td><code>vector [n] tipo</code></td><td>Vector de tamaño fijo.</td><td>Las posiciones empiezan en 1 y terminan en n.</td></tr><tr><td><code>matriz [filas, columnas] tipo</code></td><td>Matriz de una o más dimensiones.</td><td>Indica un índice por cada dimensión.</td></tr><tr><td><code>vector [*] tipo</code></td><td>Vector abierto, dimensionado durante la ejecución.</td><td>Llama a dim(vector, tamaño) antes de recorrer sus elementos.</td></tr><tr><td><code>registro { campo : tipo }</code></td><td>Agrupa campos con nombre y tipos posiblemente distintos.</td><td>Accede a un campo con un punto, por ejemplo alumno.nota.</td></tr><tr><td><code>tipos NOMBRE : tipo</code></td><td>Crea un nombre de tipo reutilizable.</td><td>Los tipos compuestos son compatibles por su estructura.</td></tr></tbody></table></div><pre class="manual-code"><code>tipos
+    ALUMNO : registro {
+        nombre : cadena
+        nota : numerico
+    }
+var
+    grupo : vector [*] ALUMNO
+    total : numerico
 inicio
-    imprimir("Ingrese la base y la altura:")
-    leer(base, altura)
-    area = base * altura
-    imprimir(area)
-fin</code></pre><p>El ejemplo declara sus datos y separa la entrada, el cálculo y la salida. Consulta el libro para conocer los detalles de literales y puntuación en la versión de SLE usada en clase.</p><p>Separar entrada, procesamiento y salida facilita probar el cálculo sin confundir un problema de lectura con un error en la fórmula.</p>
-      </section>
-      <section id="controle">
-        <p class="kicker">06 · flujo de control</p>
-        <h2>Decisiones, bucles y subrutinas</h2>
-<p>SL incluye estructuras para elegir un camino, repetir instrucciones y reutilizar operaciones. La documentación cubre condicionales, bucles contados o condicionales, funciones y subrutinas. Las palabras reservadas exactas dependen de cada construcción; cópialas del manual oficial, no de otro lenguaje.</p><ul><li><strong>Decisión:</strong> ejecuta un bloque según una expresión lógica.</li><li><strong>Repetición:</strong> repite instrucciones una cantidad controlada de veces o hasta que ocurra una condición.</li><li><strong>Función:</strong> calcula y devuelve un resultado.</li><li><strong>Subrutina:</strong> da nombre a una secuencia de acciones que se puede invocar desde otro punto.</li></ul><p>Al escribir un bucle, identifica la variable o condición que cambia y explica por qué la repetición termina. Al dividir un problema en rutinas, define qué valores recibe cada una y qué resultado o efecto produce.</p>
-      </section>
-      <section id="exemplo">
-        <p class="kicker">07 · ejemplo guiado</p>
-        <h2>Calcular la media de dos notas</h2>
-<p>Una media sencilla permite practicar datos, entrada, expresiones y salida. Primero declara las dos notas y el resultado con tipos adecuados. Después lee cada valor, calcula la suma dividida entre dos y muestra la media.</p><pre class="manual-code"><code>var
-    nota1, nota2, promedio : numerico
+    dim(grupo, 2)
+    grupo[1].nombre = &quot;Lia&quot;
+    grupo[1].nota = 9
+    grupo[2].nombre = &quot;Rui&quot;
+    grupo[2].nota = 7
+    total = alen(grupo)
+    imprimir(grupo[1].nombre, &quot; / &quot;, total)
+fin</code></pre><p>El primer índice es 1, a diferencia de los lenguajes que empiezan en cero. Una matriz <code>M</code> puede recorrerse por filas con <code>alen(M)</code>; <code>alen(M[1])</code> devuelve la cantidad de columnas de la primera fila. Si el tamaño solo se conoce durante la ejecución, declara la dimensión abierta con <code>*</code> y asígnala con <code>dim</code>.</p><p>El ejemplo muestra los dos pasos para acceder a un registro dentro de un vector: seleccionar el elemento y luego el campo. Comprueba la cantidad de elementos antes de indexar; los accesos fuera de rango producen un error de ejecución.</p></section>
+      <section id="entrada"><p class="kicker">05 · interacción</p><h2>Entrada, salida y archivos</h2><p><code>leer</code> e <code>imprimir</code> aceptan varios argumentos y estructuras completas. La entrada separa campos por comas de manera predeterminada; la salida escribe los valores en secuencia, así que agrega espacios y saltos de línea explícitos.</p><div aria-label="Entrada, saída e fluxo de dados em SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efecto</th><th scope="col">Detalle</th></tr></thead><tbody><tr><td><code>leer(a, b)</code></td><td>Lee valores y los asigna a las variables o estructuras indicadas.</td><td>Una llamada puede leer varios escalares, un vector o un registro.</td></tr><tr><td><code>imprimir(a, b)</code></td><td>Muestra valores en pantalla o en el destino actual.</td><td>Usa &quot;\n&quot; y &quot;\t&quot; para dar formato a líneas y columnas.</td></tr><tr><td><code>set_ifs(separador)</code></td><td>Cambia el separador de campos que usa leer.</td><td>El predeterminado es la coma; configúralo de nuevo después de set_stdin.</td></tr><tr><td><code>set_stdin(archivo)</code></td><td>Lee desde un archivo en lugar del teclado.</td><td>Comprueba su resultado lógico y usa eof() durante la lectura.</td></tr><tr><td><code>set_stdout(archivo)</code></td><td>Redirige imprimir a un archivo.</td><td>La forma básica reemplaza un archivo existente; el modo &quot;at&quot; agrega contenido.</td></tr><tr><td><code>set_ofs(separador)</code></td><td>Cambia el separador al imprimir valores compuestos.</td><td>El predeterminado para vectores y registros es la coma.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    nombre : cadena
+    edad : numerico
 inicio
-    leer(nota1)
-    leer(nota2)
-    promedio = (nota1 + nota2) / 2
-    imprimir(promedio)
-fin</code></pre><p>Para ampliar el ejemplo, valida que las notas estén dentro del intervalo permitido por el ejercicio. Una condición puede elegir un mensaje de aprobado o suspenso; un bucle puede repetir la lectura mientras una nota sea inválida. El umbral de aprobación depende del ejercicio.</p>
-      </section>
-      <section id="estudo">
-        <p class="kicker">08 · estudio y depuración</p>
-        <h2>Practicar con SL</h2>
-<p>Utiliza el entorno y los ejemplos del portal oficial para confirmar la sintaxis. Empieza con programas pequeños y ejecútalos con entradas conocidas. Si la versión de SLE permite avanzar paso a paso, ejecuta una instrucción a la vez y observa las variables relevantes.</p><ul><li>Prueba entradas habituales y límites definidos por el problema.</li><li>Comprueba los tipos antes de mezclar números y texto en una expresión.</li><li>En arreglos, verifica el primer y el último índice utilizados.</li><li>En subrutinas, compara cada argumento con la función documentada de su parámetro.</li><li>Ante un error, localiza la primera instrucción incompatible y confirma la palabra reservada en el manual.</li></ul><p>El libro y los materiales oficiales contienen convenciones y ejercicios completos que este resumen no sustituye. Utiliza esta página como guía de conceptos, no como especificación de una instalación concreta.</p>
-      </section>
-      <section id="escopo">
-        <p class="kicker">09 · versiones y alcance</p>
-        <h2>Implementación y límites</h2>
-<p>El ecosistema de SL incluye el lenguaje y SLE, pero el portal puede ofrecer versiones y archivos diferentes con el tiempo. La interfaz, la depuración, las bibliotecas y la sintaxis deben confirmarse en el paquete instalado.</p><p>Esta referencia resume las familias de funciones documentadas públicamente. No garantiza que todas las construcciones históricas estén disponibles en cualquier versión ni que un programa SL funcione sin cambios en otro intérprete. SL sigue en evaluación como posibilidad futura para Potoo IDE.</p>
-      </section>
-      <section id="regras">
-        <p class="kicker">10 · sintaxis y lectura</p>
-        <h2>Identificadores, operadores y escritura</h2>
-        <p>El libro de SL especifica tres tipos básicos: <code>numerico</code>, <code>cadena</code> y <code>logico</code>. El tipo numérico representa tanto enteros como valores reales; las cadenas tienen longitud dinámica; los arreglos y registros se construyen con estos tipos. El libro describe compatibilidad estricta y tipos agregados comprobados estructuralmente.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Tipos y operadores documentados para SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Uso documentado</th></tr></thead><tbody>
-          <tr><td><code>numerico</code></td><td>Enteros y valores reales bajo un mismo tipo básico.</td></tr>
-          <tr><td><code>cadena</code></td><td>Texto de longitud ajustable; <code>+</code> concatena dos cadenas.</td></tr>
-          <tr><td><code>logico</code></td><td>Condiciones usadas en selecciones y bucles.</td></tr>
-          <tr><td><code>vector</code>, <code>matriz</code>, <code>registro</code></td><td>Estructuras compuestas, incluidos arreglos multidimensionales y registros con campos.</td></tr>
-        </tbody></table></div>
-        <p>Los identificadores distinguen mayúsculas y minúsculas, comienzan con una letra o guion bajo y admiten hasta 32 caracteres. El libro permite <code>ñ</code>, pero no letras acentuadas en identificadores; las palabras reservadas se escriben en minúsculas. Estos detalles suelen causar errores al copiar ejemplos.</p>
-        <p>Las asignaciones usan <code>=</code>; las comparaciones incluyen <code>==</code> para igualdad y <code>&lt;&gt;</code> para desigualdad. Las expresiones también admiten <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> y <code>&gt;=</code>, además de los operadores lógicos <code>and</code>, <code>or</code> y <code>not</code>. Las sentencias pueden ocupar varias líneas; las sentencias en una misma línea se separan con punto y coma.</p>
-        <p>Las dos formas de repetición muestran diferencias útiles durante la ejecución: <code>mientras</code> comprueba la condición antes del cuerpo y puede no ejecutarlo; <code>repetir</code> ejecuta el cuerpo y después comprueba <code>hasta</code>. En ambos casos, identifica el valor que cambia y explica por qué se alcanzará la condición de salida.</p>
-        <pre class="manual-code"><code>var
-    n : numerico
+    imprimir(&quot;Nombre y edad (separados por coma): &quot;)
+    leer(nombre, edad)
+    imprimir(&quot;\nHola, &quot;, nombre, &quot;. Edad: &quot;, edad, &quot;\n&quot;)
+fin</code></pre><p>Las cadenas reconocen secuencias de escape como <code>\n</code> (salto de línea), <code>\r</code> (vuelta al inicio de la línea) y <code>\t</code> (tabulación). Para procesar un archivo línea por línea, selecciónalo con <code>set_stdin</code>, define <code>set_ifs("\n")</code>, lee el primer registro y consulta <code>eof()</code> antes de continuar el bucle. La biblioteca estándar explica cómo volver al teclado y a la pantalla con una cadena vacía.</p></section>
+      <section id="controle"><p class="kicker">06 · flujo de ejecución</p><h2>Condiciones, selección y bucles</h2><p>Las condiciones se escriben entre paréntesis. <code>si</code> elige una rama, <code>eval</code> selecciona entre condiciones y las tres formas de bucle comprueban la condición en momentos distintos.</p><div aria-label="Condiciones y bucles de SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Ejecución</th><th scope="col">Cuándo usar</th></tr></thead><tbody><tr><td><code>si (condición) { ... sino ... }</code></td><td>Ejecuta una rama según la prueba.</td><td>Úsalo para dos alternativas o decisiones encadenadas.</td></tr><tr><td><code>eval { caso (condición) ... sino ... }</code></td><td>Comprueba los casos en orden y ejecuta el primero verdadero; luego sale del bloque.</td><td>Úsalo para varias condiciones excluyentes. sino es opcional y va al final.</td></tr><tr><td><code>mientras (condición) { ... }</code></td><td>Prueba antes del cuerpo.</td><td>Puede ejecutarse cero veces; cambia en el cuerpo un dato que pueda volver falsa la condición.</td></tr><tr><td><code>repetir ... hasta (condición)</code></td><td>Prueba después del cuerpo.</td><td>Se ejecuta al menos una vez; sirve para un primer pedido o una validación.</td></tr><tr><td><code>desde i=inicio hasta fin paso paso { ... }</code></td><td>Recorre un intervalo entero que incluye el extremo final.</td><td>El paso puede ser negativo; alinea su dirección con los límites.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    i, suma : numerico
 inicio
-    n = 1
+    i = 1
+    suma = 0
     repetir
-        n = n + 1
-    hasta (n >= 5)
-    imprimir (n)
-fin</code></pre>
-        <h3>Referencia rápida</h3>
-        <div class="manual-table-wrap" role="region" aria-label="Reglas de identificadores de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Regla</th><th scope="col">Descripción</th><th scope="col">Ejemplo u observación</th></tr></thead><tbody>
-          <tr><td>Inicio</td><td>Comienza con una letra o guion bajo.</td><td><code>nota_final</code></td></tr>
-          <tr><td>Longitud</td><td>Usa como máximo 32 caracteres.</td><td>Cuenta también las letras y cifras posteriores al primer carácter.</td></tr>
-          <tr><td>Caracteres</td><td>La documentación permite <code>ñ</code>, pero no letras acentuadas en identificadores.</td><td>Las palabras reservadas van en minúsculas.</td></tr>
-          <tr><td>Mayúsculas</td><td>Los identificadores distinguen mayúsculas y minúsculas.</td><td><code>nota</code> y <code>Nota</code> son nombres distintos.</td></tr>
-        </tbody></table></div>
-        <div class="manual-table-wrap" role="region" aria-label="Operadores de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Categoría</th><th scope="col">Forma</th><th scope="col">Uso</th></tr></thead><tbody>
-          <tr><td>Asignación</td><td><code>=</code></td><td>Almacena el valor de la derecha en la variable de la izquierda.</td></tr>
-          <tr><td>Igualdad</td><td><code>==</code></td><td>Compara si dos valores son iguales.</td></tr>
-          <tr><td>Desigualdad</td><td><code>&lt;&gt;</code></td><td>Compara si dos valores son diferentes.</td></tr>
-          <tr><td>Relacionales</td><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>Comparan orden y límites.</td></tr>
-          <tr><td>Lógicos</td><td><code>and or not</code></td><td>Combinan o niegan condiciones.</td></tr>
-          <tr><td>Texto</td><td><code>+</code></td><td>Concatena cadenas; los operandos deben ser compatibles.</td></tr>
-        </tbody></table></div>
-        <div class="manual-table-wrap" role="region" aria-label="Estructuras de control de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma documentada</th><th scope="col">Cuándo usarla</th><th scope="col">Orden de ejecución</th></tr></thead><tbody>
-          <tr><td><code>si (condición) { ... sino ... }</code></td><td>Elige un camino según una condición.</td><td>Ejecuta el bloque correspondiente al resultado lógico.</td></tr>
-          <tr><td><code>mientras (condición) { ... }</code></td><td>Repite mientras la condición sea verdadera.</td><td>Comprueba antes del cuerpo; puede ejecutarse cero veces.</td></tr>
-          <tr><td><code>repetir ... hasta (condición)</code></td><td>Repite hasta que se cumpla la condición de salida.</td><td>Ejecuta el cuerpo antes de la primera comprobación.</td></tr>
-        </tbody></table></div>
-
-      </section>
-      <section id="subprogramas">
-        <p class="kicker">11 · descomposición</p>
-        <h2>Funciones, procedimientos y parámetros</h2>
-        <p>El libro diferencia las funciones, que devuelven un valor y pueden aparecer en expresiones, de los procedimientos, que realizan acciones sin producir un resultado. Las subrutinas van después del programa principal y pueden declarar constantes, tipos y variables locales. Una función declara su tipo de retorno y usa <code>retorna</code> para entregar el resultado:</p>
-        <pre class="manual-code"><code>subrutina cuadrado (n : numerico) retorna numerico
+        suma = suma + i
+        i = i + 1
+    hasta (i &gt; 4)
+    imprimir(&quot;Suma de 1 a 4: &quot;, suma)
+fin</code></pre><p>En <code>desde</code>, el inicio, el final y el paso se convierten a enteros. El paso puede avanzar o retroceder. Un inicio menor que el final se combina con paso positivo; para contar hacia atrás, usa un inicio mayor y paso negativo. El bucle puede ejecutarse cero veces si los límites y el paso no permiten alcanzar el intervalo.</p><p>El ejemplo con <code>repetir</code> siempre suma al menos el primer valor. Para seguirlo, anota <code>i</code> antes del cuerpo y <code>suma</code> antes y después de asignarla. Cuando <code>i</code> supera 4, la condición termina el bucle.</p></section>
+      <section id="exemplo"><p class="kicker">07 · programa completo</p><h2>Ejemplo guiado: promedio de calificaciones</h2><p>Este programa dimensiona un vector a partir de la entrada, recorre cada calificación y calcula un promedio. La comprobación de cantidad evita dividir por cero. Los índices empiezan en 1 y <code>alen</code> consulta el tamaño real del vector.</p><pre class="manual-code"><code>programa promedio_notas
+var
+    cantidad : numerico
+    notas : vector [*] numerico
+    i, suma, media : numerico
+inicio
+    imprimir(&quot;Cantidad de notas: &quot;)
+    leer(cantidad)
+    si (cantidad &gt; 0) {
+        dim(notas, cantidad)
+        suma = 0
+        desde i=1 hasta alen(notas) {
+            imprimir(&quot;\nNota: &quot;)
+            leer(notas[i])
+            suma = suma + notas[i]
+        }
+        media = suma / alen(notas)
+        imprimir(&quot;\nPromedio = &quot;, str(media, 0, 2))
+    sino
+        imprimir(&quot;\nSe requiere al menos una nota.&quot;)
+    }
+fin</code></pre><p>Con las entradas <code>3</code>, <code>8</code>, <code>6</code> y <code>10</code>, la suma llega a 24 y el promedio es 8. La tabla registra el estado al terminar cada vuelta.</p><div aria-label="Traza del cálculo del promedio" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteración</th><th scope="col">i</th><th scope="col">Nota</th><th scope="col">Suma acumulada</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>8</td><td>8</td></tr><tr><td>2</td><td>2</td><td>6</td><td>14</td></tr><tr><td>3</td><td>3</td><td>10</td><td>24</td></tr></tbody></table></div><p>Después del caso habitual, prueba cantidad igual a 1 y cantidad igual a 0. El primer caso ejecuta una vuelta; el segundo omite la asignación y la división. Para ampliar el programa, agrega una condición para cada nota válida y guarda aparte los valores aceptados.</p></section>
+      <section id="estudo"><p class="kicker">08 · método de trabajo</p><h2>Práctica, pruebas y depuración</h2><p>El portal oficial conserva el libro introductorio, ejemplos seleccionados y una referencia de funciones. Empieza con programas breves, comprueba sus valores a mano y luego añade vectores, registros y subrutinas.</p><div aria-label="Lista de comprobación de un programa SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Área</th><th scope="col">Prueba</th><th scope="col">Pregunta de revisión</th></tr></thead><tbody><tr><td><code>Datos</code></td><td>Prueba cero, un valor y un valor límite.</td><td>¿El tipo declarado admite todos los valores y operaciones?</td></tr><tr><td><code>Condiciones</code></td><td>Prueba cada rama, incluida la alternativa final.</td><td>¿Las comparaciones usan tipos compatibles y cubren todos los casos?</td></tr><tr><td><code>Bucles</code></td><td>Anota la condición, el contador y el valor de control.</td><td>¿La condición puede volverse falsa y cambia el dato correcto?</td></tr><tr><td><code>Vectores</code></td><td>Prueba la primera y la última posición válida.</td><td>¿El índice empieza en 1 y se mantiene dentro de alen(v)?</td></tr><tr><td><code>Subrutinas</code></td><td>Compara los argumentos antes de la llamada y el resultado después.</td><td>¿El parámetro debe pasarse por valor o por referencia?</td></tr></tbody></table></div><p>El depurador paso a paso de SLE puede ayudar a localizar la instrucción donde un valor se desvía de lo esperado, según la versión instalada. Una tabla manual sigue siendo útil sin depurador: escribe una fila por iteración y registra solo los valores que determinan el resultado.</p></section>
+      <section id="escopo"><p class="kicker">09 · alcance y compatibilidad</p><h2>Versión y alcance de esta referencia</h2><p>El portal de la Universidad Nacional de Asunción presenta el entorno SLE y publica materiales históricos de SL. Su página de documentos advierte que el libro describe una versión anterior a la actual de SLE. Confirma la sintaxis y el comportamiento en la ayuda de la versión usada en clase.</p><p>SL continúa en evaluación para Potoo IDE. Esta página describe SL a partir del libro, los ejemplos y la referencia oficial de funciones; no afirma que SLE ni todos los recursos listados estén integrados en la aplicación.</p></section>
+      <section id="regras"><p class="kicker">10 · reglas de lectura</p><h2>Identificadores, operadores y escritura</h2><p>El libro define identificadores sensibles a mayúsculas y minúsculas, de hasta 32 caracteres y que empiezan por letra o guion bajo. Se permite la letra <code>ñ</code>; las vocales acentuadas no aparecen como letras válidas de identificador. Las palabras reservadas se escriben en minúsculas. Los comentarios usan <code>//</code> o <code>/* ... */</code>.</p><div aria-label="Asignación, comparación y escritura en SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operador o forma</th><th scope="col">Significado</th><th scope="col">Nota</th></tr></thead><tbody><tr><td><code>=</code></td><td>Asignación.</td><td>La expresión derecha debe coincidir con el tipo de la variable.</td></tr><tr><td><code>==</code></td><td>Igualdad.</td><td>No la confundas con la asignación.</td></tr><tr><td><code>&lt;&gt;</code></td><td>Desigualdad.</td><td>Las comparaciones requieren operandos del mismo tipo simple.</td></tr><tr><td><code>and, or, not</code></td><td>Conjunción, disyunción y negación.</td><td>Producen valores lógicos; usa paréntesis para expresar la intención.</td></tr><tr><td><code>+</code></td><td>Suma o concatenación.</td><td>Ambos operandos deben ser numéricos o ambas cadenas.</td></tr><tr><td><code>;</code></td><td>Separa instrucciones en una misma línea.</td><td>No hace falta entre instrucciones en líneas distintas.</td></tr></tbody></table></div><div aria-label="Precedencia de los operadores de SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Nivel</th><th scope="col">Operadores</th><th scope="col">Lectura</th></tr></thead><tbody><tr><td>Más alta</td><td><code>^</code></td><td>Potencia.</td></tr><tr><td>2</td><td><code>+x, -x</code></td><td>Signo unario.</td></tr><tr><td>3</td><td><code>*, /, %</code></td><td>Multiplicación, división y resto.</td></tr><tr><td>4</td><td><code>+, -</code></td><td>Suma, resta y concatenación de cadenas compatibles.</td></tr><tr><td>5</td><td><code>==, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=</code></td><td>Igualdad y relaciones.</td></tr><tr><td>6</td><td><code>not</code></td><td>Negación lógica.</td></tr><tr><td>7</td><td><code>and</code></td><td>Conjunción lógica.</td></tr><tr><td>Más baja</td><td><code>or</code></td><td>Disyunción lógica.</td></tr></tbody></table></div><p>Los operadores de una misma fila de precedencia se evalúan de izquierda a derecha. Los paréntesis cambian el orden. La primera edición del libro usa <code>and</code>, <code>or</code> y <code>not</code>; algunos ejemplos de la referencia de funciones también muestran <code>&amp;&amp;</code>, así que confirma qué escritura admite el SLE instalado.</p><p>Las instrucciones pueden continuar en varias líneas. El punto y coma solo es un separador opcional cuando se escriben varios comandos en una misma línea.</p></section>
+      <section id="subprogramas"><p class="kicker">11 · modularidad</p><h2>Funciones, procedimientos y parámetros</h2><p>El programa principal va seguido de las definiciones de subrutinas. Una función declara el tipo de retorno y usa <code>retorna</code>; un procedimiento omite esa cláusula. Los parámetros se copian por defecto o pueden usar <code>ref</code> para modificar la variable que proporcionó quien llamó.</p><pre class="manual-code"><code>subrutina cuadrado(n : numerico) retorna numerico
 inicio
     retorna (n * n)
-fin</code></pre>
-        <p>Los parámetros se pasan por valor o por referencia. Por valor, la subrutina recibe una copia inicial; cambiar el parámetro no modifica el argumento original. Con <code>ref</code>, la rutina recibe una referencia y sus asignaciones cambian la variable del programa que la llamó. Conviene hacer explícita esta diferencia en el contrato de cada subrutina.</p>
-        <pre class="manual-code"><code>subrutina duplicar (ref valor : numerico)
+fin</code></pre><p>Las funciones pueden devolver cualquier tipo, incluidos vectores y registros. Los parámetros y las variables declarados dentro de una subrutina son locales; las declaraciones del programa principal son globales. Una subrutina puede llamar a otra sin prototipo y puede ser recursiva.</p><pre class="manual-code"><code>subrutina duplicar(ref valor : numerico)
 inicio
     valor = valor * 2
-fin</code></pre>
-        <p>Las variables del programa principal son globales; las declaradas dentro de una subrutina y sus parámetros son locales. Un nombre local puede ocultar otro global con la misma escritura mientras se ejecuta la rutina. El ámbito local ayuda a independizar las subrutinas y también permite la recursión, pero exige distinguir valores diferentes con el mismo identificador.</p>
-        <p>Al diseñar una función, anota sus parámetros, el tipo del resultado y los casos límite. En un procedimiento con referencia, indica qué argumento se modifica. Prueba primero la rutina con datos pequeños y después intégrala en el algoritmo principal.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Consulta de subrutinas de SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Función</th><th scope="col">Observación</th></tr></thead><tbody>
-          <tr><td><code>subrutina nombre (parámetros) retorna tipo</code></td><td>Declara una función.</td><td>El tipo indica el valor que devuelve la función.</td></tr>
-          <tr><td><code>retorna (expresión)</code></td><td>Entrega el resultado de la función.</td><td>La expresión debe corresponder al tipo declarado.</td></tr>
-          <tr><td><code>subrutina nombre (parámetros)</code></td><td>Declara un procedimiento.</td><td>Realiza acciones sin devolver un valor de función.</td></tr>
-          <tr><td><code>ref nombre : tipo</code></td><td>Declara un parámetro por referencia.</td><td>Los cambios pueden modificar el argumento proporcionado por el programa que llama.</td></tr>
-          <tr><td>Variable local o global</td><td>Define el ámbito de un nombre.</td><td>Los parámetros y las declaraciones en subrutinas son locales; las del programa principal son globales.</td></tr>
-        </tbody></table></div>
-
-      </section>
-      <section id="fontes">
-        <p class="kicker">12 · lecturas adicionales</p>
+fin</code></pre><div aria-label="Contratos de subrutinas en SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Función</th><th scope="col">Qué comprobar</th></tr></thead><tbody><tr><td><code>subrutina f(x : tipo) retorna tipo</code></td><td>Función que devuelve un valor.</td><td>Puede formar parte de una expresión; declara un tipo compatible con el valor devuelto.</td></tr><tr><td><code>subrutina f(x : tipo)</code></td><td>Procedimiento que ejecuta acciones.</td><td>Se llama como instrucción; considera sus efectos.</td></tr><tr><td><code>x : tipo</code></td><td>Parámetro por valor.</td><td>La subrutina modifica su copia local.</td></tr><tr><td><code>ref x : tipo</code></td><td>Parámetro por referencia.</td><td>Una asignación puede cambiar la variable del llamador.</td></tr><tr><td><code>ref a : vector [*] numerico</code></td><td>Vector abierto pasado por referencia.</td><td>La rutina puede usar alen(a) y modificar sus elementos.</td></tr></tbody></table></div><p>Usa parámetros por referencia solo para valores que deban volver modificados. Para un cálculo, prefiere parámetros por valor y un resultado devuelto. Para una rutina que llena u ordena un vector, documenta que cambia el argumento.</p></section>
+      <section id="biblioteca"><p class="kicker">12 · referencia de la biblioteca</p><h2>Funciones y subrutinas estándar</h2><p>SLE incluye rutinas matemáticas, de texto, arreglos, E/S y utilidades. La tabla reúne las familias de la referencia oficial; no es necesario importar las funciones incorporadas. Consulta las firmas completas y los argumentos opcionales en la documentación de la versión instalada.</p><div aria-label="Familias de la biblioteca estándar de SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Funciones</th><th scope="col">Familia</th><th scope="col">Uso y notas</th></tr></thead><tbody><tr><td><code>abs, arctan, cos, exp, int, log, sin, sqrt, tan</code></td><td>Matemáticas.</td><td>Incluye valor absoluto, trigonometría en radianes, exponenciales, logaritmos, raíz cuadrada y parte entera. log requiere n &gt; 0; sqrt requiere un argumento positivo según la versión instalada de SLE.</td></tr><tr><td><code>ascii, ord, lower, upper, pos, strdup, strlen, substr</code></td><td>Cadenas.</td><td>Consulta códigos de caracteres, busca, cambia mayúsculas, repite una cadena, mide longitud y extrae subcadenas. substr usa posiciones desde 1.</td></tr><tr><td><code>str, val</code></td><td>Formato y conversión.</td><td>str formatea un número; val lee dígitos de una cadena y devuelve 0 si no encuentra un número.</td></tr><tr><td><code>alen, dim</code></td><td>Vectores y matrices.</td><td>alen consulta el tamaño; dim asigna dimensiones abiertas durante la ejecución.</td></tr><tr><td><code>imprimir, leer, eof</code></td><td>Entrada y salida.</td><td>Aceptan valores simples y estructuras; eof comprueba el fin de archivo.</td></tr><tr><td><code>set_stdin, set_stdout, set_ifs, set_ofs, get_ifs, get_ofs</code></td><td>Archivos y separadores.</td><td>Seleccionan dispositivos y configuran separadores de lectura e impresión de estructuras.</td></tr><tr><td><code>beep, cls, readkey</code></td><td>Consola.</td><td>Emiten un pitido, limpian la pantalla o esperan una tecla; dependen del dispositivo de E/S.</td></tr><tr><td><code>get_color, set_color, get_curpos, set_curpos, get_scrsize</code></td><td>Pantalla y cursor.</td><td>Consultan o cambian color, posición y dimensiones del terminal.</td></tr><tr><td><code>inc, dec, intercambiar, swap, max, min, ifval</code></td><td>Utilidades.</td><td>Actualizan o intercambian valores, comparan valores del mismo tipo y eligen una expresión condicional.</td></tr><tr><td><code>random, sec, paramval, pcount, runcmd, terminar</code></td><td>Ejecución y sistema.</td><td>Generan enteros pseudoaleatorios, consultan tiempo y argumentos, ejecutan un proceso o terminan el programa.</td></tr></tbody></table></div><h3>Firmas útiles</h3><div aria-label="Firmas y comportamiento de la biblioteca SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Llamada</th><th scope="col">Resultado</th><th scope="col">Nota</th></tr></thead><tbody><tr><td><code>random(limite)</code></td><td>Entero entre 0 y limite - 1.</td><td>SLE inicializa el generador al arrancar; por lo general no pases una semilla.</td></tr><tr><td><code>substr(texto, inicio [, cantidad])</code></td><td>Copia de una subcadena.</td><td>Un inicio posterior al final devuelve una cadena vacía.</td></tr><tr><td><code>str(número [, ancho [, decimales [, relleno]]])</code></td><td>Representación de texto con formato.</td><td>Usa ancho 0 para omitir el ancho mínimo; confirma el redondeo.</td></tr><tr><td><code>val(texto)</code></td><td>Valor numérico.</td><td>Devuelve 0 si la cadena no contiene un número; valida antes de usar el resultado.</td></tr><tr><td><code>dim(vector, tamaños...)</code></td><td>Asigna las dimensiones abiertas indicadas.</td><td>Las dimensiones fijas ya declaradas no reciben otro tamaño.</td></tr><tr><td><code>alen(vector)</code></td><td>Cantidad de elementos.</td><td>En matrices, alen(M) consulta filas y alen(M[1]) columnas de la primera fila.</td></tr><tr><td><code>inc(ref n [, paso]), dec(ref n [, paso])</code></td><td>Actualiza n y devuelve su nuevo valor.</td><td>El paso predeterminado es 1; puede ser positivo o negativo.</td></tr><tr><td><code>ifval(condición, si_verdadero, si_falso)</code></td><td>Expresión condicional.</td><td>Evalúa solo el valor elegido; las dos alternativas deben tener el mismo tipo simple.</td></tr><tr><td><code>set_stdin(archivo), set_stdout(archivo)</code></td><td>Redirige la lectura o la impresión.</td><td>Comprueba el resultado lógico. set_stdout reemplaza por defecto; el modo at agrega.</td></tr><tr><td><code>pcount(), paramval(i)</code></td><td>Cantidad y valor de los argumentos del programa.</td><td>paramval usa posiciones desde 1 y devuelve cadena vacía para un índice fuera del intervalo.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    nota : numerico
+inicio
+    nota = val(&quot;7.5&quot;)
+    imprimir(&quot;\n&quot;, upper(&quot;sl&quot;), &quot; / &quot;, substr(&quot;algoritmo&quot;, 1, 4))
+    imprimir(&quot;\nNota formateada: &quot;, str(nota, 0, 2))
+    imprimir(&quot;\nDado (0 a 5): &quot;, random(6))
+fin</code></pre><p>Las rutinas de terminal, archivos y procesos dependen de SLE y del sistema anfitrión. <code>sec()</code> también tuvo un comportamiento distinto en versiones anteriores. La referencia oficial detalla firmas, efectos y ejemplos de cada función.</p></section><section id="fontes">
+        <p class="kicker">13 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://www.cnc.una.py/sl/SL-index.html">Portal oficial de SL</a>, de la Universidad Nacional de Asunción.</li><li><a href="https://www.cnc.una.py/sl/SL-documentos.html">Documentos y materiales de SL</a>.</li><li><a href="https://www.cnc.una.py/sl/libro-sl.pdf">Libro de SL</a>, con contenido didáctico y ejemplos.</li><li><a href="https://www.cnc.una.py/sl/SL-stdf.html">Referencia de funciones estándar</a>.</li></ul><p>Los materiales oficiales en español son la fuente para confirmar la grafía, la precedencia de operadores y la sintaxis completa.</p>
       </section>

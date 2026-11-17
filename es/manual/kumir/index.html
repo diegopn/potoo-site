@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#exemplo">Duplicar una secuencia de valores</a></li>
         <li><a href="#estudo">Probar programas de Kumir</a></li>
         <li><a href="#limites">Versiones y variantes</a></li>
+        <li><a href="#referencia-ampliada">Referencia ampliada</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -143,10 +144,50 @@ body_class: manual-page
 <p>La página oficial de NIISI presenta la suite como un entorno escolar para aprender algoritmos y programación y publica paquetes para varios sistemas. Esto no elimina las diferencias entre versiones: confirma en el portal oficial qué paquete corresponde al curso y usa el manual que lo acompaña.</p>
 
 </section>
+      <section id="referencia-ampliada"><p class="kicker">Referencia de lectura y ejecución</p><h2>Mapa de estructuras y ejecutores</h2>
+<p>Kumir combina el lenguaje algorítmico escolar con el entorno y sus módulos ejecutores. El lenguaje aporta secuencia, datos y control; un ejecutor añade comandos y observaciones propios de la tarea. El artículo técnico del NIISI sobre Kumir 2.x describe esta integración entre el lenguaje y los ejecutores, mientras que el sitio oficial distribuye paquetes y manuales por versión.</p>
+<h3>Esqueleto, comandos y bloques</h3>
+<div class="manual-table-wrap" role="region" aria-label="Referencia de estructuras comunes de Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Función</th><th scope="col">Nota de lectura</th></tr></thead><tbody>
+<tr><td><code>алг</code></td><td>Inicia la declaración de un algoritmo.</td><td>El nombre y los parámetros dependen del algoritmo y la versión.</td></tr>
+<tr><td><code>нач</code> / <code>кон</code></td><td>Delimitan el cuerpo ejecutable.</td><td>Comprueba si las declaraciones locales siguen a <code>нач</code>.</td></tr>
+<tr><td><code>цел</code> / <code>вещ</code></td><td>Declaran variables enteras y reales en ejemplos escolares.</td><td>No trates el lenguaje como tipado dinámico; la declaración orienta la entrada y las operaciones.</td></tr>
+<tr><td><code>:=</code></td><td>Asigna el resultado a la variable de la izquierda.</td><td>Es distinto de la relación de igualdad en una condición.</td></tr>
+<tr><td><code>ввод</code> / <code>вывод</code></td><td>Reciben datos y muestran valores o texto.</td><td>Una línea puede reunir varios elementos; revisa el salto de línea en el manual.</td></tr>
+<tr><td><code>нц ... кц</code></td><td>Abre y cierra el cuerpo de una repetición.</td><td>La cabecera determina si el bucle es condicional o contado.</td></tr>
+<tr><td><code>если ... то ... иначе ... все</code></td><td>Selecciona una rama y cierra la condición.</td><td>Se puede omitir <code>иначе</code> si la tarea no necesita alternativa.</td></tr>
+</tbody></table></div>
+<p>El vocabulario de control mostrado aquí es una referencia de lectura para programas Kumir 2.x, no una garantía de que todos los paquetes usen los mismos módulos o extensiones. Consulta el manual incluido en la instalación.</p>
+<h3>Ejemplo completo: sumar de 1 a 4</h3>
+<p>El algoritmo usa una declaración explícita, asignación, repetición contada y salida. Sigue la notación escolar presentada en esta referencia:</p>
+<pre class="manual-code"><code>алг сумма
+нач
+    цел i, сумма
+    сумма := 0
+    нц для i от 1 до 4
+        сумма := сумма + i
+    кц
+    вывод сумма
+кон</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="Seguimiento del algoritmo de suma en Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteración</th><th scope="col"><code>i</code></th><th scope="col">Suma anterior</th><th scope="col">Suma nueva</th></tr></thead><tbody>
+<tr><td>Inicial</td><td>—</td><td>—</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>2</td><td>2</td><td>1</td><td>3</td></tr>
+<tr><td>3</td><td>3</td><td>3</td><td>6</td></tr>
+<tr><td>4</td><td>4</td><td>6</td><td>10</td></tr>
+</tbody></table></div>
+<p>Si la salida no es 10, revisa la inicialización antes del bucle, el intervalo y el cierre con <code>кц</code>. Para probar un límite, cambia el final a 1; después prueba 0 y confirma si la consigna lo incluye.</p>
+<h3>El ejecutor forma parte de la especificación de la tarea</h3>
+<div class="manual-table-wrap" role="region" aria-label="Diferencias entre ejecutores de Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Ejecutor</th><th scope="col">Estado observado</th><th scope="col">Pregunta para verificar</th></tr></thead><tbody>
+<tr><td>Robot</td><td>Posición en una cuadrícula, dirección y paredes del escenario.</td><td>¿Cuál es la posición inicial, hacia dónde apunta y qué sensores y acciones están disponibles?</td></tr>
+<tr><td>Dibujante (<span lang="ru">Чертёжник</span>)</td><td>Trazo y posición en el plano de dibujo.</td><td>¿Qué movimientos cambian el cursor y dónde está el origen?</td></tr>
+<tr><td>Otro módulo</td><td>Los datos y comandos definidos por el paquete o el práctico.</td><td>¿Qué manual del módulo corresponde y cómo se activa?</td></tr>
+</tbody></table></div>
+<p>Antes de resolver una tarea con ejecutor, escribe las condiciones iniciales y la meta. Un algoritmo puede funcionar en un mundo y fallar en otro si supone una pared, dirección o cantidad de beepers que no se especificó. En tareas de dibujo, registra también el punto inicial y el resultado esperado en el plano.</p>
+<p>Kumir 1.x y 2.x, los paquetes de distribución y los ejecutores pueden diferir. El sitio oficial lista las descargas; usa el manual incluido con la versión del curso e indica esa versión al compartir un programa. Kumir sigue en evaluación para Potoo IDE.</p></section>
       <section id="fontes">
         <p class="kicker">10 · lecturas adicionales</p>
         <h2>Referencias</h2>
-<ul><li><a href="https://www.niisi.ru/kumir/">Sitio oficial de Kumir</a>, del Instituto de Sistemas de la Academia de Ciencias de Rusia (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">Publicación de NIISI sobre Kumir 2</a>, con contexto del conjunto escolar y sus ejecutores.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Documentación de Kumir en una distribución educativa</a>, útil para observar diferencias de paquete e instalación.</li></ul><p>Para la sintaxis normativa, prefiere la documentación oficial incluida con la versión de Kumir que utilice el curso.</p>
+<ul><li><a href="https://www.niisi.ru/kumir/dl.htm">Descargas oficiales de Kumir</a>; choose the package and manual matching the course version.</li><li><a href="https://www.niisi.ru/kumir/">Sitio oficial de Kumir</a>, del Instituto de Sistemas de la Academia de Ciencias de Rusia (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">Publicación de NIISI sobre Kumir 2</a>, con contexto del conjunto escolar y sus ejecutores.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Documentación de Kumir en una distribución educativa</a>, útil para observar diferencias de paquete e instalación.</li></ul><p>Para la sintaxis normativa, prefiere la documentación oficial incluida con la versión de Kumir que utilice el curso.</p>
       </section>
     </article>
   </div>

@@ -49,7 +49,15 @@ body_class: manual-page
         <p class="kicker">02 · contexto histórico</p>
         <h2>Contexto de criação</h2>
 <p>As referências da Enseignement Public et Informatique documentam a apresentação de LSE a partir de 1973 e discutem sua trajetória no ensino. A proposta era oferecer um vocabulário simbólico para explicar instruções, dados e organização de algoritmos em francês.</p><p>O contexto técnico importa ao interpretar o material: computadores eram compartilhados por vários usuários, e a interação com o sistema não se parecia com a experiência de um editor gráfico contemporâneo. Manuais e exercícios também refletem práticas escolares e recursos disponíveis naquela época.</p><ul><li><strong>Finalidade:</strong> apoiar o ensino de noções de programação.</li><li><strong>Idioma:</strong> notação e material didático em francês.</li><li><strong>Época:</strong> desenvolvimento e difusão associados às décadas de 1960 e 1970.</li><li><strong>Estado atual:</strong> as fontes consultadas são históricas, não um portal ativo de implementação.</li></ul>
-      </section>
+
+<h3>Cronologia documentada</h3>
+<p>As datas abaixo vêm do panorama retrospectivo da EPI. Elas situam as fontes e não significam que tenha existido uma única edição idêntica em todos os computadores.</p>
+<div class="manual-table-wrap" role="region" aria-label="Cronologia histórica de LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Período</th><th scope="col">Registro histórico</th><th scope="col">Como interpretar o dado</th></tr></thead><tbody>
+<tr><td>1968–1976</td><td>Desenvolvimento da família LSx, da qual LSE faz parte.</td><td>Contextualiza a origem do sistema em tempo compartilhado.</td></tr>
+<tr><td>Outubro de 1971</td><td>Entrega ao Ministério do relatório de definição de LSE.</td><td>Marca a definição do projeto, antes da implantação completa.</td></tr>
+<tr><td>Abril de 1973</td><td>Entrega de um Mitra 15 ao primeiro liceu da experiência dos “58 liceus”.</td><td>É um marco de implantação escolar, não a data de todas as versões.</td></tr>
+<tr><td>1983</td><td>Revisão atribuída a Jacques Arsac acrescenta ciclos explícitos.</td><td>Explica por que uma listagem posterior pode diferir de uma fonte dos anos 1970.</td></tr>
+</tbody></table></div></section>
       <section id="conceitos">
         <p class="kicker">03 · conceitos documentados</p>
         <h2>O que as fontes registram</h2>
@@ -105,7 +113,17 @@ REMISE = 'RABAIS 1 DE' ! X</code></pre>
         </tbody></table></div>
         <p>Essas assinaturas são reproduzidas para consulta histórica. Elas não formam uma especificação moderna nem garantem que um interpretador atual implemente as mesmas funções.</p>
 
-      </section>
+
+<h3>Interação por linhas no sistema descrito</h3>
+<p>O artigo retrospectivo descreve um sistema em que cada linha era analisada quando digitada. A notação e os comandos abaixo pertencem a essa descrição histórica; a interface e os recursos variaram entre máquinas.</p>
+<div class="manual-table-wrap" role="region" aria-label="Interação e execução de LSE nas fontes históricas" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Elemento citado</th><th scope="col">Função descrita</th><th scope="col">Limite de interpretação</th></tr></thead><tbody>
+<tr><td><code>? instrução</code></td><td>Executa imediatamente uma instrução no modo de máquina de escritório.</td><td>É um modo de interação documentado, não o começo de um programa numerado.</td></tr>
+<tr><td><code>número instrução</code></td><td>Armazena uma linha de programa para execução posterior.</td><td>A linha tinha limite de 80 caracteres, incluindo o fim de linha.</td></tr>
+<tr><td>Análise da linha</td><td>O sistema analisava a linha digitada e a traduzia para uma cadeia postfixada.</td><td>A fonte usa “compilação” em sentido pedagógico; descreve também um interpretador.</td></tr>
+<tr><td><code>PAUSE</code></td><td>Interrompe a execução e informa a linha em que ocorreu a pausa.</td><td>O monitor oferecia comandos para continuar ou retomar em outra linha.</td></tr>
+<tr><td><code>PAS A PAS</code></td><td>Faz a execução parar após cada linha.</td><td>É um recurso do monitor histórico, não de um depurador gráfico atual.</td></tr>
+</tbody></table></div>
+<p>A publicação também cita <code>LIRE</code>, <code>AFFICHER</code>, <code>SI ... ALORS ... SINON</code>, <code>ALLER EN</code> e formas de <code>FAIRE</code>. A estrutura explícita de repetição aparece associada a revisões posteriores; não misture todas essas formas em um único exemplo sem registrar a edição da fonte.</p></section>
       <section id="projeto">
         <p class="kicker">9 · contexto técnico</p>
         <h2>Critérios pedagógicos e contexto técnico</h2>

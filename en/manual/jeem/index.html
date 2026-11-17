@@ -34,6 +34,7 @@ body_class: manual-page
         <li><a href="#leitura">How to study the proposal</a></li>
         <li><a href="#comparacao">Jeem and Kalimat are different projects</a></li>
         <li><a href="#limites">Availability and limits</a></li>
+        <li><a href="#referencia-ampliada">Expanded reference</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -51,7 +52,7 @@ body_class: manual-page
       <section id="caracteristicas">
         <p class="kicker">03 · documented characteristics</p>
         <h2>What can be said</h2>
-<p>The public sources consulted support a high-level description, not a formal command catalogue. This table makes that limit explicit so inferences are not presented as a specification.</p><div class="manual-table-wrap" role="region" aria-label="Documented and unknown information about Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Status in consulted sources</th></tr></thead><tbody><tr><td>Writing</td><td>Accounts describe Arabic letters and words.</td></tr><tr><td>Purpose</td><td>The project was presented as a tool for teaching programming in schools.</td></tr><tr><td>Grammar</td><td>No complete, current public reference was located.</td></tr><tr><td>The 2007 study lists historical types, structures, and commands; no normative list is confirmed for a current version.</td><td>There is not enough information to publish a normative list here.</td></tr><tr><td>Current environment</td><td>A maintained official distributor with current instructions was not confirmed.</td></tr></tbody></table></div><p>This separation is part of the manual: without a verifiable grammar, code examples would be conjecture.</p>
+<p>The public sources consulted support a high-level description, not a formal command catalogue. This table makes that limit explicit so inferences are not presented as a specification.</p><div class="manual-table-wrap" role="region" aria-label="Documented and unknown information about Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Source</th><th scope="col">What it records</th><th scope="col">Interpretation limit</th></tr></thead><tbody><tr><td>Public accounts</td><td>Describe a school programming initiative using Arabic words and writing.</td><td>They support the context and purpose, not an executable grammar.</td></tr><tr><td>2007 technical paper</td><td>Records statement families, types, control flow, subprograms, and graphics.</td><td>It is a historical snapshot; it does not establish the features of a current version.</td></tr><tr><td>Current manual and implementation</td><td>No complete technical specification paired with a maintained distributor was located.</td><td>Reserved words, punctuation, installation, and current version remain unconfirmed.</td></tr></tbody></table></div><p>This separation is part of the manual: without a verifiable grammar, code examples would be conjecture.</p>
 
 <h3>What the 2007 technical study records</h3>
 <p>A comparative paper by Taha Zerrouki, presented at a Supreme Council of the Arabic Language conference in Algiers in December 2007, describes Jeem alongside Zay and an Arabic version of Logo. It provides more detail than newspaper accounts, but it remains a historical snapshot: it does not confirm the project’s current status or replace documentation for an implementation.</p>
@@ -104,6 +105,31 @@ body_class: manual-page
         <h2>Availability and limits</h2>
 <p>The newspaper source and reference overview help locate Jeem’s context, but they do not replace a maintained repository or original specification. The historical address associated with the project was not confirmed as an active portal with current documentation and downloads.</p><p>Therefore, this page does not state an operating system, installation process, compiler, version, or syntax as current fact. The status can be revisited if verifiable primary files become available. Jeem remains under evaluation, with no implementation commitment.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Historical technical reading</p><h2>Technical map and limits of the evidence</h2>
+<p>Taha Zerrouki’s comparative study, presented in Algiers in December 2007, devotes pages 5–8 of the PDF to Jeem. It describes a high-level language derived from Arabic and the Al-Khwarizmi environment, then associated with editing, debugging, and execution. This is a technical snapshot from that period: it does not confirm that the program can still be obtained or establish the behavior of a current version.</p>
+<h3>What the paper documents</h3>
+<div class="manual-table-wrap" role="region" aria-label="Jeem features recorded in the 2007 study" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Language area</th><th scope="col">What the paper records</th><th scope="col">How to read it today</th></tr></thead><tbody>
+<tr><td>Program organization</td><td>Three statement families: declarations of names and types; executable instructions; directives handled by the translator during conversion.</td><td>This indicates a language with its own organization; it is not a modern grammar.</td></tr>
+<tr><td>Simple values</td><td>Integers, real numbers, logical values, characters, text, and pointers.</td><td>These are features attributed to the version described in the paper, not a promise of current compatibility.</td></tr>
+<tr><td>Data structures</td><td>Arrays, records, and files; the paper also mentions character, number, and color modules.</td><td>This shows the intended scope beyond simple arithmetic exercises.</td></tr>
+<tr><td>Control flow</td><td>Conditional selection and four loop forms: counted, precondition, postcondition, and range-based.</td><td>This lets us reconstruct the algorithm families taught, but not verify exact delimiters.</td></tr>
+<tr><td>Subprograms</td><td>Procedures, functions, and recursion.</td><td>Their existence is reported; parameter and return rules need verifiable documentation.</td></tr>
+<tr><td>Input, output, and graphics</td><td>Reading and writing data; a drawing library with points, lines, circles, rectangles, ellipses, and color.</td><td>Operations are described in prose; code names and arguments should not be reconstructed from the PDF text extraction.</td></tr>
+</tbody></table></div>
+<p>The paper also describes word-replacement directives and library inclusion, and comments on writing choices intended to bring commands closer to Arabic morphology. Text extraction from the document mixes right-to-left ordering with symbols and older fonts. This page therefore translates the recorded concepts but does not present those passages as tokens or executable code.</p>
+<h3>A trace that can be checked: factorial of 4</h3>
+<p>The historical factorial example can be taught without assigning Jeem an uncertain transcription. The pseudocalculation below uses English names only as state labels: start the accumulator at 1; while the counter is greater than 1, multiply the accumulator by the counter and decrease the counter.</p>
+<div class="manual-table-wrap" role="region" aria-label="Conceptual factorial trace for Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Step</th><th scope="col">Counter</th><th scope="col">Accumulator before</th><th scope="col">Action</th><th scope="col">Accumulator after</th></tr></thead><tbody>
+<tr><td>Initial</td><td>4</td><td>1</td><td>Initialize state.</td><td>1</td></tr>
+<tr><td>1</td><td>4</td><td>1</td><td>Multiply by 4; decrease counter.</td><td>4</td></tr>
+<tr><td>2</td><td>3</td><td>4</td><td>Multiply by 3; decrease counter.</td><td>12</td></tr>
+<tr><td>3</td><td>2</td><td>12</td><td>Multiply by 2; decrease counter.</td><td>24</td></tr>
+<tr><td>Stop</td><td>1</td><td>24</td><td>The test “counter greater than 1” is false.</td><td>24</td></tr>
+</tbody></table></div>
+<p>The same trace helps check boundary cases: for 0 and 1, the body need not run and the conventional result remains 1. For negative inputs, the exercise must define its domain; do not assume the historical program accepted them.</p>
+<h3>Separate fact, reconstruction, and gaps</h3>
+<ul><li><strong>Historical fact:</strong> the paper reports features, categories, and the environment available at the time.</li><li><strong>Teaching reconstruction:</strong> an algorithm can be explained through its state variables and operation order without reproducing Jeem syntax.</li><li><strong>Normative gap:</strong> this page does not have a complete manual, executable source code, or accessible release that confirms every keyword, delimiter, encoding, or result.</li></ul>
+<p>To turn this page into a syntax reference, an original manual and Al-Khwarizmi environment would need to be compared, the published examples executed, and the version recorded. Until then, Jeem exercises should be labeled historical analysis, not programs that can be pasted into an interpreter.</p></section>
       <section id="fontes">
         <p class="kicker">08 · further reading</p>
         <h2>References</h2>

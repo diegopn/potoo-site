@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#tracos">Seguir un bucle hasta la condición de salida</a></li>
         <li><a href="#mutacao-listas">Insertar, eliminar y seguir los índices</a></li>
         <li><a href="#procedimentos-pratica">Usar parámetros y valores de retorno</a></li>
+        <li><a href="#semantica-listas">Semántica de listas y seguimiento de procedimientos</a></li>
         <li><a href="#limites">Vigencia y límites</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
@@ -134,13 +135,37 @@ REMOVE(scores, 4)</code></pre><div class="manual-table-wrap" role="region" aria-
 }
 answer ← isEven(8)</code></pre><p>En la llamada, el argumento <code>8</code> se asigna al parámetro <code>value</code>. La expresión devuelve <code>true</code>, que pasa a ser el valor de <code>answer</code>. Con <code>isEven(7)</code>, el resultado sería <code>false</code>. La instrucción <code>RETURN</code> sale del procedimiento de inmediato; el código que venga después no participa en esa llamada.</p><p>Para analizar una rutina, separa su definición de la llamada: anota cada argumento, sustitúyelo por el parámetro correspondiente y sigue las instrucciones hasta el retorno. Si un procedimiento no devuelve un valor, sigue sus efectos, como cambios en una lista o el texto mostrado.</p>
       </section>
+            <section id="semantica-listas">
+        <p class="kicker">13 · consulta de listas</p>
+        <h2>Semántica de listas y seguimiento de un procedimiento</h2>
+        <p>La hoja de referencia define operaciones que muchas preguntas requieren trazar a mano. Los índices empiezan en 1. Asignar una lista a otra crea una copia; no crea un segundo nombre para la misma secuencia. Las inserciones y eliminaciones cambian la longitud y desplazan los índices, así que actualiza el estado de la lista antes del siguiente acceso.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Operaciones de listas de AP CSP" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efecto</th><th scope="col">Comprobación</th></tr></thead><tbody><tr><td><code>L ← R</code></td><td>Asigna una copia de <code>R</code> a <code>L</code>.</td><td>Modificar <code>L[i]</code> después no modifica la lista independiente <code>R</code>.</td></tr><tr><td><code>INSERT(L, i, x)</code></td><td>Coloca <code>x</code> en <code>i</code>; los elementos desde <code>i</code> se desplazan a la derecha.</td><td>La longitud aumenta en 1; vuelve a calcular los índices posteriores.</td></tr><tr><td><code>APPEND(L, x)</code></td><td>Añade <code>x</code> al final.</td><td>La longitud aumenta en 1; las posiciones existentes no cambian.</td></tr><tr><td><code>REMOVE(L, i)</code></td><td>Elimina el elemento de <code>i</code>; los siguientes se desplazan a la izquierda.</td><td>La longitud disminuye en 1; el antiguo elemento <code>i+1</code> pasa a <code>i</code>.</td></tr><tr><td><code>FOR EACH x IN L</code></td><td>Visita cada valor del primero al último.</td><td>Útil si el algoritmo necesita los valores, pero no los índices.</td></tr></tbody></table></div>
+        <p>El procedimiento cuenta los valores estrictamente mayores que un límite y devuelve el total. Visitar cada elemento no modifica la lista:</p>
+        <pre class="manual-code"><code>PROCEDURE countAbove(values, limit)
+{
+    count ← 0
+    FOR EACH value IN values
+    {
+        IF (value &gt; limit)
+        {
+            count ← count + 1
+        }
+    }
+    RETURN(count)
+}
+
+answer ← countAbove([8, 5, 9, 6], 6)
+DISPLAY(answer)</code></pre>
+        <p>La llamada devuelve <code>2</code>: 8 y 9 son mayores que 6; 5 y 6 no lo son. En cada pasada, anota el valor actual y el recuento después de la prueba. La comparación es estricta: cambiar <code>&gt;</code> por <code>&gt;=</code> también incluiría 6.</p>
+        <p>Al seguir una pregunta, registra la lista antes y después de cada cambio, su longitud actual y la condición evaluada. Los índices menores que 1 o mayores que <code>LENGTH(L)</code> producen un error y terminan el programa según la semántica de la hoja. Al recorrer y eliminar elementos, ten en cuenta el desplazamiento: después de borrar el elemento actual, el siguiente ocupa el mismo índice; incrementar un índice manual puede saltarlo.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">13 · versiones y alcance</p>
+        <p class="kicker">14 · versiones y alcance</p>
         <h2>Vigencia y límites</h2>
 <p>La hoja de referencia y el marco del curso pueden revisarse entre años escolares y exámenes. Esta página se basa en la hoja de 2026; los estudiantes deben confirmar qué material corresponde a su evaluación.</p><p>El pseudocódigo AP CSP es una notación compartida para la enseñanza y los exámenes, no un lenguaje de propósito general ni una API. Esta página no afirma que Potoo IDE lo ejecute ni sustituye el documento oficial.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">14 · lecturas adicionales</p>
+        <p class="kicker">15 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-exam-reference-sheet.pdf">Hoja oficial de referencia del examen AP Computer Science Principles (2026)</a>.</li><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf?course=ap-computer-science-principles">Descripción oficial del curso y examen</a>, con el marco curricular.</li><li><a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles">Página oficial del curso AP CSP</a>.</li></ul><p>Al responder preguntas de evaluación, utiliza la hoja de referencia correspondiente al año de tu examen.</p>
       </section>

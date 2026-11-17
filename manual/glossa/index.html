@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#escopo">Escopo e variantes</a></li>
         <li><a href="#metodologia">Da análise ao algoritmo</a></li>
         <li><a href="#roteiro">Roteiro de aprendizagem e depuração</a></li>
+        <li><a href="#guia-tecnico">Quadro de tipos, operadores e execução</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -77,10 +78,12 @@ body_class: manual-page
         <p>Este quadro indexa apenas as formas já usadas nesta página. Ele não define uma gramática completa nem confirma variações adotadas por todos os cursos ou simuladores.</p>
 
       </section>
-      <section id="dados">
-        <p class="kicker">04 · dados</p>
+            <section id="dados">
+        <p class="kicker">04 · dados e expressões</p>
         <h2>Tipos, operadores e atribuição</h2>
-<p>O livro escolar distingue tipos para inteiros, valores reais, caracteres e valores lógicos. As declarações agrupam variáveis por tipo; a atribuição usa uma seta apontando para a variável que recebe o valor.</p><div class="manual-table-wrap" role="region" aria-label="Tipos e palavras-chave de Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma grega</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>ΑΚΕΡΑΙΕΣ</code></td><td>Variáveis inteiras.</td></tr><tr><td><code>ΠΡΑΓΜΑΤΙΚΕΣ</code></td><td>Variáveis reais.</td></tr><tr><td><code>ΧΑΡΑΚΤΗΡΕΣ</code></td><td>Caracteres ou cadeias, conforme a declaração do material.</td></tr><tr><td><code>ΛΟΓΙΚΕΣ</code></td><td>Valores lógicos.</td></tr><tr><td><code>&lt;-</code></td><td>Atribui à variável à esquerda o resultado da expressão à direita.</td></tr></tbody></table></div><p>Expressões combinam operações aritméticas, relacionais e lógicas. Parênteses deixam explícita a ordem do cálculo. Consulte a tabela do livro para precedência, conversões e limites de cada tipo.</p>
+        <p>O livro curricular distingue quatro famílias: inteiros, reais, caracteres/cadeias e valores lógicos. A declaração informa o tipo; <code>&lt;-</code> atribui à variável à esquerda o valor da expressão à direita. Use a grafia grega do curso e não misture atribuição com igualdade, que é uma comparação.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos e operadores da ΓΛΩΣΣΑ" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Dados</td><td><code>ΑΚΕΡΑΙΕΣ</code>, <code>ΠΡΑΓΜΑΤΙΚΕΣ</code>, <code>ΧΑΡΑΚΤΗΡΕΣ</code>, <code>ΛΟΓΙΚΕΣ</code></td><td>Inteiros, reais, caracteres ou cadeias e valores <code>ΑΛΗΘΗΣ</code>/<code>ΨΕΥΔΗΣ</code>.</td></tr><tr><td>Aritmética</td><td><code>+ - * / ^ DIV MOD</code></td><td>Operações numéricas; <code>DIV</code> e <code>MOD</code> são usados para divisão inteira e resto.</td></tr><tr><td>Comparação</td><td><code>= &lt;&gt; &lt; &lt;= &gt; &gt;=</code></td><td>Compara valores e produz uma condição lógica.</td></tr><tr><td>Lógica</td><td><code>ΟΧΙ</code>, <code>ΚΑΙ</code>, <code>Ή</code></td><td>Nega, combina por conjunção ou combina por disjunção condições.</td></tr><tr><td>Atribuição</td><td><code>variável &lt;- expressão</code></td><td>Calcula primeiro a expressão e guarda o resultado na variável.</td></tr></tbody></table></div>
+        <p>O livro estabelece a precedência geral: operações aritméticas antes das relacionais e operações lógicas depois das comparações. Parênteses tornam a intenção explícita, por exemplo <code>(ΗΛΙΚΙΑ &gt;= 18) ΚΑΙ (ΕΓΓΕΓΡΑΜΜΕΝΟΣ = ΑΛΗΘΗΣ)</code>. Não use uma condição composta sem conferir como cada parte é agrupada.</p>
       </section>
       <section id="io">
         <p class="kicker">05 · interação</p>
@@ -90,15 +93,19 @@ body_class: manual-page
 ΤΕΤΡΑΓΩΝΟ &lt;- Α * Α
 ΓΡΑΨΕ ΤΕΤΡΑΓΩΝΟ</code></pre><p>O fragmento destaca os comandos gregos de entrada e saída. Em um programa completo, declare cada variável na seção própria e use a grafia e a forma de literal adotadas pelo livro curricular. A mensagem em grego pode ser substituída por outra mensagem literal, sem alterar a estrutura do algoritmo.</p>
       </section>
-      <section id="controle">
+            <section id="controle">
         <p class="kicker">06 · controle de fluxo</p>
         <h2>Condições e repetições</h2>
-<p>ΓΛΩΣΣΑ inclui estruturas de seleção e repetição adequadas a exercícios de programação estruturada. A seleção escolhe um bloco de acordo com uma condição; os laços repetem instruções conforme uma contagem ou condição. O livro especifica as palavras-chave e os delimitadores de cada forma.</p><ul><li><strong>Seleção simples ou dupla:</strong> trata um caso e, opcionalmente, sua alternativa.</li><li><strong>Seleção múltipla:</strong> escolhe entre diferentes valores possíveis.</li><li><strong>Repetição contada:</strong> percorre uma sequência de valores.</li><li><strong>Repetição condicional:</strong> continua enquanto uma condição for satisfeita ou até uma condição ocorrer.</li></ul><p>Uma condição precisa produzir valor lógico. Para cada repetição, identifique a variável que muda e confirme que os limites não deixam a última iteração fora do intervalo pretendido.</p>
+        <p>As estruturas de controle do livro operam sobre expressões lógicas. A condição de <code>ΑΝ</code> escolhe um caminho; a posição do teste distingue os dois laços condicionais. Use <code>ΓΙΑ</code> quando o percurso é contado e seus limites são conhecidos.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Estruturas de controle da ΓΛΩΣΣΑ" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construção</th><th scope="col">Momento do teste</th><th scope="col">Quando usar e efeito</th></tr></thead><tbody><tr><td><code>ΑΝ ... ΤΟΤΕ ... ΑΛΛΙΩΣ ... ΤΕΛΟΣ_ΑΝ</code></td><td>A condição é avaliada ao chegar à seleção.</td><td>Escolhe um bloco; a alternativa <code>ΑΛΛΙΩΣ</code> é opcional.</td></tr><tr><td><code>ΟΣΟ condição ΕΠΑΝΑΛΑΒΕ ... ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ</code></td><td>Antes de cada passagem.</td><td>Repete enquanto verdadeira; pode executar zero vezes.</td></tr><tr><td><code>ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ ... ΜΕΧΡΙΣ_ΟΤΟΥ condição</code></td><td>Depois do corpo.</td><td>Repete até a condição se tornar verdadeira; executa ao menos uma vez.</td></tr><tr><td><code>ΓΙΑ i ΑΠΟ início ΜΕΧΡΙ fim ΜΕ_ΒΗΜΑ passo</code></td><td>Verifica o contador contra o limite em cada passo.</td><td>Repete uma sequência conhecida; o passo padrão é 1 e o limite é alcançado conforme a sequência.</td></tr><tr><td><code>ΕΠΙΛΕΞΕ</code></td><td>Compara um valor com as alternativas declaradas.</td><td>O material permite alternativas com valores e faixas; é útil para várias opções discretas.</td></tr></tbody></table></div>
+        <p>Em <code>ΟΣΟ</code>, atualize dentro do corpo a variável que controla a condição; sem esse avanço, o laço pode não terminar. Em <code>ΜΕΧΡΙΣ_ΟΤΟΥ</code>, escreva a condição de parada em forma afirmativa: a repetição termina quando ela é verdadeira. Em <code>ΓΙΑ</code>, confirme que o passo leva ao limite sem incluir ou excluir valores por engano.</p>
       </section>
-      <section id="subprogramas">
-        <p class="kicker">07 · decomposição</p>
+            <section id="subprogramas">
+        <p class="kicker">07 · coleções e decomposição</p>
         <h2>Vetores e subprogramas</h2>
-<p>O material didático também cobre vetores e subprogramas. Um vetor guarda elementos do mesmo tipo, acessados por índice. Procedimentos agrupam ações; funções produzem um resultado. Parâmetros transmitem valores de entrada e, conforme a forma ensinada, dados que serão atualizados pela rotina.</p><p>Ao usar um vetor, declare sua dimensão e verifique o intervalo de índices estabelecido no exercício. Ao definir um procedimento ou função:</p><ol><li>escolha um nome que descreva a tarefa;</li><li>liste os parâmetros e seus tipos;</li><li>declare variáveis locais necessárias;</li><li>especifique o resultado ou efeito observável;</li><li>teste a rotina isoladamente antes de combiná-la ao programa principal.</li></ol><p>Os detalhes de limites, passagem de parâmetros e sintaxe completa devem ser lidos na edição curricular adotada.</p>
+        <p>Um vetor reúne valores homogêneos de tamanho declarado. Os exemplos escolares usam posições começando em 1; uma matriz usa dois índices e normalmente é percorrida com laços aninhados. Declare a dimensão e use exatamente os limites do exercício: o exemplo <code>Α[1]</code> é o primeiro elemento, e <code>Α[n]</code> só é válido se o vetor tiver dimensão <code>n</code>.</p>
+        <p>Procedimentos reúnem comandos e são chamados com <code>ΚΑΛΕΣΕ</code>; funções calculam um único valor que pode participar de uma expressão. Parâmetros transmitem os dados entre o programa principal e a rotina, enquanto variáveis locais pertencem ao subprograma. A edição curricular descreve os modos de parâmetro e a forma completa de declarar cada rotina; siga essa fonte na hora de produzir uma resposta de exame.</p>
+        <p>Divida uma solução em etapas com responsabilidades claras: ler e validar entradas, processar os valores, e apresentar o resultado. Em operações de vetor — busca, mínimo/máximo, ordenação e fusão — declare o que cada índice representa e qual parte já foi processada antes de escrever o laço.</p>
       </section>
       <section id="exemplo">
         <p class="kicker">08 · exemplo guiado</p>
@@ -147,6 +154,25 @@ body_class: manual-page
         <h3>Erros frequentes</h3>
         <ul><li><strong>Dado não inicializado:</strong> verifique se cada variável recebe um valor antes de ser usada.</li><li><strong>Limite incorreto:</strong> teste a condição quando o valor é igual ao limite, e não apenas acima ou abaixo.</li><li><strong>Laço sem progresso:</strong> confirme que as instruções alteram a variável ou o estado que controla a repetição.</li><li><strong>Acesso fora do vetor:</strong> compare cada índice com o intervalo definido no exercício e na edição do curso.</li><li><strong>Recursão sem término:</strong> confirme que a cada chamada a entrada se aproxima do caso-base.</li></ul>
         <p>As ferramentas de terceiros podem interpretar convenções diferentes. Ao depurar, registre a edição do livro, reproduza seus exemplos e compare a sequência de estados antes de concluir que uma ferramenta representa a regra curricular. Para avaliações, use exatamente a notação solicitada pelo professor ou pelo exame.</p>
+      </section>
+            <section id="guia-tecnico">
+        <p class="kicker">Guia técnico de consulta</p>
+        <h2>Um algoritmo completo e sua tabela de execução</h2>
+        <p>Este exemplo soma os números ímpares de 1 a 9. Ele usa o cabeçalho, a seção de variáveis, a estrutura de repetição contada e a saída apresentados no livro escolar:</p>
+        <pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΑΘΡΟΙΣΜΑ_ΠΕΡΙΤΤΩΝ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Ι, ΑΘΡΟΙΣΜΑ
+ΑΡΧΗ
+  ΑΘΡΟΙΣΜΑ &lt;- 0
+  ΓΙΑ Ι ΑΠΟ 1 ΜΕΧΡΙ 9 ΜΕ_ΒΗΜΑ 2
+    ΑΘΡΟΙΣΜΑ &lt;- ΑΘΡΟΙΣΜΑ + Ι
+  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ
+  ΓΡΑΨΕ ΑΘΡΟΙΣΜΑ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre>
+        <p>O passo 2 percorre apenas ímpares. A soma começa em zero, recebe o valor atual de <code>Ι</code> e só depois o contador avança. A tabela registra o estado após cada corpo:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma de ímpares na ΓΛΩΣΣΑ" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Passagem</th><th scope="col"><code>Ι</code></th><th scope="col"><code>ΑΘΡΟΙΣΜΑ</code> depois da soma</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>3</td><td>4</td></tr><tr><td>3</td><td>5</td><td>9</td></tr><tr><td>4</td><td>7</td><td>16</td></tr><tr><td>5</td><td>9</td><td>25</td></tr></tbody></table></div>
+        <p>O resultado exibido é <code>25</code>. Para verificar a fronteira, faça o contador começar em 1 e anote cada valor alcançado pelo passo até o limite; para valores de entrada, teste também o caso em que o laço não deve executar. Em um laço condicionado, registre a condição antes e depois do corpo; em uma matriz, registre os dois índices e a linha ou região já percorrida. Essas tabelas permitem encontrar um erro na primeira transição incorreta, sem depender de um software específico.</p>
+        <p>O currículo também apresenta funções matemáticas gregas — por exemplo <code>ΗΜ</code>, <code>ΣΥΝ</code>, <code>ΕΦ</code>, <code>Τ_Ρ</code>, <code>ΛΟΓ</code>, <code>Ε</code>, <code>Α_Μ</code> e <code>Α_Τ</code>. Consulte a tabela da edição adotada para confirmar a operação e as unidades, especialmente em funções trigonométricas. A notação ΓΛΩΣΣΑ é ensinada por material curricular; esta referência não presume um interpretador único nem a execução deste exemplo no Potoo IDE.</p>
       </section>
       <section id="fontes">
         <p class="kicker">13 · leitura adicional</p>

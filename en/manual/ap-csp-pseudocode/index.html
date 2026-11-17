@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#tracos">Trace a loop to its stopping condition</a></li>
         <li><a href="#mutacao-listas">Insert, remove, and track indices</a></li>
         <li><a href="#procedimentos-pratica">Use parameters and return values</a></li>
+        <li><a href="#semantica-listas">List semantics and procedure tracing</a></li>
         <li><a href="#limites">Validity and limits</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -134,13 +135,37 @@ REMOVE(scores, 4)</code></pre><div class="manual-table-wrap" role="region" aria-
 }
 answer ← isEven(8)</code></pre><p>In the call, the argument <code>8</code> is assigned to the parameter <code>value</code>. The expression returns <code>true</code>, which becomes the value of <code>answer</code>. With <code>isEven(7)</code>, the result would be <code>false</code>. The <code>RETURN</code> statement exits the procedure immediately, so code after it does not take part in that call.</p><p>To analyze a routine, separate its definition from its call: mark each argument, substitute the matching parameter, and follow the statements to the return. If a procedure does not return a value, trace its effects instead, such as list changes or displayed text.</p>
       </section>
+            <section id="semantica-listas">
+        <p class="kicker">13 · list reference</p>
+        <h2>List semantics and tracing a procedure</h2>
+        <p>The reference sheet defines mechanics that many questions require you to trace by hand. Indices start at 1. Assigning one list to another creates a copy; it does not create a second name for the same sequence. Insertions and removals change the length and shift indices, so update the list state before the next access.</p>
+        <div class="manual-table-wrap" role="region" aria-label="AP CSP list operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Check</th></tr></thead><tbody><tr><td><code>L ← R</code></td><td>Assigns a copy of <code>R</code> to <code>L</code>.</td><td>Changing <code>L[i]</code> later does not change the independent list <code>R</code>.</td></tr><tr><td><code>INSERT(L, i, x)</code></td><td>Places <code>x</code> at <code>i</code>; items from <code>i</code> onward shift right.</td><td>Length increases by 1; recalculate every later index.</td></tr><tr><td><code>APPEND(L, x)</code></td><td>Adds <code>x</code> at the end.</td><td>Length increases by 1; existing positions stay the same.</td></tr><tr><td><code>REMOVE(L, i)</code></td><td>Removes the item at <code>i</code>; later items shift left.</td><td>Length decreases by 1; the old item at <code>i+1</code> moves to <code>i</code>.</td></tr><tr><td><code>FOR EACH x IN L</code></td><td>Visits each value from first to last.</td><td>Useful when the algorithm needs values but not indices.</td></tr></tbody></table></div>
+        <p>The procedure below counts values strictly greater than a limit and returns the count. Visiting an item does not change the list:</p>
+        <pre class="manual-code"><code>PROCEDURE countAbove(values, limit)
+{
+    count ← 0
+    FOR EACH value IN values
+    {
+        IF (value &gt; limit)
+        {
+            count ← count + 1
+        }
+    }
+    RETURN(count)
+}
+
+answer ← countAbove([8, 5, 9, 6], 6)
+DISPLAY(answer)</code></pre>
+        <p>The call returns <code>2</code>: 8 and 9 are greater than 6; 5 and 6 are not. For each pass, record the current value and the count after the test. The comparison is strict: changing <code>&gt;</code> to <code>&gt;=</code> would include 6.</p>
+        <p>When tracing a question, record the list before and after every mutation, its current length, and the condition being evaluated. Indices below 1 or above <code>LENGTH(L)</code> cause an error and terminate the program under the reference sheet’s semantics. When traversing and removing items, account for shifting: after removing the current item, the next one occupies the same index; incrementing a manual index can skip it.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">13 · versions and scope</p>
+        <p class="kicker">14 · versions and scope</p>
         <h2>Validity and limits</h2>
 <p>The reference sheet and course framework may be revised between school years and exams. The 2026 sheet is the basis of this page; students should confirm which material applies to their assessment.</p><p>AP CSP pseudocode is a shared teaching and exam notation, not a general-purpose programming language or API. This page does not claim execution in Potoo IDE and does not replace the official document.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">14 · further reading</p>
+        <p class="kicker">15 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-exam-reference-sheet.pdf">Official AP Computer Science Principles exam reference sheet (2026)</a>.</li><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf?course=ap-computer-science-principles">Official course and exam description</a>, with the curriculum framework.</li><li><a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles">Official AP CSP course page</a>.</li></ul><p>Use the reference sheet provided for your exam year when answering assessment questions.</p>
       </section>

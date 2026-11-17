@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#expressoes-casos">Operadores y selección con CASE</a></li>
         <li><a href="#strings">Usar funciones de texto proporcionadas</a></li>
         <li><a href="#parametros">Elegir paso por valor o por referencia</a></li>
+        <li><a href="#recursos-avancados">Tipos avanzados, archivos y objetos</a></li>
         <li><a href="#limites">Versiones y límites</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
@@ -134,13 +135,34 @@ ENDIF</code></pre><p>La condición protege la extracción cuando el texto tiene 
 ENDPROCEDURE
 CALL AddBonus(CurrentScore, 5)</code></pre><p>Después de la llamada, <code>CurrentScore</code> aumenta en cinco porque <code>Score</code> se pasa por referencia; <code>Bonus</code> sigue siendo un parámetro por valor. La llamada a un procedimiento es una instrucción completa y comienza con <code>CALL</code>.</p><p>Una función es distinta: devuelve un solo valor y su llamada forma parte de una expresión o asignación. La guía indica que no se utilice <code>CALL</code> con funciones ni que sus parámetros se pasen por referencia. Al leer una rutina, identifica su tipo, los parámetros y dónde se utiliza el resultado.</p><div class="manual-table-wrap" role="region" aria-label="Paso de parámetros Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efecto</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Predeterminado / <code>BYVAL</code></td><td>El procedimiento recibe el valor del argumento.</td><td>Los cambios locales no sustituyen la variable original.</td></tr><tr><td><code>BYREF</code></td><td>El parámetro hace referencia a la variable proporcionada.</td><td>El procedimiento puede modificar el argumento del llamador.</td></tr><tr><td>Parámetro de función</td><td>La función devuelve un valor; su parámetro no se pasa por referencia.</td><td>Usa la llamada en una expresión y no escribas <code>CALL</code>.</td></tr></tbody></table></div>
       </section>
+            <section id="recursos-avancados">
+        <p class="kicker">13 · estructuras avanzadas</p>
+        <h2>Tipos definidos, archivos y objetos</h2>
+        <p>La guía Cambridge 9618 abarca más que variables, arreglos y bucles básicos. En un examen, usa los tipos y operaciones autorizados por la guía del año correspondiente; estos ejemplos siguen la guía 2027–2029. Cada construcción pertenece a la especificación curricular, no a un intérprete de propósito general.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Tipos avanzados de pseudocódigo Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Forma documentada</th><th scope="col">Uso y límite</th></tr></thead><tbody><tr><td>Enumeración</td><td><code>TYPE Season = (Spring, Summer, Autumn, Winter)</code></td><td>Limita un valor a una lista explícita de alternativas con nombre.</td></tr><tr><td>Puntero</td><td><code>TYPE TIntPointer = ^INTEGER</code></td><td>Representa una referencia a una posición de memoria del tipo indicado; declara la variable con el nombre del tipo.</td></tr><tr><td>Registro</td><td><code>TYPE StudentRecord ... ENDTYPE</code></td><td>Agrupa campos de tipos distintos, accesibles con punto, como <code>Pupil.YearGroup</code>.</td></tr><tr><td>Conjunto</td><td><code>TYPE LetterSet = SET OF CHAR</code></td><td>Agrupa valores de un tipo y se puede definir con <code>DEFINE</code>.</td></tr><tr><td>Archivo de texto</td><td><code>OPENFILE</code>, <code>READFILE</code>, <code>WRITEFILE</code>, <code>EOF</code>, <code>CLOSEFILE</code></td><td>Lee líneas en secuencia; abrir en modo <code>WRITE</code> crea o reemplaza el contenido.</td></tr><tr><td>Archivo aleatorio</td><td><code>SEEK</code>, <code>GETRECORD</code>, <code>PUTRECORD</code></td><td>Mueve el puntero del archivo a un registro y lo lee o lo reemplaza.</td></tr><tr><td>Clase</td><td><code>CLASS</code>, <code>PRIVATE</code>, <code>PUBLIC</code>, <code>INHERITS</code>, <code>SUPER</code></td><td>Define propiedades, métodos, el constructor <code>NEW</code> y herencia en la guía de examen.</td></tr></tbody></table></div>
+        <p>Este ejemplo lee un archivo de texto línea por línea, reemplaza las líneas vacías por guiones y cierra ambos archivos. Comprueba <code>EOF</code> antes de <code>READFILE</code>, de modo que un archivo vacío no intente una lectura inexistente:</p>
+        <pre class="manual-code"><code>DECLARE LineOfText : STRING
+OPENFILE "Input.txt" FOR READ
+OPENFILE "Output.txt" FOR WRITE
+WHILE NOT EOF("Input.txt")
+    READFILE "Input.txt", LineOfText
+    IF LineOfText = "" THEN
+        WRITEFILE "Output.txt", "----------------------------"
+    ELSE
+        WRITEFILE "Output.txt", LineOfText
+    ENDIF
+ENDWHILE
+CLOSEFILE "Input.txt"
+CLOSEFILE "Output.txt"</code></pre>
+        <p><code>APPEND</code> conserva el contenido existente y escribe después de él; <code>WRITE</code> reemplaza el archivo. Para archivos de acceso aleatorio, explica cómo calculas la dirección del registro antes de usar <code>SEEK</code>; <code>PUTRECORD</code> reemplaza el registro en la posición actual. En las clases, la guía usa procedimientos de construcción llamados <code>NEW</code> y <code>SUPER.NEW(...)</code> para inicializar la parte heredada. Consulta la guía del año de examen, porque los ejemplos evaluados y el programa de estudios tienen periodos propios.</p>
+      </section>
       <section id="limites">
-        <p class="kicker">13 · versiones y alcance</p>
+        <p class="kicker">14 · versiones y alcance</p>
         <h2>Versiones y límites</h2>
 <p>Utiliza la guía de 2026 para ese año de examen y la guía de 2027–2029 para las evaluaciones correspondientes. Consulta la página oficial del programa para localizar una edición posterior.</p><p>El pseudocódigo Cambridge no define un compilador, una biblioteca ejecutable estándar ni compatibilidad con un lenguaje concreto. Esta documentación describe convenciones de evaluación y no afirma que Potoo IDE las interprete.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">14 · lecturas adicionales</p>
+        <p class="kicker">15 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Guía de pseudocódigo Cambridge para docentes (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Guía de pseudocódigo Cambridge para docentes (2027–2029)</a>, para exámenes de esos años.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Programa Cambridge International AS &amp; A Level Computer Science 9618</a>, con guías vinculadas a años de examen.</li></ul><p>Utiliza la edición exacta proporcionada para el curso; las reglas de evaluación deben comprobarse en la fuente oficial vigente.</p>
       </section>

@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Educational reference · educational algorithm language · under evaluation</p>
     <h1>SL</h1>
-    <p class="manual-intro">SL is the educational algorithm language documented by Universidad Nacional de Asunción.</p>
+    <p class="manual-intro">Practical SL reference for syntax, data structures, control flow, subroutines, and standard functions.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -38,6 +38,7 @@ body_class: manual-page
         <li><a href="#escopo">Implementation and limits</a></li>
         <li><a href="#regras">Identifiers, operators, and writing rules</a></li>
         <li><a href="#subprogramas">Functions, procedures, and parameters</a></li>
+        <li><a href="#biblioteca">Standard library and functions</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -52,131 +53,91 @@ body_class: manual-page
         <h2>Project and teaching purpose</h2>
 <p>The official material is associated with the Facultad Politécnica at the Universidad Nacional de Asunción. It presents SL as a resource for teaching algorithms and includes the SLE environment, documents, examples, and supporting material.</p><p>The language was designed for practicing introductory concepts:</p><ul><li>describe a sequence of instructions with an explicit beginning and end;</li><li>declare data and compose expressions;</li><li>read input and display results;</li><li>control decisions and repetition;</li><li>organize calculations into functions and procedures.</li></ul><p>The official portal and project book are the references for syntax details and for features in a specific version of SLE.</p>
       </section>
-      <section id="estrutura">
-        <p class="kicker">03 · program structure</p>
-        <h2>Program structure</h2>
-<p>A simple program can declare variables, begin its executable sequence, receive data, calculate a result, and finish. The project documentation uses Spanish keywords and lowercase forms in its examples. This fragment follows the introductory format shown in the material:</p><pre class="manual-code"><code>var
-    n, resultado : numerico
+      <section id="estrutura"><p class="kicker">03 · program outline</p><h2>Program structure</h2><p>The smallest program declares data, starts execution at <code>inicio</code>, and ends at <code>fin</code>. The optional header <code>programa name</code> identifies the file; it does not change the execution sequence.</p><pre class="manual-code"><code>programa saludo
+var
+    numero, cuadrado : numerico
 inicio
-    leer(n)
-    resultado = n * n
-    imprimir(resultado)
-fin</code></pre><p><code>var</code> introduces declarations, <code>inicio</code> opens the body, and <code>fin</code> ends the program. Program, variable, and procedure names follow the identifier rules in the book.</p>
-      </section>
-      <section id="dados">
-        <p class="kicker">04 · data and operators</p>
-        <h2>Variables, types, and collections</h2>
-<p>SL documents numeric and text values and logical values, along with structures for grouping data and working with collections. Exact type names and index rules should follow the official manual for the relevant version.</p><div class="manual-table-wrap" role="region" aria-label="SL data concepts" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Concept</th><th scope="col">Teaching use</th></tr></thead><tbody><tr><td>Scalars</td><td>Represent numbers, characters, or conditions.</td></tr><tr><td>Arrays and matrices</td><td>Store sequences of elements accessed by index.</td></tr><tr><td>Records</td><td>Group named fields with their own types.</td></tr><tr><td>Expressions</td><td>Combine arithmetic, relational, and logical operators.</td></tr></tbody></table></div><p>Choose meaningful variable names and an appropriate type. Before accessing an array position or record field, identify the declared bounds and structure.</p>
-      </section>
-      <section id="entrada">
-        <p class="kicker">05 · interaction</p>
-        <h2>Input, output, and calculations</h2>
-<p>Project examples use read and print instructions to connect an algorithm to data supplied by the person running it. An expression can combine values and store a calculation before displaying it.</p><pre class="manual-code"><code>var
-    base, altura, area : numerico
+    leer(numero)
+    cuadrado = numero * numero
+    imprimir(&quot;Square: &quot;, cuadrado)
+fin</code></pre><p><code>const</code>, <code>tipos</code>, and <code>var</code> declarations can appear before <code>inicio</code>, in any order and more than once. A subroutine is declared after the main program and has its own local declarations.</p><div aria-label="Partes de un programa SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Role</th><th scope="col">Note</th></tr></thead><tbody><tr><td><code>programa nome</code></td><td>Optional header.</td><td>Identifies the program.</td></tr><tr><td><code>const / tipos / var</code></td><td>Declares global constants, types, and variables.</td><td>Can appear more than once and in any order before inicio.</td></tr><tr><td><code>inicio</code></td><td>Starts program execution.</td><td>Follows the global declarations.</td></tr><tr><td><code>fin</code></td><td>Ends the main program.</td><td>Subroutines follow it.</td></tr></tbody></table></div></section>
+      <section id="dados"><p class="kicker">04 · structured data</p><h2>Types, variables, and collections</h2><p>SL has three basic types. <code>numerico</code> represents integers and real numbers; there are no separate types for each precision. The type checker requires compatible types in expressions. You can create composite types with vectors, matrices, records, and names declared under <code>tipos</code>.</p><div aria-label="Tipos e estruturas de dados de SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Type or form</th><th scope="col">Represents</th><th scope="col">Usage rule</th></tr></thead><tbody><tr><td><code>numerico</code></td><td>Integers and real values.</td><td>Use one type for counters, measurements, and calculations.</td></tr><tr><td><code>cadena</code></td><td>Text with dynamic length.</td><td>The + operator concatenates two strings; characters can be accessed by index.</td></tr><tr><td><code>logico</code></td><td>Logical values, such as TRUE and FALSE in official examples.</td><td>Conditions and relational operators produce logical values.</td></tr><tr><td><code>vector [n] tipo</code></td><td>Vector with a fixed size.</td><td>Positions start at 1 and end at n.</td></tr><tr><td><code>matriz [rows, columns] tipo</code></td><td>Matrix with one or more dimensions.</td><td>Provide one index per dimension.</td></tr><tr><td><code>vector [*] tipo</code></td><td>Open vector sized at runtime.</td><td>Call dim(vector, size) before traversing its elements.</td></tr><tr><td><code>registro { field : type }</code></td><td>Groups named fields that can have different types.</td><td>Access a field with a dot, such as alumno.nota.</td></tr><tr><td><code>tipos NAME : type</code></td><td>Creates a reusable type name.</td><td>Composite types are structurally compatible.</td></tr></tbody></table></div><pre class="manual-code"><code>tipos
+    ALUMNO : registro {
+        nombre : cadena
+        nota : numerico
+    }
+var
+    grupo : vector [*] ALUMNO
+    total : numerico
 inicio
-    imprimir("Ingrese la base y la altura:")
-    leer(base, altura)
-    area = base * altura
-    imprimir(area)
-fin</code></pre><p>The example declares its data and separates input, calculation, and output. Check the book for literal and punctuation details in the SLE version used by the class.</p><p>Separating input, processing, and output makes it easier to test the calculation without confusing an input problem with a formula error.</p>
-      </section>
-      <section id="controle">
-        <p class="kicker">06 · control flow</p>
-        <h2>Decisions, loops, and procedures</h2>
-<p>SL includes structures for selecting a path, repeating commands, and reusing operations. Project documentation covers conditionals, counted or conditional loops, functions, and procedures. Exact reserved words depend on the construct and should be copied from the official manual rather than another language.</p><ul><li><strong>Decision:</strong> execute a block based on a logical expression.</li><li><strong>Repetition:</strong> repeat instructions a controlled number of times or until a condition.</li><li><strong>Function:</strong> calculate and return a result.</li><li><strong>Procedure:</strong> name a sequence of actions that can be called elsewhere.</li></ul><p>When writing a loop, identify the variable or condition that changes and explain why repetition stops. When dividing a problem into routines, define the values each receives and the result or effect it produces.</p>
-      </section>
-      <section id="exemplo">
-        <p class="kicker">07 · worked example</p>
-        <h2>Calculate the average of two marks</h2>
-<p>A simple average practices data, input, expressions, and output. First declare both marks and the result using suitable types. Then read each value, calculate their sum divided by two, and display the average.</p><pre class="manual-code"><code>var
-    nota1, nota2, promedio : numerico
+    dim(grupo, 2)
+    grupo[1].nombre = &quot;Lia&quot;
+    grupo[1].nota = 9
+    grupo[2].nombre = &quot;Rui&quot;
+    grupo[2].nota = 7
+    total = alen(grupo)
+    imprimir(grupo[1].nombre, &quot; / &quot;, total)
+fin</code></pre><p>The first index is 1, which differs from languages that start at zero. A matrix <code>M</code> can be traversed by rows with <code>alen(M)</code>; <code>alen(M[1])</code> returns the column count in its first row. If a size is known only at runtime, declare the dimension as open with <code>*</code> and allocate it with <code>dim</code>.</p><p>The example shows two access steps for a record stored in a vector: select an element, then its field. Check the element count before indexing; an out-of-range access causes a runtime error.</p></section>
+      <section id="entrada"><p class="kicker">05 · interaction</p><h2>Input, output, and files</h2><p><code>leer</code> and <code>imprimir</code> accept several arguments and complete structures. By default, input fields are separated by commas; output values are written in sequence, so add spaces and line breaks explicitly.</p><div aria-label="Entrada, saída e fluxo de dados em SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Detail</th></tr></thead><tbody><tr><td><code>leer(a, b)</code></td><td>Reads values into the listed variables or structures.</td><td>One call can read several scalars, a vector, or a record.</td></tr><tr><td><code>imprimir(a, b)</code></td><td>Writes values to the screen or the current destination.</td><td>Use &quot;\n&quot; and &quot;\t&quot; to format lines and columns.</td></tr><tr><td><code>set_ifs(separator)</code></td><td>Changes the field separator for leer.</td><td>The default is a comma; set it again after set_stdin.</td></tr><tr><td><code>set_stdin(file)</code></td><td>Reads from a file instead of the keyboard.</td><td>Check its logical return value and use eof() while reading a file.</td></tr><tr><td><code>set_stdout(file)</code></td><td>Redirects imprimir to a file.</td><td>The basic form replaces an existing file; mode &quot;at&quot; appends.</td></tr><tr><td><code>set_ofs(separator)</code></td><td>Changes the separator used when printing composite values.</td><td>The default for vectors and records is a comma.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    nombre : cadena
+    edad : numerico
 inicio
-    leer(nota1)
-    leer(nota2)
-    promedio = (nota1 + nota2) / 2
-    imprimir(promedio)
-fin</code></pre><p>To extend the example, validate that marks fall within the interval allowed by the exercise. A condition can choose a message for pass or fail; a loop can repeat input while a mark is invalid. The pass threshold belongs to the exercise and should not be assumed.</p>
-      </section>
-      <section id="estudo">
-        <p class="kicker">08 · study and debugging</p>
-        <h2>Practising with SL</h2>
-<p>Use the official portal’s environment and examples to confirm syntax. Start with small programs and run them using known inputs. If the SLE version provides step-by-step execution, advance one instruction at a time and watch relevant variables.</p><ul><li>Test typical inputs and boundaries defined by the problem.</li><li>Check types before mixing numbers and text in an expression.</li><li>For arrays, verify the first and last index used.</li><li>For procedures, compare each argument with its parameter’s documented purpose.</li><li>When an error appears, locate the first incompatible statement and confirm the keyword in the manual.</li></ul><p>The book and official materials give full conventions and exercises that a summary cannot replace. Use this page as a map of concepts, not a substitute for the specification of an installation.</p>
-      </section>
-      <section id="escopo">
-        <p class="kicker">09 · versions and scope</p>
-        <h2>Implementation and limits</h2>
-<p>The SL ecosystem includes the language and SLE, but the portal may offer different versions and files over time. Interface, debugging, library, and syntax details should be confirmed in the package actually installed.</p><p>This reference summarizes publicly documented feature families. It does not promise that every historical construct is available in every version or that an SL program runs unchanged in another interpreter. SL remains under evaluation as a future possibility for Potoo IDE.</p>
-      </section>
-      <section id="regras">
-        <p class="kicker">10 · syntax and reading</p>
-        <h2>Identifiers, operators, and writing rules</h2>
-        <p>The SL book specifies three basic types: <code>numerico</code>, <code>cadena</code>, and <code>logico</code>. The numeric type represents both integers and real values; strings have dynamic length; arrays and records can be built from these types. The book describes strict type compatibility and structurally checked aggregate types.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Types and operators documented for SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Documented use</th></tr></thead><tbody>
-          <tr><td><code>numerico</code></td><td>Integers and real values under one basic type.</td></tr>
-          <tr><td><code>cadena</code></td><td>Resizable text; <code>+</code> concatenates two strings.</td></tr>
-          <tr><td><code>logico</code></td><td>Conditions used by selections and loops.</td></tr>
-          <tr><td><code>vector</code>, <code>matriz</code>, <code>registro</code></td><td>Aggregate structures, including multidimensional arrays and records with fields.</td></tr>
-        </tbody></table></div>
-        <p>Identifiers are case-sensitive, start with a letter or underscore, and can contain up to 32 characters. The book allows <code>ñ</code> but not accented letters in identifiers; reserved words must be lowercase. These details are common sources of errors when copying examples.</p>
-        <p>Assignments use <code>=</code>; comparisons include <code>==</code> for equality and <code>&lt;&gt;</code> for inequality. Expressions can also use <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>, together with the logical operators <code>and</code>, <code>or</code>, and <code>not</code>. Statements may span lines; multiple statements on one line use semicolons.</p>
-        <p>The two repetition forms highlight useful execution differences: <code>mientras</code> tests before its body and may run zero times; <code>repetir</code> runs the body and only then tests <code>hasta</code>. In either form, identify which value changes and why the stopping condition will be reached.</p>
-        <pre class="manual-code"><code>var
-    n : numerico
+    imprimir(&quot;Name and age (comma-separated): &quot;)
+    leer(nombre, edad)
+    imprimir(&quot;\nHello, &quot;, nombre, &quot;. Age: &quot;, edad, &quot;\n&quot;)
+fin</code></pre><p>Strings recognize escape sequences such as <code>\n</code> (newline), <code>\r</code> (return to the start of the line), and <code>\t</code> (tab). To process a file line by line, select it with <code>set_stdin</code>, set <code>set_ifs("\n")</code>, read the first record, and test <code>eof()</code> before continuing the loop. The standard library explains how to restore keyboard and screen output with an empty string.</p></section>
+      <section id="controle"><p class="kicker">06 · execution flow</p><h2>Conditions, selection, and loops</h2><p>Conditions are enclosed in parentheses. <code>si</code> chooses a branch, <code>eval</code> selects among conditions, and the three loop forms test at different points.</p><div aria-label="SL conditions and loops" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Execution</th><th scope="col">When to use</th></tr></thead><tbody><tr><td><code>si (condition) { ... sino ... }</code></td><td>Runs one branch according to the test.</td><td>Use for two alternatives or chained decisions.</td></tr><tr><td><code>eval { caso (condition) ... sino ... }</code></td><td>Checks cases in order and runs the first true one, then exits the block.</td><td>Use for several mutually exclusive conditions. sino is optional and comes last.</td></tr><tr><td><code>mientras (condition) { ... }</code></td><td>Tests before the body.</td><td>May run zero times; update data in the body so the condition can become false.</td></tr><tr><td><code>repetir ... hasta (condition)</code></td><td>Tests after the body.</td><td>Runs at least once; useful for a first prompt or validation.</td></tr><tr><td><code>desde i=start hasta end paso step { ... }</code></td><td>Walks an integer range including its final value.</td><td>The step may be negative; match its direction to the bounds.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    i, suma : numerico
 inicio
-    n = 1
+    i = 1
+    suma = 0
     repetir
-        n = n + 1
-    hasta (n >= 5)
-    imprimir (n)
-fin</code></pre>
-        <h3>Quick reference</h3>
-        <div class="manual-table-wrap" role="region" aria-label="SL identifier rules" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Rule</th><th scope="col">Description</th><th scope="col">Example or note</th></tr></thead><tbody>
-          <tr><td>First character</td><td>Start with a letter or underscore.</td><td><code>final_grade</code></td></tr>
-          <tr><td>Length</td><td>Use at most 32 characters.</td><td>Count letters and digits after the first character as well.</td></tr>
-          <tr><td>Characters</td><td>The documentation allows <code>ñ</code>, but not accented letters in identifiers.</td><td>Reserved words are lowercase.</td></tr>
-          <tr><td>Letter case</td><td>Identifiers are case-sensitive.</td><td><code>grade</code> and <code>Grade</code> are different names.</td></tr>
-        </tbody></table></div>
-        <div class="manual-table-wrap" role="region" aria-label="SL operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Category</th><th scope="col">Form</th><th scope="col">Use</th></tr></thead><tbody>
-          <tr><td>Assignment</td><td><code>=</code></td><td>Stores the right-hand value in the left-hand variable.</td></tr>
-          <tr><td>Equality</td><td><code>==</code></td><td>Tests whether two values are equal.</td></tr>
-          <tr><td>Inequality</td><td><code>&lt;&gt;</code></td><td>Tests whether two values differ.</td></tr>
-          <tr><td>Relational</td><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>Compares order and boundaries.</td></tr>
-          <tr><td>Logical</td><td><code>and or not</code></td><td>Combines or negates conditions.</td></tr>
-          <tr><td>Text</td><td><code>+</code></td><td>Concatenates strings; operands must be compatible.</td></tr>
-        </tbody></table></div>
-        <div class="manual-table-wrap" role="region" aria-label="SL control structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Documented form</th><th scope="col">When to use it</th><th scope="col">Execution order</th></tr></thead><tbody>
-          <tr><td><code>si (condición) { ... sino ... }</code></td><td>Selects a path based on a condition.</td><td>Runs the block matching the logical result.</td></tr>
-          <tr><td><code>mientras (condición) { ... }</code></td><td>Repeats while the condition is true.</td><td>Tests before the body; it may run zero times.</td></tr>
-          <tr><td><code>repetir ... hasta (condición)</code></td><td>Repeats until the stopping condition occurs.</td><td>Runs the body before the first test.</td></tr>
-        </tbody></table></div>
-
-      </section>
-      <section id="subprogramas">
-        <p class="kicker">11 · decomposition</p>
-        <h2>Functions, procedures, and parameters</h2>
-        <p>The book distinguishes functions, which return a value and can appear in expressions, from procedures, which perform actions without producing a result. Subroutines follow the main program and may declare local constants, types, and variables. A function declares its return type and uses <code>retorna</code> to provide the result:</p>
-        <pre class="manual-code"><code>subrutina cuadrado (n : numerico) retorna numerico
+        suma = suma + i
+        i = i + 1
+    hasta (i &gt; 4)
+    imprimir(&quot;Sum from 1 to 4: &quot;, suma)
+fin</code></pre><p>In <code>desde</code>, the start, end, and step are converted to integers. The step can move forward or backward. A smaller start pairs with a positive step; to count down, use a larger start and a negative step. The loop may run zero times when the bounds and step cannot reach the range.</p><p>The <code>repetir</code> example always adds at least the first value. To trace it, record <code>i</code> before the body and <code>suma</code> before and after the assignment. Once <code>i</code> passes 4, the condition ends the loop.</p></section>
+      <section id="exemplo"><p class="kicker">07 · complete program</p><h2>Guided example: average a set of marks</h2><p>This program sizes a vector from the input, visits each mark, and calculates an average. The count check prevents division by zero. Indices start at 1, and <code>alen</code> uses the actual vector size instead of a repeated constant.</p><pre class="manual-code"><code>programa promedio_notas
+var
+    cantidad : numerico
+    notas : vector [*] numerico
+    i, suma, media : numerico
+inicio
+    imprimir(&quot;Number of marks: &quot;)
+    leer(cantidad)
+    si (cantidad &gt; 0) {
+        dim(notas, cantidad)
+        suma = 0
+        desde i=1 hasta alen(notas) {
+            imprimir(&quot;\nMark: &quot;)
+            leer(notas[i])
+            suma = suma + notas[i]
+        }
+        media = suma / alen(notas)
+        imprimir(&quot;\nAverage = &quot;, str(media, 0, 2))
+    sino
+        imprimir(&quot;\nAt least one mark is required.&quot;)
+    }
+fin</code></pre><p>With inputs <code>3</code>, <code>8</code>, <code>6</code>, and <code>10</code>, the sum reaches 24 and the average is 8. The table records the state after each pass.</p><div aria-label="Trace of the average calculation" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteration</th><th scope="col">i</th><th scope="col">Mark</th><th scope="col">Running sum</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>8</td><td>8</td></tr><tr><td>2</td><td>2</td><td>6</td><td>14</td></tr><tr><td>3</td><td>3</td><td>10</td><td>24</td></tr></tbody></table></div><p>After the ordinary case, test a count of 1 and a count of 0. The first runs one iteration; the second skips allocation and division. To extend the program, add a condition for each valid mark and keep accepted values separate.</p></section>
+      <section id="estudo"><p class="kicker">08 · workflow</p><h2>Practice, tests, and debugging</h2><p>The official portal keeps the introductory book, selected examples, and a built-in function reference. Start with short programs, check their values by hand, and then add vectors, records, and subroutines.</p><div aria-label="SL program review checklist" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Area</th><th scope="col">Test</th><th scope="col">Review question</th></tr></thead><tbody><tr><td><code>Data</code></td><td>Try zero, one value, and a boundary value.</td><td>Does the declared type fit all values and operations?</td></tr><tr><td><code>Conditions</code></td><td>Exercise every branch, including the final alternative.</td><td>Do comparisons use matching types and cover all cases?</td></tr><tr><td><code>Loops</code></td><td>Record the condition, counter, and controlling value.</td><td>Can the condition become false, and does the right value change?</td></tr><tr><td><code>Vectors</code></td><td>Try the first and last valid positions.</td><td>Does the index start at 1 and stay within alen(v)?</td></tr><tr><td><code>Subroutines</code></td><td>Compare arguments before the call and the result after it.</td><td>Should the parameter be passed by value or by reference?</td></tr></tbody></table></div><p>The SLE step-through debugger can help find the instruction where a value diverges from expectations, depending on the installed version. A dry-run table still helps without a debugger: add one row per iteration and record only the values that control the result.</p></section>
+      <section id="escopo"><p class="kicker">09 · scope and compatibility</p><h2>Version and scope of this reference</h2><p>The Universidad Nacional de Asunción portal documents the SLE environment and publishes historical materials for SL. Its documents page warns that the book describes a version earlier than the current SLE release. Confirm syntax and behavior in the help for the version used in class.</p><p>SL remains under evaluation for Potoo IDE. This page describes SL from the book, examples, and official function reference; it does not claim that the current SLE or every listed feature is integrated into the application.</p></section>
+      <section id="regras"><p class="kicker">10 · reading the syntax</p><h2>Identifiers, operators, and source layout</h2><p>The book defines identifiers as case-sensitive, up to 32 characters, and starting with a letter or underscore. The letter <code>ñ</code> is allowed; accented vowels are not listed as valid identifier letters. Reserved words are written in lowercase. Comments use <code>//</code> or <code>/* ... */</code>.</p><div aria-label="Assignment, comparison, and writing in SL" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operator or form</th><th scope="col">Meaning</th><th scope="col">Note</th></tr></thead><tbody><tr><td><code>=</code></td><td>Assignment.</td><td>The right-hand expression must match the variable type.</td></tr><tr><td><code>==</code></td><td>Equality.</td><td>Do not confuse it with assignment.</td></tr><tr><td><code>&lt;&gt;</code></td><td>Inequality.</td><td>Comparisons require operands of the same simple type.</td></tr><tr><td><code>and, or, not</code></td><td>Conjunction, disjunction, and negation.</td><td>They produce logical values; use parentheses to make intent clear.</td></tr><tr><td><code>+</code></td><td>Addition or concatenation.</td><td>Both operands must be numeric or both strings.</td></tr><tr><td><code>;</code></td><td>Separates statements on the same line.</td><td>It is not needed between statements on separate lines.</td></tr></tbody></table></div><div aria-label="SL operator precedence" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Level</th><th scope="col">Operators</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Highest</td><td><code>^</code></td><td>Exponentiation.</td></tr><tr><td>2</td><td><code>+x, -x</code></td><td>Unary sign.</td></tr><tr><td>3</td><td><code>*, /, %</code></td><td>Multiplication, division, and remainder.</td></tr><tr><td>4</td><td><code>+, -</code></td><td>Addition, subtraction, and compatible string concatenation.</td></tr><tr><td>5</td><td><code>==, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=</code></td><td>Equality and relational comparisons.</td></tr><tr><td>6</td><td><code>not</code></td><td>Logical negation.</td></tr><tr><td>7</td><td><code>and</code></td><td>Logical conjunction.</td></tr><tr><td>Lowest</td><td><code>or</code></td><td>Logical disjunction.</td></tr></tbody></table></div><p>Operators on the same precedence row are evaluated left to right. Parentheses change the order. The first edition of the book uses <code>and</code>, <code>or</code>, and <code>not</code>; examples in the function reference also show <code>&amp;&amp;</code> in some expressions, so confirm the spelling accepted by the installed SLE.</p><p>Statements may continue across lines. A semicolon is an optional separator only when multiple statements share a line.</p></section>
+      <section id="subprogramas"><p class="kicker">11 · modularity</p><h2>Functions, procedures, and parameters</h2><p>The main program is followed by subroutine definitions. A function declares its return type and uses <code>retorna</code>; a procedure has no return clause. Parameters are copied by default, or can use <code>ref</code> to modify the variable supplied by the caller.</p><pre class="manual-code"><code>subrutina cuadrado(n : numerico) retorna numerico
 inicio
     retorna (n * n)
-fin</code></pre>
-        <p>Parameters can be passed by value or by reference. By value, the subroutine receives an initial copy; changing the parameter does not change the original argument. With <code>ref</code>, the routine receives a reference and its assignments change the variable supplied by the caller. Make this difference explicit in each subroutine's contract.</p>
-        <pre class="manual-code"><code>subrutina duplicar (ref valor : numerico)
+fin</code></pre><p>Functions can return any type, including vectors and records. Parameters and variables declared inside a subroutine are local; declarations in the main program are global. A subroutine can call another without a prototype and can recurse.</p><pre class="manual-code"><code>subrutina duplicar(ref valor : numerico)
 inicio
     valor = valor * 2
-fin</code></pre>
-        <p>Variables declared in the main program are global; declarations inside a subroutine and formal parameters are local. A local name can hide a global name with the same spelling while the routine runs. Local scope helps make subroutines independent and also supports recursion, but it requires care when distinct values share an identifier.</p>
-        <p>When designing a function, list its parameters, result type, and boundary cases. For a procedure that takes a reference, note which argument it changes. Test the routine with small data before integrating it into the main algorithm.</p>
-        <div class="manual-table-wrap" role="region" aria-label="SL subroutine reference" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Role</th><th scope="col">Note</th></tr></thead><tbody>
-          <tr><td><code>subrutina name (parameters) retorna type</code></td><td>Declares a function.</td><td>The type names the value returned by the function.</td></tr>
-          <tr><td><code>retorna (expression)</code></td><td>Provides the function result.</td><td>The expression must match the declared type.</td></tr>
-          <tr><td><code>subrutina name (parameters)</code></td><td>Declares a procedure.</td><td>Performs actions without returning a function value.</td></tr>
-          <tr><td><code>ref name : type</code></td><td>Declares a pass-by-reference parameter.</td><td>Assignments may change the argument supplied by the caller.</td></tr>
-          <tr><td>Local or global variable</td><td>Defines a name's scope.</td><td>Parameters and subroutine declarations are local; main-program declarations are global.</td></tr>
-        </tbody></table></div>
-
-      </section>
-      <section id="fontes">
-        <p class="kicker">12 · further reading</p>
+fin</code></pre><div aria-label="SL subroutine contracts" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Role</th><th scope="col">What to check</th></tr></thead><tbody><tr><td><code>subrutina f(x : tipo) retorna tipo</code></td><td>Function that returns a value.</td><td>It can appear in an expression; declare a type compatible with the returned value.</td></tr><tr><td><code>subrutina f(x : tipo)</code></td><td>Procedure that performs actions.</td><td>Call it as a statement and account for its effects.</td></tr><tr><td><code>x : tipo</code></td><td>Value parameter.</td><td>The subroutine changes its local copy.</td></tr><tr><td><code>ref x : tipo</code></td><td>Reference parameter.</td><td>An assignment can modify the caller’s variable.</td></tr><tr><td><code>ref a : vector [*] numerico</code></td><td>Open vector passed by reference.</td><td>The routine can call alen(a) and change its elements.</td></tr></tbody></table></div><p>Use reference parameters only for values that must come back changed. For a calculation, prefer value parameters and a returned result. For a routine that fills or sorts a vector, document that the argument is modified.</p></section>
+      <section id="biblioteca"><p class="kicker">12 · standard library reference</p><h2>Built-in functions and procedures</h2><p>SLE includes mathematical, string, array, I/O, and utility routines. The table catalogs the families in the official reference; these built-ins do not need imports. Check the complete signatures and optional arguments in the documentation for the installed version.</p><div aria-label="SL standard-library families" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Functions</th><th scope="col">Family</th><th scope="col">Use and notes</th></tr></thead><tbody><tr><td><code>abs, arctan, cos, exp, int, log, sin, sqrt, tan</code></td><td>Mathematics.</td><td>Includes absolute value, trigonometry in radians, exponentials, logarithms, square root, and integer part. log requires n &gt; 0; sqrt requires a positive input according to the installed SLE version.</td></tr><tr><td><code>ascii, ord, lower, upper, pos, strdup, strlen, substr</code></td><td>Strings.</td><td>Reads a character code, searches, changes case, repeats a string, measures length, and extracts substrings. substr uses positions starting at 1.</td></tr><tr><td><code>str, val</code></td><td>Formatting and conversion.</td><td>str formats a number; val reads digits from a string and returns 0 when it finds no number.</td></tr><tr><td><code>alen, dim</code></td><td>Vectors and matrices.</td><td>alen returns a size; dim allocates open dimensions at runtime.</td></tr><tr><td><code>imprimir, leer, eof</code></td><td>Input and output.</td><td>Accept simple values and structures; eof checks end of file.</td></tr><tr><td><code>set_stdin, set_stdout, set_ifs, set_ofs, get_ifs, get_ofs</code></td><td>Files and separators.</td><td>Select devices and configure input and structured-output separators.</td></tr><tr><td><code>beep, cls, readkey</code></td><td>Console.</td><td>Beep, clear the screen, or wait for a key; effects depend on the input/output device.</td></tr><tr><td><code>get_color, set_color, get_curpos, set_curpos, get_scrsize</code></td><td>Screen and cursor.</td><td>Read or change color, position, and terminal dimensions.</td></tr><tr><td><code>inc, dec, intercambiar, swap, max, min, ifval</code></td><td>Utilities.</td><td>Update or exchange values, compare two values of the same type, and select a conditional expression.</td></tr><tr><td><code>random, sec, paramval, pcount, runcmd, terminar</code></td><td>Execution and system.</td><td>Generate pseudorandom integers, read time and arguments, run a process, or terminate the program.</td></tr></tbody></table></div><h3>Useful signatures</h3><div aria-label="SL library signatures and behavior" class="manual-table-wrap" role="region" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Call</th><th scope="col">Result</th><th scope="col">Note</th></tr></thead><tbody><tr><td><code>random(limit)</code></td><td>Integer from 0 through limit - 1.</td><td>SLE initializes the generator at startup; a seed is usually unnecessary.</td></tr><tr><td><code>substr(text, start [, count])</code></td><td>Copy of a substring.</td><td>A start beyond the end of the text returns an empty string.</td></tr><tr><td><code>str(number [, width [, places [, fill]]])</code></td><td>Formatted text representation.</td><td>Use width 0 to omit a minimum width; check rounding behavior.</td></tr><tr><td><code>val(text)</code></td><td>Numeric value.</td><td>Returns 0 if the string contains no number; validate before using the result.</td></tr><tr><td><code>dim(vector, sizes...)</code></td><td>Allocates the specified open dimensions.</td><td>Fixed dimensions already declared do not take a new size.</td></tr><tr><td><code>alen(vector)</code></td><td>Element count.</td><td>For matrices, alen(M) reads the rows and alen(M[1]) reads columns in the first row.</td></tr><tr><td><code>inc(ref n [, step]), dec(ref n [, step])</code></td><td>Updates n and returns its new value.</td><td>The default step is 1; it may be positive or negative.</td></tr><tr><td><code>ifval(condition, when_true, when_false)</code></td><td>Conditional expression.</td><td>Evaluates only the selected value; both alternatives must have the same simple type.</td></tr><tr><td><code>set_stdin(file), set_stdout(file)</code></td><td>Redirects reading or printing.</td><td>Check the logical result. set_stdout replaces a file by default; mode at appends.</td></tr><tr><td><code>pcount(), paramval(i)</code></td><td>Count and value of program arguments.</td><td>paramval uses positions starting at 1 and returns an empty string for an out-of-range index.</td></tr></tbody></table></div><pre class="manual-code"><code>var
+    nota : numerico
+inicio
+    nota = val(&quot;7.5&quot;)
+    imprimir(&quot;\n&quot;, upper(&quot;sl&quot;), &quot; / &quot;, substr(&quot;algoritmo&quot;, 1, 4))
+    imprimir(&quot;\nFormatted mark: &quot;, str(nota, 0, 2))
+    imprimir(&quot;\nDie (0 to 5): &quot;, random(6))
+fin</code></pre><p>Terminal, file, and process routines depend on SLE and its host system. <code>sec()</code> also has a history of version-dependent behavior. The official reference gives the full signatures, side effects, and examples for every routine.</p></section><section id="fontes">
+        <p class="kicker">13 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.cnc.una.py/sl/SL-index.html">Official SL portal</a>, from the Universidad Nacional de Asunción.</li><li><a href="https://www.cnc.una.py/sl/SL-documentos.html">SL documents and materials</a>.</li><li><a href="https://www.cnc.una.py/sl/libro-sl.pdf">SL book</a>, with teaching content and examples.</li><li><a href="https://www.cnc.una.py/sl/SL-stdf.html">Standard function reference</a>.</li></ul><p>The official Spanish-language materials are the source for confirming spelling, operator precedence, and full syntax.</p>
       </section>

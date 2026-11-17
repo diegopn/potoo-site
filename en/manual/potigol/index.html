@@ -91,7 +91,16 @@ escreva "Digite dois números:"
 a, b = leia_inteiro
 escreva "{a} + {b} = {a + b}"</code></pre>
         <p>In a string, <code>{expression}</code> inserts its value. Potigol also documents formatting with the <code>value formato pattern</code> expression.</p>
-      </section>
+
+<h3>Choose input by data type</h3>
+<div class="manual-table-wrap" role="region" aria-label="Potigol input forms" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Expected result</th><th scope="col">Typical use</th></tr></thead><tbody>
+<tr><td><code>leia_inteiro</code></td><td>An <code>Inteiro</code>.</td><td>A count, position, or quantity.</td></tr>
+<tr><td><code>leia_numero</code></td><td>A <code>Real</code>.</td><td>Measurements and values that may have a fraction.</td></tr>
+<tr><td><code>leia_texto</code></td><td>A <code>Texto</code>.</td><td>Names, sentences, and values that will not be calculated.</td></tr>
+<tr><td><code>leia_inteiros(" ")</code></td><td>A <code>Lista[Inteiro]</code>.</td><td>Reads a sequence separated by the supplied delimiter.</td></tr>
+<tr><td><code>a, b = leia_inteiro</code></td><td>Two input values.</td><td>Assigns multiple reads to names in the order declared.</td></tr>
+</tbody></table></div>
+<p>The delimiter passed to <code>leia_inteiros</code> is part of the expected input format: use <code>" "</code> for space-separated values, or change it for comma-separated input. A list read can feed the same transformations as a list created in the program.</p></section>
       <section id="controle"><p class="kicker">07 · Flow</p><h2>Conditions and loops</h2>
         <p><code>se</code> and <code>escolha</code> express decisions. Blocks can be used as instructions or as expressions that produce a value.</p>
         <pre class="manual-code"><code>mensagem = se nota &gt;= 7 então
@@ -151,7 +160,15 @@ escreva ponto.segundo
 escreva aluna.terceiro</code></pre>
         <p>Use a tuple to group related data or organize several values produced by a function. For homogeneous collections whose size can change, use a list.</p>
         <p>The official documentation also covers abstract types, inheritance, generics, functions as values, and pattern matching.</p>
-      </section>
+
+<h3>Choose a data structure</h3>
+<div class="manual-table-wrap" role="region" aria-label="Comparison of Potigol composite types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Structure</th><th scope="col">Organization</th><th scope="col">When to choose it</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><td><code>Lista[T]</code></td><td>A variable number of elements of one type; indexing starts at 1.</td><td>A collection to filter, traverse, or transform.</td><td><code>[8, 6, 9]</code></td></tr>
+<tr><td>Tuple</td><td>A fixed number of meaningful positions; element types may differ.</td><td>A small group of related values, such as coordinates or multiple results.</td><td><code>(3.5, 4.2)</code></td></tr>
+<tr><td>Record</td><td>Named fields that represent properties of a value.</td><td>When field names matter more than position.</td><td><code>aluna.nome</code></td></tr>
+<tr><td><code>tipo</code></td><td>Declares a program structure with attributes and methods.</td><td>To model a concept with its own data and operations.</td><td><code>Pessoa("Lia")</code></td></tr>
+</tbody></table></div>
+<p>A mutable variable and a mutable list are different choices: <code>var</code> lets you update the binding that holds a value, while functional list operations produce another list. The official documentation also describes specific mutable-list forms; use them when an exercise needs in-place updates instead of assuming every list behaves that way.</p></section>
             <section id="matematica-textos">
         <p class="kicker">10 · Built-in operations</p><h2>Math and text</h2>
         <p>Potigol provides mathematical operations for numbers and methods for inspecting or transforming text. Their names remain in Portuguese; check each result's type before combining it with another expression.</p>
@@ -226,7 +243,34 @@ escreva soma_dois(4)</code></pre>
 fim
 
 escreva conta(1000, 0)</code></pre>
-      </section>
+
+<h3>Complete pipeline: filter, transform, and accumulate</h3>
+<p>List operations can form a pipeline: each step receives a list and produces another list or a single result. Here the input is typed as <code>Lista[Inteiro]</code>; selection keeps passing grades; mapping calculates how many points each grade exceeds the threshold by; and injection adds those points.</p>
+<pre class="manual-code"><code>escreva "Enter integer grades separated by spaces:"
+grades = leia_inteiros(" ")
+approved = grades.selecione(n =&gt; n &gt;= 7)
+points_above = approved.mapeie(n =&gt; n - 7)
+total_above = points_above.injete(0)((total, n) =&gt; total + n)
+
+escreva "Passing grades: {approved}"
+escreva "Points above the threshold: {total_above}"</code></pre>
+<p>For input <code>6 8 7 5</code>, the intermediate values are:</p>
+<div class="manual-table-wrap" role="region" aria-label="Potigol functional pipeline trace" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Step</th><th scope="col">Operation</th><th scope="col">Value</th><th scope="col">Type</th></tr></thead><tbody>
+<tr><td>Input</td><td><code>leia_inteiros</code></td><td><code>[6, 8, 7, 5]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Selection</td><td><code>selecione(n =&gt; n &gt;= 7)</code></td><td><code>[8, 7]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Mapping</td><td><code>mapeie(n =&gt; n - 7)</code></td><td><code>[1, 0]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Accumulation</td><td><code>injete(0)</code></td><td><code>1</code></td><td><code>Inteiro</code></td></tr>
+</tbody></table></div>
+<p>This chain helps locate type errors: <code>selecione</code> and <code>mapeie</code> preserve a collection, while <code>injete</code> reduces it to one accumulator. The original <code>grades</code> list remains available because these operations produce results without changing the source list.</p>
+<h3>Track the type at each functional step</h3>
+<p>A higher-order function accepts another function as an argument; a sequence of operations can therefore be read as a sequence of type transformations. Potigol uses Portuguese names for filtering, mapping, and reduction.</p>
+<div class="manual-table-wrap" role="region" aria-label="Input and output types for Potigol functional operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operation</th><th scope="col">Takes</th><th scope="col">Returns</th><th scope="col">Check</th></tr></thead><tbody>
+<tr><td><code>selecione(predicate)</code></td><td><code>Lista[T]</code> and <code>T =&gt; Lógico</code></td><td><code>Lista[T]</code></td><td>Does the condition select the intended elements?</td></tr>
+<tr><td><code>mapeie(transform)</code></td><td><code>Lista[T]</code> and <code>T =&gt; U</code></td><td><code>Lista[U]</code></td><td>Does the function return the expected type?</td></tr>
+<tr><td><code>injete(initial)(combine)</code></td><td>An accumulator <code>A</code>, a list <code>Lista[T]</code>, and a function <code>(A, T) =&gt; A</code></td><td>One value of type <code>A</code></td><td>Does the initial value also work for an empty list?</td></tr>
+<tr><td>Currying</td><td>A function whose arguments arrive in stages</td><td>A partial function after each call</td><td>Are the remaining parameters clear?</td></tr>
+</tbody></table></div>
+<p>These examples do not need a special composition operator: pass one stage's result to the next, or name each intermediate list. Naming each stage makes the first mismatch in data or type easier to find.</p></section>
       <section id="padroes">
         <p class="kicker">13 · Structural decisions</p><h2>Pattern matching</h2>
         <p><code>escolha</code> can compare a value against cases or inspect a list's structure. The <code>[]</code> pattern represents an empty list; <code>cabeça :: cauda</code> separates its first element from the rest. The <code>_</code> pattern accepts any value, and an extra condition can narrow a case.</p>
@@ -244,7 +288,15 @@ fim
 escreva quantidade([3, 5, 8])
 escreva classifique(-2)</code></pre>
         <p>Cases are checked in order, so put specific patterns before a broad one such as <code>_</code>. In recursive functions, the empty-list case provides the stopping condition.</p>
-      </section>
+
+<h3>Pattern reference</h3>
+<div class="manual-table-wrap" role="region" aria-label="Potigol pattern matching forms" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pattern</th><th scope="col">What it matches</th><th scope="col">Role in the algorithm</th></tr></thead><tbody>
+<tr><td><code>[]</code></td><td>An empty list.</td><td>Defines the base case for recursion over a list.</td></tr>
+<tr><td><code>cabeça :: cauda</code></td><td>A non-empty list split into its first item and the remainder.</td><td>Lets you process one element and continue with the tail.</td></tr>
+<tr><td><code>caso x se condição</code></td><td>A value bound to <code>x</code> that also satisfies a guard.</td><td>Expresses a case with an additional restriction.</td></tr>
+<tr><td><code>_</code></td><td>Any value not matched earlier.</td><td>Acts as the final general case when no other structure needs inspection.</td></tr>
+</tbody></table></div>
+<p>Cases are tried in the order written. Put specific patterns first and leave the broad case for the end; an earlier <code>_</code> would otherwise hide branches you intended to distinguish.</p></section>
 <section id="jerimum"><p class="kicker">14 · Game library</p><h2>Jerimum: games with Potigol</h2>
         <p><strong>Jerimum</strong> is a game library for Potigol. Its official repository contains examples and modules for opening a window, drawing images and text, reading keyboard and mouse input, tracking time, and playing audio. It adds game features to Potigol programs and remains separate from Potigol's core syntax.</p>
         <h3>Startup and the game loop</h3>
@@ -306,7 +358,14 @@ desenhe()
 fim
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
         <p>Method details are in the Jerimum documentation and source code. The library uses Java facilities for windows, drawing, and audio; its examples describe desktop Potigol programs.</p>
-      </section>
+
+<h3>Core language and library</h3>
+<div class="manual-table-wrap" role="region" aria-label="Difference between Potigol and the Jerimum library" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Part</th><th scope="col">How it appears</th><th scope="col">What it adds</th></tr></thead><tbody>
+<tr><td>Potigol language</td><td>Declarations, functions, lists, tuples, types, and control flow.</td><td>Syntax and types used without an import.</td></tr>
+<tr><td>Jerimum</td><td><code>use "jerimum"</code></td><td>Adds window, image, input, audio, clock, and file features.</td></tr>
+<tr><td>Library objects</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>Calls depend on the version and documentation in the Jerimum repository.</td></tr>
+</tbody></table></div>
+<p>If an example uses <code>use "jerimum"</code>, it depends on the library and its resource files; copying the syntax is not enough in an environment that only runs the language core.</p></section>
       <section id="exemplo"><p class="kicker">15 · Combined example</p><h2>Calculate an average</h2>
         <pre class="manual-code"><code>media(a: Real, b: Real, c: Real) = (a + b + c) / 3
 escreva "Digite três notas:"

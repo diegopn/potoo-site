@@ -37,6 +37,7 @@ body_class: manual-page
         <li><a href="#limites">Versions and limits</a></li>
                 <li><a href="#editores">Editing modes and workflow</a></li>
         <li><a href="#recursos">Lists, functions, and execution tracing</a></li>
+        <li><a href="#estatistica-listas">List statistics and tracing</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -156,8 +157,36 @@ FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n =
         </tbody></table></div>
 
       </section>
+            <section id="estatistica-listas">
+        <p class="kicker">11 · list practice</p>
+        <h2>Calculate and check list statistics</h2>
+        <p>A <code>LISTE</code> stores numbers in numbered positions. In this AlgoBox feature, the first position is <code>1</code>; provide both the first and last rank in the range for each calculation. Lists use indices starting at 1, while text operations such as <code>substr</code> use a starting position of 0. Do not reuse an index from one structure in the other without adjusting its base.</p>
+        <p>The program below calculates the sum, mean, maximum, and position of the maximum for four marks:</p>
+        <pre class="manual-code"><code>VARIABLES
+  marks EST_DU_TYPE LISTE
+  total EST_DU_TYPE NOMBRE
+  mean EST_DU_TYPE NOMBRE
+  highest EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  marks[1] PREND_LA_VALEUR 7:8:10:15
+  total PREND_LA_VALEUR ALGOBOX_SOMME(marks,1,4)
+  mean PREND_LA_VALEUR ALGOBOX_MOYENNE(marks,1,4)
+  highest PREND_LA_VALEUR ALGOBOX_MAXIMUM(marks,1,4)
+  AFFICHER "Sum: "
+  AFFICHER total
+  AFFICHER "Mean: "
+  AFFICHER mean
+  AFFICHER "Maximum: "
+  AFFICHER highest
+  AFFICHER ALGOBOX_POS_MAXIMUM(marks,1,4)
+FIN_ALGORITHME</code></pre>
+        <p>For this range, the sum is 40, the mean is 10, the maximum is 15, and its position is 4. The trace table checks the sum independently of the statistics function:</p>
+        <div class="manual-table-wrap" role="region" aria-label="AlgoBox mark-sum trace" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Rank</th><th scope="col">Value read</th><th scope="col">Running sum</th></tr></thead><tbody><tr><td>1</td><td>7</td><td>7</td></tr><tr><td>2</td><td>8</td><td>15</td></tr><tr><td>3</td><td>10</td><td>25</td></tr><tr><td>4</td><td>15</td><td>40</td></tr></tbody></table></div>
+        <p>The list library documents sum, mean, variance, standard deviation, median, minimum, maximum, and the ranks of the extremes. Quartiles have two variants: <code>ALGOBOX_QUARTILE1</code>/<code>ALGOBOX_QUARTILE3</code> and their <code>_BIS</code> variants, which use different statistical definitions. Each requires a range of at least four values; check the question to see which definition applies. Reversing the ranks, selecting a rank outside the list, or violating this precondition produces an error.</p>
+        <p>When a result looks wrong, compare the call with the ranks used, display the list, and calculate a short set by hand. In step-by-step mode, advance one instruction at a time and watch the variable values; AlgoBox also marks the last executed line when an error occurs. <code>PAUSE</code> temporarily suspends execution, and displaying a variable helps locate the first incorrect pass.</p>
+      </section>
       <section id="fontes">
-        <p class="kicker">11 · further reading</p>
+        <p class="kicker">12 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.xm1math.net/algobox/index">Official AlgoBox website</a>, with project information and downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Official AlgoBox manual</a>, with syntax and usage guidance.</li></ul><p>The French manual is the source for the full grammar, list commands, and differences between versions.</p>
       </section>

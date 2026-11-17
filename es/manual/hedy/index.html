@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#erros-frequentes">Errores frecuentes y qué revisar</a></li>
         <li><a href="#ponte-python">Qué transferir de Hedy a Python</a></li>
         <li><a href="#limites">Idiomas, niveles y cambios</a></li>
+        <li><a href="#referencia-ampliada">Referencia ampliada</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -109,6 +110,52 @@ print The answer is 7</code></pre><p>En esta primera versión, la respuesta est�
         <h2>Idiomas, niveles y cambios</h2>
 <p>Hedy evoluciona como plataforma y currículo. La cantidad de niveles, lecciones, traducciones y funciones puede cambiar. Esta página no fija un número de niveles y describe la progresión general de los materiales oficiales.</p><p>La sintaxis depende del nivel y el idioma. Por ello, un solo ejemplo no representa todo el lenguaje. Consulta la plataforma y el manual docente actuales antes de preparar material de clase. Hedy sigue en evaluación para Potoo IDE.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Referencia de sintaxis</p><h2>Mapa de sintaxis por nivel</h2>
+<p>El manual docente publicado actualmente organiza el recorrido en 16 niveles: Básico (1–8), Avanzado (9–12) y Experto (13–16). Cada nivel acepta su propia gramática. Un programa que funciona en una lección avanzada puede ser rechazado en un nivel inicial porque aún no se han enseñado comillas, sangría, paréntesis o comandos. Esta tabla resume la progresión descrita por el proyecto; la lección seleccionada en la plataforma es la referencia para cada actividad concreta.</p>
+<div class="manual-table-wrap" role="region" aria-label="Progresión de niveles de Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Nivel</th><th scope="col">Recurso introducido</th><th scope="col">Cambio que se debe reconocer</th></tr></thead><tbody>
+<tr><td>1</td><td><code>print</code>, <code>ask</code>, <code>answer</code> y comandos iniciales de la tortuga.</td><td>El texto puede aparecer sin comillas; la respuesta queda disponible en <code>answer</code>.</td></tr>
+<tr><td>2</td><td>Variables con <code>is</code>, pausas con <code>sleep</code> y giros por grados.</td><td>La respuesta puede guardarse en una variable con nombre.</td></tr>
+<tr><td>3</td><td>Listas, selección aleatoria, adición y eliminación de elementos.</td><td>Los elementos se separan por comas; la aleatoriedad puede cambiar la salida.</td></tr>
+<tr><td>4</td><td>Comillas para textos, además de recursos de pantalla y color.</td><td>El texto literal y los nombres de variables se distinguen visualmente.</td></tr>
+<tr><td>5</td><td>Selección con <code>if</code> y <code>else</code>.</td><td>Las alternativas usan formas simples de una línea; cada rama requiere un comando.</td></tr>
+<tr><td>6</td><td><code>elif</code> y comprobación de pertenencia con <code>in</code>.</td><td>Una cadena puede distinguir más de dos respuestas o revisar una lista.</td></tr>
+<tr><td>7</td><td>Aritmética, decimales y asignación con <code>=</code>.</td><td>Las expresiones pueden calcular con variables; el punto separa decimales.</td></tr>
+<tr><td>8</td><td>Repetir una línea con <code>repeat ... times</code>.</td><td>El bloque contiene una línea; repetir varias instrucciones se enseña después.</td></tr>
+<tr><td>9</td><td>Sangría y bloques de varias líneas.</td><td>La sangría muestra qué instrucciones pertenecen al <code>if</code> o a la repetición.</td></tr>
+<tr><td>10</td><td>Bloques anidados y operadores <code>and</code> y <code>or</code>.</td><td>La sangría indica qué decisión está dentro de otra.</td></tr>
+<tr><td>11</td><td>Bucles <code>for</code> para recorrer elementos de una lista.</td><td>El nombre singular representa el elemento actual; el plural es la colección.</td></tr>
+<tr><td>12</td><td>Funciones básicas con <code>define</code> y <code>call</code>.</td><td>Definir una función no la ejecuta: hay que llamarla.</td></tr>
+<tr><td>13</td><td>Entrada a Experto y transición gradual a sintaxis parecida a Python.</td><td>Algunas formas anteriores dejan de aplicarse mientras se introduce la sintaxis nueva.</td></tr>
+<tr><td>14</td><td>Listas con corchetes y repetición con <code>for ... in range(...)</code>.</td><td>La selección aleatoria y el acceso a listas cambian de forma.</td></tr>
+<tr><td>15</td><td>Funciones con <code>def</code>, argumentos y <code>return</code>.</td><td>Los paréntesis, dos puntos y la sangría estructuran la función.</td></tr>
+<tr><td>16</td><td>Bucle <code>while</code>.</td><td>La condición debe poder volverse falsa para evitar una repetición sin fin.</td></tr>
+</tbody></table></div>
+<p>Este cuadro describe el manual docente consultado; materiales anteriores del proyecto pueden organizar o nombrar la secuencia de otra forma. Al comparar versiones, registra el nivel y el idioma de comandos junto al código.</p>
+<h3>Una misma idea en distintas etapas</h3>
+<p>Un saludo personalizado muestra por qué la sintaxis debe leerse en el contexto del nivel:</p>
+<div class="manual-table-wrap" role="region" aria-label="Ejemplos de sintaxis de Hedy en distintos niveles" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Fragmento representativo</th><th scope="col">Qué cambió</th></tr></thead><tbody>
+<tr><td>Nivel 1</td><td><code>ask What is your name?</code><br><code>print Hello answer</code></td><td>La respuesta usa el nombre especial <code>answer</code>.</td></tr>
+<tr><td>Nivel 2</td><td><code>name is ask What is your name?</code><br><code>print Hello name</code></td><td>El programa decide dónde guardar la respuesta.</td></tr>
+<tr><td>Nivel 4</td><td><code>name is ask 'What is your name?'</code><br><code>print 'Hello ' name</code></td><td>Las comillas delimitan el texto y la variable queda fuera.</td></tr>
+<tr><td>Nivel 9</td><td><code>if name is Hedy</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print 'Welcome back'</code></td><td>La sangría marca el cuerpo de la rama.</td></tr>
+</tbody></table></div>
+<p>En la ruta Experto, sigue la sintaxis de la lección. Por ejemplo, la documentación muestra una función con <code>def</code>, un parámetro y un valor de retorno:</p>
+<pre class="manual-code"><code>def room_for(number):
+    room_number = 1000 + number
+    return room_number
+
+favorite_number = 7
+room_number = room_for(favorite_number)
+print('Your room is ', room_number)</code></pre>
+<h3>Diagnosticar errores sin mezclar niveles</h3>
+<div class="manual-table-wrap" role="region" aria-label="Diagnóstico de errores por nivel en Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Síntoma</th><th scope="col">Qué revisar</th><th scope="col">Cómo aislarlo</th></tr></thead><tbody>
+<tr><td>Comando desconocido</td><td>El comando pertenece a un nivel posterior o a otro idioma de código.</td><td>Confirma el nivel, idioma y escritura mostrados en la lección.</td></tr>
+<tr><td>Una variable aparece como texto literal</td><td>Texto y variables aún no se separan con la puntuación de ese nivel.</td><td>Compara con el ejemplo y deja la variable fuera de las comillas cuando corresponda.</td></tr>
+<tr><td>Solo se repite una línea</td><td>El nivel permite una sola instrucción en la repetición.</td><td>Usa el nivel que introduce bloques con sangría antes de agrupar líneas.</td></tr>
+<tr><td>Se ejecuta la rama incorrecta</td><td>La igualdad puede confundir el nombre de la variable con el valor comparado.</td><td>Lee la condición de izquierda a derecha y usa valores distintos para dato y prueba.</td></tr>
+<tr><td>El programa no termina</td><td>Un bucle <code>while</code> no cambia el estado que controla su condición.</td><td>Anota la condición antes y después de cada vuelta y añade una actualización que permita detenerse.</td></tr>
+</tbody></table></div>
+<p>En el aula, conserva una copia del código de cada etapa. El cambio de gramática forma parte del currículo; comparar versiones lado a lado hace explícita la transición a Python, en lugar de tratar una forma anterior como un error.</p></section>
       <section id="fontes">
         <p class="kicker">13 · lecturas adicionales</p>
         <h2>Referencias</h2>

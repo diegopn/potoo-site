@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#erros-frequentes">Erros frequentes e o que conferir</a></li>
         <li><a href="#ponte-python">O que levar de Hedy para Python</a></li>
         <li><a href="#limites">Idiomas, níveis e mudanças</a></li>
+        <li><a href="#referencia-ampliada">Referência ampliada</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -109,6 +110,52 @@ print The answer is 7</code></pre><p>Nessa primeira versão, o texto da resposta
         <h2>Idiomas, níveis e mudanças</h2>
 <p>Hedy evolui como plataforma e currículo. Quantidade de níveis, lições, traduções e recursos podem mudar. Esta página evita fixar um número de níveis e descreve a progressão geral observada nos materiais oficiais.</p><p>A sintaxe depende do nível e do idioma. Portanto, um exemplo isolado não representa toda a linguagem. Consulte a plataforma e o manual docente atuais antes de preparar material de aula. Hedy continua em avaliação para o Potoo IDE.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Referência de sintaxe</p><h2>Mapa de sintaxe por nível</h2>
+<p>O manual docente atualmente publicado organiza o percurso em 16 níveis: Básico (1–8), Avançado (9–12) e Especialista (13–16). Cada nível aceita uma gramática própria. Um programa que funciona numa lição avançada pode ser rejeitado num nível inicial porque aspas, indentação, parênteses ou comandos ainda não foram introduzidos. A tabela resume a progressão descrita pelo projeto; a lição selecionada na plataforma é a autoridade para a atividade concreta.</p>
+<div class="manual-table-wrap" role="region" aria-label="Progressão dos níveis de Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Nível</th><th scope="col">Recurso introduzido</th><th scope="col">Mudança que o aluno precisa reconhecer</th></tr></thead><tbody>
+<tr><td>1</td><td><code>print</code>, <code>ask</code>, <code>answer</code> e comandos iniciais da tartaruga.</td><td>Texto pode vir sem aspas; a resposta fica disponível em <code>answer</code>.</td></tr>
+<tr><td>2</td><td>Variáveis com <code>is</code>, pausa com <code>sleep</code> e giro por graus.</td><td>A resposta passa a ser armazenada numa variável nomeada.</td></tr>
+<tr><td>3</td><td>Listas, escolha aleatória, inclusão e remoção.</td><td>Itens da lista são separados por vírgulas; aleatoriedade pode mudar a saída.</td></tr>
+<tr><td>4</td><td>Aspas em textos, além de recursos de tela e cor.</td><td>Texto literal e nome de variável tornam-se formas visualmente distintas.</td></tr>
+<tr><td>5</td><td>Decisão com <code>if</code> e <code>else</code>.</td><td>As alternativas aparecem em linhas simples; cada ramo precisa de um comando.</td></tr>
+<tr><td>6</td><td><code>elif</code> e teste de pertencimento com <code>in</code>.</td><td>Uma cadeia pode distinguir mais de duas respostas ou consultar uma lista.</td></tr>
+<tr><td>7</td><td>Operações aritméticas, decimais e atribuição com <code>=</code>.</td><td>Uma expressão pode calcular com variáveis; ponto separa a parte decimal.</td></tr>
+<tr><td>8</td><td>Repetição de uma linha com <code>repeat ... times</code>.</td><td>O bloco é de uma linha; repetir várias instruções vem depois.</td></tr>
+<tr><td>9</td><td>Indentação e blocos de várias linhas.</td><td>O recuo define quais instruções pertencem ao <code>if</code> ou à repetição.</td></tr>
+<tr><td>10</td><td>Blocos aninhados e operadores <code>and</code> e <code>or</code>.</td><td>O nível de recuo mostra qual decisão está dentro de outra.</td></tr>
+<tr><td>11</td><td><code>for</code> para percorrer itens de uma lista.</td><td>O nome singular representa o item atual; o plural representa a coleção.</td></tr>
+<tr><td>12</td><td>Funções básicas com <code>define</code> e <code>call</code>.</td><td>Definir a função não a executa: é preciso chamá-la.</td></tr>
+<tr><td>13</td><td>Entrada na trilha Especialista e transição gradual a sintaxe próxima de Python.</td><td>Algumas construções antigas deixam de valer enquanto a sintaxe nova é apresentada.</td></tr>
+<tr><td>14</td><td>Listas com colchetes e repetição no formato <code>for ... in range(...)</code>.</td><td>A seleção aleatória e o acesso às listas mudam de forma.</td></tr>
+<tr><td>15</td><td>Funções com <code>def</code>, argumentos e <code>return</code>.</td><td>Parênteses, dois-pontos e indentação passam a estruturar a função.</td></tr>
+<tr><td>16</td><td>Laço <code>while</code>.</td><td>A condição precisa poder tornar-se falsa para evitar uma repetição sem fim.</td></tr>
+</tbody></table></div>
+<p>Esse quadro descreve o manual docente consultado; materiais anteriores do projeto podem organizar ou nomear a progressão de outro modo. Ao comparar versões, registre o nível e o idioma de comandos junto com o código.</p>
+<h3>Uma mesma ideia em diferentes etapas</h3>
+<p>Uma saudação personalizada mostra por que a sintaxe deve ser lida no contexto do nível:</p>
+<div class="manual-table-wrap" role="region" aria-label="Exemplos de sintaxe de Hedy em níveis diferentes" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Trecho representativo</th><th scope="col">O que mudou</th></tr></thead><tbody>
+<tr><td>Nível 1</td><td><code>ask What is your name?</code><br><code>print Hello answer</code></td><td>A resposta usa o nome especial <code>answer</code>.</td></tr>
+<tr><td>Nível 2</td><td><code>name is ask What is your name?</code><br><code>print Hello name</code></td><td>O programa escolhe onde guardar a resposta.</td></tr>
+<tr><td>Nível 4</td><td><code>name is ask 'What is your name?'</code><br><code>print 'Hello ' name</code></td><td>Aspas delimitam o texto, enquanto a variável fica fora delas.</td></tr>
+<tr><td>Nível 9</td><td><code>if name is Hedy</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print 'Welcome back'</code></td><td>O recuo passa a marcar o corpo do ramo.</td></tr>
+</tbody></table></div>
+<p>Na trilha Especialista, use a sintaxe da lição. Por exemplo, a documentação mostra a forma de função com <code>def</code>, parâmetro e retorno:</p>
+<pre class="manual-code"><code>def room_for(number):
+    room_number = 1000 + number
+    return room_number
+
+favorite_number = 7
+room_number = room_for(favorite_number)
+print('Your room is ', room_number)</code></pre>
+<h3>Diagnosticar erro sem misturar níveis</h3>
+<div class="manual-table-wrap" role="region" aria-label="Diagnóstico de erros por nível em Hedy" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Sintoma</th><th scope="col">Verificação provável</th><th scope="col">Como reduzir o problema</th></tr></thead><tbody>
+<tr><td>Comando não reconhecido</td><td>O comando pertence a um nível posterior ou foi digitado noutro idioma.</td><td>Confirme o nível, o idioma de código e a grafia da lição.</td></tr>
+<tr><td>A variável aparece como texto literal</td><td>Texto e variável ainda não foram separados pela pontuação daquele nível.</td><td>Compare o exemplo da lição e mova a variável para fora das aspas quando a regra exigir.</td></tr>
+<tr><td>Só uma linha se repete</td><td>O nível permite apenas uma instrução na repetição.</td><td>Avance para a etapa que introduz blocos indentados antes de agrupar linhas.</td></tr>
+<tr><td>Um ramo executa no lugar de outro</td><td>O teste de igualdade pode confundir nome da variável com o valor comparado.</td><td>Leia a condição da esquerda para a direita e use valores distintos para teste e dado.</td></tr>
+<tr><td>O programa não termina</td><td>Um laço <code>while</code> não altera o estado que controla sua condição.</td><td>Registre a condição antes e depois de cada volta e acrescente uma atualização que aproxime a parada.</td></tr>
+</tbody></table></div>
+<p>Para exercícios de sala, guarde uma cópia do código de cada etapa. A mudança de gramática é parte do currículo; comparar versões lado a lado torna a transição para Python explícita, em vez de tratar uma forma anterior como erro.</p></section>
       <section id="fontes">
         <p class="kicker">13 · leitura adicional</p>
         <h2>Referências</h2>

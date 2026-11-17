@@ -44,7 +44,14 @@ edad &lt;- 16
 promedio &lt;- 8.25
 nombre &lt;- "Ana"
 aprobado &lt;- Verdadero</code></pre><p>Names start with a letter, may continue with letters and digits, and cannot match reserved words. Comments start with <code>//</code>.</p>
-    </section>
+
+<h3>Declarations, storage, and bounds</h3>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt data and collections" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Responsibility</th><th scope="col">Check</th></tr></thead><tbody>
+<tr><td><code>Definir nombre Como Tipo</code></td><td>Declares a scalar variable and its type.</td><td>The type must fit the values read and operations applied.</td></tr>
+<tr><td><code>Dimension datos[tamaño]</code></td><td>Allocates an array or matrix.</td><td>Its size and valid indexes depend on the active profile.</td></tr>
+<tr><td><code>nombre &lt;- expresión</code></td><td>Evaluates an expression and stores the result.</td><td>Use the assignment operator; do not confuse it with <code>=</code> in a comparison.</td></tr>
+<tr><td><code>// comentario</code></td><td>Records a note for someone reading the algorithm.</td><td>The comment is not executed.</td></tr>
+</tbody></table></div></section>
     <section id="operadores"><p class="kicker">04 · Expressions</p><h2>Operators and functions</h2><div class="manual-table-wrap" role="region" aria-label="PSeInt operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Category</th><th scope="col">Forms</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * / ^ % MOD</code></td><td>Arithmetic, exponentiation, and integer remainder.</td></tr><tr><td>Relational</td><td><code>&gt; &lt; = &lt;= &gt;=</code></td><td>Comparisons.</td></tr><tr><td>Logical</td><td><code>&amp; Y | O ~ NO</code></td><td>Conjunction, disjunction, and negation.</td></tr></tbody></table></div>
       <p>Parentheses change the usual evaluation order. The reference also lists built-in functions such as <code>RC</code>, <code>ABS</code>, <code>LN</code>, <code>EXP</code>, <code>SEN</code>, <code>COS</code>, <code>ATAN</code>, <code>TRUNC</code>, <code>REDON</code>, and <code>AZAR</code>.</p><pre class="manual-code"><code>area &lt;- base * altura / 2
 resto &lt;- numero MOD 2
@@ -65,13 +72,27 @@ Segun opcion Hacer
         Escribir "Start"
     De Otro Modo:
         Escribir "Invalid option"
-FinSegun</code></pre></section>
+FinSegun</code></pre>
+<h3>Choosing a selection structure</h3>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt selection structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Structure</th><th scope="col">Use it when</th><th scope="col">Flow coverage</th></tr></thead><tbody>
+<tr><td><code>Si ... Entonces ... FinSi</code></td><td>A condition decides whether a block runs.</td><td>Without <code>Sino</code>, the false case continues after the block.</td></tr>
+<tr><td><code>Si ... Sino ... FinSi</code></td><td>There are two alternatives.</td><td>One of the two branches runs.</td></tr>
+<tr><td><code>Segun ... De Otro Modo ... FinSegun</code></td><td>A value selects among enumerated options.</td><td><code>De Otro Modo</code> handles values not listed.</td></tr>
+</tbody></table></div>
+<p>Write conditions that produce a logical result, and test at least one value for each branch. In a multiple-choice selection, include a default case when unexpected values are possible.</p></section>
     <section id="repeticoes"><p class="kicker">07 · Repetition</p><h2>Loops</h2><p><code>Mientras</code> checks its condition before each iteration. <code>Repetir</code> runs the body first and checks <code>Hasta Que</code>, so it executes at least once. <code>Para</code> walks a range and can use <code>Con Paso</code>.</p><pre class="manual-code"><code>Para i &lt;- 1 Hasta 5 Con Paso 1 Hacer
     Escribir i
 FinPara
 Repetir
     Leer clave
-Hasta Que clave = "fin"</code></pre><p>Make sure the stopping condition can become true to avoid an infinite loop.</p></section>
+Hasta Que clave = "fin"</code></pre><p>Make sure the stopping condition can become true to avoid an infinite loop.</p>
+<h3>Compare the loops</h3>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt loop comparison" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">When it tests</th><th scope="col">Possible executions</th><th scope="col">Algorithm responsibility</th></tr></thead><tbody>
+<tr><td><code>Mientras condición Hacer</code></td><td>Before each pass.</td><td>May run zero times.</td><td>Change the data that controls the condition in the body.</td></tr>
+<tr><td><code>Repetir ... Hasta Que condición</code></td><td>After the body.</td><td>Runs at least once.</td><td>Ensure the stop condition can become true.</td></tr>
+<tr><td><code>Para i &lt;- inicio Hasta fin Con Paso paso</code></td><td>Uses the counter range and step.</td><td>A predictable number of iterations for that range and step.</td><td>Choose bounds that include exactly the needed iterations.</td></tr>
+</tbody></table></div>
+<p>Use <code>Mientras</code> to continue while a condition must hold, <code>Repetir</code> to validate after an initial attempt, and <code>Para</code> when the counter progression is known.</p></section>
     <section id="vetores"><p class="kicker">08 · Collections</p><h2>Arrays and matrices</h2><p><code>Dimension</code> declares an array or matrix. Its notation and starting index depend on the active profile, so do not assume the bounds. This example has five positions numbered from 0 through 4:</p><pre class="manual-code"><code>Definir notas Como Real
 Dimension notas[5]
 Para i &lt;- 0 Hasta 4 Hacer
@@ -83,7 +104,15 @@ Escribir "First grade: ", notas[0]</code></pre><p>A second dimension creates a m
 FinSubProceso
 Proceso Principal
     Escribir Doble(6)
-FinProceso</code></pre><p>Local variables stay within the routine. The reference includes recursive calls, such as a power calculation, and passing arrays as arguments. Prefer value parameters for calculations that should not change the original variable; use references only when a routine truly needs to return a modification.</p></section>
+FinProceso</code></pre><p>Local variables stay within the routine. The reference includes recursive calls, such as a power calculation, and passing arrays as arguments. Prefer value parameters for calculations that should not change the original variable; use references only when a routine truly needs to return a modification.</p>
+<h3>A subprogram's contract</h3>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt subprogram roles and parameters" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Contract</th><th scope="col">Review at the call</th></tr></thead><tbody>
+<tr><td><code>SubProceso resultado &lt;- Nombre(parámetros)</code></td><td>Calculates a value that can be used in an expression.</td><td>Expected type, argument order, and a value on every path.</td></tr>
+<tr><td><code>SubProceso Nombre(parámetros)</code></td><td>Runs actions without producing a function result.</td><td>Expected side effects and whether caller data will change.</td></tr>
+<tr><td>Value parameter</td><td>Receives a value for use in the calculation.</td><td>Do not treat local changes as output to the caller.</td></tr>
+<tr><td>Reference parameter</td><td>Can return a change to the original argument when the profile accepts this form.</td><td>Identify which variable will be modified.</td></tr>
+</tbody></table></div>
+<p>Separate inputs from outputs. A function that calculates one value is usually easier to test than a routine that changes several global variables.</p></section>
     <section id="exemplo"><p class="kicker">10 · Combined example</p><h2>Average and result</h2><pre class="manual-code"><code>Proceso Promedio
     Definir a, b, c, media Como Real
     Escribir "Enter three grades:"
@@ -155,7 +184,30 @@ Escribir Concatenar("Text: ", minuscula)</code></pre>
           <li>For a function, compare its arguments with the returned value and inspect each return path.</li>
         </ul>
         <p>The interpreter can trace execution step by step and compare it with a flowchart. A trace helps locate the moment a variable stops matching the expected value; it does not replace choosing useful test cases.</p>
-      </section>
+
+<h3>Trace a loop before testing larger cases</h3>
+<p>A dry-run table records the important values on each iteration. With <code>n = 4</code>, the running sum should change as follows:</p>
+<pre class="manual-code"><code>Proceso SumaAcumulada
+    Definir n, i, suma Como Entero;
+    Leer n;
+    suma &lt;- 0;
+    Para i &lt;- 1 Hasta n Hacer
+        suma &lt;- suma + i;
+    FinPara
+    Escribir suma;
+FinProceso</code></pre>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt running-sum trace" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteration</th><th scope="col"><code>i</code></th><th scope="col">Sum before</th><th scope="col">Sum after</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>2</td><td>2</td><td>1</td><td>3</td></tr><tr><td>3</td><td>3</td><td>3</td><td>6</td></tr><tr><td>4</td><td>4</td><td>6</td><td>10</td></tr>
+</tbody></table></div>
+<p>After confirming this path, try <code>n = 0</code> and <code>n = 1</code>. In the debugger, follow <code>i</code>, <code>suma</code>, and the exit condition; the first row that differs from the table points to the step to inspect.</p>
+<h3>Questions answered by execution tools</h3>
+<div class="manual-table-wrap" role="region" aria-label="PSeInt execution tools and questions" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tool</th><th scope="col">Question it helps answer</th></tr></thead><tbody>
+<tr><td>Step-by-step execution</td><td>Which instruction ran immediately before the value changed?</td></tr>
+<tr><td>Variable and expression inspection</td><td>What value does each name and condition have here?</td></tr>
+<tr><td>Dry-run table</td><td>How do the counter, accumulator, and result change?</td></tr>
+<tr><td>Flowchart</td><td>Which path in the algorithm matches this branch?</td></tr>
+<tr><td>Repeat with changed input</td><td>Does the algorithm still work at its boundaries?</td></tr>
+</tbody></table></div></section>
 <section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://pseint.sourceforge.net/">Official PSeInt site</a>.</li><li><a href="https://pseint.sourceforge.net/index.php?page=pseudocodigo.php">Web pseudocode reference</a>, with structure, operators, functions, and lexical rules; the site marks it as outdated and recommends the integrated help for current versions.</li><li><a href="https://pseint.sourceforge.net/index.php?page=ejemplos.php">Official examples</a> with pseudocode and flowcharts.</li><li><a href="https://pseint.sourceforge.net/?cual=Cadenas&amp;mode=flexible&amp;page=ejemplos.php">Official string operations example</a>; this feature must be enabled in the selected profile.</li><li>The <a href="https://pseint.sourceforge.net/index.php?page=perfiles.php">official profile guide</a> explains how to customize, save, and share settings.</li><li>The official <a href="https://pseint.sourceforge.net/index.php?page=features.php">features page</a> says the pseudocode is configurable and that predefined institutional profiles are available.</li><li>The official documentation recommends the integrated help for detailed rules in the installed version.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

@@ -91,7 +91,16 @@ escreva "Digite dois números:"
 a, b = leia_inteiro
 escreva "{a} + {b} = {a + b}"</code></pre>
         <p>En una cadena, <code>{expresión}</code> inserta el valor en el texto. Potigol también documenta el formato con la expresión <code>valor formato padrão</code>.</p>
-      </section>
+
+<h3>Elegir la lectura según el tipo de dato</h3>
+<div class="manual-table-wrap" role="region" aria-label="Formas de entrada de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Resultado esperado</th><th scope="col">Uso habitual</th></tr></thead><tbody>
+<tr><td><code>leia_inteiro</code></td><td>Un <code>Inteiro</code>.</td><td>Una cuenta, posición o cantidad.</td></tr>
+<tr><td><code>leia_numero</code></td><td>Un <code>Real</code>.</td><td>Medidas y valores que pueden tener fracción.</td></tr>
+<tr><td><code>leia_texto</code></td><td>Un <code>Texto</code>.</td><td>Nombres, frases y datos que no se calcularán.</td></tr>
+<tr><td><code>leia_inteiros(" ")</code></td><td>Una <code>Lista[Inteiro]</code>.</td><td>Lee una secuencia separada por el delimitador indicado.</td></tr>
+<tr><td><code>a, b = leia_inteiro</code></td><td>Dos valores de entrada.</td><td>Asigna varias lecturas a los nombres en el orden declarado.</td></tr>
+</tbody></table></div>
+<p>El delimitador pasado a <code>leia_inteiros</code> forma parte del formato esperado: usa <code>" "</code> para valores separados por espacios o cámbialo si la entrada usa comas. La lectura de una lista permite aplicar las mismas transformaciones que a una lista creada en el código.</p></section>
       <section id="controle"><p class="kicker">07 · Flujo</p><h2>Condiciones y repeticiones</h2>
         <p><code>se</code> y <code>escolha</code> expresan decisiones. Los bloques pueden usarse como instrucciones o como expresiones que producen un valor.</p>
         <pre class="manual-code"><code>mensagem = se nota &gt;= 7 então
@@ -151,7 +160,15 @@ escreva ponto.segundo
 escreva aluna.terceiro</code></pre>
         <p>Usa una tupla para agrupar datos relacionados u organizar varios valores producidos por una función. Para colecciones homogéneas cuyo tamaño puede variar, usa una lista.</p>
         <p>La documentación oficial también trata tipos abstractos, herencia, genéricos, funciones como valores y emparejamiento de patrones.</p>
-      </section>
+
+<h3>Elegir una estructura de datos</h3>
+<div class="manual-table-wrap" role="region" aria-label="Comparación de tipos compuestos de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Estructura</th><th scope="col">Organización</th><th scope="col">Cuándo elegirla</th><th scope="col">Ejemplo</th></tr></thead><tbody>
+<tr><td><code>Lista[T]</code></td><td>Cantidad variable de elementos del mismo tipo; índice desde 1.</td><td>Una colección que se filtrará, recorrerá o transformará.</td><td><code>[8, 6, 9]</code></td></tr>
+<tr><td>Tupla</td><td>Cantidad fija de posiciones significativas; los tipos pueden diferir.</td><td>Un pequeño grupo de valores relacionados, como coordenadas o resultados múltiples.</td><td><code>(3.5, 4.2)</code></td></tr>
+<tr><td>Registro</td><td>Campos con nombre que representan propiedades de un dato.</td><td>Cuando los nombres de campo importan más que la posición.</td><td><code>aluna.nome</code></td></tr>
+<tr><td><code>tipo</code></td><td>Declara una estructura del programa con atributos y métodos.</td><td>Para modelar un concepto con datos y operaciones propios.</td><td><code>Pessoa("Lia")</code></td></tr>
+</tbody></table></div>
+<p>Una variable mutable y una lista mutable son decisiones diferentes: <code>var</code> permite actualizar el vínculo que guarda un valor, mientras que las operaciones funcionales producen otra lista. La documentación oficial también describe formas específicas de listas mutables; úsalas cuando el ejercicio requiera actualizar en el lugar, sin suponer que todas las listas se comportan así.</p></section>
             <section id="matematica-textos">
         <p class="kicker">10 · Operaciones integradas</p><h2>Matemáticas y textos</h2>
         <p>Potigol ofrece operaciones matemáticas para números y métodos para consultar o transformar textos. Los nombres permanecen en portugués; comprueba el tipo de cada resultado antes de combinarlo con otra expresión.</p>
@@ -226,7 +243,34 @@ escreva soma_dois(4)</code></pre>
 fim
 
 escreva conta(1000, 0)</code></pre>
-      </section>
+
+<h3>Recorrido completo: filtrar, transformar y acumular</h3>
+<p>Las operaciones de listas pueden formar una cadena: cada paso recibe una lista y produce otra lista o un único resultado. En este ejemplo, la entrada tiene el tipo <code>Lista[Inteiro]</code>; la selección conserva las notas aprobadas; el mapeo calcula cuántos puntos supera cada nota al umbral; y la inyección suma esos puntos.</p>
+<pre class="manual-code"><code>escreva "Ingresa notas enteras separadas por espacios:"
+notas = leia_inteiros(" ")
+aprobadas = notas.selecione(n =&gt; n &gt;= 7)
+puntos_superiores = aprobadas.mapeie(n =&gt; n - 7)
+total_superior = puntos_superiores.injete(0)((total, n) =&gt; total + n)
+
+escreva "Notas aprobadas: {aprobadas}"
+escreva "Puntos sobre el umbral: {total_superior}"</code></pre>
+<p>Para la entrada <code>6 8 7 5</code>, los valores intermedios son:</p>
+<div class="manual-table-wrap" role="region" aria-label="Seguimiento del recorrido funcional de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Etapa</th><th scope="col">Operación</th><th scope="col">Valor</th><th scope="col">Tipo</th></tr></thead><tbody>
+<tr><td>Entrada</td><td><code>leia_inteiros</code></td><td><code>[6, 8, 7, 5]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Selección</td><td><code>selecione(n =&gt; n &gt;= 7)</code></td><td><code>[8, 7]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Mapeo</td><td><code>mapeie(n =&gt; n - 7)</code></td><td><code>[1, 0]</code></td><td><code>Lista[Inteiro]</code></td></tr>
+<tr><td>Acumulación</td><td><code>injete(0)</code></td><td><code>1</code></td><td><code>Inteiro</code></td></tr>
+</tbody></table></div>
+<p>Esta cadena ayuda a localizar errores de tipos: <code>selecione</code> y <code>mapeie</code> conservan una colección, mientras que <code>injete</code> la reduce a un acumulador. La lista original <code>notas</code> sigue disponible porque estas operaciones producen resultados sin modificarla.</p>
+<h3>Seguir el tipo en cada etapa funcional</h3>
+<p>Una función de orden superior recibe otra función como argumento; por eso una secuencia de operaciones puede leerse como una secuencia de transformaciones de tipos. Potigol usa nombres en portugués para filtrar, mapear y reducir.</p>
+<div class="manual-table-wrap" role="region" aria-label="Tipos de entrada y salida de operaciones funcionales de Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operación</th><th scope="col">Recibe</th><th scope="col">Devuelve</th><th scope="col">Pregunta de control</th></tr></thead><tbody>
+<tr><td><code>selecione(predicado)</code></td><td><code>Lista[T]</code> y <code>T =&gt; Lógico</code></td><td><code>Lista[T]</code></td><td>¿La condición selecciona los elementos deseados?</td></tr>
+<tr><td><code>mapeie(transformación)</code></td><td><code>Lista[T]</code> y <code>T =&gt; U</code></td><td><code>Lista[U]</code></td><td>¿La función devuelve el tipo esperado?</td></tr>
+<tr><td><code>injete(inicial)(combinación)</code></td><td>Un acumulador <code>A</code>, una lista <code>Lista[T]</code> y una función <code>(A, T) =&gt; A</code></td><td>Un valor de tipo <code>A</code></td><td>¿El valor inicial también funciona con una lista vacía?</td></tr>
+<tr><td>Currificación</td><td>Una función cuyos argumentos llegan en etapas</td><td>Una función parcial después de cada llamada</td><td>¿Quedan claros los parámetros pendientes?</td></tr>
+</tbody></table></div>
+<p>Estos ejemplos no necesitan un operador especial de composición: pasa el resultado de una etapa a la siguiente o asigna un nombre a cada lista intermedia. Nombrar cada paso permite localizar la primera diferencia de datos o de tipo.</p></section>
       <section id="padroes">
         <p class="kicker">13 · Decisiones por estructura</p><h2>Emparejamiento de patrones</h2>
         <p><code>escolha</code> puede comparar un valor con casos o examinar la estructura de una lista. El patrón <code>[]</code> representa una lista vacía; <code>cabeça :: cauda</code> separa el primer elemento del resto. El patrón <code>_</code> acepta cualquier valor y una condición adicional puede limitar un caso.</p>
@@ -244,7 +288,15 @@ fim
 escreva quantidade([3, 5, 8])
 escreva classifique(-2)</code></pre>
         <p>Los casos se evalúan en orden; coloca los patrones específicos antes de uno amplio como <code>_</code>. En funciones recursivas, el caso vacío ofrece la condición de parada.</p>
-      </section>
+
+<h3>Consulta de patrones</h3>
+<div class="manual-table-wrap" role="region" aria-label="Formas de emparejamiento de patrones en Potigol" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Patrón</th><th scope="col">Qué reconoce</th><th scope="col">Papel en el algoritmo</th></tr></thead><tbody>
+<tr><td><code>[]</code></td><td>Una lista vacía.</td><td>Define el caso base de una recursión sobre listas.</td></tr>
+<tr><td><code>cabeca :: cauda</code></td><td>Una lista no vacía dividida en primer elemento y resto.</td><td>Permite procesar un elemento y continuar con la cola.</td></tr>
+<tr><td><code>caso x se condición</code></td><td>Un valor asignado a <code>x</code> que también satisface una guarda.</td><td>Expresa un caso con una condición adicional.</td></tr>
+<tr><td><code>_</code></td><td>Cualquier valor que no coincidió antes.</td><td>Sirve como caso general final cuando no hace falta inspeccionar otra estructura.</td></tr>
+</tbody></table></div>
+<p>Los casos se prueban en el orden escrito. Coloca primero los patrones específicos y deja el caso amplio para el final; un <code>_</code> anterior ocultaría las ramas que querías distinguir.</p></section>
       <section id="jerimum"><p class="kicker">14 · Biblioteca de juegos</p><h2>Jerimum: juegos con Potigol</h2>
         <p><strong>Jerimum</strong> es una biblioteca de juegos para Potigol. El repositorio oficial reúne ejemplos y módulos para abrir una ventana, dibujar imágenes y texto, consultar teclado y ratón, medir tiempo y reproducir audio. Añade recursos para juegos y se mantiene separado de la sintaxis central de Potigol.</p>
         <h3>Inicio y ciclo del juego</h3>
@@ -306,7 +358,14 @@ desenhe()
 fim
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
         <p>Los detalles de cada método están en la documentación y el código fuente del repositorio Jerimum. La biblioteca usa recursos Java para ventanas, dibujo y audio; sus ejemplos se refieren a programas Potigol de escritorio.</p>
-      </section>
+
+<h3>Lenguaje central y biblioteca</h3>
+<div class="manual-table-wrap" role="region" aria-label="Diferencia entre Potigol y la biblioteca Jerimum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Parte</th><th scope="col">Cómo aparece</th><th scope="col">Qué añade</th></tr></thead><tbody>
+<tr><td>Lenguaje Potigol</td><td>Declaraciones, funciones, listas, tuplas, tipos y control de flujo.</td><td>Es la sintaxis y los tipos usados sin importar una biblioteca.</td></tr>
+<tr><td>Jerimum</td><td><code>use "jerimum"</code></td><td>Añade ventanas, imágenes, entrada, audio, reloj y archivos.</td></tr>
+<tr><td>Objetos de la biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>Las llamadas dependen de la versión y de la documentación del repositorio Jerimum.</td></tr>
+</tbody></table></div>
+<p>Si un ejemplo usa <code>use "jerimum"</code>, depende de la biblioteca y de sus archivos de recursos; copiar la sintaxis no basta en un entorno que solo ejecute el núcleo del lenguaje.</p></section>
       <section id="exemplo"><p class="kicker">15 · Ejemplo integrado</p><h2>Calcular el promedio</h2>
         <pre class="manual-code"><code>media(a: Real, b: Real, c: Real) = (a + b + c) / 3
 escreva "Digite três notas:"

@@ -49,7 +49,15 @@ body_class: manual-page
         <p class="kicker">02 · historical context</p>
         <h2>Development context</h2>
 <p>Publications from Enseignement Public et Informatique document the presentation of LSE from 1973 onward and discuss its place in teaching. The proposal was to provide symbolic vocabulary for explaining instructions, data, and algorithm structure in French.</p><p>The technical context matters when interpreting the material: computers were shared among users, and interaction with a system did not resemble a contemporary graphical editor. Manuals and exercises also reflect the educational practices and available resources of that period.</p><ul><li><strong>Purpose:</strong> support the teaching of programming concepts.</li><li><strong>Language:</strong> notation and teaching materials in French.</li><li><strong>Period:</strong> development and adoption associated with the 1960s and 1970s.</li><li><strong>Current status:</strong> the sources consulted are historical, not an active implementation portal.</li></ul>
-      </section>
+
+<h3>Documented timeline</h3>
+<p>The dates below come from EPI's retrospective account. They locate the sources; they do not imply that one identical edition ran on every computer.</p>
+<div class="manual-table-wrap" role="region" aria-label="Historical LSE timeline" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Period</th><th scope="col">Historical record</th><th scope="col">How to interpret it</th></tr></thead><tbody>
+<tr><td>1968–1976</td><td>Development of the LSx family, which includes LSE.</td><td>Places the language in the context of time-sharing systems.</td></tr>
+<tr><td>October 1971</td><td>The LSE definition report was delivered to the Ministry.</td><td>Marks the language design before full deployment.</td></tr>
+<tr><td>April 1973</td><td>A Mitra 15 was installed at the first school in the “58 lycées” initiative.</td><td>A milestone in school deployment, not the date of every version.</td></tr>
+<tr><td>1983</td><td>A revision attributed to Jacques Arsac adds explicit loops.</td><td>Explains why a later listing may differ from a 1970s source.</td></tr>
+</tbody></table></div></section>
       <section id="conceitos">
         <p class="kicker">03 · documented concepts</p>
         <h2>What the sources record</h2>
@@ -105,7 +113,17 @@ REMISE = 'RABAIS 1 DE' ! X</code></pre>
         </tbody></table></div>
         <p>These signatures are reproduced as a historical reference. They are not a modern specification and do not guarantee that a current interpreter implements the same functions.</p>
 
-      </section>
+
+<h3>Line-based interaction in the described system</h3>
+<p>The retrospective article describes a system that analyzed each line as it was entered. The notation and commands below belong to that historical account; interfaces and features varied across machines.</p>
+<div class="manual-table-wrap" role="region" aria-label="LSE interaction and execution in historical sources" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Cited element</th><th scope="col">Documented role</th><th scope="col">Interpretation limit</th></tr></thead><tbody>
+<tr><td><code>? instruction</code></td><td>Runs an instruction immediately in desk-machine mode.</td><td>This is a documented interaction mode, not the start of a numbered program.</td></tr>
+<tr><td><code>number instruction</code></td><td>Stores a program line for later execution.</td><td>The line limit was 80 characters, including the line ending.</td></tr>
+<tr><td>Line analysis</td><td>The system analyzed each entered line and translated it to a postfix string.</td><td>The source uses “compilation” pedagogically; it also describes an interpreter.</td></tr>
+<tr><td><code>PAUSE</code></td><td>Interrupts execution and reports the line where it stopped.</td><td>The historical monitor provided commands to continue or resume elsewhere.</td></tr>
+<tr><td><code>PAS A PAS</code></td><td>Stops execution after each line.</td><td>This is a historical monitor feature, not a modern graphical debugger.</td></tr>
+</tbody></table></div>
+<p>The publication also cites <code>LIRE</code>, <code>AFFICHER</code>, <code>SI ... ALORS ... SINON</code>, <code>ALLER EN</code>, and forms of <code>FAIRE</code>. Explicit loop structures are associated with later revisions; do not combine all these forms into one example without naming the source edition.</p></section>
       <section id="projeto">
         <p class="kicker">9 · technical context</p>
         <h2>Teaching criteria and technical context</h2>

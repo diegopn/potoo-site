@@ -34,6 +34,7 @@ body_class: manual-page
         <li><a href="#leitura">Cómo estudiar la propuesta</a></li>
         <li><a href="#comparacao">Jeem y Kalimat son proyectos distintos</a></li>
         <li><a href="#limites">Disponibilidad y límites</a></li>
+        <li><a href="#referencia-ampliada">Referencia ampliada</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -51,7 +52,7 @@ body_class: manual-page
       <section id="caracteristicas">
         <p class="kicker">03 · características documentadas</p>
         <h2>Qué se puede afirmar</h2>
-<p>Las fuentes públicas consultadas respaldan una descripción general, no un catálogo formal de comandos. Esta tabla hace explícito ese límite para no presentar inferencias como si fueran una especificación.</p><div class="manual-table-wrap" role="region" aria-label="Información documentada y desconocida sobre Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tema</th><th scope="col">Estado en las fuentes consultadas</th></tr></thead><tbody><tr><td>Escritura</td><td>Los relatos describen letras y palabras árabes.</td></tr><tr><td>Finalidad</td><td>El proyecto se presentó como una herramienta para enseñar programación en las escuelas.</td></tr><tr><td>Gramática</td><td>No se localizó una referencia pública completa y actual.</td></tr><tr><td>El estudio de 2007 enumera tipos, estructuras y comandos históricos; no se confirma una lista normativa para una versión actual.</td><td>No hay información suficiente para publicar aquí una lista normativa.</td></tr><tr><td>Entorno actual</td><td>No se confirmó un distribuidor oficial mantenido con instrucciones vigentes.</td></tr></tbody></table></div><p>Esta distinción forma parte del manual: sin una gramática verificable, los ejemplos de código serían conjeturas.</p>
+<p>Las fuentes públicas consultadas respaldan una descripción general, no un catálogo formal de comandos. Esta tabla hace explícito ese límite para no presentar inferencias como si fueran una especificación.</p><div class="manual-table-wrap" role="region" aria-label="Información documentada y desconocida sobre Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Fuente</th><th scope="col">Qué registra</th><th scope="col">Límite de interpretación</th></tr></thead><tbody><tr><td>Relatos públicos</td><td>Describen una iniciativa escolar de programación con palabras y escritura árabes.</td><td>Respaldan el contexto y el objetivo, no una gramática ejecutable.</td></tr><tr><td>Artículo técnico de 2007</td><td>Registra familias de sentencias, tipos, control, subprogramas y gráficos.</td><td>Es una instantánea histórica; no acredita las funciones de una versión actual.</td></tr><tr><td>Manual e implementación actuales</td><td>No se localizó una especificación técnica completa junto con un distribuidor mantenido.</td><td>Las palabras reservadas, la puntuación, la instalación y la versión actual siguen sin confirmarse.</td></tr></tbody></table></div><p>Esta distinción forma parte del manual: sin una gramática verificable, los ejemplos de código serían conjeturas.</p>
 
 <h3>Qué registra el estudio técnico de 2007</h3>
 <p>Un artículo comparativo de Taha Zerrouki, presentado en una conferencia del Consejo Supremo de la Lengua Árabe en Argel en diciembre de 2007, describe Jeem junto con Zay y una versión árabe de Logo. Aporta más detalles que las noticias periodísticas, pero sigue siendo una instantánea histórica: no confirma el estado actual del proyecto ni sustituye la documentación de una implementación.</p>
@@ -104,6 +105,31 @@ body_class: manual-page
         <h2>Disponibilidad y límites</h2>
 <p>La fuente periodística y el panorama de referencia ayudan a situar el contexto de Jeem, pero no sustituyen un repositorio mantenido ni una especificación original. No se confirmó que la dirección histórica asociada al proyecto siga activa como portal con documentación y descargas actuales.</p><p>Por tanto, esta página no presenta como actuales un sistema operativo, un proceso de instalación, un compilador, una versión ni una sintaxis. La situación podrá revisarse si aparecen archivos primarios verificables. Jeem sigue en evaluación, sin compromiso de implementación.</p>
       </section>
+      <section id="referencia-ampliada"><p class="kicker">Lectura técnica histórica</p><h2>Mapa técnico y límites de la evidencia</h2>
+<p>El estudio comparativo de Taha Zerrouki, presentado en Argel en diciembre de 2007, dedica las páginas 5–8 del PDF al lenguaje Jeem. Describe un lenguaje de alto nivel derivado del árabe y el entorno Al-Khwarizmi, asociado entonces con la edición, depuración y ejecución. Es una instantánea técnica de la época: no confirma que el programa todavía pueda obtenerse ni establece el comportamiento de una versión actual.</p>
+<h3>Qué documenta el artículo</h3>
+<div class="manual-table-wrap" role="region" aria-label="Características de Jeem registradas en el estudio de 2007" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Área del lenguaje</th><th scope="col">Registro del artículo</th><th scope="col">Cómo leerlo hoy</th></tr></thead><tbody>
+<tr><td>Organización del programa</td><td>Tres familias de sentencias: declaraciones de nombres y tipos; instrucciones ejecutables; directivas que el traductor procesa durante la conversión.</td><td>Indica que el lenguaje tenía una organización propia; no constituye una gramática moderna.</td></tr>
+<tr><td>Valores simples</td><td>Enteros, reales, valores lógicos, caracteres, textos y punteros.</td><td>Son recursos atribuidos a la versión descrita en el artículo, no una promesa de compatibilidad actual.</td></tr>
+<tr><td>Estructuras de datos</td><td>Vectores, registros y archivos; el artículo también menciona módulos de caracteres, números y colores.</td><td>Muestra el alcance previsto más allá de ejercicios aritméticos simples.</td></tr>
+<tr><td>Control</td><td>Selección condicional y cuatro formas de repetición: contada, con condición inicial, con condición final y por intervalo.</td><td>Permite reconstruir las familias de algoritmos enseñadas, pero no validar los delimitadores exactos.</td></tr>
+<tr><td>Subprogramas</td><td>Procedimientos, funciones y recursión.</td><td>Se informa de su existencia; las reglas de parámetros y retorno requieren documentación verificable.</td></tr>
+<tr><td>Entrada, salida y gráficos</td><td>Lectura y escritura de datos; una biblioteca de dibujo con puntos, líneas, círculos, rectángulos, elipses y color.</td><td>Las operaciones se describen en prosa; los nombres y argumentos no deben reconstruirse a partir de la extracción textual del PDF.</td></tr>
+</tbody></table></div>
+<p>El artículo también describe directivas para sustituir palabras e incluir bibliotecas, y comenta decisiones de escritura que acercan los comandos a la morfología árabe. La extracción textual del documento mezcla el orden de derecha a izquierda con símbolos y fuentes antiguas. Por eso, esta página traduce los conceptos registrados, pero no presenta esos pasajes como tokens ni como código ejecutable.</p>
+<h3>Seguimiento comprobable: factorial de 4</h3>
+<p>El ejemplo histórico del factorial puede enseñarse sin atribuir a Jeem una transcripción incierta. El pseudocálculo usa nombres en español solo como etiquetas de estado: iniciar el acumulador en 1; mientras el contador sea mayor que 1, multiplicar el acumulador por el contador y reducir el contador.</p>
+<div class="manual-table-wrap" role="region" aria-label="Seguimiento conceptual del factorial en Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Paso</th><th scope="col">Contador</th><th scope="col">Acumulador antes</th><th scope="col">Acción</th><th scope="col">Acumulador después</th></tr></thead><tbody>
+<tr><td>Inicial</td><td>4</td><td>1</td><td>Preparar el estado.</td><td>1</td></tr>
+<tr><td>1</td><td>4</td><td>1</td><td>Multiplicar por 4; reducir el contador.</td><td>4</td></tr>
+<tr><td>2</td><td>3</td><td>4</td><td>Multiplicar por 3; reducir el contador.</td><td>12</td></tr>
+<tr><td>3</td><td>2</td><td>12</td><td>Multiplicar por 2; reducir el contador.</td><td>24</td></tr>
+<tr><td>Parada</td><td>1</td><td>24</td><td>La prueba “contador mayor que 1” es falsa.</td><td>24</td></tr>
+</tbody></table></div>
+<p>El mismo seguimiento permite revisar límites: para 0 y 1, el cuerpo no necesita ejecutarse y el resultado convencional sigue siendo 1. Para entradas negativas, la actividad debe definir el dominio; no supongas que el programa histórico las aceptaba.</p>
+<h3>Separar hechos, reconstrucción y lagunas</h3>
+<ul><li><strong>Hecho histórico:</strong> el artículo informa de recursos, categorías y del entorno disponible en aquel período.</li><li><strong>Reconstrucción didáctica:</strong> se puede explicar un algoritmo mediante sus variables de estado y el orden de operaciones sin reproducir sintaxis Jeem.</li><li><strong>Laguna normativa:</strong> esta página no cuenta con un manual completo, código fuente ejecutable ni una versión accesible que confirme cada palabra reservada, delimitador, codificación o resultado.</li></ul>
+<p>Para convertir esta página en una referencia de sintaxis, habría que comparar un manual original con el entorno Al-Khwarizmi, ejecutar los ejemplos publicados y registrar la versión. Hasta entonces, los ejercicios sobre Jeem deben identificarse como análisis histórico, no como programas que puedan pegarse en un intérprete.</p></section>
       <section id="fontes">
         <p class="kicker">08 · lecturas adicionales</p>
         <h2>Referencias</h2>

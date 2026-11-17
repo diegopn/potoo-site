@@ -37,6 +37,8 @@ body_class: manual-page
         <li><a href="#limites">Versões e limites</a></li>
                 <li><a href="#editores">Modos de edição e fluxo de trabalho</a></li>
         <li><a href="#recursos">Listas, funções e acompanhamento da execução</a></li>
+        <li><a href="#estatistica-listas">Estatística e rastreamento de listas</a></li>
+
         <li><a href="#fontes">Referências</a></li>
       </ol>
     </aside>
@@ -156,8 +158,37 @@ FIN_ALGORITHME</code></pre><p>Execute com <code>n = 0</code>, <code>n = 1</code>
         </tbody></table></div>
 
       </section>
+            <section id="estatistica-listas">
+        <p class="kicker">11 · prática com listas</p>
+        <h2>Calcular e conferir estatísticas de uma lista</h2>
+        <p>Uma <code>LISTE</code> guarda números em posições numeradas. Neste recurso do AlgoBox, a primeira posição é <code>1</code>; informe também o primeiro e o último posto do intervalo em cada cálculo. A lista usa índices a partir de 1, enquanto operações de texto como <code>substr</code> usam posição inicial 0. Não transporte um índice de uma estrutura para a outra sem ajustar a base.</p>
+        <p>O programa abaixo calcula a soma, a média, o menor valor e o posto do maior elemento de quatro notas:</p>
+        <pre class="manual-code"><code>VARIABLES
+  notas EST_DU_TYPE LISTE
+  soma EST_DU_TYPE NOMBRE
+  media EST_DU_TYPE NOMBRE
+  maior EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  notas[1] PREND_LA_VALEUR 7:8:10:15
+  soma PREND_LA_VALEUR ALGOBOX_SOMME(notas,1,4)
+  media PREND_LA_VALEUR ALGOBOX_MOYENNE(notas,1,4)
+  maior PREND_LA_VALEUR ALGOBOX_MAXIMUM(notas,1,4)
+  AFFICHER "Somme : "
+  AFFICHER soma
+  AFFICHER "Moyenne : "
+  AFFICHER media
+  AFFICHER "Maximum : "
+  AFFICHER maior
+  AFFICHER ALGOBOX_POS_MAXIMUM(notas,1,4)
+FIN_ALGORITHME</code></pre>
+        <p>Para este intervalo, a soma é 40, a média é 10, o maior valor é 15 e sua posição é 4. A tabela de percurso permite verificar a soma sem depender da função estatística:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma de notas no AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Posto</th><th scope="col">Valor lido</th><th scope="col">Soma acumulada</th></tr></thead><tbody><tr><td>1</td><td>7</td><td>7</td></tr><tr><td>2</td><td>8</td><td>15</td></tr><tr><td>3</td><td>10</td><td>25</td></tr><tr><td>4</td><td>15</td><td>40</td></tr></tbody></table></div>
+        <p>A biblioteca de listas documenta funções de soma, média, variância, desvio-padrão, mediana, mínimo, máximo e posição dos extremos. Os quartis têm duas variantes: <code>ALGOBOX_QUARTILE1</code>/<code>ALGOBOX_QUARTILE3</code> e as variantes <code>_BIS</code>, que seguem definições estatísticas distintas. Todas exigem um intervalo de pelo menos quatro valores; confirme no enunciado qual definição deve ser usada. Inverter os postos, escolher um posto fora do intervalo ou violar essa pré-condição produz erro.</p>
+        <p>Ao investigar um resultado inesperado, compare a chamada com os postos usados, exiba a lista e some um conjunto curto à mão. No modo passo a passo, avance uma instrução por vez e acompanhe o valor das variáveis; o AlgoBox também assinala a última linha executada quando ocorre um erro. <code>PAUSE</code> interrompe temporariamente uma execução, e exibir o valor de uma variável ajuda a localizar a primeira passagem incorreta.</p>
+      </section>
+
       <section id="fontes">
-        <p class="kicker">11 · leitura adicional</p>
+        <p class="kicker">12 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.xm1math.net/algobox/index">Site oficial do AlgoBox</a>, com informações do projeto e downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Manual oficial do AlgoBox</a>, com sintaxe e orientações de uso.</li></ul><p>O manual em francês é a fonte para consultar a gramática integral, os comandos de listas e as diferenças entre versões.</p>
       </section>

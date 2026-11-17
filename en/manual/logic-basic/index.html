@@ -31,11 +31,27 @@ body_class: manual-page
 Nome = "Ana"
 Posicione 1, 1
 Escreva "Hello, ", Nome
-FimPrograma</code></pre></section>
+FimPrograma</code></pre>
+<h3>Program order and extensions</h3>
+<p>The main file runs in sequence, from its first instruction to its last. <code>FimPrograma</code> ends that sequence while leaving the window open; <code>FimJanela</code> also closes the window. Code extensions act as sections appended to the main code and are a documented place to store routines called by the program. The manual recommends declaring memory values at the start of the main code.</p>
+<div class="manual-table-wrap" role="region" aria-label="Program organization and termination in Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">When to use</th><th scope="col">Documented effect</th></tr></thead><tbody>
+<tr><td><code>Memoria</code></td><td>In the main-code header.</td><td>Creates names that can hold values and resources.</td></tr>
+<tr><td>Numbered extension</td><td>To separate routines from the main flow.</td><td>It is appended to the main code during execution.</td></tr>
+<tr><td><code>FimPrograma</code></td><td>When the algorithm should finish but the window should remain.</td><td>Stops the program.</td></tr>
+<tr><td><code>FimJanela</code></td><td>When the window should close as well.</td><td>Stops the program and closes the window.</td></tr>
+</tbody></table></div></section>
 <section id="memorias"><p class="kicker">03 · Data</p><h2>Memory values</h2><p><code>Memoria</code> creates names used to store values. The manual recommends putting these declarations at the beginning of the main code. A memory value can hold text, numbers, and visual-environment items such as objects and sounds. The same name can receive a new value during execution.</p><pre class="manual-code"><code>Memoria Nome, Pontos, Fundo
 Nome = "Ana"
 Pontos = 12
-Fundo = "fundo-verde"</code></pre><p>Text is quoted. An unquoted number is numeric and can be used in calculations; a quoted number is text. The manual uses a comma as the decimal separator, for example <code>3,5</code>. Memory names cannot contain spaces.</p></section>
+Fundo = "fundo-verde"</code></pre><p>Text is quoted. An unquoted number is numeric and can be used in calculations; a quoted number is text. The manual uses a comma as the decimal separator, for example <code>3,5</code>. Memory names cannot contain spaces.</p>
+<h3>Reading the stored value</h3>
+<p><code>Memoria</code> lists the names the program can use; the assigned value determines how a name participates in an expression. Quotation marks matter: numeric-looking text remains text. The consulted manual does not show type declarations for these memory values.</p>
+<div class="manual-table-wrap" role="region" aria-label="Values and memory in Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Example</th><th scope="col">How to read it</th></tr></thead><tbody>
+<tr><td>Text literal</td><td><code>Nome = "Ana"</code></td><td>Stores characters enclosed in quotation marks.</td></tr>
+<tr><td>Number</td><td><code>Pontos = 12</code></td><td>A numeric value that can take part in a calculation.</td></tr>
+<tr><td>Text that looks numeric</td><td><code>Pontos = "12"</code></td><td>Still text; do not treat it as the number <code>12</code>.</td></tr>
+<tr><td>Indexed memory</td><td><code>Nome(0)</code></td><td>Reads a matrix position declared with a size.</td></tr>
+</tbody></table></div></section>
 <section id="expressoes"><p class="kicker">04 · Expressions</p><h2>Assignment and operators</h2><p>Outside a condition, <code>=</code> assigns a value. Inside a condition, <code>=</code> compares values. The language documents arithmetic operations, compound updates, and comparisons. The manual's examples use <code>SIM</code> and <code>NAO</code> for logical values.</p><div class="manual-table-wrap" role="region" aria-label="Logic Basic operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Documented forms</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Arithmetic</td><td><code>+ - * / %</code></td><td>Calculations and remainder.</td></tr><tr><td>Updates</td><td><code>++ -- += -=</code></td><td>Increment, decrement, or update a value.</td></tr><tr><td>Comparison</td><td><code>= &lt; &gt; &lt;= &gt;= &lt;&gt;</code></td><td>Test equality and ordering in a condition.</td></tr><tr><td>Logical</td><td><code>E OU</code></td><td>Combine conditions.</td></tr></tbody></table></div><pre class="manual-code"><code>Memoria X, Y, Soma
 X = 8
 Y = 3
@@ -49,7 +65,18 @@ Nome = EntraTexto, "Enter your name:"
 LimpaJanela
 Posicione 1, 1
 Escreva "Hello, ", Nome
-Mensagem "Entry complete"</code></pre></section>
+Mensagem "Entry complete"</code></pre>
+<h3>Interaction command reference</h3>
+<p>Command arguments are separated by commas. <code>Escreva</code> displays each argument in sequence; quotation marks distinguish literal text from a memory name. The default window uses zero-based coordinates, although <code>Janela</code> can change its resolution.</p>
+<div class="manual-table-wrap" role="region" aria-label="Input and output in Logic Basic" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Result</th><th scope="col">Important detail</th></tr></thead><tbody>
+<tr><td><code>Posicione row, column</code></td><td>Sets the next output position in the window.</td><td>The default grid has 27 rows and 79 columns, numbered 0–26 and 0–78.</td></tr>
+<tr><td><code>Escreva expression, ...</code></td><td>Displays arguments in the window on the same logical line.</td><td>Literal text is quoted; an unquoted memory name supplies its contents.</td></tr>
+<tr><td><code>Mensagem text</code></td><td>Opens a centered message box.</td><td>It ignores the position set by <code>Posicione</code>.</td></tr>
+<tr><td><code>name = EntraTexto, prompt</code></td><td>Prompts for text and stores the response in memory.</td><td>The memory value must already be declared.</td></tr>
+<tr><td><code>Componente Valor, name</code></td><td>Reads the value entered in a control.</td><td>Create the control first with <code>Componente</code>.</td></tr>
+<tr><td><code>Aguarde</code></td><td>Pauses for an interaction or configured duration.</td><td>It can wait for a key, a button/object click, or a number of seconds; an interaction result may be placed in <code>Retorno</code>.</td></tr>
+</tbody></table></div>
+<p>A semicolon lets you place multiple commands on one physical line, but the manual treats each separated command as a logical line. This matters when reading the debugger and using jumps to labels.</p></section>
 <section id="controle"><p class="kicker">06 · Decisions and repetition</p><h2>Se, CasoContrario, and VaPara</h2><p><code>Se</code> executes statements when a condition is true. <code>CasoContrario</code> defines an optional alternative and <code>FimSe</code> closes the block. For repetition, the manual presents labels and <code>VaPara</code>, which transfers execution to a named line.</p><pre class="manual-code"><code>Memoria Tentativa
 Tentativa = 0
 INICIO
@@ -59,7 +86,14 @@ Se Tentativa &lt; 3
 VaPara INICIO
 CasoContrario
 Escreva "Attempts complete"
-FimSe</code></pre><p>This form can create loops, but it requires explicit control of the state that ends repetition. An incorrect jump can make the program repeat forever.</p></section>
+FimSe</code></pre><p>This form can create loops, but it requires explicit control of the state that ends repetition. An incorrect jump can make the program repeat forever.</p>
+<h3>Control forms at a glance</h3>
+<div class="manual-table-wrap" role="region" aria-label="Logic Basic flow structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Watch for</th></tr></thead><tbody>
+<tr><td><code>Se condition ... FimSe</code></td><td>Runs the block when the comparison is true.</td><td><code>=</code> compares inside a condition, although it assigns outside one.</td></tr>
+<tr><td><code>CasoContrario</code></td><td>Marks the alternative block of a <code>Se</code>.</td><td>Keep it inside the matching block and close the structure with <code>FimSe</code>.</td></tr>
+<tr><td><code>LABEL</code> followed by <code>VaPara LABEL</code></td><td>Resumes execution at the named line.</td><td>Update the value used by the condition before jumping again.</td></tr>
+</tbody></table></div>
+<p>A jump creates repetition through control flow: the label marks the start, and the condition decides whether execution returns. Before running it, trace one iteration by hand and confirm that the tested value moves toward the exit.</p></section>
 <section id="funcoes"><p class="kicker">07 · Reuse</p><h2>Functions and extensions</h2><p>The manual describes named routines outside the main flow. <code>Execute Name()</code> calls a routine, and <code>Retorne</code> returns execution to the command after the call. A routine can call other routines and can be recursive. The material also presents extension panels for organizing reusable code.</p><pre class="manual-code"><code>Escreva "Before the routine"
 Execute Saudacao()
 Escreva "After the routine"
@@ -67,7 +101,18 @@ FimPrograma
 
 Saudacao()
 Escreva "Hello!"
-Retorne</code></pre><p>Use consistent routine names and make sure every execution path that enters a routine reaches <code>Retorne</code>, so it does not continue into unrelated code.</p></section>
+Retorne</code></pre><p>Use consistent routine names and make sure every execution path that enters a routine reaches <code>Retorne</code>, so it does not continue into unrelated code.</p>
+<h3>Routines, calls, and return</h3>
+<p>A named routine appears after the main program's terminator or in an extension. <code>Execute Name()</code> transfers control to it; <code>Retorne</code> returns to the command after the call. The introductory manual describes this as control flow, not as an expression that returns a calculated value. In its basic examples, shared memory values provide the way to exchange data: declare them and read or update them inside the routine.</p>
+<pre class="manual-code"><code>Memoria Resultado
+Resultado = "ready"
+Execute ExibaResultado()
+FimPrograma
+
+ExibaResultado()
+Escreva "Status: ", Resultado
+Retorne</code></pre>
+<p>Separate a routine when a group of commands has a clear responsibility or is called from more than one place. In a recursive routine, every path must reach a stopping case or <code>Retorne</code>; otherwise calls can continue to accumulate.</p></section>
 <section id="matrizes"><p class="kicker">08 · Collections</p><h2>Matrices</h2><p>A memory value can be declared with a number of positions in parentheses. Indices start at zero. For example, <code>Memoria Nome(20)</code> creates positions from <code>Nome(0)</code> through <code>Nome(19)</code>. A numeric value can serve as an index inside a loop.</p><pre class="manual-code"><code>Memoria Nome(3), I
 Nome(0) = "Ana"
 Nome(1) = "Beto"
@@ -82,8 +127,21 @@ FimSe</code></pre><p><code>ProcureMatriz</code> searches for a value in a matrix
 <section id="interface"><p class="kicker">09 · Visual features</p><h2>Window, controls, and media</h2><p>Visual commands can position text, draw objects, display images, and respond to interactions. <code>Componente</code> creates form controls; <code>Desenhe</code> displays objects or visual resources; <code>Aguarde</code> pauses execution or receives an interaction, depending on the arguments documented in the manual.</p><p>The material also covers mouse input, sound, and video. Channels, positions, dimensions, and controls depend on each command's parameters; consult the source before using advanced options.</p><pre class="manual-code"><code>LimpaJanela
 Posicione 5, 5
 Desenhe "personagem"
-Aguarde</code></pre></section>
-<section id="banco"><p class="kicker">10 · Persistent data</p><h2>Native database</h2><p>The manual describes <code>BD ... FimBD</code> blocks for defining fields and <code>AbreBD</code> for opening a data file. Fields are populated through the database and field names; <code>AdicionaRegistro</code> saves a record, <code>LeRegistro</code> reads by position, and <code>FechaBD</code> closes the file. Commands for sorting, searching, and counting records are also documented.</p><div class="manual-table-wrap" role="region" aria-label="Logic Basic database commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Purpose in the manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Define a table's fields.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Open or close the associated file.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Save populated fields as a new record.</td></tr><tr><td><code>LeRegistro</code></td><td>Read a record by position.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Sort or locate records.</td></tr><tr><td><code>TotalRegistros</code></td><td>Get the number of records.</td></tr></tbody></table></div><p>The database uses its own files and a field definition. Follow the manual's open and close sequence before reading or saving records.</p></section>
+Aguarde</code></pre>
+<h3>Debug by following program state</h3>
+<p>The environment's <strong>Depurar</strong> mode shows command lines as they run. Compare the current instruction with the window output and the values in the memory it uses. The manual recommends checking that every memory name has been declared and that each command is spelled correctly.</p>
+<div class="manual-table-wrap" role="region" aria-label="Logic Basic diagnostic steps" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Symptom</th><th scope="col">What to check first</th></tr></thead><tbody>
+<tr><td>A name is displayed literally.</td><td>Check that it was declared with <code>Memoria</code> and given the expected value.</td></tr>
+<tr><td>Text appears in the wrong position.</td><td>Check the argument order of <code>Posicione row, column</code> and whether the coordinates fit the window resolution.</td></tr>
+<tr><td>A loop does not stop.</td><td>Check whether the memory tested by <code>Se</code> changes before the <code>VaPara</code> jump.</td></tr>
+<tr><td>A routine does not return to its call site.</td><td>Trace the executed path and confirm that it reaches <code>Retorne</code>.</td></tr>
+<tr><td>An interaction does not update memory.</td><td>Check that the control was created first and that the response is read through <code>Componente Valor</code> or <code>Retorno</code>, depending on the command.</td></tr>
+</tbody></table></div></section>
+<section id="banco"><p class="kicker">10 · Persistent data</p><h2>Native database</h2><p>The manual describes <code>BD ... FimBD</code> blocks for defining fields and <code>AbreBD</code> for opening a data file. Fields are populated through the database and field names; <code>AdicionaRegistro</code> saves a record, <code>LeRegistro</code> reads by position, and <code>FechaBD</code> closes the file. Commands for sorting, searching, and counting records are also documented.</p><div class="manual-table-wrap" role="region" aria-label="Logic Basic database commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Purpose in the manual</th></tr></thead><tbody><tr><td><code>BD ... FimBD</code></td><td>Define a table's fields.</td></tr><tr><td><code>AbreBD</code> / <code>FechaBD</code></td><td>Open or close the associated file.</td></tr><tr><td><code>AdicionaRegistro</code></td><td>Save populated fields as a new record.</td></tr><tr><td><code>LeRegistro</code></td><td>Read a record by position.</td></tr><tr><td><code>OrdemBD</code>, <code>Procure</code></td><td>Sort or locate records.</td></tr><tr><td><code>TotalRegistros</code></td><td>Get the number of records.</td></tr></tbody></table></div><p>The database uses its own files and a field definition. Follow the manual's open and close sequence before reading or saving records.</p>
+<h3>Schema, opening, and record indexes</h3>
+<p>A <code>BD</code> declaration associates a logical name with a path and lists each table field with its size; it belongs in the header after <code>Memoria</code>. Data files use the <code>.LBA</code> extension, which may be omitted from <code>AbreBD</code>. A database can have only one file open at a time: close it before selecting another file for the same schema.</p>
+<p>Records are indexed from zero. If <code>TotalRegistros</code> returns <code>T</code>, valid indexes range from <code>0</code> to <code>T - 1</code>. Run <code>OrdemBD</code> before the routine that uses the sort order; after setting an index, reads follow that order until you select <code>Sequencial</code> or another ordering. <code>Procure</code> uses the current index and returns <code>-1</code> when no record matches.</p>
+<p>A safe operation sequence is: define the fields, open a file, populate a record's fields, and save it with <code>AdicionaRegistro</code>; for queries, get the count or locate a position, read with <code>LeRegistro</code>, and close with <code>FechaBD</code> when finished.</p></section>
 <section id="exemplo"><p class="kicker">11 · In practice</p><h2>Integrated example</h2><p>This example uses memory values, input, and a condition to display a personalized greeting. It brings together basic commands without depending on advanced graphics.</p><pre class="manual-code"><code>Memoria Nome, Pontos
 Nome = EntraTexto, "What is your name?"
 Pontos = 0
@@ -97,7 +155,8 @@ Pontos = Pontos + 1
 Escreva "Points: ", Pontos
 FimSe
 FimPrograma</code></pre></section>
-<section id="fontes"><p class="kicker">12 · Sources</p><h2>Manual consulted</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Logic Basic manual</a> by Eleusmário Mariano Rabelo — reference for commands, memory values, interface, matrices, routines, and database.</li></ul><p>Examples on this page were written to explain the concepts; consult the original manual for every parameter of each command.</p></section>
+<section id="fontes"><p class="kicker">12 · Sources</p><h2>Manual consulted</h2><ul><li><a href="https://pt.scribd.com/document/420235581/Manual-do-Logic-Basic">Logic Basic manual</a> by Eleusmário Mariano Rabelo — reference for commands, memory values, interface, matrices, routines, and database.</li></ul><p>Examples on this page were written to explain the concepts; consult the original manual for every parameter of each command.</p>
+<p>The consulted copy describes Logic Basic 7.0. This page does not confirm compatibility with later editions or current availability of the environment; interface option names and behavior tied to visual resources should be checked against the installed edition. The command tables summarize forms described in the manual, not every possible parameter.</p></section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Back to the Potoo IDE manual</h2><p>Browse the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the manual <span aria-hidden="true">↗</span></a></section></div>
 </main>
