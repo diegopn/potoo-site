@@ -1,0 +1,115 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/sl/"
+title: "SL | Potoo IDE Manual"
+description: "SL reference: a Spanish-language teaching language for algorithms, with variables, types, arrays, records, functions, and procedures."
+og_title: "SL · Educational reference"
+og_description: "SL reference: a Spanish-language teaching language for algorithms, with variables, types, arrays, records, functions, and procedures."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/sl/"
+  es: "/es/manual/sl/"
+  en: "/en/manual/sl/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · educational algorithm language · under evaluation</p>
+    <h1>SL</h1>
+    <p class="manual-intro">SL is a Spanish-language educational language for expressing algorithms and learning programming. The Universidad Nacional de Asunción project brings together a language, development tools, and teaching materials. This page organizes constructs documented by the project; SL is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the SL">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">About SL</a></li>
+        <li><a href="#origem">Project and teaching purpose</a></li>
+        <li><a href="#estrutura">Program structure</a></li>
+        <li><a href="#dados">Variables, types, and collections</a></li>
+        <li><a href="#entrada">Input, output, and calculations</a></li>
+        <li><a href="#controle">Decisions, loops, and procedures</a></li>
+        <li><a href="#exemplo">Calculate the average of two marks</a></li>
+        <li><a href="#estudo">Practising with SL</a></li>
+        <li><a href="#escopo">Implementation and limits</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>About SL</h2>
+<p>SL introduces programming concepts in a textual form that is readable to Spanish-speaking students. Project materials describe a learning environment for constructing algorithms, testing execution, and studying the parts of a solution.</p><p>SL is not simply a translation of another pseudolanguage: its grammar, reserved words, and library should be read from SL documentation. This reference highlights concepts in material from the Universidad Nacional de Asunción and avoids mixing in commands from other systems.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> SL is under evaluation. The examples on this page refer to the external project and do not claim compatibility with the app.</div>
+      </section>
+      <section id="origem">
+        <p class="kicker">02 · background</p>
+        <h2>Project and teaching purpose</h2>
+<p>The official material is associated with the Facultad Politécnica at the Universidad Nacional de Asunción. It presents SL as a resource for teaching algorithms and includes the SLE environment, documents, examples, and supporting material.</p><p>The language was designed for practicing introductory concepts:</p><ul><li>describe a sequence of instructions with an explicit beginning and end;</li><li>declare data and compose expressions;</li><li>read input and display results;</li><li>control decisions and repetition;</li><li>organize calculations into functions and procedures.</li></ul><p>The official portal and project book are the references for syntax details and for features in a specific version of SLE.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · program structure</p>
+        <h2>Program structure</h2>
+<p>A simple program can declare variables, begin its executable sequence, receive data, calculate a result, and finish. The project documentation uses Spanish keywords and lowercase forms in its examples. This fragment follows the introductory format shown in the material:</p><pre class="manual-code"><code>programa cuadrado
+var
+    n, resultado: entero
+inicio
+    leer(n)
+    resultado = n * n
+    imprimir(resultado)
+fin</code></pre><p><code>programa</code> names the algorithm, <code>var</code> introduces declarations, <code>inicio</code> opens the body, and <code>fin</code> ends the program. Confirm punctuation and declaration rules in the version used by the class.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · data and operators</p>
+        <h2>Variables, types, and collections</h2>
+<p>SL documents numeric and text values and logical values, along with structures for grouping data and working with collections. Exact type names and index rules should follow the official manual for the relevant version.</p><div class="manual-table-wrap" role="region" aria-label="SL data concepts" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Concept</th><th scope="col">Teaching use</th></tr></thead><tbody><tr><td>Scalars</td><td>Represent numbers, characters, or conditions.</td></tr><tr><td>Arrays and matrices</td><td>Store sequences of elements accessed by index.</td></tr><tr><td>Records</td><td>Group named fields with their own types.</td></tr><tr><td>Expressions</td><td>Combine arithmetic, relational, and logical operators.</td></tr></tbody></table></div><p>Choose meaningful variable names and an appropriate type. Before accessing an array position or record field, identify the declared bounds and structure.</p>
+      </section>
+      <section id="entrada">
+        <p class="kicker">05 · interaction</p>
+        <h2>Input, output, and calculations</h2>
+<p>Project examples use read and print instructions to connect an algorithm to data supplied by the person running it. An expression can combine values and store a calculation before displaying it.</p><pre class="manual-code"><code>imprimir("Ingrese la base:")
+leer(base)
+area = base * altura
+imprimir(area)</code></pre><p>This fragment is schematic: declare <code>base</code>, <code>altura</code>, and <code>area</code> according to the grammar accepted by the SLE version. Confirm how string literals, arguments, and statement endings are written in the official book and examples.</p><p>Separating input, processing, and output makes it easier to test the calculation without confusing an input problem with a formula error.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">06 · control flow</p>
+        <h2>Decisions, loops, and procedures</h2>
+<p>SL includes structures for selecting a path, repeating commands, and reusing operations. Project documentation covers conditionals, counted or conditional loops, functions, and procedures. Exact reserved words depend on the construct and should be copied from the official manual rather than another language.</p><ul><li><strong>Decision:</strong> execute a block based on a logical expression.</li><li><strong>Repetition:</strong> repeat instructions a controlled number of times or until a condition.</li><li><strong>Function:</strong> calculate and return a result.</li><li><strong>Procedure:</strong> name a sequence of actions that can be called elsewhere.</li></ul><p>When writing a loop, identify the variable or condition that changes and explain why repetition stops. When dividing a problem into routines, define the values each receives and the result or effect it produces.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">07 · worked example</p>
+        <h2>Calculate the average of two marks</h2>
+<p>A simple average practices data, input, expressions, and output. First declare both marks and the result using suitable types. Then read each value, calculate their sum divided by two, and display the average.</p><pre class="manual-code"><code>programa promedio
+var
+    nota1, nota2, promedio: real
+inicio
+    leer(nota1)
+    leer(nota2)
+    promedio = (nota1 + nota2) / 2
+    imprimir(promedio)
+fin</code></pre><p>To extend the example, validate that marks fall within the interval allowed by the exercise. A condition can choose a message for pass or fail; a loop can repeat input while a mark is invalid. The pass threshold belongs to the exercise and should not be assumed.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · study and debugging</p>
+        <h2>Practising with SL</h2>
+<p>Use the official portal’s environment and examples to confirm syntax. Start with small programs and run them using known inputs. If the SLE version provides step-by-step execution, advance one instruction at a time and watch relevant variables.</p><ul><li>Test typical inputs and boundaries defined by the problem.</li><li>Check types before mixing numbers and text in an expression.</li><li>For arrays, verify the first and last index used.</li><li>For procedures, compare each argument with its parameter’s documented purpose.</li><li>When an error appears, locate the first incompatible statement and confirm the keyword in the manual.</li></ul><p>The book and official materials give full conventions and exercises that a summary cannot replace. Use this page as a map of concepts, not a substitute for the specification of an installation.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">09 · versions and scope</p>
+        <h2>Implementation and limits</h2>
+<p>The SL ecosystem includes the language and SLE, but the portal may offer different versions and files over time. Interface, debugging, library, and syntax details should be confirmed in the package actually installed.</p><p>This reference summarizes publicly documented feature families. It does not promise that every historical construct is available in every version or that an SL program runs unchanged in another interpreter. SL remains under evaluation as a future possibility for Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://www.cnc.una.py/sl/SL-index.html">Official SL portal</a>, from the Universidad Nacional de Asunción.</li><li><a href="https://www.cnc.una.py/sl/SL-documentos.html">SL documents and materials</a>.</li><li><a href="https://www.cnc.una.py/sl/libro-sl.pdf">SL book</a>, with teaching content and examples.</li><li><a href="https://www.cnc.una.py/sl/SL-stdf.html">Standard function reference</a>.</li></ul><p>The official Spanish-language materials are the source for confirming spelling, operator precedence, and full syntax.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

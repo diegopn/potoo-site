@@ -1,0 +1,120 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/ap-csp-pseudocode/"
+title: "AP CSP Pseudocode | Potoo IDE Manual"
+description: "AP CSP pseudocode reference: College Board notation for computing concepts, procedures, lists, conditions, and repetition in assessment."
+og_title: "AP CSP Pseudocode · Educational reference"
+og_description: "AP CSP pseudocode reference: College Board notation for computing concepts, procedures, lists, conditions, and repetition in assessment."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/ap-csp-pseudocode/"
+  es: "/es/manual/ap-csp-pseudocode/"
+  en: "/en/manual/ap-csp-pseudocode/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · assessment notation · under evaluation</p>
+    <h1>AP CSP Pseudocode</h1>
+    <p class="manual-intro">AP CSP pseudocode is the shared notation in College Board AP Computer Science Principles materials. It communicates algorithms for teaching and assessment; it is not intended to be a complete programming language or a format for running programs. This reference follows the 2026 exam reference sheet. The notation is under evaluation for Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the AP CSP Pseudocode">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">What is AP CSP pseudocode</a></li>
+        <li><a href="#contexto">Course, exam, and reference sheet</a></li>
+        <li><a href="#valores">Variables, operators, and data</a></li>
+        <li><a href="#controle">Conditions and repetition</a></li>
+        <li><a href="#listas">Lists and indexing</a></li>
+        <li><a href="#procedimentos">Procedures and return values</a></li>
+        <li><a href="#robos">Robot commands</a></li>
+        <li><a href="#exemplo">Traverse a list</a></li>
+        <li><a href="#estudo">How to read questions</a></li>
+        <li><a href="#limites">Validity and limits</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>What is AP CSP pseudocode</h2>
+<p>AP CSP pseudocode is a set of conventions the College Board uses to present and discuss algorithms in the AP Computer Science Principles course and exam. The notation uses readable keywords and consistent symbols so learners can reason about logic without relying on a particular compiler.</p><p>It is an assessment notation, not a development environment or a complete executable language. The goal is to interpret logic and apply computing concepts.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> the notation is under evaluation as a reference. Its documentation here does not mean the app can run AP CSP pseudocode.</div>
+      </section>
+      <section id="contexto">
+        <p class="kicker">02 · curriculum context</p>
+        <h2>Course, exam, and reference sheet</h2>
+<p>The College Board publishes a course framework and a reference sheet used with the exam. The sheet gathers conventions for expressions, Boolean operators, control instructions, lists, procedures, and robot applications.</p><p>A question may provide a fragment and ask about its output, a condition, a procedure call, or a change to a list. Reading the notation precisely matters more than memorizing the syntax of a real programming language.</p><p>The material is tied to the curriculum and exam year. Use the official document that applies to your class and assessment.</p>
+      </section>
+      <section id="valores">
+        <p class="kicker">03 · values and expressions</p>
+        <h2>Variables, operators, and data</h2>
+<p>An assignment associates an expression with a variable. The notation uses familiar arithmetic and relational operators and words for logical operations. Parentheses clarify the expression’s evaluation order.</p><div class="manual-table-wrap" role="region" aria-label="Elements of AP CSP notation" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>←</code></td><td>Assigns the calculated value to the variable on the left.</td></tr><tr><td><code>MOD</code></td><td>Remainder of integer division.</td></tr><tr><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Logical conjunction, disjunction, and negation.</td></tr><tr><td><code>INPUT()</code></td><td>Represents an input value in examples.</td></tr><tr><td><code>DISPLAY(...)</code></td><td>Shows a value to the user.</td></tr></tbody></table></div><p>Do not read the sheet as a specification for a platform’s types or behavior. Its purpose is to represent algorithm steps in curriculum questions.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">04 · control flow</p>
+        <h2>Conditions and repetition</h2>
+<p>Conditions select instructions, while repetition executes a block more than once. Keywords are written in English, and braces delimit the visible scope of a structure.</p><pre class="manual-code"><code>number ← INPUT()
+IF (number MOD 2 = 0)
+{
+    DISPLAY("even")
+}
+ELSE
+{
+    DISPLAY("odd")
+}</code></pre><p>The algorithm reads a number, calculates its remainder after division by two, and selects a message. Analyze the true and false cases separately. The official sheet also defines forms of repetition a fixed number of times and until a condition.</p>
+      </section>
+      <section id="listas">
+        <p class="kicker">05 · collections</p>
+        <h2>Lists and indexing</h2>
+<p>The notation uses lists to represent ordered sequences. List indices begin at <strong>1</strong>, an important convention to remember when coming from many programming languages that start at zero.</p><div class="manual-table-wrap" role="region" aria-label="AP CSP list operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operation</th><th scope="col">General effect</th></tr></thead><tbody><tr><td><code>list[i]</code></td><td>Accesses the item at a given position.</td></tr><tr><td><code>APPEND(list, value)</code></td><td>Adds an item to the end.</td></tr><tr><td><code>INSERT(list, i, value)</code></td><td>Inserts a value at the given position.</td></tr><tr><td><code>REMOVE(list, i)</code></td><td>Removes the item at a given position.</td></tr><tr><td><code>LENGTH(list)</code></td><td>Returns the number of items.</td></tr></tbody></table></div><p>Check the current sheet for exact signatures and behavior. When traversing a list, keep the index between 1 and its length.</p>
+      </section>
+      <section id="procedimentos">
+        <p class="kicker">06 · procedures</p>
+        <h2>Procedures and return values</h2>
+<p>A procedure groups instructions under a name and can receive parameters. A function that produces a value uses the return form described by the reference. Calls let an algorithm reuse the same sequence and keep its main steps concise.</p><p>When reading a procedure, identify the arguments and match each one to its parameter. Then follow the call’s effects: changed values, displayed output, or a returned result.</p><p>Since this is a curriculum notation for procedures, do not assume that every function in a real library is described or that the example compiles directly as JavaScript, Python, or another language.</p>
+      </section>
+      <section id="robos">
+        <p class="kicker">07 · robot applications</p>
+        <h2>Robot commands</h2>
+<p>The reference includes notation for robot commands in a world with a grid, directions, and obstacles. Actions change position or orientation; conditions inspect the surroundings and can guide a decision.</p><ul><li>Read the robot’s starting position and direction.</li><li>Determine which cells are blocked and which can be reached.</li><li>Track every movement and turn in instruction order.</li><li>Use sensors only for properties defined by the question.</li></ul><p>This model is part of AP CSP content, but it does not necessarily describe a robotics language or simulator outside the exam.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · worked example</p>
+        <h2>Traverse a list</h2>
+<p>Suppose a list contains positive numbers and the task is to count how many are even. Since indexing begins at 1, positions range from 1 through <code>LENGTH(numbers)</code>. Write the loop and counter update according to the reference sheet.</p><pre class="manual-code"><code>count ← 0
+index ← 1
+REPEAT LENGTH(numbers) TIMES
+{
+    IF (numbers[index] MOD 2 = 0)
+    {
+        count ← count + 1
+    }
+    index ← index + 1
+}</code></pre><p>Before tracing the algorithm, confirm that the list does not change size while it is traversed. A table with <code>index</code>, current item, and <code>count</code> helps check the result.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · exam strategy</p>
+        <h2>How to read questions</h2>
+<p>For an AP CSP question, follow one instruction at a time and record changes to variables and lists. Pay attention to words that define order, repetition count, and stopping conditions.</p><ul><li>Do not confuse assignment with equality comparison.</li><li>Use list indexing that starts at 1.</li><li>Evaluate Boolean operators using precedence from the material.</li><li>In a loop, count each iteration and update state in the correct order.</li><li>In a procedure, substitute arguments for parameters mentally.</li></ul><p>When two answers seem plausible, simulate the sequence in a table. This reduces off-by-one and branch-tracing errors.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">10 · versions and scope</p>
+        <h2>Validity and limits</h2>
+<p>The reference sheet and course framework may be revised between school years and exams. The 2026 sheet is the basis of this page; students should confirm which material applies to their assessment.</p><p>AP CSP pseudocode is a shared teaching and exam notation, not a general-purpose programming language or API. This page does not claim execution in Potoo IDE and does not replace the official document.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-exam-reference-sheet.pdf">Official AP Computer Science Principles exam reference sheet (2026)</a>.</li><li><a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf?course=ap-computer-science-principles">Official course and exam description</a>, with the curriculum framework.</li><li><a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles">Official AP CSP course page</a>.</li></ul><p>Use the reference sheet provided for your exam year when answering assessment questions.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

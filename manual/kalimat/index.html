@@ -1,0 +1,97 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/kalimat/"
+title: "Kalimat | Manual do Potoo IDE"
+description: "Referência de Kalimat: linguagem em árabe para iniciantes, com orientação a objetos, concorrência no modelo CSP, gráficos 2D e interoperabilidade com C."
+og_title: "Kalimat · Referência educacional"
+og_description: "Referência de Kalimat: linguagem em árabe para iniciantes, com orientação a objetos, concorrência no modelo CSP, gráficos 2D e interoperabilidade com C."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/kalimat/"
+  es: "/es/manual/kalimat/"
+  en: "/en/manual/kalimat/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência educacional · linguagem de programação em árabe · em avaliação</p>
+    <h1>Kalimat</h1>
+    <p class="manual-intro">Kalimat é uma linguagem de programação em árabe voltada a iniciantes. O projeto oficial descreve recursos de orientação a objetos, concorrência inspirada em CSP, gráficos 2D e interoperabilidade com C. Como a gramática completa está nos guias distribuídos pelo projeto, esta página apresenta os conceitos confirmados sem inventar um exemplo de sintaxe.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de Kalimat">
+      <h2>Nesta referência</h2><ol>
+        <li><a href="#sobre">O que é Kalimat</a></li>
+        <li><a href="#objetivos">Para quem foi criada</a></li>
+        <li><a href="#paradigmas">Orientação a objetos e organização</a></li>
+        <li><a href="#concorrencia">Concorrência no modelo CSP</a></li>
+        <li><a href="#graficos">Gráficos 2D e jogos</a></li>
+        <li><a href="#interop">Integração com C</a></li>
+        <li><a href="#sintaxe">Como consultar a gramática</a></li>
+        <li><a href="#estudo">Roteiro de aprendizagem</a></li>
+        <li><a href="#escopo">O que esta referência cobre</a></li>
+        <li><a href="#fontes">Referências</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · visão geral</p>
+        <h2>O que é Kalimat</h2>
+<p>Kalimat (كلمات, “palavras”) é uma linguagem que permite aprender programação usando vocabulário e escrita árabes. O site oficial a apresenta como uma opção para iniciantes e descreve ferramentas e documentação próprias. Ela é um projeto de linguagem, não apenas um tradutor de palavras reservadas para uma linguagem de outro idioma.</p><p>O idioma de leitura do código é parte da experiência de aprendizagem; familiaridade com o alfabeto e a direção de escrita deve ser considerada ao preparar materiais e exemplos.</p><div class="manual-note planned"><strong>Estado no Potoo IDE:</strong> Kalimat está em avaliação e não é executada pelo aplicativo. Consulte o portal oficial para obter as versões e regras atuais.</div>
+      </section>
+      <section id="objetivos">
+        <p class="kicker">02 · público e objetivos</p>
+        <h2>Para quem foi criada</h2>
+<p>O projeto apresenta Kalimat como linguagem para quem está começando, inclusive crianças. A sintaxe árabe busca aproximar o código escrito do idioma do estudante, enquanto bibliotecas e recursos da linguagem permitem construir programas além de exercícios de console.</p><p>Para estudar Kalimat, é útil separar três partes:</p><ul><li>a linguagem e suas regras de escrita;</li><li>as ferramentas necessárias para editar e executar programas;</li><li>as bibliotecas que oferecem recursos gráficos ou integração com outras linguagens.</li></ul><p>A disponibilidade de cada componente pode depender da distribuição que está sendo usada. Os guias do pacote oficial são a fonte para instalar e executar a versão corrente.</p>
+      </section>
+      <section id="paradigmas">
+        <p class="kicker">03 · modelo de programação</p>
+        <h2>Orientação a objetos e organização</h2>
+<p>A documentação do projeto informa que Kalimat oferece recursos orientados a objetos. Classes e objetos ajudam a reunir estado e operações relacionadas, mas os detalhes — como visibilidade, herança e construtores — devem ser consultados no documento de regras da versão.</p><p>Essa organização pode apoiar atividades que passam de funções pequenas a modelos de objetos. Um bom exercício inicial é identificar quais valores pertencem a cada entidade e quais operações modificam esses valores, antes de escolher uma estrutura específica da linguagem.</p><p>Não transfira automaticamente regras de Java, C++ ou outra linguagem orientada a objetos. O modelo de Kalimat é definido pela própria documentação oficial.</p>
+      </section>
+      <section id="concorrencia">
+        <p class="kicker">04 · execução concorrente</p>
+        <h2>Concorrência no modelo CSP</h2>
+<p>Kalimat também anuncia um modelo de concorrência relacionado a CSP (<em>Communicating Sequential Processes</em>). Em vez de tratar todo trabalho como uma sequência única, o modelo permite pensar em processos que executam e se comunicam.</p><ul><li><strong>Processo:</strong> uma unidade de execução com uma tarefa identificável.</li><li><strong>Comunicação:</strong> troca de dados ou sincronização entre processos conforme as construções da linguagem.</li><li><strong>Coordenação:</strong> definir quando cada processo pode avançar e como os resultados se combinam.</li></ul><p>Concorrência exige atenção a ordem e sincronização. Consulte o guia oficial antes de usar a terminologia ou uma forma de comunicação particular; esta página não fixa operadores de CSP que não aparecem nas fontes resumidas.</p>
+      </section>
+      <section id="graficos">
+        <p class="kicker">05 · bibliotecas</p>
+        <h2>Gráficos 2D e jogos</h2>
+<p>O projeto destaca uma biblioteca de gráficos 2D voltada à criação de cenas e jogos. Esse recurso conecta conceitos de programação a resultados visuais: desenhar objetos, responder a eventos e atualizar uma cena.</p><p>Uma sequência de estudo pode começar com uma janela e uma forma simples, depois introduzir movimento e interação. Para cada exercício, identifique:</p><ol><li>quais objetos aparecem na tela;</li><li>quais propriedades mudam entre atualizações;</li><li>quais eventos provocam uma ação;</li><li>quais regras mantêm a cena dentro dos limites desejados.</li></ol><p>Os nomes de módulos, funções e eventos dependem da API distribuída com Kalimat. Use os exemplos que acompanham o pacote para confirmar a chamada exata.</p>
+      </section>
+      <section id="interop">
+        <p class="kicker">06 · interoperabilidade</p>
+        <h2>Integração com C</h2>
+<p>O portal oficial também documenta interoperabilidade com C. Essa ponte permite acessar código ou bibliotecas nativas em situações apropriadas, mas envolve uma fronteira entre modelos de tipos e gerenciamento que precisam ser compatíveis.</p><p>Antes de chamar código externo, confirme:</p><ul><li>como os tipos de cada lado são representados;</li><li>quem aloca e libera cada recurso;</li><li>como erros e valores de retorno são comunicados;</li><li>quais convenções e arquivos de cabeçalho a ferramenta exige.</li></ul><p>Interoperabilidade é um tópico avançado e não é necessária para os primeiros programas. Uma biblioteca nativa deve ser compatível com a versão e a plataforma em uso.</p>
+      </section>
+      <section id="sintaxe">
+        <p class="kicker">07 · sintaxe e recursos</p>
+        <h2>Como consultar a gramática</h2>
+<p>O projeto distribui documentos de regras da linguagem e exemplos junto com seus arquivos de instalação. Eles são a fonte apropriada para confirmar palavras-chave, pontuação, declarações, expressões, classes, processos e APIs gráficas.</p><p>Como a página pública consultada não expõe uma gramática de forma completa e estável em texto simples, esta referência não apresenta um “Olá, mundo” reconstruído. Para obter um programa verificável:</p><ol><li>baixe a distribuição pelo portal oficial;</li><li>abra os documentos de regras incluídos no pacote;</li><li>execute primeiro um dos exemplos fornecidos;</li><li>modifique uma parte do exemplo e compare o resultado.</li></ol><p>Isso evita atribuir a Kalimat uma sintaxe adivinhada a partir de sua descrição em outro idioma.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · estudo e depuração</p>
+        <h2>Roteiro de aprendizagem</h2>
+<p>Comece pelos exemplos oficiais e identifique o ambiente de execução exigido. Depois avance gradualmente da saída de texto para variáveis, condições, repetições e funções. Só introduza objetos, concorrência, gráficos ou integração nativa quando a atividade exigir esses recursos.</p><ul><li>Guarde a versão do pacote junto com os exemplos testados.</li><li>Teste uma mudança de cada vez, especialmente na escrita árabe e na direção do texto.</li><li>Em um programa visual, valide primeiro a lógica sem adicionar eventos extras.</li><li>Em concorrência, teste ordens diferentes e examine os pontos de sincronização.</li><li>Para integração com C, use um exemplo mínimo fornecido pelo projeto.</li></ul><p>Os materiais e as decisões de implementação podem evoluir; compare sempre com os guias que acompanham a versão instalada.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">09 · versões e escopo</p>
+        <h2>O que esta referência cobre</h2>
+<p>Os recursos descritos aqui — linguagem em árabe, orientação a objetos, modelo CSP, gráficos 2D e interoperabilidade com C — são os anunciados pelo projeto oficial consultado. A página não tenta fixar todos os detalhes sintáticos ou a compatibilidade entre versões.</p><p>A distribuição oficial inclui documentos de regras e exemplos que devem ser usados para confirmar a gramática e o ambiente. Kalimat segue em avaliação para o Potoo IDE; nenhum recurso desta página deve ser lido como compatibilidade já implementada.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · leitura adicional</p>
+        <h2>Referências</h2>
+<ul><li><a href="https://kalimat-lang.com/">Site oficial do Kalimat</a>, com informações do projeto e downloads.</li><li><a href="https://kalimat-lang.com/getting-started.html">Guia oficial para começar</a>, com instruções e materiais incluídos na distribuição.</li><li><a href="https://kalimat-lang.com/faq.html">Perguntas frequentes oficiais</a>.</li><li><a href="https://kalimat-lang.com/intro.html">Introdução ao projeto</a>.</li></ul><p>Os documentos PDF incluídos no pacote são a referência mais direta para a gramática da versão baixada.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

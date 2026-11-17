@@ -1,0 +1,118 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/glossa/"
+title: "Glossa (ΓΛΩΣΣΑ) | Manual de Potoo IDE"
+description: "Referencia de ΓΛΩΣΣΑ: lenguaje didáctico griego del currículo escolar, con variables, entrada y salida, condiciones, bucles, arreglos y subprogramas."
+og_title: "Glossa (ΓΛΩΣΣΑ) · Referencia educativa"
+og_description: "Referencia de ΓΛΩΣΣΑ: lenguaje didáctico griego del currículo escolar, con variables, entrada y salida, condiciones, bucles, arreglos y subprogramas."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/glossa/"
+  es: "/es/manual/glossa/"
+  en: "/en/manual/glossa/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia educativa · notación curricular griega · en evaluación</p>
+    <h1>Glossa (ΓΛΩΣΣΑ)</h1>
+    <p class="manual-intro">ΓΛΩΣΣΑ («Glossa», literalmente «lengua») es un lenguaje didáctico presentado en materiales curriculares griegos de informática de secundaria. Esta referencia sigue el libro escolar oficial: no existe un único intérprete oficial que defina todo el ecosistema. Glossa está en evaluación y Potoo IDE no lo ejecuta.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Glossa (ΓΛΩΣΣΑ)">
+      <h2>En esta referencia</h2><ol>
+        <li><a href="#sobre">Sobre ΓΛΩΣΣΑ</a></li>
+        <li><a href="#curriculo">Fuente y público</a></li>
+        <li><a href="#estrutura">Organización de un programa</a></li>
+        <li><a href="#dados">Tipos, operadores y asignación</a></li>
+        <li><a href="#io">Entrada y salida</a></li>
+        <li><a href="#controle">Condiciones y bucles</a></li>
+        <li><a href="#subprogramas">Arreglos y subprogramas</a></li>
+        <li><a href="#exemplo">Media y clasificación</a></li>
+        <li><a href="#estudo">Cómo estudiar y probar</a></li>
+        <li><a href="#escopo">Alcance y variantes</a></li>
+        <li><a href="#fontes">Referencias</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · panorama</p>
+        <h2>Sobre ΓΛΩΣΣΑ</h2>
+<p>ΓΛΩΣΣΑ es la notación de programación que se enseña en materiales oficiales griegos de informática. Ofrece una estructura de algoritmo y un conjunto de tipos, comandos y estructuras de control para que el alumnado especifique soluciones.</p><p>El nombre no designa un único producto de software. Los editores y simuladores de terceros pueden implementar subconjuntos o convenciones propias; para un examen o ejercicio, la fuente normativa es el material curricular asignado por el curso.</p><div class="manual-note planned"><strong>Estado en Potoo IDE:</strong> Glossa está en evaluación como notación didáctica. Esta referencia no significa que la aplicación ejecute programas ΓΛΩΣΣΑ.</div>
+      </section>
+      <section id="curriculo">
+        <p class="kicker">02 · contexto curricular</p>
+        <h2>Fuente y público</h2>
+<p>La fuente principal de esta página es el libro de informática publicado en el portal oficial griego de libros escolares. Presenta algoritmos, programación estructurada y una sintaxis en griego utilizada en ejercicios del currículo.</p><p>El alumnado utiliza la notación para aprender:</p><ul><li>declarar y utilizar variables tipadas;</li><li>secuencia, selección y repetición;</li><li>arreglos y procedimientos o funciones;</li><li>entrada y salida de datos;</li><li>planificación, lectura y prueba de algoritmos.</li></ul><p>El libro escolar prevalece sobre las traducciones informales y las herramientas de terceros. La transliteración latina de las explicaciones es solo descriptiva; los ejemplos conservan las palabras reservadas griegas.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · estructura</p>
+        <h2>Organización de un programa</h2>
+<p>Un programa ΓΛΩΣΣΑ delimita el encabezado, la sección de variables, el cuerpo ejecutable y el cierre. El siguiente ejemplo sigue la estructura presentada en el libro didáctico y calcula la media de dos enteros:</p><pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΜΕΣΟΣΟΡΟΣ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Α, Β
+  ΠΡΑΓΜΑΤΙΚΕΣ: ΜΕΣΟΣ
+ΑΡΧΗ
+  ΔΙΑΒΑΣΕ Α, Β
+  ΜΕΣΟΣ &lt;- (Α + Β) / 2
+  ΓΡΑΨΕ ΜΕΣΟΣ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre><p><code>ΠΡΟΓΡΑΜΜΑ</code> nombra el programa; <code>ΜΕΤΑΒΛΗΤΕΣ</code> inicia las declaraciones; <code>ΑΡΧΗ</code> abre las instrucciones y <code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code> cierra el programa. Sigue las reglas del curso para la tipografía y los identificadores.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · datos</p>
+        <h2>Tipos, operadores y asignación</h2>
+<p>El libro escolar distingue tipos para enteros, valores reales, caracteres y valores lógicos. Las declaraciones agrupan variables por tipo; la asignación utiliza una flecha que apunta a la variable que recibe el valor.</p><div class="manual-table-wrap" role="region" aria-label="Tipos y palabras clave de Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma griega</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>ΑΚΕΡΑΙΕΣ</code></td><td>Variables enteras.</td></tr><tr><td><code>ΠΡΑΓΜΑΤΙΚΕΣ</code></td><td>Variables reales.</td></tr><tr><td><code>ΧΑΡΑΚΤΗΡΕΣ</code></td><td>Caracteres o cadenas, según el material.</td></tr><tr><td><code>ΛΟΓΙΚΕΣ</code></td><td>Valores lógicos.</td></tr><tr><td><code>&lt;-</code></td><td>Asigna a la variable de la izquierda la expresión de la derecha.</td></tr></tbody></table></div><p>Las expresiones combinan operaciones aritméticas, relacionales y lógicas. Los paréntesis dejan claro el orden de cálculo. Consulta las tablas del libro para conocer precedencia, conversiones y límites de tipos.</p>
+      </section>
+      <section id="io">
+        <p class="kicker">05 · interacción</p>
+        <h2>Entrada y salida</h2>
+<p><code>ΔΙΑΒΑΣΕ</code> recibe los datos de las variables indicadas y <code>ΓΡΑΨΕ</code> presenta valores o mensajes. Estas instrucciones permiten separar la interacción del cálculo principal.</p><pre class="manual-code"><code>ΓΡΑΨΕ "Δώσε έναν αριθμό"
+ΔΙΑΒΑΣΕ Α
+ΤΕΤΡΑΓΩΝΟ &lt;- Α * Α
+ΓΡΑΨΕ ΤΕΤΡΑΓΩΝΟ</code></pre><p>El fragmento muestra los comandos griegos de entrada y salida. En un programa completo, declara cada variable en su sección y utiliza la forma de literal e identificador del libro curricular. El mensaje en griego se puede sustituir por otro literal sin cambiar la estructura del algoritmo.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">06 · flujo de control</p>
+        <h2>Condiciones y bucles</h2>
+<p>ΓΛΩΣΣΑ incluye estructuras de selección y repetición adecuadas para ejercicios de programación estructurada. La selección escoge un bloque según una condición; los bucles repiten instrucciones de acuerdo con una cantidad o condición. El libro especifica las palabras reservadas y delimitadores de cada forma.</p><ul><li><strong>Selección simple o doble:</strong> trata un caso y, opcionalmente, su alternativa.</li><li><strong>Selección múltiple:</strong> elige entre varios valores posibles.</li><li><strong>Repetición contada:</strong> recorre una secuencia de valores.</li><li><strong>Repetición condicional:</strong> continúa mientras se cumpla una condición o hasta que ocurra algo.</li></ul><p>La condición debe producir un valor lógico. En cada repetición, identifica la variable que cambia y confirma que los límites no dejan la última iteración fuera del intervalo previsto.</p>
+      </section>
+      <section id="subprogramas">
+        <p class="kicker">07 · descomposición</p>
+        <h2>Arreglos y subprogramas</h2>
+<p>El material didáctico también cubre arreglos y subprogramas. Un arreglo guarda elementos del mismo tipo y permite acceder a ellos mediante un índice. Los procedimientos agrupan acciones; las funciones producen un resultado. Los parámetros transmiten valores de entrada y, según la forma enseñada, datos que la rutina modifica.</p><p>Al usar un arreglo, declara su dimensión y comprueba el intervalo de índices establecido por el ejercicio. Para definir un procedimiento o función:</p><ol><li>elige un nombre que describa su tarea;</li><li>indica los parámetros y sus tipos;</li><li>declara las variables locales necesarias;</li><li>especifica el resultado o efecto observable;</li><li>prueba la rutina por separado antes de integrarla en el programa principal.</li></ol><p>Consulta la edición curricular correspondiente para conocer los detalles de límites, parámetros y sintaxis completa.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · ejemplo guiado</p>
+        <h2>Media y clasificación</h2>
+<p>Después de calcular una media, una condición puede clasificar el resultado. El umbral pertenece al enunciado de la actividad; no presupongas una regla universal de aprobación.</p><pre class="manual-code"><code>ΑΝ ΜΕΣΟΣ &gt;= ΟΡΙΟ ΤΟΤΕ
+  ΓΡΑΨΕ "Επιτυχία"
+ΑΛΛΙΩΣ
+  ΓΡΑΨΕ "Προσπάθησε ξανά"
+ΤΕΛΟΣ_ΑΝ</code></pre><p>Inserta este fragmento en un programa que haya declarado y calculado <code>ΜΕΣΟΣ</code> y definido el umbral <code>ΟΡΙΟ</code>. Sigue los dos casos: media inferior al umbral y media igual o superior. Si el curso adopta otra estructura condicional, usa la forma oficial.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · estudio y comprobación</p>
+        <h2>Cómo estudiar y probar</h2>
+<p>Empieza por la estructura del programa y añade una construcción cada vez. Conserva las palabras reservadas griegas, ya que una herramienta quizá no reconozca traducciones o transliteraciones.</p><ul><li>Comprueba declaraciones y tipos antes de evaluar una expresión.</li><li>Utiliza entradas cuya respuesta puedas calcular a mano.</li><li>Prueba las condiciones a ambos lados de un límite.</li><li>En arreglos, sigue manualmente los índices mínimo y máximo.</li><li>En subprogramas, prueba argumentos representativos y de frontera.</li></ul><p>Las herramientas externas pueden admitir subconjuntos diferentes; compara los resultados con los ejemplos del libro oficial. Una implementación de terceros es una ayuda de estudio, no la definición del lenguaje curricular.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">10 · versiones y alcance</p>
+        <h2>Alcance y variantes</h2>
+<p>ΓΛΩΣΣΑ es una notación curricular. No existe un único paquete oficial que determine la sintaxis de todas las herramientas utilizadas por los estudiantes. El contenido y su presentación pueden variar entre ediciones del libro e instrucciones del curso.</p><p>Esta referencia describe las construcciones centrales del material escolar consultado y conserva las palabras clave griegas en los ejemplos. Comprueba tipos, operadores, subprogramas, tablas de verdad y reglas de arreglos en la edición asignada por el curso. Glossa sigue en evaluación para Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · lecturas adicionales</p>
+        <h2>Referencias</h2>
+<ul><li><a href="https://ebooks.edu.gr/ebooks/v/html/8547/2718/Pliroforiki_G-Lykeiou_html-empl/">Libro oficial de informática de secundaria</a>, en el portal de libros escolares de Grecia.</li><li><a href="https://www.iep.edu.gr/">Instituto de Política Educativa de Grecia (IEP)</a>, responsable de materiales curriculares y educativos.</li></ul><p>Utiliza el libro escolar para confirmar la grafía griega, las definiciones de tipos y la forma exigida en ejercicios y exámenes.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

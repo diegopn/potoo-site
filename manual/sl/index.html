@@ -1,0 +1,115 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/sl/"
+title: "SL | Manual do Potoo IDE"
+description: "Referência de SL: linguagem didática em espanhol para algoritmos, com variáveis, tipos, vetores, registros, funções e sub-rotinas."
+og_title: "SL · Referência educacional"
+og_description: "Referência de SL: linguagem didática em espanhol para algoritmos, com variáveis, tipos, vetores, registros, funções e sub-rotinas."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/sl/"
+  es: "/es/manual/sl/"
+  en: "/en/manual/sl/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência educacional · linguagem educacional de algoritmos · em avaliação</p>
+    <h1>SL</h1>
+    <p class="manual-intro">SL é uma linguagem educacional em espanhol para expressar algoritmos e aprender programação. O projeto da Universidad Nacional de Asunción reúne linguagem, ferramentas de desenvolvimento e materiais didáticos. Esta página organiza estruturas documentadas no projeto; SL está em avaliação e não é executada pelo Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de SL">
+      <h2>Nesta referência</h2><ol>
+        <li><a href="#sobre">Sobre SL</a></li>
+        <li><a href="#origem">Projeto e finalidade</a></li>
+        <li><a href="#estrutura">Estrutura de um algoritmo</a></li>
+        <li><a href="#dados">Variáveis, tipos e coleções</a></li>
+        <li><a href="#entrada">Entrada, saída e cálculos</a></li>
+        <li><a href="#controle">Decisões, laços e sub-rotinas</a></li>
+        <li><a href="#exemplo">Calcular a média de duas notas</a></li>
+        <li><a href="#estudo">Como praticar com SL</a></li>
+        <li><a href="#escopo">Implementação e limites</a></li>
+        <li><a href="#fontes">Referências</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · visão geral</p>
+        <h2>Sobre SL</h2>
+<p>SL apresenta conceitos de programação em uma forma textual legível para estudantes de língua espanhola. O material do projeto descreve um ambiente de aprendizagem para construir algoritmos, testar a execução e estudar os componentes de uma solução.</p><p>O projeto não é apenas uma tradução de outra pseudolinguagem: sua gramática, palavras reservadas e biblioteca devem ser lidas segundo a documentação de SL. Esta referência destaca conceitos apresentados no portal da Universidad Nacional de Asunción e evita misturar comandos de outros sistemas.</p><div class="manual-note planned"><strong>Estado no Potoo IDE:</strong> SL está em avaliação. Os exemplos desta página são uma referência ao projeto externo, sem afirmar compatibilidade com o aplicativo.</div>
+      </section>
+      <section id="origem">
+        <p class="kicker">02 · contexto</p>
+        <h2>Projeto e finalidade</h2>
+<p>O material oficial está associado à Facultad Politécnica da Universidad Nacional de Asunción. Ele apresenta SL como recurso para o ensino de algoritmos e inclui o ambiente SLE, documentos, exemplos e conteúdo de apoio.</p><p>A linguagem foi concebida para praticar conceitos que aparecem em cursos introdutórios:</p><ul><li>descrever uma sequência de instruções com começo e fim explícitos;</li><li>declarar dados e compor expressões;</li><li>ler entradas e mostrar resultados;</li><li>controlar decisões e repetições;</li><li>organizar cálculos em funções e sub-rotinas.</li></ul><p>O portal oficial e o livro do projeto são as referências para detalhes sintáticos e para os recursos disponíveis em uma versão específica do SLE.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · programa</p>
+        <h2>Estrutura de um algoritmo</h2>
+<p>Um programa simples pode declarar variáveis, iniciar a sequência executável, receber dados, calcular um resultado e encerrar. A documentação do projeto usa palavras reservadas em espanhol e letras minúsculas nos exemplos. O fragmento abaixo segue a forma ilustrada no material introdutório:</p><pre class="manual-code"><code>programa cuadrado
+var
+    n, resultado: entero
+inicio
+    leer(n)
+    resultado = n * n
+    imprimir(resultado)
+fin</code></pre><p><code>programa</code> nomeia o algoritmo, <code>var</code> introduz a declaração, <code>inicio</code> abre o corpo e <code>fin</code> encerra o programa. As regras para pontuação e declarações devem ser confirmadas na versão do material usada pela turma.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · dados e operadores</p>
+        <h2>Variáveis, tipos e coleções</h2>
+<p>SL documenta valores numéricos, texto e valores lógicos, além de estruturas para agrupar dados e trabalhar com coleções. Os nomes exatos dos tipos e as regras de índices devem seguir o manual oficial da versão.</p><div class="manual-table-wrap" role="region" aria-label="Conceitos de dados em SL" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Conceito</th><th scope="col">Uso didático</th></tr></thead><tbody><tr><td>Escalares</td><td>Representam números, caracteres ou condições.</td></tr><tr><td>Vetores e matrizes</td><td>Guardam sequências de elementos acessíveis por índice.</td></tr><tr><td>Registros</td><td>Agrupam campos nomeados com tipos próprios.</td></tr><tr><td>Expressões</td><td>Combinam operadores aritméticos, relacionais e lógicos.</td></tr></tbody></table></div><p>Uma boa declaração usa nomes que revelam a função do dado e escolhe o tipo mais adequado. Antes de acessar uma posição de vetor ou campo de registro, identifique os limites e a estrutura declarados.</p>
+      </section>
+      <section id="entrada">
+        <p class="kicker">05 · interação</p>
+        <h2>Entrada, saída e cálculos</h2>
+<p>Os exemplos do projeto usam instruções de leitura e impressão para ligar o algoritmo aos dados fornecidos pela pessoa que o executa. Uma expressão pode combinar valores e armazenar o cálculo em uma variável antes de exibi-lo.</p><pre class="manual-code"><code>imprimir("Ingrese la base:")
+leer(base)
+area = base * altura
+imprimir(area)</code></pre><p>Este fragmento é esquemático: declare <code>base</code>, <code>altura</code> e <code>area</code> conforme a gramática aceita pela versão do SLE. A forma de representar texto literal, separar argumentos e finalizar instruções precisa ser conferida no livro e nos exemplos oficiais.</p><p>Separar entrada, processamento e saída facilita testar o cálculo sem confundir uma falha de leitura com um erro na fórmula.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">06 · controle de fluxo</p>
+        <h2>Decisões, laços e sub-rotinas</h2>
+<p>SL inclui estruturas para selecionar um caminho, repetir comandos e reaproveitar operações. O projeto documenta formas como condicionais, laços de contagem ou condição, funções e sub-rotinas. As palavras reservadas precisas variam conforme a construção e devem ser copiadas do manual oficial, não de outra linguagem.</p><ul><li><strong>Decisão:</strong> executar um bloco conforme uma expressão lógica.</li><li><strong>Repetição:</strong> repetir instruções um número controlado de vezes ou até uma condição.</li><li><strong>Função:</strong> calcular e devolver um resultado.</li><li><strong>Sub-rotina:</strong> nomear uma sequência de ações que pode ser chamada em outro ponto.</li></ul><p>Ao escrever um laço, identifique a variável ou condição que muda e explique por que a repetição termina. Ao dividir um problema em rotinas, defina quais valores cada uma recebe e qual resultado ou efeito produz.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">07 · exemplo guiado</p>
+        <h2>Calcular a média de duas notas</h2>
+<p>Uma média simples permite praticar dados, entrada, expressão e saída. Primeiro declare as duas notas e a variável que guarda o resultado com um tipo apropriado. Depois, leia cada valor, calcule a soma dividida por dois e mostre a média.</p><pre class="manual-code"><code>programa media
+var
+    nota1, nota2, media: real
+inicio
+    leer(nota1)
+    leer(nota2)
+    media = (nota1 + nota2) / 2
+    imprimir(media)
+fin</code></pre><p>Para estender o exemplo, valide se as notas pertencem ao intervalo permitido pela atividade. Uma condição pode escolher uma mensagem para aprovado ou reprovado; um laço pode repetir a leitura enquanto houver uma nota inválida. A regra de aprovação pertence ao exercício e não deve ser embutida sem ser especificada.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · estudo e depuração</p>
+        <h2>Como praticar com SL</h2>
+<p>Use o ambiente e os exemplos incluídos no portal oficial para confirmar a sintaxe. Comece com programas pequenos e execute-os com entradas conhecidas. Se o SLE oferecer acompanhamento passo a passo na versão utilizada, avance uma instrução por vez e observe as variáveis relevantes.</p><ul><li>Teste entradas comuns e limites definidos pelo problema.</li><li>Confira os tipos antes de misturar números e texto em uma expressão.</li><li>Para vetores, verifique o primeiro e o último índice usados.</li><li>Em sub-rotinas, compare cada argumento com a função documentada do parâmetro.</li><li>Quando houver erro, localize a primeira instrução incompatível e confira a palavra reservada no manual.</li></ul><p>O livro e os materiais oficiais apresentam convenções completas e exercícios que não cabem em um resumo. Use esta página como mapa dos conceitos, não como substituta da especificação da instalação.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">09 · escopo e variantes</p>
+        <h2>Implementação e limites</h2>
+<p>O ecossistema de SL inclui a linguagem e o SLE, mas o portal pode oferecer versões e arquivos diferentes ao longo do tempo. Recursos de interface, depuração, bibliotecas e sintaxe devem ser confirmados no pacote efetivamente instalado.</p><p>Esta referência resume as famílias de recursos documentadas publicamente. Ela não promete que toda construção histórica esteja disponível em todas as versões, nem que um programa SL possa ser executado por outro interpretador sem adaptação. SL segue em avaliação como possibilidade futura para o Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · leitura adicional</p>
+        <h2>Referências</h2>
+<ul><li><a href="https://www.cnc.una.py/sl/SL-index.html">Portal oficial de SL</a>, da Universidad Nacional de Asunción.</li><li><a href="https://www.cnc.una.py/sl/SL-documentos.html">Documentos e materiais de SL</a>.</li><li><a href="https://www.cnc.una.py/sl/libro-sl.pdf">Livro de SL</a>, com conteúdo didático e exemplos.</li><li><a href="https://www.cnc.una.py/sl/SL-stdf.html">Referência de funções padrão</a>.</li></ul><p>Os documentos oficiais em espanhol são a fonte para confirmar grafia, precedência de operadores e sintaxe completa.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

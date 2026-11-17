@@ -1,0 +1,85 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/jeem/"
+title: "Jeem | Manual de Potoo IDE"
+description: "Referencia histórica de Jeem: motivación educativa, escritura y vocabulario árabes, fuentes disponibles y límites de la documentación pública."
+og_title: "Jeem · Referencia educativa"
+og_description: "Referencia histórica de Jeem: motivación educativa, escritura y vocabulario árabes, fuentes disponibles y límites de la documentación pública."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/jeem/"
+  es: "/es/manual/jeem/"
+  en: "/en/manual/jeem/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia educativa · lenguaje educativo árabe histórico · en evaluación</p>
+    <h1>Jeem</h1>
+    <p class="manual-intro">Fuentes históricas describen Jeem como un lenguaje educativo que utiliza letras, palabras y números árabes para enseñar programación. La documentación técnica pública accesible hoy es limitada y no permite confirmar una gramática ejecutable completa. Esta referencia separa los hechos documentados de las lagunas; Jeem está en evaluación y Potoo IDE no lo ejecuta.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Jeem">
+      <h2>En esta referencia</h2><ol>
+        <li><a href="#sobre">Sobre Jeem</a></li>
+        <li><a href="#contexto">Motivación educativa</a></li>
+        <li><a href="#caracteristicas">Qué se puede afirmar</a></li>
+        <li><a href="#sintaxe">Por qué no se incluye un ejemplo de código</a></li>
+        <li><a href="#leitura">Cómo estudiar la propuesta</a></li>
+        <li><a href="#comparacao">Jeem y Kalimat son proyectos distintos</a></li>
+        <li><a href="#limites">Disponibilidad y límites</a></li>
+        <li><a href="#fontes">Referencias</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · panorama</p>
+        <h2>Sobre Jeem</h2>
+<p>Jeem está relacionada con una iniciativa de programación en árabe concebida para acercar los conceptos de informática a la lengua utilizada por los estudiantes. Los relatos del proyecto destacan el uso de letras, palabras y números árabes y su posible aplicación en la educación escolar.</p><p>La documentación pública que se conserva hoy es mucho menos completa que la de los lenguajes didácticos mantenidos actualmente. Por eso, esta página ofrece una referencia contextual y no una especificación del lenguaje.</p><div class="manual-note planned"><strong>Estado en Potoo IDE:</strong> Jeem está en evaluación. Esta página registra únicamente lo respaldado por las fuentes accesibles y no afirma que sea compatible con la aplicación.</div>
+      </section>
+      <section id="contexto">
+        <p class="kicker">02 · contexto histórico</p>
+        <h2>Motivación educativa</h2>
+<p>Una entrevista publicada por el periódico saudí Al-Riyadh presenta Jeem como una forma de enseñar programación mediante escritura y vocabulario árabes. La propuesta responde a una barrera frecuente en los materiales de informática: los ejemplos y palabras reservadas suelen presuponer familiaridad con el alfabeto latino y el inglés.</p><p>Al leer este objetivo, conviene distinguir tres aspectos:</p><ul><li><strong>Idioma del código:</strong> se describe el proyecto como basado en escritura árabe.</li><li><strong>Finalidad:</strong> acercar el aprendizaje de programación al contexto escolar árabe.</li><li><strong>Implementación:</strong> los detalles del software actual requieren su propia fuente técnica.</li></ul><p>Conocer una finalidad educativa no basta para deducir cómo interpretaba un compilador cada construcción.</p>
+      </section>
+      <section id="caracteristicas">
+        <p class="kicker">03 · características documentadas</p>
+        <h2>Qué se puede afirmar</h2>
+<p>Las fuentes públicas consultadas respaldan una descripción general, no un catálogo formal de comandos. Esta tabla hace explícito ese límite para no presentar inferencias como si fueran una especificación.</p><div class="manual-table-wrap" role="region" aria-label="Información documentada y desconocida sobre Jeem" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tema</th><th scope="col">Estado en las fuentes consultadas</th></tr></thead><tbody><tr><td>Escritura</td><td>Los relatos describen letras y palabras árabes.</td></tr><tr><td>Finalidad</td><td>El proyecto se presentó como una herramienta para enseñar programación en las escuelas.</td></tr><tr><td>Gramática</td><td>No se localizó una referencia pública completa y actual.</td></tr><tr><td>Tipos y comandos</td><td>No hay información suficiente para publicar aquí una lista normativa.</td></tr><tr><td>Entorno actual</td><td>No se confirmó un distribuidor oficial mantenido con instrucciones vigentes.</td></tr></tbody></table></div><p>Esta distinción forma parte del manual: sin una gramática verificable, los ejemplos de código serían conjeturas.</p>
+      </section>
+      <section id="sintaxe">
+        <p class="kicker">04 · sintaxis</p>
+        <h2>Por qué no se incluye un ejemplo de código</h2>
+<p>Un ejemplo ejecutable requiere una fuente que confirme palabras reservadas, dirección de escritura, delimitadores, tipos y reglas de ejecución. Las fuentes históricas encontradas describen la propuesta de Jeem, pero no proporcionan una gramática completa para validar esas decisiones.</p><p>Para documentar un ejemplo de forma fiable haría falta obtener:</p><ol><li>el manual técnico o libro didáctico de la versión original;</li><li>el entorno que ejecuta el lenguaje, si aún está disponible;</li><li>un programa de ejemplo acompañado de su salida esperada;</li><li>información sobre codificación y orden del texto árabe.</li></ol><p>Hasta entonces, no sustituyas la gramática ausente por palabras árabes traducidas ni por construcciones de Kalimat: son proyectos distintos.</p>
+      </section>
+      <section id="leitura">
+        <p class="kicker">05 · lectura del proyecto</p>
+        <h2>Cómo estudiar la propuesta</h2>
+<p>Aunque no haya una implementación disponible, se puede analizar la intención educativa. Compara la propuesta lingüística con la experiencia del estudiante: qué términos resultan familiares, cómo se editaría el código en pantalla y cómo representaría la notación la secuencia, la selección y la repetición.</p><ul><li>Utiliza los relatos como fuentes históricas sobre el objetivo y el público.</li><li>Indica si una afirmación procede de una entrevista y no de una especificación.</li><li>No conviertas una descripción general en garantía de una función técnica.</li><li>Si encuentras un manual original, registra la institución, el año y la versión antes de reproducir ejemplos.</li></ul><p>Este método permite estudiar la contribución del proyecto sin inventar funciones ausentes en las fuentes accesibles.</p>
+      </section>
+      <section id="comparacao">
+        <p class="kicker">06 · proyectos relacionados</p>
+        <h2>Jeem y Kalimat son proyectos distintos</h2>
+<p>Jeem y Kalimat suelen agruparse porque utilizan el árabe, pero no son el mismo lenguaje. Kalimat tiene un portal actual y documentación distribuida que describe sus funciones de programación; las fuentes consultadas sobre Jeem son principalmente históricas y generales.</p><p>No atribuyas a Jeem las funciones orientadas a objetos, la concurrencia, los gráficos o la integración nativa anunciados por Kalimat. Una comparación válida necesita una fuente específica de cada proyecto e indicar el periodo de la documentación.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">07 · alcance e incertidumbre</p>
+        <h2>Disponibilidad y límites</h2>
+<p>La fuente periodística y el panorama de referencia ayudan a situar el contexto de Jeem, pero no sustituyen un repositorio mantenido ni una especificación original. No se confirmó que la dirección histórica asociada al proyecto siga activa como portal con documentación y descargas actuales.</p><p>Por tanto, esta página no presenta como actuales un sistema operativo, un proceso de instalación, un compilador, una versión ni una sintaxis. La situación podrá revisarse si aparecen archivos primarios verificables. Jeem sigue en evaluación, sin compromiso de implementación.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">08 · lecturas adicionales</p>
+        <h2>Referencias</h2>
+<ul><li><a href="https://www.alriyadh.com/236226">Entrevista sobre Jeem</a>, publicada por Al-Riyadh y atribuida al creador del proyecto.</li><li><a href="https://en.wikipedia.org/wiki/Non-English-based_programming_languages#Arabic">Panorama de lenguajes de programación no basados en inglés</a>, con una sección sobre proyectos en árabe; sirve como pista bibliográfica, no como referencia normativa.</li></ul><p>Para crear un manual técnico detallado se necesitaría acceder a documentación, programas de ejemplo o herramientas originales de Jeem, aún no confirmados en las fuentes consultadas.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

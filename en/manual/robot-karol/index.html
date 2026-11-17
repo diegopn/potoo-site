@@ -1,0 +1,101 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/robot-karol/"
+title: "Robot Karol | Potoo IDE Manual"
+description: "Robot Karol manual: a grid robot, commands and sensors, repetition, conditions, block or text editing, and teaching exercises."
+og_title: "Robot Karol · Educational reference"
+og_description: "Robot Karol manual: a grid robot, commands and sensors, repetition, conditions, block or text editing, and teaching exercises."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/robot-karol/"
+  es: "/es/manual/robot-karol/"
+  en: "/en/manual/robot-karol/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · German educational environment · under evaluation</p>
+    <h1>Robot Karol</h1>
+    <p class="manual-intro">Robot Karol is a German educational environment where students program a robot on a grid. The current online project combines visual tasks, blocks, and text editing, with supporting materials and code modes. It is distinct from Karel the Robot, which has a separate reference. Robot Karol is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Robot Karol">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">What is Robot Karol</a></li>
+        <li><a href="#ambiente">The grid world</a></li>
+        <li><a href="#comandos">Commands and sensors</a></li>
+        <li><a href="#estruturas">Sequence, loops, and conditions</a></li>
+        <li><a href="#editores">Blocks, text, and activities</a></li>
+        <li><a href="#exemplo">Traverse a clear row</a></li>
+        <li><a href="#estrategias">Plan and debug tasks</a></li>
+        <li><a href="#distincao">Robot Karol and Karel the Robot</a></li>
+        <li><a href="#limites">Versions and support</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>What is Robot Karol</h2>
+<p>Robot Karol teaches programming through actions performed by a robot in a grid world. Rather than starting with an empty screen and many abstract concepts, students can observe movement, orientation, and obstacles after each command.</p><p>The current online project keeps this teaching focus and offers tasks, a visual representation, and block or text editing. Materials may provide different code forms and levels; use the documentation that matches the activity.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> Robot Karol is under evaluation. It is separate from Karel the Robot; no integration with the app is available.</div>
+      </section>
+      <section id="ambiente">
+        <p class="kicker">02 · execution world</p>
+        <h2>The grid world</h2>
+<p>The robot occupies a cell and has an orientation. A task’s scenario defines the space, obstacles, and, where relevant, marks or goals. A command changes the world state: the robot moves, turns, or interacts with available elements.</p><div class="manual-table-wrap" role="region" aria-label="Components of the Robot Karol world" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Component</th><th scope="col">Role in an exercise</th></tr></thead><tbody><tr><td>Robot</td><td>Executes instructions and keeps position and direction.</td></tr><tr><td>Grid</td><td>Defines the positions through which the robot can move.</td></tr><tr><td>Obstacles</td><td>Restrict movement and motivate sensor use.</td></tr><tr><td>Marks or objects</td><td>May represent elements the robot encounters or changes.</td></tr><tr><td>Goal scenario</td><td>Describes the state the solution must reach.</td></tr></tbody></table></div><p>Read the initial conditions before programming. The same algorithm can fail if the starting direction or obstacle position changes.</p>
+      </section>
+      <section id="comandos">
+        <p class="kicker">03 · actions</p>
+        <h2>Commands and sensors</h2>
+<p>Basic actions change the robot’s position or orientation. Conditions inspect the surroundings so a program can respond to its scenario. In the Python course associated with the project, examples use calls on the <code>Robot</code> interface:</p><pre class="manual-code"><code>karol = Robot()
+karol.schritt()
+karol.linksDrehen()</code></pre><p>The snippet creates the robot object, takes one step, and turns left according to that material’s API. German names and exact calls depend on the selected code mode. Check the tutorial for the active version before combining commands from different environments.</p><ul><li><strong>Actions:</strong> move, turn, and interact with objects defined by a task.</li><li><strong>Conditions:</strong> check a clear path, obstacles, or objects in the current cell.</li><li><strong>Observation:</strong> inspect world state before deciding what to do next.</li></ul>
+      </section>
+      <section id="estruturas">
+        <p class="kicker">04 · control flow</p>
+        <h2>Sequence, loops, and conditions</h2>
+<p>The environment teaches programs built from sequences, repetitions, and conditional choices. Some materials include repetition a fixed number of times and repetition controlled by a sensor.</p><div class="manual-table-wrap" role="region" aria-label="Robot Karol programming structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Idea</th><th scope="col">Useful question</th></tr></thead><tbody><tr><td>Sequence</td><td>Which action should happen first?</td></tr><tr><td>Counted repetition</td><td>How many steps or turns are needed?</td></tr><tr><td>Conditional repetition</td><td>Which sensor says to continue or stop?</td></tr><tr><td>Decision</td><td>What should happen when the path is clear or blocked?</td></tr><tr><td>Procedure</td><td>Which sequence should have a name so it can be reused?</td></tr></tbody></table></div><p>Sensor-based conditions make an algorithm adaptable to related scenarios. Still, test every case specified by the exercise and ensure that a loop can finish.</p>
+      </section>
+      <section id="editores">
+        <p class="kicker">05 · editing modes</p>
+        <h2>Blocks, text, and activities</h2>
+<p>The online project offers visual block editing and text editing. Blocks make loop and condition structure visible; text helps students study commands and can prepare them to move into programming languages.</p><p>The platform also organizes tasks and course material. In a lesson sequence:</p><ol><li>read the goal and inspect the world’s initial state;</li><li>write a strategy before placing blocks;</li><li>run the program and observe where the robot diverges from the goal;</li><li>change the smallest necessary part and test again.</li></ol><p>Some courses accompany the activities with Python or Java. Those modes are specific teaching materials and should not be confused with Robot Karol’s own representation.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">06 · worked example</p>
+        <h2>Traverse a clear row</h2>
+<p>Suppose a task asks the robot to move along a corridor of known length. In the Python text form used by the course, the idea is to repeat a step; in the block editor, use the corresponding repetition block.</p><pre class="manual-code"><code>karol = Robot()
+for _ in range(4):
+    karol.schritt()</code></pre><p>Before running, confirm that the corridor has at least four clear cells and that the robot faces it. Then try a shorter corridor or an obstacle to see why a sensor is needed when the length is not known in advance.</p>
+      </section>
+      <section id="estrategias">
+        <p class="kicker">07 · planning</p>
+        <h2>Plan and debug tasks</h2>
+<p>Robot tasks are useful decomposition exercises. Name repeated actions, identify sensor-based choices, and sketch the route on a grid. Visual execution helps locate the step where orientation or position became unexpected.</p><ul><li>Test the exact initial scenario from the exercise.</li><li>Watch orientation after every turn.</li><li>Check whether sensors are relative to the robot’s current direction.</li><li>Test boundary cases, such as the shortest corridor and an obstacle immediately ahead.</li><li>If a solution uses Python or Java, check the integration semantics in the accompanying material.</li></ul><p>The goal is a sequence that works under the exercise conditions, not only in the first scenario you tried.</p>
+      </section>
+      <section id="distincao">
+        <p class="kicker">08 · related projects</p>
+        <h2>Robot Karol and Karel the Robot</h2>
+<p>Robot Karol and Karel the Robot share the educational idea of controlling a robot, but they are different projects and ecosystems. The Karel reference on this site follows a Stanford Java model; Robot Karol has its own German environment, online platform, and teaching materials.</p><p>Commands, sensors, syntax, and behavior are not interchangeable. Code written for one Karel implementation should not be presented as Robot Karol code without adaptation and testing.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">09 · versions and scope</p>
+        <h2>Versions and support</h2>
+<p>This reference follows the online platform and its public repository. Interface features, text modes, tasks, and course APIs may evolve; use the tutorial and examples for the active version to confirm commands.</p><p>The manual describes the original environment. It does not mean Potoo IDE includes the simulator, robot, or tools from the project. Robot Karol remains under evaluation.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://karol.arrrg.de/">Official Robot Karol Online platform</a>.</li><li><a href="https://github.com/Entkenntnis/robot-karol-online">Official online environment repository</a>, with implementation, tasks, and materials.</li><li><a href="https://raw.githubusercontent.com/Entkenntnis/robot-karol-online/main/material/Pythonkurs_mit_Robot_Karol_Online.pdf">Python course with Robot Karol Online</a>, with examples of the API used in the material.</li></ul><p>Consult the platform’s documentation to distinguish its text representation from Python or Java examples.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

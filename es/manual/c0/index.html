@@ -1,0 +1,112 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/c0/"
+title: "C0 (C simplificado) | Manual de Potoo IDE"
+description: "Referencia introductoria de C0: subconjunto de C usado en cursos de programación, con tipos, funciones, contratos, arreglos, estructuras y reglas de seguridad."
+og_title: "C0 (C simplificado) · Referencia educativa"
+og_description: "Referencia introductoria de C0: subconjunto de C usado en cursos de programación, con tipos, funciones, contratos, arreglos, estructuras y reglas de seguridad."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/c0/"
+  es: "/es/manual/c0/"
+  en: "/en/manual/c0/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia educativa · lenguaje de programación · en evaluación</p>
+    <h1>C0 (C simplificado)</h1>
+    <p class="manual-intro">C0 es un subconjunto de C utilizado en cursos introductorios de programación de Carnegie Mellon University. Esta referencia presenta su modelo imperativo, tipos y estructuras habituales, funciones, contratos y comprobaciones de seguridad. C0 está en evaluación para Potoo IDE; este manual describe el lenguaje original y no implica que la aplicación lo admita actualmente.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de C0 (C simplificado)">
+      <h2>En esta referencia</h2><ol>
+        <li><a href="#sobre">Qué es C0</a></li>
+        <li><a href="#origem">Origen y objetivos didácticos</a></li>
+        <li><a href="#modelo">Tipos, valores y colecciones</a></li>
+        <li><a href="#sintaxe">Funciones, declaraciones y bloques</a></li>
+        <li><a href="#controle">Decisiones, bucles y llamadas</a></li>
+        <li><a href="#contratos">Contratos, invariantes y seguridad</a></li>
+        <li><a href="#exemplo">Planificar una función de búsqueda</a></li>
+        <li><a href="#estudo">Cómo estudiar y depurar C0</a></li>
+        <li><a href="#limites">Alcance de esta referencia</a></li>
+        <li><a href="#fontes">Referencias</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · panorama</p>
+        <h2>Qué es C0</h2>
+<p>C0 se diseñó para enseñar programación imperativa y estructuras de datos con una sintaxis familiar para quienes conocen C, pero con menos características y reglas más controladas. Se utiliza en cursos introductorios de Carnegie Mellon University, incluidos materiales de la asignatura 15-122.</p><p>El objetivo didáctico es hacer explícitos los tipos, el flujo de control, la memoria y las condiciones que debe respetar una función. El curso describe C0 como un subconjunto seguro de C, con recolección automática de memoria, enteros de intervalo fijo y contratos. El lenguaje define su comportamiento para que el alumnado no dependa de casos indefinidos de C. No pretende aceptar todos los programas de C: un archivo puede depender de características que no existen en C0.</p><div class="manual-note planned"><strong>Estado en Potoo IDE:</strong> C0 está en evaluación. El entorno y las herramientas de compilación de Carnegie Mellon son las referencias para ejecutar los ejemplos de esta página.</div>
+      </section>
+      <section id="origem">
+        <p class="kicker">02 · contexto</p>
+        <h2>Origen y objetivos didácticos</h2>
+<p>C0 se desarrolló para apoyar la enseñanza de programación y el razonamiento sobre la memoria. Su sintaxis se parece a la de un lenguaje de la familia C, mientras que su diseño restringe construcciones que dificultarían analizar el comportamiento de un programa para principiantes.</p><p>La referencia oficial organiza el lenguaje en torno a funciones, tipos, instrucciones y contratos. Los cursos utilizan estos recursos para desarrollar soluciones correctas y explicar por qué funciona una función, en vez de limitarse a obtener una salida para un caso de prueba.</p><ul><li><strong>Programación imperativa:</strong> variables, asignaciones, llamadas, condiciones y bucles.</li><li><strong>Abstracción:</strong> funciones y estructuras nombran operaciones y datos relacionados.</li><li><strong>Razonamiento sobre corrección:</strong> precondiciones, poscondiciones e invariantes expresan lo que debe cumplirse.</li></ul>
+      </section>
+      <section id="modelo">
+        <p class="kicker">03 · datos</p>
+        <h2>Tipos, valores y colecciones</h2>
+<p>El tipo de una expresión limita las operaciones que se pueden aplicar. Esta tabla resume las familias presentes en materiales didácticos de C0; las características concretas dependen del nivel del curso y de la versión de las herramientas.</p><div class="manual-table-wrap" role="region" aria-label="Tipos habituales de C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Familia</th><th scope="col">Uso</th><th scope="col">Nota</th></tr></thead><tbody><tr><td><code>int</code></td><td>Números enteros.</td><td>Se utiliza en cálculos e índices según las reglas documentadas por la implementación.</td></tr><tr><td><code>bool</code></td><td>Valores lógicos.</td><td>Condiciones de <code>if</code> y bucles.</td></tr><tr><td><code>char</code> y <code>string</code></td><td>Caracteres y texto.</td><td>La referencia describe la representación permitida en cada versión.</td></tr><tr><td>arreglos y estructuras</td><td>Colecciones indexadas y registros con campos.</td><td>Los arreglos tienen tamaño definido; las estructuras agrupan valores con nombre.</td></tr><tr><td>punteros</td><td>Referencias a valores reservados.</td><td>Tema avanzado con reglas y contratos específicos.</td></tr></tbody></table></div><p>C0 no debe tratarse como C completo. Los tipos numéricos, las conversiones, los punteros y las operaciones de biblioteca deben seguir la referencia de la versión del curso, no las suposiciones sobre un compilador C común.</p>
+      </section>
+      <section id="sintaxe">
+        <p class="kicker">04 · estructura</p>
+        <h2>Funciones, declaraciones y bloques</h2>
+<p>Un programa se organiza en funciones. La firma declara el tipo del resultado, el nombre de la función y los tipos de los parámetros; el cuerpo se delimita con llaves. Las declaraciones locales introducen valores usados en un bloque, y <code>return</code> termina una función produciendo el resultado esperado.</p><pre class="manual-code"><code>int square(int value) {
+    return value * value;
+}
+
+int main() {
+    int result = square(6);
+    return 0;
+}</code></pre><p>El ejemplo muestra una función pura pequeña y una función de entrada convencional. La biblioteca y el contrato requerido para <code>main</code> pueden depender del entorno de compilación del curso. Los comentarios deben explicar el propósito o una decisión relevante, no sustituir una descripción precisa de parámetros y resultados.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · flujo de control</p>
+        <h2>Decisiones, bucles y llamadas</h2>
+<p>C0 ofrece las instrucciones habituales de un modelo imperativo: secuencia, selección, repetición, llamadas a funciones y retornos. Las condiciones son expresiones booleanas. Un bucle debe avanzar hacia su condición de salida; razonar informalmente sobre ese avance ayuda a evitar programas que no terminan.</p><div class="manual-table-wrap" role="region" aria-label="Estructuras de control de C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Función</th></tr></thead><tbody><tr><td><code>if / else</code></td><td>Elige un bloque a partir de una condición.</td></tr><tr><td><code>while</code></td><td>Repite mientras la condición siga siendo verdadera.</td></tr><tr><td><code>for</code></td><td>Agrupa inicialización, condición y actualización en un bucle contado.</td></tr><tr><td><code>return</code></td><td>Devuelve el valor declarado por la firma de la función.</td></tr></tbody></table></div><p>Los arreglos, las estructuras y los punteros permiten representar colecciones y relaciones entre datos. Cada acceso a un arreglo debe permanecer dentro de sus límites válidos; salir de ellos es una infracción de seguridad. Utiliza contratos e invariantes para justificar índices y relaciones entre datos, sin presuponer el comportamiento de otra implementación de C.</p>
+      </section>
+      <section id="contratos">
+        <p class="kicker">06 · corrección</p>
+        <h2>Contratos, invariantes y seguridad</h2>
+<p>Los contratos registran las condiciones para llamar a una función y lo que garantiza al terminar. Una precondición expresa un requisito de entrada; una poscondición describe el resultado. Un invariante de bucle resume una propiedad que debe seguir siendo cierta en cada repetición.</p><ul><li><strong>Precondición:</strong> indica límites y relaciones que deben cumplir los argumentos.</li><li><strong>Poscondición:</strong> relaciona el valor devuelto con el problema resuelto por la función.</li><li><strong>Invariante:</strong> explica el significado del estado mantenido durante un algoritmo iterativo.</li></ul><p>La referencia escribe precondiciones y poscondiciones en comentarios especiales, como <code>//@requires expresión;</code> y <code>//@ensures expresión;</code>. En una poscondición, <code>\result</code> representa el valor devuelto. Los invariantes de bucle utilizan <code>//@loop_invariant expresión;</code> y deben ser expresiones lógicas. Cuando se habilita la comprobación dinámica, las herramientas evalúan estos contratos en los puntos definidos por la referencia; quien escribe el programa sigue siendo responsable de los contratos correctos y del razonamiento sobre límites.</p><pre class="manual-code"><code>int maximum(int x, int y)
+//@ensures \result &gt;= x &amp;&amp; \result &gt;= y;
+{
+    if (x &gt; y) {
+        return x;
+    } else {
+        return y;
+    }
+}</code></pre>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">07 · ejemplo guiado</p>
+        <h2>Planificar una función de búsqueda</h2>
+<p>Considera una función que busca un entero en un arreglo. Antes de implementarla, define qué significa «encontrado»: devolver un índice válido si aparece el valor y comunicar su ausencia en caso contrario. El tipo y el valor para representar «no encontrado» deben seguir la convención del ejercicio.</p><ol><li>Declara los argumentos del arreglo, su tamaño y el valor buscado.</li><li>Decide si se permite tamaño cero y qué condición debe cumplir el arreglo.</li><li>Recorre los índices válidos en orden y compara cada elemento.</li><li>Devuelve el índice en cuanto encuentres una coincidencia.</li><li>Tras el bucle, devuelve el marcador de ausencia documentado.</li></ol><p>Una poscondición puede relacionar el índice devuelto con el elemento coincidente. Si el resultado indica ausencia, debe expresar que ningún elemento del intervalo cumple la búsqueda. Así, la especificación también cubre arreglos vacíos y valores repetidos.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · estudio y depuración</p>
+        <h2>Cómo estudiar y depurar C0</h2>
+<p>Compila fragmentos pequeños mientras aprendes. Para cada función, anota su firma, los casos de entrada y el significado esperado del resultado. Después sigue la ejecución con una tabla de variables; en algoritmos sobre colecciones, incluye el índice y el intervalo ya procesado.</p><ul><li>Prueba valores límite: cero, tamaño mínimo, primer y último índice.</li><li>Ejercita las ramas verdadera y falsa de cada condición.</li><li>Incluye arreglos vacíos, de un elemento y con valores repetidos cuando el contrato lo permita.</li><li>Lee los mensajes del verificador o compilador junto con la precondición y el invariante pertinentes.</li></ul><p>Un programa que compila aún puede resolver el problema equivocado. Compara la salida con un cálculo independiente y prueba casos que recorran todas las ramas.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">09 · versión y alcance</p>
+        <h2>Alcance de esta referencia</h2>
+<p>C0 es un lenguaje y conjunto de herramientas para la enseñanza; no garantiza compatibilidad con C, C++ ni con una distribución concreta. Los cursos pueden proporcionar bibliotecas, opciones de compilación y convenciones propias. Cuando haya diferencias, prevalecen la referencia oficial y los materiales de la asignatura.</p><p>Esta página se limita a ideas introductorias compartidas por las referencias consultadas. No afirma que Potoo IDE admita C0 ni sustituye el manual de la versión usada en clase. El lenguaje sigue en evaluación como candidato del proyecto.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · lecturas adicionales</p>
+        <h2>Referencias</h2>
+<ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Referencia oficial del lenguaje C0</a>, publicada por Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Página del curso 15-122</a>, con el contexto curricular de programación imperativa y estructuras de datos.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">Programa del curso 15-122 de 2026</a>, con un resumen de la seguridad, recolección de memoria, aritmética entera y contratos de C0.</li><li><a href="https://www.cs.cmu.edu/~c0/">Portal del proyecto C0</a>, con materiales y herramientas.</li></ul><p>Consulta la edición de referencia adoptada por la asignatura: las bibliotecas, los contratos y las herramientas pueden cambiar entre versiones.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

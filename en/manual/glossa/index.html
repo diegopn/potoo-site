@@ -1,0 +1,118 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/glossa/"
+title: "Glossa (ΓΛΩΣΣΑ) | Potoo IDE Manual"
+description: "ΓΛΩΣΣΑ reference: the Greek school teaching language, with variables, input and output, conditions, loops, arrays, and subprograms."
+og_title: "Glossa (ΓΛΩΣΣΑ) · Educational reference"
+og_description: "ΓΛΩΣΣΑ reference: the Greek school teaching language, with variables, input and output, conditions, loops, arrays, and subprograms."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/glossa/"
+  es: "/es/manual/glossa/"
+  en: "/en/manual/glossa/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · Greek curriculum notation · under evaluation</p>
+    <h1>Glossa (ΓΛΩΣΣΑ)</h1>
+    <p class="manual-intro">ΓΛΩΣΣΑ (“Glossa”, literally “language”) is a teaching language presented in Greek secondary-school computer science materials. This reference follows the official school textbook: there is no single official interpreter defining the whole ecosystem. Glossa is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Glossa (ΓΛΩΣΣΑ)">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">About ΓΛΩΣΣΑ</a></li>
+        <li><a href="#curriculo">Source and audience</a></li>
+        <li><a href="#estrutura">Program organization</a></li>
+        <li><a href="#dados">Types, operators, and assignment</a></li>
+        <li><a href="#io">Input and output</a></li>
+        <li><a href="#controle">Conditions and loops</a></li>
+        <li><a href="#subprogramas">Arrays and subprograms</a></li>
+        <li><a href="#exemplo">Average and classification</a></li>
+        <li><a href="#estudo">How to study and test</a></li>
+        <li><a href="#escopo">Scope and variants</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>About ΓΛΩΣΣΑ</h2>
+<p>ΓΛΩΣΣΑ is the programming notation taught in official Greek computer science materials. It provides an algorithm structure and a set of types, commands, and control structures for students to specify solutions.</p><p>The name does not refer to one software product. Third-party editors and simulators may implement subsets or their own conventions; for an exam or exercise, the normative source is the curriculum material assigned by the course.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> Glossa is under evaluation as an educational notation. This reference does not mean the app runs ΓΛΩΣΣΑ programs.</div>
+      </section>
+      <section id="curriculo">
+        <p class="kicker">02 · curriculum context</p>
+        <h2>Source and audience</h2>
+<p>The main source for this page is the computer science textbook published on the official Greek schoolbook portal. It presents algorithms, structured programming, and Greek syntax used in curriculum exercises.</p><p>Students use the notation to learn:</p><ul><li>declaring and using typed variables;</li><li>sequence, selection, and repetition;</li><li>arrays and procedures or functions;</li><li>input and output;</li><li>planning, reading, and testing algorithms.</li></ul><p>The schoolbook takes precedence over informal translations or third-party tools. Latin transliterations in explanations are only descriptive; Greek reserved words appear in examples.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · program structure</p>
+        <h2>Program organization</h2>
+<p>A ΓΛΩΣΣΑ program marks its header, variable section, executable body, and closing. The following example follows the structure shown in the textbook and calculates the mean of two integers:</p><pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΜΕΣΟΣΟΡΟΣ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Α, Β
+  ΠΡΑΓΜΑΤΙΚΕΣ: ΜΕΣΟΣ
+ΑΡΧΗ
+  ΔΙΑΒΑΣΕ Α, Β
+  ΜΕΣΟΣ &lt;- (Α + Β) / 2
+  ΓΡΑΨΕ ΜΕΣΟΣ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre><p><code>ΠΡΟΓΡΑΜΜΑ</code> names the program, <code>ΜΕΤΑΒΛΗΤΕΣ</code> starts declarations, <code>ΑΡΧΗ</code> opens the instructions, and <code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code> closes the program. Follow the course rules for typography and identifiers.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · data</p>
+        <h2>Types, operators, and assignment</h2>
+<p>The schoolbook distinguishes types for integers, real values, characters, and logical values. Declarations group variables by type; assignment uses an arrow pointing to the variable receiving the value.</p><div class="manual-table-wrap" role="region" aria-label="Glossa types and keywords" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Greek form</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>ΑΚΕΡΑΙΕΣ</code></td><td>Integer variables.</td></tr><tr><td><code>ΠΡΑΓΜΑΤΙΚΕΣ</code></td><td>Real variables.</td></tr><tr><td><code>ΧΑΡΑΚΤΗΡΕΣ</code></td><td>Characters or strings as defined in the material.</td></tr><tr><td><code>ΛΟΓΙΚΕΣ</code></td><td>Logical values.</td></tr><tr><td><code>&lt;-</code></td><td>Assigns the right-hand expression to the left-hand variable.</td></tr></tbody></table></div><p>Expressions combine arithmetic, relational, and logical operations. Parentheses make calculation order explicit. Check the textbook’s tables for precedence, conversions, and type limits.</p>
+      </section>
+      <section id="io">
+        <p class="kicker">05 · interaction</p>
+        <h2>Input and output</h2>
+<p><code>ΔΙΑΒΑΣΕ</code> receives data for the variables listed and <code>ΓΡΑΨΕ</code> displays values or messages. These statements help separate interaction from the central calculation.</p><pre class="manual-code"><code>ΓΡΑΨΕ "Δώσε έναν αριθμό"
+ΔΙΑΒΑΣΕ Α
+ΤΕΤΡΑΓΩΝΟ &lt;- Α * Α
+ΓΡΑΨΕ ΤΕΤΡΑΓΩΝΟ</code></pre><p>This fragment highlights Greek input and output commands. In a complete program, declare each variable in the proper section and follow the literal and identifier form used by the schoolbook. The Greek message can be replaced by another literal without changing the algorithm’s structure.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">06 · control flow</p>
+        <h2>Conditions and loops</h2>
+<p>ΓΛΩΣΣΑ includes selection and repetition structures suited to structured programming exercises. Selection chooses a block based on a condition; loops repeat instructions according to a count or condition. The textbook specifies each form’s reserved words and delimiters.</p><ul><li><strong>Simple or two-way selection:</strong> handle a case and optionally its alternative.</li><li><strong>Multi-way selection:</strong> choose among several possible values.</li><li><strong>Counted repetition:</strong> traverse a sequence of values.</li><li><strong>Conditional repetition:</strong> continue while a condition holds or until one occurs.</li></ul><p>A condition must produce a logical value. For each loop, identify the variable that changes and confirm that its bounds do not leave the final iteration outside the intended range.</p>
+      </section>
+      <section id="subprogramas">
+        <p class="kicker">07 · decomposition</p>
+        <h2>Arrays and subprograms</h2>
+<p>The textbook also covers arrays and subprograms. An array stores elements of one type, accessed by index. Procedures group actions; functions produce a result. Parameters carry input values and, depending on the form taught, data that a routine updates.</p><p>When using an array, declare its dimension and check the index range set by the exercise. When defining a procedure or function:</p><ol><li>choose a name that describes its task;</li><li>list parameters and their types;</li><li>declare any needed local variables;</li><li>specify the result or observable effect;</li><li>test the routine on its own before combining it with the main program.</li></ol><p>Read the adopted textbook edition for details on bounds, parameter passing, and full syntax.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · worked example</p>
+        <h2>Average and classification</h2>
+<p>After calculating an average, a condition can classify the result. The threshold belongs to the problem statement; do not assume one universal passing rule.</p><pre class="manual-code"><code>ΑΝ ΜΕΣΟΣ &gt;= ΟΡΙΟ ΤΟΤΕ
+  ΓΡΑΨΕ "Επιτυχία"
+ΑΛΛΙΩΣ
+  ΓΡΑΨΕ "Προσπάθησε ξανά"
+ΤΕΛΟΣ_ΑΝ</code></pre><p>Insert this fragment in a program that has declared and calculated <code>ΜΕΣΟΣ</code> and defined the threshold <code>ΟΡΙΟ</code>. Trace both cases: an average below the threshold and one equal to or above it. Follow the official form if the course uses another conditional construct.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · study and checking</p>
+        <h2>How to study and test</h2>
+<p>Start with the program format and add one construct at a time. Preserve Greek reserved words, since translations or transliterations may not be recognized by a tool.</p><ul><li>Check declarations and types before evaluating an expression.</li><li>Use inputs whose answers can be calculated by hand.</li><li>Test conditions on both sides of a boundary.</li><li>For arrays, trace the minimum and maximum indices.</li><li>For subprograms, test representative and boundary arguments.</li></ul><p>External tools may support different subsets, so compare their results with examples in the official textbook. A third-party implementation is a study aid, not the definition of the curriculum language.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">10 · versions and scope</p>
+        <h2>Scope and variants</h2>
+<p>ΓΛΩΣΣΑ is a curriculum notation. There is no single official software package defining the syntax used by every student tool. Content and presentation can vary between textbook editions and course instructions.</p><p>This reference describes central constructs in the school material consulted and keeps Greek keywords in examples. Confirm types, operators, subprograms, truth tables, and array rules in the edition assigned by your course. Glossa remains under evaluation in Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://ebooks.edu.gr/ebooks/v/html/8547/2718/Pliroforiki_G-Lykeiou_html-empl/">Official secondary-school computer science textbook</a>, on the Greek schoolbook portal.</li><li><a href="https://www.iep.edu.gr/">Greek Institute of Educational Policy (IEP)</a>, responsible for curriculum and education materials.</li></ul><p>Use the textbook to confirm Greek spelling, type definitions, and the form expected in exercises and exams.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

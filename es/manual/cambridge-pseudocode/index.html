@@ -1,0 +1,120 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/cambridge-pseudocode/"
+title: "Pseudocódigo de Cambridge | Manual de Potoo IDE"
+description: "Referencia de pseudocódigo Cambridge: convenciones de los exámenes de informática para variables, arreglos, entrada y salida, selección, bucles, procedimientos y funciones."
+og_title: "Pseudocódigo de Cambridge · Referencia educativa"
+og_description: "Referencia de pseudocódigo Cambridge: convenciones de los exámenes de informática para variables, arreglos, entrada y salida, selección, bucles, procedimientos y funciones."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/cambridge-pseudocode/"
+  es: "/es/manual/cambridge-pseudocode/"
+  en: "/en/manual/cambridge-pseudocode/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia educativa · notación de evaluación · en evaluación</p>
+    <h1>Pseudocódigo de Cambridge</h1>
+    <p class="manual-intro">El pseudocódigo Cambridge es la notación empleada en los materiales y exámenes de Computer Science de Cambridge International. Las guías estandarizan cómo escribir algoritmos para la evaluación; la notación no es por sí misma un intérprete ni un lenguaje de producción. Las reglas dependen del año de examen. Esta referencia sigue la guía de 2026 y está en evaluación para Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Pseudocódigo de Cambridge">
+      <h2>En esta referencia</h2><ol>
+        <li><a href="#sobre">Qué es el pseudocódigo Cambridge</a></li>
+        <li><a href="#documentos">Guías y años de examen</a></li>
+        <li><a href="#declaracoes">Declaraciones, tipos y asignación</a></li>
+        <li><a href="#io">Leer y mostrar datos</a></li>
+        <li><a href="#controle">Selección y bucles</a></li>
+        <li><a href="#vetores">Arreglos y estructuras</a></li>
+        <li><a href="#rotinas">Procedimientos y funciones</a></li>
+        <li><a href="#exemplo">Sumar los elementos de un arreglo</a></li>
+        <li><a href="#estudo">Escribir y comprobar respuestas</a></li>
+        <li><a href="#limites">Versiones y límites</a></li>
+        <li><a href="#fontes">Referencias</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · panorama</p>
+        <h2>Qué es el pseudocódigo Cambridge</h2>
+<p>El pseudocódigo Cambridge es una convención para presentar algoritmos en cursos y evaluaciones de informática. Las palabras clave en inglés y los bloques delimitados hacen visible el flujo de control sin exigir un lenguaje de programación ejecutable.</p><p>La guía para docentes especifica las formas esperadas en las respuestas y el material del curso. En las preguntas de examen, utiliza la notación de Cambridge International aunque conozcas mejor otro lenguaje.</p><div class="manual-note planned"><strong>Estado en Potoo IDE:</strong> la notación está en evaluación. Que exista este manual no significa que la aplicación ejecute programas escritos en ella.</div>
+      </section>
+      <section id="documentos">
+        <p class="kicker">02 · contexto de evaluación</p>
+        <h2>Guías y años de examen</h2>
+<p>Cambridge International publica guías de pseudocódigo vinculadas a sus programas de estudio. La edición aplicable depende del año del examen; las actualizaciones pueden cambiar ejemplos, reglas o recomendaciones para docentes.</p><p>Esta página se basa en la guía de Computer Science de 2026. Antes de preparar una respuesta de evaluación, los estudiantes deben consultar la documentación del programa y año correspondientes. Una guía futura no debe considerarse aplicable de forma retroactiva a un examen anterior.</p><p>El pseudocódigo busca que la escritura de algoritmos sea legible y coherente para quien responde y quien corrige, no definir un entorno de ejecución.</p>
+      </section>
+      <section id="declaracoes">
+        <p class="kicker">03 · datos</p>
+        <h2>Declaraciones, tipos y asignación</h2>
+<p>La guía representa las declaraciones con <code>DECLARE</code>, el nombre del identificador, dos puntos y el tipo. La asignación utiliza una flecha que apunta a la variable. Entre los tipos habituales se incluyen enteros, reales, caracteres, cadenas y valores booleanos.</p><pre class="manual-code"><code>DECLARE mark : INTEGER
+DECLARE passed : BOOLEAN
+mark &lt;- 72
+passed &lt;- mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Tipos del pseudocódigo Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Uso habitual</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Valores enteros.</td></tr><tr><td><code>REAL</code></td><td>Valores numéricos con fracción.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>Un carácter o una secuencia de texto.</td></tr><tr><td><code>BOOLEAN</code></td><td>Condiciones verdaderas o falsas.</td></tr></tbody></table></div><p>La guía también especifica la declaración de arreglos y otras estructuras necesarias según el curso. Escribe los tipos y límites tal como aparecen en el documento vigente.</p>
+      </section>
+      <section id="io">
+        <p class="kicker">04 · entrada y salida</p>
+        <h2>Leer y mostrar datos</h2>
+<p><code>INPUT</code> recibe un valor y <code>OUTPUT</code> muestra texto o un resultado. En una respuesta escrita, indica cada operación de entrada y salida para que la interacción del algoritmo quede clara.</p><pre class="manual-code"><code>DECLARE name : STRING
+INPUT name
+OUTPUT "Hello, ", name</code></pre><p>Al seguir la salida, respeta el orden de los argumentos y las convenciones de la guía para separarlos o unirlos. No confundas la notación de evaluación con la sintaxis de lectura de una consola concreta.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · flujo de control</p>
+        <h2>Selección y bucles</h2>
+<p>Las palabras de control indican el inicio y el fin de cada bloque. El pseudocódigo Cambridge incluye selección con <code>IF</code>, alternativas y selección múltiple, además de los bucles <code>FOR</code>, <code>WHILE</code> y <code>REPEAT</code>.</p><pre class="manual-code"><code>IF mark &gt;= 50 THEN
+    OUTPUT "Pass"
+ELSE
+    OUTPUT "Retry"
+ENDIF</code></pre><p>En un bucle <code>FOR</code>, indica el intervalo y la dirección del contador; la condición de <code>WHILE</code> se evalúa antes del cuerpo; en <code>REPEAT</code>, comprueba que la condición se evalúe después de las instrucciones tal como indica la guía. Escribe correctamente todos los delimitadores de cierre.</p>
+      </section>
+      <section id="vetores">
+        <p class="kicker">06 · colecciones</p>
+        <h2>Arreglos y estructuras</h2>
+<p>Los arreglos almacenan varios valores de un tipo y se accede a ellos por índice. La guía permite declarar dimensiones y límites; no presupongas que todos empiezan en cero o en uno sin leer la declaración.</p><p>El pseudocódigo también documenta registros y estructuras de datos cuando los requiere el nivel del curso. Para cada colección:</p><ul><li>anota el tipo y las dimensiones;</li><li>comprueba que cada índice esté dentro de los límites;</li><li>distingue el tamaño del arreglo de la posición actual;</li><li>al recorrerlo, verifica el primer y el último valor del contador.</li></ul><p>Las respuestas de examen deben mantener los mismos límites en la declaración, los accesos y el bucle.</p>
+      </section>
+      <section id="rotinas">
+        <p class="kicker">07 · rutinas</p>
+        <h2>Procedimientos y funciones</h2>
+<p>Los procedimientos dan nombre a acciones reutilizables; las funciones calculan y devuelven un valor. El encabezado identifica los parámetros y, en una función, el tipo de retorno según la guía. Una llamada transfiere el control a la rutina y continúa después de su retorno.</p><p>Al escribir una rutina, describe su finalidad y elige suficientes parámetros para evitar depender de variables externas. La evaluación considera la forma de pasar parámetros y el ámbito de las variables según las reglas del año de examen.</p><p>No mezcles el pseudocódigo Cambridge con declaraciones de Pascal, Python o el pseudocódigo de otra entidad examinadora.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · ejemplo guiado</p>
+        <h2>Sumar los elementos de un arreglo</h2>
+<p>Para sumar los elementos de un arreglo, inicializa un acumulador, recorre las posiciones válidas y añade cada elemento. La declaración siguiente muestra un arreglo indexado de 1 a 5; utiliza los límites del enunciado.</p><pre class="manual-code"><code>DECLARE numbers : ARRAY[1:5] OF INTEGER
+DECLARE total : INTEGER
+DECLARE index : INTEGER
+
+total &lt;- 0
+FOR index &lt;- 1 TO 5
+    total &lt;- total + numbers[index]
+NEXT index
+OUTPUT total</code></pre><p>El ejemplo muestra asignación, índices y bucle. Una respuesta completa también debe indicar cómo se leyeron o asignaron los valores de <code>numbers</code>, según el problema. Sigue el acumulador en cada iteración para no omitir el primer ni el último elemento.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · respuestas de examen</p>
+        <h2>Escribir y comprobar respuestas</h2>
+<p>En una respuesta de examen, la coherencia importa tanto como la idea algorítmica. Utiliza nombres descriptivos, sangría uniforme y delimitadores de bloque de la guía.</p><ul><li>Declara las variables y los arreglos antes de utilizarlos cuando sea necesario.</li><li>Comprueba que el tipo de cada variable corresponda a sus valores.</li><li>Sigue al menos un caso habitual y uno límite.</li><li>Verifica la condición de salida y la actualización de contadores.</li><li>En funciones, comprueba todas las rutas de retorno.</li></ul><p>El pseudocódigo comunica un algoritmo; la claridad y la fidelidad al estándar del año de examen facilitan su lectura y evaluación.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">10 · versiones y alcance</p>
+        <h2>Versiones y límites</h2>
+<p>Los programas y las guías de Cambridge International tienen ciclos propios. Esta página utiliza la guía de 2026 indicada en las referencias; consulta la página oficial del curso para encontrar el documento de tu año.</p><p>El pseudocódigo Cambridge no define un compilador, una biblioteca ejecutable estándar ni compatibilidad con un lenguaje concreto. Esta documentación describe convenciones de evaluación y no afirma que Potoo IDE las interprete.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · lecturas adicionales</p>
+        <h2>Referencias</h2>
+<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Guía de pseudocódigo Cambridge para docentes (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Programa Cambridge International AS &amp; A Level Computer Science 9618</a>, con guías vinculadas a años de examen.</li></ul><p>Utiliza la edición exacta proporcionada para el curso; las reglas de evaluación deben comprobarse en la fuente oficial vigente.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

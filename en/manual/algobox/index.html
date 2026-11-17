@@ -1,0 +1,108 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/algobox/"
+title: "AlgoBox | Potoo IDE Manual"
+description: "AlgoBox manual: a French educational environment for structured algorithm editing, variables, input, output, decisions, loops, and step-by-step execution."
+og_title: "AlgoBox · Educational reference"
+og_description: "AlgoBox manual: a French educational environment for structured algorithm editing, variables, input, output, decisions, loops, and step-by-step execution."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/algobox/"
+  es: "/es/manual/algobox/"
+  en: "/en/manual/algobox/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · French algorithm environment · under evaluation</p>
+    <h1>AlgoBox</h1>
+    <p class="manual-intro">AlgoBox is a French environment for learning to build and run algorithms. Its interface guides writing through structured blocks and also offers text editing. This manual describes its language and teaching workflow according to the official site; AlgoBox is under evaluation and is not run by Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the AlgoBox">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">What is AlgoBox</a></li>
+        <li><a href="#contexto">Audience and approach</a></li>
+        <li><a href="#estrutura">Structure and vocabulary</a></li>
+        <li><a href="#dados">Variables, types, and operators</a></li>
+        <li><a href="#controle">Conditions, loops, and execution</a></li>
+        <li><a href="#exemplo">Calculate the square of a number</a></li>
+        <li><a href="#estudo">How to practise</a></li>
+        <li><a href="#limites">Versions and limits</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>What is AlgoBox</h2>
+<p>AlgoBox combines an algorithm editor with an execution environment for teaching. Learners can assemble instructions in a structured interface or work in text mode. The program helps them practise variables, input and output, conditions, and loops without requiring the syntax of a general-purpose language from the first exercise.</p><p>Step-by-step mode helps students track changing values and branch choices. The environment also documents exercises with lists and simple simulations. The official interface and examples are in French.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> AlgoBox is under evaluation. This page describes the independent project and does not indicate an available integration.</div>
+      </section>
+      <section id="contexto">
+        <p class="kicker">02 · purpose</p>
+        <h2>Audience and approach</h2>
+<p>The project was created for teaching algorithms, especially in French-speaking school settings. The focus is on arranging reasoning as observable operations: define data, request an input, transform a value, and present a result.</p><p>Before starting an algorithm, think through the problem before choosing blocks:</p><ol><li>specify the known data and the data that must be entered;</li><li>identify the result to display;</li><li>write the steps and conditions in order;</li><li>run a small case and follow each value.</li></ol><p>This process makes the structured editor a representation of the algorithm, rather than just a way to enter text.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · program structure</p>
+        <h2>Structure and vocabulary</h2>
+<p>The text editor uses French keywords. A typical algorithm has a variable section and explicit start and end markers. This fragment illustrates documented forms for declaring a number, reading input, assigning a value, and displaying the result:</p><pre class="manual-code"><code>VARIABLES
+  n EST_DU_TYPE NOMBRE
+  carre EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  AFFICHER "Entrez un nombre"
+  LIRE n
+  carre PREND_LA_VALEUR n * n
+  AFFICHER carre
+FIN_ALGORITHME</code></pre><p>The structured editor helps insert each element in the expected place. When editing text directly, check accents, reserved words, and punctuation against the manual for your version.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · data and expressions</p>
+        <h2>Variables, types, and operators</h2>
+<p>AlgoBox documentation presents data families for numbers, strings, and lists. A variable needs a type that is compatible with the values it will hold. Assignment uses <code>PREND_LA_VALEUR</code>; input and display have their own instructions.</p><div class="manual-table-wrap" role="region" aria-label="AlgoBox data and operations" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Feature</th><th scope="col">Use</th></tr></thead><tbody><tr><td><code>NOMBRE</code></td><td>Stores numeric values for calculations.</td></tr><tr><td><code>CHAINE</code></td><td>Stores text.</td></tr><tr><td><code>LISTE</code></td><td>Represents a collection used in documented exercises.</td></tr><tr><td><code>LIRE</code></td><td>Receives a value entered during execution.</td></tr><tr><td><code>AFFICHER</code></td><td>Shows text or a result.</td></tr></tbody></table></div><p>Arithmetic operations and comparisons form expressions; use parentheses to make the intended order clear. Check the official list for conversion details and list-specific features.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · control flow</p>
+        <h2>Conditions, loops, and execution</h2>
+<p>Algorithms can choose a path based on a condition and repeat a sequence. The environment also provides step-by-step execution, showing how conditions and variables affect the path.</p><ul><li><strong>Condition:</strong> handles different cases separately.</li><li><strong>Counted loop:</strong> repeats a block over a known range or quantity.</li><li><strong>Conditional loop:</strong> repeats while a condition set by the exercise remains true.</li><li><strong>List:</strong> can be used in exercises that collect and traverse values.</li></ul><p>When building a loop, make the initialization, continuation rule, and state update clear. In step-by-step mode, verify that each iteration moves the program toward its stopping condition.</p><p>The manual documents blocks such as <code>SI</code>, <code>POUR</code>, and <code>TANT_QUE</code>, as well as local functions. It also describes commands for drawing points and line segments on a graph and a <code>PAUSE</code> instruction that can help investigate execution. These features depend on the environment options and should be learned from the manual for the relevant version.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">06 · worked example</p>
+        <h2>Calculate the square of a number</h2>
+<p>The introductory example asks for a number and displays its square. In structured mode, first select the variables, then add display, input, assignment, and result display actions.</p><pre class="manual-code"><code>VARIABLES
+  n EST_DU_TYPE NOMBRE
+  carre EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  AFFICHER "Entrez un nombre"
+  LIRE n
+  carre PREND_LA_VALEUR n * n
+  AFFICHER "Carré : "
+  AFFICHER carre
+FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n = 1</code>, and a negative value to check that multiplication gives the expected square. Then add a condition to distinguish even from odd numbers and trace its instructions one at a time.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">07 · study and debugging</p>
+        <h2>How to practise</h2>
+<p>Choose a simple exercise and describe what should happen in plain language before opening the editor. Step-by-step mode lets you compare that description with the actual instruction order.</p><ul><li>Run cases that cover every branch of a condition.</li><li>Watch a variable before and after each assignment.</li><li>Test the input boundary that ends a loop.</li><li>For lists, try an empty list, one item, and several items if the operation allows it.</li><li>Consult the French documentation if a keyword or feature is not recognized.</li></ul><p>Structured blocks and text represent the same algorithm only when all instructions and boundaries are correct. Check the result, not merely the absence of syntax errors.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">08 · versions and scope</p>
+        <h2>Versions and limits</h2>
+<p>AlgoBox is an environment with its own grammar and tools. Structured block editing, text mode, list features, and step-by-step display belong to AlgoBox; they are not universal properties of pseudocode.</p><p>Options and installation details can change between versions. This page summarizes the official site and manual; consult the linked documentation to confirm the behavior of the software you downloaded. AlgoBox remains under evaluation for Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">09 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://www.xm1math.net/algobox/index">Official AlgoBox website</a>, with project information and downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Official AlgoBox manual</a>, with syntax and usage guidance.</li></ul><p>The French manual is the source for the full grammar, list commands, and differences between versions.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

@@ -1,0 +1,118 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/glossa/"
+title: "Glossa (ΓΛΩΣΣΑ) | Manual do Potoo IDE"
+description: "Referência de ΓΛΩΣΣΑ: linguagem didática grega do currículo escolar, com variáveis, entrada e saída, condições, laços, vetores e subprogramas."
+og_title: "Glossa (ΓΛΩΣΣΑ) · Referência educacional"
+og_description: "Referência de ΓΛΩΣΣΑ: linguagem didática grega do currículo escolar, com variáveis, entrada e saída, condições, laços, vetores e subprogramas."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/glossa/"
+  es: "/es/manual/glossa/"
+  en: "/en/manual/glossa/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência educacional · notação curricular grega · em avaliação</p>
+    <h1>Glossa (ΓΛΩΣΣΑ)</h1>
+    <p class="manual-intro">ΓΛΩΣΣΑ (“Glossa”, literalmente “língua”) é uma linguagem didática apresentada em materiais curriculares gregos de informática do ensino médio. A referência abaixo acompanha o livro escolar oficial: não há um único interpretador oficial que defina todo o ecossistema. Glossa está em avaliação e não é executada pelo Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de Glossa (ΓΛΩΣΣΑ)">
+      <h2>Nesta referência</h2><ol>
+        <li><a href="#sobre">Sobre ΓΛΩΣΣΑ</a></li>
+        <li><a href="#curriculo">Fonte e público</a></li>
+        <li><a href="#estrutura">Organização de um programa</a></li>
+        <li><a href="#dados">Tipos, operadores e atribuição</a></li>
+        <li><a href="#io">Entrada e saída</a></li>
+        <li><a href="#controle">Condições e repetições</a></li>
+        <li><a href="#subprogramas">Vetores e subprogramas</a></li>
+        <li><a href="#exemplo">Média e classificação</a></li>
+        <li><a href="#estudo">Como estudar e testar</a></li>
+        <li><a href="#escopo">Escopo e variantes</a></li>
+        <li><a href="#fontes">Referências</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · visão geral</p>
+        <h2>Sobre ΓΛΩΣΣΑ</h2>
+<p>ΓΛΩΣΣΑ é a notação de programação ensinada em materiais oficiais gregos de informática. Ela oferece uma estrutura de algoritmo e um conjunto de tipos, comandos e estruturas para que estudantes aprendam a especificar soluções.</p><p>O nome não designa um produto de software único. Editores e simuladores de terceiros podem implementar subconjuntos ou convenções próprias; para uma prova ou exercício, a fonte normativa é o material curricular indicado pelo curso.</p><div class="manual-note planned"><strong>Estado no Potoo IDE:</strong> Glossa está em avaliação como notação educacional. A presença desta referência não significa que o aplicativo execute programas ΓΛΩΣΣΑ.</div>
+      </section>
+      <section id="curriculo">
+        <p class="kicker">02 · contexto curricular</p>
+        <h2>Fonte e público</h2>
+<p>A principal referência desta página é o livro de informática publicado no portal oficial grego de livros escolares. O material apresenta algoritmos, programação estruturada e uma sintaxe em grego, usada em exercícios curriculares.</p><p>Os estudantes usam a notação para aprender:</p><ul><li>declaração e uso de variáveis com tipos;</li><li>sequência, seleção e repetição;</li><li>vetores e procedimentos ou funções;</li><li>entrada e saída de dados;</li><li>planejamento, leitura e teste de algoritmos.</li></ul><p>O livro didático prevalece sobre traduções informais ou ferramentas de terceiros. A transliteração latina usada em comentários nesta página é apenas explicativa; as palavras reservadas gregas aparecem nos exemplos.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · estrutura de programa</p>
+        <h2>Organização de um programa</h2>
+<p>Um programa ΓΛΩΣΣΑ delimita o cabeçalho, a seção de variáveis, o corpo executável e o encerramento. O exemplo seguinte segue a forma apresentada no material didático e calcula a média de dois inteiros:</p><pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΜΕΣΟΣΟΡΟΣ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Α, Β
+  ΠΡΑΓΜΑΤΙΚΕΣ: ΜΕΣΟΣ
+ΑΡΧΗ
+  ΔΙΑΒΑΣΕ Α, Β
+  ΜΕΣΟΣ &lt;- (Α + Β) / 2
+  ΓΡΑΨΕ ΜΕΣΟΣ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre><p><code>ΠΡΟΓΡΑΜΜΑ</code> nomeia o programa; <code>ΜΕΤΑΒΛΗΤΕΣ</code> inicia as declarações; <code>ΑΡΧΗ</code> abre as instruções; e <code>ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code> encerra o programa. A forma tipográfica e os identificadores precisam respeitar as regras do curso.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · dados</p>
+        <h2>Tipos, operadores e atribuição</h2>
+<p>O livro escolar distingue tipos para inteiros, valores reais, caracteres e valores lógicos. As declarações agrupam variáveis por tipo; a atribuição usa uma seta apontando para a variável que recebe o valor.</p><div class="manual-table-wrap" role="region" aria-label="Tipos e palavras-chave de Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma grega</th><th scope="col">Significado</th></tr></thead><tbody><tr><td><code>ΑΚΕΡΑΙΕΣ</code></td><td>Variáveis inteiras.</td></tr><tr><td><code>ΠΡΑΓΜΑΤΙΚΕΣ</code></td><td>Variáveis reais.</td></tr><tr><td><code>ΧΑΡΑΚΤΗΡΕΣ</code></td><td>Caracteres ou cadeias, conforme a declaração do material.</td></tr><tr><td><code>ΛΟΓΙΚΕΣ</code></td><td>Valores lógicos.</td></tr><tr><td><code>&lt;-</code></td><td>Atribui à variável à esquerda o resultado da expressão à direita.</td></tr></tbody></table></div><p>Expressões combinam operações aritméticas, relacionais e lógicas. Parênteses deixam explícita a ordem do cálculo. Consulte a tabela do livro para precedência, conversões e limites de cada tipo.</p>
+      </section>
+      <section id="io">
+        <p class="kicker">05 · interação</p>
+        <h2>Entrada e saída</h2>
+<p><code>ΔΙΑΒΑΣΕ</code> recebe dados para as variáveis indicadas e <code>ΓΡΑΨΕ</code> apresenta valores ou mensagens. As instruções ajudam a separar a interação do cálculo principal.</p><pre class="manual-code"><code>ΓΡΑΨΕ "Δώσε έναν αριθμό"
+ΔΙΑΒΑΣΕ Α
+ΤΕΤΡΑΓΩΝΟ &lt;- Α * Α
+ΓΡΑΨΕ ΤΕΤΡΑΓΩΝΟ</code></pre><p>O fragmento destaca os comandos gregos de entrada e saída. Em um programa completo, declare cada variável na seção própria e use a grafia e a forma de literal adotadas pelo livro curricular. A mensagem em grego pode ser substituída por outra mensagem literal, sem alterar a estrutura do algoritmo.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">06 · controle de fluxo</p>
+        <h2>Condições e repetições</h2>
+<p>ΓΛΩΣΣΑ inclui estruturas de seleção e repetição adequadas a exercícios de programação estruturada. A seleção escolhe um bloco de acordo com uma condição; os laços repetem instruções conforme uma contagem ou condição. O livro especifica as palavras-chave e os delimitadores de cada forma.</p><ul><li><strong>Seleção simples ou dupla:</strong> trata um caso e, opcionalmente, sua alternativa.</li><li><strong>Seleção múltipla:</strong> escolhe entre diferentes valores possíveis.</li><li><strong>Repetição contada:</strong> percorre uma sequência de valores.</li><li><strong>Repetição condicional:</strong> continua enquanto uma condição for satisfeita ou até uma condição ocorrer.</li></ul><p>Uma condição precisa produzir valor lógico. Para cada repetição, identifique a variável que muda e confirme que os limites não deixam a última iteração fora do intervalo pretendido.</p>
+      </section>
+      <section id="subprogramas">
+        <p class="kicker">07 · decomposição</p>
+        <h2>Vetores e subprogramas</h2>
+<p>O material didático também cobre vetores e subprogramas. Um vetor guarda elementos do mesmo tipo, acessados por índice. Procedimentos agrupam ações; funções produzem um resultado. Parâmetros transmitem valores de entrada e, conforme a forma ensinada, dados que serão atualizados pela rotina.</p><p>Ao usar um vetor, declare sua dimensão e verifique o intervalo de índices estabelecido no exercício. Ao definir um procedimento ou função:</p><ol><li>escolha um nome que descreva a tarefa;</li><li>liste os parâmetros e seus tipos;</li><li>declare variáveis locais necessárias;</li><li>especifique o resultado ou efeito observável;</li><li>teste a rotina isoladamente antes de combiná-la ao programa principal.</li></ol><p>Os detalhes de limites, passagem de parâmetros e sintaxe completa devem ser lidos na edição curricular adotada.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · exemplo guiado</p>
+        <h2>Média e classificação</h2>
+<p>Depois de calcular a média, uma condição pode classificar o resultado. O limiar pertence ao enunciado da atividade; não presuma uma regra universal de aprovação.</p><pre class="manual-code"><code>ΑΝ ΜΕΣΟΣ &gt;= ΟΡΙΟ ΤΟΤΕ
+  ΓΡΑΨΕ "Επιτυχία"
+ΑΛΛΙΩΣ
+  ΓΡΑΨΕ "Προσπάθησε ξανά"
+ΤΕΛΟΣ_ΑΝ</code></pre><p>Este fragmento deve ser inserido no corpo de um programa que já declarou e calculou <code>ΜΕΣΟΣ</code> e definiu o limiar <code>ΟΡΙΟ</code>. Trace os dois casos: média abaixo do limiar e média igual ou acima dele. Se o material do curso adotar outra estrutura condicional, siga a forma oficial.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · estudo e verificação</p>
+        <h2>Como estudar e testar</h2>
+<p>Comece com o formato do programa e avance por uma construção de cada vez. Preserve palavras reservadas gregas, pois traduções ou transliterações podem não ser reconhecidas por uma ferramenta.</p><ul><li>Confira declarações e tipos antes de testar uma expressão.</li><li>Use entradas cuja resposta possa ser calculada manualmente.</li><li>Teste condições nos dois lados do limite.</li><li>Para vetores, percorra manualmente os índices mínimo e máximo.</li><li>Em subprogramas, teste argumentos representativos e valores de fronteira.</li></ul><p>Como ferramentas externas podem suportar conjuntos diferentes, compare qualquer resultado com os exemplos do livro oficial. Uma implementação de terceiros é um auxílio de estudo, não a definição curricular da linguagem.</p>
+      </section>
+      <section id="escopo">
+        <p class="kicker">10 · versões e escopo</p>
+        <h2>Escopo e variantes</h2>
+<p>ΓΛΩΣΣΑ é uma notação curricular. Não existe um único pacote de software oficial que determine a sintaxe de todas as ferramentas utilizadas por estudantes. O conteúdo e a apresentação podem mudar entre edições do livro e instruções de curso.</p><p>Esta referência descreve as construções centrais do material escolar consultado e mantém palavras-chave gregas nos exemplos. Confirme tipos, operadores, subprogramas, tabelas de verdade e regras de arrays na edição indicada pelo seu curso. Glossa permanece em avaliação no Potoo IDE.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · leitura adicional</p>
+        <h2>Referências</h2>
+<ul><li><a href="https://ebooks.edu.gr/ebooks/v/html/8547/2718/Pliroforiki_G-Lykeiou_html-empl/">Livro oficial de Informática do ensino médio</a>, no portal de livros escolares da Grécia.</li><li><a href="https://www.iep.edu.gr/">Instituto de Política Educacional da Grécia (IEP)</a>, responsável por materiais curriculares e educacionais.</li></ul><p>Use o livro escolar para conferir a grafia grega, a definição dos tipos e a forma exigida em exercícios e exames.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

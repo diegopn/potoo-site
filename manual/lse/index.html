@@ -1,0 +1,85 @@
+---
+layout: default
+lang: "pt-BR"
+page_kind: "manual"
+permalink: "/manual/lse/"
+title: "LSE — Langage Symbolique d’Enseignement | Manual do Potoo IDE"
+description: "Referência histórica de LSE: contexto educacional francês, uso em sistemas de tempo compartilhado e limites das fontes atuais sobre a linguagem."
+og_title: "LSE — Langage Symbolique d’Enseignement · Referência educacional"
+og_description: "Referência histórica de LSE: contexto educacional francês, uso em sistemas de tempo compartilhado e limites das fontes atuais sobre a linguagem."
+og_type: "article"
+home_path: "/"
+manual_path: "/manual/"
+translations:
+  pt: "/manual/lse/"
+  es: "/es/manual/lse/"
+  en: "/en/manual/lse/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referência educacional · linguagem francesa histórica · em avaliação</p>
+    <h1>LSE — Langage Symbolique d’Enseignement</h1>
+    <p class="manual-intro">LSE (Langage Symbolique d’Enseignement) é uma linguagem francesa concebida para o ensino de programação e documentada em fontes históricas. Esta página reúne o contexto e os recursos que as referências consultadas sustentam. Como não há uma implementação oficial atual nem uma gramática consolidada acessível, ela não inventa exemplos executáveis. LSE está em avaliação como referência histórica.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Conteúdo da referência de LSE — Langage Symbolique d’Enseignement">
+      <h2>Nesta referência</h2><ol>
+        <li><a href="#sobre">O que foi LSE</a></li>
+        <li><a href="#historia">Contexto de criação</a></li>
+        <li><a href="#conceitos">O que as fontes registram</a></li>
+        <li><a href="#sintaxe">Por que esta página não traz um programa</a></li>
+        <li><a href="#ensino">Como interpretar exercícios históricos</a></li>
+        <li><a href="#limites">Estado das referências</a></li>
+        <li><a href="#uso">Roteiro para pesquisa e leitura</a></li>
+        <li><a href="#fontes">Referências</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · visão geral</p>
+        <h2>O que foi LSE</h2>
+<p>LSE significa <em>Langage Symbolique d’Enseignement</em>, ou Linguagem Simbólica de Ensino. Foi um projeto francês da segunda metade do século XX voltado a introduzir programação por meio de uma notação simbólica ensinável. Publicações pedagógicas dos anos 1970 apresentam a linguagem como uma ferramenta de ensino, em um período em que acesso a computadores ocorria frequentemente por sistemas de tempo compartilhado.</p><p>LSE é relevante como experiência histórica de ensino da programação. Não deve ser confundida com uma linguagem moderna de uso geral ou com uma distribuição de software atualmente mantida.</p><div class="manual-note planned"><strong>Estado no Potoo IDE:</strong> LSE está em avaliação. Esta página é uma referência histórica; não afirma que exista suporte ou um interpretador atual no aplicativo.</div>
+      </section>
+      <section id="historia">
+        <p class="kicker">02 · contexto histórico</p>
+        <h2>Contexto de criação</h2>
+<p>As referências da Enseignement Public et Informatique documentam a apresentação de LSE a partir de 1973 e discutem sua trajetória no ensino. A proposta era oferecer um vocabulário simbólico para explicar instruções, dados e organização de algoritmos em francês.</p><p>O contexto técnico importa ao interpretar o material: computadores eram compartilhados por vários usuários, e a interação com o sistema não se parecia com a experiência de um editor gráfico contemporâneo. Manuais e exercícios também refletem práticas escolares e recursos disponíveis naquela época.</p><ul><li><strong>Finalidade:</strong> apoiar o ensino de noções de programação.</li><li><strong>Idioma:</strong> notação e material didático em francês.</li><li><strong>Época:</strong> desenvolvimento e difusão associados às décadas de 1960 e 1970.</li><li><strong>Estado atual:</strong> as fontes consultadas são históricas, não um portal ativo de implementação.</li></ul>
+      </section>
+      <section id="conceitos">
+        <p class="kicker">03 · conceitos documentados</p>
+        <h2>O que as fontes registram</h2>
+<p>Os relatos históricos descrevem uma linguagem textual para expressar operações e procedimentos. O material secundário consultado menciona trabalho com dados, cadeias de caracteres, rotinas e estruturas de controle, incluindo a possibilidade de decompor uma solução em procedimentos e chamadas recursivas.</p><div class="manual-table-wrap" role="region" aria-label="Tópicos históricos associados a LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Tópico</th><th scope="col">Leitura histórica</th></tr></thead><tbody><tr><td>Sequência de instruções</td><td>Expressar operações ordenadas para resolver um problema.</td></tr><tr><td>Dados e expressões</td><td>Representar valores e cálculos em notação simbólica.</td></tr><tr><td>Controle</td><td>Organizar escolhas e repetições em algoritmos.</td></tr><tr><td>Procedimentos</td><td>Separar uma solução em rotinas reutilizáveis; algumas fontes também relatam recursão.</td></tr><tr><td>Interação</td><td>Estudar a entrada e saída de dados no contexto de sistemas compartilhados.</td></tr></tbody></table></div><p>Esta síntese não é uma especificação formal: cada detalhe precisa ser confirmado no manual de época correspondente antes de ser tratado como regra da linguagem.</p>
+      </section>
+      <section id="sintaxe">
+        <p class="kicker">04 · sintaxe e fontes</p>
+        <h2>Por que esta página não traz um programa</h2>
+<p>Os arquivos históricos encontrados não formam uma especificação única e atual que permita verificar um exemplo de ponta a ponta. Grafias de palavras reservadas, delimitadores, tipos e regras de execução podem variar entre materiais e épocas.</p><p>Por esse motivo, esta referência não apresenta pseudocódigo inventado sob o rótulo de LSE. Para estudar uma listagem de época:</p><ol><li>registre a publicação, a data e a versão do ambiente a que ela pertence;</li><li>transcreva o exemplo fielmente, preservando símbolos e acentos;</li><li>consulte a explicação que acompanha a listagem;</li><li>não suponha que um compilador atual aceite a sintaxe sem adaptação.</li></ol><p>Essa cautela mantém separadas a história documentada e uma especificação que as fontes consultadas não estabeleceram.</p>
+      </section>
+      <section id="ensino">
+        <p class="kicker">05 · abordagem de ensino</p>
+        <h2>Como interpretar exercícios históricos</h2>
+<p>Os exercícios de LSE devem ser lidos como material de ensino de sua época. Em vez de começar pela pergunta “qual linguagem atual executa este arquivo?”, procure o conceito trabalhado: sequência, cálculo, ramificação, repetição ou decomposição em rotinas.</p><ul><li>Identifique os dados informados e o resultado esperado.</li><li>Marque as instruções que alteram estado e as que apenas exibem informação.</li><li>Trace manualmente uma execução curta.</li><li>Separe a ideia algorítmica da grafia específica usada pela edição do manual.</li></ul><p>Uma reimplementação moderna pode ser útil para estudar o algoritmo, mas precisa ser identificada como tradução, não como execução nativa de LSE.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">06 · limites documentais</p>
+        <h2>Estado das referências</h2>
+<p>Esta documentação se baseia em textos históricos disponíveis em arquivos pedagógicos e em um panorama enciclopédico. Não foi localizado um site oficial ativo com uma distribuição atual que fixe a gramática e as ferramentas suportadas.</p><p>Consequentemente, recursos detalhados, diferenças entre versões e a disponibilidade de simuladores permanecem sem confirmação nesta página. A ausência de uma especificação acessível não significa que os materiais de época não existam; significa que é preciso consultar cada publicação original antes de afirmar regras precisas.</p>
+      </section>
+      <section id="uso">
+        <p class="kicker">07 · guia de estudo</p>
+        <h2>Roteiro para pesquisa e leitura</h2>
+<p>Ao usar LSE em um estudo histórico, cite o documento e sua data em vez de citar apenas o nome da linguagem. Guarde uma reprodução da fonte consultada e anote se a transcrição veio de um artigo, de um livro ou de um manual de software.</p><ul><li>Compare a descrição de LSE com a linguagem que a publicação ensina.</li><li>Distinga explicações conceituais de listagens de código.</li><li>Não misture palavras-chave de Portugol, BASIC ou outra pseudolinguagem nos exemplos.</li><li>Se converter um exercício, apresente a linguagem de destino e explique as mudanças necessárias.</li></ul><p>Esse roteiro é especialmente importante porque o projeto é histórico e as páginas atuais não oferecem uma fonte única para validar cada detalhe sintático.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">08 · fontes históricas</p>
+        <h2>Referências</h2>
+<ul><li><a href="https://www.epi.asso.fr/revue/06/b06p010.htm">“Un langage symbolique destiné à l’enseignement : LSE”</a>, publicação histórica reproduzida pela EPI.</li><li><a href="https://www.epi.asso.fr/revue/histo/h70-lse_jb-2015.htm">Panorama histórico de LSE</a>, com referências ao desenvolvimento e uso da linguagem.</li><li><a href="https://en.wikipedia.org/wiki/LSE_(programming_language)">Verbete histórico sobre LSE</a>, útil como orientação bibliográfica inicial, não como especificação normativa.</li></ul><p>As publicações de época são necessárias para confirmar grafia, semântica e recursos de qualquer exemplo concreto.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

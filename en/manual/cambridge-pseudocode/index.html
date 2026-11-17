@@ -1,0 +1,120 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/cambridge-pseudocode/"
+title: "Cambridge Pseudocode | Potoo IDE Manual"
+description: "Cambridge pseudocode reference: Computer Science exam conventions for variables, arrays, input and output, selection, loops, procedures, and functions."
+og_title: "Cambridge Pseudocode · Educational reference"
+og_description: "Cambridge pseudocode reference: Computer Science exam conventions for variables, arrays, input and output, selection, loops, procedures, and functions."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/cambridge-pseudocode/"
+  es: "/es/manual/cambridge-pseudocode/"
+  en: "/en/manual/cambridge-pseudocode/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · assessment notation · under evaluation</p>
+    <h1>Cambridge Pseudocode</h1>
+    <p class="manual-intro">Cambridge pseudocode is the notation used in Cambridge International Computer Science materials and exams. Guides standardize how algorithms are written for assessment; the notation is not itself an interpreter or production language. Rules are tied to the exam year. This reference follows the 2026 guide and is under evaluation for Potoo IDE.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the Cambridge Pseudocode">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">What is Cambridge pseudocode</a></li>
+        <li><a href="#documentos">Guides and exam years</a></li>
+        <li><a href="#declaracoes">Declarations, types, and assignment</a></li>
+        <li><a href="#io">Reading and displaying data</a></li>
+        <li><a href="#controle">Selection and loops</a></li>
+        <li><a href="#vetores">Arrays and structures</a></li>
+        <li><a href="#rotinas">Procedures and functions</a></li>
+        <li><a href="#exemplo">Sum the elements of an array</a></li>
+        <li><a href="#estudo">Writing and checking answers</a></li>
+        <li><a href="#limites">Versions and limits</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>What is Cambridge pseudocode</h2>
+<p>Cambridge pseudocode is a convention used to present algorithms in Computer Science courses and assessments. English keywords and delimited blocks make control flow clear without requiring a choice of executable programming language.</p><p>The teacher guide specifies expected forms in answers and course material. In exam questions, use the notation supplied by Cambridge International, even if another programming language is more familiar.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> the notation is under evaluation. Having this manual does not mean programs written in it can run in the app.</div>
+      </section>
+      <section id="documentos">
+        <p class="kicker">02 · assessment context</p>
+        <h2>Guides and exam years</h2>
+<p>Cambridge International publishes pseudocode guides linked to its study programmes. The applicable edition depends on the exam year; updates may change examples, rules, or teacher recommendations.</p><p>This page is based on the 2026 Computer Science guide. Students should check the programme and year-specific documentation before preparing an assessment response. Future guides should not be treated as retroactively applicable to an earlier exam.</p><p>Pseudocode exists to make algorithm writing readable and consistent for writers and markers, not to define a software runtime.</p>
+      </section>
+      <section id="declaracoes">
+        <p class="kicker">03 · data</p>
+        <h2>Declarations, types, and assignment</h2>
+<p>The guide represents declarations using <code>DECLARE</code>, an identifier, a colon, and a type. Assignment uses an arrow pointing to the variable. Common types include integers, real numbers, characters, strings, and Boolean values.</p><pre class="manual-code"><code>DECLARE mark : INTEGER
+DECLARE passed : BOOLEAN
+mark &lt;- 72
+passed &lt;- mark &gt;= 50</code></pre><div class="manual-table-wrap" role="region" aria-label="Cambridge pseudocode types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Type</th><th scope="col">Typical use</th></tr></thead><tbody><tr><td><code>INTEGER</code></td><td>Whole-number values.</td></tr><tr><td><code>REAL</code></td><td>Numeric values with a fractional part.</td></tr><tr><td><code>CHAR</code> / <code>STRING</code></td><td>A character or a sequence of text.</td></tr><tr><td><code>BOOLEAN</code></td><td>True or false conditions.</td></tr></tbody></table></div><p>The guide also specifies array declarations and, where required by the course, other structures. Write types and bounds as shown in the current document.</p>
+      </section>
+      <section id="io">
+        <p class="kicker">04 · input and output</p>
+        <h2>Reading and displaying data</h2>
+<p><code>INPUT</code> receives a value and <code>OUTPUT</code> displays text or a result. In a written answer, show each input and output operation explicitly so that the algorithm’s interaction is clear.</p><pre class="manual-code"><code>DECLARE name : STRING
+INPUT name
+OUTPUT "Hello, ", name</code></pre><p>When tracing output, follow the order of arguments and the guide’s conventions for separating or joining values. Do not confuse assessment notation with the input syntax of a particular console.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · control flow</p>
+        <h2>Selection and loops</h2>
+<p>Control words mark the beginning and end of each block. Cambridge pseudocode includes selection with <code>IF</code>, alternatives, and multi-way selection, along with <code>FOR</code>, <code>WHILE</code>, and <code>REPEAT</code> loops.</p><pre class="manual-code"><code>IF mark &gt;= 50 THEN
+    OUTPUT "Pass"
+ELSE
+    OUTPUT "Retry"
+ENDIF</code></pre><p>For a <code>FOR</code> loop, state the range and counter direction; a <code>WHILE</code> condition is checked before its body; with <code>REPEAT</code>, check that the condition is evaluated after the statements as defined in the guide. Write every closing delimiter correctly.</p>
+      </section>
+      <section id="vetores">
+        <p class="kicker">06 · collections</p>
+        <h2>Arrays and structures</h2>
+<p>Arrays store multiple values of one type and are accessed by index. The guide allows declarations with dimensions and bounds; do not assume every array starts at zero or one without reading its declaration.</p><p>The pseudocode also documents records and data structures when the course level requires them. For each collection:</p><ul><li>record its type and dimensions;</li><li>check that each index lies within its bounds;</li><li>distinguish the array’s size from the current position;</li><li>when traversing, verify the counter’s first and last values.</li></ul><p>Exam answers should keep bounds consistent between the declaration, accesses, and loop.</p>
+      </section>
+      <section id="rotinas">
+        <p class="kicker">07 · routines</p>
+        <h2>Procedures and functions</h2>
+<p>Procedures name reusable actions; functions calculate and return a value. Headers identify parameters and, for a function, its return type according to the guide. Calls transfer control to the routine and continue after it returns.</p><p>When writing a routine, describe its purpose and choose enough parameters to avoid dependence on external variables. Parameter passing and variable scope are assessed according to the rules published for that exam year.</p><p>Do not mix Cambridge pseudocode with declarations from Pascal, Python, or another assessment board’s pseudocode.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">08 · worked example</p>
+        <h2>Sum the elements of an array</h2>
+<p>To sum an array’s elements, initialize an accumulator, visit each valid position, and add the current element. The declaration below illustrates an array indexed from 1 to 5; use the bounds given by a question.</p><pre class="manual-code"><code>DECLARE numbers : ARRAY[1:5] OF INTEGER
+DECLARE total : INTEGER
+DECLARE index : INTEGER
+
+total &lt;- 0
+FOR index &lt;- 1 TO 5
+    total &lt;- total + numbers[index]
+NEXT index
+OUTPUT total</code></pre><p>The example demonstrates assignment, indexing, and a loop. A complete answer must also show how <code>numbers</code> was read or assigned, as required by the problem. Trace the accumulator after each iteration to avoid missing the first or last element.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">09 · exam responses</p>
+        <h2>Writing and checking answers</h2>
+<p>Consistency matters as much as the algorithmic idea in an exam response. Use descriptive names, steady indentation, and block delimiters from the guide.</p><ul><li>Declare variables and arrays before use when required.</li><li>Check that each variable’s type matches its assigned values.</li><li>Trace at least one typical case and a boundary case.</li><li>Check the stopping condition and counter update.</li><li>For functions, verify every return path.</li></ul><p>Pseudocode communicates an algorithm; clarity and fidelity to the exam-year standard make it easier to read and assess.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">10 · versions and scope</p>
+        <h2>Versions and limits</h2>
+<p>Cambridge International programmes and guides have their own cycles. This page uses the 2026 guide listed in the references; consult the official course page to find the document for your year.</p><p>Cambridge pseudocode does not define a compiler, executable standard library, or compatibility with a specific language. This documentation covers assessment conventions and does not claim that Potoo IDE interprets them.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">11 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Cambridge pseudocode guide for teachers (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Cambridge International AS &amp; A Level Computer Science 9618 programme</a>, with guides associated with exam years.</li></ul><p>Use the exact edition supplied for your course; assessment rules should be checked in the current official source.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

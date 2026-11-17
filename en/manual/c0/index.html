@@ -1,0 +1,112 @@
+---
+layout: default
+lang: "en"
+page_kind: "manual"
+permalink: "/en/manual/c0/"
+title: "C0 (Simplified C) | Potoo IDE Manual"
+description: "Introductory C0 reference: a C subset used in programming courses, with types, functions, contracts, arrays, structs, and safety rules."
+og_title: "C0 (Simplified C) · Educational reference"
+og_description: "Introductory C0 reference: a C subset used in programming courses, with types, functions, contracts, arrays, structs, and safety rules."
+og_type: "article"
+home_path: "/en/"
+manual_path: "/en/manual/"
+translations:
+  pt: "/manual/c0/"
+  es: "/es/manual/c0/"
+  en: "/en/manual/c0/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Educational reference · programming language · under evaluation</p>
+    <h1>C0 (Simplified C)</h1>
+    <p class="manual-intro">C0 is a subset of C used in introductory programming courses at Carnegie Mellon University. This reference covers its imperative model, common types and structures, functions, contracts, and safety checks. C0 is under evaluation for Potoo IDE; this manual describes the source language and does not imply current app support.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contents of the C0 (Simplified C)">
+      <h2>In this reference</h2><ol>
+        <li><a href="#sobre">What is C0</a></li>
+        <li><a href="#origem">Origin and teaching goals</a></li>
+        <li><a href="#modelo">Types, values, and collections</a></li>
+        <li><a href="#sintaxe">Functions, declarations, and blocks</a></li>
+        <li><a href="#controle">Decisions, loops, and calls</a></li>
+        <li><a href="#contratos">Contracts, invariants, and safety</a></li>
+        <li><a href="#exemplo">Plan a search function</a></li>
+        <li><a href="#estudo">How to study and debug C0</a></li>
+        <li><a href="#limites">Scope of this reference</a></li>
+        <li><a href="#fontes">References</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · overview</p>
+        <h2>What is C0</h2>
+<p>C0 was designed to teach imperative programming and data structures with syntax familiar to people who have seen C, but with a smaller set of features and more controlled rules. It appears in introductory courses at Carnegie Mellon University, including material for course 15-122.</p><p>The teaching goal is to make types, control flow, memory, and a function’s obligations explicit. Course material describes C0 as a safe subset of C with garbage collection, fixed-range integers, and contracts. The language specifies behavior so students do not rely on C’s undefined edge cases. It is not intended to accept every C program: a C file may depend on features that do not exist in C0.</p><div class="manual-note planned"><strong>Status in Potoo IDE:</strong> C0 is under evaluation. Carnegie Mellon’s environment and compiler tools are the references for running examples on this page.</div>
+      </section>
+      <section id="origem">
+        <p class="kicker">02 · background</p>
+        <h2>Origin and teaching goals</h2>
+<p>C0 was developed to support the teaching of programming and reasoning about memory. Its syntax resembles a language in the C family, while the design restricts constructs that can make a beginner’s program behavior harder to analyze.</p><p>The official reference organizes the language around functions, types, statements, and contracts. Courses use these tools to develop correct solutions and explain why a function works, rather than only obtaining an output for one test case.</p><ul><li><strong>Imperative programming:</strong> variables, assignments, calls, conditions, and loops.</li><li><strong>Abstraction:</strong> functions and structs name operations and related data.</li><li><strong>Reasoning about correctness:</strong> preconditions, postconditions, and invariants state what must hold.</li></ul>
+      </section>
+      <section id="modelo">
+        <p class="kicker">03 · data</p>
+        <h2>Types, values, and collections</h2>
+<p>An expression’s type limits the operations that can be applied to it. This table summarizes families used in C0 teaching materials; specific features depend on the course level and tool version.</p><div class="manual-table-wrap" role="region" aria-label="Common C0 types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Family</th><th scope="col">Use</th><th scope="col">Note</th></tr></thead><tbody><tr><td><code>int</code></td><td>Integer numbers.</td><td>Used in calculations and indices under the rules documented by the implementation.</td></tr><tr><td><code>bool</code></td><td>Logical values.</td><td>Conditions for <code>if</code> and loops.</td></tr><tr><td><code>char</code> and <code>string</code></td><td>Characters and text.</td><td>The reference describes the representation allowed in each version.</td></tr><tr><td>arrays and structs</td><td>Indexed collections and records with fields.</td><td>Arrays have a defined size; structs group named values.</td></tr><tr><td>pointers</td><td>References to allocated values.</td><td>An advanced topic with specific rules and contracts.</td></tr></tbody></table></div><p>C0 should not be treated as full C. Numeric types, conversions, pointers, and library operations must follow the reference for the course version, rather than assumptions about a regular C compiler.</p>
+      </section>
+      <section id="sintaxe">
+        <p class="kicker">04 · program structure</p>
+        <h2>Functions, declarations, and blocks</h2>
+<p>A program is organized into functions. A signature declares the result type, function name, and parameter types; the body is enclosed in braces. Local declarations introduce values used in a block, and <code>return</code> ends a function with the expected result.</p><pre class="manual-code"><code>int square(int value) {
+    return value * value;
+}
+
+int main() {
+    int result = square(6);
+    return 0;
+}</code></pre><p>The example shows a small pure function and a conventional entry function. The library and contract required for <code>main</code> may depend on the course’s compilation environment. Comments should explain purpose or a relevant decision, rather than replace a precise description of parameters and results.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · control flow</p>
+        <h2>Decisions, loops, and calls</h2>
+<p>C0 provides the familiar statements of an imperative model: sequence, selection, repetition, function calls, and returns. Conditions are Boolean expressions. A loop must move toward its exit condition; informal reasoning about that progress helps avoid programs that never finish.</p><div class="manual-table-wrap" role="region" aria-label="C0 control structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>if / else</code></td><td>Choose a block based on a condition.</td></tr><tr><td><code>while</code></td><td>Repeat while a condition remains true.</td></tr><tr><td><code>for</code></td><td>Group initialization, condition, and update in a counted loop.</td></tr><tr><td><code>return</code></td><td>Produce the result declared by a function signature.</td></tr></tbody></table></div><p>Arrays, structs, and pointers represent collections and relationships between values. Each array access must stay within its valid bounds; going beyond them is a safety violation. Use contracts and invariants to justify indices and relationships between data, and do not assume invalid operations behave like they would in another C implementation.</p>
+      </section>
+      <section id="contratos">
+        <p class="kicker">06 · correctness</p>
+        <h2>Contracts, invariants, and safety</h2>
+<p>Contracts record the conditions under which a function can be called and what it guarantees when it finishes. A precondition states an input requirement; a postcondition describes the result. A loop invariant summarizes a property that should remain true after every iteration.</p><ul><li><strong>Precondition:</strong> state bounds and relationships that arguments must satisfy.</li><li><strong>Postcondition:</strong> relate the returned value to the problem the function solves.</li><li><strong>Invariant:</strong> explain the meaning of state maintained during an iterative algorithm.</li></ul><p>The reference writes preconditions and postconditions in special comments, such as <code>//@requires expression;</code> and <code>//@ensures expression;</code>. In a postcondition, <code>\result</code> represents the returned value. Loop invariants use <code>//@loop_invariant expression;</code> and must be Boolean expressions. When dynamic checking is enabled, tools evaluate these contracts at points defined by the reference; writers remain responsible for correct contracts and bounds reasoning.</p><pre class="manual-code"><code>int maximum(int x, int y)
+//@ensures \result &gt;= x &amp;&amp; \result &gt;= y;
+{
+    if (x &gt; y) {
+        return x;
+    } else {
+        return y;
+    }
+}</code></pre>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">07 · worked example</p>
+        <h2>Plan a search function</h2>
+<p>Consider a function that looks for an integer in an array. Before implementing it, define what “found” means: return a valid index when the value occurs and report absence otherwise. The type and value used to represent “not found” must follow the exercise’s convention.</p><ol><li>Declare parameters for the array, its size, and the value to find.</li><li>Decide whether size zero is allowed and what condition the array must satisfy.</li><li>Visit valid indices in order and compare each element.</li><li>Return the index as soon as a match is found.</li><li>After the loop, return the documented absence marker.</li></ol><p>A postcondition can relate the returned index to the matching element. If the result reports absence, the postcondition should state that no element in the range matches. This specification covers empty arrays and repeated values as well.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · study and debugging</p>
+        <h2>How to study and debug C0</h2>
+<p>Compile small pieces as you learn. For each function, write down its signature, input cases, and the meaning of its expected result. Then trace execution with a variable table; for collection algorithms, include the index and the range already processed.</p><ul><li>Test boundary values: zero, minimum size, first index, and last index.</li><li>Exercise both true and false paths in every condition.</li><li>Include empty, one-element, and repeated-value arrays when the contract allows them.</li><li>Read verifier or compiler messages alongside the relevant precondition and invariant.</li></ul><p>A program that compiles can still solve the wrong problem. Compare its output with an independent calculation and test cases that exercise every branch.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">09 · version and scope</p>
+        <h2>Scope of this reference</h2>
+<p>C0 is a teaching language and toolchain; it does not promise compatibility with C, C++, or a particular distribution. Courses may provide their own libraries, compiler options, and conventions. The official reference and course material take precedence when details differ.</p><p>This page is limited to introductory ideas shared by the references consulted. It does not claim C0 support in Potoo IDE and does not replace the manual for the version used in class. The language remains under evaluation as a project candidate.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · further reading</p>
+        <h2>References</h2>
+<ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Official C0 language reference</a>, published by Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Course 15-122 page</a>, with its curriculum context for imperative programming and data structures.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">2026 course 15-122 syllabus</a>, summarizing C0 safety, garbage collection, integer arithmetic, and contracts.</li><li><a href="https://www.cs.cmu.edu/~c0/">C0 project portal</a>, with project materials and tools.</li></ul><p>Consult the reference edition adopted by the course: libraries, contracts, and tool behavior can change between versions.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

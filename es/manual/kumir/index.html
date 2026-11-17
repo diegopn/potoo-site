@@ -1,0 +1,103 @@
+---
+layout: default
+lang: "es"
+page_kind: "manual"
+permalink: "/es/manual/kumir/"
+title: "Kumir (КуМир) | Manual de Potoo IDE"
+description: "Referencia de Kumir: sistema escolar ruso, lenguaje algorítmico, tipos y comandos en ruso, estructuras de control y ejecutores virtuales."
+og_title: "Kumir (КуМир) · Referencia educativa"
+og_description: "Referencia de Kumir: sistema escolar ruso, lenguaje algorítmico, tipos y comandos en ruso, estructuras de control y ejecutores virtuales."
+og_type: "article"
+home_path: "/es/"
+manual_path: "/es/manual/"
+translations:
+  pt: "/manual/kumir/"
+  es: "/es/manual/kumir/"
+  en: "/en/manual/kumir/"
+body_class: manual-page
+---
+<main id="conteudo">
+  <section class="manual-hero" id="inicio"><div class="wrap">
+    <p class="kicker">Referencia educativa · sistema educativo ruso · en evaluación</p>
+    <h1>Kumir (КуМир)</h1>
+    <p class="manual-intro">КуМир (Kumir) es un sistema educativo ruso para enseñar algoritmos y programación en la escuela. Combina un lenguaje algorítmico en ruso con herramientas y ejecutores virtuales. Esta página resume construcciones documentadas en materiales oficiales y académicos; la grafía y las funciones dependen de la versión. Kumir está en evaluación y Potoo IDE no lo admite actualmente.</p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
+  </div></section>
+  <div class="manual-body"><div class="wrap manual-layout">
+    <aside class="manual-toc" aria-label="Contenido de la referencia de Kumir (КуМир)">
+      <h2>En esta referencia</h2><ol>
+        <li><a href="#sobre">Qué es Kumir</a></li>
+        <li><a href="#origem">Objetivos y organización</a></li>
+        <li><a href="#estrutura">Forma de un algoritmo</a></li>
+        <li><a href="#dados">Tipos y valores</a></li>
+        <li><a href="#controle">Condiciones y bucles</a></li>
+        <li><a href="#executores">Robot, Dibujante y actividades</a></li>
+        <li><a href="#exemplo">Duplicar una secuencia de valores</a></li>
+        <li><a href="#estudo">Probar programas de Kumir</a></li>
+        <li><a href="#limites">Versiones y variantes</a></li>
+        <li><a href="#fontes">Referencias</a></li>
+      </ol>
+    </aside>
+    <article class="manual-content">
+      <section id="sobre">
+        <p class="kicker">01 · panorama</p>
+        <h2>Qué es Kumir</h2>
+<p>Kumir es un conjunto de herramientas de informática y programación dirigido a estudiantes de primaria y secundaria. Su lenguaje algorítmico escolar utiliza palabras en ruso y un formato explícito para declarar datos, iniciar y terminar algoritmos y controlar la ejecución.</p><p>El conjunto incluye ejecutores virtuales para actividades interactivas. El lenguaje y el entorno forman una unidad didáctica: algunos ejercicios combinan cálculos con acciones de un ejecutor, como el Robot o el Dibujante.</p><div class="manual-note planned"><strong>Estado en Potoo IDE:</strong> Kumir está en evaluación. Esta página describe el sistema original y no garantiza que sus archivos o ejecutores funcionen en la aplicación.</div>
+      </section>
+      <section id="origem">
+        <p class="kicker">02 · contexto escolar</p>
+        <h2>Objetivos y organización</h2>
+<p>El proyecto Kumir se creó para apoyar el currículo escolar de informática y el pensamiento algorítmico. El lenguaje se parece a una notación algorítmica estructurada: declaraciones e instrucciones aparecen en bloques reconocibles y utilizan términos del idioma del alumnado.</p><p>El sistema reúne:</p><ul><li>un editor para escribir algoritmos;</li><li>ejecución y diagnóstico de programas;</li><li>materiales y ejercicios escolares;</li><li>ejecutores que modelan entornos o tareas.</li></ul><p>Las funciones exactas cambian entre las familias 1.x y 2.x y sus distribuciones. Consulta la documentación incluida con la versión instalada.</p>
+      </section>
+      <section id="estrutura">
+        <p class="kicker">03 · estructura del programa</p>
+        <h2>Forma de un algoritmo</h2>
+<p>Un algoritmo escolar puede incluir encabezado, declaraciones, sección ejecutable y cierre. El siguiente ejemplo ilustra vocabulario ruso asociado habitualmente al lenguaje algorítmico de Kumir; confirma la forma completa en el manual de tu versión:</p><pre class="manual-code"><code>алг квадрат
+цел n, результат
+нач
+  ввод n
+  результат := n * n
+  вывод результат
+кон</code></pre><p><code>алг</code> introduce el algoritmo, <code>нач</code> inicia el cuerpo y <code>кон</code> lo termina. <code>ввод</code> y <code>вывод</code> gestionan la entrada y la salida; <code>:=</code> asigna el resultado de una expresión. Los tipos y la ubicación de las declaraciones deben seguir la documentación de cada versión.</p>
+      </section>
+      <section id="dados">
+        <p class="kicker">04 · datos y expresiones</p>
+        <h2>Tipos y valores</h2>
+<p>El lenguaje algorítmico presenta tipos como enteros y valores reales, además de datos textuales y lógicos según la versión. Las palabras reservadas se escriben en cirílico.</p><div class="manual-table-wrap" role="region" aria-label="Vocabulario habitual de Kumir" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Uso</th></tr></thead><tbody><tr><td><code>цел</code></td><td>Declara valores enteros en materiales escolares.</td></tr><tr><td><code>вещ</code></td><td>Declara valores reales en materiales escolares.</td></tr><tr><td><code>ввод</code></td><td>Recibe valores.</td></tr><tr><td><code>вывод</code></td><td>Muestra valores o texto.</td></tr><tr><td><code>:=</code></td><td>Almacena el valor de una expresión.</td></tr></tbody></table></div><p>Los operadores aritméticos y las relaciones forman expresiones utilizadas en cálculos y condiciones. Consulta los materiales de tu versión para confirmar cómo declarar cadenas, caracteres, valores lógicos y colecciones; no generalices los nombres y reglas a partir de otra implementación.</p>
+      </section>
+      <section id="controle">
+        <p class="kicker">05 · flujo de control</p>
+        <h2>Condiciones y bucles</h2>
+<p>Kumir ofrece construcciones para decisiones, bucles contados y bucles condicionales. La notación utiliza palabras de apertura y cierre que ayudan a identificar los límites de cada bloque.</p><ul><li><strong>Decisión:</strong> elige una rama según una condición.</li><li><strong>Bucle condicional:</strong> repite instrucciones mientras se cumpla una condición.</li><li><strong>Bucle contado:</strong> recorre un intervalo o una cantidad definida.</li><li><strong>Subprogramas:</strong> organizan una solución en algoritmos auxiliares, según la versión.</li></ul><p>El material oficial presenta la forma exacta de cada estructura. Comprueba el cierre del bloque y qué ocurre cuando se alcanza el límite.</p>
+      </section>
+      <section id="executores">
+        <p class="kicker">06 · ejecutores virtuales</p>
+        <h2>Robot, Dibujante y actividades</h2>
+<p>Una característica destacada del sistema es el uso de ejecutores virtuales en las actividades. El Robot se puede programar para recorrer un escenario; el Dibujante (<em>Чертёжник</em>) produce figuras mediante comandos de movimiento. Así, el resultado del algoritmo se vuelve visible y los recorridos se pueden descomponer en acciones.</p><p>En una tarea con ejecutor, lee las condiciones iniciales, los comandos disponibles y la meta. Después:</p><ol><li>divide el recorrido en tramos o figuras sencillos;</li><li>identifica los movimientos que se repiten;</li><li>utiliza decisiones cuando el escenario requiera una respuesta;</li><li>ejecuta el programa y compara el mundo final con la meta.</li></ol><p>Los comandos cambian según el ejecutor y la distribución; no hay un único conjunto compartido por todas las tareas de Kumir.</p>
+      </section>
+      <section id="exemplo">
+        <p class="kicker">07 · ejemplo guiado</p>
+        <h2>Duplicar una secuencia de valores</h2>
+<p>Un programa que lee valores y los transforma se puede desarrollar en tres partes: entrada, cálculo y salida. Para cada nuevo dato, calcula su doble y muestra el resultado. El bucle termina cuando la regla del ejercicio indica que no quedan entradas.</p><ol><li>Declara el valor leído y el valor calculado.</li><li>Lee la entrada con el comando indicado en el manual.</li><li>Asigna a la segunda variable el producto por dos.</li><li>Muestra el resultado.</li><li>Si hay varias entradas, incluye las acciones en el bucle documentado.</li></ol><p>Este plan no impone una condición de salida arbitraria. El centinela o la cantidad de datos debe aparecer en el enunciado.</p>
+      </section>
+      <section id="estudo">
+        <p class="kicker">08 · estudio y depuración</p>
+        <h2>Probar programas de Kumir</h2>
+<p>Prueba el algoritmo con entradas pequeñas y utiliza los mensajes del entorno para localizar errores de sintaxis o ejecución. La ejecución paso a paso ayuda a revisar los tipos, las condiciones y los valores intermedios.</p><ul><li>Prueba valores cero y negativos cuando el dominio lo permita.</li><li>Comprueba los dos resultados posibles de una condición.</li><li>Verifica la cantidad de iteraciones y el valor del contador en cada paso.</li><li>En tareas con ejecutor, comienza con el escenario inicial original.</li><li>Lee la documentación del ejecutor antes de utilizar una acción específica.</li></ul><p>Que una ejecución termine correctamente no garantiza que la solución cubra todos los escenarios. Compara el resultado con la especificación de la tarea.</p>
+      </section>
+      <section id="limites">
+        <p class="kicker">09 · versiones y alcance</p>
+        <h2>Versiones y variantes</h2>
+<p>La página oficial de NIISI y los artículos del proyecto se refieren a distintas versiones del conjunto de herramientas. Los menús, las bibliotecas, los ejecutores y la sintaxis pueden haber cambiado entre Kumir 1.x, Kumir 2.x y los paquetes de cada sistema operativo.</p><p>Esta referencia usa construcciones escolares documentadas como orientación general y debe comprobarse con el manual de la instalación concreta. Kumir está en evaluación; esta página no indica que Potoo IDE tenga un intérprete de Kumir.</p>
+      </section>
+      <section id="fontes">
+        <p class="kicker">10 · lecturas adicionales</p>
+        <h2>Referencias</h2>
+<ul><li><a href="https://www.niisi.ru/kumir/">Sitio oficial de Kumir</a>, del Instituto de Sistemas de la Academia de Ciencias de Rusia (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">Publicación de NIISI sobre Kumir 2</a>, con contexto del conjunto escolar y sus ejecutores.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Documentación de Kumir en una distribución educativa</a>, útil para observar diferencias de paquete e instalación.</li></ul><p>Para la sintaxis normativa, prefiere la documentación oficial incluida con la versión de Kumir que utilice el curso.</p>
+      </section>
+    </article>
+  </div>
+  <section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section>
+  </div>
+</main>

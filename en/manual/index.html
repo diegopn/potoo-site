@@ -22,7 +22,7 @@ body_class: manual-page
         <p class="kicker">Product guide · in development</p>
         <h1>Potoo IDE manual</h1>
         <p class="manual-intro">This guide introduces Potoo IDE and its available features. The app already runs four Portugol family variants, the Calango pseudolanguage, and the Potigol programming language; other options remain under evaluation.</p>
-        <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 4, 2026</span></p>
+        <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
         <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
       </div>
     </section>
@@ -93,13 +93,29 @@ body_class: manual-page
             <li><span><strong>Potigol:</strong> a programming language with Portuguese syntax, static typing, and inference. It combines imperative and functional features, collections, pattern matching, and the Jerimum game library; its reference details these features.<br><a href="{{ '/en/manual/potigol/' | relative_url }}">Read the Potigol reference</a></span></li>
           </ul>
           <h3>Other options under evaluation</h3>
-          <p>PSeInt, Linotte, C0 (Simplified C), Égua, Logic Basic, and Karel the Robot remain future options under evaluation. Their references describe the original projects and do not indicate current support in Potoo IDE.</p>
+          <p>This list covers languages, educational environments, and pseudocode notations still under evaluation. Each reference describes its original project; listing it or documenting it does not mean Potoo IDE supports it.</p>
+          <h4>Pseudolanguages and algorithm notations</h4>
           <ul class="manual-list">
-            <li><span><strong>PSeInt pseudolanguage:</strong> structure, types, operators, arrays, and built-in functions.<br><a href="{{ '/en/manual/pseint/' | relative_url }}">Read the PSeInt reference</a></span></li>
-            <li><span><strong>Linotte programming language:</strong> actors, collections, conditions, functions, and graphical events.<br><a href="{{ '/en/manual/linotte/' | relative_url }}">Read the Linotte reference</a></span></li>
-            <li><span><strong>Égua programming language:</strong> an interpreted language with Portuguese syntax.<br><a href="{{ '/en/manual/egua/' | relative_url }}">Read the Égua reference</a></span></li>
-            <li><span><strong>Logic Basic:</strong> a programming language for visual applications, with memory, graphical components, and data commands.<br><a href="{{ '/en/manual/logic-basic/' | relative_url }}">Read the Logic Basic reference</a></span></li>
+            <li><span><strong>PSeInt:</strong> Spanish pseudocode, configurable profiles, data, control flow, arrays, and subprograms.<br><a href="{{ '/en/manual/pseint/' | relative_url }}">Read the PSeInt reference</a></span></li>
+            <li><span><strong>SL:</strong> an educational algorithm language with types, records, arrays, functions, and procedures.<br><a href="{{ '/en/manual/sl/' | relative_url }}">Read the SL reference</a></span></li>
+            <li><span><strong>AlgoBox:</strong> a French algorithm environment with structured blocks and a text editor.<br><a href="{{ '/en/manual/algobox/' | relative_url }}">Read the AlgoBox reference</a></span></li>
+            <li><span><strong>LSE:</strong> a historical French language created to teach programming.<br><a href="{{ '/en/manual/lse/' | relative_url }}">Read the historical LSE reference</a></span></li>
+            <li><span><strong>Glossa (ΓΛΩΣΣΑ):</strong> Greek teaching notation described in curriculum material; it has no single official software package.<br><a href="{{ '/en/manual/glossa/' | relative_url }}">Read the Glossa reference</a></span></li>
+            <li><span><strong>AP CSP pseudocode:</strong> College Board notation for teaching and assessment, not a complete programming language.<br><a href="{{ '/en/manual/ap-csp-pseudocode/' | relative_url }}">Read the AP CSP pseudocode reference</a></span></li>
+            <li><span><strong>Cambridge pseudocode:</strong> algorithm notation for Computer Science exams, with guides tied to exam years.<br><a href="{{ '/en/manual/cambridge-pseudocode/' | relative_url }}">Read the Cambridge pseudocode reference</a></span></li>
+          </ul>
+          <h4>Programming languages and educational environments</h4>
+          <ul class="manual-list">
+            <li><span><strong>Linotte:</strong> a French language with actors, collections, conditions, functions, and graphical events.<br><a href="{{ '/en/manual/linotte/' | relative_url }}">Read the Linotte reference</a></span></li>
+            <li><span><strong>C0:</strong> a subset of C for teaching imperative programming, with types, functions, contracts, and safety checks.<br><a href="{{ '/en/manual/c0/' | relative_url }}">Read the C0 reference</a></span></li>
+            <li><span><strong>Égua:</strong> an interpreted programming language with Portuguese syntax.<br><a href="{{ '/en/manual/egua/' | relative_url }}">Read the Égua reference</a></span></li>
+            <li><span><strong>Logic Basic:</strong> a language for visual applications, with memory, graphical components, and data commands.<br><a href="{{ '/en/manual/logic-basic/' | relative_url }}">Read the Logic Basic reference</a></span></li>
+            <li><span><strong>Kalimat:</strong> an Arabic programming language for beginners, with graphics and object-oriented features.<br><a href="{{ '/en/manual/kalimat/' | relative_url }}">Read the Kalimat reference</a></span></li>
+            <li><span><strong>Jeem:</strong> an Arabic procedural language with limited accessible public documentation.<br><a href="{{ '/en/manual/jeem/' | relative_url }}">Read the Jeem reference</a></span></li>
             <li><span><strong>Karel the Robot:</strong> commands, sensors, methods, and scenario solving.<br><a href="{{ '/en/manual/karel/' | relative_url }}">Read the Karel the Robot reference</a></span></li>
+            <li><span><strong>Robot Karol:</strong> a German learning environment with a grid robot, blocks, and text editing.<br><a href="{{ '/en/manual/robot-karol/' | relative_url }}">Read the Robot Karol reference</a></span></li>
+            <li><span><strong>Kumir:</strong> a Russian educational system based on a school algorithmic language and virtual performers.<br><a href="{{ '/en/manual/kumir/' | relative_url }}">Read the Kumir reference</a></span></li>
+            <li><span><strong>Hedy:</strong> a gradual, multilingual text language that includes Portuguese.<br><a href="{{ '/en/manual/hedy/' | relative_url }}">Read the Hedy reference</a></span></li>
           </ul>
 
         </section>
@@ -129,9 +145,9 @@ body_class: manual-page
 
         <section id="desenvolvimento"><p class="kicker">07 · Development</p><h2>How to follow the project</h2><p>Potoo IDE is still in development and already runs Portugol Studio 2.0, VisuAlg, G-Portugol, Mapler, Calango, and Potigol. The project continues to expand feature coverage and learning support.</p><p>No release date has been announced.</p></section>
 
-        <section id="ficha"><p class="kicker">08 · Project information</p><h2>Potoo IDE at a glance</h2><dl class="manual-facts"><div><dt>Type</dt><dd>Desktop IDE for learning logic</dd></div><div><dt>Audience</dt><dd>Students and teachers</dd></div><div><dt>Available options</dt><dd>Portugol family (Portugol Studio 2.0, VisuAlg, G-Portugol, and Mapler), Calango pseudolanguage, and Potigol programming language</dd></div><div><dt>Future options under evaluation</dt><dd>PSeInt, Linotte, C0, Égua, Logic Basic, and Karel the Robot</dd></div><div><dt>Foundation technologies</dt><dd>Rust · GTK 4 · Relm4</dd></div><div><dt>License</dt><dd><a href="https://github.com/diegopn/potoo-ide/blob/main/LICENSE">GNU GPL v3 or later (GPL-3.0-or-later)</a></dd></div></dl></section>
+        <section id="ficha"><p class="kicker">08 · Project information</p><h2>Potoo IDE at a glance</h2><dl class="manual-facts"><div><dt>Type</dt><dd>Desktop IDE for learning logic</dd></div><div><dt>Audience</dt><dd>Students and teachers</dd></div><div><dt>Available options</dt><dd>Portugol family (Portugol Studio 2.0, VisuAlg, G-Portugol, and Mapler), Calango pseudolanguage, and Potigol programming language</dd></div><div><dt>Future options under evaluation</dt><dd>PSeInt, SL, AlgoBox, LSE, Glossa, AP CSP pseudocode, Cambridge pseudocode, Linotte, C0, Égua, Logic Basic, Kalimat, Jeem, Karel the Robot, Robot Karol, Kumir, and Hedy</dd></div><div><dt>Foundation technologies</dt><dd>Rust · GTK 4 · Relm4</dd></div><div><dt>License</dt><dd><a href="https://github.com/diegopn/potoo-ide/blob/main/LICENSE">GNU GPL v3 or later (GPL-3.0-or-later)</a></dd></div></dl></section>
 
-        <section class="faq" id="perguntas"><p class="kicker">09 · FAQ</p><h2>Common questions</h2><details><summary>Can I write programs in Potoo IDE yet?</summary><p>Yes. You can create and edit projects and run algorithms in Portugol Studio 2.0, VisuAlg, G-Portugol, Mapler, Calango, and Potigol. Feature coverage continues to evolve.</p></details><details><summary>Which languages and pseudolanguages does the app run?</summary><p>Potoo IDE already runs four Portugol family variants (Portugol Studio 2.0, VisuAlg, G-Portugol, and Mapler), the Calango pseudolanguage, and the Potigol programming language. PSeInt, Linotte, C0 (Simplified C), Égua, Logic Basic, and Karel the Robot remain future options under evaluation.</p></details><details><summary>When will the app be ready?</summary><p>The project is still in development and has no announced release date.</p></details></section>
+        <section class="faq" id="perguntas"><p class="kicker">09 · FAQ</p><h2>Common questions</h2><details><summary>Can I write programs in Potoo IDE yet?</summary><p>Yes. You can create and edit projects and run algorithms in Portugol Studio 2.0, VisuAlg, G-Portugol, Mapler, Calango, and Potigol. Feature coverage continues to evolve.</p></details><details><summary>Which languages and pseudolanguages does the app run?</summary><p>Potoo IDE already runs four Portugol family variants (Portugol Studio 2.0, VisuAlg, G-Portugol, and Mapler), the Calango pseudolanguage, and the Potigol programming language. PSeInt, SL, AlgoBox, LSE, Glossa, AP CSP pseudocode, Cambridge pseudocode, Linotte, C0 (Simplified C), Égua, Logic Basic, Kalimat, Jeem, Karel the Robot, Robot Karol, Kumir, and Hedy remain under evaluation; this does not mean Potoo IDE can run them.</p></details><details><summary>When will the app be ready?</summary><p>The project is still in development and has no announced release date.</p></details></section>
       </article>
     </div>
 
