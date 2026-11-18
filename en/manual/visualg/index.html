@@ -197,7 +197,7 @@ repita
 ate tentativas = 3</code></pre>
           <p><code>enquanto</code> checks before its body and may run zero times. <code>repita ... ate</code> checks at the end and runs at least once. <code>interrompa</code> exits the current loop immediately.</p>
           <p>An alternative form, <code>repita ... fimrepita</code>, has no final condition and requires <code>interrompa</code> to exit.</p>
-        </section>
+        <div class="manual-table-wrap"><table><thead><tr><th>Loop</th><th>Test timing</th><th>Behavior</th><th>Exit</th></tr></thead><tbody><tr><td><code>para</code></td><td>Uses a counter, limit, and step.</td><td>Includes the limit; a negative step counts down.</td><td>Ends after passing the limit or with <code>interrompa</code>.</td></tr><tr><td><code>enquanto ... faca</code></td><td>Before the body.</td><td>May run zero times.</td><td>The condition must become false.</td></tr><tr><td><code>repita ... ate</code></td><td>After the body.</td><td>Runs at least once and repeats until the condition is true.</td><td>The final test controls stopping.</td></tr><tr><td><code>repita ... fimrepita</code></td><td>No final condition.</td><td>Repeats without an automatic test.</td><td>Use <code>interrompa</code> to exit.</td></tr></tbody></table></div></section>
 
         <section id="vetores">
           <p class="kicker">09 · Collections</p>
@@ -327,7 +327,8 @@ fimalgoritmo</code></pre>
           <div class="manual-note"><strong>When tracking down an error:</strong> check declaration order, variable types, vector bounds and block endings. In conditions, distinguish <code>=</code> (comparison) from <code>&lt;-</code> (assignment).</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>VisuAlg interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, targeting classic VisuAlg 3.0.5.2. It covers declarations, types, vectors and matrices, procedures and functions, control structures, input and output, math functions, and helper commands.</p><p>The integration provides line-and-column diagnostics, debugging events, and input, output, file, and timer services. Compatibility is still being validated: nested functions and procedures are unsupported, and <code>limpatela</code> has no visible effect in Potoo IDE, which does not provide a simulated DOS screen.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">VisuAlg interpreter repository</a></p>{% include interpreter_installation.html %}</section>
+        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>VisuAlg interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, targeting classic VisuAlg 3.0.5.2. It covers declarations, types, vectors and matrices, procedures and functions, control structures, input and output, math functions, and helper commands.</p><p>The integration provides line-and-column diagnostics, debugging events, and input, output, file, and timer services. Compatibility is still being validated: nested functions and procedures are unsupported, and <code>limpatela</code> has no visible effect in Potoo IDE, which does not provide a simulated DOS screen.</p><p><a href="https://github.com/diegopn/potoo-portugol-visualg-interpreter">VisuAlg interpreter repository</a></p>{% include interpreter_installation.html %}
+{% include interpreter_usage.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Further reading</p>
           <h2>VisuAlg references</h2>

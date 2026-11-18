@@ -1,0 +1,13 @@
+{% assign install = page.interpreter_installation %}
+{% assign copy = site.data.interpreter_installation[page.lang] %}
+{% assign language = site.data.interpreter_installation.languages[install.repository] %}
+<div class="interpreter-installation interpreter-ide-usage">
+  <h3>{{ copy.ide_heading | escape }}</h3>
+  <p>{{ copy.ide_intro | escape }} <code>{{ language.extension | escape }}</code>.</p>
+  <ol>
+    <li>{{ copy.ide_open | escape }}</li>
+    <li>{{ copy.ide_run | escape }}</li>
+    <li>{{ copy.ide_input | escape }}</li>
+    <li>{{ copy.ide_debug | escape }}</li>
+  </ol>
+</div>

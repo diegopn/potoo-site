@@ -1,4 +1,10 @@
 pt-BR:
+  ide_heading: "Como usar no Potoo IDE"
+  ide_intro: "O editor reconhece a linguagem pela extensão do arquivo. Para esta referência, use"
+  ide_open: "Abra ou crie o arquivo de código-fonte correspondente no projeto."
+  ide_run: "Clique em Executar na barra superior para iniciar o documento aberto."
+  ide_input: "Quando o programa pedir dados, digite a resposta no campo que aparece na aba Saída."
+  ide_debug: "Para acompanhar o programa passo a passo, abra Depurador, selecione Iniciar depuração e use Avançar um passo; a tela mostra a execução e os valores observados."
   heading: "Instalação do executor de terminal"
   release_intro: "Os binários publicados estão na"
   release_link: "página de Releases"
@@ -16,6 +22,12 @@ pt-BR:
   example_note: "Substitua o arquivo de exemplo mostrado no comando pelo caminho de um arquivo existente; o pacote não inclui esse arquivo."
   profile_note: "Para manter o caminho nas próximas sessões, inclua a mesma linha no arquivo ~/.profile ou no perfil do shell usado."
 es:
+  ide_heading: "Cómo usarlo en Potoo IDE"
+  ide_intro: "El editor reconoce el lenguaje por la extensión del archivo. Para esta referencia, usa"
+  ide_open: "Abre o crea el archivo de código fuente correspondiente en el proyecto."
+  ide_run: "Haz clic en Ejecutar en la barra superior para iniciar el documento abierto."
+  ide_input: "Cuando el programa solicite datos, escribe la respuesta en el campo que aparece en la pestaña Salida."
+  ide_debug: "Para seguir el programa paso a paso, abre Depurador, selecciona Iniciar depuración y usa Avanzar un paso; la pantalla muestra la ejecución y los valores observados."
   heading: "Instalación del ejecutor de terminal"
   release_intro: "Los binarios publicados están en la"
   release_link: "página de Releases"
@@ -33,6 +45,12 @@ es:
   example_note: "Sustituye el archivo de ejemplo mostrado en el comando por la ruta de un archivo existente; el paquete no lo incluye."
   profile_note: "Para conservar la ruta en futuras sesiones, añade la misma línea al archivo ~/.profile o al perfil de shell que uses."
 en:
+  ide_heading: "Using it in Potoo IDE"
+  ide_intro: "The editor identifies the language from the file extension. For this reference, use"
+  ide_open: "Open or create the matching source file in the project."
+  ide_run: "Click Run in the top bar to start the open document."
+  ide_input: "When the program requests input, enter your response in the field shown on the Output tab."
+  ide_debug: "To follow execution one step at a time, open Debugger, choose Start debugging, then use Step; the panel shows execution and observed values."
   heading: "Install the command-line runner"
   release_intro: "Published binaries are available on the"
   release_link: "Releases page"
@@ -49,3 +67,16 @@ en:
   run_note: "After installation, run the command with a source file as its argument."
   example_note: "Replace the sample file shown in the command with the path to an existing file; the package does not include it."
   profile_note: "To keep the path for future sessions, add the same line to ~/.profile or your shell's profile file."
+languages:
+  potoo-portugol-studio-2-interpreter:
+    extension: ".por"
+  potoo-portugol-visualg-interpreter:
+    extension: ".alg"
+  potoo-gportugol-interpreter:
+    extension: ".gpt"
+  potoo-portugol-mapler-interpreter:
+    extension: ".mapler"
+  potoo-calango-interpreter:
+    extension: ".clg"
+  potoo-potigol-interpreter:
+    extension: ".poti"
