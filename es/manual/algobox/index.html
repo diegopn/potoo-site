@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referencia educativa · entorno francés de algoritmos · en evaluación</p>
     <h1>AlgoBox</h1>
     <p class="manual-intro">AlgoBox combina editores visual y textual para crear y ejecutar algoritmos.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -33,6 +33,7 @@ body_class: manual-page
         <li><a href="#dados">Variables, tipos y operadores</a></li>
         <li><a href="#controle">Condiciones, bucles y ejecución</a></li>
         <li><a href="#exemplo">Calcular el cuadrado de un número</a></li>
+        <li><a href="#modos-guiados">Construir y probar un programa en los dos modos</a></li>
         <li><a href="#estudo">Cómo practicar</a></li>
         <li><a href="#limites">Versiones y límites</a></li>
                 <li><a href="#editores">Modos de edición y flujo de trabajo</a></li>
@@ -108,18 +109,64 @@ DEBUT_ALGORITHME
   AFFICHER carre
 FIN_ALGORITHME</code></pre><p>Ejecuta el ejemplo con <code>n = 0</code>, <code>n = 1</code> y un valor negativo para verificar que la multiplicación produce el cuadrado esperado. Después añade una condición para distinguir números pares e impares y sigue sus instrucciones paso a paso.</p>
       </section>
+      <section id="modos-guiados">
+        <p class="kicker">07 · recorrido guiado</p>
+        <h2>Construir y probar un programa en los dos modos</h2>
+        <p>Este ejercicio calcula la media aritmética de tres notas e indica si alcanza 7. Supón que las notas de entrada son válidas; comprobar que cada una esté entre 0 y 10 puede ser una ampliación del algoritmo.</p>
+        <h3>Construir el algoritmo en modo normal</h3>
+        <ol>
+          <li>Crea un algoritmo nuevo y declara <code>nota1</code>, <code>nota2</code>, <code>nota3</code> y <code>media</code> como <code>NOMBRE</code>.</li>
+          <li>Coloca la línea actual en <code>DEBUT_ALGORITHME</code>. Inserta una línea nueva y añade <strong>AFFICHER Message</strong> para presentar la entrada; agrega una línea para cada instrucción <code>LIRE</code>.</li>
+          <li>Después de las lecturas, inserta una línea y selecciona <strong>AFFECTER valeur à variable</strong>. Elige <code>media</code> e introduce la expresión <code>(nota1+nota2+nota3)/3</code>.</li>
+          <li>Muestra la media antes de la decisión: añade una instrucción <strong>AFFICHER Message</strong> con “Media calculada:” y otra <strong>AFFICHER variable</strong> para mostrar <code>media</code>. Activa el salto de línea cuando quieras separar los resultados.</li>
+          <li>Inserta un bloque <strong>SI...ALORS</strong> con la condición <code>media&gt;=7</code> y activa la opción <strong>SINON</strong>. Añade el mensaje de aprobado dentro del primer bloque y el mensaje de recuperación dentro del bloque alternativo.</li>
+          <li>Elige <strong>Tester</strong> y después <strong>Lancer l'algorithme</strong>. En modo paso a paso, avanza por las lecturas, observa <code>media</code> después de la asignación y comprueba qué rama se ejecuta.</li>
+        </ol>
+        <p>Al configurar los mensajes, activa <strong>Ajouter un retour à la ligne</strong> para mostrar cada resultado en una línea separada. Para insertar una instrucción, selecciona la posición correcta en el árbol y pulsa <strong>Nouvelle ligne</strong>; el modo normal no permite añadir comandos después de <code>FIN_ALGORITHME</code>.</p>
+        <h3>Escribir el mismo algoritmo en el editor de texto</h3>
+        <p>Empieza con un algoritmo en blanco y selecciona <strong>Edition → Mode Edition</strong>. Escribe una instrucción por línea y declara cada variable en su propia línea. En el editor de texto, <code>AFFICHER*</code> añade un salto de línea; <code>AFFICHER</code> sin asterisco continúa la salida en la misma línea.</p>
+        <pre class="manual-code"><code>VARIABLES
+  nota1 EST_DU_TYPE NOMBRE
+  nota2 EST_DU_TYPE NOMBRE
+  nota3 EST_DU_TYPE NOMBRE
+  media EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  AFFICHER* "Escribe tres notas."
+  LIRE nota1
+  LIRE nota2
+  LIRE nota3
+  media PREND_LA_VALEUR (nota1+nota2+nota3)/3
+  AFFICHER* "Media calculada:"
+  AFFICHER* media
+  SI (media&gt;=7) ALORS
+    DEBUT_SI
+      AFFICHER* "Resultado: aprobado."
+    FIN_SI
+  SINON
+    DEBUT_SINON
+      AFFICHER* "Resultado: recuperación."
+    FIN_SINON
+FIN_ALGORITHME</code></pre>
+        <p>Antes de ejecutar el texto, selecciona <strong>Vérifier Code</strong>. AlgoBox comprueba si reconoce la sintaxis y reconstruye el árbol de instrucciones; corrige los errores indicados antes de probarlo.</p>
+        <h3>Comprobar los dos resultados</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Casos de prueba para la media de tres notas en AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Notas de entrada</th><th scope="col">Media</th><th scope="col">Condición <code>media&gt;=7</code></th><th scope="col">Salida de la rama</th></tr></thead><tbody>
+          <tr><td>8, 6, 10</td><td>8</td><td>Verdadera</td><td>Aprobado</td></tr>
+          <tr><td>6, 6, 6</td><td>6</td><td>Falsa</td><td>Recuperación</td></tr>
+        </tbody></table></div>
+        <p>Estos casos ejercitan ambas ramas. Para seguir la ejecución, registra las tres entradas, comprueba el valor de <code>media</code> y verifica que la condición se evalúa después de la asignación.</p>
+      </section>
       <section id="estudo">
-        <p class="kicker">07 · estudio y depuración</p>
+        <p class="kicker">08 · estudio y depuración</p>
         <h2>Cómo practicar</h2>
 <p>Elige un ejercicio sencillo y describe en lenguaje común qué debe suceder antes de abrir el editor. El modo paso a paso permite comparar esa descripción con el orden real de las instrucciones.</p><ul><li>Ejecuta casos que cubran cada rama de una condición.</li><li>Observa el valor de una variable antes y después de cada asignación.</li><li>Prueba el límite de entrada que termina un bucle.</li><li>Para las listas, prueba una lista vacía, un elemento y varios elementos, si la operación lo permite.</li><li>Consulta la documentación en francés si no se reconoce una palabra clave o función.</li></ul><p>Los bloques y el texto representan el mismo algoritmo solo si todas las instrucciones y límites son correctos. Comprueba el resultado, no solo la ausencia de errores sintácticos.</p>
       </section>
       <section id="limites">
-        <p class="kicker">08 · versiones y alcance</p>
+        <p class="kicker">09 · versiones y alcance</p>
         <h2>Versiones y límites</h2>
-<p>AlgoBox es un entorno con gramática y herramientas propias. La edición mediante bloques, el modo de texto, las funciones de listas y la ejecución paso a paso son características de AlgoBox, no propiedades universales del pseudocódigo.</p><p>Las opciones y los detalles de instalación pueden cambiar entre versiones. Esta página resume el sitio y el manual oficiales; consulta la documentación enlazada para confirmar el comportamiento del programa descargado. AlgoBox sigue en evaluación para Potoo IDE.</p>
+<p>AlgoBox es un entorno con gramática y herramientas propias. La edición mediante bloques, el modo de texto, las funciones de listas y la ejecución paso a paso son características de AlgoBox, no propiedades universales del pseudocódigo.</p><p><strong>Versión de referencia:</strong> AlgoBox 1.2.0, indicada en la página oficial de descargas consultada el 18 de noviembre de 2026. El manual oficial disponible en la web no identifica su propia versión; por eso, esta página sintetiza esa referencia en línea y conviene contrastar sus reglas con la ayuda de la instalación utilizada.</p><p>El registro oficial de cambios describe el paso de la versión 1.1.1 a la 1.2.0 como una actualización técnica, con el cambio a Qt 6, modificaciones de compatibilidad con sistemas y correcciones de errores. Las instrucciones y los ejemplos de esta página describen AlgoBox; no indican que Potoo IDE lo ejecute. AlgoBox sigue en evaluación para Potoo IDE.</p>
       </section>
       <section id="editores">
-        <p class="kicker">9 · flujo de trabajo</p>
+        <p class="kicker">10 · flujo de trabajo</p>
         <h2>Modos de edición y construcción</h2>
         <p>El manual recomienda el modo normal para quienes empiezan. Presenta el algoritmo como un árbol de bloques lógicos; el editor de texto permite escribir las instrucciones directamente. Ambos modos ayudan a practicar la misma lógica, pero el texto debe respetar la gramática de AlgoBox.</p>
         <div class="manual-table-wrap" role="region" aria-label="Modos de edición de AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Modo o acción</th><th scope="col">Funcionamiento</th></tr></thead><tbody>
@@ -129,10 +176,11 @@ FIN_ALGORITHME</code></pre><p>Ejecuta el ejemplo con <code>n = 0</code>, <code>n
           <tr><td>Eliminar un bloque</td><td>Al borrar una condición o un bucle también se eliminan las instrucciones que contiene.</td></tr>
         </tbody></table></div>
         <p>En modo normal, declara cada variable antes de usarla. Para insertar una instrucción, sitúa el cursor donde debe aparecer y pulsa <strong>Nueva línea</strong> (atajo <code>Ctrl+Enter</code>); después elige el comando. No se puede insertar una línea después de <code>FIN_ALGORITHME</code>. Al borrar un bloque <code>SI</code>, <code>POUR</code> o <code>TANT_QUE</code>, revisa todo su cuerpo: las instrucciones internas se eliminan junto con él.</p>
+        <p>Para pasar al editor de texto, guarda el trabajo actual y empieza un algoritmo en blanco; el cambio de modo se realiza desde un algoritmo vacío. Selecciona <strong>Edition → Mode Edition</strong>. En el editor de texto, escribe una instrucción por línea, declara cada variable en una línea independiente y usa <code>AFFICHER*</code> para terminar una salida con un salto de línea. El botón <strong>Vérifier Code</strong> comprueba la sintaxis y reconstruye el árbol del algoritmo, lo que ayuda a encontrar una línea no válida.</p>
         <p>Antes de guardar, asigna al algoritmo un nombre claro y describe brevemente su objetivo en el campo de presentación. El menú de archivos también permite imprimir o exportar el código. Exportar el algoritmo como página web puede limitar funciones como la ejecución paso a paso, la entrada progresiva de datos y la interrupción manual.</p>
       </section>
       <section id="recursos">
-        <p class="kicker">10 · herramientas de ejecución</p>
+        <p class="kicker">11 · herramientas de ejecución</p>
         <h2>Listas, funciones y seguimiento de ejecución</h2>
         <p>Las listas almacenan y recorren una secuencia de valores. Para leer o mostrar un elemento, el manual requiere el nombre de la lista y su posición; esta puede ser un número o una variable <code>NOMBRE</code>. La biblioteca documentada incluye cálculos estadísticos sobre un intervalo de posiciones, como media, varianza, desviación típica, mediana, cuartiles, mínimo, máximo y la posición de los extremos.</p>
         <p>Algunos cálculos tienen requisitos previos: las funciones de cuartiles documentadas necesitan al menos cuatro elementos. Si el intervalo está vacío o la lista no cumple el requisito, el entorno informa de un error. Comprueba las posiciones inicial y final antes de llamar a una función, y compara el resultado con un conjunto pequeño que puedas calcular a mano.</p>
@@ -158,7 +206,7 @@ FIN_ALGORITHME</code></pre><p>Ejecuta el ejemplo con <code>n = 0</code>, <code>n
 
       </section>
             <section id="estatistica-listas">
-        <p class="kicker">11 · práctica con listas</p>
+        <p class="kicker">12 · práctica con listas</p>
         <h2>Calcular y comprobar estadísticas de una lista</h2>
         <p>Una <code>LISTE</code> almacena números en posiciones numeradas. En esta función de AlgoBox, la primera posición es <code>1</code>; indica la primera y la última posición del intervalo en cada cálculo. Las listas usan índices desde 1, mientras que operaciones de texto como <code>substr</code> usan una posición inicial 0. No reutilices un índice de una estructura en otra sin ajustar su base.</p>
         <p>El programa calcula la suma, la media, el máximo y la posición del máximo para cuatro notas:</p>
@@ -186,9 +234,9 @@ FIN_ALGORITHME</code></pre>
         <p>Si un resultado parece incorrecto, compara la llamada con las posiciones usadas, muestra la lista y calcula a mano un conjunto pequeño. En modo paso a paso, avanza una instrucción y observa los valores de las variables; AlgoBox también señala la última línea ejecutada cuando ocurre un error. <code>PAUSE</code> suspende temporalmente la ejecución y mostrar una variable ayuda a localizar la primera pasada incorrecta.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">12 · lecturas adicionales</p>
+        <p class="kicker">13 · lecturas adicionales</p>
         <h2>Referencias</h2>
-<ul><li><a href="https://www.xm1math.net/algobox/index">Sitio oficial de AlgoBox</a>, con información del proyecto y descargas.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Manual oficial de AlgoBox</a>, con sintaxis e instrucciones de uso.</li></ul><p>El manual en francés es la fuente para consultar la gramática completa, los comandos de listas y las diferencias entre versiones.</p>
+<ul><li><a href="https://www.xm1math.net/algobox/index">Sitio oficial de AlgoBox</a>, con información del proyecto.</li><li><a href="https://www.xm1math.net/algobox/download.html">Descargas oficiales</a>, que indican la versión 1.2.0 como versión de referencia consultada el 18 de noviembre de 2026.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Manual oficial de AlgoBox</a>, con sintaxis, modos normal y de texto, ejemplos e instrucciones de ejecución.</li><li><a href="https://www.xm1math.net/algobox/changelog.html">Registro oficial de cambios</a>, para comprobar las diferencias entre versiones.</li></ul><p>El manual en francés es la fuente para consultar la gramática completa, los comandos de listas, los pasos de construcción y las diferencias entre versiones.</p>
       </section>
     </article>
   </div>

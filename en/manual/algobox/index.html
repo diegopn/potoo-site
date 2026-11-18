@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Educational reference · French algorithm environment · under evaluation</p>
     <h1>AlgoBox</h1>
     <p class="manual-intro">AlgoBox combines visual and text editors for building and running algorithms.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -33,6 +33,7 @@ body_class: manual-page
         <li><a href="#dados">Variables, types, and operators</a></li>
         <li><a href="#controle">Conditions, loops, and execution</a></li>
         <li><a href="#exemplo">Calculate the square of a number</a></li>
+        <li><a href="#modos-guiados">Build and test a program in both modes</a></li>
         <li><a href="#estudo">How to practise</a></li>
         <li><a href="#limites">Versions and limits</a></li>
                 <li><a href="#editores">Editing modes and workflow</a></li>
@@ -108,18 +109,64 @@ DEBUT_ALGORITHME
   AFFICHER carre
 FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n = 1</code>, and a negative value to check that multiplication gives the expected square. Then add a condition to distinguish even from odd numbers and trace its instructions one at a time.</p>
       </section>
+      <section id="modos-guiados">
+        <p class="kicker">07 · guided walkthrough</p>
+        <h2>Build and test one program in both modes</h2>
+        <p>This exercise calculates the arithmetic mean of three marks and reports whether it is at least 7. Assume the input marks are valid; checking that each mark is between 0 and 10 can be an extension.</p>
+        <h3>Build the algorithm in normal mode</h3>
+        <ol>
+          <li>Create a new algorithm and declare <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, and <code>mean</code> as <code>NOMBRE</code>.</li>
+          <li>Place the current line at <code>DEBUT_ALGORITHME</code>. Insert a new line and add <strong>AFFICHER Message</strong> to introduce the input; add one line for each <code>LIRE</code> instruction.</li>
+          <li>After the input instructions, insert a line and choose <strong>AFFECTER valeur à variable</strong>. Select <code>mean</code> and enter <code>(grade1+grade2+grade3)/3</code>.</li>
+          <li>Display the mean before the decision: add an <strong>AFFICHER Message</strong> instruction with “Calculated mean:” and another <strong>AFFICHER variable</strong> instruction to show <code>mean</code>. Enable line breaks when you want each result on a separate line.</li>
+          <li>Insert an <strong>SI...ALORS</strong> block with the condition <code>mean&gt;=7</code> and enable <strong>SINON</strong>. Add the passing message inside the first block and the recovery message inside the alternative block.</li>
+          <li>Choose <strong>Tester</strong>, then <strong>Lancer l'algorithme</strong>. In step-by-step mode, advance through the input, inspect <code>mean</code> after the assignment, and check which branch runs.</li>
+        </ol>
+        <p>When configuring display instructions, select <strong>Ajouter un retour à la ligne</strong> to place each result on its own line. To insert an instruction, select the correct position in the tree and choose <strong>Nouvelle ligne</strong>; normal mode does not allow commands after <code>FIN_ALGORITHME</code>.</p>
+        <h3>Write the same algorithm in the text editor</h3>
+        <p>Start with a blank algorithm and choose <strong>Edition → Mode Edition</strong>. Write one instruction per line and declare each variable on its own line. In the text editor, <code>AFFICHER*</code> adds a line break; <code>AFFICHER</code> without the asterisk continues output on the same line.</p>
+        <pre class="manual-code"><code>VARIABLES
+  grade1 EST_DU_TYPE NOMBRE
+  grade2 EST_DU_TYPE NOMBRE
+  grade3 EST_DU_TYPE NOMBRE
+  mean EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  AFFICHER* "Enter three marks."
+  LIRE grade1
+  LIRE grade2
+  LIRE grade3
+  mean PREND_LA_VALEUR (grade1+grade2+grade3)/3
+  AFFICHER* "Calculated mean:"
+  AFFICHER* mean
+  SI (mean&gt;=7) ALORS
+    DEBUT_SI
+      AFFICHER* "Result: pass."
+    FIN_SI
+  SINON
+    DEBUT_SINON
+      AFFICHER* "Result: recovery."
+    FIN_SINON
+FIN_ALGORITHME</code></pre>
+        <p>Before running the text, choose <strong>Vérifier Code</strong>. AlgoBox checks whether it recognizes the syntax and rebuilds the instruction tree; correct any reported error before testing.</p>
+        <h3>Check both outcomes</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Test cases for the three-mark mean in AlgoBox" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Input marks</th><th scope="col">Mean</th><th scope="col"><code>mean&gt;=7</code> condition</th><th scope="col">Branch output</th></tr></thead><tbody>
+          <tr><td>8, 6, 10</td><td>8</td><td>True</td><td>Pass</td></tr>
+          <tr><td>6, 6, 6</td><td>6</td><td>False</td><td>Recovery</td></tr>
+        </tbody></table></div>
+        <p>These cases exercise both branches. To trace execution, record the three inputs, check the value of <code>mean</code>, and confirm that the condition is evaluated after the assignment.</p>
+      </section>
       <section id="estudo">
-        <p class="kicker">07 · study and debugging</p>
+        <p class="kicker">08 · study and debugging</p>
         <h2>How to practise</h2>
 <p>Choose a simple exercise and describe what should happen in plain language before opening the editor. Step-by-step mode lets you compare that description with the actual instruction order.</p><ul><li>Run cases that cover every branch of a condition.</li><li>Watch a variable before and after each assignment.</li><li>Test the input boundary that ends a loop.</li><li>For lists, try an empty list, one item, and several items if the operation allows it.</li><li>Consult the French documentation if a keyword or feature is not recognized.</li></ul><p>Structured blocks and text represent the same algorithm only when all instructions and boundaries are correct. Check the result, not merely the absence of syntax errors.</p>
       </section>
       <section id="limites">
-        <p class="kicker">08 · versions and scope</p>
+        <p class="kicker">09 · versions and scope</p>
         <h2>Versions and limits</h2>
-<p>AlgoBox is an environment with its own grammar and tools. Structured block editing, text mode, list features, and step-by-step display belong to AlgoBox; they are not universal properties of pseudocode.</p><p>Options and installation details can change between versions. This page summarizes the official site and manual; consult the linked documentation to confirm the behavior of the software you downloaded. AlgoBox remains under evaluation for Potoo IDE.</p>
+<p>AlgoBox is an environment with its own grammar and tools. Structured block editing, text mode, list features, and step-by-step display belong to AlgoBox; they are not universal properties of pseudocode.</p><p><strong>Reference version:</strong> AlgoBox 1.2.0, listed on the official download page consulted on November 18, 2026. The online official manual does not identify its own version; this page therefore summarizes that live reference, and its rules should be checked against the help available in the installation being used.</p><p>The official change log describes the move from version 1.1.1 to 1.2.0 as a technical update, with a move to Qt 6, platform support changes, and bug fixes. The instructions and examples here describe AlgoBox; they do not indicate that Potoo IDE runs it. AlgoBox remains under evaluation for Potoo IDE.</p>
       </section>
       <section id="editores">
-        <p class="kicker">9 · workflow</p>
+        <p class="kicker">10 · workflow</p>
         <h2>Editing modes and building an algorithm</h2>
         <p>The manual recommends normal mode for beginners. It displays an algorithm as a tree of logical blocks; the text editor lets users type instructions directly. Both modes help practise the same logic, but text must still follow AlgoBox grammar.</p>
         <div class="manual-table-wrap" role="region" aria-label="AlgoBox editing modes" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Mode or action</th><th scope="col">How it works</th></tr></thead><tbody>
@@ -129,10 +176,11 @@ FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n =
           <tr><td>Delete a block</td><td>Removing a condition or loop also removes the instructions nested inside it.</td></tr>
         </tbody></table></div>
         <p>In normal mode, declare a variable before using it. To insert an instruction, move the cursor to the desired position and choose <strong>New line</strong> (shortcut <code>Ctrl+Enter</code>); then select a command. A line cannot be inserted after <code>FIN_ALGORITHME</code>. When deleting a <code>SI</code>, <code>POUR</code>, or <code>TANT_QUE</code> block, review its whole body because the nested instructions are removed with it.</p>
+        <p>To switch to the text editor, save your current work and start a blank algorithm; mode changes are made from an empty algorithm. Choose <strong>Edition → Mode Edition</strong>. In the text editor, keep one instruction per line, declare each variable on a separate line, and use <code>AFFICHER*</code> to end output with a line break. The <strong>Vérifier Code</strong> button checks the syntax and rebuilds the algorithm tree, which helps locate an invalid line.</p>
         <p>Before saving, give the algorithm a clear name and briefly describe its purpose in the presentation field. The file menu can also print or export the code. Exporting an algorithm to a web page may limit features such as step-by-step execution, progressive input display, and manual stopping.</p>
       </section>
       <section id="recursos">
-        <p class="kicker">10 · execution tools</p>
+        <p class="kicker">11 · execution tools</p>
         <h2>Lists, functions, and execution tracing</h2>
         <p>Lists store and traverse a sequence of values. To read or display an item, the manual requires both the list name and its rank; the rank can be a number or a <code>NOMBRE</code> variable. The documented library includes statistical calculations over a range of ranks, such as mean, variance, standard deviation, median, quartiles, minimum, maximum, and the positions of the extremes.</p>
         <p>Some calculations have preconditions: the documented quartile functions require at least four elements. If a range is empty or the list does not meet the requirement, the environment reports an error. Check the first and last ranks before calling a function, and compare the result against a small set that can be calculated by hand.</p>
@@ -158,7 +206,7 @@ FIN_ALGORITHME</code></pre><p>Run the example with <code>n = 0</code>, <code>n =
 
       </section>
             <section id="estatistica-listas">
-        <p class="kicker">11 · list practice</p>
+        <p class="kicker">12 · list practice</p>
         <h2>Calculate and check list statistics</h2>
         <p>A <code>LISTE</code> stores numbers in numbered positions. In this AlgoBox feature, the first position is <code>1</code>; provide both the first and last rank in the range for each calculation. Lists use indices starting at 1, while text operations such as <code>substr</code> use a starting position of 0. Do not reuse an index from one structure in the other without adjusting its base.</p>
         <p>The program below calculates the sum, mean, maximum, and position of the maximum for four marks:</p>
@@ -186,9 +234,9 @@ FIN_ALGORITHME</code></pre>
         <p>When a result looks wrong, compare the call with the ranks used, display the list, and calculate a short set by hand. In step-by-step mode, advance one instruction at a time and watch the variable values; AlgoBox also marks the last executed line when an error occurs. <code>PAUSE</code> temporarily suspends execution, and displaying a variable helps locate the first incorrect pass.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">12 · further reading</p>
+        <p class="kicker">13 · further reading</p>
         <h2>References</h2>
-<ul><li><a href="https://www.xm1math.net/algobox/index">Official AlgoBox website</a>, with project information and downloads.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Official AlgoBox manual</a>, with syntax and usage guidance.</li></ul><p>The French manual is the source for the full grammar, list commands, and differences between versions.</p>
+<ul><li><a href="https://www.xm1math.net/algobox/index">Official AlgoBox website</a>, with project information.</li><li><a href="https://www.xm1math.net/algobox/download.html">Official downloads</a>, listing version 1.2.0 as the reference version checked on November 18, 2026.</li><li><a href="https://www.xm1math.net/algobox/doc.html">Official AlgoBox manual</a>, with syntax, normal and text editing modes, examples, and execution guidance.</li><li><a href="https://www.xm1math.net/algobox/changelog.html">Official change log</a>, for checking changes between releases.</li></ul><p>The French manual is the source for the full grammar, list commands, construction steps, and differences between versions.</p>
       </section>
     </article>
   </div>
