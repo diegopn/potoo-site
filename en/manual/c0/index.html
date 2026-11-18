@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Educational reference · programming language · under evaluation</p>
     <h1>C0 (Simplified C)</h1>
     <p class="manual-intro">A safe C subset for teaching algorithms; under evaluation in Potoo IDE.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#exemplo">Plan a search function</a></li>
         <li><a href="#estudo">How to study and debug C0</a></li>
         <li><a href="#memoria-indices">Traverse an array with a contract</a></li>
+        <li><a href="#alocacao">Allocation, pointers, and runtime errors</a></li>
         <li><a href="#limites">Scope of this reference</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
@@ -102,7 +103,7 @@ int main() {
             <section id="memoria-indices">
         <p class="kicker">09 · guided traversal</p>
         <h2>Arrays, contracts, and memory safety</h2>
-        <p>A function that traverses an array must relate three facts: the length stored with the reference, the current index, and how many elements have already been processed. This example sums a prefix of length <code>n</code>:</p>
+        <p>A function that sums an array prefix must relate the array length, the current index, and the total already computed. The precondition below requires <code>n</code> to fit the array; the invariant keeps the index within the allowed range.</p>
         <pre class="manual-code"><code>int sum_prefix(int[] values, int n)
 //@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
 {
@@ -116,30 +117,83 @@ int main() {
     }
     return total;
 }</code></pre>
-        <p>For <code>values = [4, 2, 5]</code> and <code>n = 3</code>, the (<code>i</code>, <code>total</code>) pairs after each pass are (1, 4), (2, 6), and (3, 11). When <code>n</code> is zero, the body does not access the array and the function returns zero. The precondition keeps <code>n</code> within the array length; the condition <code>i &lt; n</code> keeps every accessed index inside the prefix. The written invariant protects the index bound, but by itself does not assert that <code>total</code> is the prefix sum—that relationship still belongs in the correctness explanation.</p>
-        <div class="manual-table-wrap" role="region" aria-label="C0 allocation and safety failures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operation</th><th scope="col">Guarantee to establish</th><th scope="col">Observable failure</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n &gt;= 0</code>; accesses use <code>0 &lt;= i &lt; n</code>.</td><td>An index outside the array terminates the program.</td></tr><tr><td><code>alloc(t)</code></td><td>After allocation, initialise fields before relying on them; a pointer may be <code>NULL</code>.</td><td>Dereferencing <code>NULL</code> terminates the program.</td></tr><tr><td><code>p-&gt;field</code></td><td><code>p != NULL</code> and the field belongs to the declared struct.</td><td>Access through a null pointer terminates with a runtime exception.</td></tr><tr><td><code>//@requires</code></td><td>A precondition true before the body, such as an array bound.</td><td>With dynamic checking enabled, an invalid call fails before the body.</td></tr><tr><td><code>//@ensures</code> and <code>//@loop_invariant</code></td><td>A postcondition describes the return; an invariant describes state at the loop point.</td><td>With dynamic checking enabled, a false property is detected at the points defined by the reference.</td></tr><tr><td><code>assert(e);</code></td><td>An internal condition that must be true at this point.</td><td>The statement always runs; if <code>e</code> is false, execution aborts.</td></tr><tr><td><code>error(s);</code></td><td>A message for rejecting known invalid input.</td><td>Prints the message and terminates the program.</td></tr></tbody></table></div>
-        <p>Function contracts are special comments placed beside the signature. <code>//@requires</code> states what the caller must guarantee; <code>//@ensures</code> can use <code>\result</code> to refer to the return value. <code>\length(A)</code> is permitted only in contracts. A loop invariant is checked on each iteration immediately before the exit condition is tested, when dynamic checking is enabled. Contract annotations may not be checked by an ordinary compilation: use the course tools' options and read their failure messages. The executable statement <code>assert(e);</code> is always evaluated.</p>
-        <p>A pointer needs an additional argument about whether its object exists. In a linked list, test against <code>NULL</code> before every field read. Structs are large allocated values and are normally passed as pointers; fields receive the default value of their types when the struct is allocated. Automatic collection removes the need for <code>free</code>, but it does not repair a field that has not been initialised for the task, a null reference, or a structure that violates the invariant assumed by the algorithm.</p>
-        <pre class="manual-code"><code>struct node {
-    int value;
-    struct node* next;
-};
-
-struct node* first = alloc(struct node);
-first-&gt;value = 7;
-first-&gt;next = NULL;
-if (first-&gt;next != NULL) {
-    int next_value = first-&gt;next-&gt;value;
+        <p>C0 arrays have a fixed length set at allocation and use zero-based indices. Since <code>\length(values)</code> is allowed only in contracts, code receives <code>n</code> as an argument and the caller guarantees that it does not exceed the actual length.</p>
+        <p>This <code>main</code> creates a three-element array and calls the function:</p>
+        <pre class="manual-code"><code>int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    return sum_prefix(values, 3);
 }</code></pre>
-        <p>When debugging, test an empty array, one element, the last valid index, and the first invalid index separately. For pointers, test both the null case and an allocated object; for arithmetic, use values near the 32-bit extremes. The compiler can detect type mismatches, while contract checks and execution traces help locate violated preconditions, bounds, and invariants.</p>
+        <div class="manual-table-wrap" role="region" aria-label="C0 array-sum trace" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pass</th><th scope="col"><code>i</code> at the start</th><th scope="col"><code>values[i]</code></th><th scope="col"><code>total</code> after addition</th><th scope="col"><code>i</code> after increment</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>4</td><td>1</td></tr><tr><td>2</td><td>1</td><td>2</td><td>6</td><td>2</td></tr><tr><td>3</td><td>2</td><td>5</td><td>11</td><td>3</td></tr></tbody></table></div>
+        <p>The loop stops when <code>i</code> reaches 3. With <code>n = 0</code>, the body does not run and the result is zero. The written invariant proves only the index bound; the correctness argument must also relate <code>total</code> to the elements already processed. The next section extends this example with an allocated struct pointer and contracts for input, output, and progress.</p>
+      </section>
+      <section id="alocacao">
+        <p class="kicker">10 · allocation and failures</p>
+        <h2>Allocation, pointers, and runtime errors</h2>
+        <p>C0 uses typed allocation: <code>alloc(t)</code> creates space for a value of type <code>t</code>, and <code>alloc_array(t, n)</code> creates an array of fixed length. Garbage collection reclaims objects that are no longer reachable, so programs do not call <code>free</code>. This simplifies deallocation, but memory is finite and bounds or pointer checks are still necessary.</p>
+        <div class="manual-table-wrap" role="region" aria-label="C0 allocation and pointer rules" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Rule and limit</th><th scope="col">How to reason about it</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n</code> must be nonnegative; the length is fixed. The language does not specify one universal numeric maximum.</td><td>Use indices from 0 to <code>n - 1</code>. A zero-length array has no accessible positions. The environment can run out of memory.</td></tr><tr><td><code>alloc(t)</code></td><td>Allocates one typed cell; struct fields start with their types' default values.</td><td>Initialize fields according to the program's meaning. If memory runs out, execution may abort; allocation does not signal this by returning <code>NULL</code>.</td></tr><tr><td><code>t*</code> and <code>NULL</code></td><td><code>NULL</code> is the default pointer value and can represent the absence of an object.</td><td>Before using <code>*p</code> or <code>p-&gt;field</code>, establish that <code>p != NULL</code>. An <code>alloc</code> that completes normally provides a pointer to the allocated object.</td></tr><tr><td>Garbage collection</td><td>Unreachable objects may be reclaimed by the collector.</td><td>No <code>free</code> call is needed, but reachable references still use memory and a program can exhaust it.</td></tr></tbody></table></div>
+        <p>The bound <code>n &lt;= 1000</code> in the program below is a local design choice: together with validation that every element is between 0 and 1000, it keeps the sum within a safe <code>int</code> range. It is not a C0 language limit. The practical maximum allocation depends on available memory; the CMU reference notes that even a correct program may abort when memory runs out.</p>
+        <p>This example combines an array, a struct, a pointer, preconditions, postconditions, a loop invariant, and explicit rejection of data outside the function's domain. The <code>sum_prefix</code> function was defined in the previous section.</p>
+        <pre class="manual-code"><code>struct summary {
+    int count;
+    int total;
+};
+typedef struct summary* summary;
+
+summary summarize(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values) &amp;&amp; n &lt;= 1000;
+//@ensures \result != NULL;
+//@ensures \result-&gt;count == n;
+//@ensures \result-&gt;total == sum_prefix(values, n);
+{
+    if (n &lt; 0 || n &gt; 1000) {
+        error("n must be between 0 and 1000");
+    }
+    summary result = alloc(struct summary);
+    result-&gt;count = 0;
+    result-&gt;total = 0;
+    int i = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    //@loop_invariant result-&gt;count == i;
+    //@loop_invariant result-&gt;total == sum_prefix(values, i);
+    //@loop_invariant 0 &lt;= result-&gt;total &amp;&amp; result-&gt;total &lt;= 1000 * i;
+    {
+        if (values[i] &lt; 0 || values[i] &gt; 1000) {
+            error("value must be between 0 and 1000");
+        }
+        result-&gt;total = result-&gt;total + values[i];
+        result-&gt;count = result-&gt;count + 1;
+        i = i + 1;
+    }
+    return result;
+}
+
+int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    summary report = summarize(values, 3);
+    return report-&gt;total;
+}</code></pre>
+        <p><code>alloc(struct summary)</code> provides a pointer to the struct if allocation completes normally. The program explicitly writes <code>count</code> and <code>total</code> before relying on them; <code>report-&gt;total</code> then accesses a field through a pointer. <code>\result</code> in the postconditions names the returned pointer, and the call to the earlier function specifies exactly which sum it must contain.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Execution of summarize with values 4, 2, and 5" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pass</th><th scope="col">Index <code>i</code></th><th scope="col">Value read</th><th scope="col"><code>count</code> after update</th><th scope="col"><code>total</code> after update</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>1</td><td>4</td></tr><tr><td>2</td><td>1</td><td>2</td><td>2</td><td>6</td></tr><tr><td>3</td><td>2</td><td>5</td><td>3</td><td>11</td></tr></tbody></table></div>
+        <p>At the start of each pass, <code>count == i</code>, so they advance together. The invariant with <code>sum_prefix(values, i)</code> states what the accumulated total means; its numeric bound follows because each accepted value is between 0 and 1000 and prevents overflow. The postcondition guarantees that the function returns a count of all <code>n</code> elements and the same total as <code>sum_prefix</code>. With <code>n = 0</code>, no element is read and the function returns a struct whose count and total are both zero. <code>main</code> returns 11; how the course environment displays that value depends on the tool being used.</p>
+        <h3>Identify the source of a failure</h3>
+        <p>Not all failures are the same kind. The table separates runtime errors from properties checked only when the tool enables dynamic contract checking.</p>
+        <div class="manual-table-wrap" role="region" aria-label="C0 errors and checks" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Situation</th><th scope="col">Example</th><th scope="col">Behavior</th></tr></thead><tbody><tr><td>Array index out of bounds</td><td><code>values[n]</code> for an array of length <code>n</code></td><td>A bounds violation terminates the program; the last valid index is <code>n - 1</code>.</td></tr><tr><td>Null pointer</td><td><code>*p</code> or <code>p-&gt;field</code> when <code>p == NULL</code></td><td>A runtime exception terminates the program. Check optional pointers before dereferencing them.</td></tr><tr><td>Invalid arithmetic operation</td><td>Division by zero, <code>INT_MIN / -1</code>, or shift count outside 0 to 31</td><td>Raises an arithmetic exception. Addition, subtraction, and multiplication use 32-bit modular arithmetic.</td></tr><tr><td>Out of memory</td><td>An allocation does not fit in available memory</td><td>Even a correct program may abort. C0 gives no universal ceiling and <code>alloc</code> does not return <code>NULL</code> to report failure.</td></tr><tr><td>False precondition, postcondition, or invariant</td><td><code>//@requires</code>, <code>//@ensures</code>, or <code>//@loop_invariant</code></td><td>The tool reports the violation when dynamic checking is enabled; a build without that option may not evaluate it.</td></tr><tr><td>Internal failure</td><td><code>assert(e)</code> when <code>e</code> is false</td><td>Assertions always run and abort the computation when the condition is false.</td></tr><tr><td>Rejected input</td><td><code>error("message")</code></td><td>Prints the message and terminates the program; use it for a known invalid condition, as in the example.</td></tr></tbody></table></div>
+        <p>For debugging, reproduce one failure class at a time: test an empty array, the last valid index, and the first invalid one; test a null optional pointer and an allocated pointer; exercise accepted and rejected input; and compare a verifier message with the contract meant to protect that case. Garbage collection neither fixes these errors nor proves that a struct satisfies the algorithm's rules.</p>
       </section>
       <section id="limites">
-        <p class="kicker">10 · version and scope</p>
+        <p class="kicker">11 · version and scope</p>
         <h2>Scope of this reference</h2>
 <p>The official CMU reference linked here is C0.14, revision 707, dated February 18, 2025. It separates the base language from the C1 extension, which contains experimental features enabled for <code>.c1</code> files. This page describes base C0; check the version used by your course.</p><p>This page is limited to introductory ideas shared by the references consulted. It does not claim C0 support in Potoo IDE and does not replace the manual for the version used in class. The language remains under evaluation as a project candidate.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · further reading</p>
+        <p class="kicker">12 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Official C0 language reference</a>, published by Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Course 15-122 page</a>, with its curriculum context for imperative programming and data structures.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">2026 course 15-122 syllabus</a>, summarizing C0 safety, garbage collection, integer arithmetic, and contracts.</li><li><a href="https://www.cs.cmu.edu/~c0/">C0 project portal</a>, with project materials and tools.</li></ul><p>Consult the reference edition adopted by the course: libraries, contracts, and tool behavior can change between versions.</p>
       </section>

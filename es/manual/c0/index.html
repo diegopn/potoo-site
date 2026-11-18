@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referencia educativa · lenguaje de programación · en evaluación</p>
     <h1>C0 (C simplificado)</h1>
     <p class="manual-intro">Subconjunto seguro de C para enseñar algoritmos; en evaluación en Potoo IDE.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#exemplo">Planificar una función de búsqueda</a></li>
         <li><a href="#estudo">Cómo estudiar y depurar C0</a></li>
         <li><a href="#memoria-indices">Recorrer un arreglo con un contrato</a></li>
+        <li><a href="#alocacao">Asignación de memoria, punteros y errores de ejecución</a></li>
         <li><a href="#limites">Alcance de esta referencia</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
@@ -102,7 +103,7 @@ int main() {
             <section id="memoria-indices">
         <p class="kicker">09 · recorrido guiado</p>
         <h2>Arreglos, contratos y seguridad de memoria</h2>
-        <p>Una función que recorre un arreglo debe relacionar tres hechos: la longitud guardada con la referencia, el índice actual y cuántos elementos se procesaron. Este ejemplo suma un prefijo de longitud <code>n</code>:</p>
+        <p>Una función que suma un prefijo de un arreglo debe relacionar su longitud, el índice actual y el total ya calculado. La precondición exige que <code>n</code> quepa en el arreglo; el invariante mantiene el índice dentro del intervalo permitido.</p>
         <pre class="manual-code"><code>int sum_prefix(int[] values, int n)
 //@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
 {
@@ -116,30 +117,83 @@ int main() {
     }
     return total;
 }</code></pre>
-        <p>Para <code>values = [4, 2, 5]</code> y <code>n = 3</code>, los pares (<code>i</code>, <code>total</code>) tras cada pasada son (1, 4), (2, 6) y (3, 11). Si <code>n</code> vale cero, el cuerpo no accede al arreglo y la función devuelve cero. La precondición impide que <code>n</code> supere la longitud; la condición <code>i &lt; n</code> mantiene cada índice dentro del prefijo. El invariante escrito protege el límite del índice, pero no afirma por sí mismo que <code>total</code> sea la suma del prefijo; esa relación debe incluirse en la explicación de corrección.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Asignación y fallos de seguridad en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operación</th><th scope="col">Garantía que se debe establecer</th><th scope="col">Fallo observable</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n &gt;= 0</code>; los accesos usan <code>0 &lt;= i &lt; n</code>.</td><td>Un índice fuera del arreglo termina el programa.</td></tr><tr><td><code>alloc(t)</code></td><td>Inicializa los campos antes de depender de ellos; un puntero puede ser <code>NULL</code>.</td><td>Desreferenciar <code>NULL</code> termina el programa.</td></tr><tr><td><code>p-&gt;field</code></td><td><code>p != NULL</code> y el campo pertenece a la estructura declarada.</td><td>El acceso mediante un puntero nulo termina con una excepción de ejecución.</td></tr><tr><td><code>//@requires</code></td><td>Precondición verdadera antes del cuerpo, como un límite del arreglo.</td><td>Con la comprobación dinámica habilitada, una llamada incorrecta falla antes del cuerpo.</td></tr><tr><td><code>//@ensures</code> y <code>//@loop_invariant</code></td><td>La poscondición describe el retorno; el invariante describe el estado en el punto del bucle.</td><td>Con la comprobación dinámica habilitada, una propiedad falsa se detecta en los puntos definidos por la referencia.</td></tr><tr><td><code>assert(e);</code></td><td>Condición interna que debe ser verdadera en este punto.</td><td>La instrucción siempre se ejecuta; si <code>e</code> es falso, se aborta la ejecución.</td></tr><tr><td><code>error(s);</code></td><td>Mensaje para rechazar una entrada inválida conocida.</td><td>Muestra el mensaje y termina el programa.</td></tr></tbody></table></div>
-        <p>Los contratos de función son comentarios especiales junto a la firma. <code>//@requires</code> especifica lo que debe garantizar quien llama; <code>//@ensures</code> puede usar <code>\result</code> para referirse al retorno. <code>\length(A)</code> solo se permite en contratos. El invariante de un bucle se comprueba en cada iteración inmediatamente antes de probar la condición de salida, cuando está habilitada la comprobación dinámica. Una compilación común puede no comprobar las anotaciones: usa las opciones de las herramientas del curso y lee los mensajes de error. La instrucción ejecutable <code>assert(e);</code> siempre se evalúa.</p>
-        <p>Un puntero necesita una justificación adicional de que el objeto existe. En una lista enlazada, comprueba <code>NULL</code> antes de cada lectura de campo. Las estructuras son valores grandes asignados en memoria y normalmente se pasan como punteros; al asignarlas, sus campos reciben los valores predeterminados de sus tipos. El recolector automático evita llamar a <code>free</code>, pero no corrige un campo no inicializado para la tarea, una referencia nula ni una estructura que incumple el invariante supuesto por el algoritmo.</p>
-        <pre class="manual-code"><code>struct node {
-    int value;
-    struct node* next;
-};
-
-struct node* first = alloc(struct node);
-first-&gt;value = 7;
-first-&gt;next = NULL;
-if (first-&gt;next != NULL) {
-    int next_value = first-&gt;next-&gt;value;
+        <p>Los arreglos de C0 tienen una longitud fija definida al asignarlos e índices que empiezan en cero. Como <code>\length(values)</code> solo se permite en contratos, el código recibe <code>n</code> como argumento y quien llama garantiza que no supera la longitud real.</p>
+        <p>Este <code>main</code> crea un arreglo de tres elementos y llama a la función:</p>
+        <pre class="manual-code"><code>int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    return sum_prefix(values, 3);
 }</code></pre>
-        <p>Al depurar, prueba por separado un arreglo vacío, un elemento, el último índice válido y el primer índice inválido. Para punteros, prueba tanto el caso nulo como un objeto asignado; para aritmética, usa valores cercanos a los extremos de 32 bits. El compilador puede detectar incompatibilidades de tipos, mientras que los contratos y las tablas de ejecución ayudan a localizar precondiciones, límites e invariantes incumplidos.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Seguimiento de la suma del arreglo en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pasada</th><th scope="col"><code>i</code> al inicio</th><th scope="col"><code>values[i]</code></th><th scope="col"><code>total</code> tras sumar</th><th scope="col"><code>i</code> tras avanzar</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>4</td><td>1</td></tr><tr><td>2</td><td>1</td><td>2</td><td>6</td><td>2</td></tr><tr><td>3</td><td>2</td><td>5</td><td>11</td><td>3</td></tr></tbody></table></div>
+        <p>El bucle termina cuando <code>i</code> llega a 3. Si <code>n = 0</code>, el cuerpo no se ejecuta y el resultado es cero. El invariante escrito solo demuestra el límite del índice; la explicación de corrección también debe relacionar <code>total</code> con los elementos ya procesados. La sección siguiente amplía el ejemplo con un puntero a una estructura y contratos de entrada, salida y progreso.</p>
+      </section>
+      <section id="alocacao">
+        <p class="kicker">10 · asignación de memoria y fallos</p>
+        <h2>Asignación de memoria, punteros y errores de ejecución</h2>
+        <p>C0 utiliza asignación de memoria tipada: <code>alloc(t)</code> crea espacio para un valor de tipo <code>t</code> y <code>alloc_array(t, n)</code> crea un arreglo de longitud fija. El recolector de basura recupera los objetos que dejan de ser alcanzables, por lo que el programa no llama a <code>free</code>. Esto simplifica la liberación, pero la memoria es finita y todavía hay que comprobar índices y punteros.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Reglas de asignación y punteros en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Regla y límite</th><th scope="col">Cómo analizarla</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n</code> debe ser no negativo; la longitud es fija. El lenguaje no define un máximo numérico universal.</td><td>Usa índices de 0 a <code>n - 1</code>. Un arreglo de longitud cero no tiene posiciones accesibles. El entorno puede quedarse sin memoria.</td></tr><tr><td><code>alloc(t)</code></td><td>Asigna una celda tipada; los campos de una estructura empiezan con los valores predeterminados de sus tipos.</td><td>Inicializa los campos de acuerdo con el significado del programa. Si se agota la memoria, la ejecución puede abortar; la asignación no informa del fallo devolviendo <code>NULL</code>.</td></tr><tr><td><code>t*</code> y <code>NULL</code></td><td><code>NULL</code> es el valor predeterminado de los punteros y puede representar la ausencia de un objeto.</td><td>Antes de usar <code>*p</code> o <code>p-&gt;field</code>, establece que <code>p != NULL</code>. Un <code>alloc</code> que termina normalmente proporciona un puntero al objeto asignado.</td></tr><tr><td>Recolector de basura</td><td>El recolector puede recuperar objetos inaccesibles.</td><td>No hace falta llamar a <code>free</code>, pero las referencias alcanzables siguen ocupando memoria y el programa puede agotarla.</td></tr></tbody></table></div>
+        <p>El límite <code>n &lt;= 1000</code> del programa siguiente es una decisión local: junto con la validación de cada elemento entre 0 y 1000, mantiene la suma en un intervalo seguro para <code>int</code>. No es un límite del lenguaje C0. El máximo práctico depende de la memoria disponible; la referencia de CMU advierte que incluso un programa correcto puede abortar cuando se agota la memoria.</p>
+        <p>Este ejemplo reúne un arreglo, una estructura, un puntero, precondiciones, poscondiciones, un invariante de bucle y el rechazo explícito de datos fuera del dominio de la función. <code>sum_prefix</code> se definió en la sección anterior.</p>
+        <pre class="manual-code"><code>struct summary {
+    int count;
+    int total;
+};
+typedef struct summary* summary;
+
+summary summarize(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values) &amp;&amp; n &lt;= 1000;
+//@ensures \result != NULL;
+//@ensures \result-&gt;count == n;
+//@ensures \result-&gt;total == sum_prefix(values, n);
+{
+    if (n &lt; 0 || n &gt; 1000) {
+        error("n debe estar entre 0 y 1000");
+    }
+    summary result = alloc(struct summary);
+    result-&gt;count = 0;
+    result-&gt;total = 0;
+    int i = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    //@loop_invariant result-&gt;count == i;
+    //@loop_invariant result-&gt;total == sum_prefix(values, i);
+    //@loop_invariant 0 &lt;= result-&gt;total &amp;&amp; result-&gt;total &lt;= 1000 * i;
+    {
+        if (values[i] &lt; 0 || values[i] &gt; 1000) {
+            error("valor fuera del intervalo de 0 a 1000");
+        }
+        result-&gt;total = result-&gt;total + values[i];
+        result-&gt;count = result-&gt;count + 1;
+        i = i + 1;
+    }
+    return result;
+}
+
+int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    summary report = summarize(values, 3);
+    return report-&gt;total;
+}</code></pre>
+        <p><code>alloc(struct summary)</code> proporciona un puntero a la estructura si la asignación termina normalmente. El programa escribe explícitamente <code>count</code> y <code>total</code> antes de depender de ellos; luego <code>report-&gt;total</code> accede a un campo mediante un puntero. <code>\result</code> en las poscondiciones nombra el puntero devuelto y la llamada a la función anterior especifica la suma exacta que debe contener.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Ejecución de summarize con valores 4, 2 y 5" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Pasada</th><th scope="col">Índice <code>i</code></th><th scope="col">Valor leído</th><th scope="col"><code>count</code> tras actualizar</th><th scope="col"><code>total</code> tras actualizar</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>1</td><td>4</td></tr><tr><td>2</td><td>1</td><td>2</td><td>2</td><td>6</td></tr><tr><td>3</td><td>2</td><td>5</td><td>3</td><td>11</td></tr></tbody></table></div>
+        <p>Al inicio de cada pasada, <code>count == i</code>, por lo que ambos avanzan juntos. El invariante con <code>sum_prefix(values, i)</code> precisa el significado del total acumulado; su límite numérico se deriva de que cada valor aceptado está entre 0 y 1000 y evita el desbordamiento. La poscondición garantiza que la función cuenta los <code>n</code> elementos y devuelve el mismo total que <code>sum_prefix</code>. Si <code>n = 0</code>, no se lee ningún elemento y la función devuelve una estructura con cuenta y total iguales a cero. <code>main</code> devuelve 11; la forma de mostrar ese valor depende de la herramienta del curso.</p>
+        <h3>Identificar el origen del fallo</h3>
+        <p>No todos los fallos son del mismo tipo. La tabla separa los errores de ejecución de las propiedades que solo se verifican cuando la herramienta habilita la comprobación dinámica de contratos.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Errores y comprobaciones en C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Situación</th><th scope="col">Ejemplo</th><th scope="col">Comportamiento</th></tr></thead><tbody><tr><td>Índice fuera del arreglo</td><td><code>values[n]</code> en un arreglo de longitud <code>n</code></td><td>Una violación de límites termina el programa; el último índice válido es <code>n - 1</code>.</td></tr><tr><td>Puntero nulo</td><td><code>*p</code> o <code>p-&gt;field</code> cuando <code>p == NULL</code></td><td>Una excepción de ejecución termina el programa. Comprueba los punteros opcionales antes de desreferenciarlos.</td></tr><tr><td>Operación aritmética inválida</td><td>División por cero, <code>INT_MIN / -1</code> o desplazamiento fuera de 0 a 31</td><td>Genera una excepción aritmética. La suma, la resta y la multiplicación utilizan aritmética modular de 32 bits.</td></tr><tr><td>Memoria agotada</td><td>La asignación no cabe en la memoria disponible</td><td>Incluso un programa correcto puede abortar. C0 no define un máximo universal y <code>alloc</code> no devuelve <code>NULL</code> para señalar el fallo.</td></tr><tr><td>Precondición, poscondición o invariante falsa</td><td><code>//@requires</code>, <code>//@ensures</code> o <code>//@loop_invariant</code></td><td>La herramienta informa del incumplimiento cuando la comprobación dinámica está habilitada; una compilación sin esa opción puede no evaluarlo.</td></tr><tr><td>Fallo interno</td><td><code>assert(e)</code> cuando <code>e</code> es falso</td><td>Las aserciones siempre se ejecutan y abortan el cálculo si la condición es falsa.</td></tr><tr><td>Entrada rechazada</td><td><code>error("mensaje")</code></td><td>Muestra el mensaje y termina el programa; úsalo para una condición inválida conocida, como en el ejemplo.</td></tr></tbody></table></div>
+        <p>Para depurar, reproduce una clase de fallo a la vez: prueba un arreglo vacío, el último índice válido y el primero inválido; un puntero opcional nulo y uno asignado; entradas aceptadas y rechazadas; y compara el mensaje del verificador con el contrato que debía proteger ese caso. La recolección de basura no corrige estos errores ni demuestra que una estructura cumpla las reglas del algoritmo.</p>
       </section>
       <section id="limites">
-        <p class="kicker">10 · versión y alcance</p>
+        <p class="kicker">11 · versión y alcance</p>
         <h2>Alcance de esta referencia</h2>
 <p>La referencia oficial de CMU enlazada aquí es C0.14, revisión 707, del 18 de febrero de 2025. Distingue el lenguaje base de la extensión C1, que reúne funciones experimentales habilitadas en archivos <code>.c1</code>. Esta página describe C0 base; comprueba la versión adoptada por la asignatura.</p><p>Esta página se limita a ideas introductorias compartidas por las referencias consultadas. No afirma que Potoo IDE admita C0 ni sustituye el manual de la versión usada en clase. El lenguaje sigue en evaluación como candidato del proyecto.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · lecturas adicionales</p>
+        <p class="kicker">12 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Referencia oficial del lenguaje C0</a>, publicada por Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Página del curso 15-122</a>, con el contexto curricular de programación imperativa y estructuras de datos.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">Programa del curso 15-122 de 2026</a>, con un resumen de la seguridad, recolección de memoria, aritmética entera y contratos de C0.</li><li><a href="https://www.cs.cmu.edu/~c0/">Portal del proyecto C0</a>, con materiales y herramientas.</li></ul><p>Consulta la edición de referencia adoptada por la asignatura: las bibliotecas, los contratos y las herramientas pueden cambiar entre versiones.</p>
       </section>

@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referência educacional · linguagem de programação · em avaliação</p>
     <h1>C0 (C Simplificado)</h1>
     <p class="manual-intro">Subconjunto seguro de C para ensinar algoritmos; em avaliação no Potoo IDE.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 18 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -36,6 +36,7 @@ body_class: manual-page
         <li><a href="#exemplo">Planejar uma função de busca</a></li>
         <li><a href="#estudo">Como estudar e depurar C0</a></li>
         <li><a href="#memoria-indices">Percorrer um vetor com um contrato</a></li>
+        <li><a href="#alocacao">Alocação, ponteiros e erros de execução</a></li>
         <li><a href="#limites">Escopo desta referência</a></li>
         <li><a href="#fontes">Referências</a></li>
       </ol>
@@ -102,7 +103,7 @@ int main() {
             <section id="memoria-indices">
         <p class="kicker">09 · percurso guiado</p>
         <h2>Vetores, contratos e segurança da memória</h2>
-        <p>Uma função que percorre um vetor precisa relacionar três fatos: o comprimento armazenado na referência, o índice atual e a quantidade de elementos já processada. O exemplo soma um prefixo de tamanho <code>n</code>:</p>
+        <p>Uma função que soma um prefixo de vetor precisa relacionar o comprimento do vetor, o índice atual e o total já calculado. A pré-condição abaixo exige que <code>n</code> caiba no vetor; o invariante garante que o índice continue no intervalo permitido.</p>
         <pre class="manual-code"><code>int sum_prefix(int[] values, int n)
 //@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values);
 {
@@ -116,30 +117,83 @@ int main() {
     }
     return total;
 }</code></pre>
-        <p>Para <code>values = [4, 2, 5]</code> e <code>n = 3</code>, os pares (<code>i</code>, <code>total</code>) após cada passagem são (1, 4), (2, 6) e (3, 11). Quando <code>n</code> vale zero, o corpo não acessa o vetor e a função retorna zero. A pré-condição garante que <code>n</code> não exceda o comprimento; a condição <code>i &lt; n</code> mantém cada índice acessado dentro do prefixo. O invariante escrito protege o limite do índice, mas não afirma por si só que <code>total</code> é a soma do prefixo — essa relação deve fazer parte da explicação de correção.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Alocação e falhas de segurança em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operação</th><th scope="col">Garantia que deve ser estabelecida</th><th scope="col">Violação observável</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n &gt;= 0</code>; os acessos usam <code>0 &lt;= i &lt; n</code>.</td><td>Índice fora do vetor encerra o programa.</td></tr><tr><td><code>alloc(t)</code></td><td>Depois da alocação, inicialize os campos antes de depender deles; um ponteiro pode ser <code>NULL</code>.</td><td>Desreferenciar <code>NULL</code> encerra o programa.</td></tr><tr><td><code>p-&gt;field</code></td><td><code>p != NULL</code> e o campo pertence à estrutura declarada.</td><td>Acesso através de ponteiro nulo termina com exceção de execução.</td></tr><tr><td><code>//@requires</code></td><td>Precondição verdadeira antes do corpo, como limite de vetor.</td><td>Com a checagem dinâmica habilitada, a chamada incorreta falha antes do corpo.</td></tr><tr><td><code>//@ensures</code> e <code>//@loop_invariant</code></td><td>Pós-condição descreve o retorno; invariante descreve o estado no ponto do laço.</td><td>Com a checagem dinâmica habilitada, a propriedade falsa é detectada nos pontos definidos pela referência.</td></tr><tr><td><code>assert(e);</code></td><td>Condição interna que deve ser verdadeira naquele ponto.</td><td>A instrução sempre executa; se <code>e</code> for falso, a execução é abortada.</td></tr><tr><td><code>error(s);</code></td><td>Mensagem para rejeitar uma entrada inválida conhecida.</td><td>Imprime a mensagem e encerra o programa.</td></tr></tbody></table></div>
-        <p>Os contratos de função são comentários especiais posicionados junto à assinatura. <code>//@requires</code> especifica o que o chamador precisa garantir; <code>//@ensures</code> pode usar <code>\result</code> para falar do retorno. <code>\length(A)</code> só é permitido em contratos. Um invariante de laço é verificado a cada iteração imediatamente antes de testar a condição de saída, quando a verificação dinâmica está habilitada. Anotações de contrato podem não ser verificadas por uma compilação comum: use as opções das ferramentas da disciplina e leia as mensagens de falha. Já a instrução de execução <code>assert(e);</code> é sempre avaliada.</p>
-        <p>Um ponteiro precisa de um argumento adicional sobre a existência do objeto. Considere uma lista ligada: toda leitura de campo deve ocorrer depois do teste contra <code>NULL</code>. Estruturas são grandes valores alocados e normalmente circulam como ponteiros; os campos iniciam com os valores padrão de seus tipos quando a estrutura é alocada. A coleta automática dispensa <code>free</code>, mas não corrige a lógica de um campo não inicializado para a tarefa, uma referência nula ou uma estrutura sem o invariante que o algoritmo pressupõe.</p>
-        <pre class="manual-code"><code>struct node {
-    int value;
-    struct node* next;
-};
-
-struct node* first = alloc(struct node);
-first-&gt;value = 7;
-first-&gt;next = NULL;
-if (first-&gt;next != NULL) {
-    int next_value = first-&gt;next-&gt;value;
+        <p>Os vetores C0 têm comprimento fixo, definido na alocação, e índices iniciados em zero. Como <code>\length(values)</code> só pode ser usada em contratos, o código recebe <code>n</code> como argumento e o chamador garante que ele não exceda o comprimento real.</p>
+        <p>Este <code>main</code> constrói um vetor com três elementos e chama a função:</p>
+        <pre class="manual-code"><code>int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    return sum_prefix(values, 3);
 }</code></pre>
-        <p>Ao depurar, teste separadamente vetor vazio, um elemento, o último índice válido, e a primeira posição inválida. Para ponteiros, teste tanto o caso nulo quanto um objeto alocado; para aritmética, use valores perto dos extremos de 32 bits. O compilador pode detectar inconsistências de tipo, enquanto as checagens de contrato e as tabelas de execução ajudam a localizar violações de pré-condições, limites e invariantes.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma do vetor em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Passagem</th><th scope="col"><code>i</code> no início</th><th scope="col"><code>values[i]</code></th><th scope="col"><code>total</code> após a soma</th><th scope="col"><code>i</code> após avançar</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>4</td><td>1</td></tr><tr><td>2</td><td>1</td><td>2</td><td>6</td><td>2</td></tr><tr><td>3</td><td>2</td><td>5</td><td>11</td><td>3</td></tr></tbody></table></div>
+        <p>O laço termina quando <code>i</code> vale 3. Com <code>n = 0</code>, o corpo não executa e o resultado é zero. O invariante anotado prova apenas o limite do índice; a explicação de correção também precisa relacionar <code>total</code> à soma dos elementos já processados. O exemplo principal da seção seguinte acrescenta uma estrutura apontada e reforça essa relação com contratos de entrada, saída e progresso.</p>
+      </section>
+      <section id="alocacao">
+        <p class="kicker">10 · alocação e falhas</p>
+        <h2>Alocação, ponteiros e erros de execução</h2>
+        <p>C0 usa alocação tipada: <code>alloc(t)</code> cria espaço para um valor do tipo <code>t</code>, e <code>alloc_array(t, n)</code> cria um vetor de tamanho fixo. A coleta automática recupera objetos que deixaram de ser alcançáveis, então o programa não chama <code>free</code>. Isso simplifica a liberação, mas não torna a memória infinita nem elimina verificações de limites e ponteiros.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Regras de alocação e ponteiros em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Regra e limite</th><th scope="col">Como raciocinar</th></tr></thead><tbody><tr><td><code>alloc_array(t, n)</code></td><td><code>n</code> precisa ser não negativo; o comprimento fica fixo. A linguagem não declara um máximo numérico universal.</td><td>Use apenas índices de 0 a <code>n - 1</code>. Vetor de tamanho zero não tem posições acessíveis. O ambiente pode ficar sem memória.</td></tr><tr><td><code>alloc(t)</code></td><td>Aloca uma posição tipada; campos de uma estrutura começam com os valores padrão dos tipos.</td><td>Inicialize os campos conforme o significado exigido pelo programa. Se a memória se esgotar, a execução pode abortar; a alocação não sinaliza essa situação retornando <code>NULL</code>.</td></tr><tr><td><code>t*</code> e <code>NULL</code></td><td><code>NULL</code> é o valor padrão de ponteiros e pode representar a ausência de um objeto.</td><td>Antes de usar <code>*p</code> ou <code>p-&gt;campo</code>, estabeleça que <code>p != NULL</code>. Um <code>alloc</code> que termina normalmente fornece um ponteiro para o objeto alocado.</td></tr><tr><td>Coleta automática</td><td>Objetos inacessíveis podem ser recuperados pelo coletor.</td><td>Não é preciso chamar <code>free</code>, mas referências ainda alcançáveis continuam ocupando memória e uma execução pode esgotá-la.</td></tr></tbody></table></div>
+        <p>O limite <code>n &lt;= 1000</code> no programa abaixo é uma decisão local: junto com a validação de cada elemento entre 0 e 1000, mantém a soma dentro de um intervalo seguro para <code>int</code>. Não é um limite da linguagem C0. O tamanho máximo prático de uma alocação depende da memória disponível no ambiente; a referência da CMU avisa que até um programa correto pode abortar quando a memória se esgota.</p>
+        <p>O exemplo reúne vetor, estrutura, ponteiro, pré-condições, pós-condições, invariante de laço e rejeição explícita de dados fora do domínio. A função <code>sum_prefix</code> foi definida na seção anterior.</p>
+        <pre class="manual-code"><code>struct summary {
+    int count;
+    int total;
+};
+typedef struct summary* summary;
+
+summary summarize(int[] values, int n)
+//@requires 0 &lt;= n &amp;&amp; n &lt;= \length(values) &amp;&amp; n &lt;= 1000;
+//@ensures \result != NULL;
+//@ensures \result-&gt;count == n;
+//@ensures \result-&gt;total == sum_prefix(values, n);
+{
+    if (n &lt; 0 || n &gt; 1000) {
+        error("n deve estar entre 0 e 1000");
+    }
+    summary result = alloc(struct summary);
+    result-&gt;count = 0;
+    result-&gt;total = 0;
+    int i = 0;
+    while (i &lt; n)
+    //@loop_invariant 0 &lt;= i &amp;&amp; i &lt;= n;
+    //@loop_invariant result-&gt;count == i;
+    //@loop_invariant result-&gt;total == sum_prefix(values, i);
+    //@loop_invariant 0 &lt;= result-&gt;total &amp;&amp; result-&gt;total &lt;= 1000 * i;
+    {
+        if (values[i] &lt; 0 || values[i] &gt; 1000) {
+            error("valor fora do intervalo de 0 a 1000");
+        }
+        result-&gt;total = result-&gt;total + values[i];
+        result-&gt;count = result-&gt;count + 1;
+        i = i + 1;
+    }
+    return result;
+}
+
+int main() {
+    int[] values = alloc_array(int, 3);
+    values[0] = 4;
+    values[1] = 2;
+    values[2] = 5;
+    summary report = summarize(values, 3);
+    return report-&gt;total;
+}</code></pre>
+        <p><code>alloc(struct summary)</code> fornece um ponteiro para a estrutura quando a alocação termina normalmente. O código grava explicitamente <code>count</code> e <code>total</code> antes de usá-los; em seguida, <code>report-&gt;total</code> acessa um campo por ponteiro. <code>\result</code> nas pós-condições nomeia esse ponteiro retornado, e a chamada à função anterior especifica exatamente qual soma ele deve conter.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Execução de summarize com valores 4, 2 e 5" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Passagem</th><th scope="col">Índice <code>i</code></th><th scope="col">Valor lido</th><th scope="col"><code>count</code> após a atualização</th><th scope="col"><code>total</code> após a atualização</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>4</td><td>1</td><td>4</td></tr><tr><td>2</td><td>1</td><td>2</td><td>2</td><td>6</td></tr><tr><td>3</td><td>2</td><td>5</td><td>3</td><td>11</td></tr></tbody></table></div>
+        <p>No início de cada passagem, <code>count == i</code>; por isso, os dois avançam juntos. O invariante com <code>sum_prefix(values, i)</code> especifica o significado do total já calculado, enquanto o limite numérico decorre de cada valor validado estar entre zero e 1000 e evita estouro. O contrato de saída garante que a função retorna os três elementos contados e a mesma soma de <code>sum_prefix</code>. Com <code>n = 0</code>, nenhum elemento é lido e a função retorna uma estrutura com contagem e total iguais a zero. O <code>main</code> retorna 11; a forma como o ambiente do curso apresenta esse resultado depende da ferramenta usada.</p>
+        <h3>Reconhecer a origem da falha</h3>
+        <p>Nem toda falha é da mesma espécie. A tabela separa os erros detectados durante a execução de propriedades que só são verificadas quando a ferramenta habilita a checagem dinâmica de contratos.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Erros e verificações em C0" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Situação</th><th scope="col">Exemplo</th><th scope="col">Comportamento</th></tr></thead><tbody><tr><td>Índice fora do vetor</td><td><code>values[n]</code> para vetor de tamanho <code>n</code></td><td>Violação de limites encerra o programa; o último índice válido é <code>n - 1</code>.</td></tr><tr><td>Ponteiro nulo</td><td><code>*p</code> ou <code>p-&gt;campo</code> quando <code>p == NULL</code></td><td>Exceção de execução encerra o programa. Teste ponteiros opcionais antes de desreferenciá-los.</td></tr><tr><td>Operação aritmética inválida</td><td>Divisão por zero, <code>INT_MIN / -1</code> ou deslocamento fora de 0 a 31</td><td>Gera exceção aritmética. Adição, subtração e multiplicação usam aritmética modular de 32 bits.</td></tr><tr><td>Memória esgotada</td><td>Alocação não cabe na memória disponível</td><td>Mesmo um programa correto pode abortar. C0 não define um teto universal nem usa <code>NULL</code> como retorno de falha de <code>alloc</code>.</td></tr><tr><td>Pré-condição, pós-condição ou invariante falsa</td><td><code>//@requires</code>, <code>//@ensures</code> ou <code>//@loop_invariant</code></td><td>A ferramenta relata a violação quando a checagem dinâmica está habilitada; uma compilação sem essa opção pode não avaliá-la.</td></tr><tr><td>Falha interna</td><td><code>assert(e)</code> com <code>e</code> falso</td><td>A asserção sempre é executada e aborta a computação se a condição for falsa.</td></tr><tr><td>Entrada rejeitada</td><td><code>error("mensagem")</code></td><td>Imprime a mensagem e termina o programa; use-a para uma condição inválida conhecida, como no exemplo.</td></tr></tbody></table></div>
+        <p>Para depurar, reproduza uma classe de falha por vez: teste vetor vazio, último índice válido e primeira posição inválida; teste ponteiro opcional nulo e ponteiro alocado; exercite valores de entrada aceitos e rejeitados; e compare a mensagem do verificador com o contrato que deveria proteger o caso. A coleta automática não corrige esses erros nem prova que uma estrutura atende às regras do algoritmo.</p>
       </section>
       <section id="limites">
-        <p class="kicker">10 · versão e escopo</p>
+        <p class="kicker">11 · versão e escopo</p>
         <h2>Escopo desta referência</h2>
 <p>A referência oficial da CMU listada aqui é C0.14, revisão 707, de 18 de fevereiro de 2025. Ela separa a linguagem-base da extensão C1, que reúne recursos experimentais habilitados em arquivos <code>.c1</code>. Esta página descreve a linguagem-base C0; confira a versão adotada pela disciplina.</p><p>Esta página se limita às ideias introdutórias compartilhadas pelas referências consultadas. Não presume suporte de C0 no Potoo IDE, nem substitui o manual da versão usada em sala. A linguagem permanece em avaliação como candidata do projeto.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">11 · leitura adicional</p>
+        <p class="kicker">12 · leitura adicional</p>
         <h2>Referências</h2>
 <ul><li><a href="https://www.cs.cmu.edu/~c0/docs/c0-reference.pdf">Referência oficial da linguagem C0</a>, publicada pela Carnegie Mellon University.</li><li><a href="https://www.cs.cmu.edu/~15122/about.shtml">Página do curso 15-122</a>, com o contexto curricular de programação imperativa e estruturas de dados.</li><li><a href="https://www.cs.cmu.edu/~15122-archive/n26/syllabus.shtml">Programa do curso 15-122 de 2026</a>, que resume a segurança, a coleta de memória, os inteiros e os contratos em C0.</li><li><a href="https://www.cs.cmu.edu/~c0/">Portal de C0</a>, com materiais e ferramentas do projeto.</li></ul><p>Consulte a edição de referência adotada pela disciplina: detalhes de biblioteca, contratos e ferramentas podem mudar entre versões.</p>
       </section>
