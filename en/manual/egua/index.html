@@ -41,6 +41,7 @@ body_class: manual-page
     <li><a href="#depuracao">Errors and debugging</a></li>
     <li><a href="#estudo">Study path</a></li>
     <li><a href="#limites">Version and scope</a></li>
+    <li><a href="#interpretador-potoo">Independent interpreter</a></li>
     <li><a href="#fontes">Official and implementation sources</a></li>
   </ol>
 </aside>
@@ -401,13 +402,29 @@ se (tamanho(aprovadas) &gt; 0) {
   <p>In particular, the function and library catalog follows the official pages; details about precedence, optional parameters, and loop terminators were also checked against the parser and interpreter tagged 1.3.16. An implementation that supports only part of the language may not recognize lists, classes, exceptions, imports, or the libraries described here. Check the compatibility information for the environment that will run your program before reusing these examples.</p>
 </section>
 
+<section id="interpretador-potoo">
+  <p class="kicker">16 · independent implementation</p><h2>Interpreter maintained by the project</h2>
+  <p>Alongside the official environment, an independent Rust implementation provides a library and command-line runner for Égua programs. It targets version 1.3.16. The runner is distributed in its own repository and is not yet integrated with program execution inside the Potoo IDE interface. See the <a href="https://github.com/diegopn/potoo-egua-interpreter">Égua interpreter repository</a> for its source and instructions for embedding it as a library.</p>
+  <h3>Install from source</h3>
+  <p>Installation requires Rust 1.93 or later, Cargo, and an internet connection. The command below compiles and installs the runner from <a href="https://github.com/diegopn/potoo-egua-interpreter/commit/3bd024a06d834c6e27077d286edc922ada234a80">revision 3bd024a</a>. Cargo places <code>potoo-egua</code> in its binary directory; if the terminal cannot find it, add that directory to your <code>PATH</code>.</p>
+  <pre class="manual-code"><code>cargo install --git https://github.com/diegopn/potoo-egua-interpreter.git --rev 3bd024a06d834c6e27077d286edc922ada234a80 --locked --bin potoo-egua</code></pre>
+  <h3>Run a file or open the console</h3>
+  <p>Save the program as UTF-8 with the <code>.egua</code> extension, then run it in a terminal. With no file argument, the command opens an interactive console:</p>
+  <div class="manual-table-wrap" role="region" aria-label="Independent Égua runner modes" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Mode</th><th scope="col">Command</th><th scope="col">Behavior</th></tr></thead><tbody>
+    <tr><td>File</td><td><code>potoo-egua programa.egua</code></td><td>Runs one source file per invocation; output goes to standard output, and diagnostics include a phase, line, and column.</td></tr>
+    <tr><td>Interactive console</td><td><code>potoo-egua</code></td><td>Evaluates one submitted line at a time and keeps global variables for the duration of the session.</td></tr>
+  </tbody></table></div>
+  <p>Imports in an entry file and the console are resolved from the working directory; code inside an imported module resolves paths relative to that module's directory. In the command-line runner, HTTP functions from the <code>requisição</code> library require <code>curl</code> on the system path, accept HTTP or HTTPS URLs, and have a 30-second timeout. To embed the Rust library in another project, follow the <a href="https://github.com/diegopn/potoo-egua-interpreter#use-as-a-rust-library">repository README</a>.</p>
+</section>
+
 <section id="fontes">
-  <p class="kicker">16 · lookup and verification</p><h2>Official and implementation sources</h2>
+  <p class="kicker">17 · lookup and verification</p><h2>Official and implementation sources</h2>
   <ul>
     <li><a href="https://egua.dev/">Official Égua portal</a> and <a href="https://github.com/eguadev/egua">project repository</a>.</li>
     <li>Official guides: <a href="https://egua.dev/egua/variaveis">variables</a>, <a href="https://egua.dev/egua/tipos-dados">types</a>, <a href="https://egua.dev/egua/operadores">operators</a>, <a href="https://egua.dev/egua/fluxo-controle">control flow</a>, <a href="https://egua.dev/egua/funcao">functions</a>, <a href="https://egua.dev/egua/classes">classes</a>, <a href="https://egua.dev/egua/funcoes-integradas">built-in functions</a>, and <a href="https://egua.dev/egua/bibliotecas">libraries</a>.</li>
     <li>Module references: <a href="https://egua.dev/egua/biblioteca-matematica">mathematics</a>, <a href="https://egua.dev/egua/biblioteca-textos">text</a>, <a href="https://egua.dev/egua/biblioteca-tempo">time</a>, and <a href="https://egua.dev/egua/biblioteca-requisicao">HTTP requests</a>.</li>
     <li>Official implementation, tag <a href="https://github.com/eguadev/egua/tree/v1.3.16">v1.3.16</a>: <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/lexer.js">lexical rules</a>, <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/parser.js">grammar and precedence</a>, and <a href="https://github.com/eguadev/egua/blob/v1.3.16/src/interpreter.js">evaluation and execution</a>.</li>
+    <li><a href="https://github.com/diegopn/potoo-egua-interpreter">Independent Rust implementation maintained by the project</a>, including <a href="https://github.com/diegopn/potoo-egua-interpreter/commit/3bd024a06d834c6e27077d286edc922ada234a80">the revision used in the installation instructions</a>.</li>
     <li><a href="https://github.com/eguadev/egua/blob/main/README.md">Official README</a>, with CLI installation and execution modes. Verify the package version in the distribution you use.</li>
   </ul>
   <p>When a web guide and an implementation differ, test against the version named in the teaching material and preserve the source for the behavior you rely on.</p>
