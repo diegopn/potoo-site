@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referencia educativa · notación de evaluación · en evaluación</p>
     <h1>Pseudocódigo de Cambridge</h1>
     <p class="manual-intro">Notación de los exámenes Cambridge 9618 de informática; en evaluación en Potoo IDE.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -35,6 +35,7 @@ body_class: manual-page
         <li><a href="#vetores">Arreglos y estructuras</a></li>
         <li><a href="#rotinas">Procedimientos y funciones</a></li>
         <li><a href="#exemplo">Sumar los elementos de un arreglo</a></li>
+        <li><a href="#percurso-integrado">Del enunciado al informe del grupo</a></li>
         <li><a href="#estudo">Escribir y comprobar respuestas</a></li>
         <li><a href="#expressoes-casos">Operadores y selección con CASE</a></li>
         <li><a href="#strings">Usar funciones de texto proporcionadas</a></li>
@@ -102,13 +103,119 @@ FOR index ← 1 TO 5
 NEXT index
 OUTPUT total</code></pre><p>El ejemplo muestra asignación, índices y bucle. Una respuesta completa también debe indicar cómo se leyeron o asignaron los valores de <code>numbers</code>, según el problema. Sigue el acumulador en cada iteración para no omitir el primer ni el último elemento.</p>
       </section>
+      <section id="percurso-integrado">
+        <p class="kicker">09 · recorrido completo</p>
+        <h2>Del enunciado al informe del grupo</h2>
+        <p>Considera un grupo de tres estudiantes. El algoritmo lee el nombre y la nota entera de cada persona, rechaza notas fuera del intervalo de 0 a 100, clasifica el resultado y, al final, muestra las tres clasificaciones, el promedio y cuántas personas aprobaron. El límite fijo de tres hace explícitos los límites del arreglo y del bucle.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Requisitos del ejemplo integrado" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Requisito</th><th scope="col">Regla aplicada</th><th scope="col">Cómo lo resuelve el programa</th></tr></thead><tbody>
+          <tr><td>Entrada</td><td>Tres nombres y tres notas enteras de 0 a 100.</td><td>Un arreglo almacena tres registros; un bucle lee a cada estudiante.</td></tr>
+          <tr><td>Validación</td><td>No se acepta una nota menor que 0 ni mayor que 100.</td><td><code>REPEAT ... UNTIL</code> repite la entrada hasta que la nota esté dentro del intervalo.</td></tr>
+          <tr><td>Clasificación</td><td>80–100: <code>Distinction</code>; 50–79: <code>Pass</code>; 0–49: <code>Resit</code>.</td><td>Una función comprueba los límites en orden descendente.</td></tr>
+          <tr><td>Informe</td><td>Mostrar cada resultado, el promedio y la cantidad de aprobados.</td><td>Un procedimiento presenta cada registro; los acumuladores calculan el resumen.</td></tr>
+        </tbody></table></div>
+        <p>El programa combina formas descritas en la guía Cambridge 9618 para 2027–2029: declaraciones, registros, arreglos, entrada y salida, selección, repetición, procedimientos y funciones. Es un ejercicio didáctico original, no una pregunta oficial ni un programa ejecutable en Potoo IDE.</p>
+        <h3>Programa completo</h3>
+        <pre class="manual-code"><code>CONSTANT PassMark = 50
+CONSTANT DistinctionMark = 80
+
+TYPE StudentRecord
+    DECLARE Name : STRING
+    DECLARE Mark : INTEGER
+    DECLARE Category : STRING
+ENDTYPE
+
+FUNCTION GetCategory(Mark : INTEGER) RETURNS STRING
+    IF Mark &lt; 0 OR Mark &gt; 100 THEN
+        RETURN "Invalid"
+    ELSE
+        IF Mark &gt;= DistinctionMark THEN
+            RETURN "Distinction"
+        ELSE
+            IF Mark &gt;= PassMark THEN
+                RETURN "Pass"
+            ELSE
+                RETURN "Resit"
+            ENDIF
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+PROCEDURE DisplayStudent(Name : STRING, Mark : INTEGER, Category : STRING)
+    OUTPUT Name, " - ", Mark, " - ", Category
+ENDPROCEDURE
+
+DECLARE Students : ARRAY[1:3] OF StudentRecord
+DECLARE Index : INTEGER
+DECLARE PassedCount : INTEGER
+DECLARE TotalMarks : INTEGER
+DECLARE ClassAverage : REAL
+
+PassedCount ← 0
+TotalMarks ← 0
+
+FOR Index ← 1 TO 3
+    OUTPUT "Student name:"
+    INPUT Students[Index].Name
+    REPEAT
+        OUTPUT "Enter a mark from 0 to 100:"
+        INPUT Students[Index].Mark
+    UNTIL (Students[Index].Mark &gt;= 0) AND (Students[Index].Mark &lt;= 100)
+
+    Students[Index].Category ← GetCategory(Students[Index].Mark)
+    TotalMarks ← TotalMarks + Students[Index].Mark
+
+    IF Students[Index].Mark &gt;= PassMark THEN
+        PassedCount ← PassedCount + 1
+    ENDIF
+NEXT Index
+
+ClassAverage ← TotalMarks / 3
+
+OUTPUT "Report:"
+FOR Index ← 1 TO 3
+    CALL DisplayStudent(Students[Index].Name,
+                        Students[Index].Mark,
+                        Students[Index].Category)
+NEXT Index
+OUTPUT "Class average: ", ClassAverage
+OUTPUT "Passed: ", PassedCount, " of 3"</code></pre>
+        <h3>Cómo se conectan las construcciones</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Papel de cada construcción en el programa integrado" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Responsabilidad</th><th scope="col">Qué comprobar</th></tr></thead><tbody>
+          <tr><td><code>StudentRecord</code></td><td>Agrupa el nombre, la nota y la clasificación de una persona.</td><td>Se accede a cada campo con punto.</td></tr>
+          <tr><td><code>Students[1:3]</code></td><td>Almacena los tres registros en índices del 1 al 3.</td><td>Coinciden los límites de la declaración y de los bucles.</td></tr>
+          <tr><td><code>GetCategory</code></td><td>Devuelve una clasificación como valor de función.</td><td>Comprueba los límites de mayor a menor; la función también protege el intervalo no válido.</td></tr>
+          <tr><td><code>DisplayStudent</code></td><td>Muestra un resultado por llamada.</td><td>La llamada a un procedimiento empieza con <code>CALL</code> y es una instrucción completa.</td></tr>
+          <tr><td><code>REPEAT ... UNTIL</code></td><td>Valida la nota antes de incluirla en el resumen.</td><td>La condición se comprueba después de la entrada, por lo que hay al menos un intento.</td></tr>
+          <tr><td><code>FOR</code>, <code>TotalMarks</code> y <code>PassedCount</code></td><td>Recorren el arreglo, suman notas y cuentan aprobados.</td><td><code>/</code> produce un valor <code>REAL</code> incluso si ambos operandos son enteros.</td></tr>
+        </tbody></table></div>
+        <p>En la primera pasada, <code>TotalMarks</code> y <code>PassedCount</code> se actualizan junto con cada registro. En la segunda, el programa solo muestra los datos guardados. Esta separación evita volver a calcular las clasificaciones y facilita revisar el informe cuando ya se terminó la lectura.</p>
+        <h3>Seguimiento con pocos datos</h3>
+        <p>Supón que las entradas válidas son Ada/84, Rui/63 y Lia/42. La tabla muestra los acumuladores después de cada vuelta del primer bucle:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Seguimiento del programa integrado" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Índice</th><th scope="col">Nombre / nota</th><th scope="col">Categoría</th><th scope="col">Total tras la vuelta</th><th scope="col">Aprobados</th></tr></thead><tbody>
+          <tr><td>1</td><td>Ada / 84</td><td>Distinction</td><td>84</td><td>1</td></tr>
+          <tr><td>2</td><td>Rui / 63</td><td>Pass</td><td>147</td><td>2</td></tr>
+          <tr><td>3</td><td>Lia / 42</td><td>Resit</td><td>189</td><td>2</td></tr>
+        </tbody></table></div>
+        <p>El promedio final es <code>189 / 3 = 63.0</code>, con <code>2</code> aprobados de <code>3</code>. La división produce un valor <code>REAL</code>; la cantidad exacta de decimales mostrados depende de las convenciones de la respuesta escrita.</p>
+        <h3>Pruebas de límites</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Pruebas de límites de la clasificación" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Nota de prueba</th><th scope="col">Resultado esperado</th></tr></thead><tbody>
+          <tr><td>-1 y 101</td><td>Se repite la entrada. Si la función recibe directamente uno de esos valores, devuelve <code>Invalid</code>.</td></tr>
+          <tr><td>0</td><td><code>Resit</code>; la nota válida más baja.</td></tr>
+          <tr><td>49</td><td><code>Resit</code>; justo por debajo de <code>PassMark</code>.</td></tr>
+          <tr><td>50</td><td><code>Pass</code>; exactamente en <code>PassMark</code>.</td></tr>
+          <tr><td>79</td><td><code>Pass</code>; justo por debajo de <code>DistinctionMark</code>.</td></tr>
+          <tr><td>80</td><td><code>Distinction</code>; exactamente en <code>DistinctionMark</code>.</td></tr>
+          <tr><td>100</td><td><code>Distinction</code>; la nota válida más alta.</td></tr>
+        </tbody></table></div>
+        <p>Al adaptar el ejercicio a una pregunta, confirma los límites inclusivos, la cantidad de registros y el significado de cada categoría en el enunciado. La edición de la guía debe corresponder al año del examen; este ejemplo sigue las convenciones de la edición 2027–2029.</p>
+      </section>
       <section id="estudo">
-        <p class="kicker">09 · respuestas de examen</p>
+        <p class="kicker">10 · respuestas de examen</p>
         <h2>Escribir y comprobar respuestas</h2>
 <p>En una respuesta de examen, la coherencia importa tanto como la idea algorítmica. Utiliza nombres descriptivos, sangría uniforme y delimitadores de bloque de la guía.</p><ul><li>Declara las variables y los arreglos antes de utilizarlos cuando sea necesario.</li><li>Comprueba que el tipo de cada variable corresponda a sus valores.</li><li>Sigue al menos un caso habitual y uno límite.</li><li>Verifica la condición de salida y la actualización de contadores.</li><li>En funciones, comprueba todas las rutas de retorno.</li></ul><p>El pseudocódigo comunica un algoritmo; la claridad y la fidelidad al estándar del año de examen facilitan su lectura y evaluación.</p>
       </section>
       <section id="expressoes-casos">
-        <p class="kicker">10 · operadores y selección</p>
+        <p class="kicker">11 · operadores y selección</p>
         <h2>Operadores y selección con CASE</h2>
 <p>Las convenciones de operadores de Cambridge difieren de las de algunos lenguajes: <code>DIV</code> da el cociente entero, <code>MOD</code> el resto y <code>&lt;&gt;</code> significa «distinto de». Las comparaciones producen un valor booleano; utiliza paréntesis cuando una expresión combine varias operaciones.</p><p><code>CASE</code> organiza alternativas para un identificador. Los intervalos del ejemplo presuponen notas de 0 a 100:</p><pre class="manual-code"><code>CASE OF Mark
     80 TO 100 : OUTPUT "Distinction"
@@ -117,7 +224,7 @@ OUTPUT total</code></pre><p>El ejemplo muestra asignación, índices y bucle. Un
 ENDCASE</code></pre><p>Los casos se comprueban en orden. Cuando uno coincide, se ejecutan sus instrucciones y el flujo continúa después de <code>ENDCASE</code>. Si existe, <code>OTHERWISE</code> va al final y cubre los valores que no coincidieron antes. Antes de escribir intervalos, comprueba que no haya huecos ni solapamientos para los datos permitidos por el enunciado.</p><div class="manual-table-wrap" role="region" aria-label="Operadores Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Formas</th><th scope="col">Función</th></tr></thead><tbody><tr><td>Aritmética entera</td><td><code>DIV</code>, <code>MOD</code></td><td>Cociente entero y resto.</td></tr><tr><td>Comparación</td><td><code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td><td>Produce un valor <code>BOOLEAN</code>.</td></tr><tr><td>Lógica</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Combina o niega condiciones booleanas.</td></tr></tbody></table></div>
       </section>
       <section id="strings">
-        <p class="kicker">11 · cadenas</p>
+        <p class="kicker">12 · cadenas</p>
         <h2>Usar funciones de texto proporcionadas</h2>
 <p>La guía describe funciones como <code>LENGTH</code>, <code>MID</code> y <code>RIGHT</code> para contar caracteres, extraer un fragmento u obtener el final de una cadena. En los exámenes, el enunciado proporciona las funciones de manipulación de texto necesarias; no presupongas que sus parámetros sean iguales a los de otro lenguaje.</p><pre class="manual-code"><code>DECLARE ItemCode : STRING
 INPUT ItemCode
@@ -128,7 +235,7 @@ ELSE
 ENDIF</code></pre><p>La condición protege la extracción cuando el texto tiene menos de tres caracteres. Al resolver una pregunta, identifica en la descripción de la función la posición inicial y la cantidad de caracteres que solicita. Después prueba una cadena con la longitud mínima, otra más larga y una corta.</p><div class="manual-table-wrap" role="region" aria-label="Funciones de cadena Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Función</th><th scope="col">Resultado</th><th scope="col">Ejemplo</th></tr></thead><tbody><tr><td><code>LENGTH(text)</code></td><td>Cantidad de caracteres.</td><td><code>LENGTH("Happy Days")</code> devuelve 10.</td></tr><tr><td><code>MID(text, start, count)</code></td><td>Fragmento con la longitud indicada.</td><td><code>MID("ABCDEFGH", 2, 3)</code> devuelve <code>BCD</code>.</td></tr><tr><td><code>RIGHT(text, count)</code></td><td>Caracteres finales.</td><td><code>RIGHT("ABCDEFGH", 3)</code> devuelve <code>FGH</code>.</td></tr></tbody></table></div>
       </section>
       <section id="parametros">
-        <p class="kicker">12 · subprogramas</p>
+        <p class="kicker">13 · subprogramas</p>
         <h2>Elegir paso por valor o por referencia</h2>
 <p>Los procedimientos reciben parámetros por valor, salvo que la guía o el enunciado indiquen otro modo. Con el paso por valor, el parámetro funciona como una copia local. <code>BYREF</code> indica que el procedimiento puede modificar la variable proporcionada en la llamada.</p><pre class="manual-code"><code>PROCEDURE AddBonus(BYREF Score : INTEGER, BYVAL Bonus : INTEGER)
     Score ← Score + Bonus
@@ -136,7 +243,7 @@ ENDPROCEDURE
 CALL AddBonus(CurrentScore, 5)</code></pre><p>Después de la llamada, <code>CurrentScore</code> aumenta en cinco porque <code>Score</code> se pasa por referencia; <code>Bonus</code> sigue siendo un parámetro por valor. La llamada a un procedimiento es una instrucción completa y comienza con <code>CALL</code>.</p><p>Una función es distinta: devuelve un solo valor y su llamada forma parte de una expresión o asignación. La guía indica que no se utilice <code>CALL</code> con funciones ni que sus parámetros se pasen por referencia. Al leer una rutina, identifica su tipo, los parámetros y dónde se utiliza el resultado.</p><div class="manual-table-wrap" role="region" aria-label="Paso de parámetros Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Forma</th><th scope="col">Efecto</th><th scope="col">Uso</th></tr></thead><tbody><tr><td>Predeterminado / <code>BYVAL</code></td><td>El procedimiento recibe el valor del argumento.</td><td>Los cambios locales no sustituyen la variable original.</td></tr><tr><td><code>BYREF</code></td><td>El parámetro hace referencia a la variable proporcionada.</td><td>El procedimiento puede modificar el argumento del llamador.</td></tr><tr><td>Parámetro de función</td><td>La función devuelve un valor; su parámetro no se pasa por referencia.</td><td>Usa la llamada en una expresión y no escribas <code>CALL</code>.</td></tr></tbody></table></div>
       </section>
             <section id="recursos-avancados">
-        <p class="kicker">13 · estructuras avanzadas</p>
+        <p class="kicker">14 · estructuras avanzadas</p>
         <h2>Tipos definidos, archivos y objetos</h2>
         <p>La guía Cambridge 9618 abarca más que variables, arreglos y bucles básicos. En un examen, usa los tipos y operaciones autorizados por la guía del año correspondiente; estos ejemplos siguen la guía 2027–2029. Cada construcción pertenece a la especificación curricular, no a un intérprete de propósito general.</p>
         <div class="manual-table-wrap" role="region" aria-label="Tipos avanzados de pseudocódigo Cambridge" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Forma documentada</th><th scope="col">Uso y límite</th></tr></thead><tbody><tr><td>Enumeración</td><td><code>TYPE Season = (Spring, Summer, Autumn, Winter)</code></td><td>Limita un valor a una lista explícita de alternativas con nombre.</td></tr><tr><td>Puntero</td><td><code>TYPE TIntPointer = ^INTEGER</code></td><td>Representa una referencia a una posición de memoria del tipo indicado; declara la variable con el nombre del tipo.</td></tr><tr><td>Registro</td><td><code>TYPE StudentRecord ... ENDTYPE</code></td><td>Agrupa campos de tipos distintos, accesibles con punto, como <code>Pupil.YearGroup</code>.</td></tr><tr><td>Conjunto</td><td><code>TYPE LetterSet = SET OF CHAR</code></td><td>Agrupa valores de un tipo y se puede definir con <code>DEFINE</code>.</td></tr><tr><td>Archivo de texto</td><td><code>OPENFILE</code>, <code>READFILE</code>, <code>WRITEFILE</code>, <code>EOF</code>, <code>CLOSEFILE</code></td><td>Lee líneas en secuencia; abrir en modo <code>WRITE</code> crea o reemplaza el contenido.</td></tr><tr><td>Archivo aleatorio</td><td><code>SEEK</code>, <code>GETRECORD</code>, <code>PUTRECORD</code></td><td>Mueve el puntero del archivo a un registro y lo lee o lo reemplaza.</td></tr><tr><td>Clase</td><td><code>CLASS</code>, <code>PRIVATE</code>, <code>PUBLIC</code>, <code>INHERITS</code>, <code>SUPER</code></td><td>Define propiedades, métodos, el constructor <code>NEW</code> y herencia en la guía de examen.</td></tr></tbody></table></div>
@@ -157,12 +264,12 @@ CLOSEFILE "Output.txt"</code></pre>
         <p><code>APPEND</code> conserva el contenido existente y escribe después de él; <code>WRITE</code> reemplaza el archivo. Para archivos de acceso aleatorio, explica cómo calculas la dirección del registro antes de usar <code>SEEK</code>; <code>PUTRECORD</code> reemplaza el registro en la posición actual. En las clases, la guía usa procedimientos de construcción llamados <code>NEW</code> y <code>SUPER.NEW(...)</code> para inicializar la parte heredada. Consulta la guía del año de examen, porque los ejemplos evaluados y el programa de estudios tienen periodos propios.</p>
       </section>
       <section id="limites">
-        <p class="kicker">14 · versiones y alcance</p>
+        <p class="kicker">15 · versiones y alcance</p>
         <h2>Versiones y límites</h2>
 <p>Utiliza la guía de 2026 para ese año de examen y la guía de 2027–2029 para las evaluaciones correspondientes. Consulta la página oficial del programa para localizar una edición posterior.</p><p>El pseudocódigo Cambridge no define un compilador, una biblioteca ejecutable estándar ni compatibilidad con un lenguaje concreto. Esta documentación describe convenciones de evaluación y no afirma que Potoo IDE las interprete.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">15 · lecturas adicionales</p>
+        <p class="kicker">16 · lecturas adicionales</p>
         <h2>Referencias</h2>
 <ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Guía de pseudocódigo Cambridge para docentes (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Guía de pseudocódigo Cambridge para docentes (2027–2029)</a>, para exámenes de esos años.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Programa Cambridge International AS &amp; A Level Computer Science 9618</a>, con guías vinculadas a años de examen.</li></ul><p>Utiliza la edición exacta proporcionada para el curso; las reglas de evaluación deben comprobarse en la fuente oficial vigente.</p>
       </section>

@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Educational reference · assessment notation · under evaluation</p>
     <h1>Cambridge Pseudocode</h1>
     <p class="manual-intro">Cambridge 9618 Computer Science exam notation; under evaluation in Potoo IDE.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -35,6 +35,7 @@ body_class: manual-page
         <li><a href="#vetores">Arrays and structures</a></li>
         <li><a href="#rotinas">Procedures and functions</a></li>
         <li><a href="#exemplo">Sum the elements of an array</a></li>
+        <li><a href="#percurso-integrado">From the problem statement to a class report</a></li>
         <li><a href="#estudo">Writing and checking answers</a></li>
         <li><a href="#expressoes-casos">Operators and CASE selection</a></li>
         <li><a href="#strings">Use the supplied string functions</a></li>
@@ -102,13 +103,119 @@ FOR index ← 1 TO 5
 NEXT index
 OUTPUT total</code></pre><p>The example demonstrates assignment, indexing, and a loop. A complete answer must also show how <code>numbers</code> was read or assigned, as required by the problem. Trace the accumulator after each iteration to avoid missing the first or last element.</p>
       </section>
+      <section id="percurso-integrado">
+        <p class="kicker">09 · complete walkthrough</p>
+        <h2>From the problem statement to a class report</h2>
+        <p>Consider a class of three students. The algorithm reads each name and integer mark, rejects marks outside 0 to 100, classifies the result, then reports all three classifications, the average, and the number of students who passed. A fixed limit of three makes the array and loop bounds explicit.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Requirements for the integrated example" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Requirement</th><th scope="col">Rule used</th><th scope="col">How the program handles it</th></tr></thead><tbody>
+          <tr><td>Input</td><td>Three names and three integer marks from 0 to 100.</td><td>An array stores three records; a loop reads each student.</td></tr>
+          <tr><td>Validation</td><td>A mark below 0 or above 100 is not accepted.</td><td><code>REPEAT ... UNTIL</code> repeats the input until the mark is within range.</td></tr>
+          <tr><td>Classification</td><td>80–100: <code>Distinction</code>; 50–79: <code>Pass</code>; 0–49: <code>Resit</code>.</td><td>A function checks the thresholds in descending order.</td></tr>
+          <tr><td>Report</td><td>Show each result, the average, and the number of passes.</td><td>A procedure displays each record; accumulators calculate the summary.</td></tr>
+        </tbody></table></div>
+        <p>The program combines forms described in the Cambridge 9618 guide for 2027–2029: declarations, records, arrays, input and output, selection, iteration, procedures, and functions. This is an original teaching exercise, not an official exam question or a program that runs in Potoo IDE.</p>
+        <h3>Complete program</h3>
+        <pre class="manual-code"><code>CONSTANT PassMark = 50
+CONSTANT DistinctionMark = 80
+
+TYPE StudentRecord
+    DECLARE Name : STRING
+    DECLARE Mark : INTEGER
+    DECLARE Category : STRING
+ENDTYPE
+
+FUNCTION GetCategory(Mark : INTEGER) RETURNS STRING
+    IF Mark &lt; 0 OR Mark &gt; 100 THEN
+        RETURN "Invalid"
+    ELSE
+        IF Mark &gt;= DistinctionMark THEN
+            RETURN "Distinction"
+        ELSE
+            IF Mark &gt;= PassMark THEN
+                RETURN "Pass"
+            ELSE
+                RETURN "Resit"
+            ENDIF
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+PROCEDURE DisplayStudent(Name : STRING, Mark : INTEGER, Category : STRING)
+    OUTPUT Name, " - ", Mark, " - ", Category
+ENDPROCEDURE
+
+DECLARE Students : ARRAY[1:3] OF StudentRecord
+DECLARE Index : INTEGER
+DECLARE PassedCount : INTEGER
+DECLARE TotalMarks : INTEGER
+DECLARE ClassAverage : REAL
+
+PassedCount ← 0
+TotalMarks ← 0
+
+FOR Index ← 1 TO 3
+    OUTPUT "Student name:"
+    INPUT Students[Index].Name
+    REPEAT
+        OUTPUT "Enter a mark from 0 to 100:"
+        INPUT Students[Index].Mark
+    UNTIL (Students[Index].Mark &gt;= 0) AND (Students[Index].Mark &lt;= 100)
+
+    Students[Index].Category ← GetCategory(Students[Index].Mark)
+    TotalMarks ← TotalMarks + Students[Index].Mark
+
+    IF Students[Index].Mark &gt;= PassMark THEN
+        PassedCount ← PassedCount + 1
+    ENDIF
+NEXT Index
+
+ClassAverage ← TotalMarks / 3
+
+OUTPUT "Report:"
+FOR Index ← 1 TO 3
+    CALL DisplayStudent(Students[Index].Name,
+                        Students[Index].Mark,
+                        Students[Index].Category)
+NEXT Index
+OUTPUT "Class average: ", ClassAverage
+OUTPUT "Passed: ", PassedCount, " of 3"</code></pre>
+        <h3>How the constructs fit together</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Role of each construct in the integrated program" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Responsibility</th><th scope="col">What to check</th></tr></thead><tbody>
+          <tr><td><code>StudentRecord</code></td><td>Groups one student's name, mark, and classification.</td><td>Access each field with dot notation.</td></tr>
+          <tr><td><code>Students[1:3]</code></td><td>Stores the three records at indices 1 to 3.</td><td>The declaration and loop bounds match.</td></tr>
+          <tr><td><code>GetCategory</code></td><td>Returns a classification as a function value.</td><td>Check thresholds from highest to lowest; the function also guards against an invalid range.</td></tr>
+          <tr><td><code>DisplayStudent</code></td><td>Displays one result per call.</td><td>A procedure call starts with <code>CALL</code> and is a complete statement.</td></tr>
+          <tr><td><code>REPEAT ... UNTIL</code></td><td>Validates a mark before it enters the summary.</td><td>The condition is checked after input, so at least one attempt is made.</td></tr>
+          <tr><td><code>FOR</code>, <code>TotalMarks</code>, and <code>PassedCount</code></td><td>Visit the array, add marks, and count passes.</td><td><code>/</code> produces a <code>REAL</code> even when both operands are integers.</td></tr>
+        </tbody></table></div>
+        <p>In the first pass, <code>TotalMarks</code> and <code>PassedCount</code> are updated alongside each record. In the second pass, the program only displays the stored data. This separation avoids recalculating classifications and makes the report easier to check after all input has been read.</p>
+        <h3>Trace with a small data set</h3>
+        <p>Suppose the valid inputs are Ada/84, Rui/63, and Lia/42. The table shows the accumulators after each iteration of the first loop:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Trace of the integrated program" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Index</th><th scope="col">Name / mark</th><th scope="col">Category</th><th scope="col">Total after iteration</th><th scope="col">Passed</th></tr></thead><tbody>
+          <tr><td>1</td><td>Ada / 84</td><td>Distinction</td><td>84</td><td>1</td></tr>
+          <tr><td>2</td><td>Rui / 63</td><td>Pass</td><td>147</td><td>2</td></tr>
+          <tr><td>3</td><td>Lia / 42</td><td>Resit</td><td>189</td><td>2</td></tr>
+        </tbody></table></div>
+        <p>The final average is <code>189 / 3 = 63.0</code>, with <code>2</code> passes out of <code>3</code>. Division produces a <code>REAL</code>; the exact number of displayed decimal places depends on the conventions of a written answer.</p>
+        <h3>Boundary tests</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Boundary tests for the classification" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Test mark</th><th scope="col">Expected result</th></tr></thead><tbody>
+          <tr><td>-1 and 101</td><td>Input repeats. If the function receives either value directly, it returns <code>Invalid</code>.</td></tr>
+          <tr><td>0</td><td><code>Resit</code>; the lowest valid mark.</td></tr>
+          <tr><td>49</td><td><code>Resit</code>; immediately below <code>PassMark</code>.</td></tr>
+          <tr><td>50</td><td><code>Pass</code>; exactly at <code>PassMark</code>.</td></tr>
+          <tr><td>79</td><td><code>Pass</code>; immediately below <code>DistinctionMark</code>.</td></tr>
+          <tr><td>80</td><td><code>Distinction</code>; exactly at <code>DistinctionMark</code>.</td></tr>
+          <tr><td>100</td><td><code>Distinction</code>; the highest valid mark.</td></tr>
+        </tbody></table></div>
+        <p>When adapting the exercise to a question, confirm inclusive bounds, the number of records, and the meaning of each category in the problem statement. The guide edition should match the exam year; this example follows the 2027–2029 edition.</p>
+      </section>
       <section id="estudo">
-        <p class="kicker">09 · exam responses</p>
+        <p class="kicker">10 · exam responses</p>
         <h2>Writing and checking answers</h2>
 <p>Consistency matters as much as the algorithmic idea in an exam response. Use descriptive names, steady indentation, and block delimiters from the guide.</p><ul><li>Declare variables and arrays before use when required.</li><li>Check that each variable’s type matches its assigned values.</li><li>Trace at least one typical case and a boundary case.</li><li>Check the stopping condition and counter update.</li><li>For functions, verify every return path.</li></ul><p>Pseudocode communicates an algorithm; clarity and fidelity to the exam-year standard make it easier to read and assess.</p>
       </section>
       <section id="expressoes-casos">
-        <p class="kicker">10 · operators and selection</p>
+        <p class="kicker">11 · operators and selection</p>
         <h2>Operators and CASE selection</h2>
 <p>Cambridge operator conventions differ from those in some other languages: <code>DIV</code> gives the integer quotient, <code>MOD</code> the remainder, and <code>&lt;&gt;</code> means “not equal”. Comparisons produce a Boolean value; use parentheses when an expression combines several operations.</p><p><code>CASE</code> organizes alternatives for one identifier. The ranges in this example assume marks use a scale from 0 to 100:</p><pre class="manual-code"><code>CASE OF Mark
     80 TO 100 : OUTPUT "Distinction"
@@ -117,7 +224,7 @@ OUTPUT total</code></pre><p>The example demonstrates assignment, indexing, and a
 ENDCASE</code></pre><p>Cases are checked in sequence. When a value matches, its statements run and control continues after <code>ENDCASE</code>. If present, <code>OTHERWISE</code> comes last and handles values not matched earlier. Before writing ranges, check that they leave no gaps or overlaps for the data allowed by the question.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge operators" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Group</th><th scope="col">Forms</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td>Integer arithmetic</td><td><code>DIV</code>, <code>MOD</code></td><td>Integer quotient and remainder.</td></tr><tr><td>Comparison</td><td><code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td><td>Produces a <code>BOOLEAN</code> value.</td></tr><tr><td>Logic</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Combines or negates Boolean conditions.</td></tr></tbody></table></div>
       </section>
       <section id="strings">
-        <p class="kicker">11 · strings</p>
+        <p class="kicker">12 · strings</p>
         <h2>Use the supplied string functions</h2>
 <p>The guide describes functions such as <code>LENGTH</code>, <code>MID</code>, and <code>RIGHT</code> to count characters, extract a section, or obtain the end of a string. In exams, the string-manipulation functions you need are supplied in the question; do not assume their signatures match those in another language.</p><pre class="manual-code"><code>DECLARE ItemCode : STRING
 INPUT ItemCode
@@ -128,7 +235,7 @@ ELSE
 ENDIF</code></pre><p>The condition protects the substring operation when the text has fewer than three characters. When solving a question, identify in the function description where selection starts and how many characters it requests. Then test a string exactly at the minimum length, a longer one, and a short case.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge string functions" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Function</th><th scope="col">Result</th><th scope="col">Example</th></tr></thead><tbody><tr><td><code>LENGTH(text)</code></td><td>Number of characters.</td><td><code>LENGTH("Happy Days")</code> returns 10.</td></tr><tr><td><code>MID(text, start, count)</code></td><td>Substring of the given length.</td><td><code>MID("ABCDEFGH", 2, 3)</code> returns <code>BCD</code>.</td></tr><tr><td><code>RIGHT(text, count)</code></td><td>The final characters.</td><td><code>RIGHT("ABCDEFGH", 3)</code> returns <code>FGH</code>.</td></tr></tbody></table></div>
       </section>
       <section id="parametros">
-        <p class="kicker">12 · subprograms</p>
+        <p class="kicker">13 · subprograms</p>
         <h2>Choose pass-by-value or pass-by-reference</h2>
 <p>Procedures receive parameters by value unless the guide or question specifies another mode. With pass-by-value, a parameter acts as a local copy. <code>BYREF</code> signals that a procedure can change the variable supplied at the call.</p><pre class="manual-code"><code>PROCEDURE AddBonus(BYREF Score : INTEGER, BYVAL Bonus : INTEGER)
     Score ← Score + Bonus
@@ -136,7 +243,7 @@ ENDPROCEDURE
 CALL AddBonus(CurrentScore, 5)</code></pre><p>After the call, <code>CurrentScore</code> has increased by five because <code>Score</code> is passed by reference; <code>Bonus</code> remains a pass-by-value parameter. A procedure call is a complete statement and begins with <code>CALL</code>.</p><p>A function is different: it returns one value, and its call appears in an expression or assignment. The guide says not to use <code>CALL</code> for functions or pass their parameters by reference. When reading a routine, identify its kind, its parameters, and where its result is used.</p><div class="manual-table-wrap" role="region" aria-label="Cambridge parameter passing" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Form</th><th scope="col">Effect</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Default / <code>BYVAL</code></td><td>The procedure receives the argument’s value.</td><td>Local changes do not replace the original variable.</td></tr><tr><td><code>BYREF</code></td><td>The parameter refers to the supplied variable.</td><td>The procedure can change the caller’s argument.</td></tr><tr><td>Function parameter</td><td>A function returns a value; its parameter is not passed by reference.</td><td>Use the call in an expression and do not write <code>CALL</code>.</td></tr></tbody></table></div>
       </section>
             <section id="recursos-avancados">
-        <p class="kicker">13 · advanced structures</p>
+        <p class="kicker">14 · advanced structures</p>
         <h2>User-defined types, files, and objects</h2>
         <p>The Cambridge 9618 guide covers more than variables, arrays, and basic loops. In an exam, use the types and operations authorised by the guide for that exam year; these examples follow the 2027–2029 guide. Each construct below belongs to the curriculum specification, not to a general-purpose interpreter.</p>
         <div class="manual-table-wrap" role="region" aria-label="Advanced Cambridge pseudocode types" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Documented form</th><th scope="col">Use and limit</th></tr></thead><tbody><tr><td>Enumeration</td><td><code>TYPE Season = (Spring, Summer, Autumn, Winter)</code></td><td>Restricts a value to an explicit list of named alternatives.</td></tr><tr><td>Pointer</td><td><code>TYPE TIntPointer = ^INTEGER</code></td><td>Represents a reference to a memory location of the stated type; declare the variable using the type name.</td></tr><tr><td>Record</td><td><code>TYPE StudentRecord ... ENDTYPE</code></td><td>Groups fields of different types, accessed with dot notation such as <code>Pupil.YearGroup</code>.</td></tr><tr><td>Set</td><td><code>TYPE LetterSet = SET OF CHAR</code></td><td>Groups values of a type and can be defined with <code>DEFINE</code>.</td></tr><tr><td>Text file</td><td><code>OPENFILE</code>, <code>READFILE</code>, <code>WRITEFILE</code>, <code>EOF</code>, <code>CLOSEFILE</code></td><td>Reads lines sequentially; opening in <code>WRITE</code> creates or replaces the contents.</td></tr><tr><td>Random file</td><td><code>SEEK</code>, <code>GETRECORD</code>, <code>PUTRECORD</code></td><td>Moves the file pointer to a record, then reads or replaces that record.</td></tr><tr><td>Class</td><td><code>CLASS</code>, <code>PRIVATE</code>, <code>PUBLIC</code>, <code>INHERITS</code>, <code>SUPER</code></td><td>Defines properties, methods, a <code>NEW</code> constructor, and inheritance in the exam guide.</td></tr></tbody></table></div>
@@ -157,12 +264,12 @@ CLOSEFILE "Output.txt"</code></pre>
         <p><code>APPEND</code> keeps existing contents and writes after them; <code>WRITE</code> replaces the file. For random-access files, explain how the record address is calculated before using <code>SEEK</code>; <code>PUTRECORD</code> replaces the record at the current position. For classes, the guide uses constructor procedures named <code>NEW</code> and <code>SUPER.NEW(...)</code> to initialise the inherited part. Check the guide for the exam year, since examination examples and the syllabus have their own date ranges.</p>
       </section>
       <section id="limites">
-        <p class="kicker">14 · versions and scope</p>
+        <p class="kicker">15 · versions and scope</p>
         <h2>Versions and limits</h2>
 <p>Use the 2026 guide for that exam year and the 2027–2029 guide for the corresponding assessments. Consult the official programme page for a later edition.</p><p>Cambridge pseudocode does not define a compiler, executable standard library, or compatibility with a specific language. This documentation covers assessment conventions and does not claim that Potoo IDE interprets them.</p>
       </section>
       <section id="fontes">
-        <p class="kicker">15 · further reading</p>
+        <p class="kicker">16 · further reading</p>
         <h2>References</h2>
 <ul><li><a href="https://www.cambridgeinternational.org/Images/697401-2026-pseudocode-guide-for-teachers.pdf">Cambridge pseudocode guide for teachers (2026)</a>.</li><li><a href="https://www.cambridgeinternational.org/Images/721401-2027-2029-pseudocode-guide.pdf">Cambridge pseudocode guide for teachers (2027–2029)</a>, for exams in those years.</li><li><a href="https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-international-as-and-a-level-computer-science-9618/">Cambridge International AS &amp; A Level Computer Science 9618 programme</a>, with guides associated with exam years.</li></ul><p>Use the exact edition supplied for your course; assessment rules should be checked in the current official source.</p>
       </section>
