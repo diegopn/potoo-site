@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Programming language reference · Égua</p><h1>Égua</h1>
     <p class="manual-intro">Complete Égua 1.3.16 guide: syntax, execution, semantics, functions, and libraries.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -267,7 +267,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>encontrar_último_índice(lista, função)</code></td><td>Index of the last match.</td><td>Returns <code>-1</code> when none match.</td></tr>
     <tr><td><code>incluído(lista, valor)</code></td><td><code>verdadeiro</code> or <code>falso</code>.</td><td>Compares both type and value.</td></tr>
     <tr><td><code>algum(lista, função)</code>, <code>todos(lista, função)</code></td><td>A logical value.</td><td>Tests whether at least one or every item passes the function.</td></tr>
-    <tr><td><code>ordenar(lista)</code></td><td>The sorted list.</td><td>Changes the input list and returns that same list; accepts lists.</td></tr>
+    <tr><td><code>ordenar(lista)</code></td><td>The list in ascending order.</td><td>Changes the input list and returns that same list.</td></tr>
   </tbody></table></div>
   <p>Choose an operation by the result you need: <code>para_cada</code> performs an action, <code>mapear</code> transforms each item, <code>filtrar</code> selects items, and <code>reduzir</code> condenses a sequence into a total. Choosing by effect makes code easier to read than using a loop with helper variables for every case.</p>
 </section>
@@ -296,7 +296,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td>Descriptive statistics</td><td><code>mediana(list)</code>, <code>moda(list)</code>, <code>número_ocorrências(list, value)</code>, <code>max(list)</code>, <code>min(list)</code>, <code>média(list)</code></td><td>Computes the middle value, most frequent values, occurrences, extremes, and arithmetic mean.</td></tr>
     <tr><td>Numeric aggregation</td><td><code>somatorio(list)</code>, <code>produto(list)</code></td><td>Adds or multiplies all items; the documentation requires at least one number in the list.</td></tr>
     <tr><td>Kinematics</td><td><code>velocidade_média(distance, time)</code>, <code>delta_s(initial_position, final_position)</code>, <code>delta_t(initial_time, final_time)</code>, <code>aceleração(final_velocity, initial_velocity, final_time, initial_time)</code></td><td>Computes average speed, position/time changes, and average acceleration from the supplied values and units.</td></tr>
-    <tr><td>Motion</td><td><code>mrufh(initial_position, velocity, duration)</code>, <code>mruv(initial_velocity, duration, acceleration)</code></td><td>Generates values for uniform and uniformly accelerated motion over the instants defined by the library.</td></tr>
+    <tr><td>Motion</td><td><code>mrufh(initial_position, velocity, duration)</code>, <code>mruv(initial_velocity, duration, acceleration)</code></td><td><code>mrufh</code> returns the position-time equation and positions from <code>0</code> through the duration; <code>mruv</code> returns velocity at each instant according to <code>v(t) = v₀ + a·t</code>.</td></tr>
   </tbody></table></div>
   <h4><code>textos</code> library</h4>
   <div class="manual-table-wrap" role="region" aria-label="Égua text library signatures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Signature or constant</th><th scope="col">Result and notes</th></tr></thead><tbody>
@@ -308,7 +308,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>tamanho(texto)</code>, <code>repita(texto, quantidade)</code></td><td>Returns the length or repeats the text.</td></tr>
     <tr><td><code>substituir(texto, busca, novo)</code>, <code>substituir_tudo(texto, busca, novo)</code></td><td>Replaces the first occurrence or all occurrences; search is literal.</td></tr>
     <tr><td><code>busca(texto, trecho)</code></td><td>Index of the first occurrence or <code>-1</code>; literal search, not a regular expression.</td></tr>
-    <tr><td><code>aparar(texto)</code></td><td>Removes whitespace at the beginning and end.</td></tr>
+    <tr><td><code>apara(texto)</code></td><td>Removes whitespace at the beginning and end.</td></tr>
     <tr><td><code>caractere_em(texto, posição)</code>, <code>código_em(texto, posição)</code></td><td>Gets the character or Unicode code at the position, counting from zero.</td></tr>
     <tr><td><code>fatiar(texto, início, fim)</code></td><td>Extracts a range; the end bound is optional.</td></tr>
     <tr><td><code>preencha_início(texto, tamanho, preenchimento=" ")</code>, <code>preencha_fim(texto, tamanho, preenchimento=" ")</code></td><td>Adds fill at the start or end until the requested length is reached.</td></tr>
@@ -319,6 +319,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>tempo.dia()</code>, <code>tempo.mes()</code>, <code>tempo.ano()</code>, <code>tempo.dia_da_semana()</code></td><td>Local date components and the weekday name.</td></tr>
     <tr><td><code>tempo.texto_para_data("DD/MM/AAAA")</code>, <code>tempo.formate_data(data, formato)</code></td><td>Parses text as a date or formats fields with <code>DD</code>, <code>MM</code>, and <code>AAAA</code>; impossible dates raise an error.</td></tr>
     <tr><td><code>tempo.diferença(data1, data2)</code>, <code>tempo.pausa(milissegundos)</code></td><td>Absolute difference in whole days and a nonnegative pause.</td></tr>
+    <tr><td><code>tempo.diferenca(data1, data2)</code></td><td>Compatibility spelling for programs from version 1.3.14; use <code>tempo.diferença()</code> in new code.</td></tr>
     <tr><td><code>requisição.obter(url)</code>, <code>requisição.excluir(url)</code></td><td>GET and DELETE; return the response body.</td></tr>
     <tr><td><code>requisição.enviar(url, dados)</code>, <code>requisição.atualizar(url, dados)</code></td><td>POST and PUT; <code>dados</code> may be a dictionary or text.</td></tr>
   </tbody></table></div>

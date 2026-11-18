@@ -20,7 +20,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia de lenguaje de programación · Égua</p><h1>Égua</h1>
     <p class="manual-intro">Guía completa de Égua 1.3.16: sintaxis, ejecución, semántica, funciones y bibliotecas.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -267,7 +267,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>encontrar_último_índice(lista, função)</code></td><td>Índice de la última coincidencia.</td><td>Devuelve <code>-1</code> si no hay coincidencias.</td></tr>
     <tr><td><code>incluído(lista, valor)</code></td><td><code>verdadeiro</code> o <code>falso</code>.</td><td>Compara tipo y valor.</td></tr>
     <tr><td><code>algum(lista, função)</code>, <code>todos(lista, função)</code></td><td>Un valor lógico.</td><td>Comprueba si al menos un elemento o todos cumplen la función.</td></tr>
-    <tr><td><code>ordenar(lista)</code></td><td>La lista ordenada.</td><td>Modifica la lista recibida y devuelve esa misma lista; acepta listas.</td></tr>
+    <tr><td><code>ordenar(lista)</code></td><td>La lista en orden ascendente.</td><td>Modifica la lista recibida y devuelve esa misma lista.</td></tr>
   </tbody></table></div>
   <p>Elija la operación según el resultado que necesite: <code>para_cada</code> ejecuta una acción, <code>mapear</code> transforma cada elemento, <code>filtrar</code> selecciona elementos y <code>reduzir</code> condensa una secuencia en un total. Elegir por efecto hace el código más legible que usar un bucle con variables auxiliares para todos los casos.</p>
 </section>
@@ -296,7 +296,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td>Estadística descriptiva</td><td><code>mediana(lista)</code>, <code>moda(lista)</code>, <code>número_ocorrências(lista, valor)</code>, <code>max(lista)</code>, <code>min(lista)</code>, <code>média(lista)</code></td><td>Calcula el valor central, los valores más frecuentes, las ocurrencias, los extremos y la media aritmética.</td></tr>
     <tr><td>Agregación numérica</td><td><code>somatorio(lista)</code>, <code>produto(lista)</code></td><td>Suma o multiplica todos los elementos; la documentación requiere al menos un número en la lista.</td></tr>
     <tr><td>Cinemática</td><td><code>velocidade_média(distancia, tempo)</code>, <code>delta_s(posição_inicial, posição_final)</code>, <code>delta_t(tempo_inicial, tempo_final)</code>, <code>aceleração(velocidade_final, velocidade_inicial, tempo_final, tempo_inicial)</code></td><td>Calcula velocidad media, cambios de posición/tiempo y aceleración media a partir de los valores y unidades proporcionados.</td></tr>
-    <tr><td>Movimiento</td><td><code>mrufh(posição_inicial, velocidade, duração)</code>, <code>mruv(velocidade_inicial, duração, aceleração)</code></td><td>Genera valores de movimiento uniforme y uniformemente acelerado en los instantes definidos por la biblioteca.</td></tr>
+    <tr><td>Movimiento</td><td><code>mrufh(posição_inicial, velocidade, duração)</code>, <code>mruv(velocidade_inicial, duração, aceleração)</code></td><td><code>mrufh</code> devuelve la función horaria de posición y las posiciones desde <code>0</code> hasta la duración; <code>mruv</code> devuelve las velocidades de cada instante según <code>v(t) = v₀ + a·t</code>.</td></tr>
   </tbody></table></div>
   <h4>Biblioteca <code>textos</code></h4>
   <div class="manual-table-wrap" role="region" aria-label="Firmas de la biblioteca textos de Égua" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Firma o constante</th><th scope="col">Resultado y observaciones</th></tr></thead><tbody>
@@ -308,7 +308,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>tamanho(texto)</code>, <code>repita(texto, quantidade)</code></td><td>Devuelve la longitud o repite el texto.</td></tr>
     <tr><td><code>substituir(texto, busca, novo)</code>, <code>substituir_tudo(texto, busca, novo)</code></td><td>Sustituye la primera aparición o todas; la búsqueda es literal.</td></tr>
     <tr><td><code>busca(texto, trecho)</code></td><td>Índice de la primera aparición o <code>-1</code>; búsqueda literal, no expresión regular.</td></tr>
-    <tr><td><code>aparar(texto)</code></td><td>Elimina espacios en blanco del principio y del final.</td></tr>
+    <tr><td><code>apara(texto)</code></td><td>Elimina espacios en blanco del principio y del final.</td></tr>
     <tr><td><code>caractere_em(texto, posição)</code>, <code>código_em(texto, posição)</code></td><td>Obtiene el carácter o el código Unicode en la posición, contando desde cero.</td></tr>
     <tr><td><code>fatiar(texto, início, fim)</code></td><td>Extrae un rango; el límite final es opcional.</td></tr>
     <tr><td><code>preencha_início(texto, tamanho, preenchimento=" ")</code>, <code>preencha_fim(texto, tamanho, preenchimento=" ")</code></td><td>Añade relleno al inicio o al final hasta alcanzar la longitud solicitada.</td></tr>
@@ -319,6 +319,7 @@ escreva(bicho.apresentar());</code></pre>
     <tr><td><code>tempo.dia()</code>, <code>tempo.mes()</code>, <code>tempo.ano()</code>, <code>tempo.dia_da_semana()</code></td><td>Componentes de la fecha local y nombre del día de la semana.</td></tr>
     <tr><td><code>tempo.texto_para_data("DD/MM/AAAA")</code>, <code>tempo.formate_data(data, formato)</code></td><td>Convierte texto en fecha o formatea campos con <code>DD</code>, <code>MM</code> y <code>AAAA</code>; una fecha imposible genera un error.</td></tr>
     <tr><td><code>tempo.diferença(data1, data2)</code>, <code>tempo.pausa(milissegundos)</code></td><td>Diferencia absoluta en días enteros y una pausa no negativa.</td></tr>
+    <tr><td><code>tempo.diferenca(data1, data2)</code></td><td>Grafía compatible con programas de la versión 1.3.14; en código nuevo, prefiera <code>tempo.diferença()</code>.</td></tr>
     <tr><td><code>requisição.obter(url)</code>, <code>requisição.excluir(url)</code></td><td>GET y DELETE; devuelven el cuerpo de la respuesta.</td></tr>
     <tr><td><code>requisição.enviar(url, dados)</code>, <code>requisição.atualizar(url, dados)</code></td><td>POST y PUT; <code>dados</code> puede ser un diccionario o texto.</td></tr>
   </tbody></table></div>
