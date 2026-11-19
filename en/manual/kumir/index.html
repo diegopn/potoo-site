@@ -107,6 +107,25 @@ body_class: manual-page
 <p>Before writing a route, turn the prompt into initial conditions and a goal. Then divide the goal into observable steps: reach a cell, go around an obstacle, or finish a figure. Use only commands listed for the performer in that version; names from another world are not interchangeable.</p>
 <p>Step-by-step execution helps reveal the effect of each action. If the performer leaves the expected scenario, compare position and direction after each command instead of changing several parts at once.</p>
 
+<h3>Examples by executor: Kumir 2.1.0 on RED OS 8.0</h3>
+<p>RED OS documentation identifies its package version as <code>kumir2-2.1.0</code>. The programs below use syntax documented for that distribution; the first line activates the executor, and the following instructions are its own commands. Do not generalize these calls to Kumir 1.x or other packages.</p>
+<p><strong>Robot — color two cells:</strong> if the cell above the starting position is clear, the program paints the current cell, moves up one cell, and paints again.</p>
+<pre class="manual-code"><code>использовать Робот
+алг
+нач
+    закрасить
+    вверх
+    закрасить
+кон</code></pre>
+<p><strong>Drafter — draw a horizontal segment:</strong> from the pen's starting position, the vector moves the stroke four units horizontally and none vertically.</p>
+<pre class="manual-code"><code>использовать Чертежник
+алг
+нач
+    опустить перо
+    сместиться на вектор(4, 0)
+    поднять перо
+кон</code></pre>
+
 </section>
       <section id="exemplo">
         <p class="kicker">07 · worked example</p>
@@ -187,7 +206,7 @@ body_class: manual-page
       <section id="fontes">
         <p class="kicker">10 · further reading</p>
         <h2>References</h2>
-<ul><li><a href="https://www.niisi.ru/kumir/dl.htm">Official Kumir downloads</a>; choose the package and manual matching the course version.</li><li><a href="https://www.niisi.ru/kumir/">Official Kumir site</a>, from the Institute for Systems Programming of the Russian Academy of Sciences (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">NIISI publication about Kumir 2</a>, with context about the school suite and its performers.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Kumir documentation in an educational distribution</a>, useful for observing package and installation differences.</li></ul><p>For normative syntax, prefer documentation included with the Kumir version used by the course.</p>
+<ul><li><a href="https://www.niisi.ru/kumir/dl.htm">Official Kumir downloads</a>; choose the package and manual matching the course version.</li><li><a href="https://www.niisi.ru/kumir/">Official Kumir site</a>, from the Institute for Systems Programming of the Russian Academy of Sciences (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">NIISI publication about Kumir 2</a>, with context about the school suite and its performers.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">RED OS 8.0 documentation for Kumir 2.1.0</a>, with syntax and examples for the Robot and Drafter executors.</li></ul><p>For normative syntax, prefer documentation included with the Kumir version used by the course.</p>
       </section>
     </article>
   </div>

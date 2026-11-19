@@ -27,7 +27,7 @@ body_class: manual-page
       <p class="kicker">Referência de pseudolinguagem · Portugol Studio 2.0</p>
       <h1>Portugol Studio 2.0</h1>
       <p class="manual-intro">Referência de Portugol Studio 2.0 baseada na gramática e nas referências públicas.</p>
-      <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+      <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 18 de novembro de 2026</span></p>
       <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
     </div>
   </section>
@@ -261,7 +261,7 @@ funcao inicio() {
           <p>O conjunto de bibliotecas pertence ao ambiente de referência de Portugol Studio 2.0; nem toda biblioteca é apropriada para qualquer interpretador ou contexto de execução.</p>
           <h3>Assinaturas e resultados</h3>
           <p>As chamadas abaixo usam o apelido <code>mat</code> do exemplo anterior. As funções devolvem valores que podem ser atribuídos a variáveis ou combinados em expressões.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Assinaturas das bibliotecas Matematica, Texto, Tipos e Util" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Assinaturas das bibliotecas Arquivos, Internet, Matematica, ServicosWeb, Texto, Tipos e Util" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Biblioteca</th><th scope="col">Assinatura ou chamada</th><th scope="col">Comportamento</th></tr></thead>
               <tbody>
@@ -282,6 +282,9 @@ funcao inicio() {
                 <tr><td><code>Tipos</code></td><td><code>caracter_para_cadeia(valor)</code>, <code>caracter_para_inteiro(valor)</code>, <code>caracter_para_logico(valor)</code>, <code>logico_para_cadeia(valor)</code>, <code>logico_para_inteiro(valor)</code>, <code>logico_para_caracter(valor)</code>, <code>real_para_cadeia(valor)</code>, <code>real_para_inteiro(valor)</code></td><td>Devolvem cadeia, inteiro, lógico ou caracter conforme o tipo de origem e a função usada; consulte a referência da biblioteca para cada conversão.</td></tr>
                 <tr><td><code>Util</code></td><td><code>obter_diretorio_usuario()</code>, <code>numero_elementos(vetor)</code>, <code>numero_linhas(matriz)</code>, <code>numero_colunas(matriz)</code></td><td>A primeira devolve uma cadeia; as demais, inteiros com as dimensões. A matriz precisa ter ao menos uma linha para consultar colunas.</td></tr>
                 <tr><td><code>Util</code></td><td><code>sorteia(minimo, maximo)</code>, <code>aguarde(intervalo)</code>, <code>tempo_decorrido()</code></td><td><code>sorteia</code> devolve um inteiro no intervalo inclusivo se <code>minimo</code> for menor que <code>maximo</code>; <code>aguarde</code> não devolve valor e pausa em milissegundos; <code>tempo_decorrido</code> devolve um inteiro em milissegundos desde o primeiro uso da biblioteca.</td></tr>
+              <tr><td><code>Arquivos</code></td><td><code>abrir_arquivo(caminho, modo)</code>, <code>escrever_linha(linha, endereco)</code>, <code>ler_linha(endereco)</code>, <code>fechar_arquivo(endereco)</code></td><td>A abertura devolve um endereço. <code>MODO_ACRESCENTAR</code> preserva o conteúdo anterior; <code>MODO_ESCRITA</code> apaga o conteúdo ao abrir.</td></tr>
+              <tr><td><code>Internet</code></td><td><code>definir_tempo_limite(ms)</code>, <code>obter_texto(endereco)</code>, <code>baixar_imagem(endereco, caminho)</code></td><td>Define o limite em milissegundos; lê o conteúdo de uma página ou salva uma imagem no caminho indicado.</td></tr>
+              <tr><td><code>ServicosWeb</code></td><td><code>obter_dados(endereco)</code>, <code>publicar_dados(endereco, objeto)</code>, <code>atualizar_dados(endereco, objeto)</code>, <code>excluir_dados(endereco)</code></td><td>Envia requisições GET, POST, PUT e DELETE. O objeto enviado em POST/PUT é uma cadeia JSON; a resposta também é devolvida como cadeia.</td></tr>
               </tbody>
             </table>
           </div>
@@ -301,6 +304,76 @@ funcao inicio() {
     escreva(tipos.cadeia_para_inteiro("101", 2), "\n")
 }</code></pre>
           <p>Saída: <code>verdadeiro</code> e <code>5</code>. A primeira chamada valida a escrita binária; a segunda converte o mesmo valor para inteiro.</p>
+
+          <h3>Gráficos, teclado, mouse e som em um minijogo</h3>
+          <p>O exemplo abre uma janela, desenha um alvo, aguarda um clique e toca um efeito se o botão esquerdo atingir o retângulo. <code>Mouse</code> e <code>Teclado</code> precisam do modo gráfico iniciado. Coloque um arquivo MP3 chamado <code>acerto.mp3</code> no projeto; a biblioteca original de sons documenta esse formato.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Graficos --&gt; graf
+    inclua biblioteca Mouse --&gt; mouse
+    inclua biblioteca Sons --&gt; sons
+    inclua biblioteca Teclado --&gt; teclado
+
+    funcao inicio() {
+        inteiro botao, x, y
+        inteiro som, reproducao, tecla
+
+        som = sons.carregar_som("acerto.mp3")
+        graf.iniciar_modo_grafico(falso)
+        graf.definir_titulo_janela("Acerto ao alvo")
+        graf.definir_cor(graf.COR_VERDE)
+        graf.desenhar_retangulo(100, 80, 80, 80, falso, verdadeiro)
+        graf.renderizar()
+
+        escreva("Clique no alvo.\n")
+        botao = mouse.ler_botao()
+        x = mouse.posicao_x()
+        y = mouse.posicao_y()
+
+        se ((botao == mouse.BOTAO_ESQUERDO) e
+            (x &gt;= 100) e (x &lt; 180) e
+            (y &gt;= 80) e (y &lt; 160)) {
+            escreva("Acertou! Pressione uma tecla para sair.\n")
+            reproducao = sons.reproduzir_som(som, falso)
+            tecla = teclado.ler_tecla()
+            sons.interromper_som(reproducao)
+        } senao {
+            escreva("Tente novamente.\n")
+        }
+
+        sons.liberar_som(som)
+        graf.encerrar_modo_grafico()
+    }
+}</code></pre>
+          <p><code>ler_botao</code> aguarda o clique; <code>posicao_x</code> e <code>posicao_y</code> permitem conferir a área atingida. <code>ler_tecla</code> espera a próxima tecla, e o identificador devolvido por <code>reproduzir_som</code> pode interromper a reprodução.</p>
+          <h3>Acrescentar uma pontuação a um arquivo</h3>
+          <p>Use <code>MODO_ACRESCENTAR</code> para preservar as linhas já gravadas. <code>MODO_ESCRITA</code> limpa o conteúdo existente quando o arquivo é aberto.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Arquivos --&gt; arquivos
+
+    funcao inicio() {
+        inteiro endereco
+        endereco = arquivos.abrir_arquivo("pontuacoes.txt", arquivos.MODO_ACRESCENTAR)
+        arquivos.escrever_linha("Ana;12", endereco)
+        arquivos.fechar_arquivo(endereco)
+    }
+}</code></pre>
+          <h3>Ler uma página e consultar uma API</h3>
+          <p><code>Internet.definir_tempo_limite</code> configura o limite das chamadas da biblioteca <code>Internet</code>. <code>Internet.obter_texto</code> devolve o conteúdo textual de um endereço. <code>ServicosWeb.obter_dados</code> faz uma requisição GET e devolve a resposta JSON como cadeia. Troque o endereço <code>api.example.test</code> por uma API acessível que responda em JSON. As chamadas de rede precisam do serviço HTTP do aplicativo.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Internet --&gt; internet
+    inclua biblioteca ServicosWeb --&gt; api
+
+    funcao inicio() {
+        cadeia pagina
+        cadeia resposta
+
+        internet.definir_tempo_limite(5000)
+        pagina = internet.obter_texto("https://example.org/")
+        resposta = api.obter_dados("https://api.example.test/pontuacoes")
+        escreva(pagina, "\n")
+        escreva(resposta, "\n")
+    }
+}</code></pre>
         </section>
 
         <section id="exemplo">
@@ -340,7 +413,7 @@ funcao inicio() {
           <div class="manual-note"><strong>Ao investigar um erro:</strong> confira primeiro os tipos declarados, os delimitadores do bloco, o nome da biblioteca e os limites dos índices. Em expressões com operadores diferentes, use parênteses para deixar a ordem explícita.</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Interpretador</p><h2>Interpretador de Portugol Studio 2.0 no Potoo IDE</h2><p>O interpretador, mantido em repositório próprio, é uma biblioteca reutilizável com executor de terminal e tem como alvo a pseudolinguagem Portugol Studio 2.0. Ele cobre programas, funções tipadas e sem retorno, variáveis, vetores e matrizes, operadores, estruturas de controle, entrada e saída e bibliotecas padrão.</p><p>Serviços dependentes do ambiente — como arquivos, gráficos, teclado, mouse, áudio, HTTP e calendário — são solicitados ao aplicativo por uma interface de integração. O Potoo IDE já fornece suporte a gráficos, teclado, mouse e áudio; essas funções ainda precisam de validação manual em cada plataforma. O analisador informa o primeiro erro léxico ou sintático encontrado.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Repositório do interpretador Portugol Studio 2.0</a></p>{% include interpreter_installation.html %}
+        <section id="interpretador"><p class="kicker">14 · Interpretador</p><h2>Interpretador de Portugol Studio 2.0 no Potoo IDE</h2><p>O interpretador, mantido em repositório próprio, é uma biblioteca reutilizável com executor de terminal e tem como alvo a pseudolinguagem Portugol Studio 2.0. Ele cobre programas, funções tipadas e sem retorno, variáveis, vetores e matrizes, operadores, estruturas de controle, entrada e saída e bibliotecas padrão.</p><p>Serviços dependentes do ambiente — arquivos, internet, serviços web, gráficos, teclado, mouse, áudio e calendário — são delegados ao aplicativo pela interface de integração. O Potoo IDE fornece esses serviços durante a execução na janela; as funções gráficas, de teclado, mouse e áudio ainda precisam de validação manual em cada plataforma. O executor de terminal não oferece esses serviços. O analisador informa o primeiro erro léxico ou sintático encontrado.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Repositório do interpretador Portugol Studio 2.0</a></p>{% include interpreter_installation.html %}
 {% include interpreter_usage.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Leitura adicional</p>
@@ -350,7 +423,7 @@ funcao inicio() {
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio">Repositório oficial do Portugol Studio</a>, que identifica a pseudolinguagem como Portugol Studio 2.0.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">Gramática oficial</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">léxico oficial</a>.</li>
             <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">Ajuda oficial de entrada e saída</a>, incluindo o uso de <code>\n</code> para pular linha, e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">analisador semântico</a>, que lista as funções predefinidas.</li>
-            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código-fonte das bibliotecas padrão</a> e suas funções documentadas; consulte diretamente <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Código-fonte das bibliotecas padrão</a> e funções documentadas: <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Arquivos.java">Arquivos</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Graficos.java">Graficos</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Internet.java">Internet</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Mouse.java">Mouse</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/ServicosWeb.java">ServicosWeb</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Sons.java">Sons</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Teclado.java">Teclado</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> e <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
           </ul>
           <p>As referências são mantidas por projetos distintos. Consulte-as para conferir detalhes de comportamento e compatibilidade antes de usar uma função específica.</p>
         </section>

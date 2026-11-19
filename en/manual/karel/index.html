@@ -26,7 +26,7 @@ body_class: manual-page
 <li><a href="#referencia-ampliada">Expanded reference</a></li>
         <li><a href="#fontes">References</a></li>
   </ol></aside><article class="manual-content">
-    <section id="sobre"><p class="kicker">01 · Overview</p><h2>About Karel</h2><p>Karel is a robot that receives instructions to solve simple tasks in a world of streets, corners, and walls. The model was created so early programming exercises emphasize breaking down problems and sequencing commands.</p><p>This page follows Stanford's Java reference, which defines a program class and a <code>run</code> method. Other implementations may use Python or their own syntax; do not mix examples from different versions.</p></section>
+    <section id="sobre"><p class="kicker">01 · Overview</p><h2>About Karel</h2><p>Karel is a robot that receives instructions to solve simple tasks in a world of streets, corners, and walls. The model was created so early programming exercises emphasize breaking down problems and sequencing commands.</p><p>This page follows the Stanford Karel Reader's Java variant (the <code>stanford.karel.*</code> package): the program class extends <code>SuperKarel</code> and defines <code>run()</code>. The tables separate Karel's four primitive commands, its conditions, and the additions in <code>SuperKarel</code>; do not mix this vocabulary with the Python version or original Karel.</p></section>
     <section id="mundo"><p class="kicker">02 · Environment</p><h2>The grid world</h2>
         <p>Karel's world is a grid of streets and avenues; each intersection is a corner. The robot occupies a corner and faces north, south, east, or west. The world has boundary walls, while its dimensions vary by exercise.</p>
         <ul><li><strong>Position and direction:</strong> the occupied corner and the robot's current orientation.</li><li><strong>Walls:</strong> block movement between corners; sensors check the surroundings relative to the current orientation.</li><li><strong>Beepers:</strong> may be on a corner or in the bag. Karel detects beepers only on its current corner; the standard bag can hold an unlimited number.</li><li><strong>Initial state and goal:</strong> each exercise defines a starting world and the result the program should reach.</li></ul>
@@ -40,13 +40,14 @@ public class ExampleKarel extends SuperKarel {
     }
 }</code></pre><p>Code uses braces for blocks, semicolons after instructions, and Java comments with <code>//</code> or <code>/* ... */</code>.</p></section>
     <section id="comandos"><p class="kicker">04 · Actions</p><h2>Basic commands</h2>
-        <div class="manual-table-wrap" role="region" aria-label="Basic Karel commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Action</th></tr></thead><tbody>
+        <p>This table covers the four primitive commands listed by Stanford's Java Karel Reader; the <code>SuperKarel</code> additions appear separately in section 10.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Basic commands in Stanford's Java Karel Reader" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Command</th><th scope="col">Action</th></tr></thead><tbody>
           <tr><td><code>move()</code></td><td>Moves one corner forward if no wall is ahead.</td></tr><tr><td><code>turnLeft()</code></td><td>Turns 90 degrees to the left.</td></tr><tr><td><code>putBeeper()</code></td><td>Places a beeper on the current corner and removes one from the bag.</td></tr><tr><td><code>pickBeeper()</code></td><td>Picks up a beeper from the current corner and stores it in the bag.</td></tr>
         </tbody></table></div>
         <p>The four primitive instructions use empty parentheses and end with a semicolon. <code>move()</code> fails at a wall; <code>pickBeeper()</code> requires a beeper on the corner; <code>putBeeper()</code> requires one in the bag.</p></section>
     <section id="sensores"><p class="kicker">05 · Observation</p><h2>Sensors and conditions</h2>
-        <p>Karel checks its immediate surroundings; it does not receive the whole map as a value. Each sensor returns a boolean that can be used in <code>if</code>, <code>while</code>, and boolean expressions.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Karel sensors" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Sensor</th><th scope="col">True when</th></tr></thead><tbody>
+        <p>Karel checks its immediate surroundings; it does not receive the whole map as a value. Each sensor returns a boolean that can be used in <code>if</code>, <code>while</code>, and boolean expressions. The names in the table are the conditions listed by Stanford's Java Karel Reader; other implementations may use different vocabularies.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Sensors and conditions in Stanford's Java Karel Reader" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Sensor</th><th scope="col">True when</th></tr></thead><tbody>
           <tr><td><code>frontIsClear()</code> / <code>frontIsBlocked()</code></td><td>There is no wall / there is a wall ahead.</td></tr>
           <tr><td><code>leftIsClear()</code> / <code>leftIsBlocked()</code></td><td>The path to the left is clear / blocked.</td></tr>
           <tr><td><code>rightIsClear()</code> / <code>rightIsBlocked()</code></td><td>The path to the right is clear / blocked.</td></tr>
@@ -97,8 +98,8 @@ public class MarkDestination extends SuperKarel {
     }
 }</code></pre></section>
           <section id="superkarel"><p class="kicker">10 · Additional features</p><h2>SuperKarel features</h2>
-        <p><code>SuperKarel</code> adds features to the base class. They are available when the program class extends <code>SuperKarel</code>.</p>
-        <div class="manual-table-wrap" role="region" aria-label="SuperKarel actions and conditions" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">Kind</th><th scope="col">Behavior</th></tr></thead><tbody>
+        <p>This table lists the <code>SuperKarel</code> additions documented in Stanford's Java Karel Reader. They are separate from Karel's four primitive commands.</p>
+        <div class="manual-table-wrap" role="region" aria-label="SuperKarel features in Stanford's Java Karel Reader" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Element</th><th scope="col">Kind</th><th scope="col">Behavior</th></tr></thead><tbody>
           <tr><td><code>turnRight()</code></td><td>Action</td><td>Turns 90 degrees to the right.</td></tr><tr><td><code>turnAround()</code></td><td>Action</td><td>Turns 180 degrees.</td></tr><tr><td><code>random(p)</code></td><td>Condition</td><td>Returns true with probability <code>p</code>, from <code>0.0</code> to <code>1.0</code>.</td></tr><tr><td><code>paintCorner(color)</code></td><td>Action</td><td>Paints the current corner.</td></tr>
         </tbody></table></div>
         <p>In Stanford's Java materials, colors are constants such as <code>RED</code> and <code>YELLOW</code>, without quotation marks. The original book also documents <code>random()</code>, which returns true half the time, and the <code>cornerColorIs(color)</code> condition. These two features are not listed in the Karel Reader's short reference card; check whether the library in use provides them.</p>
@@ -138,15 +139,15 @@ public void run() {
         <p>Trying to cross a wall, pick up a missing beeper, or place one with an empty bag causes an error in that world. Use sensors to guard actions that depend on these conditions.</p>
       </section>
 <section id="referencia-ampliada"><p class="kicker">Operational reference</p><h2>Actions, sensors, and state reference</h2>
-<p>In Stanford’s Java variant, separate the Karel core from the <code>SuperKarel</code> extension and from Java constructs. The four basic commands and sensors belong to the robot model; <code>run()</code>, classes, methods, variables, and loops follow the Java wrapper used by the Reader. The official reference lists these groups separately.</p>
-<div class="manual-table-wrap" role="region" aria-label="Layers of Java Karel" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Layer</th><th scope="col">Examples</th><th scope="col">Role</th></tr></thead><tbody>
+<p>In the Stanford Karel Reader's Java variant, separate the Karel core from the <code>SuperKarel</code> extension and Java constructs. The four basic commands and conditions belong to the robot model; <code>run()</code>, classes, methods, variables, and loops follow the Java wrapper used by the Reader. The official reference lists these groups separately.</p>
+<div class="manual-table-wrap" role="region" aria-label="Layers of Stanford's Java Karel Reader" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Layer</th><th scope="col">Examples</th><th scope="col">Role</th></tr></thead><tbody>
 <tr><td>Base Karel</td><td><code>move()</code>, <code>turnLeft()</code>, <code>putBeeper()</code>, <code>pickBeeper()</code></td><td>Changes position, direction, or beepers in the world.</td></tr>
 <tr><td>Sensors</td><td><code>frontIsClear()</code>, <code>beepersPresent()</code>, <code>facingNorth()</code></td><td>Checks only local surroundings, the current corner, or orientation.</td></tr>
 <tr><td>SuperKarel</td><td><code>turnRight()</code>, <code>turnAround()</code>, <code>random(p)</code>, <code>paintCorner(color)</code></td><td>Adds shortcuts and visual features to the base.</td></tr>
 <tr><td>Program Java</td><td><code>class</code>, <code>run()</code>, <code>if</code>, <code>while</code>, <code>for</code></td><td>Organizes the solution and controls the order of calls.</td></tr>
 </tbody></table></div>
 <h3>Preconditions and action effects</h3>
-<div class="manual-table-wrap" role="region" aria-label="Preconditions of Karel base commands" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operation</th><th scope="col">World precondition</th><th scope="col">Observable effect</th></tr></thead><tbody>
+<div class="manual-table-wrap" role="region" aria-label="Preconditions of base commands in Stanford's Java Karel Reader" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Operation</th><th scope="col">World precondition</th><th scope="col">Observable effect</th></tr></thead><tbody>
 <tr><td><code>move()</code></td><td><code>frontIsClear()</code></td><td>Moves one corner forward and keeps the same direction.</td></tr>
 <tr><td><code>turnLeft()</code></td><td>No wall condition.</td><td>Turns 90° left without changing corners.</td></tr>
 <tr><td><code>putBeeper()</code></td><td><code>beepersInBag()</code></td><td>Leaves a beeper on the corner and reduces the bag count.</td></tr>
@@ -165,7 +166,7 @@ public void run() {
 if (noBeepersPresent() &amp;&amp; beepersInBag()) {
     putBeeper();
 }</code></pre>
-<div class="manual-table-wrap" role="region" aria-label="Karel trace across four corners" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Corner before iteration</th><th scope="col">Wall ahead?</th><th scope="col">Action</th><th scope="col">State on exit</th></tr></thead><tbody>
+<div class="manual-table-wrap" role="region" aria-label="Trace of Stanford's Java Karel Reader across four corners" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Corner before iteration</th><th scope="col">Wall ahead?</th><th scope="col">Action</th><th scope="col">State on exit</th></tr></thead><tbody>
 <tr><td>1</td><td>No</td><td>Places a beeper; moves.</td><td>At corner 2.</td></tr>
 <tr><td>2</td><td>No</td><td>Places a beeper; moves.</td><td>At corner 3.</td></tr>
 <tr><td>3</td><td>No</td><td>Places a beeper; moves.</td><td>At corner 4.</td></tr>
@@ -174,6 +175,6 @@ if (noBeepersPresent() &amp;&amp; beepersInBag()) {
 <p>The example leaves four beepers, one on each corner, if each bag check is true. If the task asks only to mark the destination, place the action after the loop. If some corners may already contain beepers, keep <code>noBeepersPresent()</code> to avoid duplicates.</p>
 <h3>Choose the right reference</h3>
 <p>Original Karel, Stanford’s Java implementation, and other institutional environments share the grid world but may differ in command names, beeper counts, wall errors, colors, and <code>SuperKarel</code> features. Before copying code, check for <code>stanford.karel.*</code>, the extended class, and the conditions listed by the installed reference. A complete exercise records the initial position, direction, walls, bag contents, and expected final state.</p></section>
-      <section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Stanford Karel Reader, Java version</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Reference for commands, conditions, and program structure</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/original.pdf">Original Karel introductory book</a> about the robot's world and the educational purpose of the project.</li></ul></section>
+      <section id="fontes"><p class="kicker">14 · Further reading</p><h2>References</h2><ul><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/">Stanford Karel Reader, Java version</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/java/en/reference.html">Reference for commands, conditions, and program structure</a>.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/python/en/reference.html">Stanford Karel Reader, Python version</a>, for comparing syntax without mixing it with this manual's variant.</li><li><a href="https://compedu.stanford.edu/karel-reader/docs/original.pdf">Original Karel introductory book</a> about the robot's world and the educational purpose of the project.</li></ul></section>
   </article></div><section class="wrap manual-cta"><div><h2>Return to the Potoo IDE Manual</h2><p>Explore the other references and project information.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Open the Manual <span aria-hidden="true">↗</span></a></section></div>
 </main>

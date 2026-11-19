@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Educational reference · Greek curriculum notation · under evaluation</p>
     <h1>Glossa (ΓΛΩΣΣΑ)</h1>
     <p class="manual-intro">ΓΛΩΣΣΑ is a Greek curriculum notation for teaching algorithms, described in an official textbook.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#escopo">Scope and variants</a></li>
         <li><a href="#metodologia">From problem to algorithm</a></li>
         <li><a href="#roteiro">Learning and debugging sequence</a></li>
+        <li><a href="#guia-tecnico">Technical guide: types, operators, and execution</a></li>
         <li><a href="#fontes">References</a></li>
       </ol>
     </aside>
@@ -94,6 +95,7 @@ body_class: manual-page
         <p class="kicker">06 · control flow</p>
         <h2>Conditions and loops</h2>
 <p>ΓΛΩΣΣΑ includes selection and repetition structures suited to structured programming exercises. Selection chooses a block based on a condition; loops repeat instructions according to a count or condition. The textbook specifies each form’s reserved words and delimiters.</p><ul><li><strong>Simple or two-way selection:</strong> handle a case and optionally its alternative.</li><li><strong>Multi-way selection:</strong> choose among several possible values.</li><li><strong>Counted repetition:</strong> traverse a sequence of values.</li><li><strong>Conditional repetition:</strong> continue while a condition holds or until one occurs.</li></ul><p>A condition must produce a logical value. For each loop, identify the variable that changes and confirm that its bounds do not leave the final iteration outside the intended range.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Glossa control structures" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construct</th><th scope="col">Test timing</th><th scope="col">When to use and effect</th></tr></thead><tbody><tr><td><code>ΑΝ ... ΤΟΤΕ ... ΑΛΛΙΩΣ ... ΤΕΛΟΣ_ΑΝ</code></td><td>The condition is evaluated when the selection is reached.</td><td>Chooses a block; the <code>ΑΛΛΙΩΣ</code> alternative is optional.</td></tr><tr><td><code>ΟΣΟ condition ΕΠΑΝΑΛΑΒΕ ... ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ</code></td><td>Before each pass.</td><td>Repeats while true; it may execute zero times.</td></tr><tr><td><code>ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ ... ΜΕΧΡΙΣ_ΟΤΟΥ condition</code></td><td>After the body.</td><td>Repeats until the condition is true; it executes at least once.</td></tr><tr><td><code>ΓΙΑ i ΑΠΟ start ΜΕΧΡΙ end ΜΕ_ΒΗΜΑ step</code></td><td>Checks the counter against the limit at each step.</td><td>Repeats a known sequence; the default step is 1 and the limit is reached according to the step.</td></tr><tr><td><code>ΕΠΙΛΕΞΕ</code></td><td>Compares a value with the declared alternatives.</td><td>The material allows alternatives with values and ranges; useful for several discrete options.</td></tr></tbody></table></div>
       </section>
       <section id="subprogramas">
         <p class="kicker">07 · decomposition</p>
@@ -147,6 +149,25 @@ body_class: manual-page
         <h3>Common errors</h3>
         <ul><li><strong>Uninitialized data:</strong> check that each variable receives a value before use.</li><li><strong>Wrong boundary:</strong> test the condition when a value equals the limit, not only above or below it.</li><li><strong>Loop without progress:</strong> confirm that the instructions change the variable or state controlling repetition.</li><li><strong>Out-of-range array access:</strong> compare each index with the range set by the exercise and course edition.</li><li><strong>Recursion that does not stop:</strong> check that each call moves its input toward the base case.</li></ul>
         <p>Third-party tools may interpret different conventions. When debugging, record the textbook edition, reproduce its examples, and compare the sequence of states before deciding that a tool reflects the curriculum rule. For assessments, use the notation specified by the teacher or exam.</p>
+      </section>
+      <section id="guia-tecnico">
+        <p class="kicker">Technical reference</p>
+        <h2>A complete algorithm and its execution trace</h2>
+        <p>This example adds the odd numbers from 1 to 9. It uses the program header, variable section, counted loop, and output command shown in the schoolbook:</p>
+        <pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΑΘΡΟΙΣΜΑ_ΠΕΡΙΤΤΩΝ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Ι, ΑΘΡΟΙΣΜΑ
+ΑΡΧΗ
+  ΑΘΡΟΙΣΜΑ &lt;- 0
+  ΓΙΑ Ι ΑΠΟ 1 ΜΕΧΡΙ 9 ΜΕ_ΒΗΜΑ 2
+    ΑΘΡΟΙΣΜΑ &lt;- ΑΘΡΟΙΣΜΑ + Ι
+  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ
+  ΓΡΑΨΕ ΑΘΡΟΙΣΜΑ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre>
+        <p>A step size of 2 visits only odd numbers. The sum starts at zero, adds the current value of <code>Ι</code>, and then the counter advances. The table records the state after each loop body:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Trace of the sum of odd numbers in ΓΛΩΣΣΑ" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteration</th><th scope="col"><code>Ι</code></th><th scope="col"><code>ΑΘΡΟΙΣΜΑ</code> after addition</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>3</td><td>4</td></tr><tr><td>3</td><td>5</td><td>9</td></tr><tr><td>4</td><td>7</td><td>16</td></tr><tr><td>5</td><td>9</td><td>25</td></tr></tbody></table></div>
+        <p>The displayed result is <code>25</code>. To check the boundary, start the counter at 1 and record each value as it advances by the given step until it reaches the limit; for input values, also test a case where the loop should not run. In a condition-controlled loop, record the condition before and after the body; in an array, record both indexes and the row or region already traversed. A state table helps locate an error at the first incorrect transition without depending on specific software.</p>
+        <p>The curriculum also introduces Greek mathematical functions, such as <code>ΗΜ</code>, <code>ΣΥΝ</code>, <code>ΕΦ</code>, <code>Τ_Ρ</code>, <code>ΛΟΓ</code>, <code>Ε</code>, <code>Α_Μ</code>, and <code>Α_Τ</code>. Consult the table in the assigned edition to confirm each operation and its units, especially for trigonometric functions. ΓΛΩΣΣΑ is taught through curriculum materials; this reference does not imply a single interpreter or claim that this example runs in Potoo IDE.</p>
       </section>
       <section id="fontes">
         <p class="kicker">13 · further reading</p>

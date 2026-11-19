@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referência educacional · ambiente educacional alemão · em avaliação</p>
     <h1>Robot Karol</h1>
     <p class="manual-intro">Robot Karol ensina algoritmos com um robô em grade, comandos, sensores, blocos e texto.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 18 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -121,7 +121,7 @@ endewenn</code></pre>
         <h2>Percorrer uma linha segura</h2>
 <p>Suponha que uma tarefa peça ao robô para avançar por um corredor de comprimento conhecido. No modo textual próprio, a forma documentada de repetição pode envolver o comando de avançar quatro vezes; no editor de blocos, use o bloco equivalente.</p><pre class="manual-code"><code>wiederhole 4 mal
     Schritt
-endewiederhole</code></pre><p>Antes de executar, confirme que o corredor tem pelo menos quatro células livres e que o robô aponta para ele. Depois teste um corredor mais curto ou com obstáculo para entender por que um sensor é necessário quando o comprimento não é conhecido antecipadamente.</p>
+endewiederhole</code></pre><p><strong>Estrutura equivalente em blocos:</strong></p><ul><li><code>Hauptprogramm</code><ul><li><code>wiederhole 4 mal</code><ul><li><code>Schritt</code></li></ul></li></ul></li></ul><p><strong>Resultado esperado:</strong> em um corredor com quatro células livres à frente, o robô avança quatro células e mantém a orientação. Se o caminho puder ser menor ou tiver obstáculos, verifique-o com um sensor antes de escolher quantos passos executar.</p>
 
 <h3>Exercícios progressivos</h3>
 <p>Resolva estas tarefas no modo textual próprio ou com os blocos equivalentes. Em cada etapa, escreva o estado inicial, o estado final e o teste que comprova a solução antes de tentar generalizar:</p>
@@ -152,12 +152,12 @@ endewiederhole</code></pre><p>Antes de executar, confirme que o corredor tem pel
       <section id="limites">
         <p class="kicker">09 · versões e escopo</p>
         <h2>Versões e suporte</h2>
-<p>A referência desta página é a plataforma online e seu repositório público. Recursos da interface, modos de texto, tarefas e APIs de curso podem evoluir; use o tutorial e os exemplos da versão ativa para confirmar os comandos.</p><p>O manual descreve o ambiente original. Ele não indica que o Potoo IDE incorpore o simulador, o robô ou as ferramentas do projeto. Robot Karol segue em avaliação.</p>
+<p>Os exemplos de blocos e texto desta seção seguem Robot Karol Online <a href="https://github.com/Entkenntnis/robot-karol-online/releases/tag/v1.10.13"><code>v1.10.13</code></a> e o <a href="https://github.com/Entkenntnis/robot-karol-online/blob/v1.10.13/README.md">README dessa versão</a>; a plataforma publicada pode incluir alterações posteriores. Os cursos de Python e Java são modos de materiais específicos, não a linguagem nativa de blocos e texto de Robot Karol.</p><p>O manual descreve o ambiente original. Ele não indica que o Potoo IDE incorpore o simulador, o robô ou as ferramentas do projeto. Robot Karol segue em avaliação.</p>
       </section>
       <section id="fontes">
         <p class="kicker">10 · leitura adicional</p>
         <h2>Referências</h2>
-<ul><li><a href="https://karol.arrrg.de/">Plataforma oficial Robot Karol Online</a>.</li><li><a href="https://github.com/Entkenntnis/robot-karol-online">Repositório oficial do ambiente online</a>, com implementação, tarefas e materiais.</li><li><a href="https://raw.githubusercontent.com/Entkenntnis/robot-karol-online/main/material/Pythonkurs_mit_Robot_Karol_Online.pdf">Curso de Python com Robot Karol Online</a>, com exemplos da API usada no material.</li></ul><p>Consulte a documentação da plataforma para distinguir a linguagem textual própria dos exemplos Python ou Java.</p>
+<ul><li><a href="https://karol.arrrg.de/">Plataforma oficial Robot Karol Online</a>.</li><li><a href="https://github.com/Entkenntnis/robot-karol-online/tree/v1.10.13">Código, tarefas e materiais de Robot Karol Online v1.10.13</a>, fixados na <a href="https://github.com/Entkenntnis/robot-karol-online/releases/tag/v1.10.13">versão oficial</a>; consulte também o <a href="https://github.com/Entkenntnis/robot-karol-online/blob/v1.10.13/README.md">README dessa versão</a>.</li><li><a href="https://raw.githubusercontent.com/Entkenntnis/robot-karol-online/main/material/Pythonkurs_mit_Robot_Karol_Online.pdf">Curso de Python com Robot Karol Online</a>, com exemplos da API usada no material.</li></ul><p>Consulte a documentação da plataforma para distinguir a linguagem textual própria dos exemplos Python ou Java.</p>
       </section>
     </article>
   </div>

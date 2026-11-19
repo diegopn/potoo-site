@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Educational reference · historical French teaching language · under evaluation</p>
     <h1>LSE — Langage Symbolique d’Enseignement</h1>
     <p class="manual-intro">LSE was a French language for teaching programming, documented in historical sources.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -51,7 +51,7 @@ body_class: manual-page
 <p>Publications from Enseignement Public et Informatique document the presentation of LSE from 1973 onward and discuss its place in teaching. The proposal was to provide symbolic vocabulary for explaining instructions, data, and algorithm structure in French.</p><p>The technical context matters when interpreting the material: computers were shared among users, and interaction with a system did not resemble a contemporary graphical editor. Manuals and exercises also reflect the educational practices and available resources of that period.</p><ul><li><strong>Purpose:</strong> support the teaching of programming concepts.</li><li><strong>Language:</strong> notation and teaching materials in French.</li><li><strong>Period:</strong> development and adoption associated with the 1960s and 1970s.</li><li><strong>Current status:</strong> the sources consulted are historical, not an active implementation portal.</li></ul>
 
 <h3>Documented timeline</h3>
-<p>The dates below come from EPI's retrospective account. They locate the sources; they do not imply that one identical edition ran on every computer.</p>
+<p>The chronology below follows Jacques Baudé, “Le système LSE”, in “Les origines. Pourquoi le LSE ?” and “Description du langage LSE”, pp. 41–46. These dates locate the sources; they do not imply that one identical edition ran on every computer.</p>
 <div class="manual-table-wrap" role="region" aria-label="Historical LSE timeline" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Period</th><th scope="col">Historical record</th><th scope="col">How to interpret it</th></tr></thead><tbody>
 <tr><td>1968–1976</td><td>Development of the LSx family, which includes LSE.</td><td>Places the language in the context of time-sharing systems.</td></tr>
 <tr><td>October 1971</td><td>The LSE definition report was delivered to the Ministry.</td><td>Marks the language design before full deployment.</td></tr>
@@ -61,7 +61,7 @@ body_class: manual-page
       <section id="conceitos">
         <p class="kicker">03 · documented concepts</p>
         <h2>What the sources record</h2>
-<p>Historical accounts describe a textual language for expressing operations and procedures. The secondary material consulted mentions data, strings, routines, and control structures, including the ability to decompose a solution into procedures and recursive calls.</p><div class="manual-table-wrap" role="region" aria-label="Historical topics associated with LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Historical reading</th></tr></thead><tbody><tr><td>Instruction sequence</td><td>Express ordered operations for solving a problem.</td></tr><tr><td>Data and expressions</td><td>Represent values and calculations in symbolic notation.</td></tr><tr><td>Control</td><td>Organize choices and repetitions in algorithms.</td></tr><tr><td>Procedures</td><td>Split a solution into reusable routines; some sources also report recursion.</td></tr><tr><td>Interaction</td><td>Study data input and output in the context of shared systems.</td></tr></tbody></table></div><p>This summary is not a formal specification: each detail needs confirmation in the relevant period manual before it is treated as a language rule.</p>
+<p>Historical sources describe a textual language for expressing operations and procedures. Hebenstreit and Noyelle cover data, strings, and control in their 1973 article (§§ 1–3, pp. 10–18); Baudé summarizes these features in “Description du langage LSE” (2015, pp. 45–46), including procedures and recursion.</p><div class="manual-table-wrap" role="region" aria-label="Historical topics associated with LSE" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Topic</th><th scope="col">Historical reading</th></tr></thead><tbody><tr><td>Instruction sequence</td><td>Express ordered operations for solving a problem.</td></tr><tr><td>Data and expressions</td><td>Represent values and calculations in symbolic notation.</td></tr><tr><td>Control</td><td>Organize choices and repetitions in algorithms.</td></tr><tr><td>Procedures</td><td>Split a solution into reusable routines; some sources also report recursion.</td></tr><tr><td>Interaction</td><td>Study data input and output in the context of shared systems.</td></tr></tbody></table></div><p>This summary is not a formal specification: each detail needs confirmation in the relevant period manual before it is treated as a language rule.</p>
       </section>
       <section id="sintaxe">
         <p class="kicker">04 · syntax and sources</p>
@@ -86,57 +86,68 @@ body_class: manual-page
       <section id="fragmentos">
         <p class="kicker">8 · reading the sources</p>
         <h2>Fragments documented in the historical publication</h2>
-        <p>Jacques Hebenstreit and Yves Noyelle's article describes specific language features. The excerpts below come from the publication reproduced by EPI; they are not a complete program or an executable specification:</p>
+        <p>This block combines two examples from “Les instructions sur chaînes de caractères” in Jacques Hebenstreit and Yves Noyelle’s article (1973, pp. 10–18). Spacing markers in the transcription are normalized to ordinary spaces; the examples remain separate, as shown by the blank line:</p>
         <pre class="manual-code"><code>CHAINE DATE
 DATE = '11 AVRIL 1972'
 
-X = 1
-REMISE = 'RABAIS 1 DE' ! X</code></pre>
-        <p>The article documents string variables declared with <code>CHAINE</code>, literals in apostrophes, and the <code>!</code> concatenation operator. It also describes <code>SCH</code> for extracting a substring and <code>ALE(1)</code> for producing a random value between zero and one, excluding both endpoints.</p>
-        <div class="manual-table-wrap" role="region" aria-label="Features recorded in the historical LSE source" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Feature</th><th scope="col">What the source records</th></tr></thead><tbody>
-          <tr><td>Numeric values</td><td>Arithmetic variables are real; the article does not describe a separate integer type.</td></tr>
-          <tr><td>Memory</td><td><code>LIBERER</code> makes space used by variables or arrays available again.</td></tr>
-          <tr><td>Strings</td><td><code>CHAINE</code>, apostrophe-delimited constants, concatenation with <code>!</code>, and extraction with <code>SCH</code>.</td></tr>
-          <tr><td>Abstraction</td><td>Procedures, functions of reasonable complexity, and recursion are cited as teaching features.</td></tr>
+X = '3%'
+REMISE = 'RABAIS DE' ! X</code></pre>
+        <p>The article documents <code>CHAINE</code>, apostrophe-delimited strings, and <code>!</code> as the concatenation operator (§§ 2–2.1). <code>SCH</code> extracts a substring; <code>ALE(1)</code> generates a real number between zero and one, excluding both endpoints. The next table identifies the sections and the corresponding internal page numbers in <em>LSE pour tous</em>.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Features and locations in historical LSE sources" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Feature</th><th scope="col">What the source records</th><th scope="col">Location</th></tr></thead><tbody>
+          <tr><td>Numeric values</td><td>Arithmetic variables are real; the article does not describe a separate integer type.</td><td>1973 article, § 1, “Les instructions arithmétiques”, pp. 10–18.</td></tr>
+          <tr><td>Memory</td><td><code>LIBERER</code> makes space used by variables or arrays available again.</td><td>1973 article, § 1; <em>LSE pour tous</em>, p. 19 for <code>LIBERER</code>, as cross-referenced by EPI’s reference sheet.</td></tr>
+          <tr><td>Strings</td><td><code>CHAINE</code>, apostrophe-delimited constants, concatenation with <code>!</code>, and extraction with <code>SCH</code>.</td><td>1973 article, §§ 2–2.2; <em>LSE pour tous</em>, pp. 18, 32–37, and 42, as cross-referenced by EPI’s reference sheet.</td></tr>
+          <tr><td>Abstraction</td><td>Procedures, functions of reasonable complexity, and recursion are cited as teaching features.</td><td>1973 article, introduction, pp. 10–18; procedures in <em>LSE pour tous</em>, pp. 91–98, as cross-referenced by EPI’s reference sheet.</td></tr>
         </tbody></table></div>
-        <p>Read the names and examples in the context of the period article. An isolated fragment does not establish every delimiter, declaration, or execution rule, so this page does not present it as code ready for a current compiler.</p>
-        <h3>Reference to documented functions</h3>
-        <div class="manual-table-wrap" role="region" aria-label="Functions cited in the historical LSE article" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Documented form</th><th scope="col">Result or purpose</th><th scope="col">Source note</th></tr></thead><tbody>
-          <tr><td><code>SCH(α, β, y, δ)</code></td><td>Extracts a substring from a source string.</td><td><code>β</code> gives the starting position; <code>y</code> can give a length or stop characters; optional <code>δ</code> receives the position after the substring.</td></tr>
-          <tr><td><code>GRL(α, β, δ)</code></td><td>Extracts a group of letters.</td><td>Starts at the given position and skips non-letter characters until a group is formed.</td></tr>
-          <tr><td><code>CCA(α)</code></td><td>Converts the result of an arithmetic expression to a string.</td><td>The article gives positive and negative examples.</td></tr>
-          <tr><td><code>EQC(α)</code></td><td>Returns the one-character string for an ASCII code.</td><td>The numeric expression must be from 0 to 127.</td></tr>
-          <tr><td><code>DAT</code></td><td>Returns the current date and time as a string.</td><td>The historical example includes day, month, year, and time.</td></tr>
-          <tr><td><code>LGR(α)</code></td><td>Returns the length of a string expression.</td><td>The article applies it after evaluating the expression.</td></tr>
-          <tr><td><code>POS(α, β, y)</code></td><td>Searches for string <code>y</code> in <code>α</code>, starting at position <code>β</code>.</td><td>The publication describes its purpose; this table does not summarize every return case.</td></tr>
-          <tr><td><code>ALE(1)</code></td><td>Generates a random real number.</td><td>The value is greater than 0 and less than 1.</td></tr>
+        <h3>Documented functions</h3>
+        <div class="manual-table-wrap" role="region" aria-label="Functions and page references in historical LSE sources" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Documented form</th><th scope="col">Result or purpose</th><th scope="col">Source note</th><th scope="col">Section and page reference</th></tr></thead><tbody>
+          <tr><td><code>SCH(α, β, y, δ)</code></td><td>Extracts a substring from a source string.</td><td><code>β</code> gives the starting position; <code>y</code> can give a length or stop characters; optional <code>δ</code> receives the position after the substring.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 33.</td></tr>
+          <tr><td><code>GEL(α, β, δ)</code></td><td>Extracts a sequence of letters from the string.</td><td>The article calls this function <code>GEL</code>: it skips non-letter characters until it reaches a sequence of letters.</td><td>1973 article, § 2.2. EPI’s later reference sheet lists <code>GRL</code> on p. 35; equivalence of spelling and behavior across editions has not been confirmed.</td></tr>
+          <tr><td><code>CCA(β)</code></td><td>Converts the result of an arithmetic expression to a string.</td><td>The article gives positive and negative examples.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 37.</td></tr>
+          <tr><td><code>EQC(β)</code></td><td>Returns the one-character string for an ASCII code.</td><td>The numeric expression must be non-negative and less than 128.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 37.</td></tr>
+          <tr><td><code>DAT</code></td><td>Returns the current date and time as a string.</td><td>The historical example includes day, month, year, and time.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 42.</td></tr>
+          <tr><td><code>LGR(α)</code></td><td>Returns the length of a string expression.</td><td>The article applies it after evaluating the expression.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 32.</td></tr>
+          <tr><td><code>POS(α, β, y)</code></td><td>Searches for string <code>y</code> in <code>α</code>, starting at position <code>β</code>.</td><td>The result is zero when the string is not found.</td><td>1973 article, § 2.2; <em>LSE pour tous</em>, p. 34.</td></tr>
+          <tr><td><code>ALE(1)</code></td><td>Generates a random real number.</td><td>The value is greater than 0 and less than 1.</td><td>1973 article, § 1; <em>LSE pour tous</em>, p. 30.</td></tr>
         </tbody></table></div>
-        <p>These signatures are reproduced as a historical reference. They are not a modern specification and do not guarantee that a current interpreter implements the same functions.</p>
-
-
-<h3>Line-based interaction in the described system</h3>
-<p>The retrospective article describes a system that analyzed each line as it was entered. The notation and commands below belong to that historical account; interfaces and features varied across machines.</p>
-<div class="manual-table-wrap" role="region" aria-label="LSE interaction and execution in historical sources" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Cited element</th><th scope="col">Documented role</th><th scope="col">Interpretation limit</th></tr></thead><tbody>
-<tr><td><code>? instruction</code></td><td>Runs an instruction immediately in desk-machine mode.</td><td>This is a documented interaction mode, not the start of a numbered program.</td></tr>
-<tr><td><code>number instruction</code></td><td>Stores a program line for later execution.</td><td>The line limit was 80 characters, including the line ending.</td></tr>
-<tr><td>Line analysis</td><td>The system analyzed each entered line and translated it to a postfix string.</td><td>The source uses “compilation” pedagogically; it also describes an interpreter.</td></tr>
-<tr><td><code>PAUSE</code></td><td>Interrupts execution and reports the line where it stopped.</td><td>The historical monitor provided commands to continue or resume elsewhere.</td></tr>
-<tr><td><code>PAS A PAS</code></td><td>Stops execution after each line.</td><td>This is a historical monitor feature, not a modern graphical debugger.</td></tr>
-</tbody></table></div>
-<p>The publication also cites <code>LIRE</code>, <code>AFFICHER</code>, <code>SI ... ALORS ... SINON</code>, <code>ALLER EN</code>, and forms of <code>FAIRE</code>. Explicit loop structures are associated with later revisions; do not combine all these forms into one example without naming the source edition.</p></section>
+        <p>The page numbers after <em>LSE pour tous</em> are internal page references in that manual, as listed by EPI’s reference sheet; the sheet does not identify the edition it indexes. The 1973 article is cited by section and its complete Bulletin pagination because the online transcription does not mark the printed page for each subsection.</p>
+        <p>These forms are historical references, not a current specification or a guarantee of interpreter compatibility. The later spelling <code>GRL</code> remains separate from <code>GEL</code> until an edition documenting their equivalence is identified.</p>
+        <h3>Line-based interaction in the described system</h3>
+        <p>Jacques Baudé describes line-by-line analysis, desk-machine mode, postfix translation, and the 80-character limit in “Description du langage LSE” (2015, pp. 45–46). The notation and commands below belong to that historical account; the interface varied across machines.</p>
+        <div class="manual-table-wrap" role="region" aria-label="LSE interaction and execution in historical sources" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Cited element</th><th scope="col">Documented role</th><th scope="col">Interpretation limit</th></tr></thead><tbody>
+          <tr><td><code>? instruction</code></td><td>Runs an instruction immediately in desk-machine mode.</td><td>This is a documented interaction mode, not the start of a numbered program.</td></tr>
+          <tr><td><code>number instruction</code></td><td>Stores a program line for later execution.</td><td>The line limit was 80 characters, including the line ending.</td></tr>
+          <tr><td>Line analysis</td><td>The system analyzed each entered line and translated it to a postfix string.</td><td>The source uses “compilation” pedagogically; it also describes an interpreter.</td></tr>
+          <tr><td><code>PAUSE</code></td><td>Interrupts execution and reports the line where it stopped.</td><td>The historical monitor provided commands to continue or resume elsewhere.</td></tr>
+          <tr><td><code>PAS A PAS</code></td><td>Stops execution after each line.</td><td>This is a historical monitor feature, not a modern graphical debugger.</td></tr>
+        </tbody></table></div>
+        <p>The 1973 article, § 3, describes <code>SI ... ALORS ... SINON</code> and <code>ALLER EN</code>; Baudé (2015, pp. 45–46) distinguishes these forms from later revisions with <code>FAIRE</code>. EPI’s reference sheet lists <code>SI</code> on pp. 46 and 49, <code>ALLER EN</code> on p. 51, and <code>FAIRE</code> on pp. 58 and 63 of <em>LSE pour tous</em>. Since the edition is unspecified, do not combine the forms without recording the source edition.</p>
+      </section>
       <section id="projeto">
         <p class="kicker">9 · technical context</p>
         <h2>Teaching criteria and technical context</h2>
-        <p>The authors explain that French reserved words were intended to keep students from having to use English to communicate with a computer. The proposal also aimed to work across school subjects, serve students in both scientific and literary fields, and provide conversational interaction during compilation and execution.</p>
-        <p>The design paired a minimal core that was easy to learn with advanced features for exploring procedures, pass-by-value and pass-by-name parameters, recursion, and functions. This reflects two teaching goals: support simple first experiences while also discussing decomposition and abstraction without changing languages.</p>
-        <p>The article places the implementation on a shared minicomputer with 16 kilobytes of memory, a 100-kilobyte disk, and eight terminals. Those limits help explain its discussion of freeing memory and time-sharing systems. They describe the period's environment, not the requirements of a current installation.</p>
+        <p>Hebenstreit and Noyelle explain that French reserved words were intended to keep students from having to use English to communicate with a computer. The proposal also aimed to work across school subjects, serve students in both scientific and literary fields, and provide conversational interaction during compilation and execution (1973, introduction, pp. 10–18).</p>
+        <p>The design paired a minimal core that was easy to learn with advanced features for exploring procedures, pass-by-value and pass-by-name parameters, recursion, and functions. This reflects two teaching goals: support simple first experiences while also discussing decomposition and abstraction without changing languages (Hebenstreit and Noyelle, 1973, introduction, pp. 10–18; Baudé, 2015, pp. 45–46).</p>
+        <p>Hebenstreit and Noyelle place the implementation on a shared minicomputer with 16 kilobytes of memory, a 100-kilobyte disk, and eight terminals (1973, introduction, pp. 10–18). Those limits help explain its discussion of freeing memory and time-sharing systems. They describe the period's environment, not the requirements of a current installation.</p>
         <p>To study an LSE exercise today, separate three layers: the algorithmic concept; the exact notation shown by the source; and the material conditions of the system in which it ran. Preserve French terms when transcribing examples, mark rules the source does not explain, and describe the logic in prose when the available grammar is insufficient for a complete program.</p>
         <ol><li>Identify the source's author, publication, and historical context.</li><li>Mark each instruction, type, or function that is actually illustrated.</li><li>Compare later accounts with the period article without treating them as interchangeable.</li><li>If you adapt an exercise to a modern language, label the adaptation explicitly.</li></ol>
       </section>
       <section id="fontes">
         <p class="kicker">10 · historical sources</p>
         <h2>References</h2>
-<ul><li><a href="https://www.epi.asso.fr/revue/06/b06p010.htm">“Un langage symbolique destiné à l’enseignement : LSE”</a>, a historical publication reproduced by EPI.</li><li><a href="https://www.epi.asso.fr/revue/histo/h70-lse_jb-2015.htm">Historical overview of LSE</a>, with references to the language’s development and use.</li><li><a href="https://en.wikipedia.org/wiki/LSE_(programming_language)">Historical LSE entry</a>, useful as a bibliographic starting point, not a normative specification.</li></ul><p>Period publications are needed to confirm spelling, semantics, and features of a specific example.</p>
+        <ul>
+          <li><strong>HEBENSTREIT, Jacques; NOYELLE, Yves.</strong> “Un langage symbolique destiné à l’enseignement : LSE”. <em>Bulletin de l’EPI</em>, no. 6, December 1973, pp. 10–18. <a href="https://www.epi.asso.fr/revue/06/b06p010.htm">EPI transcription</a> · <a href="https://www.epi.asso.fr/blocnote/Hebenstreit_Noyelle_EPI_B6.pdf">PDF reproduction</a>.</li>
+          <li><strong>BAUDÉ, Jacques.</strong> “Le système LSE”. <em>1024 — Bulletin de la Société informatique de France</em>, no. 7, November 2015, pp. 41–56. <a href="https://1024.socinfo.fr/2015/11/1024_7_2015_41.pdf">Publisher PDF</a>.</li>
+          <li><strong>Enseignement Public et Informatique (EPI).</strong> <em>Aide mémoire pour LSE</em>, n.d., 4 pp. A reference sheet for <em>LSE pour tous</em>. <a href="https://www.epi.asso.fr/blocnote/plaquetteLSE.pdf">EPI PDF</a>.</li>
+        </ul>
+        <h3>Locating claims and examples</h3>
+        <div class="manual-table-wrap" role="region" aria-label="LSE historical source locator" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Content in this reference</th><th scope="col">Source and location</th></tr></thead><tbody>
+          <tr><td>Origins and chronology</td><td>Baudé (2015), “Les origines. Pourquoi le LSE ?” and “Description du langage LSE”, pp. 41–46.</td></tr>
+          <tr><td>String fragment and functions in the period publication</td><td>Hebenstreit and Noyelle (1973), §§ 1–3, pp. 10–18; the headings “Les instructions sur chaînes de caractères” and “Les instructions de contrôle” locate the material. The function table on this page also gives the page numbers cross-referenced by <em>Aide mémoire pour LSE</em>.</td></tr>
+          <tr><td>Line-based interaction, desk-machine mode, and line length</td><td>Baudé (2015), “Description du langage LSE”, pp. 45–46.</td></tr>
+          <tr><td>Function, declaration, and control pages in <em>LSE pour tous</em></td><td>The page numbers given here are internal references listed on pp. 2–3 of <em>Aide mémoire pour LSE</em>, not pages of that reference sheet. The sheet does not identify the edition of <em>LSE pour tous</em>; treat these numbers as locators and confirm the edition when consulting a copy.</td></tr>
+        </tbody></table></div>
+        <p>The 1973 publication and the 2015 overview describe different periods and versions. This page ties each detail to its source and does not combine spellings from different editions as if they were equivalent.</p>
       </section>
     </article>
   </div>

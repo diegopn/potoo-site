@@ -25,7 +25,7 @@ body_class: manual-page
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referencia del lenguaje de programación · Potigol</p><h1>Potigol</h1>
     <p class="manual-intro">Referencia práctica de Potigol: sintaxis, recursos del lenguaje y biblioteca de juegos Jerimum.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -299,6 +299,7 @@ escreva classifique(-2)</code></pre>
 <p>Los casos se prueban en el orden escrito. Coloca primero los patrones específicos y deja el caso amplio para el final; un <code>_</code> anterior ocultaría las ramas que querías distinguir.</p></section>
       <section id="jerimum"><p class="kicker">14 · Biblioteca de juegos</p><h2>Jerimum: juegos con Potigol</h2>
         <p><strong>Jerimum</strong> es una biblioteca de juegos para Potigol. El repositorio oficial reúne ejemplos y módulos para abrir una ventana, dibujar imágenes y texto, consultar teclado y ratón, medir tiempo y reproducir audio. Añade recursos para juegos y se mantiene separado de la sintaxis central de Potigol.</p>
+        <p>Esta sección sigue Jerimum <code>1.0.0</code>, la versión declarada en su <a href="https://github.com/potigol/Jerimum/blob/master/build.sbt">archivo oficial de compilación</a>, que usa Scala <code>2.12.12</code> y depende de Potigol <code>1.0-RC1</code>. El intérprete del Potoo tiene como objetivo el núcleo documentado de Potigol <code>1.0.0-RC2</code> e implementa una capa de compatibilidad independiente para un subconjunto de la API de Jerimum; no incluye la biblioteca original Scala/JVM.</p>
         <h3>Inicio y ciclo del juego</h3>
         <p>Un programa comienza con <code>use "jerimum"</code> y define <code>atualize()</code> para actualizar el estado y <code>desenhe()</code> para registrar lo que se dibuja. <code>jogo.iniciar</code> recibe título, ancho, alto, ambas funciones y una tasa de cuadros opcional, cuyo valor predeterminado es 60.</p>
         <pre class="manual-code"><code>use "jerimum"
@@ -312,16 +313,19 @@ desenhe()
 fim
 
 jogo.iniciar("Meu jogo", 640, 480, atualize, desenhe, 60)</code></pre>
+        <p><strong>Resultado esperado:</strong> se abre una ventana de 640 × 480 píxeles titulada <code>Meu jogo</code> y el ciclo se ejecuta a 60 cuadros por segundo. Como ambas funciones están vacías, no se dibuja ningún objeto.</p>
         <p><code>jogo</code> expone <code>largura</code>, <code>altura</code>, <code>título</code> y <code>fps</code>. La ventana se crea mediante Swing/AWT y tiene dimensiones fijas. <code>Jogo.distância</code>, <code>Jogo.projeção_X</code> y <code>Jogo.projeção_Y</code> ayudan con cálculos de movimiento; sus ángulos se expresan en grados.</p>
         <h3>Dibujo, capas e imágenes</h3>
         <p><code>Imagem("archivo.png")</code> carga una imagen. <code>desenhe(x, y, z)</code> la sitúa en coordenadas y una capa entera. Las capas con número mayor se dibujan delante. También existen dibujo centrado, rotación, escala y recorte de hojas de sprites mediante <code>fatie</code>.</p>
         <pre class="manual-code"><code>fundo = Imagem("fundo.png")
 nave = Imagem("nave.png")
-quadros = Imagem.fatie("explosao.png", 32, 32)
+explosao = Imagem("explosao.png")
+quadros = explosao.fatie(32, 32)
 desenhe()
   fundo.desenhe(0, 0, 0)
   nave.desenhe_centralizado(320, 240, 2, 0)
 fim</code></pre>
+        <p><strong>Resultado esperado:</strong> con <code>fundo.png</code>, <code>nave.png</code> y <code>explosao.png</code> disponibles en las rutas utilizadas, el callback dibuja el fondo en (0, 0), en la capa 0, y centra la nave en (320, 240), en la capa 2. <code>quadros</code> contiene recortes de 32 × 32 píxeles de la explosión, pero este fragmento no los dibuja.</p>
         <p><code>Animacao(velocidade, imagens)</code> selecciona imágenes de una secuencia según el tiempo transcurrido.</p>
         <h3>Teclado, ratón y tiempo</h3>
         <p><code>Teclado</code> ofrece valores lógicos como <code>TECLA_PARA_DIREITA</code>, <code>TECLA_ENTER</code> y <code>TECLA_A</code> a <code>TECLA_Z</code>. <code>Mouse.x</code> y <code>Mouse.y</code> indican la posición; <code>Mouse.BOTAO_ESQUERDO</code> y <code>Mouse.BOTAO_DIREITO</code> consultan los botones. <code>Relógio.milisegundos</code> cuenta el tiempo desde la inicialización.</p>
@@ -330,6 +334,7 @@ atualize()
   se Teclado.TECLA_PARA_DIREITA então x := x + 4 fim
   se Mouse.BOTAO_ESQUERDO então x := Mouse.x fim
 fim</code></pre>
+        <p><strong>Resultado esperado:</strong> la flecha derecha suma 4 a <code>x</code> en cada actualización; mientras se mantiene pulsado el botón izquierdo, <code>x</code> toma el valor de <code>Mouse.x</code>. Este fragmento solo cambia el estado: no habrá movimiento visible hasta dibujar <code>x</code> en <code>desenhe()</code>.</p>
         <h3>Texto, colores, audio y archivos</h3>
         <p><code>Fonte(tamanho)</code> crea una fuente. Sus métodos de dibujo reciben texto, coordenadas y capa; aceptan color. <code>Cor(vermelho, verde, azul)</code> crea un color RGB y también hay constantes como <code>Cor.BRANCO</code>, <code>Cor.PRETO</code> y <code>Cor.VERDE</code>.</p>
         <p><code>Som("efeito.wav")</code> reproduce efectos con <code>toque()</code>. <code>Musica("faixa.wav")</code> ofrece <code>toque</code>, <code>pause</code>, <code>continue</code>, <code>pare</code> y <code>tocando</code>; comienza en bucle por defecto. <code>Arquivo.leia("dados.txt")</code> devuelve las líneas del archivo en una lista.</p>
@@ -357,13 +362,14 @@ desenhe()
   nave.desenhe_centralizado(x, y, 1)
 fim
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
+        <p><strong>Resultado esperado:</strong> con <code>nave.png</code> disponible, la ventana Movimento muestra inicialmente la nave centrada en (300, 220). Mantener una flecha la mueve 4 píxeles por actualización; sin límites, puede salir de la ventana.</p>
         <p>Los detalles de cada método están en la documentación y el código fuente del repositorio Jerimum. La biblioteca usa recursos Java para ventanas, dibujo y audio; sus ejemplos se refieren a programas Potigol de escritorio.</p>
 
 <h3>Lenguaje central y biblioteca</h3>
 <div class="manual-table-wrap" role="region" aria-label="Diferencia entre Potigol y la biblioteca Jerimum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Parte</th><th scope="col">Cómo aparece</th><th scope="col">Qué añade</th></tr></thead><tbody>
 <tr><td>Lenguaje Potigol</td><td>Declaraciones, funciones, listas, tuplas, tipos y control de flujo.</td><td>Es la sintaxis y los tipos usados sin importar una biblioteca.</td></tr>
 <tr><td>Jerimum</td><td><code>use "jerimum"</code></td><td>Añade ventanas, imágenes, entrada, audio, reloj y archivos.</td></tr>
-<tr><td>Objetos de la biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>Las llamadas dependen de la versión y de la documentación del repositorio Jerimum.</td></tr>
+<tr><td>Objetos de la biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>Este manual describe Jerimum 1.0.0; la capa del Potoo implementa por separado un subconjunto de su API.</td></tr>
 </tbody></table></div>
 <p>Si un ejemplo usa <code>use "jerimum"</code>, depende de la biblioteca y de sus archivos de recursos; copiar la sintaxis no basta en un entorno que solo ejecute el núcleo del lenguaje.</p></section>
       <section id="exemplo"><p class="kicker">15 · Ejemplo integrado</p><h2>Calcular el promedio</h2>
@@ -380,7 +386,7 @@ fim</code></pre>
       <section id="interpretador"><p class="kicker">16 · Intérprete</p><h2>Intérprete del lenguaje Potigol en Potoo IDE</h2><p>Potoo IDE usa una implementación independiente en Rust, mantenida en su propio repositorio, cuyo objetivo es el núcleo documentado de Potigol 1.0.0-RC2. Ofrece inferencia y comprobación de tipos, funciones, colecciones, emparejamiento de patrones y recursos funcionales; no ejecuta ni incluye el intérprete oficial de Scala/JVM.</p><p>La capa Jerimum envía solicitudes de gráficos, audio, entrada, ventana y archivos a la aplicación. Potoo IDE las atiende con sus recursos GTK y limita las rutas de archivos y medios al proyecto abierto; las fachadas Java cubren operaciones seleccionadas, no la interoperabilidad general con JVM, Swing o AWT.</p><p><a href="https://github.com/diegopn/potoo-potigol-interpreter">Repositorio del intérprete Potigol</a></p>{% include interpreter_installation.html %}
 {% include interpreter_usage.html %}</section>
 <section id="fontes"><p class="kicker">17 · Lectura adicional</p><h2>Referencias</h2>
-        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>, con temas de sintaxis, estructuras, funciones, tipos, listas y tuplas.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemáticas</a> y <a href="https://potigol.github.io/docs/funcoes/">funciones</a>.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a>, <a href="https://potigol.github.io/docs/tipos_compostos/tuplas/">tuplas</a> y <a href="https://potigol.github.io/docs/funcional/">programación funcional</a>, con comprensión de listas, expresiones lambda, currying, recursión de cola y emparejamiento de patrones.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
+        <ul><li><a href="https://potigol.github.io/docs/">Documentación oficial de Potigol</a>, con temas de sintaxis, estructuras, funciones, tipos, listas y tuplas.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemáticas</a> y <a href="https://potigol.github.io/docs/funcoes/">funciones</a>.</li><li>Referencias oficiales de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a>, <a href="https://potigol.github.io/docs/tipos_compostos/tuplas/">tuplas</a> y <a href="https://potigol.github.io/docs/funcional/">programación funcional</a>, con comprensión de listas, expresiones lambda, currying, recursión de cola y emparejamiento de patrones.</li><li><a href="https://github.com/potigol/potigol">Repositorio oficial de Potigol</a> y <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li><li><a href="https://github.com/potigol/Jerimum">Repositorio oficial de Jerimum</a>, con <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentación y ejemplos</a>, y su <a href="https://github.com/potigol/Jerimum/blob/master/build.sbt">archivo de compilación</a>, que declara Jerimum 1.0.0, Scala 2.12.12 y Potigol 1.0-RC1.</li><li>Referencias de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> y <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; el código fuente también describe audio, animación y lectura de archivos.</li></ul>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volver al Manual de Potoo IDE</h2><p>Consulta las demás referencias y la información del proyecto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir el Manual <span aria-hidden="true">↗</span></a></section></div>

@@ -107,6 +107,25 @@ body_class: manual-page
 <p>Antes de escribir la ruta, convierte el enunciado en condiciones iniciales y meta. Después divide la meta en pasos observables: llegar a una casilla, rodear un obstáculo o completar una figura. Usa solo los comandos listados para el ejecutor de esa versión; los nombres de otro mundo no son intercambiables.</p>
 <p>La ejecución paso a paso permite observar el efecto de cada acción. Si el ejecutor sale del escenario esperado, compara posición y dirección después de cada comando en lugar de cambiar varias partes a la vez.</p>
 
+<h3>Ejemplos por ejecutor: Kumir 2.1.0 en RED OS 8.0</h3>
+<p>La documentación de RED OS identifica la versión del paquete como <code>kumir2-2.1.0</code>. Los programas siguientes usan la sintaxis documentada para esa distribución; la primera línea activa el ejecutor y las instrucciones posteriores son comandos propios de este. No generalices estas llamadas a Kumir 1.x ni a otros paquetes.</p>
+<p><strong>Robot — colorear dos casillas:</strong> si la casilla situada encima de la posición inicial está libre, el programa colorea la casilla actual, sube una casilla y vuelve a colorear.</p>
+<pre class="manual-code"><code>использовать Робот
+алг
+нач
+    закрасить
+    вверх
+    закрасить
+кон</code></pre>
+<p><strong>Dibujante — trazar un segmento horizontal:</strong> desde la posición inicial del lápiz, el vector desplaza el trazo cuatro unidades en horizontal y ninguna en vertical.</p>
+<pre class="manual-code"><code>использовать Чертежник
+алг
+нач
+    опустить перо
+    сместиться на вектор(4, 0)
+    поднять перо
+кон</code></pre>
+
 </section>
       <section id="exemplo">
         <p class="kicker">07 · ejemplo guiado</p>
@@ -187,7 +206,7 @@ body_class: manual-page
       <section id="fontes">
         <p class="kicker">10 · lecturas adicionales</p>
         <h2>Referencias</h2>
-<ul><li><a href="https://www.niisi.ru/kumir/dl.htm">Descargas oficiales de Kumir</a>; choose the package and manual matching the course version.</li><li><a href="https://www.niisi.ru/kumir/">Sitio oficial de Kumir</a>, del Instituto de Sistemas de la Academia de Ciencias de Rusia (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">Publicación de NIISI sobre Kumir 2</a>, con contexto del conjunto escolar y sus ejecutores.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Documentación de Kumir en una distribución educativa</a>, útil para observar diferencias de paquete e instalación.</li></ul><p>Para la sintaxis normativa, prefiere la documentación oficial incluida con la versión de Kumir que utilice el curso.</p>
+<ul><li><a href="https://www.niisi.ru/kumir/dl.htm">Descargas oficiales de Kumir</a>; elige el paquete y el manual correspondientes a la versión del curso.</li><li><a href="https://www.niisi.ru/kumir/">Sitio oficial de Kumir</a>, del Instituto de Sistemas de la Academia de Ciencias de Rusia (NIISI).</li><li><a href="https://trudy.niisi.ru/2015_T5_N1.pdf">Publicación de NIISI sobre Kumir 2</a>, con contexto del conjunto escolar y sus ejecutores.</li><li><a href="https://redos.red-soft.ru/base/redos-8_0/8_0-education/8_0-kumir/">Documentación de RED OS 8.0 para Kumir 2.1.0</a>, con sintaxis y ejemplos de los ejecutores Robot y Dibujante.</li></ul><p>Para la sintaxis normativa, prefiere la documentación oficial incluida con la versión de Kumir que utilice el curso.</p>
       </section>
     </article>
   </div>

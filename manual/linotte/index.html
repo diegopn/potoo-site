@@ -4,7 +4,7 @@ lang: "pt-BR"
 page_kind: "manual"
 permalink: "/manual/linotte/"
 title: "Linotte | Manual do Potoo IDE"
-description: "Referência de Linotte: sintaxe em francês, atores, coleções, funções, operações matemáticas, espécies e recursos gráficos do Atelier."
+description: "Referência de Linotte 3.14: sintaxe em francês, atores, coleções, funções e recursos do Atelier."
 og_title: "Referência de Linotte"
 og_description: "Consulte as construções de Linotte, suas coleções, funções e recursos do Atelier."
 og_type: "article"
@@ -19,7 +19,7 @@ body_class: manual-page
 <main id="conteudo">
   <section class="manual-hero" id="inicio"><div class="wrap">
     <p class="kicker">Referência · Linotte</p><h1>Linotte</h1>
-    <p class="manual-intro">Referência de Linotte 3.x: atores, expressões, coleções, funções, eventos e Atelier.</p>
+    <p class="manual-intro">Referência do Linotte 3.14: atores, coleções, funções, eventos e recursos do Atelier.</p>
     <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
@@ -112,7 +112,7 @@ ferme</code></pre>
         <p>As condições podem comparar valores ou testar um valor lógico. Os operadores relacionais mostrados nos exemplos são <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> e <code>&lt;=</code>.</p>
       </section>
       <section id="repeticoes"><p class="kicker">07 · Repetição</p><h2>Repetições</h2>
-        <p><code>pour</code> percorre uma sequência numérica com os limites inicial e final incluídos. Para um bloco com várias instruções, use a forma em linhas e feche com <code>ferme</code>. <code>pour chaque</code> percorre uma coleção e disponibiliza o item atual no ator especial <code>joker</code>.</p>
+        <p><code>pour</code> percorre uma sequência numérica com os limites inicial e final incluídos. Para um bloco com várias instruções, use a forma em linhas e feche com <code>ferme</code>. Nos exemplos atuais do repositório para a versão 3.14, <code>pour chaque item de casier</code> percorre uma coleção e associa cada item a um ator nomeado. O tutorial geral de Linotte 3 também documenta a forma compacta <code>pour chaque casier</code>, que disponibiliza o item em <code>joker</code>.</p>
         <pre class="manual-code"><code>compteur est un nombre
 pour compteur de 1 à 5 affiche compteur
 
@@ -122,10 +122,11 @@ pour compteur de 1 à 3
 ferme
 
 mois est un casier de textes valant "janvier", "février", "mars"
-pour chaque mois
-    affiche joker
+mois_courant est un texte
+pour chaque mois_courant de mois
+    affiche mois_courant
 ferme</code></pre>
-        <p>Escolha limites que correspondam à quantidade de passos pretendida. Em um percurso com <code>pour chaque</code>, use <code>joker</code> para consultar o item atual.</p>
+        <p>Escolha limites que correspondam à quantidade de passos pretendida. Nos exemplos desta página, use o ator nomeado ao percorrer uma coleção em Linotte 3.14; reserve <code>joker</code> para reconhecer a forma compacta do tutorial ou os laços numéricos que o utilizam.</p>
       </section>
       <section id="funcoes"><p class="kicker">08 · Reuso</p><h2>Funções e valores de retorno</h2>
         <p>Uma função é introduzida pelo nome seguido de dois-pontos e pelos parâmetros. O corpo pode declarar variáveis locais, executar condições e retornar um resultado com <code>retourne</code>. Funções também podem chamar a si próprias.</p>
@@ -138,42 +139,71 @@ fibonacci : n
         <p>A chamada de uma função aparece após seu nome, com argumentos entre parênteses. Os exemplos oficiais usam funções para separar cálculos e compor mensagens.</p>
       </section>
       <section id="colecoes"><p class="kicker">09 · Organização de dados</p><h2>Coleções e extensões</h2>
-        <p>O <code>casier</code> agrupa valores para percorrê-los com <code>pour chaque</code>. Os recursos do ambiente Linotte vão além das construções centrais: o repositório oficial inclui exemplos visuais e bibliotecas adicionais. Esses recursos dependem do ambiente e não devem ser confundidos com instruções disponíveis em todos os contextos.</p>
+        <p>O <code>casier</code> agrupa valores para percorrê-los com <code>pour chaque item de casier</code>. Os recursos do ambiente Linotte vão além das construções centrais: o repositório oficial inclui exemplos visuais e bibliotecas adicionais. Esses recursos dependem do ambiente e não devem ser confundidos com instruções disponíveis em todos os contextos.</p>
         <pre class="manual-code"><code>nombres est un casier de nombres valant 2, 4, 6
-pour chaque nombres
-    affiche joker * joker
+valeur est un nombre
+pour chaque valeur de nombres
+    affiche valeur * valeur
 ferme</code></pre>
         <p>Para compreender um recurso específico, confira o exemplo que o acompanha e a documentação do componente correspondente no projeto original.</p>
       </section>
-      <section id="exemplo"><p class="kicker">10 · Exemplo integrado</p><h2>Contagem e condição</h2>
-        <pre class="manual-code"><code>limite est un nombre
-compteur est un nombre
+      <section id="exemplo"><p class="kicker">10 · Exemplo integrado</p><h2>Notas, função e média</h2>
+        <pre class="manual-code"><code>prénoms est un casier de textes valant "Lia", "Caio", "Noa"
+notes est un casier de nombres
+indice est un nombre
+seuil est un nombre
+note est un nombre
+total est un nombre
+quantite est un nombre
+moyenne est un nombre
 
-affiche "Jusqu'à quel nombre compter ?"
-demande limite
+total prend 0
+quantite prend 0
+affiche "Quelle note minimale permet d'atteindre l'objectif ?"
+demande seuil
 
-pour compteur de 1 à limite
-    si compteur mod 2 = 0
-        affiche compteur + " est pair"
+pour indice de 0 à 2
+    ajoute question(prénoms{indice}) dans notes
+ferme
+
+pour chaque note de notes
+    total prend total + note
+    quantite prend quantite + 1
+    si note &gt;= seuil
+        affiche note + " : objectif atteint"
     sinon
-        affiche compteur + " est impair"
+        affiche note + " : en dessous de l'objectif"
     ferme
-ferme</code></pre>
-        <p>Este exemplo combina declaração, solicitação de entrada, repetição e decisão. Os termos de sintaxe continuam em francês.</p>
+ferme
+
+moyenne prend total / quantite
+affiche "Moyenne : " + moyenne
+si moyenne &gt;= seuil
+    affiche "Objectif moyen atteint"
+sinon
+    affiche "Objectif moyen non atteint"
+ferme
+
+question : prénom
+    valeur est un nombre
+    affiche "Quelle est la note de " + prénom + " ?"
+    demande valeur
+    retourne valeur</code></pre>
+        <p>O programa coleta três notas, guarda os valores em um <code>casier</code>, compara cada nota com o limite informado e calcula a média. A função <code>question</code> separa a leitura; o laço explícito associa cada item a um ator nomeado.</p>
       </section>
             <section id="casier-avance"><p class="kicker">11 · Coleções</p><h2>Acesso a coleções e iteração</h2>
         <p>Um <code>casier</code> reúne valores com o mesmo papel e permite percorrê-los sem repetir instruções. Nos exemplos oficiais, os índices começam em zero: em um casier com três elementos, as posições são <code>0</code>, <code>1</code> e <code>2</code>. A forma com chaves lê o valor de uma posição; <code>ajoute</code> insere um resultado em outra coleção.</p>
         <pre class="manual-code"><code>nomes est un casier de textes valant "Lia", "Caio", "Noa"
 indice est un nombre
+nom_courant est un texte
 pour indice de 0 à 2
-    affiche noms{indice}
+    affiche nomes{indice}
 ferme
 
-quadrados est un casier de nombres
-pour chaque nomes
-    ajoute joker.taille() dans quadrados
+pour chaque nom_courant de nomes
+    affiche nom_courant
 ferme</code></pre>
-        <p>Em um bloco <code>pour chaque</code>, <code>joker</code> representa o elemento visitado naquela iteração. Quando o tamanho não é conhecido previamente, esse percurso evita calcular manualmente o último índice.</p>
+        <p>Nos exemplos da versão 3.14, <code>pour chaque nom_courant de nomes</code> associa o elemento atual ao ator indicado. O tutorial geral também mostra a forma compacta com <code>joker</code>; ambas devem ser identificadas ao consultar materiais de Linotte 3.</p>
       </section>
       <section id="atalhos"><p class="kicker">12 · Escrita compacta</p><h2>Atalhos e interpolação</h2>
         <p>Além das instruções por extenso, o tutorial oficial apresenta formas compactas para exibir, solicitar e atribuir valores. Elas tornam alguns exemplos menores, mas não mudam o papel da operação. A interpolação coloca o valor de um ator entre chaves no texto.</p>
@@ -216,29 +246,21 @@ principal :
     espèce fleur hérite de point et contient couleur</code></pre>
       </section>
       <section id="ambiente"><p class="kicker">15 · Recursos do Atelier</p><h2>Eventos, gráficos e tarefas</h2>
-        <p>O Atelier Linotte oferece recursos que dependem de sua interface: objetos como <code>toile</code>, <code>cercle</code>, <code>rectangle</code>, <code>image</code> e <code>graffiti</code>; posição, cor e colisão; eventos de mouse; e tarefas que podem ser iniciadas e observadas. Eles ampliam os exemplos, mas não são necessários para os algoritmos de texto desta página.</p>
-        <pre class="manual-code"><code>centre est un cercle, x prend 311, y prend 285, couleur prend "rouge", plein prend "oui", rayon prend 50
-boule est un rectangle, largeur prend 40, hauteur prend 20, couleur prend "noir", plein prend "oui"
-salle est une toile, couleur prend "blanc"
-
-fais réagir boule &amp; centre à "glisser-déposer" pour changement
-tant que vrai temporise
-
-changement :
-    si boule.collision(centre)
-        couleur@centre prend "jaune"
+        <p>Os recursos gráficos e de interação dependem do Atelier e da versão. O exemplo oficial <code>17_cassebrique.liv</code>, associado à versão 3.14, combina atores gráficos, um casier de objetos, colisões e repetição. Este trecho reduzido mostra a iteração explícita usada nesses exemplos:</p>
+        <pre class="manual-code"><code>balle est un cercle, x vaut 200, y vaut 60, rayon vaut 10, plein vaut vrai, couleur vaut "rouge"
+cibles est un casier de rectangle
+position est un nombre
+pour position de 0 à 2
+    cible est un rectangle, x vaut 30 + 65 * position, y vaut 10, largeur vaut 50, hauteur vaut 20, plein vaut vrai
+    ajoute cible dans cibles
+ferme
+cible est un rectangle, visible vaut faux
+pour chaque cible de cibles
+    si balle.collision(cible)
+        efface cible
     ferme
-    sinon couleur@centre prend "rouge"
-    reviens
-
-alarme :
-    attends 2 secondes
-    affiche "Temps écoulé."
-    reviens
-
-appelle alarme
-observe alarme</code></pre>
-        <p>Eventos comuns incluem clique, duplo clique e entrada ou saída do ponteiro. Consulte o projeto original para os atributos aceitos por cada objeto gráfico e para os detalhes do agendamento de tarefas.</p>
+ferme</code></pre>
+        <p>O tutorial geral de Linotte 3 também mostra eventos de mouse e tarefas iniciadas com <code>appelle</code> e acompanhadas com <code>observe</code>. A sintaxe e a disponibilidade desses recursos devem ser conferidas no Atelier instalado.</p>
       </section>
       <section id="depuracao"><p class="kicker">16 · Diagnóstico</p><h2>Erros e depuração</h2>
         <p>O tutorial do Atelier mostra um bloco <code>essaie</code> com uma alternativa <code>sinon</code> para tratar um erro durante a execução. A instrução <code>débogue</code> inicia o acompanhamento passo a passo na interface do Atelier.</p>
@@ -257,7 +279,7 @@ observe alarme</code></pre>
 <tr><td>Parágrafo</td><td>Sequência nomeada de ações; <code>principal</code> é o ponto de entrada nos exemplos desta referência.</td><td><code>principal :</code> e um nome seguido de dois-pontos.</td></tr>
 <tr><td>Papel / ator</td><td>O papel declara a espécie de valor; o ator é a variável que o recebe.</td><td><code>compteur est un nombre</code></td></tr>
 <tr><td>Ação</td><td>Comando executável que mostra, lê, atribui, compara ou percorre dados.</td><td><code>affiche</code>, <code>demande</code>, <code>prend</code>, <code>si</code>, <code>pour</code>.</td></tr>
-<tr><td><code>joker</code></td><td>Referência ao item atual durante <code>pour chaque</code>.</td><td><code>pour chaque mois</code>, seguido de ações que usam <code>joker</code>.</td></tr>
+<tr><td><code>joker</code></td><td>Ator implícito usado em formas compactas de repetição e em exemplos numéricos.</td><td><code>pour chaque casier</code> no tutorial geral; laços 3.14 também podem nomear o ator do item.</td></tr>
 <tr><td><code>reviens</code></td><td>Encerra o parágrafo ou a tarefa atual sem devolver um valor.</td><td>Fechar o tratamento de um evento ou uma tarefa chamada.</td></tr><tr><td><code>retourne</code></td><td>Devolve o resultado calculado por uma função.</td><td>Usar no ponto em que a função entrega o seu valor.</td></tr>
 <tr><td><code>ferme</code></td><td>Fecha certas construções com várias ações, como os exemplos de condição e repetição.</td><td>Um marcador de fechamento alinhado ao bloco aberto.</td></tr>
 </tbody></table></div>
@@ -266,32 +288,35 @@ observe alarme</code></pre>
 <tr><td><code>texte</code></td><td>Sequência de caracteres.</td><td>Perguntas, mensagens e operações de texto.</td></tr>
 <tr><td><code>nombre</code></td><td>Valor numérico.</td><td>Contadores, medidas e expressões aritméticas.</td></tr>
 <tr><td><code>drapeau</code></td><td>Valor lógico, como <code>vrai</code> ou <code>faux</code>.</td><td>Condição que escolhe entre dois caminhos.</td></tr>
-<tr><td><code>casier</code></td><td>Coleção tipada de valores ou atores.</td><td>Iteração com <code>pour chaque</code> e acesso por índice entre chaves.</td></tr>
+<tr><td><code>casier</code></td><td>Coleção tipada de valores ou atores.</td><td>Iteração explícita com <code>pour chaque item de casier</code> e acesso por índice entre chaves.</td></tr>
 <tr><td><code>espèce</code></td><td>Tipo composto definido pelo programa, com atributos.</td><td>Agrupar campos que representam uma entidade e instanciar atores desse tipo.</td></tr>
 </tbody></table></div>
-<p>Um casier é útil quando vários valores do mesmo papel precisam ser tratados como um conjunto. O item singular de uma iteração é <code>joker</code>; o nome do casier continua representando a coleção inteira. Em exemplos indexados, as posições começam em zero, mas confira a coleção e a versão antes de aplicar a mesma hipótese a outro recurso.</p>
+<p>Um casier é útil quando vários valores do mesmo papel precisam ser tratados como um conjunto. Nos exemplos de Linotte 3.14, <code>pour chaque item de casier</code> associa o elemento atual a um ator nomeado. O tutorial geral também documenta a forma compacta com <code>joker</code>; laços numéricos podem usar <code>joker</code> como valor corrente.</p>
 <h3>Exemplo calculado: somar um casier</h3>
-<p>Este exemplo usa três valores para mostrar o papel do acumulador e do item atual. A soma final é 29:</p>
+<p>O acumulador começa em zero e recebe cada um dos três valores:</p>
 <pre class="manual-code"><code>notes est un casier de nombres valant 7, 10, 12
 total est un nombre
+note est un nombre
 total prend 0
-pour chaque notes
-    total prend total + joker
+pour chaque note de notes
+    total prend total + note
 ferme
 affiche total</code></pre>
-<div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma de um casier em Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Item atual (<code>joker</code>)</th><th scope="col">Total antes</th><th scope="col">Total depois</th></tr></thead><tbody>
+<div class="manual-table-wrap" role="region" aria-label="Rastreamento da soma de um casier em Linotte" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Item atual (<code>note</code>)</th><th scope="col">Total antes</th><th scope="col">Total depois</th></tr></thead><tbody>
 <tr><td>7</td><td>0</td><td>7</td></tr><tr><td>10</td><td>7</td><td>17</td></tr><tr><td>12</td><td>17</td><td>29</td></tr>
 </tbody></table></div>
-<p>Se a coleção estiver vazia, o corpo não altera o acumulador, que permanece 0. Se a instrução dentro do laço usar o nome do casier no lugar de <code>joker</code>, o programa deixará de operar sobre um elemento de cada vez. Essa distinção entre coleção e item atual é central para percursos.</p>
+<p>Se a coleção estiver vazia, o corpo não altera o acumulador, que permanece 0. Na forma explícita, o ator indicado no laço recebe cada elemento; o nome do casier continua representando a coleção inteira.</p>
 <h3>Versões e materiais de referência</h3>
-<p>O README do repositório oficial indica a versão 3.14 e oferece pacotes para vários sistemas, além de um arquivo sem Java incluído. A wiki organiza materiais para Linotte 3.x, 2.x, 1.x e 0.x; os exemplos do arquivo antigo de Linotte 2.0.4 continuam úteis para estudar o modelo, mas não são garantia de sintaxe idêntica na versão 3.x. Ao consultar um tutorial, anote a geração da linguagem e confirme o exemplo no Atelier correspondente.</p>
-<p>A página oficial de exemplos e a wiki devem ser lidas junto com o guia histórico, não como uma gramática única sem versão. Recursos de gráficos, eventos, protótipos e bancos de dados podem depender do Atelier e de extensões instaladas.</p></section>
+<p>A página oficial de releases identifica o Atelier Linotte 3.14; esta é a versão de referência desta página. O exemplo oficial <code>05_boucle_2.liv</code> marca <code>pour chaque valeur de liste</code> como uma forma disponível a partir da versão 3.14. O tutorial geral de Linotte 3 também mostra a forma compacta com <code>joker</code>; por isso, esta referência distingue os dois usos. O manual arquivado de Linotte 2.0.4 é histórico e não garante sintaxe idêntica.</p>
+<p>O programa oficial <code>17_cassebrique.liv</code> reúne objetos gráficos, coleções, colisões, movimento e interação com o mouse. Eventos, protótipos e extensões podem depender do Atelier instalado; confirme cada recurso na versão usada.</p></section>
       <section id="fontes"><p class="kicker">17 · Leitura adicional</p><h2>Referências</h2>
-        <ul><li><a href="https://github.com/cpc6128/LangageLinotte/blob/master/README.md">README do repositório oficial</a>, que identifica a versão 3.14 e as formas de distribuição.</li><li><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/langagelinotte/Documentation_Linotte_version_2_0_4_0_0.pdf">Manual arquivado de Linotte 2.0.4</a>; use-o como referência histórica e confira sintaxe na versão atual.</li>
-          <li><a href="https://github.com/cpc6128/LangageLinotte">Repositório oficial de Linotte</a>, mantido pelo projeto.</li>
-          <li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Exemplos oficiais</a> de boas-vindas, variáveis, entrada, condições, laços, matemática e funções.</li>
-          <li><a href="https://github.com/cpc6128/LangageLinotte/wiki">Wiki do projeto</a> e <a href="http://langagelinotte.free.fr">site oficial</a>.</li>
-        </ul>
+        <ul><li><a href="https://github.com/cpc6128/LangageLinotte/blob/master/README.md">README do repositório oficial</a>, com informações do projeto e da distribuição.</li>
+          <li><a href="https://github.com/cpc6128/LangageLinotte/releases">Página oficial de versões</a>, que identifica o Atelier Linotte 3.14.</li>
+          <li><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/langagelinotte/Documentation_Linotte_version_2_0_4_0_0.pdf">Manual arquivado de Linotte 2.0.4</a>, útil como referência histórica.</li>
+          <li><a href="https://github.com/cpc6128/LangageLinotte">Repositório oficial de Linotte</a> e <a href="https://github.com/cpc6128/LangageLinotte/wiki">wiki do projeto</a>.</li>
+          <li><a href="https://github.com/cpc6128/LangageLinotte/wiki/D%C3%A9couvrir-Linotte-3-en-dix-minutes">Tutorial geral “Découvrir Linotte 3 en dix minutes”</a> (em francês), que documenta a forma compacta com <code>joker</code>.</li>
+          <li>Exemplos oficiais: <a href="https://github.com/cpc6128/LangageLinotte/blob/master/linotte-resources/src/main/exemples/05_boucle_2.liv"><code>05_boucle_2.liv</code></a>, com iteração nomeada, e <a href="https://github.com/cpc6128/LangageLinotte/blob/master/linotte-resources/src/main/exemples/17_cassebrique.liv"><code>17_cassebrique.liv</code></a>, com gráficos, coleções e colisões.</li>
+          <li><a href="https://github.com/cpc6128/LangageLinotte/tree/master/linotte-resources/src/main/exemples">Diretório com os demais exemplos oficiais</a> e <a href="http://langagelinotte.free.fr">site do projeto</a>.</li></ul>
       </section>
     </article>
   </div><section class="wrap manual-cta"><div><h2>Volte ao Manual do Potoo IDE</h2><p>Consulte as demais referências e informações do projeto.</p></div><a class="button" href="{{ page.manual_path | relative_url }}">Abrir o Manual <span aria-hidden="true">↗</span></a></section></div>

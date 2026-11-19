@@ -21,7 +21,7 @@ body_class: manual-page
     <p class="kicker">Referencia educativa · notación curricular griega · en evaluación</p>
     <h1>Glossa (ΓΛΩΣΣΑ)</h1>
     <p class="manual-intro">ΓΛΩΣΣΑ es una notación curricular griega para enseñar algoritmos, descrita en un libro oficial.</p>
-    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 17 de noviembre de 2026</span></p>
+    <p class="manual-meta manual-publication-meta"><span><b>Edición del manual</b> 1.ª edición</span><span><b>Versión de la aplicación</b> 0.2.0</span><span><b>Actualizado</b> 18 de noviembre de 2026</span></p>
     <p class="manual-meta manual-author-meta"><span><b>Autoría del manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
   </div></section>
   <div class="manual-body"><div class="wrap manual-layout">
@@ -39,6 +39,7 @@ body_class: manual-page
         <li><a href="#escopo">Alcance y variantes</a></li>
         <li><a href="#metodologia">Del problema al algoritmo</a></li>
         <li><a href="#roteiro">Secuencia de aprendizaje y depuración</a></li>
+        <li><a href="#guia-tecnico">Cuadro de tipos, operadores y ejecución</a></li>
         <li><a href="#fontes">Referencias</a></li>
       </ol>
     </aside>
@@ -94,6 +95,7 @@ body_class: manual-page
         <p class="kicker">06 · flujo de control</p>
         <h2>Condiciones y bucles</h2>
 <p>ΓΛΩΣΣΑ incluye estructuras de selección y repetición adecuadas para ejercicios de programación estructurada. La selección escoge un bloque según una condición; los bucles repiten instrucciones de acuerdo con una cantidad o condición. El libro especifica las palabras reservadas y delimitadores de cada forma.</p><ul><li><strong>Selección simple o doble:</strong> trata un caso y, opcionalmente, su alternativa.</li><li><strong>Selección múltiple:</strong> elige entre varios valores posibles.</li><li><strong>Repetición contada:</strong> recorre una secuencia de valores.</li><li><strong>Repetición condicional:</strong> continúa mientras se cumpla una condición o hasta que ocurra algo.</li></ul><p>La condición debe producir un valor lógico. En cada repetición, identifica la variable que cambia y confirma que los límites no dejan la última iteración fuera del intervalo previsto.</p>
+        <div class="manual-table-wrap" role="region" aria-label="Estructuras de control de Glossa" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Construcción</th><th scope="col">Momento de la prueba</th><th scope="col">Cuándo usarla y efecto</th></tr></thead><tbody><tr><td><code>ΑΝ ... ΤΟΤΕ ... ΑΛΛΙΩΣ ... ΤΕΛΟΣ_ΑΝ</code></td><td>La condición se evalúa al llegar a la selección.</td><td>Elige un bloque; la alternativa <code>ΑΛΛΙΩΣ</code> es opcional.</td></tr><tr><td><code>ΟΣΟ condición ΕΠΑΝΑΛΑΒΕ ... ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ</code></td><td>Antes de cada iteración.</td><td>Repite mientras sea verdadera; puede ejecutarse cero veces.</td></tr><tr><td><code>ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ ... ΜΕΧΡΙΣ_ΟΤΟΥ condición</code></td><td>Después del cuerpo.</td><td>Repite hasta que la condición sea verdadera; se ejecuta al menos una vez.</td></tr><tr><td><code>ΓΙΑ i ΑΠΟ inicio ΜΕΧΡΙ fin ΜΕ_ΒΗΜΑ paso</code></td><td>Compara el contador con el límite en cada paso.</td><td>Recorre una secuencia conocida; el paso predeterminado es 1 y el límite se alcanza según el paso.</td></tr><tr><td><code>ΕΠΙΛΕΞΕ</code></td><td>Compara un valor con las alternativas declaradas.</td><td>El material permite alternativas con valores y rangos; es útil para varias opciones discretas.</td></tr></tbody></table></div>
       </section>
       <section id="subprogramas">
         <p class="kicker">07 · descomposición</p>
@@ -147,6 +149,25 @@ body_class: manual-page
         <h3>Errores frecuentes</h3>
         <ul><li><strong>Dato sin inicializar:</strong> comprueba que cada variable recibe un valor antes de usarse.</li><li><strong>Límite incorrecto:</strong> prueba la condición cuando el valor es igual al límite, no solo por encima o por debajo.</li><li><strong>Bucle sin avance:</strong> confirma que las instrucciones cambian la variable o el estado que controla la repetición.</li><li><strong>Acceso fuera del vector:</strong> compara cada índice con el intervalo definido por el ejercicio y la edición del curso.</li><li><strong>Recursión sin fin:</strong> comprueba que cada llamada acerca la entrada al caso base.</li></ul>
         <p>Las herramientas de terceros pueden interpretar convenciones distintas. Al depurar, anota la edición del libro, reproduce sus ejemplos y compara la secuencia de estados antes de concluir que una herramienta refleja la regla curricular. En las evaluaciones, usa la notación que indique el profesor o el examen.</p>
+      </section>
+      <section id="guia-tecnico">
+        <p class="kicker">Guía técnica de consulta</p>
+        <h2>Un algoritmo completo y su tabla de ejecución</h2>
+        <p>Este ejemplo suma los números impares del 1 al 9. Utiliza la cabecera del programa, la sección de variables, la estructura de repetición contada y el comando de salida del libro escolar:</p>
+        <pre class="manual-code"><code>ΠΡΟΓΡΑΜΜΑ ΑΘΡΟΙΣΜΑ_ΠΕΡΙΤΤΩΝ
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: Ι, ΑΘΡΟΙΣΜΑ
+ΑΡΧΗ
+  ΑΘΡΟΙΣΜΑ &lt;- 0
+  ΓΙΑ Ι ΑΠΟ 1 ΜΕΧΡΙ 9 ΜΕ_ΒΗΜΑ 2
+    ΑΘΡΟΙΣΜΑ &lt;- ΑΘΡΟΙΣΜΑ + Ι
+  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ
+  ΓΡΑΨΕ ΑΘΡΟΙΣΜΑ
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</code></pre>
+        <p>El paso 2 recorre solo números impares. La suma empieza en cero, añade el valor actual de <code>Ι</code> y, después, avanza el contador. La tabla registra el estado al final de cada cuerpo del bucle:</p>
+        <div class="manual-table-wrap" role="region" aria-label="Seguimiento de la suma de números impares en ΓΛΩΣΣΑ" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Iteración</th><th scope="col"><code>Ι</code></th><th scope="col"><code>ΑΘΡΟΙΣΜΑ</code> después de sumar</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>3</td><td>4</td></tr><tr><td>3</td><td>5</td><td>9</td></tr><tr><td>4</td><td>7</td><td>16</td></tr><tr><td>5</td><td>9</td><td>25</td></tr></tbody></table></div>
+        <p>El resultado mostrado es <code>25</code>. Para comprobar el límite, empieza el contador en 1 y anota cada valor que alcanza al avanzar con ese paso hasta el límite; para los valores de entrada, prueba también un caso en el que el bucle no deba ejecutarse. En un bucle condicionado, registra la condición antes y después del cuerpo; en un arreglo, anota los dos índices y la fila o región ya recorrida. Una tabla de estado ayuda a localizar un error en la primera transición incorrecta sin depender de un software específico.</p>
+        <p>El currículo también presenta funciones matemáticas griegas, como <code>ΗΜ</code>, <code>ΣΥΝ</code>, <code>ΕΦ</code>, <code>Τ_Ρ</code>, <code>ΛΟΓ</code>, <code>Ε</code>, <code>Α_Μ</code> y <code>Α_Τ</code>. Consulta la tabla de la edición correspondiente para confirmar cada operación y sus unidades, especialmente en las funciones trigonométricas. ΓΛΩΣΣΑ se enseña mediante materiales curriculares; esta referencia no presupone un intérprete único ni que este ejemplo se ejecute en Potoo IDE.</p>
       </section>
       <section id="fontes">
         <p class="kicker">13 · lecturas adicionales</p>

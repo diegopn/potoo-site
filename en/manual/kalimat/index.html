@@ -116,6 +116,17 @@ body_class: manual-page
         <h2>Finding the grammar</h2>
 <p>The project distributes language rule documents and examples with its installation files. Those documents are the appropriate source for checking keywords, punctuation, declarations, expressions, classes, processes, and graphics APIs.</p><p>Because the public page consulted does not expose a complete, stable grammar as plain text, this reference does not reconstruct a “Hello, world” example. To get a verifiable program:</p><ol><li>download a release from the official portal;</li><li>open the language rules documents included in the package;</li><li>run one of the provided examples first;</li><li>change one part of the example and compare the result.</li></ol><p>This avoids assigning Kalimat syntax guessed from a description written in another language.</p>
 
+<h3>Historical example in the English syntax</h3>
+<p>The creator's technical article, published on March 11, 2013, presents this program as an example for Kalimat's English syntax edition. It demonstrates a procedure, repetition, drawing, and a delay. Treat it as evidence of a historical version: it does not establish the Arabic syntax or compatibility with the distribution announced in 2025. Check the installed version's PDFs and bundled examples before running it.</p>
+<pre class="manual-code"><code>proc lines (a):
+    for i = 1 to a :
+        drawLine(random (800), random(600))-(random(800), random(600)), random (16)
+        wait (100)
+    loop
+end
+
+lines (200)</code></pre>
+
 <h3>What comes with the official package</h3>
 <p>The official getting-started guide recommends downloading the distribution, extracting it, and launching its included executable. The package contains two PDF documents: a short rules summary and a longer guide. It also includes simple and complete example folders. These are the best sources for checking the grammar of that release and trying programs without reconstructing syntax from a project description.</p>
 <p>Beginners can follow the introductory course linked by the project; experienced programmers can start with the short PDF and consult the detailed reference when a new construct appears. The official page currently labels a distribution dated May 3, 2025; check the version label on the portal before comparing examples.</p>
@@ -164,7 +175,7 @@ body_class: manual-page
       <section id="fontes">
         <p class="kicker">10 · further reading</p>
         <h2>References</h2>
-<ul><li><a href="https://kalimat-lang.com/">Official Kalimat website</a>, with project information and downloads.</li><li><a href="https://kalimat-lang.com/getting-started.html">Official getting-started guide</a>, with instructions and materials included in the distribution.</li><li><a href="https://kalimat-lang.com/faq.html">Official frequently asked questions</a>.</li><li><a href="https://kalimat-lang.com/intro.html">Project introduction</a>.</li></ul><p>The PDF documents included in a release are the most direct reference for the grammar of the downloaded version.</p>
+<ul><li><a href="https://kalimat-lang.com/">Official Kalimat website</a>, with project information and downloads.</li><li><a href="https://kalimat-lang.com/getting-started.html">Official getting-started guide</a>, with instructions and materials included in the distribution.</li><li><a href="https://kalimat-lang.com/faq.html">Official frequently asked questions</a>.</li><li><a href="https://kalimat-lang.com/intro.html">Project introduction</a>.</li><li><a href="https://iamsamy.blogspot.com/2013/03/kalimat-educational-programming.html">The creator's technical article on Kalimat (March 11, 2013)</a>, with examples from its English syntax edition.</li></ul><p>The PDF documents included in a release are the most direct reference for the grammar of the downloaded version.</p>
       </section>
     </article>
   </div>

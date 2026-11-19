@@ -27,7 +27,7 @@ body_class: manual-page
       <p class="kicker">Referência de linguagem de programação · Potigol</p>
       <h1>Potigol</h1>
       <p class="manual-intro">Referência prática de Potigol: sintaxe, recursos da linguagem e biblioteca de jogos Jerimum.</p>
-      <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 17 de novembro de 2026</span></p>
+      <p class="manual-meta manual-publication-meta"><span><b>Edição do manual</b> 1ª edição</span><span><b>Versão do aplicativo</b> 0.2.0</span><span><b>Atualizado</b> 18 de novembro de 2026</span></p>
       <p class="manual-meta manual-author-meta"><span><b>Autoria do manual</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
     </div>
   </section>
@@ -374,6 +374,7 @@ escreva classifique(-2)</code></pre>
           <p class="kicker">14 · Biblioteca de jogos</p>
           <h2>Jerimum: jogos com Potigol</h2>
           <p><strong>Jerimum</strong> é uma biblioteca de jogos para Potigol. O repositório oficial organiza exemplos e módulos para criar uma janela, desenhar imagens e textos, ler teclado e mouse, controlar o tempo e reproduzir áudio. Ela acrescenta recursos de jogo ao programa Potigol; não é parte da sintaxe central documentada acima.</p>
+          <p>Esta seção segue o Jerimum <code>1.0.0</code>, versão declarada no <a href="https://github.com/potigol/Jerimum/blob/master/build.sbt">arquivo oficial de compilação</a>, que usa Scala <code>2.12.12</code> e depende de Potigol <code>1.0-RC1</code>. O interpretador do Potoo tem como alvo o núcleo documentado de Potigol <code>1.0.0-RC2</code> e implementa uma camada independente para um subconjunto da API Jerimum; ele não inclui a biblioteca original Scala/JVM.</p>
           <h3>Início e ciclo do jogo</h3>
           <p>Um programa que usa Jerimum começa com <code>use "jerimum"</code> e define duas funções sem parâmetros: <code>atualize()</code>, para atualizar o estado do jogo, e <code>desenhe()</code>, para registrar o que aparece na tela. <code>jogo.iniciar</code> recebe título, largura, altura, as duas funções e, opcionalmente, a taxa de quadros, cujo valor padrão é 60.</p>
           <pre class="manual-code"><code>use "jerimum"
@@ -387,17 +388,20 @@ desenhe()
 fim
 
 jogo.iniciar("Meu jogo", 640, 480, atualize, desenhe, 60)</code></pre>
+          <p><strong>Resultado esperado:</strong> abre uma janela de 640 × 480 pixels com o título <code>Meu jogo</code> e executa o ciclo a 60 quadros por segundo. Como as duas funções estão vazias, nenhum objeto é desenhado.</p>
           <p>O módulo <code>jogo</code> expõe <code>largura</code>, <code>altura</code>, <code>título</code> e <code>fps</code>. A janela é criada pelo código da biblioteca com Swing/AWT e dimensões fixas. As funções <code>Jogo.distância</code>, <code>Jogo.projeção_X</code> e <code>Jogo.projeção_Y</code> ajudam em cálculos de movimento; os ângulos das projeções são informados em graus.</p>
           <h3>Desenho, camadas e imagens</h3>
           <p>Imagens são carregadas com <code>Imagem("arquivo.png")</code>. O método <code>desenhe(x, y, z)</code> posiciona a imagem usando coordenadas e uma camada inteira. Camadas com números maiores são desenhadas à frente das menores; a camada zero pode servir como fundo. Também há desenho centralizado, rotação, escala e recorte de folhas de sprites com <code>fatie</code>.</p>
           <pre class="manual-code"><code>fundo = Imagem("fundo.png")
 nave = Imagem("nave.png")
-quadros = Imagem.fatie("explosao.png", 32, 32)
+explosao = Imagem("explosao.png")
+quadros = explosao.fatie(32, 32)
 
 desenhe()
   fundo.desenhe(0, 0, 0)
   nave.desenhe_centralizado(320, 240, 2, 0)
 fim</code></pre>
+          <p><strong>Resultado esperado:</strong> com <code>fundo.png</code>, <code>nave.png</code> e <code>explosao.png</code> acessíveis nos caminhos usados, o callback desenha o fundo em (0, 0), na camada 0, e a nave centralizada em (320, 240), na camada 2. <code>quadros</code> contém recortes de 32 × 32 pixels da explosão, mas não é desenhada neste trecho.</p>
           <p><code>Animacao(velocidade, imagens)</code> seleciona imagens de uma sequência conforme o tempo decorrido. A documentação de exemplos mostra a divisão de uma folha de sprites em quadros e o uso de um quadro por atualização.</p>
           <h3>Teclado, mouse e tempo</h3>
           <p><code>Teclado</code> disponibiliza valores lógicos como <code>TECLA_PARA_DIREITA</code>, <code>TECLA_PARA_CIMA</code>, <code>TECLA_ENTER</code> e <code>TECLA_A</code> a <code>TECLA_Z</code>. <code>Mouse.x</code> e <code>Mouse.y</code> informam a posição; <code>Mouse.BOTAO_ESQUERDO</code> e <code>Mouse.BOTAO_DIREITO</code> indicam se esses botões estão pressionados. <code>Relógio.milisegundos</code> conta o tempo desde a inicialização do módulo.</p>
@@ -411,6 +415,7 @@ atualize()
     x := Mouse.x
   fim
 fim</code></pre>
+          <p><strong>Resultado esperado:</strong> a seta para a direita soma 4 a <code>x</code> em cada atualização; enquanto o botão esquerdo do mouse estiver pressionado, <code>x</code> acompanha <code>Mouse.x</code>. Este trecho só altera o estado: sem desenhar <code>x</code> em <code>desenhe()</code>, não há movimento visível.</p>
           <h3>Texto, cores, áudio e arquivos</h3>
           <p><code>Fonte(tamanho)</code> cria uma fonte; <code>desenhe</code> e <code>desenhe_centralizado</code> colocam texto em uma camada e aceitam uma cor. <code>Cor(vermelho, verde, azul)</code> recebe componentes RGB inteiros e há constantes como <code>Cor.BRANCO</code>, <code>Cor.PRETO</code> e <code>Cor.VERDE</code>.</p>
           <p><code>Som("efeito.wav")</code> reproduz um efeito com <code>toque()</code> e pode ser interrompido com <code>pare</code>. <code>Musica("faixa.wav")</code> oferece <code>toque</code>, <code>pause</code>, <code>continue</code>, <code>pare</code> e <code>tocando</code>; a reprodução começa em loop por padrão. <code>Arquivo.leia("dados.txt")</code> devolve uma lista com as linhas do arquivo.</p>
@@ -447,13 +452,14 @@ desenhe()
 fim
 
 jogo.iniciar("Movimento", 640, 480, atualize, desenhe)</code></pre>
+          <p><strong>Resultado esperado:</strong> com <code>nave.png</code> acessível, a janela Movimento mostra a nave inicialmente centralizada em (300, 220). Cada seta mantida move a nave 4 pixels por atualização; sem verificações de limite, ela pode sair da janela.</p>
           <p>Os detalhes de cada método estão na documentação e no código-fonte do repositório Jerimum. Essa biblioteca usa recursos da plataforma Java para janela, desenho e áudio; seus exemplos devem ser lidos como aplicações para desktop Potigol.</p>
 
 <h3>Linguagem central e biblioteca</h3>
 <div class="manual-table-wrap" role="region" aria-label="Diferença entre Potigol e a biblioteca Jerimum" tabindex="0"><table class="manual-table"><thead><tr><th scope="col">Parte</th><th scope="col">Como aparece</th><th scope="col">O que acrescenta</th></tr></thead><tbody>
 <tr><td>Linguagem Potigol</td><td>Declarações, funções, listas, tuplas, tipos e controle de fluxo.</td><td>É a sintaxe e os tipos usados nos exemplos sem importação.</td></tr>
 <tr><td>Jerimum</td><td><code>use "jerimum"</code></td><td>Acrescenta recursos de janela, imagens, entrada, áudio, relógio e arquivos.</td></tr>
-<tr><td>Objetos da biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>As chamadas dependem da versão e da documentação do repositório Jerimum.</td></tr>
+<tr><td>Objetos da biblioteca</td><td><code>Jogo</code>, <code>Imagem</code>, <code>Teclado</code>, <code>Mouse</code>.</td><td>Este manual descreve Jerimum 1.0.0; a camada do Potoo implementa separadamente um subconjunto da API.</td></tr>
 </tbody></table></div>
 <p>Se um exemplo usa <code>use "jerimum"</code>, ele depende da biblioteca e de seus arquivos de recursos; não basta copiar a sintaxe para um ambiente que execute apenas o núcleo da linguagem.</p></section>
         <section id="exemplo">
@@ -482,7 +488,7 @@ fim</code></pre>
           <li>Referências oficiais de <a href="https://potigol.github.io/docs/basico/numeros_textos/numeros/">números</a>, <a href="https://potigol.github.io/docs/basico/numeros_textos/texto/">textos</a>, <a href="https://potigol.github.io/docs/matematica/matematica/">matemática</a> e <a href="https://potigol.github.io/docs/funcoes/">funções</a>.</li>
           <li>Referências oficiais de <a href="https://potigol.github.io/docs/tipos_compostos/listas/">listas</a>, <a href="https://potigol.github.io/docs/tipos_compostos/tuplas/">tuplas</a> e <a href="https://potigol.github.io/docs/funcional/">programação funcional</a>, com compreensão de listas, funções lambda, currying, recursão em cauda e casamento de padrões.</li>
             <li><a href="https://github.com/potigol/potigol">Repositório oficial de Potigol</a> e <a href="https://github.com/potigol/potigol/blob/master/src/main/antlr4/br/edu/ifrn/potigol/parser/potigol.g4">gramática publicada</a>.</li>
-            <li><a href="https://github.com/potigol/Jerimum">Repositório oficial de Jerimum</a>, com <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentação e exemplos</a>.</li>
+            <li><a href="https://github.com/potigol/Jerimum">Repositório oficial de Jerimum</a>, com <a href="https://github.com/potigol/Jerimum/tree/master/docs">documentação e exemplos</a>, e o <a href="https://github.com/potigol/Jerimum/blob/master/build.sbt">arquivo de compilação</a>, que declara Jerimum 1.0.0, Scala 2.12.12 e Potigol 1.0-RC1.</li>
             <li>Referências de <a href="https://github.com/potigol/Jerimum/blob/master/docs/jogo.md">Jogo</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/imagem.md">Imagem</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/teclado.md">Teclado</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/mouse.md">Mouse</a>, <a href="https://github.com/potigol/Jerimum/blob/master/docs/fonte.md">Fonte</a> e <a href="https://github.com/potigol/Jerimum/blob/master/docs/cor.md">Cor</a>; o código-fonte também documenta áudio, animação e leitura de arquivos.</li>
           </ul>
         </section>

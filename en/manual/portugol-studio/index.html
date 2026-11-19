@@ -27,7 +27,7 @@ body_class: manual-page
       <p class="kicker">Pseudolanguage reference · Portugol Studio 2.0</p>
       <h1>Portugol Studio 2.0</h1>
       <p class="manual-intro">Portugol Studio 2.0 reference based on its grammar and public documentation.</p>
-      <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 17, 2026</span></p>
+      <p class="manual-meta manual-publication-meta"><span><b>Manual edition</b> 1st edition</span><span><b>Application version</b> 0.2.0</span><span><b>Updated</b> November 18, 2026</span></p>
       <p class="manual-meta manual-author-meta"><span><b>Manual author</b> Diego Pereira do Nascimento · <a href="https://orcid.org/0009-0008-6487-9890">ORCID 0009-0008-6487-9890</a></span></p>
     </div>
   </section>
@@ -261,7 +261,7 @@ funcao inicio() {
           <p>The libraries belong to the Portugol Studio 2.0 reference environment; not every library fits every interpreter or execution context.</p>
           <h3>Signatures and results</h3>
           <p>The calls below use the <code>mat</code> alias from the previous example. Functions return values that can be assigned to variables or combined in expressions.</p>
-          <div class="manual-table-wrap" role="region" aria-label="Signatures for the Matematica, Texto, Tipos and Util libraries" tabindex="0">
+          <div class="manual-table-wrap" role="region" aria-label="Signatures for the Arquivos, Internet, Matematica, ServicosWeb, Texto, Tipos, and Util libraries" tabindex="0">
             <table class="manual-table">
               <thead><tr><th scope="col">Library</th><th scope="col">Signature or call</th><th scope="col">Behavior</th></tr></thead>
               <tbody>
@@ -282,6 +282,9 @@ funcao inicio() {
                 <tr><td><code>Tipos</code></td><td><code>caracter_para_cadeia(valor)</code>, <code>caracter_para_inteiro(valor)</code>, <code>caracter_para_logico(valor)</code>, <code>logico_para_cadeia(valor)</code>, <code>logico_para_inteiro(valor)</code>, <code>logico_para_caracter(valor)</code>, <code>real_para_cadeia(valor)</code>, <code>real_para_inteiro(valor)</code></td><td>Return a string, integer, logical or character depending on the source type and function; check the library reference for each conversion.</td></tr>
                 <tr><td><code>Util</code></td><td><code>obter_diretorio_usuario()</code>, <code>numero_elementos(vetor)</code>, <code>numero_linhas(matriz)</code>, <code>numero_colunas(matriz)</code></td><td>The first returns a string; the others return integer dimensions. A matrix must have at least one row to query its columns.</td></tr>
                 <tr><td><code>Util</code></td><td><code>sorteia(minimo, maximo)</code>, <code>aguarde(intervalo)</code>, <code>tempo_decorrido()</code></td><td><code>sorteia</code> returns an integer from the inclusive range when <code>minimo</code> is less than <code>maximo</code>; <code>aguarde</code> returns no value and pauses in milliseconds; <code>tempo_decorrido</code> returns an integer elapsed in milliseconds since the library was first used.</td></tr>
+              <tr><td><code>Arquivos</code></td><td><code>abrir_arquivo(path, mode)</code>, <code>escrever_linha(line, handle)</code>, <code>ler_linha(handle)</code>, <code>fechar_arquivo(handle)</code></td><td>Opening returns a handle. <code>MODO_ACRESCENTAR</code keeps existing content; <code>MODO_ESCRITA</code clears it when the file is opened.</td></tr>
+              <tr><td><code>Internet</code></td><td><code>definir_tempo_limite(ms)</code>, <code>obter_texto(address)</code>, <code>baixar_imagem(address, path)</code></td><td>Sets a timeout in milliseconds; reads page content or saves an image to the given path.</td></tr>
+              <tr><td><code>ServicosWeb</code></td><td><code>obter_dados(address)</code>, <code>publicar_dados(address, object)</code>, <code>atualizar_dados(address, object)</code>, <code>excluir_dados(address)</code></td><td>Sends GET, POST, PUT, and DELETE requests. POST/PUT bodies are JSON strings, and the response is returned as a string.</td></tr>
               </tbody>
             </table>
           </div>
@@ -301,6 +304,76 @@ funcao inicio() {
     escreva(tipos.cadeia_para_inteiro("101", 2), "\n")
 }</code></pre>
           <p>Output: <code>verdadeiro</code> and <code>5</code>. The first call validates the binary notation; the second converts the same value to an integer.</p>
+
+          <h3>Graphics, keyboard, mouse, and sound in a mini game</h3>
+          <p>This example opens a window, draws a target, waits for a click, and plays an effect if the left button hits the rectangle. <code>Mouse</code> and <code>Teclado</code> require graphics mode to be running. Add an MP3 file named <code>hit.mp3</code> to the project; the original sound library documents this format.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Graficos --&gt; graphics
+    inclua biblioteca Mouse --&gt; mouse
+    inclua biblioteca Sons --&gt; sounds
+    inclua biblioteca Teclado --&gt; keyboard
+
+    funcao inicio() {
+        inteiro button, x, y
+        inteiro sound, playback, key
+
+        sound = sounds.carregar_som("hit.mp3")
+        graphics.iniciar_modo_grafico(falso)
+        graphics.definir_titulo_janela("Target practice")
+        graphics.definir_cor(graphics.COR_VERDE)
+        graphics.desenhar_retangulo(100, 80, 80, 80, falso, verdadeiro)
+        graphics.renderizar()
+
+        escreva("Click the target.\n")
+        button = mouse.ler_botao()
+        x = mouse.posicao_x()
+        y = mouse.posicao_y()
+
+        se ((button == mouse.BOTAO_ESQUERDO) e
+            (x &gt;= 100) e (x &lt; 180) e
+            (y &gt;= 80) e (y &lt; 160)) {
+            escreva("Hit! Press a key to exit.\n")
+            playback = sounds.reproduzir_som(sound, falso)
+            key = keyboard.ler_tecla()
+            sounds.interromper_som(playback)
+        } senao {
+            escreva("Try again.\n")
+        }
+
+        sounds.liberar_som(sound)
+        graphics.encerrar_modo_grafico()
+    }
+}</code></pre>
+          <p><code>ler_botao</code> waits for a click; <code>posicao_x</code> and <code>posicao_y</code> check where it landed. <code>ler_tecla</code> waits for the next key, and the identifier returned by <code>reproduzir_som</code> can stop playback.</p>
+          <h3>Append a score to a file</h3>
+          <p>Use <code>MODO_ACRESCENTAR</code> to keep lines already stored in the file. <code>MODO_ESCRITA</code> clears existing content when the file is opened.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Arquivos --&gt; files
+
+    funcao inicio() {
+        inteiro handle
+        handle = files.abrir_arquivo("scores.txt", files.MODO_ACRESCENTAR)
+        files.escrever_linha("Ana;12", handle)
+        files.fechar_arquivo(handle)
+    }
+}</code></pre>
+          <h3>Read a page and query an API</h3>
+          <p><code>Internet.definir_tempo_limite</code> sets the timeout for calls to the <code>Internet</code> library. <code>Internet.obter_texto</code> returns text content from an address. <code>ServicosWeb.obter_dados</code> sends a GET request and returns the JSON response as a string. Replace <code>api.example.test</code> with an accessible API that returns JSON. Network calls require the app's HTTP service.</p>
+          <pre class="manual-code"><code>programa {
+    inclua biblioteca Internet --&gt; internet
+    inclua biblioteca ServicosWeb --&gt; api
+
+    funcao inicio() {
+        cadeia page
+        cadeia response
+
+        internet.definir_tempo_limite(5000)
+        page = internet.obter_texto("https://example.org/")
+        response = api.obter_dados("https://api.example.test/scores")
+        escreva(page, "\n")
+        escreva(response, "\n")
+    }
+}</code></pre>
         </section>
 
         <section id="exemplo">
@@ -340,7 +413,7 @@ funcao inicio() {
           <div class="manual-note"><strong>When tracking down an error:</strong> first check declared types, block delimiters, the library name and index bounds. Use parentheses to make precedence explicit when expressions combine different operators.</div>
         </section>
 
-        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>Portugol Studio 2.0 interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, and targets the Portugol Studio 2.0 pseudolanguage. It covers programs, typed and void functions, variables, vectors and matrices, operators, control structures, input and output, and standard libraries.</p><p>Environment-dependent services—such as files, graphics, keyboard, mouse, audio, HTTP, and calendar—are requested from the app through an integration interface. Potoo IDE already provides handlers for graphics, keyboard, mouse, and audio; these features still need manual validation on each platform. The parser reports the first lexical or syntax error it finds.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Portugol Studio 2.0 interpreter repository</a></p>{% include interpreter_installation.html %}
+        <section id="interpretador"><p class="kicker">14 · Interpreter</p><h2>Portugol Studio 2.0 interpreter in Potoo IDE</h2><p>The interpreter is a reusable library maintained in its own repository, with a terminal runner, and targets the Portugol Studio 2.0 pseudolanguage. It covers programs, typed and void functions, variables, vectors and matrices, operators, control structures, input and output, and standard libraries.</p><p>Environment-dependent services—files, internet, web services, graphics, keyboard, mouse, audio, and calendar—are delegated to the app through the integration interface. Potoo IDE provides these services during IDE execution; graphics, keyboard, mouse, and audio features still need manual validation on each platform. The terminal runner does not provide these host services. The parser reports the first lexical or syntax error it finds.</p><p><a href="https://github.com/diegopn/potoo-portugol-studio-2-interpreter">Portugol Studio 2.0 interpreter repository</a></p>{% include interpreter_installation.html %}
 {% include interpreter_usage.html %}</section>
 <section id="fontes">
           <p class="kicker">15 · Further reading</p>
@@ -350,7 +423,7 @@ funcao inicio() {
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio">official Portugol Studio repository</a> identifies the pseudolanguage as Portugol Studio 2.0.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/Portugol.g4">official grammar</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4">official lexer</a>.</li>
             <li>The <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/ide/src/main/assets/ajuda/topicos/linguagem_portugol/entrada_saida/escreva.html">official input/output help</a>, including the <code>\n</code> newline escape, and its <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/analise/semantica/AnalisadorSemantico.java">semantic analyzer</a>, which lists predefined functions.</li>
-            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Standard library source code</a> and documented functions; see <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a> and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a> directly.</li>
+            <li><a href="https://github.com/UNIVALI-LITE/Portugol-Studio/tree/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas">Standard library source code</a> and documented functions: <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Arquivos.java">Arquivos</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Graficos.java">Graficos</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Internet.java">Internet</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Mouse.java">Mouse</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/ServicosWeb.java">ServicosWeb</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Sons.java">Sons</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Teclado.java">Teclado</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Matematica.java">Matematica</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Texto.java">Texto</a>, <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Tipos.java">Tipos</a>, and <a href="https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/java/br/univali/portugol/nucleo/bibliotecas/Util.java">Util</a>.</li>
           </ul>
           <p>These references belong to separate projects. Check them for behavior and compatibility details before relying on a specific function.</p>
         </section>
